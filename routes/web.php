@@ -18,4 +18,4 @@ Route::get('/', function () {
 Route::get('login', 'Auth\LoginController@login')->name('login');
 
 Route::post('autentication', 'Auth\LoginController@autentication')->name('autentication');
- Route::get('init', 'Auth\LoginController@init')->name('init')
+Route::get('init', 'Auth\LoginController@init')->name('init')

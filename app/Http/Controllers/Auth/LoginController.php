@@ -27,6 +27,6 @@ class LoginController extends Controller
     }
 
     public function init(){
-        return view('')
+        return view('init')
     }
 }
