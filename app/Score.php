@@ -11,11 +11,20 @@ class Score extends Model
     
     //relacion con periods
     public function periods(){ 
-    	return $this->hasMany('App\Period');
+    	return $this->belongsTo('App\Period');
     }
  	//relacion con divisions
     public function divisions(){ 
-    	return $this->hasMany('App\Division');
+    	return $this->belongsTo('App\Division');
+    }
+
+    //relacion con subject_teacher_course
+    public function subjectTCs(){ 
+    	return $this->belongsTo('App\SubjectTC');
+    }
+
+    public function studentScores(){ 
+    	return $this->hasMany('App\StudentScore');
     }
 
 }

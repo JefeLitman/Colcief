@@ -10,7 +10,7 @@ class Schedule extends Model
     protected $fillable = ['id_schedule','day', 'start_time', 'end_time'];
     
     //relacion con subject_teacher_course
-    public function subjectTC(){ 
-    	return $this->hasMany('App\SubjectTC');
+    public function subjectTCs(){ 
+    	return $this->belongsTo('App\SubjectTC');
     }
 }

@@ -10,7 +10,7 @@ class Subject extends Model
     protected $fillable = ['id_subject','name', 'content'];
     
     //relacion con subject_teacher_course
-    public function subjectTC(){ 
+    public function subjectTCs(){ 
     	return $this->hasMany('App\SubjectTC');
     }
 }

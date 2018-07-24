@@ -11,10 +11,14 @@ class ReportCard extends Model
 
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsTo('App\Student');
     }
 
     public function grades(){
-    	return $this->belongsToMany('App\Grade');
+    	return $this->belongsTo('App\Grade');
+    }
+
+    public function subjectReports(){ 
+    	return $this->hasMany('App\SubjectReport');
     }
 }
