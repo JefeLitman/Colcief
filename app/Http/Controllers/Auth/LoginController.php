@@ -7,6 +7,10 @@ use Auth;
 
 class LoginController extends Controller
 {
+    public function __construct(){
+        $this->middleware('guest');
+    }
+
     public function autentication(){
         $credentials = $this->validate(request(), [
             'email' => 'email|required|string',
@@ -24,9 +28,5 @@ class LoginController extends Controller
 
     public function login(){
         return view('auth.login');
-    }
-
-    public function init(){
-        return view('init')
     }
 }

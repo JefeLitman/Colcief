@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@if(session()->has('flash'))
+	<div class="alert alert-info">{{session('flash')}}</div>
+@endif
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="panel panel-default">
