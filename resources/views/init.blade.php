@@ -5,10 +5,19 @@
   <div class="col-md-4 col-md-offset-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="panel-title">Welcome {{auth()->user()->name}}</h1>
+        @if(Auth::guard('student'))
+          <span></span>
+          <h1 class="panel-title">Welcome s {{auth('student')->user()->first_name.' '.auth('student')->user()->last_name}}</h1>
+        @elseif(Auth::guard('employee'))
+          <h1 class="panel-title">Welcome f{{auth('employee')->user()->first_name.' '.auth('employee')->user()->last_name}}</h1>
+        @endif
       </div>
       <div class="panel-body">
-        <strong>Email: </strong>{{auth()->user()->email}}
+        @if(Auth::guard('student'))
+          <strong>Email: </strong>{{auth('student')->user()->email}}
+        @elseif(Auth::guard('employee'))
+          <strong>Email: </strong>{{auth('employee')->user()->email}}
+        @endif
       </div>
       <div class="panel-footer">
         <form method="POST" action="{{route('logout')}}">

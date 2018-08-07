@@ -13,6 +13,14 @@
 				<div class="panel-body">
 					<form method="POST" action="{{route('autentication')}}">
 						{{csrf_field()}}
+						<div class="form-group">
+							<label for="role">Cargo</label>
+							<select name="role" id="role" class="form-control">
+								<option value="student">Estudiante</option>
+								<option value="admin">Administrativo</option>
+								<option value="employee">Docente</option>
+							</select>
+						</div>
 						<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
 							<label for="email">Email</label>
 							<input class="form-control" id="email" type="email" name="email" value="{{old('email')}}">
@@ -22,6 +30,9 @@
 							<label for="password">Password</label>
 							<input class="form-control" id="password" type="password" name="password">
 							{!! $errors -> first('password','<span class="help-block">:message</span>')!!}
+						</div>
+						<div id="remember" class="checkbox">
+							<label>Remember me	<input type="checkbox" value="remember"></label>
 						</div>
 						<button class="btn btn-primary btn-block">Login</button>
 					</form>

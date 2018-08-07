@@ -11,3 +11,12 @@ Route::post('autentication', 'Auth\LoginController@autentication')->name('autent
 Route::get('init', 'InitController@index')->name('init');
 
 Route::post('logout', 'InitController@logout')->name('logout');
+
+Route::get('register', function(){
+    return view('register.register_student');
+})->name('register');
+
+Route::post('success', function(){
+    $nombre = request()->all();
+    var_dump($nombre);
+})->name('success');
