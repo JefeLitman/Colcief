@@ -17,13 +17,48 @@ class LoginController extends Controller
             'password' => 'required|string'
         ]);
 
-        if(Auth::attempt($credentials)){
-            return redirect()->route('init');
-        }else{
-            return back()
-                ->withErrors(['email' => trans('auth.failed')])
-                ->withInput(request(['email']));
+        switch (request()->input('role')) {
+            case 'student':
+                if(Auth::guard('student')->attempt($credentials, request(['remember']))){
+                    return redirect()->route('init');
+                }else{
+                    return back()
+                        ->withErrors(['email' => trans('auth.failed')])
+                        ->withInput(request(['email']))
+                        ->withInput(request(['role']));
+                }
+                break;
+
+            case 'employee':
+                if(Auth::guard('employee')->attempt($credentials)){
+                    return redirect()->route('init');
+                }else{
+                    return back()
+                        ->withErrors(['email' => trans('auth.failed')])
+                        ->withInput(request(['email']))
+                        ->withInput(request(['role']));
+                }
+                break;
+            
+            case 'admin':
+                if(Auth::guard('employee')->attempt($credentials)){
+                    return redirect()->route('init');
+                }else{
+                    return back()
+                        ->withErrors(['email' => trans('auth.failed')])
+                        ->withInput(request(['email']))
+                        ->withInput(request(['role']));
+                }
+                break;
+
+            default:
+                return back()
+                        ->withErrors(['email' => 'Error, intente mas tarde' ])
+                        ->withInput(request(['email']))
+                        ->withInput(request(['role']));
+                break;
         }
+        
     }
 
     public function login(){

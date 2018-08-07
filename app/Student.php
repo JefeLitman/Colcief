@@ -1,10 +1,9 @@
 <?php
 
 namespace App;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Student extends Model
+class Student extends Authenticatable
 {
     protected $primaryKey = 'id_student';
     protected $fillable = ['id_student','first_name', 'last_name', 'email', 'password', 'phone', 'birthday', 'grade'];

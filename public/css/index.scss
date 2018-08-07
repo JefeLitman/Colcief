@@ -1,0 +1,405 @@
+/**
+ * Framework Base: Twitter Bootstrap
+ * Custom Styles: Kayla Pratt
+ * Author URL: kaylapratt.com
+ */
+//////////////////////////////////////////
+// Demo Developed by Kayla Pratt - kaylapratt.com
+// Copyright (C) 2017 Kayla Pratt - All Rights Reserved
+// You may view and distribute this demo only for
+// the Emory University web developer job search committee.
+// This project nor any assets attached may be used for any purpose except
+// what is previously specified.
+//////////////////////////////////////////
+body {
+    margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+/*
+	Emory University Brand Colors
+*/
+$primary:#002878;
+$secondary:#007698;
+$gold-light:#d2b000;
+$gold-dark:#d28e00;
+// Grays
+$gray-light:#e8ebf4;
+$gray-dark:#bdbfc1;
+$gray-text:#333;
+// Vibrant
+$pumpkin:#df7a1c;
+$dandelion:#e7a614;
+$columbine:#e31b23;
+$merlot:#98002e;
+$royal:#7c2b83;
+/*
+	Typography
+*/
+$serif:'Cormorant Garamond', serif;
+$sans-serif:'Noto Sans', sans-serif;
+/*
+	General
+*/
+html{
+ height:100%;
+ min-height:100%;
+ }
+body {
+	font-family:$sans-serif;
+	color:$gray-text;
+	margin-top:0; // remove navbar 'bg'
+	min-height:100%;
+	overflow-x:hidden;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family:$serif;
+}
+a {
+	color:$primary;
+}
+.overlay {
+	height:100%;
+	width:100%;
+	background:rgba(0,0,0,.5);
+	&.ttb {
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */	
+	}
+	&.btt {
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=0 ); /* IE6-9 */
+	}
+}
+.btn-primary {
+    color: rgb(255, 255, 255);
+    background-color:$secondary;
+}
+/*
+	Header
+*/
+.navbar {
+	background:$primary;
+	/* scroll event transition */
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.86, 0, 0.07, 1, opacity 1s ease);
+  -moz-transition: -moz-transform 1s cubic-bezier(0.86, 0, 0.07, 1), opacity 1s ease;
+  transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1), opacity 1s ease;
+	&.scrollup {
+		-webkit-transform: translateY(-100%);
+		-moz-transform: translateY(-100%);
+		-ms-transform: translateY(-100%);
+		-o-transform: translateY(-100%);
+		transform: translateY(-100%);
+		opacity:0;
+	}
+	a {
+		color:#fff;
+	}
+	li a:focus,
+	li a:hover,
+	li a:active,
+	li.open > a,
+	li.open > a:focus,
+	li.open > a:hover {
+		background-color:$primary;
+		filter:brightness(1.15);
+	}
+	.navbar-brand {
+	font-family:$serif;
+	font-weight:bold;
+	}
+	.navbar-right {
+		margin-right:0;
+		font-size:1rem;
+		.btn {
+			font-size:1rem;
+			border:0;
+			border-radius:0;
+			&.toggle {
+				background:transparent;
+				color:#fff;
+			}
+		}
+	}
+.toggle-input {
+	background:rgba(0,0,0,.25);
+	border-color:rgba(0,0,0,.3);
+	color:#fff;
+	display:none;
+	position:absolute;
+	width:200px;
+	right:1rem;
+	transform:translateY(20%);
+	}
+}
+.navbar-toggle .icon-bar {
+	color:#fff;
+}
+/*
+	Bootstrap basic wide BG
+*/
+.image-bg-fluid-height,
+.image-bg-fixed-height {
+    text-align: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.image-bg-fluid-height {
+    padding: 100px 0;
+	&.hero {
+		background:url('http://kaylapratt.com/wp-content/uploads/2017/03/hero-alt.jpg')  -25px -50px;
+		background-size: calc(120% + 50px);
+		padding:0;
+		height:100vh;
+		width:100%;
+		overflow:hidden;
+		.hero__content {
+			display:flex;
+			flex-flow:column wrap;
+			align-items:center;
+			justify-content:center;
+			height: 100%;
+			h1 {
+				font-size:5vw;
+				color:#fff;
+			}
+			img {
+				transform:translateY(100%) translateX(-10%);
+				max-width:175px;
+			}
+		}
+	}
+}
+// Sections
+#location,
+#splan {
+	padding:0;
+	.overlay {
+		padding: 75px 0;
+	}
+	h2,
+	p {
+		color:#fff;
+	}
+}
+#kicker {
+	background:url('http://kaylapratt.com/wp-content/uploads/2017/03/clouds-bg.jpg') no-repeat center center fixed;
+}
+#location {
+	background:url('https://photos.smugmug.com/Clients/Admissions/Oxford-Fall-2016/i-DvgW3dG/0/X3/0112101-16KH-F227_RAW_-X3.jpg') no-repeat center center fixed;
+}
+#splan {
+	background:url('https://photos.smugmug.com/Clients/Library-Images/Oxford-Library/i-Gjf6qJG/0/X3/0040709-11KH-F010-_RAW_-X3.jpg') no-repeat center center fixed;
+}
+#kicker,
+#location,
+#splan {
+	background-size:cover;
+}
+// infographics
+.info-wrap {
+	display:flex;
+	flex-flow:column nowrap;
+	.info__title {
+		position:relative;
+		display:flex;
+		flex-flow:row nowrap;
+		align-items:center;
+		justify-content:space-between;
+		.info__stat {
+			font-size:7rem;
+			font-family:$sans-serif;
+			span {
+				font-size:4rem;
+			}
+		}
+		.info__icon {
+			font-size:15rem;
+			position:absolute;
+			z-index:0;
+			top:0;
+			right:0;
+			opacity:.1;
+		}
+	}
+	.info__desc {
+		font-size:2rem;
+	}
+	&:nth-of-type(4n + 1) .info__title {
+			color:$dandelion;
+		}
+		&:nth-of-type(4n + 2) .info__title {
+			color:$merlot;
+		}
+		&:nth-of-type(4n + 3) .info__title {
+			color:$secondary;
+		}
+		&:nth-of-type(4n + 4) .info__title {
+			color:$pumpkin;
+		}
+}
+.image-bg-fixed-height {
+	background: url('https://photos.smugmug.com/Clients/Admissions/Oxford-Fall-2016/i-fmFKJLZ/0/X3/0112101-16KH-F120_RAW_-X3.jpg') no-repeat center center scroll;
+	background-size:cover;
+    height: 450px;
+}
+.img-center {
+	margin: 0 auto;
+}
+section {
+    padding: 75px 0;
+}
+.section-heading {
+    margin: 30px 0;
+    font-size: 4em;
+}
+.section-lead {
+    margin: 30px 0;
+}
+
+.section-paragraph {
+    margin: 30px 0;
+}
+// Footer
+#post-footer {
+	background:$gray-text;
+	padding:10px 0;
+	font-size:1rem;
+		p,
+		ul,
+		li,
+		a {
+			color:#fff;
+			margin:0;
+			padding:0;
+		}
+		ul li {
+			list-style-type:none;
+			display:inline;
+			&:not(:last-child):after {
+				content:" | ";
+			}
+		}
+	}
+footer {
+	margin:0 auto;
+	background:$primary;
+	padding:5rem 0;
+	color:#fff;
+	.logo {
+		max-width:150px;
+	}
+	ul {
+		padding:0;
+	}
+	ul > li {
+		list-style-type:none;
+		a {
+			color:#fff;
+			&:hover,
+			&:focus,
+			&:active {
+				color:$columbine;
+				text-decoration:none;
+			}
+		}
+	}
+	#MicrosoftTranslatorWidget {
+		color:#fff;
+		background:$primary;
+	}
+	.Light #LauncherTranslatePhrase {
+		border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255,.25);
+    border-image: initial;
+		border-radius:3px;
+	}
+}
+// Media Queries
+@media(max-width:1100px) {
+	.image-bg-fluid-height {
+		&.hero {
+			background-position:center center!important;
+			background-size:cover;
+		}
+	}
+}
+@media(max-width:1100px) and (min-width:768px) {
+		.navbar {
+		font-size:1.15rem;
+	}
+	.navbar .navbar-right {
+			position: absolute;
+			top: 50px;
+			right: 0;
+		li > a,
+		li > a.toggle.btn {
+			background:rgba(0,0,0,.25);
+		}
+		li > a:hover,
+		li > a:active,
+		li > a:focus {
+			background:rgba(0,0,0,.35);
+			filter:none;
+		}
+	}
+}
+@media(max-width:768px) { 
+	section {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+    .section-heading {
+        font-size: 2em;
+    }
+	.navbar {
+		.navbar-right {
+			border-top:2px solid $secondary;
+			font-size:inherit;
+			margin-right:0;
+			.btn {
+			font-size:inherit;
+			&.search {
+				background:transparent;
+				color:#fff;
+				text-align: left;
+				width:20%;
+				}
+			}
+			.search-wrap {
+				display:flex;
+				flex-flow:row nowrap;
+				align-items:center;
+				.form-control {
+					width:80%;
+					background:$primary;
+					filter:brightness(85%);
+					color:#fff;
+					border:0;
+				}
+			}
+		}
+	}
+	.toggle-input {
+	color:#fff;
+	display:none;
+	position:relative;
+	width:100%;
+	}
+}
+	
+// Import the mods
+@import '_cta.scss';
+@import '_megamenu.scss';
+@import '_calendar-list.scss';

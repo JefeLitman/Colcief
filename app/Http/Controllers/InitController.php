@@ -7,9 +7,9 @@ use Auth;
 
 class InitController extends Controller
 {
-	public function __construct(){
-    	$this->middleware('auth');
-    }
+	// public function __construct(){
+ //    	$this->middleware('auth');
+ //    }
 
     public function logout(){
         Auth::logout();
