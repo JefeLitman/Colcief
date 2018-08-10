@@ -12,7 +12,7 @@
 <body>
     
     <?PHP
-		include("{{ asset('php/menu.php') }}")
+		include("menu.php")
 	?>
     
     <!--Galeria por medio del materialize-->
@@ -33,7 +33,7 @@
 	</div>
     
     <?PHP
-		include("{{ asset('php/footer.php') }}")
+		include("footer.php")
 	?>
     
     <!--JavaScript at end of body for optimized loading-->
