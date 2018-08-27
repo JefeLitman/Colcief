@@ -45,6 +45,16 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'estudiante' => [
+            'driver' => 'session',
+            'provider' => 'estudiante',
+        ],
+
+        'profesor' => [
+            'driver' => 'session',
+            'provider' => 'profesor',
+        ],
     ],
 
     /*
@@ -70,6 +80,15 @@ return [
             'model' => App\User::class,
         ],
 
+        'estudiante' => [
+            'driver' => 'eloquent',
+            'model' => App\Estudiante::class,
+        ],
+
+        'profesor' => [
+            'driver' => 'eloquent',
+            'model' => App\Empleado::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

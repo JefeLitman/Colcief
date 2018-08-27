@@ -30,7 +30,7 @@ class Todo extends Migration
             $table->unsignedInteger('fk_acudiente'); //diferente
             $table->string('nombre', 20);
             $table->string('apellido', 20);
-            $table->string('contrasena', 80);
+            $table->string('clave', 80);
             $table->date('fecha_nacimiento');
             $table->integer('grado');
             $table->boolean('discapacidad');
