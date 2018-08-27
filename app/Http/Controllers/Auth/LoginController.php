@@ -15,15 +15,15 @@ class LoginController extends Controller{
         $this->middleware('guest')->except('logout'); 
     }
 
-    protected function guard(){
-        if($request->input('role') == "1"){
-            return Auth::guard('estudiante');
-        }else{
-            return Auth::guard('profesor');
-        }
+    // protected function guard(){
+    //     if($request->input('role') == "1"){
+    //         return Auth::guard('estudiante');
+    //     }else{
+    //         return Auth::guard('profesor');
+    //     }
     }
 
-    public function username(){
-        return 'username';
-    }
+    // public function username(){
+    //     return 'username';
+    // }
 }
