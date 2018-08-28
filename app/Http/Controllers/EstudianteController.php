@@ -7,21 +7,6 @@ use Illuminate\Http\Request;
 
 class EstudianteController extends Controller{
 
-    private function validate(Request $request){
-        $request->validate([
-            'pk_estudiante' => 'required|numeric|unique:estudiante',
-            'fk_acudiente' => 'required|numeric',
-            'nombre' => 'required|string|max:20',
-            'apellido' => 'required|string|max:20',
-            'clave' => 'required|string|max:20',
-            'fecha_nacimiento' => 'required|date',
-            'grado' => 'required|numeric',
-            'discapacidad' => 'boolean',
-            'estado' => 'boolean',
-            'foto' => 'require|url',    
-        ]);
-    }
-
     public function index(){
         
     }
@@ -31,7 +16,7 @@ class EstudianteController extends Controller{
     }
 
     public function store(Request $request){
-        if(validate($request)){
+        if($this->validar($request)){
             return Estudiante::create([
                 'pk_estudiante' => $request['pk_estudiante'],
                 'fk_acudiente' => $request['fk_acudiente'],
@@ -56,7 +41,7 @@ class EstudianteController extends Controller{
     }
 
     public function update(Request $request, Estudiante $estudiante){
-        if(validate($request)){
+        if($this->validar($request)){
             $estudiante->update([
                 'pk_estudiante' => $request['pk_estudiante'],
                 'fk_acudiente' => $request['fk_acudiente'],
@@ -70,6 +55,20 @@ class EstudianteController extends Controller{
                 'foto' => 'require|url',
             ]);
         }    
+    }
+     private function validar(Request $request){
+        $request->validate([
+            'pk_estudiante' => 'required|numeric|unique:estudiante',
+            'fk_acudiente' => 'required|numeric',
+            'nombre' => 'required|string|max:20',
+            'apellido' => 'required|string|max:20',
+            'clave' => 'required|string|max:20',
+            'fecha_nacimiento' => 'required|date',
+            'grado' => 'required|numeric',
+            'discapacidad' => 'boolean',
+            'estado' => 'boolean',
+            'foto' => 'require|url',    
+        ]);
     }
 
     // public function destroy(Estudiante $estudiante){
