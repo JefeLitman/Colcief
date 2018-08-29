@@ -21,7 +21,7 @@ class LoginController extends Controller{
     //     }else{
     //         return Auth::guard('profesor');
     //     }
-    }
+    //}
 
     // public function username(){
     //     return 'username';
