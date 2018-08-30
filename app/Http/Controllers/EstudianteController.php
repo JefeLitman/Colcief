@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Estudiante;
+
+/*@Autor Paola*/
+use App\Acudiente; //Pepe no me lo vuelva a borrar 
+/**/
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -30,7 +35,7 @@ class EstudianteController extends Controller{
     }
 
     public function show($pk_estudiante){
-        
+        /*@Autor Paola*/
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>estudiantes>verEstudiante.blade.php y allá se reciben todos los datos del respectivo estudiante y acudiente en las variables tipo Object $estudiante, $acudiente.
 
         $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->first()->get()[0];
