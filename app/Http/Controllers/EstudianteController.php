@@ -20,19 +20,10 @@ class EstudianteController extends Controller{
 
     public function store(Request $request){
         if($this->validar($request)){
-            return Estudiante::create([
-                'pk_estudiante' => $request['pk_estudiante'],
-                'fk_acudiente' => $request['fk_acudiente'],
-                'nombre' => $request['nombre'],
-                'apellido' => $request['apellido'],
-                'clave' => Hash::make(str_random(20)),
-                'fecha_nacimiento' => $request['fecha_nacimiento'],
-                'grado' => $request['grado'],
-                'discapacidad' => $request['discapacidad'],
-                'estado' => 'boolean',
-                'foto' => 'require|url',
-            ]);
+            Estudiante::create($request->all());
+            dd('se guardo');
         }
+        return $request->all();
     }
 
     public function show($pk_estudiante){
@@ -50,37 +41,30 @@ class EstudianteController extends Controller{
         
     }
 
-    public function update(Request $request, Estudiante $estudiante){
+    public function update(Request $request, $pk_estudiante){
         if($this->validar($request)){
-            $estudiante->update([
-                'pk_estudiante' => $request['pk_estudiante'],
-                'fk_acudiente' => $request['fk_acudiente'],
-                'nombre' => $request['nombre'],
-                'apellido' => $request['apellido'],
-                'clave' => Hash::make(str_random(20)),
-                'fecha_nacimiento' => $request['fecha_nacimiento'],
-                'grado' => $request['grado'],
-                'discapacidad' => $request['discapacidad'],
-                'estado' => 'boolean',
-                'foto' => 'require|url',
-            ]);
+            $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->first()->get()[0];
+            $estudiante->update($request->all());
         }    
     }
 
-
-     private function validar(Request $request){
-        $request->validate([
-            'pk_estudiante' => 'required|numeric|unique:estudiante',
-            'fk_acudiente' => 'required|numeric',
-            'nombre' => 'required|string|max:20',
-            'apellido' => 'required|string|max:20',
-            'clave' => 'required|string|max:20',
-            'fecha_nacimiento' => 'required|date',
-            'grado' => 'required|numeric',
-            'discapacidad' => 'boolean',
-            'estado' => 'boolean',
-            'foto' => 'require|url',    
-        ]);
+    private function validar(Request $request){
+        $arrayRequest = (array) $request;
+        // return Validator::make($arrayRequest, [
+        //     'pk_estudiante' => 'required|numeric|unique:estudiante',
+        //     'fk_acudiente' => 'required|numeric',
+        //     'nombre' => 'required|string|max:20',
+        //     'apellido' => 'required|string|max:20',
+        //     'clave' => 'required|string|max:20',
+        //     'fecha_nacimiento' => 'required|date',
+        //     'grado' => 'required|numeric',
+        //     'discapacidad' => 'boolean',
+        //     'estado' => 'boolean',
+        //     'foto' => 'require|url',    
+        // ]);
+        // dd($arrayRequest);
+        // dd($request->file('foto.path'));
+        dd($arrayRequest['files']);
     }
 
     // public function destroy(Estudiante $estudiante){
