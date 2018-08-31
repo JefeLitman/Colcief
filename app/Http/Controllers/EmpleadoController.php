@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Empleado;
 use Illuminate\Http\Request;
+use App\Empleado;
 
 class EmpleadoController extends Controller
 {

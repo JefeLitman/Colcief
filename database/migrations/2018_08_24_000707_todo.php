@@ -32,8 +32,8 @@ class Todo extends Migration
             $table->string('clave', 80);
             $table->date('fecha_nacimiento');
             $table->integer('grado');
-            $table->boolean('discapacidad');
-            $table->boolean('estado');
+            $table->boolean('discapacidad')->nullable();
+            $table->boolean('estado')->nullable();
             $table->string('foto');
             $table->timestamps();
         });
@@ -123,7 +123,7 @@ class Todo extends Migration
             $table->char('rol', 1);
             $table->integer('tiempo_extra');
             $table->string('director', 20);
-            $table->boolean('estado');
+            $table->boolean('estado')->nullable();
             $table->string('foto');
             $table->timestamps();
         });

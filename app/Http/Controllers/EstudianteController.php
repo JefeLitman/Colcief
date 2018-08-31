@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Estudiante;
-use App\Acudiente;
+
+/*@Autor Paola*/
+use App\Acudiente; //Pepe no me lo vuelva a borrar 
+/**/
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EstudianteController extends Controller{
 
@@ -15,28 +20,22 @@ class EstudianteController extends Controller{
     }
 
     public function create(){
-        
+        return view('prueba.estudiante');
     }
 
     public function store(Request $request){
-        if($this->validar($request)){
-            return Estudiante::create([
-                'pk_estudiante' => $request['pk_estudiante'],
-                'fk_acudiente' => $request['fk_acudiente'],
-                'nombre' => $request['nombre'],
-                'apellido' => $request['apellido'],
-                'clave' => Hash::make(str_random(20)),
-                'fecha_nacimiento' => $request['fecha_nacimiento'],
-                'grado' => $request['grado'],
-                'discapacidad' => $request['discapacidad'],
-                'estado' => 'boolean',
-                'foto' => 'require|url',
-            ]);
-        }
+        // if($this->validar($request)){
+        //     Estudiante::create($request->all());
+        //     dd('se guardo');
+        // }
+        // print gettype($request->foto);
+        $this->validar($request);
+        // dd($request->files());
+        // echo $request->discapacidad;
     }
 
     public function show($pk_estudiante){
-        
+        /*@Autor Paola*/
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>estudiantes>verEstudiante.blade.php y allá se reciben todos los datos del respectivo estudiante y acudiente en las variables tipo Object $estudiante, $acudiente.
 
         $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->first()->get()[0];
@@ -50,40 +49,29 @@ class EstudianteController extends Controller{
         
     }
 
-    public function update(Request $request, Estudiante $estudiante){
+    public function update(Request $request, $pk_estudiante){
         if($this->validar($request)){
-            $estudiante->update([
-                'pk_estudiante' => $request['pk_estudiante'],
-                'fk_acudiente' => $request['fk_acudiente'],
-                'nombre' => $request['nombre'],
-                'apellido' => $request['apellido'],
-                'clave' => Hash::make(str_random(20)),
-                'fecha_nacimiento' => $request['fecha_nacimiento'],
-                'grado' => $request['grado'],
-                'discapacidad' => $request['discapacidad'],
-                'estado' => 'boolean',
-                'foto' => 'require|url',
-            ]);
+            $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->first()->get()[0];
+            $estudiante->update($request->all());
         }    
     }
+    private function mover(Request $request){
+        dd($request->file('foto')->store('public'));
+    }
 
-
-     private function validar(Request $request){
+    private function validar(Request $request){
         $request->validate([
             'pk_estudiante' => 'required|numeric|unique:estudiante',
             'fk_acudiente' => 'required|numeric',
-            'nombre' => 'required|string|max:20',
+            'nombre' => 'required|string|max:20|',
             'apellido' => 'required|string|max:20',
             'clave' => 'required|string|max:20',
             'fecha_nacimiento' => 'required|date',
             'grado' => 'required|numeric',
             'discapacidad' => 'boolean',
             'estado' => 'boolean',
-            'foto' => 'require|url',    
+            'foto'=> 'image|required|mimes:jpeg,bmp,png,jpg',  
         ]);
+        $this->mover($request);
     }
-
-    // public function destroy(Estudiante $estudiante){
-        
-    // }
 }
