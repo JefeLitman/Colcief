@@ -48,11 +48,11 @@ class EstudianteController extends Controller{
         }    
     }
     private function mover(Request $request){
-        $request->file('foto')->store('avatar');
+        $file =  $request->file('foto')->store('avatar');
         $format = explode('/', $request->file('foto')->getMimeType());
         $name = "avatar/img".$request->pk_estudiante.".".$format[1];
-        Storage::move($request->file('foto')->store('avatar'),$name);
-        $request->file('foto')->path() = $name;
+        Storage::move($file,$name);
+        // $request->file('foto')->path() = $name;
     }
 
     private function validar(Request $request){
