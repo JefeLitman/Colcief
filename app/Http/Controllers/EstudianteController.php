@@ -22,8 +22,9 @@ class EstudianteController extends Controller{
 
     public function store(Request $request){
         $this->validar($request);
-        Estudiante::create($request->all());
-        dd('se guardo');
+        dd($estudiante = Estudiante::create($request->all()));
+        // dd($estudiante->nombre);
+        // dd($estudiante->save());
     }
 
     public function show($pk_estudiante){
@@ -48,11 +49,9 @@ class EstudianteController extends Controller{
         }    
     }
     private function mover(Request $request){
-        $file =  $request->file('foto')->store('avatar');
         $format = explode('/', $request->file('foto')->getMimeType());
-        $name = "avatar/img".$request->pk_estudiante.".".$format[1];
-        Storage::move($file,$name);
-        // $request->file('foto')->path() = $name;
+        $request->file('foto')->storeAs('estudiante', $request->pk_estudiante.".".$format[1]);
+        return "estudiante/".$request->pk_estudiante.".".$format[1];
     }
 
     private function validar(Request $request){
@@ -68,6 +67,5 @@ class EstudianteController extends Controller{
             'estado' => 'boolean',
             'foto'=> 'image|required|mimes:jpeg,bmp,png,jpg',  
         ]);
-        $this->mover($request);
     }
 }
