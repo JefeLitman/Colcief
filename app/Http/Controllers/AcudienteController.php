@@ -36,21 +36,19 @@ class AcudienteController extends Controller
      */
     public function store(AcudienteStoreController $request)
     {
-      //return $request->validated();
-        if($request->validated()){
-          $unidad = new Acudiente(); //Creo el modelo de datos acudiente
-          $unidad->pk_acudiente = $request->input('pk_acudiente');
-          $unidad->nombre_acu_1 = $request->input('nombre_acu_1');
-          $unidad->direccion_acu_1 = $request->input('direccion_acu_1');
-          $unidad->telefono_acu_1 = $request->input('telefono_acu_1');
-          $unidad->nombre_acu_2 = $request->input('nombre_acu_2');
-          $unidad->direccion_acu_2 = $request->input('direccion_acu_2');
-          $unidad->telefono_acu_2 = $request->input('telefono_acu_2');
-          $unidad->save();
-          return $request->validated();
-        }else{
-          return 'Datos errados';
-        }
+      //Los datos al haber pasado por AcudienteStoreController ya están validados
+      $unidad = new Acudiente(); //Creo el modelo de datos acudiente
+      $unidad->pk_acudiente = $request->input('pk_acudiente');
+      $unidad->nombre_acu_1 = $request->input('nombre_acu_1');
+      $unidad->direccion_acu_1 = $request->input('direccion_acu_1');
+      $unidad->telefono_acu_1 = $request->input('telefono_acu_1');
+      $unidad->nombre_acu_2 = $request->input('nombre_acu_2');
+      $unidad->direccion_acu_2 = $request->input('direccion_acu_2');
+      $unidad->telefono_acu_2 = $request->input('telefono_acu_2');
+      $unidad->save();
+      return $request->validated(); /* Esto se puede quitar, es para que los de frontend sepan
+      qué se está enviando a la BD en caso de que se haya validado y funcione esa info.
+      */
     }
 
     /**

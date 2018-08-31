@@ -5,20 +5,29 @@
     <title>Primitivo crear acudiente</title>
   </head>
   <body>
+    <h2>VISTA PROVISIONAL Y EXCLUSIVA PARA PRUEBAS</h2>
+    <br>
     <form class="" action="/acudiente" method="post">
       @csrf
+      Clave primaria [integer] <br>
       <input type="text" name="pk_acudiente" value="">
       <br>
+      Nombre acudiente 1 [string] <br>
       <input type="text" name="nombre_acu_1" value="">
       <br>
+      Dirección del acudiente 1 [string] <br>
       <input type="text" name="direccion_acu_1" value="">
       <br>
+      Telefono acudiente 1 [string (númerico)] <br>
       <input type="text" name="telefono_acu_1" value="">
       <br>
+      Nombre acudiente 2 [string] <br>
       <input type="text" name="nombre_acu_2" value="">
       <br>
+      Dirección del acudiente 2 [string] <br>
       <input type="text" name="direccion_acu_2" value="">
       <br>
+      Telefono acudiente 2 [string (numérico)] <br>
       <input type="text" name="telefono_acu_2" value="">
       <br>
       <select class="" name="Prueba">

@@ -5,7 +5,7 @@
 </head>
 <body>
 	<form method="post" action="/estudiantes" enctype="multipart/form-data">
-		@csrf()
+		@csrf
 		{{-- <img src="/storage/PvRbjWWj0jk4QD84Y6kkfm2Wri5tdMz35lEu9JGM.jpeg"> --}}
 		<input type="number" name="pk_estudiante">
 		<input type="number" name="fk_acudiente">
