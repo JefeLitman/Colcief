@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Estudiante;
-
-/*@Autor Paola*/
-use App\Acudiente; //Pepe no me lo vuelva a borrar 
-/**/
-
+use App\Acudiente;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class EstudianteController extends Controller{
 
@@ -24,14 +21,9 @@ class EstudianteController extends Controller{
     }
 
     public function store(Request $request){
-        // if($this->validar($request)){
-        //     Estudiante::create($request->all());
-        //     dd('se guardo');
-        // }
-        // print gettype($request->foto);
         $this->validar($request);
-        // dd($request->files());
-        // echo $request->discapacidad;
+        Estudiante::create($request->all());
+        dd('se guardo');
     }
 
     public function show($pk_estudiante){
@@ -58,7 +50,9 @@ class EstudianteController extends Controller{
     private function mover(Request $request){
         $request->file('foto')->store('avatar');
         $format = explode('/', $request->file('foto')->getMimeType());
-        dd(Storage::move($request->file('foto')->store('avatar'), "avatar/img".$request->pk_estudiante.".".$format[1]));
+        $name = "avatar/img".$request->pk_estudiante.".".$format[1];
+        Storage::move($request->file('foto')->store('avatar'),$name);
+        $request->file('foto')->path() = $name;
     }
 
     private function validar(Request $request){
