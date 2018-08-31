@@ -26,7 +26,6 @@ class Todo extends Migration
 
         Schema::create('estudiante', function (Blueprint $table) {
             $table->unsignedInteger('pk_estudiante')->primary();
-            // $table->primary('pk_estudiante');
             $table->unsignedInteger('fk_acudiente'); //diferente
             $table->string('nombre', 20);
             $table->string('apellido', 20);
@@ -114,7 +113,6 @@ class Todo extends Migration
 
         Schema::create('empleado', function (Blueprint $table) {
             $table->unsignedInteger('pk_empleado')->primary();
-            // $table->primary('pk_empleado');
             $table->integer('cedula');
             $table->string('nombre', 20);
             $table->string('apellido', 20);

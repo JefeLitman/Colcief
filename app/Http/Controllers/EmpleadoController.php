@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Empleado;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -59,9 +60,12 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pk_empleado)
     {
         //
+
+        $empleado = Empleado::where('pk_empleado', $pk_empleado)->first();
+        return view("empleados.editarEmpleado", compact('empleado'));
     }
 
     /**
@@ -71,9 +75,25 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Empleado $empleado)
     {
-        //
+        // if($this->validar($request)){
+            $empleado->update([
+                'pk_empleado' => $request->input('codigo'),
+                'cedula'      => $request->input('cedula'),
+                'nombre'      => $request->input('nombre'),
+                'apellido'    => $request->input('apellido'),
+                'correo'      => $request->input('correo'),
+                'direccion'   => $request->input('direccion'),
+                'titulo'      => $request->input('titulo'),
+                'rol'         => $request->input('rol'),
+                'estado'      => $request->input('estado'),
+                'foto'        => $request->input('foto')
+            ]);
+        // }
+
+        // redirect
+        return Redirect()->action('EmpleadoController@edit', ['pk_empleado' => $empleado->pk_empleado]);
     }
 
     /**
