@@ -34,7 +34,7 @@ class Todo extends Migration
             $table->integer('grado');
             $table->boolean('discapacidad')->nullable();
             $table->boolean('estado')->nullable();
-            $table->string('foto');
+            $table->string('foto')->default('descarga.png');
             $table->timestamps();
         });
 
@@ -124,7 +124,7 @@ class Todo extends Migration
             $table->integer('tiempo_extra');
             $table->string('director', 20);
             $table->boolean('estado')->nullable();
-            $table->string('foto');
+            $table->string('foto')->default('descarga.png');
             $table->timestamps();
         });
 

@@ -56,7 +56,9 @@ class EstudianteController extends Controller{
         }    
     }
     private function mover(Request $request){
-        dd($request->file('foto')->store('public'));
+        $request->file('foto')->store('avatar');
+        $format = explode('/', $request->file('foto')->getMimeType());
+        dd(Storage::move($request->file('foto')->store('avatar'), "avatar/img".$request->pk_estudiante.".".$format[1]));
     }
 
     private function validar(Request $request){
