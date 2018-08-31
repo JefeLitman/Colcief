@@ -9,8 +9,8 @@
 
 	<h1>Formulario</h1>
 	{!! Form::open(['action' => ['EmpleadoController@update', $empleado->pk_empleado], 'method' => 'POST']) !!}
-        {{Form::label('codigo', 'Código:')}}
-        {{Form::number('codigo', $empleado->pk_empleado, ['readonly'])}}
+        {{Form::label('pk_empleado', 'Código:')}}
+        {{Form::number('pk_empleado', $empleado->pk_empleado, ['readonly'])}}
         
         {{Form::label('cedula', 'Cedula:')}}
         {{Form::number('cedula', $empleado->cedula)}}
@@ -37,7 +37,8 @@
         {{Form::text('estado', $empleado->estado)}}
 
         {{Form::label('foto', 'Foto:')}}
-        {{Form::text('foto', $empleado->foto)}}
+        {{Form::file('foto')}}
+        <a href=""></a>
 
         {{Form::hidden('_method', 'PUT')}}
         {{Form::submit('Submit')}}

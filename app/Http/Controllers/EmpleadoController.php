@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Empleado;
 use Illuminate\Http\Request;
-use App\Empleado;
 
 class EmpleadoController extends Controller
 {
@@ -79,18 +78,19 @@ class EmpleadoController extends Controller
     public function update(Request $request, Empleado $empleado)
     {
         // if($this->validar($request)){
-            $empleado->update([
-                'pk_empleado' => $request->input('codigo'),
-                'cedula'      => $request->input('cedula'),
-                'nombre'      => $request->input('nombre'),
-                'apellido'    => $request->input('apellido'),
-                'correo'      => $request->input('correo'),
-                'direccion'   => $request->input('direccion'),
-                'titulo'      => $request->input('titulo'),
-                'rol'         => $request->input('rol'),
-                'estado'      => $request->input('estado'),
-                'foto'        => $request->input('foto')
-            ]);
+            // $empleado->update([
+            //     'pk_empleado' => $request->input('codigo'),
+            //     'cedula'      => $request->input('cedula'),
+            //     'nombre'      => $request->input('nombre'),
+            //     'apellido'    => $request->input('apellido'),
+            //     'correo'      => $request->input('correo'),
+            //     'direccion'   => $request->input('direccion'),
+            //     'titulo'      => $request->input('titulo'),
+            //     'rol'         => $request->input('rol'),
+            //     'estado'      => $request->input('estado'),
+            //     'foto'        => $request->input('foto')
+            // ]);
+            $empleado->update($request->all());
         // }
 
         // redirect
@@ -106,5 +106,25 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function mover(Request $request){
+        dd($request->file('foto')->store('public'));
+    }
+
+    private function validar(Request $request){
+        $request->validate([
+            'pk_empleado' => 'required|numeric|unique:empleado',
+            'cedula' => 'required|numeric|unique:empleado',
+            'nombre' => 'required|string|max:20|',
+            'apellido' => 'required|string|max:20',
+            'correo' => 'required|string|max:20',
+            'direccion' => 'required|string|max:20',
+            'titulo' => 'required|numeric|max:20',
+            'rol' => 'required|string',
+            'estado' => 'required',
+            'foto'=> 'image|required|mimes:jpeg,bmp,png,jpg',  
+        ]);
+        $this->mover($request);
     }
 }
