@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/estudiantes', 'EstudianteController');
-
+Route::resource('/acudiente','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
 
-//Route::fallback(function () { return "error"; }); //Ruta Default 
+//Route::fallback(function () { return "error"; }); //Ruta Default
