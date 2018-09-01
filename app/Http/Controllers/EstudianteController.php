@@ -6,12 +6,11 @@ use App\Estudiante;
 
 /*@Autor Paola*/
 use App\Acudiente; //Pepe no me lo vuelva a borrar
-/**/
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EstudianteStoreController;
 use App\Http\Controllers\SupraController;
+
 class EstudianteController extends Controller{
 
     //Funciones publicas de primeros y al final las privadas
@@ -27,20 +26,9 @@ class EstudianteController extends Controller{
     public function store(EstudianteStoreController $request){
       //Autor: Douglas R.
       //Los datos al haber pasado por EstudianteStoreController ya están validados
-        $unidad = new Estudiante();
-        $unidad->pk_estudiante = $request->input('pk_estudiante');
-        $unidad->fk_acudiente = $request->input('fk_acudiente');
-        $unidad->nombre = $request->input('nombre');
-        $unidad->apellido = $request->input('apellido');
-        $unidad->clave = $request->input('clave'); //Falta encriptar
-        $unidad->fecha_nacimiento = $request->input('fecha_nacimiento');
-        $unidad->grado = $request->input('grado');
-        $unidad->discapacidad = $request->input('discapacidad');
-        $unidad->estado = $request->input('estado');
-        $unidad->foto = SupraController::subirArchivo($request,'estudiante');
-        $unidad->save();
-        return $request->validated(); //Removible
-
+        $estudiante = (new Estudiante)->fill($request->all());
+        $estudiante->foto = SupraController::subirArchivo($request,'estudiante');
+        $estudiante->save();
     }
 
     public function show($pk_estudiante){
@@ -54,14 +42,15 @@ class EstudianteController extends Controller{
         return view("estudiantes.verEstudiante",['estudiante'=>$estudiante,'acudiente' =>$acudiente] );
     }
 
-    public function edit(Estudiante $estudiante){
-
+    public function edit($pk_estudiante){
+        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get()[0];
+        return view('prueba.updateEstudiantes', ['estudiante' => $estudiante]);
     }
 
     public function update(Request $request, $pk_estudiante){
-        if($this->validar($request)){
-            $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->first()->get()[0];
-            $estudiante->update($request->all());
-        }
+        return "holi";
+        // dd($estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get()[0]);
+        // $estudiante->foto = SupraController::subirArchivo($request,'estudiante');
+        // dd($estudiante->update($request->all()));
     }
 }

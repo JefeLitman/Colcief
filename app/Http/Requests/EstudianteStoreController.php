@@ -24,7 +24,7 @@ class EstudianteStoreController extends FormRequest
     public function rules()
     {
         return [
-            'pk_estudiante' => 'required|numeric|unique:estudiante',
+            'pk_estudiante' => 'required|numeric',
             'fk_acudiente' => 'required|numeric|exists:acudiente,pk_acudiente',
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
