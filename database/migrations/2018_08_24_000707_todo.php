@@ -33,7 +33,7 @@ class Todo extends Migration
             $table->date('fecha_nacimiento');
             $table->integer('grado');
             $table->boolean('discapacidad')->nullable()->default(false);
-            $table->boolean('estado')->nullable()->default(true);;
+            $table->boolean('estado')->nullable()->default(true);
             $table->string('foto')->default('descarga.png');
             $table->timestamps();
         });
