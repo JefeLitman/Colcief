@@ -30,8 +30,8 @@ class EstudianteController extends Controller{
         /*@Autor Paola*/
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>estudiantes>verEstudiante.blade.php y allá se reciben todos los datos del respectivo estudiante y acudiente en las variables tipo Object $estudiante, $acudiente.
 
-        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->first()->get()[0];
-        $acudiente= Acudiente::where('pk_acudiente', $estudiante->fk_acudiente)->first()->get()[0];
+        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get()[0];
+        $acudiente= Acudiente::where('pk_acudiente', $estudiante->fk_acudiente)->get()[0];
         
         //return $estudiante;
         return view("estudiantes.verEstudiante",['estudiante'=>$estudiante,'acudiente' =>$acudiente] );

@@ -48,7 +48,7 @@ class EmpleadoController extends Controller
     {
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>empleados>verEmpleado.blade.php y allá se reciben todos los datos del respectivo empleado en una variable tipo Object $empleado. 
 
-        $empleado = Empleado::where('pk_empleado', $pk_empleado)->first()->get()[0];
+        $empleado = Empleado::where('pk_empleado', $pk_empleado)->get()[0];
         
         //return $empleado; 
         return view("empleados.verEmpleado",compact('empleado'));
