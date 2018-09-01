@@ -37,7 +37,7 @@ class EstudianteController extends Controller{
         $unidad->grado = $request->input('grado');
         $unidad->discapacidad = $request->input('discapacidad');
         $unidad->estado = $request->input('estado');
-        $unidad->foto = SupraController::SubirArchivo($request,'foto');
+        $unidad->foto = SupraController::subirArchivo($request,'estudiante');
         $unidad->save();
         return $request->validated(); //Removible
 
@@ -63,24 +63,5 @@ class EstudianteController extends Controller{
             $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->first()->get()[0];
             $estudiante->update($request->all());
         }
-    }
-    private function mover(Request $request){
-        dd($request->file('foto')->store('public'));
-    }
-
-    private function validar(Request $request){
-        $request->validate([
-            'pk_estudiante' => 'required|numeric|unique:estudiante',
-            'fk_acudiente' => 'required|numeric',
-            'nombre' => 'required|string|max:20|',
-            'apellido' => 'required|string|max:20',
-            'clave' => 'required|string|max:20',
-            'fecha_nacimiento' => 'required|date',
-            'grado' => 'required|numeric',
-            'discapacidad' => 'boolean',
-            'estado' => 'boolean',
-            'foto'=> 'image|required|mimes:jpeg,bmp,png,jpg',
-        ]);
-        $this->mover($request);
     }
 }

@@ -9,32 +9,28 @@
   single responsibility principle.
  */
 
-namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+  namespace App\Http\Controllers;
+  use Illuminate\Http\Request;
 
-class SupraController
-{
-  /*
-    SubirArchivo:
-    El primer parámetro es el request, el segundo el nombre del input que
-    contiene el archivo, por ejemplo, si en el formulario que envía el post
-    el input que contiene una imagen se llama "img1", entonces, se pasa como
-    string dicho nombre.
-    Retorna un nombre semi-unico dado por la combinación de la fecha exacta actual
-    y el hash md5 del nombre original del archivo subido.
-  */
-  public static function SubirArchivo(Request $request, String $nombreInput){
-    if($request->hasFile($nombreInput)){
-      $file = $request->file($nombreInput);
-      $nombre = time().md5($file->getClientOriginalName()).'.'.$file->clientExtension();
-      $file->move(public_path().'/imagenes/',$nombre);
-      return $nombre;
+  class SupraController{
+    /*
+      SubirArchivo:
+      El primer parámetro es el request, el segundo el rol (estudiante, empleado).
+      Retorna un string con la ubicacion(ubicacion y nombre completo del archivo) actual del archivo subido.
+    */
+    public static function subirArchivo(Request $request, String $role){
+      if($request->hasFile($nombreInput)){
+        if($role = "estudiante"){
+          $nombre = $request->pk_estudiante;
+          $carpeta = $role;
+        }else if($role = "empleado"){
+          $nombre = $request->pk_empleado;
+          $carpeta = $role;
+        }
+        $nombre .= '.'.$file->clientExtension();
+        $file = $request->file('foto')->storeAs($carpeta, $nombre);        
+        return $carpeta.$nombre;
+      }
     }
   }
-
-  
-}
-
-
-
- ?>
+?>
