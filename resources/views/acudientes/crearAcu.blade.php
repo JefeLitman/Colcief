@@ -30,10 +30,10 @@
       Telefono acudiente 2 [string (numérico)] <br>
       <input type="text" name="telefono_acu_2" value="">
       <br>
-      <select class="" name="Prueba">
+      <!-- <select class="" name="Prueba">
         <option value="o1">1</option>
         <option value="o2">2</option>
-      </select>
+      </select> -->
       <input type="submit" name="" value="Enviar">
     </form>
     <?php
