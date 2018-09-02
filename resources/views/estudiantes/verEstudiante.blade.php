@@ -9,6 +9,9 @@
 	{{$acudiente}} <br>
 
 	<h1>Ejemplo</h1>
+	Foto:
+		<img src="{{Storage::url($estudiante->foto)}}">
+		<br>
 	Nombre: {{$estudiante->nombre}} <br>
 	Apellido: {{$estudiante->apellido}} <br>
 
