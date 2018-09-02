@@ -53,8 +53,9 @@ class EstudianteController extends Controller{
         if($request->hasFile('foto')){
             $estudiante->foto = SupraController::subirArchivo($request,'estudiante');
         }
+        $estudiante->discapacidad = $request->discapacidad;
+        $estudiante->estado = $request->estado;
         $estudiante->save();
-
-        return redirect('estudiantes/'.$estudiante->pk_estudiante);
+        return redirect(route('estudintes.show', $estudiante->pk_estudiante));
     }
 }
