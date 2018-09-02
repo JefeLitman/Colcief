@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	{!! Form::model($estudiante, array('method' => 'PATCH', 'url' => '/estudiantes', 'files' => true)) !!}
+	{!! Form::model($estudiante, array('method' => 'PATCH', 'url' => route('estudiantes.update', $estudiante), 'files' => true)) !!}
 		@csrf
 		{!!Form::number('pk_estudiante');!!}
 		{!!Form::number('fk_acudiente');!!}

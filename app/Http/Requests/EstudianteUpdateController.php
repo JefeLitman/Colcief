@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EstudianteStoreController extends FormRequest
+class EstudianteUpdateController extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class EstudianteStoreController extends FormRequest
     public function rules()
     {
         return [
-            'pk_estudiante' => 'required|numeric|unique:estudiante',
+            'pk_estudiante' => 'required|numeric',
             'fk_acudiente' => 'required|numeric|exists:acudiente,pk_acudiente',
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
@@ -34,6 +34,15 @@ class EstudianteStoreController extends FormRequest
             'discapacidad' => 'boolean',
             'estado' => 'boolean',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg'
+        ];
+    }
+
+    public function messages(){
+        return [
+            'pk_acudiente.required' => 'campo 1',
+            'nombre_acu_1.required' => 'campo2',
+            'direccion_acu_1.required' => 'campo 3',
+            'telefono_acu_1.required' => 'campo 4'
         ];
     }
 }

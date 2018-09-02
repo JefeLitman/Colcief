@@ -19,18 +19,14 @@
       Retorna un string con la ubicacion(ubicacion y nombre completo del archivo) actual del archivo subido.
     */
     public static function subirArchivo(Request $request, String $role){
-      if($request->hasFile('foto')){
-        if($role = "estudiante"){
-          $nombre = $request->pk_estudiante;
-          $carpeta = $role;
-        }else if($role = "empleado"){
-          $nombre = $request->pk_empleado;
-          $carpeta = $role;
-        }
-        $nombre .= '.'.$request->file('foto')->clientExtension();
-        $file = $request->file('foto')->storeAs($carpeta, $nombre);        
-        return $carpeta."/".$nombre;
+      if($role = "estudiante"){
+        $nombre = $role.$request->pk_estudiante;
+      }else if($role = "empleado"){
+        $nombre = $role.$request->pk_empleado;
       }
+      $nombre .= '.'.$request->file('foto')->clientExtension();
+      $file = $request->file('foto')->storeAs('public', $nombre);        
+      return $nombre;
     }
   }
 ?>
