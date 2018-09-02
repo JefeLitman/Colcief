@@ -29,7 +29,8 @@ class EstudianteController extends Controller{
       //Los datos al haber pasado por EstudianteStoreController ya están validados
         $estudiante = (new Estudiante)->fill($request->all());
         if($request->hasFile('foto')){
-            $estudiante->foto = SupraController::subirArchivo($request,'estudiante');
+          $nombre = 'estudiante'.$request->pk_estudiante;
+          $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
         $estudiante->save();
     }
@@ -51,7 +52,8 @@ class EstudianteController extends Controller{
     public function update(EstudianteUpdateController $request, $pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill($request->all());
         if($request->hasFile('foto')){
-            $estudiante->foto = SupraController::subirArchivo($request,'estudiante');
+          $nombre = 'estudiante'.$request->pk_estudiante;
+          $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
         $estudiante->save();
 
