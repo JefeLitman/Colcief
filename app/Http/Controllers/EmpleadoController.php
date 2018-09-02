@@ -45,7 +45,7 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($pk_empleado)
-    {
+    {   /*@Autor Paola C.*/
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>empleados>verEmpleado.blade.php y allá se reciben todos los datos del respectivo empleado en una variable tipo Object $empleado. 
 
         $empleado = Empleado::where('pk_empleado', $pk_empleado)->get()[0];
