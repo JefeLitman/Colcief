@@ -25,8 +25,13 @@
         $nombre = $role.$request->pk_empleado;
       }
       $nombre .= '.'.$request->file('foto')->clientExtension();
-      $file = $request->file('foto')->storeAs('public', $nombre);        
+      $file = $request->file('foto')->storeAs('public', $nombre);
       return $nombre;
     }
+    // public static function subirArchivo(Request $request,String $nombre,String $input){
+    //   $nombre .= '.'.$request->file($input)->clientExtension();
+    //   $file = $request->file($input)->storeAs('public', $nombre);
+    //   return $nombre;
+    // }
   }
 ?>

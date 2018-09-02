@@ -7,7 +7,7 @@
   <body>
     <h2>VISTA PROVISIONAL Y EXCLUSIVA PARA PRUEBAS</h2>
     <br>
-    <form class="" action="/acudiente" method="post">
+    <form class="" action="/acudientes" method="post">
       @csrf
       Clave primaria [integer] <br>
       <input type="text" name="pk_acudiente" value="">
