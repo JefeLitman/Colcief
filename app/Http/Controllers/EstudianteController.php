@@ -58,6 +58,6 @@ class EstudianteController extends Controller{
         $estudiante->discapacidad = $request->discapacidad;
         $estudiante->estado = $request->estado;
         $estudiante->save();
-        return redirect(route('estudintes.show', $estudiante->pk_estudiante));
+        return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
     }
 }
