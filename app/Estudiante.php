@@ -9,5 +9,6 @@ class Estudiante extends Authenticatable{
     protected $table = 'estudiante';    
     protected $fillable = ['pk_estudiante', 'fk_acudiente','nombre', 'apellido', 'clave', 'fecha_nacimiento', 'grado', 'discapacidad', 'estado', 'foto'];
     protected $dates = ['deleted_at'];
+    protected $casts = ['discapacidad' => 'boolean', 'estado' => 'boolean'];
 }
 

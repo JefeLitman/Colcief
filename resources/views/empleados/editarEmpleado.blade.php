@@ -17,51 +17,54 @@
         </div>
     @endif
 
-	<h1>Formulario</h1>
-	{!! Form::open(['action' => ['EmpleadoController@update', $empleado->pk_empleado], 'method' => 'POST', 'files' => true]) !!}
-        {{Form::label('pk_empleado', 'pk_empleado:')}}
-        {{Form::number('pk_empleado', $empleado->pk_empleado, ['readonly'])}}
-        
-        {{Form::label('cedula', 'Cedula:')}}
-        {{Form::number('cedula', $empleado->cedula)}}
+    <h1>Formulario</h1>
+    <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->pk_empleado)}}" method = "POST">
+        {{ method_field('PATCH') }}
+        @csrf
+        <label for="pk_empleado">Pk_empleado: </label>
+        <input type="number" name="pk_empleado" value="{{$empleado->pk_empleado}}" id="pk_empleado">
 
-        {{Form::label('nombre', 'Nombre:')}}
-        {{Form::text('nombre', $empleado->nombre)}}
+        <label for="cedula">Cedula: </label>
+        <input type="number" id="cedula" name="cedula" value="{{$empleado->cedula}}">
 
-        {{Form::label('apellido', 'Apellido:')}}
-        {{Form::text('apellido', $empleado->apellido)}}
+        <label for="nombre">Nombre: </label>
+        <input type="text" id="nombre" name="nombre" value="{{$empleado->nombre}}">
 
-        {{Form::label('correo', 'Correo:')}}
-        {{Form::text('correo', $empleado->correo)}}
+        <label for="apellido">Apellido: </label>
+        <input type="text" id="apellido" name="apellido" value="{{$empleado->apellido}}">
 
-        {{Form::label('clave', 'Contraseña:')}}
-        {{Form::password('clave')}}
+        <label for="correo">Correo: </label>
+        <input type="email" id="correo" name="correo" value="{{$empleado->correo}}">
 
-        {{Form::label('direccion', 'Dirección:')}}
-        {{Form::text('direccion', $empleado->direccion)}}
+        <label for="clave">Clave: </label>
+        <input type="password" id="clave" name="clave" value="{{$empleado->clave}}">
 
-        {{Form::label('titulo', 'Título:')}}
-        {{Form::text('titulo', $empleado->titulo)}}
+        <label for="direccion">Dirección: </label>
+        <input type="text" id="direccion" name="direccion" value="{{$empleado->direccion}}">
 
-        {{Form::label('rol', 'Rol:')}}
-        {{Form::text('rol', $empleado->rol)}}
+        <label for="titulo">Título: </label>
+        <input type="text" id="titulo" name="titulo" value="{{$empleado->titulo}}">
 
-        {{Form::label('tiempo_extra', 'Tiempo extra:')}}
-        {{Form::number('tiempo_extra', $empleado->tiempo_extra)}}
+        <label for="rol">Rol: </label>
+        <input type="text" id="rol" name="rol" value="{{$empleado->rol}}">
 
-        {{Form::label('director', 'Director:')}}
-        {{Form::text('director', $empleado->director)}}
+        <label for="tiempo_extra">Tiempo extra: </label>
+        <input type="number" id="tiempo_extra" name="tiempo_extra" value="{{$empleado->tiempo_extra}}">
 
-        {{Form::label('estado', 'Estado:')}}
-        {{Form::checkbox('estado')}}
+        <label for="director">Director: </label>
+        <input type="text" id="director" name="director" value="{{$empleado->director}}">
 
-        {{Form::label('foto', 'Foto:')}}
-        {{Form::file('foto')}}
-        <img src="{{Storage::url($empleado->foto)}}">
+        <label for="estado">Estado: </label>
+        <label for="estado">Si </label>
+        <input type="radio" id="estado" name="estado" value = "1">
+        <label for="estado">No </label>
+        <input type="radio" id="estado" name="estado" value = "0" checked>
 
-        {{Form::hidden('_method', 'PUT')}}
-        {{Form::submit('Submit')}}
-    {!! Form::close() !!}
+        <label for="foto">Foto: </label>
+        <input type="file" id="foto" name="foto"}}">
+        <img src="{{Storage::url($empleado->foto)}}" alt="Foto estudiante {{$empleado->pk_empleado}}">
 
+        <button type="submit">Actualizar</button>
+    </form>
 </body>
 </html>
