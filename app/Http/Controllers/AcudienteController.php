@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Acudiente;
 use App\Http\Requests\AcudienteStoreController;
+use App\Http\Requests\AcudienteUpdateController;
 
 class AcudienteController extends Controller
 {
@@ -57,10 +58,14 @@ class AcudienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($pk_acudiente)
     {
-        $valor = Acudiente::buscar($id);
-        return $valor;
+        $valor = Acudiente::where('pk_acudiente', $pk_acudiente)->get();
+        if (!empty($valor[0])){
+          return view('acudientes.verAcu',['acudiente'=>$valor[0]]);
+        }else{
+          return 'Acudiente no encontrado';
+        }
     }
 
     /**
@@ -69,9 +74,10 @@ class AcudienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pk_acudiente)
     {
-        //
+        $acudiente = Acudiente::findOrFail($pk_acudiente);
+        return view('acudientes.editarAcu',['acudiente' => $acudiente]);
     }
 
     /**
@@ -81,9 +87,12 @@ class AcudienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AcudienteUpdateController $request, $pk_acudiente)
     {
-        //
+        $unidad = Acudiente::findOrFail($pk_acudiente)->fill($request->all());
+        $unidad->save();
+        //return view('acudientes.verAcudiente',['acudiente' => $acudiente]);
+        return 'hola';
     }
 
     /**

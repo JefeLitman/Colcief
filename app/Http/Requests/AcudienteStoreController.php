@@ -33,12 +33,12 @@ class AcudienteStoreController extends FormRequest
             'telefono_acu_2' => 'numeric|digits_between:7,10'
         ];
     }
-    public function messages(){
-        return [
-        'pk_acudiente.required' => 'campo 1',
-        'nombre_acu_1.required' => 'campo2',
-        'direccion_acu_1.required' => 'campo 3',
-        'telefono_acu_1.required' => 'campo 4'
-        ];
-    }
+    // public function messages(){
+    //     return [
+    //     'pk_acudiente.required' => 'campo 1',
+    //     'nombre_acu_1.required' => 'campo2',
+    //     'direccion_acu_1.required' => 'campo 3',
+    //     'telefono_acu_1.required' => 'campo 4'
+    //     ];
+    // }
 }

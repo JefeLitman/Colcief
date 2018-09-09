@@ -36,10 +36,8 @@
       </select> -->
       <input type="submit" name="" value="Enviar">
     </form>
-    <?php
-    foreach ($errors->get('pk_acudiente') as $message) {
-        echo $errors;
-    }
-     ?>
+    @foreach ($errors->all() as $message)
+        <p> Error {{$message}} </p>
+    @endforeach
   </body>
 </html>
