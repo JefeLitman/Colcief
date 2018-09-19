@@ -22,5 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/estudiantes', 'EstudianteController');
 Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
+Route::resource('/materias','MateriaController');
 
 //Route::fallback(function () { return "error"; }); //Ruta Default
