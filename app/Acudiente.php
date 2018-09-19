@@ -17,5 +17,6 @@ class Acudiente extends Model{
       'direccion_acu_2',
       'telefono_acu_2',
     ];
+    
     protected $dates = ['deleted_at'];
 }
