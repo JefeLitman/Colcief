@@ -21,7 +21,7 @@ class EstudianteController extends Controller{
     }
 
     public function create(){
-        return view('prueba.estudiante');
+        return view('estudiantes.crearEstudiante');
     }
 
     public function store(EstudianteStoreController $request){

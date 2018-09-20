@@ -1,5 +1,5 @@
-@include('header')
-@include('menu')
+@extends('contenedor_principal')
+@section('contenedor_principal')
 <br>
 <br>
 <!--Galeria por medio del materialize-->
@@ -20,4 +20,4 @@
 			</div>
 		</div>
      </div>
-@include('pie')
+@endsection
