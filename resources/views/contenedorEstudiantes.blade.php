@@ -13,7 +13,7 @@
 </head>
 <body>
     <!-- Menu principal para la pagina -->
-    <nav class="green darken-4 nav-extended">
+    <nav class="teal accent-4 nav-extended">
         <div class="nav-wrapper">
            <!--Espacio donde estara el logo de la pagina -->
             <a href="#" class="brand-logo">ColCief</a>
@@ -40,7 +40,7 @@
         @yield('contenedorEstudiantes'){{--Aqui va el contenido de las vistas lo llama con extends y con section indica que aqui va el contenido de la vista--}}
 	</div>
     <!-- Footer -->
-    <footer class="page-footer green darken-4">
+    <footer class="page-footer teal accent-4">
             <div class="container">
               <div class="row">
                 <div class="col l6 s12">
