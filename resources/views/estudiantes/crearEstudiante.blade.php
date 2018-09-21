@@ -1,5 +1,5 @@
-@extends('.contenedorEstudiantes')
-@section('contenedorEstudiantes')
+@extends('.contenedorAdmin')
+@section('contenedorAdmin')
 <div class="row">
     <div class="col s12 center">
         <br>

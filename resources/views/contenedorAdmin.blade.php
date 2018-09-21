@@ -37,7 +37,7 @@
     <li><a href="{{ url('/home') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a></li>
     </ul>
 	<div class="container">
-        @yield('contenedorEstudiantes'){{--Aqui va el contenido de las vistas lo llama con extends y con section indica que aqui va el contenido de la vista--}}
+        @yield('contenedorAdmin'){{--Aqui va el contenido de las vistas lo llama con extends y con section indica que aqui va el contenido de la vista--}}
 	</div>
     <!-- Footer -->
     <footer class="page-footer teal accent-4">
