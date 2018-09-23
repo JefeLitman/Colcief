@@ -92,7 +92,7 @@ class AcudienteController extends Controller
         $unidad = Acudiente::findOrFail($pk_acudiente)->fill($request->all());
         $unidad->save();
         //return view('acudientes.verAcudiente',['acudiente' => $acudiente]);
-        return 'hola';
+        return 'Cambios guardados';
     }
 
     /**
@@ -103,6 +103,6 @@ class AcudienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //No se eliminan acudientes
     }
 }
