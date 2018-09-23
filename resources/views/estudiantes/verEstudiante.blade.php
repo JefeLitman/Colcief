@@ -6,7 +6,7 @@
 <body>
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $estudiante y el objeto $acudiente --}}
-	{{-- Variables enviadas desde Local>App>Http>Controllers>EstudianteController.php  funcion show() 
+	{{-- Variables enviadas desde Local>App>Http>Controllers>EstudianteController.php  funcion show()
 		 @Autor Paola C. --}}
 	{{-- URL: localhost:8000\estudiantes\{pk_estudiante} --}}
 	<h3>Tipo de Archivos:</h3> $estudiante: {{ gettype($estudiante)}}, $acudiente: {{ gettype($acudiente)}} <br>
@@ -19,6 +19,5 @@
 		<br>
 	Nombre: {{$estudiante->nombre}} <br>
 	Apellido: {{$estudiante->apellido}} <br>
-
 </body>
 </html>
