@@ -7154,10 +7154,10 @@ $jscomp.polyfill = function (e, r, p, m) {
 })(cash);
 ;(function ($, anim) {
   'use strict';
-
+// aqui
   var _defaults = {
     indicators: true,
-    height: 400,
+    height: 600,
     duration: 500,
     interval: 6000
   };
@@ -7375,7 +7375,7 @@ $jscomp.polyfill = function (e, r, p, m) {
         if (!this.$el.hasClass('fullscreen')) {
           if (this.options.indicators) {
             // Add height if indicators are present
-            this.$el.css('height', this.options.height + 40 + 'px');
+            this.$el.css('height', this.options.height + 'px');
           } else {
             this.$el.css('height', this.options.height + 'px');
           }

@@ -1,8 +1,8 @@
 <!-- Menu principal para la pagina -->
-<nav class="green darken-4 nav-extended">
+<nav class="light-blue darken-1 nav-extended">
         <div class="nav-wrapper">
            <!--Espacio donde estara el logo de la pagina -->
-            <a href="#" class="brand-logo">ColCIEF</a>
+            <a href="#" class="brand-logo"><img src="css/img/logo_min_3.png"></a>
             <!--Link que hace referencia al menu responsivo -->
             <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <!--Menu normal en modo grande -->

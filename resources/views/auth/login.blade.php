@@ -27,7 +27,7 @@
             </div>
             <br />
               <div class='row'>
-                <button type='submit' class='col s12 btn btn-large waves-effect green darken-4'>Iniciar Sesion</button>
+                <button type='submit' class='col s12 btn btn-large waves-effect light-blue darken-1'>Iniciar Sesion</button>
               </div>
           </form>
         </div>
