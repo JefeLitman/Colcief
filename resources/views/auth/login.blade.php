@@ -1,6 +1,9 @@
-@extends('inicios.sesion')
+{{-- @extends('inicios.sesion')
 @section('titulo','Inicio de Sesion')
-@section('content')
+@section('content') que opina doctorisim --}}
+@extends('contenedores.principal')
+@section('titulo','Pagina Principal')
+@section('contenedor_principal')
 <div class="section center"></div>
   <main>
       <h5 class="green-text text-darken-4 center">Porfavor digite sus datos</h5>
