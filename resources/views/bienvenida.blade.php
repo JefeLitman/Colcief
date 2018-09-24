@@ -1,4 +1,5 @@
-@extends('contenedor_principal')
+@extends('contenedores.principal')
+@section('titulo','Pagina Principal')
 @section('contenedor_principal')
 <br>
 <br>
