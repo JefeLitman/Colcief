@@ -39,6 +39,6 @@
 					</ul>
 			</div>
 		</div>
-			
+<br>		
 	{{-- </section> --}}
 @endsection
