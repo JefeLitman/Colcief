@@ -1,8 +1,6 @@
 @extends('contenedores.principal')
 @section('titulo','Pagina Principal')
 @section('contenedor_principal')
-<br>
-<br>
 <!--Galeria por medio del materialize-->
 {{-- <section> --}}
 		<div class="fullscreen">
