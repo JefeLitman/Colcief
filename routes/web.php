@@ -24,5 +24,6 @@ Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
 Route::resource('/periodo','PeriodoController');
 Route::resource('/materias','MateriaController');
+Route::resource('/cursos','CursoController');
 
 //Route::fallback(function () { return "error"; }); //Ruta Default
