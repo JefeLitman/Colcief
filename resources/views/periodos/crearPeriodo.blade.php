@@ -17,5 +17,8 @@
       <input type="number" name="nro_periodo" value=""><br>
       <input type="submit" name="" value="Enviar">
     </form>
+    @foreach ($errors->all() as $message)
+        <p> Error {{$message}} </p>
+    @endforeach
   </body>
 </html>
