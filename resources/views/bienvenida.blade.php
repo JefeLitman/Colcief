@@ -5,7 +5,7 @@
 {{-- <section> --}}
 		<div class="fullscreen">
 			<div class="slider">
-					<ul class="slides">
+					<ul class="light-blue darken-1 slides">
 					<li>
 						<img src="css/img/13.jpg">  
 					</li>
