@@ -7187,7 +7187,7 @@ $jscomp.polyfill = function (e, r, p, m) {
        * Options for the modal
        * @member Slider#options
        * @prop {Boolean} [indicators=true] - Show indicators
-       * @prop {Number} [height=400] - height of slider
+       * @prop {Number} [height=600] - height of slider
        * @prop {Number} [duration=500] - Length in ms of slide transition
        * @prop {Number} [interval=6000] - Length in ms of slide interval
        */

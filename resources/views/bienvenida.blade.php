@@ -8,34 +8,24 @@
 		<div class="fullscreen">
 			<div class="slider">
 					<ul class="slides">
-					  <li>
-						<img src="css/img/1.jpeg"> <!-- random image -->
-						<div class="caption center-align">
-						  <h3>Texto de prueba 1!</h3>
-						  <h5 class="light grey-text text-lighten-3">Slogan 1.</h5>
-						</div>
-					  </li>
-					  <li>
-						<img src="css/img/2.jpeg"> <!-- random image -->
-						<div class="caption left-align">
-						  <h3>Texto de prueba 2!</h3>
-						  <h5 class="light grey-text text-lighten-3">Slogan 1.</h5>
-						</div>
-					  </li>
-					  <li>
-						<img src="css/img/3.jpeg"> <!-- random image -->
-						<div class="caption right-align">
-						  <h3>Texto de prueba !</h3>
-						  <h5 class="light grey-text text-lighten-3">Slogan 1.</h5>
-						</div>
-					  </li>
-					  <li>
-						<img src="css/img/4.jpeg"> <!-- random image -->
-						<div class="caption center-align">
-						  <h3>Texto de prueba !</h3>
-						  <h5 class="light grey-text text-lighten-3">Slogan 1.</h5>
-						</div>
-					  </li>
+					<li>
+						<img src="css/img/13.jpg">  
+					</li>
+					<li>
+						<img src="css/img/2.jpeg">  
+					</li>
+					<li>
+						<img src="css/img/3.jpeg">  
+					</li>
+					<li>
+						<img src="css/img/4.jpeg">  
+					</li>
+					<li>
+						<img src="css/img/5.jpeg">
+					</li>
+					<li>
+						<img src="css/img/6.jpeg">  
+					</li>
 					</ul>
 			</div>
 		</div>
