@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Periodo;
 use App\Http\Requests\PeriodoStoreController;
 class PeriodoController extends Controller
 {
@@ -13,7 +14,8 @@ class PeriodoController extends Controller
      */
     public function index()
     {
-        return 'Aquí va algo';
+      $unidad = Periodo::all();
+      return view('periodos.verPeriodo',['periodo' => $unidad]);
     }
 
     /**
@@ -41,7 +43,7 @@ class PeriodoController extends Controller
       $unidad->ano = $request->input('ano');
       $unidad->nro_periodo = $request->input('nro_periodo');
       $unidad->save();
-      return $request->validated();
+      return $request;
     }
 
     /**
@@ -52,7 +54,14 @@ class PeriodoController extends Controller
      */
     public function show($id)
     {
-        //
+      $id = intval($id);
+      if(!($id==0 or $id>4)){
+        $query = Periodo::where('pk_periodo',$id)->get();
+        if(!empty($query[0])){
+          return view('periodos.verPeriodo', ['periodo' => $query]);
+        }
+      }
+      return 'Número de periodo inválido o el periodo no existe';
     }
 
     /**
