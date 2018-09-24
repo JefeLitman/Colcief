@@ -4,6 +4,15 @@
 	<title></title>
 </head>
 <body>
+	@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 	<form enctype="multipart/form-data" action="{{route('estudiantes.update', $estudiante->pk_estudiante)}}" method="POST">
 		{{ method_field('PATCH') }} {{-- metodo del recurso --}}
     	@csrf {{-- csrf token --}}

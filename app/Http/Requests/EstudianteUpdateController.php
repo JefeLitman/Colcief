@@ -24,7 +24,7 @@ class EstudianteUpdateController extends FormRequest
     public function rules()
     {
         return [
-            'pk_estudiante' => 'required|numeric',
+            'pk_estudiante' => 'required|numeric|exists:estudiante,pk_estudiante',
             'fk_acudiente' => 'required|numeric|exists:acudiente,pk_acudiente',
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
@@ -39,10 +39,15 @@ class EstudianteUpdateController extends FormRequest
 
     public function messages(){
         return [
-            'pk_acudiente.required' => 'campo 1',
-            'nombre_acu_1.required' => 'campo2',
-            'direccion_acu_1.required' => 'campo 3',
-            'telefono_acu_1.required' => 'campo 4'
+            'required' => 'El :attribute del estudiante es requerido.',
+            'exists' => 'El valor del :attribute no existe',
+            'date' => 'El campo debe ser una fecha',
+            'min' => 'El campo debe tener por lo menos.',
+            'max' => 'El campo excede su capacidad.',
+            'string' => 'El campo es texto.',
+            'numeric' => 'El campo es numerico.',
+            'foto.image' => 'El fichero debe ser una imagen.',
+            'mimes' => 'El imgen debe ser alguno de los estos formatos: jpeg, bmp, png, jpg',
         ];
     }
 }

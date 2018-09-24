@@ -131,7 +131,7 @@ class Todo extends Migration
         Schema::create('division', function (Blueprint $table) {
             $table->increments('pk_division');
             $table->string('nombre', 20);
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->integer('porcentaje');
             $table->year('ano');
             $table->timestamps();
