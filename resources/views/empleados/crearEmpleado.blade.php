@@ -1,5 +1,5 @@
-@extends('.contenedorAdmin')
-@section('contenedorAdmin')
+@extends('contenedores.admin')
+@section('contenedor_principal')
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

@@ -1,7 +1,8 @@
-<!-- Contenedor de la pagina de los adminsitradores -->
+<!-- Modelo de la pagina de sesiones -->
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Esta es la plantilla para el manejo de sesion en laravel -->
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -12,14 +13,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-    <!-- En esta parte va el menu con la directiva include para que quede en el lugar -->
-    @include('menus.admin')
-	<div class="container">
-        @section('contenedor_principal')
-        @show
-	</div>
-    <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
-    @include('footers.admin')
+    <!-- Aqui en esta seccion va estar el contenido de la pagina -->
+    @yield('content')
+    
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
