@@ -6,7 +6,7 @@
 @section('contenedor_principal')
 <div class="section center"></div>
   <main>
-      <h5 class="green-text text-darken-4 center">Porfavor digite sus datos</h5>
+      <h5 class="blue-text text-darken-3 center">Porfavor digite sus datos</h5>
       <br/>
       <div class="container center">
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">

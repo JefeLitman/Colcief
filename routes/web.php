@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('bienvenida');
 });
 
+Route::get('/contacto', function () {
+    return view('contacto');
+});
+Route::get('/nosotros', function () {
+    return view('nosotros');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
