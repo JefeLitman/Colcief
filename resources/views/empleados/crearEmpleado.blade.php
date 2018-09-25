@@ -56,23 +56,40 @@
                             <input type="text" id="rol" name="rol">
                             <label for="rol">Rol: </label>
                        </div>
-                       <div class="input-field">
+                       {{-- <div class="input-field">
                             <input type="number" id="tiempo_extra" name="tiempo_extra">
                             <label for="tiempo_extra">Tiempo extra: </label>
-                       </div>
-                        <label for="director">Director: </label>
-                        <input type="text" id="director" name="director"}}">
-
-                        <label for="estado">Estado: </label>
-                        <label for="estado">Si </label>
-                        <input type="radio" id="estado" name="estado" value = "1">
-                        <label for="estado">No </label>
-                        <input type="radio" id="estado" name="estado" value = "0" checked>
-
-                        <label for="foto">Foto: </label>
-                        <input type="file" id="foto" name="foto"}}>
-
-                        <button type="submit">Crear</button>
+                       </div> --}}
+                       {{--  <div class="input-field">
+                            <input type="text" id="director" name="director">
+                            <label for="director">Director: </label>
+                       </div> --}}
+                       {{-- <div class="input-field row">
+                           <div class="col s12 center">
+                                <label for="estado">Estado: </label>
+                                <label>
+                                    <input type="radio" id="estado" name="estado" value = "1">
+                                    <span>Si</span>
+                                </label>
+                                <label>
+                                    <input type="radio" id="estado" name="estado" value = "0">
+                                    <span>No</span>
+                                </label>
+                           </div>
+                        </div> --}}
+                        <div class="file-field input-field">
+                            <div class="btn green darken-4 waves-effect">
+                                <span>Seleccionar archivo</span>
+                                <input type="file" id="foto" name="foto">
+                            </div>
+                            <div class="file-path-wrapper">{{-- file-path-wrapper es para mostrar el nombre la foto que subio y verificar que subio --}}
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field center">
+                            <button class="btn waves-effect green darken-4" type="submit" name="action">Enviar<i class="material-icons right">send</i>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
