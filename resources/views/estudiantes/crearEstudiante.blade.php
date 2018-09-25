@@ -1,4 +1,5 @@
 @extends('contenedores.admin')
+@section('titulo','Estudiante Nuevo')
 @section('contenedor_principal')
 <div class="row">
     <div class="col s12 center">
@@ -57,7 +58,7 @@
                     </div>
                     <br>
                     <div class="file-field input-field">
-                        <div class="btn green darken-4 waves-effect">
+                        <div class="btn cyan darken-3 waves-effect">
                             <span>Seleccionar archivo</span>
                             <input type="file" name="foto">
                         </div>
@@ -66,7 +67,7 @@
                         </div>
                     </div>
                     <div class="input-field center">
-                        <button class="btn waves-effect green darken-4" type="submit" name="action">Enviar<i class="material-icons right">send</i>
+                        <button class="btn waves-effect cyan darken-3" type="submit" name="action">Enviar<i class="material-icons right">send</i>
                         </button>
                     </div>
                 </form>

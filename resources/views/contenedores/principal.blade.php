@@ -16,7 +16,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-    <!-- Precarga--!>
+    <!-- Precarga-->
         <div class="preloader-background" id="preloader-background">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue">

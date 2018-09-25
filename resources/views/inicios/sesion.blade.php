@@ -13,8 +13,14 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+    <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
+    @include('menus.principal')
+
     <!-- Aqui en esta seccion va estar el contenido de la pagina -->
     @yield('content')
+
+    <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
+    @include('footers.principal')
     
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>

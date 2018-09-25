@@ -1,5 +1,5 @@
 <!-- Menu principal para el administrador -->
-<nav class="green darken-4 nav-extended">
+<nav class="cyan darken-3 nav-extended">
         <div class="nav-wrapper">
            <!--Espacio donde estara el logo de la pagina -->
            <a href="#" class="brand-logo"><img src="../css/img/logo_min_3.png"></a>
