@@ -13,20 +13,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-    <!-- Precarga-->
-    <div class="preloader-background" id="preloader-background">
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue">
-                  <div class="circle-clipper left">
-                    <div class="circle"></div>
-                  </div><div class="gap-patch">
-                    <div class="circle"></div>
-                  </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                  </div>
-                </div>
-            </div>
-        </div>
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
     @auth
         @include('menus.admin')
@@ -38,7 +24,7 @@
     <!-- Aqui en esta seccion va estar el contenido de la pagina -->
     <main>
 	    <div class="container">
-            @section('content')
+            @section('contenedor_principal')
             @show
         </div>
     </main>
