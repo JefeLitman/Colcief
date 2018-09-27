@@ -32,4 +32,5 @@ Route::resource('/periodo','PeriodoController');
 Route::resource('/materias','MateriaController');
 Route::resource('/divisiones','DivisionController');
 
-//Route::fallback(function () { return "error"; }); //Ruta Default
+Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
+//ruta preseleccionada by: Edgar Rangel

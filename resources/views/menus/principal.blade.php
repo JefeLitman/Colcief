@@ -2,7 +2,7 @@
 <nav class="cyan darken-3 nav-extended">
         <div class="nav-wrapper">
            <!--Espacio donde estara el logo de la pagina -->
-            <a href="{{ url('/') }}" class="brand-logo"><img src="css/img/logo_min_3.png"></a>
+            <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('css/img/logo_min_3.png')}}"></a>
             <!--Link que hace referencia al menu responsivo -->
             <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <!--Menu normal en modo grande -->
