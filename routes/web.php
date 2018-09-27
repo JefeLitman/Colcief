@@ -12,14 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('bienvenida');
+    return view('pantallas.bienvenida');
 });
 
 Route::get('/contacto', function () {
-    return view('contacto');
+    return view('pantallas.contacto');
 });
 Route::get('/nosotros', function () {
-    return view('nosotros');
+    return view('pantallas.nosotros');
 });
 Auth::routes();
 

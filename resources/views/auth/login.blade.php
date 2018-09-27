@@ -1,4 +1,4 @@
-@extends('inicios.sesion')
+@extends('pantallas.sesion')
 @section('titulo','Inicio de Sesion')
 @section('content')
 <div class="section center"></div>
