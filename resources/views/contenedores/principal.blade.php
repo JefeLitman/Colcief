@@ -47,10 +47,10 @@
         $(document).ready(function(){
             $('.sidenav').sidenav();
             $('.slider').slider();
+            $(".dropdown-trigger").dropdown();
         });
         window.onload = function(){
             var contenedor = document.getElementById('preloader-background');
-
             contenedor.style.visibility = 'hidden';
             contenedor.style.opacity = '0';
         }
