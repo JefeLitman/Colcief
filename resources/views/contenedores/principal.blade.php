@@ -32,10 +32,12 @@
         </div>
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
     @include('menus.principal')
-	<div class="container">
-        @section('contenedor_principal')
-        @show
-	</div>
+    <main>
+	    <div class="container">
+            @section('contenedor_principal')
+            @show
+        </div>
+    </main>
     <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
     @include('footers.principal')
     <!--JavaScript at end of body for optimized loading-->

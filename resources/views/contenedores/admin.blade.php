@@ -14,7 +14,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-    <!-- Precarga--!>
+    <!-- Precarga-->
         <div class="preloader-background" id="preloader-background">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue">
@@ -30,10 +30,12 @@
         </div>
     <!-- En esta parte va el menu con la directiva include para que quede en el lugar -->
     @include('menus.admin')
-	<div class="container">
-        @section('contenedor_principal')
-        @show
-	</div>
+	<main>
+	    <div class="container">
+            @section('contenedor_principal')
+            @show
+        </div>
+    </main>
     <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
     @include('footers.admin')
     <!--JavaScript at end of body for optimized loading-->
