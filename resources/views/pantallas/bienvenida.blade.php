@@ -7,33 +7,30 @@
 			<div class="slider">
 					<ul class="light-blue darken-1 slides">
 					<li>
-						<img src="css/img/13.jpg">  
+						<img src="css/img/s1.jpg">  
 					</li>
 					<li>
-						<img src="css/img/10.jpg">  
+						<img src="css/img/s2.jpg">  
 					</li>
 					<li>
-						<img src="css/img/4.jpeg">  
+						<img src="css/img/s3.jpeg">  
 					</li>
 					<li>
-						<img src="css/img/1.jpeg">
+						<img src="css/img/s4.jpeg">
 					</li>
 					<li>
-						<img src="css/img/6.jpeg">  
+						<img src="css/img/s5.jpeg">  
 					</li>
 					<li>
-						<img src="css/img/7.jpeg">  
+						<img src="css/img/s6.jpeg">  
 					</li>
 					<li>
-						<img src="css/img/8.jpeg">  
+						<img src="css/img/s7.jpeg">  
 					<li>
-						<img src="css/img/9.jpg">  
+						<img src="css/img/s8.jpg">  
 					</li>
 					<li>
-						<img src="css/img/11.jpg">  
-					</li>
-					<li>
-						<img src="css/img/3.jpeg">  
+						<img src="css/img/s9.jpeg">  
 					</li>
 					</li>
 					</ul>
