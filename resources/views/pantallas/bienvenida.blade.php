@@ -32,6 +32,12 @@
 					<li>
 						<img src="css/img/s9.jpg">  
 					</li>
+					<li>
+						<img src="css/img/s10.jpg">  
+					</li>
+					<li>
+						<img src="css/img/s11.jpg">  
+					</li>
 					</li>
 					</ul>
 			</div>
