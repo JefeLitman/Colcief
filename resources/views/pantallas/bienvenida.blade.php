@@ -13,24 +13,24 @@
 						<img src="css/img/s2.jpg">  
 					</li>
 					<li>
-						<img src="css/img/s3.jpeg">  
+						<img src="css/img/s3.jpg">  
 					</li>
 					<li>
-						<img src="css/img/s4.jpeg">
+						<img src="css/img/s4.jpg">
 					</li>
 					<li>
-						<img src="css/img/s5.jpeg">  
+						<img src="css/img/s5.jpg">  
 					</li>
 					<li>
-						<img src="css/img/s6.jpeg">  
+						<img src="css/img/s6.jpg">  
 					</li>
 					<li>
-						<img src="css/img/s7.jpeg">  
+						<img src="css/img/s7.jpg">  
 					<li>
 						<img src="css/img/s8.jpg">  
 					</li>
 					<li>
-						<img src="css/img/s9.jpeg">  
+						<img src="css/img/s9.jpg">  
 					</li>
 					</li>
 					</ul>
