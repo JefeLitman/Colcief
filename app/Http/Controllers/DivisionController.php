@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Division;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,11 @@ class DivisionController extends Controller{
     }
 
     public function create(){
-        return view('divisiones.crearDivision');
+        if(Division::all()->where('ano', $this->ano)->count()>0){
+            return "Las divisiones ya han sido creadas, intente actulizandolas";
+        }else{
+            return view('divisiones.crearDivision');
+        }
     }
 
     public function store(DivisionStoreController $request){
@@ -39,15 +43,26 @@ class DivisionController extends Controller{
         }    
     }
 
-    public function show($pk_division){
-        $division = Division::findOrFail($pk_division)->where('ano', $this->ano);
-        return view('divisiones.verDivision', ['division' => $division]);
+    public function edit($pk_division){
+        $obj = DB::table('division')->select('ano')->get();
+        $result = array();
+        foreach($obj as $o => $key){
+            $result[$o] = $key->ano;
+        }
+        print_r($result);
+        // $division = Division::all()->where('ano', $this->ano);
+        // return view('divisiones.editarDivision', ['division' => $division]);
     }
 
-    public function edit($pk_division){
-        // $division = Division::all()->where('ano', $this->ano);
-        // // dd($division);
-        // return view('divisiones.editarDivision', ['division' => $division]);
+    public function ajax(Request $request, String $table){
+        if($request->ajax()){
+            $obj = DB::table($table)->select('ano', 'nombre')->get();
+            foreach($obj as $o => $key){
+                $result[$key->ano] = $key->nombre;
+            }
+            return response()->json($result);
+            
+        }
     }
 
     public function update(Request $request, $pk_division){
