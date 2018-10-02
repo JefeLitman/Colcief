@@ -51,9 +51,9 @@ return [
             'provider' => 'estudiante',
         ],
 
-        'profesor' => [
+        'empleado' => [
             'driver' => 'session',
-            'provider' => 'profesor',
+            'provider' => 'empleado',
         ],
     ],
 
@@ -80,19 +80,15 @@ return [
             'model' => App\User::class,
         ],
 
-        'estudiante' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Estudiante::class,
+            'model' => App\User::class,
         ],
 
-        'profesor' => [
+        'empleado' => [
             'driver' => 'eloquent',
             'model' => App\Empleado::class,
         ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

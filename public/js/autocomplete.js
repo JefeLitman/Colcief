@@ -1,4 +1,4 @@
-function autocompletar(tabla, ){
+function autocompletar(tabla){
     $.ajax({
         type: 'POST',
         url: 'http://localhost:8000/autocompletar/'+tabla,

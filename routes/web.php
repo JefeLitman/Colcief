@@ -15,13 +15,19 @@ Route::get('/', function () {
     return view('pantallas.bienvenida');
 });
 
+Route::get('/login', 'Login\LoginController')->name('login');
+
 Route::get('/contacto', function () {
     return view('pantallas.contacto');
 });
+
+
+
 Route::get('/nosotros', function () {
     return view('pantallas.nosotros');
 });
-Auth::routes();
+
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -33,5 +39,5 @@ Route::resource('/materias','MateriaController');
 Route::resource('/divisiones','DivisionController');
 Route::post('/autocompletar/{text}', 'DivisionController@ajax')->name('autocompletar');
 
-Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
+//Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
