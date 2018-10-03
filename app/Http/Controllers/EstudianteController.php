@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Auth;
 
 class EstudianteController extends Controller{
 
-    #use Notifiable; //Daña el controlador
 
     //Funciones publicas de primeros y al final las privadas
 
