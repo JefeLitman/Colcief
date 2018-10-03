@@ -21,33 +21,38 @@ class MateriaController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return vista en Local>Resource>View>materias>crearMateria.blade.php
      */
     public function create()
     {
-        //
+        return view("materias.crearMateria");
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return 
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        // Los datos al haber pasado por AcudienteStoreController ya están validados en la clase 
+        // Local>app>Http>Requests>MateriaStoreController.php
+        $materia = (new Materia)->fill($request->all());
+        try{
+            $materia->save();
+            return "Ha sido guardado con exito";
+        }catch(Exception $e){
+            return "Ha ocurido un error con el servidor, vuelva a intentarlo.";
+        }
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $materia = Materia::where('pk_materia',$id)->get()[0];
+
         return view("materias.verMateria",compact('materia'));
     }
 

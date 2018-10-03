@@ -38,10 +38,17 @@ class EstudianteController extends Controller{
     public function show($pk_estudiante){
         /*@Autor Paola C.*/
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>estudiantes>verEstudiante.blade.php y allá se reciben todos los datos del respectivo estudiante y acudiente en las variables tipo Object $estudiante, $acudiente.
-        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get()[0];
-        $acudiente= Acudiente::where('pk_acudiente', $estudiante->fk_acudiente)->get()[0];
-        //return $estudiante;
-        return view("estudiantes.verEstudiante",['estudiante'=>$estudiante,'acudiente' =>$acudiente] );
+        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get();
+        if(empty($estudiante[0])){
+            return "No se ha encontrado el estudiante.";
+        }else{
+            $acudiente= Acudiente::where('pk_acudiente', $estudiante[0]->fk_acudiente)->get();
+            if(empty($acudiente[0])){
+                return "No se ha encontrado al respectivo acudiente.";
+            }else{
+               return view("estudiantes.verEstudiante",['estudiante'=>$estudiante[0],'acudiente' =>$acudiente[0]]); 
+            }
+        }
     }
 
     public function edit($pk_estudiante){
