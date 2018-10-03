@@ -11,9 +11,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EstudianteStoreController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
+//librerias de autenticacion
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class EstudianteController extends Controller{
 
+    use Notifiable;
     //Funciones publicas de primeros y al final las privadas
 
     public function index(){

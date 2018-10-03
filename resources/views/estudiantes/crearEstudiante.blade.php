@@ -2,7 +2,8 @@
 @section('titulo','Estudiante Nuevo')
 @section('contenedor_principal')
 <div class="row">
-    <div class="col s12 center">
+    <div class="col s2"></div>
+    <div class="col s8 center">
         <br>
         <h2>Crear Estudiante</h2>
         <div class="card green lighten-5">
@@ -10,13 +11,15 @@
                 <form method="post" action="/estudiantes" enctype="multipart/form-data">
                     @csrf
                     {{-- <img src="/storage/PvRbjWWj0jk4QD84Y6kkfm2Wri5tdMz35lEu9JGM.jpeg"> --}}
-                    <div class="input-field">{{-- input field es necesario para la animación de los label --}}
-                        <input type="number" name="pk_estudiante">
-                        <label>Código: </label>
-                    </div>
-                    <div class="input-field">
-                        <input type="number" name="fk_acudiente">
-                        <label>Código acudiente:</label>
+                    <div class="row">
+                        <div class="input-field col s6">{{-- input field es necesario para la animación de los label --}}
+                            <input type="number" name="pk_estudiante">
+                            <label>Código: </label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="number" name="fk_acudiente">
+                            <label>Código acudiente:</label>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
@@ -33,15 +36,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s4">
                             <input type="text" name="fecha_nacimiento" class="datepicker" id="datepicker">
                             <label>Fecha de nacimiento:</label>
                         </div>
+                        <div class="input-field col s4">
+                                <input type="number" name="grado">
+                                <label>Grado:</label>
+                            </div>
                     </div>
-                    <div class="input-field">
-                        <input type="number" name="grado">
-                        <label>Grado:</label>
-                    </div>
+                    
                     <div class="row">
                         <div class="input-field col s6">
                             <label>
@@ -49,12 +53,12 @@
                                 <span>Discapacidad</span>
                             </label>
                         </div>
-                        <div class="input-field col s6">
+                        {{-- <div class="input-field col s6">
                             <label>
                                 <input type="checkbox" name="estado" value="1">
                                 <span> Estado</span>
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                     <br>
                     <div class="file-field input-field">
