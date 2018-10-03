@@ -22,7 +22,7 @@
             </ul>
             <!-- Estructura del despegable de Estudiantes -->
             <ul id="estudiantes" class="dropdown-content">
-                <li><a href="#!">Crear<i class="material-icons right">person_add</i></a></li>
+                <li><a href="{{ url('/crear') }}">Crear<i class="material-icons right">person_add</i></a></li>
                 <li class="divider"></li>
                 <li><a href="#!">Editar<i class="material-icons right">build</i></a></li>
                 <li class="divider"></li>

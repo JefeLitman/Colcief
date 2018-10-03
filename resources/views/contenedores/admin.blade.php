@@ -14,13 +14,12 @@
 </head>
 <body>
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
-    @auth
-        @include('menus.admin')
-    @endauth
     @guest
-        @include('menus.principal')
+        @include('menus.admin')
     @endguest
-
+    {{-- @guest
+        @include('menus.principal')
+    @endguest --}}
     <!-- Aqui en esta seccion va estar el contenido de la pagina -->
     <main>
 	    <div class="container">
@@ -67,9 +66,9 @@
         $(document).ready(function(){
             $('select').formSelect();
         });
-        
+
     </script>
-    
-        
+
+
 </body>
 </html>
