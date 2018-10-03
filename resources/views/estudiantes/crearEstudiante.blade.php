@@ -3,43 +3,32 @@
 @section('contenedor_principal')
 <div class="row">
     <div class="col s2"></div>
-    <div class="col s8 center">
-        <br>
-        <h2>Crear Estudiante</h2>
+    <div class="col s8 center"><br>
         <div class="card green lighten-5">
             <div class="card-content">
                 <form method="post" action="/estudiantes" enctype="multipart/form-data">
                     @csrf
-                    {{-- <img src="/storage/PvRbjWWj0jk4QD84Y6kkfm2Wri5tdMz35lEu9JGM.jpeg"> --}}
-                    <div class="row">
-                        <div class="input-field col s6">{{-- input field es necesario para la animación de los label --}}
-                            <input type="number" name="pk_estudiante">
-                            <label>Código: </label>
-                        </div>
-                        {{-- <div class="input-field col s6">
-                            <input type="number" name="fk_acudiente">
-                            <label>Código acudiente:</label>
-                        </div> --}}
-                    </div>
+                    <h4 class="center">Datos Estudiante</h4>
+                    <div class="divider"></div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input type="text" name="nombre">
-                            <label>Nombre: </label>
+                            <input type="text" name="nombre" required>
+                            <label>Nombres <label class="rojo">*</label> </label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="apellido">
-                            <label>Apellido: </label>
+                            <input type="text" name="apellido" required>
+                            <label>Apellido <label class="rojo">*</label> </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input type="text" name="fecha_nacimiento" class="datepicker" id="datepicker">
-                            <label>Fecha de nacimiento:</label>
+                            <input type="text" name="fecha_nacimiento" class="datepicker" id="datepicker" required>
+                            <label>Fecha de nacimiento <label class="rojo">*</label></label>
                         </div>
                         
                         <div class="input-field col s4">
                                 
-                            <select>
+                            <select required>
                               <option value="" disabled selected>Seleccionar</option>
                               <option value="0">Preescolar</option>
                               <option value="1">Primero</option>
@@ -54,29 +43,57 @@
                               <option value="10">Decimo</option>
                               <option value="11">Once</option>
                             </select>
-                            <label>Grado</label>
+                            <label>Grado <label class="rojo">*</label></label>
                         </div>
                         <div class="input-field col s4">
                             <label>
-                                <input type="checkbox" name="discapacidad" value="1">
+                                <input type="checkbox" name="discapacidad" value="1" required>
                                 <span>Discapacidad</span>
                             </label>
                         </div>
                     </div>
-                        {{-- <div class="input-field col s6">
-                            <label>
-                                <input type="checkbox" name="estado" value="1">
-                                <span> Estado</span>
-                            </label>
-                        </div> --}}
                     <div class="file-field input-field">
                         <div class="btn cyan darken-3 waves-effect">
-                            <span>Seleccionar archivo</span>
-                            <input type="file" name="foto">
+                            <span>Seleccionar foto</span>
+                            <input type="file" name="foto" required>
                         </div>
                         <div class="file-path-wrapper">{{-- file-path-wrapper es para mostrar el nombre la foto que subio y verificar que subio --}}
                             <input class="file-path validate" type="text">
                         </div>
+                    </div>
+                    <h4 class="center">Datos Acudiente 1</h4>
+                    <div class="divider"></div>
+                    <div class="row">
+                            <div class="input-field col s4">
+                                <input type="text" name="nombre_acu_1" required>
+                                <label>Nombres <label class="rojo">*</label></label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="text" name="direccion_acu_1" required>
+                                <label>Dirección <label class="rojo">*</label> </label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="number" name="telefono_acu_1" required>
+                                <label>Celular <label class="rojo">*</label> </label>
+                            </div>
+                            
+                    </div>
+                    <h4 class="center">Datos Acudiente 2</h4>
+                    <div class="divider"></div>
+                    <div class="row">
+                            <div class="input-field col s4">
+                                <input type="text" name="nombre_acu_2">
+                                <label>Nombres: </label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="text" name="direccion_acu_2">
+                                <label>Dirección: </label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="number" name="telefono_acu_2">
+                                <label>Celular: </label>
+                            </div>
+                            
                     </div>
                     <div class="input-field center">
                         <button class="btn waves-effect cyan darken-3" type="submit" name="action">Enviar<i class="material-icons right">send</i>
