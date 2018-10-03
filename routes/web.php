@@ -30,7 +30,7 @@ Route::get('/nosotros', function () {
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/estudiantes/ver', 'EstudianteController@view');
 Route::resource('/estudiantes', 'EstudianteController');
 Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');

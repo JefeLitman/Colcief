@@ -17,7 +17,7 @@
     @auth
         @include('menus.admin')
     @endauth
-    @guest 
+    @guest
         @include('menus.principal')
     @endguest
 
@@ -44,12 +44,32 @@
             $('.sidenav').sidenav();
             $('.slider').slider();
             $(".dropdown-trigger").dropdown();
+            $('.datepicker').datepicker();
+            $('#datepicker').datepicker(
+                {
+                    format:'dd/mm/yy',
+                    yearRange:150
+                }
+            );
         });
         window.onload = function(){
             var contenedor = document.getElementById('preloader-background');
             contenedor.style.visibility = 'hidden';
             contenedor.style.opacity = '0';
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
+        });
+
+        // Or with jQuery
+
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
+        
     </script>
+    
+        
 </body>
 </html>
