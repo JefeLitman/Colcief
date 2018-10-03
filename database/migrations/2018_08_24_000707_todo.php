@@ -15,18 +15,18 @@ class Todo extends Migration
     {
         Schema::create('acudiente', function (Blueprint $table) {
             $table->increments('pk_acudiente'); //diferente
-            $table->string('nombre_acu_1', 20);
+            $table->string('nombre_acu_1', 50);
             $table->string('direccion_acu_1',30);
             $table->string('telefono_acu_1',10); //diferente
-            $table->string('nombre_acu_2',20);
-            $table->string('direccion_acu_2',30);
-            $table->string('telefono_acu_2',10); //diferente
+            $table->string('nombre_acu_2',50)->nullable();
+            $table->string('direccion_acu_2',30)->nullable();
+            $table->string('telefono_acu_2',10)->nullable(); //diferente
             $table->timestamps();
         });
 
         Schema::create('estudiante', function (Blueprint $table) {
-            $table->unsignedInteger('pk_estudiante')->primary();
-            $table->unsignedInteger('fk_acudiente'); //diferente
+            $table->increments('pk_estudiante');
+            $table->unsignedInteger('fk_acudiente');
             $table->string('nombre', 20);
             $table->string('apellido', 20);
             $table->string('clave', 80);
@@ -133,6 +133,7 @@ class Todo extends Migration
             $table->string('nombre', 20);
             $table->string('descripcion')->nullable();
             $table->integer('porcentaje');
+            $table->date('limite');
             $table->year('ano');
             $table->timestamps();
         });
@@ -149,8 +150,8 @@ class Todo extends Migration
         Schema::create('materia', function (Blueprint $table) {
             $table->increments('pk_materia');
             $table->string('nombre', 20);
-            $table->string('contenido');
-            $table->string('logros_custom');
+            $table->text('contenido');
+            $table->text('logros_custom');
             $table->timestamps();
         });        
     }
