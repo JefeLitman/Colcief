@@ -17,7 +17,7 @@
     @auth
         @include('menus.admin')
     @endauth
-    @guest 
+    @guest
         @include('menus.principal')
     @endguest
 
@@ -44,6 +44,13 @@
             $('.sidenav').sidenav();
             $('.slider').slider();
             $(".dropdown-trigger").dropdown();
+            $('.datepicker').datepicker();
+            $('#datepicker').datepicker(
+                {
+                    format:'dd/mm/yy',
+                    yearRange:150
+                }
+            );
         });
         window.onload = function(){
             var contenedor = document.getElementById('preloader-background');

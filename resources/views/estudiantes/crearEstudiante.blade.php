@@ -44,23 +44,19 @@
                                 <input type="number" name="grado">
                                 <label>Grado:</label>
                             </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s4">
                             <label>
                                 <input type="checkbox" name="discapacidad" value="1">
                                 <span>Discapacidad</span>
                             </label>
                         </div>
+                    </div>
                         {{-- <div class="input-field col s6">
                             <label>
                                 <input type="checkbox" name="estado" value="1">
                                 <span> Estado</span>
                             </label>
                         </div> --}}
-                    </div>
-                    <br>
                     <div class="file-field input-field">
                         <div class="btn cyan darken-3 waves-effect">
                             <span>Seleccionar archivo</span>
