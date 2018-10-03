@@ -34,7 +34,7 @@
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
     @include('menus.principal')
     <main>
-	    <div class="container">
+	    <div class="container center">
             @section('contenedor_principal')
             @show
         </div>

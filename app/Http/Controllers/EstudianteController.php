@@ -67,7 +67,7 @@ class EstudianteController extends Controller{
 
     public function edit($pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante);
-        return view('prueba.updateEstudiantes', ['estudiante' => $estudiante]);
+        return view('estudiantes.editarEstudiante', ['estudiante' => $estudiante]);
     }
 
     public function update(EstudianteUpdateController $request, $pk_estudiante){
