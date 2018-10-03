@@ -1,6 +1,9 @@
 @extends('contenedores.admin')
 @section('titulo','Estudiante Nuevo')
 @section('contenedor_principal')
+@guest
+    @include('error.error')
+@endguest
 <div class="row">
     <div class="col s2"></div>
     <div class="col s8 center"><br>
@@ -29,9 +32,9 @@
                             <input type="text" name="fecha_nacimiento" class="datepicker" id="datepicker" required>
                             <label>Fecha de nacimiento <label class="rojo">*</label></label>
                         </div>
-                        
+
                         <div class="input-field col s4">
-                                
+
                             <select name="grado" required>
                               <option value="" disabled selected>Seleccionar</option>
                               <option value="0">Preescolar</option>
@@ -80,7 +83,7 @@
                                 <input type="number" name="telefono_acu_1" required>
                                 <label>Celular <label class="rojo">*</label> </label>
                             </div>
-                            
+
                     </div>
                     <h4 class="center">Datos Acudiente 2</h4>
                     <div class="divider"></div>
@@ -97,7 +100,7 @@
                                 <input type="number" name="telefono_acu_2">
                                 <label>Celular: </label>
                             </div>
-                            
+
                     </div>
                     <div class="input-field center">
                         <button class="btn waves-effect cyan darken-3" type="submit" name="action">Enviar<i class="material-icons right">send</i>
