@@ -14,6 +14,19 @@ class DivisionController extends Controller{
     }
 
     public function index(){
+        // $table = 'estudiante';
+        // $datos = ["pk_estudiante", "nombre", "apellido"];
+        
+        // $obj = DB::table($table)->select($datos)->get();
+        //     $result = array();
+        //     foreach($obj as $index => $value){
+        //         $f = '';
+        //         foreach($datos as $i){
+        //             $f .= $obj[$index]->$i.' ';
+        //         }
+        //         $result[$index] = $f;
+        //     }
+        // dd($result);
         $division = Division::all();
         return view('divisiones.listaDivision', ['division' => $division]);
     }
@@ -44,25 +57,8 @@ class DivisionController extends Controller{
     }
 
     public function edit($pk_division){
-        $obj = DB::table('division')->select('ano')->get();
-        $result = array();
-        foreach($obj as $o => $key){
-            $result[$o] = $key->ano;
-        }
-        print_r($result);
-        // $division = Division::all()->where('ano', $this->ano);
-        // return view('divisiones.editarDivision', ['division' => $division]);
-    }
-
-    public function ajax(Request $request, String $table){
-        if($request->ajax()){
-            $obj = DB::table($table)->select('ano', 'nombre')->get();
-            foreach($obj as $o => $key){
-                $result[$key->ano] = $key->nombre;
-            }
-            return response()->json($result);
-            
-        }
+        $division = Division::all()->where('ano', $this->ano);
+        return view('divisiones.editarDivision', ['division' => $division]);
     }
 
     public function update(Request $request, $pk_division){

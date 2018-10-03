@@ -37,7 +37,7 @@ Route::resource('/empleados','EmpleadoController');
 Route::resource('/periodo','PeriodoController');
 Route::resource('/materias','MateriaController');
 Route::resource('/divisiones','DivisionController');
-Route::post('/autocompletar/{text}', 'DivisionController@ajax')->name('autocompletar');
+Route::post('/autocompletar/{text}', 'AjaxController')->name('autocompletar');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel

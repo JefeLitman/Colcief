@@ -24,7 +24,8 @@ class EstudianteController extends Controller{
     //Funciones publicas de primeros y al final las privadas
 
     public function index(){
-      return 'Aquí va una vista';
+        $estudiante = Estudiante::all();
+        return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);
     }
 
     public function create(){

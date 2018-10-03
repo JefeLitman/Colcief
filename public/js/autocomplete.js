@@ -1,8 +1,8 @@
-function autocompletar(tabla){
+function autocompletar(tabla, datos){
     $.ajax({
         type: 'POST',
         url: 'http://localhost:8000/autocompletar/'+tabla,
-        data: {_token:$('input[name=_token]').val()},
+        data: {_token:$('input[name=_token]').val(), datos:datos},
         success: function(data) {
             console.log(data);
             $(document).ready(function(){
@@ -11,6 +11,9 @@ function autocompletar(tabla){
                 });
             });                                                  
         },
+        error: function(){
+
+        }
     });
 }
 
