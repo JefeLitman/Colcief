@@ -55,7 +55,7 @@
                     <div class="file-field input-field">
                         <div class="btn cyan darken-3 waves-effect">
                             <span>Seleccionar foto</span>
-                            <input type="file" name="foto" required>
+                            <input type="file" name="foto">
                         </div>
                         <div class="file-path-wrapper">{{-- file-path-wrapper es para mostrar el nombre la foto que subio y verificar que subio --}}
                             <input class="file-path validate" type="text">
