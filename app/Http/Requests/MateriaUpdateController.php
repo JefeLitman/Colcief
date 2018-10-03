@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AcudienteUpdateController extends FormRequest
+class MateriaUpdateController extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class AcudienteUpdateController extends FormRequest
     public function rules()
     {
       return [
-          'pk_acudiente' => 'required|numeric',
-          'nombre_acu_1' => 'required|string|max:20',
-          'direccion_acu_1' => 'required|string|max:30',
-          'telefono_acu_1' => 'required|numeric|digits_between:7,10',
-          'nombre_acu_2' => 'string|max:20',
-          'direccion_acu_2' => 'string|max:30',
-          'telefono_acu_2' => 'numeric|digits_between:7,10'
-      ];
+            'nombre' => 'required|string|max:20',
+            'contenido' => 'required|string|max:255',
+            'logros_custom' => 'string|max:255'
+        ];
     }
 }
