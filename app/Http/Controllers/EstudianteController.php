@@ -8,6 +8,7 @@ use App\Estudiante;
 use App\Acudiente; //Pepe no me lo vuelva a borrar
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AcudienteController;
 use App\Http\Requests\EstudianteStoreController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
@@ -33,10 +34,13 @@ class EstudianteController extends Controller{
         return view('estudiantes.verEstudiante');
     }
 
-    public function store(EstudianteStoreController $request){
+    public function store(Request $request){
       //Autor: Douglas R.
       //Los datos al haber pasado por EstudianteStoreController ya están validados
+        $acudiente = new AcudienteController;
+        $acudiente->store($request);
         $estudiante = (new Estudiante)->fill($request->all());
+        $estudiante->fk_acudiente=$acudiente->fk_acudiente;
         if($request->hasFile('foto')){
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');

@@ -9,11 +9,8 @@ use App\Http\Requests\AcudienteUpdateController;
 
 class AcudienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    var $fk_acudiente;
+    
     public function index()
     {
         return 'Aquí va la vista';
@@ -35,7 +32,7 @@ class AcudienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AcudienteStoreController $request)
+    public function store(Request $request)
     {
       //Los datos al haber pasado por AcudienteStoreController ya están validados
       $unidad = new Acudiente(); //Creo el modelo de datos acudiente
@@ -47,9 +44,7 @@ class AcudienteController extends Controller
       $unidad->direccion_acu_2 = $request->input('direccion_acu_2');
       $unidad->telefono_acu_2 = $request->input('telefono_acu_2');
       $unidad->save();
-      return $request->validated(); /* Esto se puede quitar, es para que los de frontend sepan
-      qué se está enviando a la BD en caso de que se haya validado y funcione esa info.
-      */
+      $this->fk_acudiente=$unidad->pk_acudiente;
     }
 
     /**

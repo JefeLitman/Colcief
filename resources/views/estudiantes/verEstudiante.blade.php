@@ -7,7 +7,7 @@
 	{{-- Variables enviadas desde Local>App>Http>Controllers>EstudianteController.php  funcion show()
 		 @Autor Paola C. --}}
 	{{-- URL: localhost:8000\estudiantes\{pk_estudiante} --}}
-	{{-- <h3>Tipo de Archivos:</h3> $estudiante: {{ gettype($estudiante)}}, $acudiente: {{ gettype($acudiente)}} <br>
+	<h3>Tipo de Archivos:</h3> $estudiante: {{ gettype($estudiante)}}, $acudiente: {{ gettype($acudiente)}} <br>
 	<h3>Contenido estudiante:</h3> {{$estudiante}} <br>
 	<h3>Contenido acudiente:</h3> {{$acudiente}} <br>
 
@@ -16,5 +16,5 @@
 		<img src="{{Storage::url($estudiante->foto)}}" width="200px">
 		<br>
 	Nombre: {{$estudiante->nombre}} <br>
-	Apellido: {{$estudiante->apellido}} <br> --}}
+	Apellido: {{$estudiante->apellido}} <br>
 @endsection
