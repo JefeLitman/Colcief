@@ -1,5 +1,5 @@
 @extends('contenedores.admin')
-@section('titulo','Ver estudiantes')
+@section('titulo','Estudiante '.$estudiante->pk_estudiante)
 @section('contenedor_principal')
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $estudiante y el objeto $acudiente --}}
@@ -16,13 +16,67 @@
         <div class="col s5 center"><br>
             <div class="card green lighten-5">
                 <div class="card-content">
-                    <a href="#user"><img class="circle" src="{{Storage::url($estudiante->foto)}}" width="200px"></a>
                     <div class="row center">
-                        <div class="col s12 center">
-                            <h6 class=" blue-grey-text darken-4"><i class="small material-icons rigth">assignment_ind</i>
-                            <br> Nombre: {{$estudiante->nombre}} {{$estudiante->apellido}}</h6>
+                        <div class="col s12">
+                            <img class="responsive-img" style="max-width:400px;" src="{{Storage::url($estudiante->foto)}}">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col s1"></div>
+                        <div class="col s3">
+                            <i class="blue-grey-text medium material-icons">face</i>
+                        </div>
+                        <div class="col s7">
+                            <h5 class="blue-grey-text">{{$estudiante->nombre}}<br>{{$estudiante->apellido}}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col s1"></div>
+                            <div class="col s3">
+                                <i class="blue-grey-text medium material-icons">grade</i>
+                            </div>
+                            <div class="col s7">
+                                <h5 class="blue-grey-text"> @switch($estudiante->grado)
+                                    @case(0)
+                                        Preescolar
+                                        @break
+                                    @case(1)
+                                        Primero
+                                        @break
+                                    @case(2)
+                                        Segundo
+                                        @break
+                                    @case(3)
+                                        Tercero
+                                        @break
+                                    @case(4)
+                                        Cuarto
+                                        @break
+                                    @case(5)
+                                        Quinto
+                                        @break
+                                    @case(6)
+                                        Sexto
+                                        @break
+                                    @case(7)
+                                        Septimo
+                                        @break
+                                    @case(8)
+                                        Octavo
+                                        @break
+                                    @case(9)
+                                        Noveno
+                                        @break
+                                    @case(10)
+                                        Decimo
+                                        @break
+                                    @case(11)
+                                        Once
+                                        @break
+                                        
+                                @endswitch </h5>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

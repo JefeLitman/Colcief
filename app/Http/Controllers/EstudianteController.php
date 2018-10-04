@@ -31,9 +31,6 @@ class EstudianteController extends Controller{
     public function create(){
         return view('estudiantes.crearEstudiante');
     }
-    public function view(){
-        return view('estudiantes.verEstudiante');
-    }
 
     public function store(EstudianteStoreController $request){
 
