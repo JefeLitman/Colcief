@@ -11,22 +11,10 @@ class DivisionController extends Controller{
 
     public function __construct(){
         $this->ano = date('Y');
+        $this->date = date('MM-DD');
     }
 
     public function index(){
-        // $table = 'estudiante';
-        // $datos = ["pk_estudiante", "nombre", "apellido"];
-        
-        // $obj = DB::table($table)->select($datos)->get();
-        //     $result = array();
-        //     foreach($obj as $index => $value){
-        //         $f = '';
-        //         foreach($datos as $i){
-        //             $f .= $obj[$index]->$i.' ';
-        //         }
-        //         $result[$index] = $f;
-        //     }
-        // dd($result);
         $division = Division::all();
         return view('divisiones.listaDivision', ['division' => $division]);
     }
@@ -51,6 +39,7 @@ class DivisionController extends Controller{
                 $division -> descripcion = $request->descripcion[$i];
                 $division -> porcentaje = $request->porcentaje[$i];
                 $division -> ano = $this->ano;
+                $division -> limite = '2018-09-14';
                 $division->save();
             }           
         }    
@@ -58,7 +47,11 @@ class DivisionController extends Controller{
 
     public function edit($pk_division){
         $division = Division::all()->where('ano', $this->ano);
-        return view('divisiones.editarDivision', ['division' => $division]);
+        if($this->date <= $division->limite){
+            return view('divisiones.editarDivision', ['division' => $division]);
+        } else {
+            return 'EL año escolar ya inicio';
+        }
     }
 
     public function update(Request $request, $pk_division){

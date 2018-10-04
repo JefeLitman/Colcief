@@ -17,16 +17,16 @@
     <form enctype="multipart/form-data" action="/divisiones" method="POST">
         @csrf
         <div id="div">
-            @for ($i = 0; $i < 3; $i++)
+            @for ($i = 0; $i < count($division); $i++)
                 <div id="division[{{$i}}]">
                     <label for="nombre[{{$i}}]">Nombre: </label>
-                    <input type="text" id="nombre[{{$i}}]" name="nombre[{{$i}}]" value="{{$division->nombre[$i]}}">
+                    <input type="text" id="nombre[{{$i}}]" name="nombre[{{$i}}]" value="{{$division[$i]->nombre}}">
 
                     <label for="descripcion[{{$i}}]">Descripcion: </label>
-                    <textarea id="descripcion[{{$i}}]" name="descripcion[{{$i}}]">{{$division->descripcion[$i]}}</textarea> 
+                    <textarea id="descripcion[{{$i}}]" name="descripcion[{{$i}}]">{{$division[$i]->descripcion}}</textarea> 
 
                     <label for="porcentaje[{{$i}}]">Porcentaje: </label>
-                    <input type="number" id="porcentaje[{{$i}}]" name="porcentaje[{{$i}}]" value="{{$division->porcentaje[$i]}}">
+                    <input type="number" id="porcentaje[{{$i}}]" name="porcentaje[{{$i}}]" value="{{$division[$i]->porcentaje}}">
                 </div>
             @endfor
         </div>

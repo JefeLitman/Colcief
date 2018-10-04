@@ -24,11 +24,10 @@ class EstudianteUpdateController extends FormRequest
     public function rules()
     {
         return [
-            'pk_estudiante' => 'required|numeric|exists:estudiante,pk_estudiante',
-            'fk_acudiente' => 'required|numeric|exists:acudiente,pk_acudiente',
+            
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
-            'clave' => 'required|string|max:40',
+            // 'clave' => 'required|string|max:40',
             'fecha_nacimiento' => 'required|date',
             'grado' => 'required|numeric|max:11|min:1',
             'discapacidad' => 'boolean',
