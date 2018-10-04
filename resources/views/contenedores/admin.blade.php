@@ -72,7 +72,7 @@
                 }
             );
         });
-        //Configuracion de la pregarga
+        //Configuracion de la precarga
         window.onload = function(){
             var contenedor = document.getElementById('preloader-background');
             contenedor.style.visibility = 'hidden';
@@ -81,13 +81,19 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems, options);
+            var instances = M.FormSelect.init(elems);
         });
 
         // Or with jQuery
 
         $(document).ready(function(){
             $('select').formSelect();
+        });
+
+        //Para mostrar los modales al dar clic @Eduard
+
+        $(document).ready(function(){
+            $('.modal').modal();
         });
 
     </script>

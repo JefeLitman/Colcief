@@ -24,7 +24,7 @@
             <ul id="estudiantes" class="dropdown-content">
                 <li><a href="{{ url('/estudiantes/crear') }}">Crear<i class="material-icons right">person_add</i></a></li>
                 <li class="divider"></li>
-                <li><a href="#!">Editar<i class="material-icons right">build</i></a></li>
+                <li><a href="{{ url('/estudiantes') }}">Editar<i class="material-icons right">build</i></a></li>
                 <li class="divider"></li>
                 <li><a href="#!">Eliminar<i class="material-icons right">delete</i></a></li>
             </ul>

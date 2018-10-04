@@ -5,41 +5,65 @@
     <div class="col s2"></div>
 	<div class="col s8 center"><br>
 		@if ($errors->any())
-{{-- comment --}}
-<div id="modal1" class="modal">
-    <div class="row">
-        <div class="col s1"></div>
-        <div class="col s10">
-            <br>
-            <div class="card cyan lighten-5">
-                <div class="modal-content center">
-                    <h4>Falta</h4>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+            <div id="modal1" class="modal">
+                <div class="row">
+                    <div class="col s1"></div>
+                    <div class="col s10">
+                        <br>
+                        <div class="card cyan lighten-5">
+                            <div class="modal-content center">
+                                <h4>Falta</h4>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-close center">
+                            <a href="#!" class="btn waves-effect cyan darken-3">Cerrar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="modal-close center">
-                <a href="#!" class="btn waves-effect cyan darken-3">Cerrar</a>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
+    @endif
         <div class="card green lighten-5">
             <div class="card-content">
 					<form enctype="multipart/form-data" action="{{route('estudiantes.update', $estudiante->pk_estudiante)}}" method="POST">
 					@csrf
 					@method("PUT")
                     <h4 class="center">Datos Estudiante</h4>
-					<div class="divider"></div>
+                    <div class="divider"></div>
+        
+                    
 					<div class="row">
-						<div class="input-field col s12">
-							<img src="{{Storage::url($estudiante->foto)}}" width="50%">
-						</div>
-					</div>
+                        <div class="col s3"></div>
+						<div class="input-field col s6">
+							<img style="" src="{{Storage::url($estudiante->foto)}}" onclick="$('#modal2').modal('open');">
+                            <a class="btn waves-effect waves-teal ">
+                                <i class="material-icons" onclick="$('#modal2').modal('open');">add_a_photo</i>
+                            </a>
+                        </div>
+                    </div>
+                     <!-- Modal Structure -->
+                    <div id="modal2" class="modal open">
+                        <div class="modal-content">
+                            <h4>Cargar Imagen</h4>
+                            <div class="file-field input-field">
+                                    <div class="btn cyan darken-3 waves-effect">
+                                        <span>Seleccionar</span>
+                                        <input type="file" name="foto">
+                                    </div>
+                                    <div class="file-path-wrapper">{{-- file-path-wrapper es para mostrar el nombre la foto que subio y verificar que subio --}}
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Descartar</a>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Subir</a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <input type="text" name="nombre" value="{{$estudiante->nombre}}" required>
