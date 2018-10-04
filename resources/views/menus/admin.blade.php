@@ -6,7 +6,7 @@
             <!--Link que hace referencia al menu responsivo -->
             <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <!--Menu normal en modo grande -->
-            <ul class="right hide-on-med-and-down">
+            <ul class="right hide-on-med-and-down" id="menu">
                 <li><a href="#!">Notas<i class="material-icons right">developer_board</i></a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="cursos">&nbsp &nbsp Cursos &nbsp &nbsp<i class="material-icons right">class</i></a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="empleados">Empleados<i class="material-icons right">group</i></a></li>
@@ -22,7 +22,7 @@
             </ul>
             <!-- Estructura del despegable de Estudiantes -->
             <ul id="estudiantes" class="dropdown-content">
-                <li><a href="{{ url('') }}">Crear<i class="material-icons right">person_add</i></a></li>
+                <li><a href="{{ url('/estudiantes/crear') }}">Crear<i class="material-icons right">person_add</i></a></li>
                 <li class="divider"></li>
                 <li><a href="#!">Editar<i class="material-icons right">build</i></a></li>
                 <li class="divider"></li>
@@ -48,10 +48,22 @@
     </nav>
     <!--Menu responsive en modo movil -->
     <ul class="sidenav" id="menu-responsivo">
-    <li><a href="#!"><i class="material-icons right">developer_board</i>Notas</a></li>
-    <li><a href="#!"><i class="material-icons right">class</i>Cursos</a></li>
-    <li><a href="{{ url('/empleadoss') }}"><i class="material-icons right">group</i>Empleados</a></li>
-    <li><a href="{{ url('/estudiantes') }}"><i class="material-icons right">child_care</i>Estudiantes</a></li>
-    <li><a href="{{ url('/') }}"><i class="material-icons right">home</i>Inicio</a></li>
-    <li><a href="{{ url('/home') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a></li>
+        <li>
+            <a href="#!"><i class="material-icons right">developer_board</i>Notas</a>
+        </li>
+        <li>
+            <a href="#!"><i class="material-icons right">class</i>Cursos</a>
+        </li>
+        <li>
+            <a href="{{ url('/empleadoss') }}"><i class="material-icons right">group</i>Empleados</a>
+        </li>
+        <li>
+            <a href="{{ url('/estudiantes') }}"><i class="material-icons right">child_care</i>Estudiantes</a>
+        </li>
+        <li>
+            <a href="{{ url('/') }}" data-target="sesion"><i class="material-icons right">home</i>Inicio</a>
+        </li>
+        <li>
+            <a href="{{ url('/home') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a>
+        </li>
     </ul>

@@ -52,15 +52,15 @@
                         <input type="text" id="rol" name="rol">
                         <label for="rol">Rol: </label>
                     </div>
-                    {{-- <div class="input-field">
+                    <div class="input-field">
                         <input type="number" id="tiempo_extra" name="tiempo_extra">
                         <label for="tiempo_extra">Tiempo extra: </label>
-                    </div> --}}
-                    {{--  <div class="input-field">
+                    </div>
+                    <div class="input-field">
                         <input type="text" id="director" name="director">
                         <label for="director">Director: </label>
-                    </div> --}}
-                    {{-- <div class="input-field row">
+                    </div>
+                    <div class="input-field row">
                         <div class="col s12 center">
                             <label for="estado">Estado: </label>
                             <label>
@@ -72,7 +72,7 @@
                                 <span>No</span>
                             </label>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="file-field input-field">
                         <div class="btn cyan darken-3 waves-effect">
                             <span>Seleccionar archivo</span>
