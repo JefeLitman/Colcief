@@ -35,6 +35,7 @@
                         <td>{{$i->apellido}}</td>
                         <td>{{$i->clave}}</td>
                         <td>{{$i->grado}}</td>
+                        <td><a href="{{ url('/estudiantes/'.$i->pk_estudiante.'/editar') }}"><i class="cyan-text darken-3 material-icons">edit</i></a></td>
                     </tr>
                 @endforeach
             </tbody>
