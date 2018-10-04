@@ -83,7 +83,7 @@ class EstudianteController extends Controller{
     public function update(EstudianteUpdateController $request, $pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill($request->all());
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
-            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action")
+            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action","foto")
         );
         if($request->hasFile('foto')){
           $nombre = 'estudiante'.$request->pk_estudiante;

@@ -34,17 +34,19 @@
 					@method("PUT")
                     <h4 class="center">Datos Estudiante</h4>
                     <div class="divider"></div>
-        
                     
 					<div class="row">
-                        <div class="col s3"></div>
-						<div class="input-field col s6">
-							<img style="" src="{{Storage::url($estudiante->foto)}}" onclick="$('#modal2').modal('open');">
+						<div class="input-field col s12">
+							<img class="responsive-img" src="{{Storage::url($estudiante->foto)}}">
+                        </div>
+                        <div class="input-field col s12">
                             <a class="btn waves-effect waves-teal ">
                                 <i class="material-icons" onclick="$('#modal2').modal('open');">add_a_photo</i>
                             </a>
                         </div>
                     </div>
+
+                    
                      <!-- Modal Structure -->
                     <div id="modal2" class="modal open">
                         <div class="modal-content">
