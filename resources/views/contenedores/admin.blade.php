@@ -56,19 +56,23 @@
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            //menu
             $('.sidenav').sidenav();
             $('.slider').slider();
             $('.dropdown-trigger').dropdown();
-            $('.datepicker').datepicker();
+            //Ventana emergente
             $('#modal1').modal();
             $('#modal1').modal('open');
+            //Configuración de la fecha
+            $('.datepicker').datepicker();
             $('#datepicker').datepicker(
                 {
-                    format:'dd/mm/yy',
+                    format:'yyyy/mm/dd',
                     yearRange:150
                 }
             );
         });
+        //Configuracion de la pregarga
         window.onload = function(){
             var contenedor = document.getElementById('preloader-background');
             contenedor.style.visibility = 'hidden';
