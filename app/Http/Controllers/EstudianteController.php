@@ -35,19 +35,21 @@ class EstudianteController extends Controller{
         return view('estudiantes.verEstudiante');
     }
 
-    public function store(Request $request){
-      //Autor: Douglas R.
-      //Los datos al haber pasado por EstudianteStoreController ya están validados
-        $acudiente = new AcudienteController;
-        $acudiente->store($request);
-        $estudiante = (new Estudiante)->fill($request->all());
-        $estudiante->fk_acudiente=$acudiente->fk_acudiente;
-        if($request->hasFile('foto')){
+    public function store(EstudianteStoreController $request){
+
+        $acudiente = (new Acudiente)->fill(
+            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action","foto")
+        ); //Se llena una instancia de acudiente con el request
+        $acudiente->save(); // se guarda el acudiente
+        $estudiante = (new Estudiante)->fill($request->all()); //Se llena una instancia de estudiante con el request
+        $estudiante->fk_acudiente=$acudiente->pk_acudiente;
+        $estudiante->clave="dasdassdas";
+        if($request->hasFile('foto')){ // se la guarda la imagen 
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
-        $estudiante->clave="dasdassdas";
-        $estudiante->save();
+        $estudiante->save(); // se guarda el estudiante
+        return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
     }
 
     public function show($pk_estudiante){
@@ -61,7 +63,10 @@ class EstudianteController extends Controller{
             if(empty($acudiente[0])){
                 return "No se ha encontrado al respectivo acudiente.";
             }else{
-               return view("estudiantes.verEstudiante",['estudiante'=>$estudiante[0],'acudiente' =>$acudiente[0]]); 
+                return view("estudiantes.verEstudiante",[
+                   'estudiante'=>$estudiante[0],
+                   'acudiente' =>$acudiente[0]
+                ]); 
             }
         }
     }
@@ -69,13 +74,17 @@ class EstudianteController extends Controller{
     public function edit($pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante);
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
-        return view('estudiantes.editarEstudiante', ['estudiante' => $estudiante, 'acudiente'=> $acudiente]);
+        return view('estudiantes.editarEstudiante', [
+            'estudiante' => $estudiante, 
+            'acudiente'=> $acudiente
+        ]);
     }
 
     public function update(EstudianteUpdateController $request, $pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill($request->all());
-        $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill($request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action"));
-        // dd($acudiente);
+        $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
+            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action")
+        );
         if($request->hasFile('foto')){
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');

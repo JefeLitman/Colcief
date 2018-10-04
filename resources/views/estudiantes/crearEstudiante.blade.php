@@ -13,7 +13,6 @@
                     @csrf
                     <h4 class="center">Datos Estudiante</h4>
                     <div class="divider"></div>
-                    <input type="text" name="clave"  value="shgdasjgd273">
                     <div class="row">
                         <div class="input-field col s6">
                             <input type="text" name="nombre" required>
@@ -51,7 +50,7 @@
                         </div>
                         <div class="input-field col s4">
                             <label>
-                                <input type="checkbox" name="discapacidad" value="1" required>
+                                <input type="checkbox" name="discapacidad" value="1">
                                 <span>Discapacidad</span>
                             </label>
                         </div>

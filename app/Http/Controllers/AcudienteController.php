@@ -7,33 +7,17 @@ use App\Acudiente;
 use App\Http\Requests\AcudienteStoreController;
 use App\Http\Requests\AcudienteUpdateController;
 
-class AcudienteController extends Controller
-{
-    var $fk_acudiente;
-    
-    public function index()
-    {
+class AcudienteController extends Controller{
+
+    public function index(){
         return 'Aquí va la vista';
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function create(){
         return view('acudientes.crearAcu');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
       //Los datos al haber pasado por AcudienteStoreController ya están validados
       $unidad = new Acudiente(); //Creo el modelo de datos acudiente
       $unidad->pk_acudiente = $request->input('pk_acudiente');
@@ -47,14 +31,7 @@ class AcudienteController extends Controller
       $this->fk_acudiente=$unidad->pk_acudiente;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($pk_acudiente)
-    {
+    public function show($pk_acudiente){
         $valor = Acudiente::where('pk_acudiente', $pk_acudiente)->get();
         if (!empty($valor[0])){
           return view('acudientes.verAcu',['acudiente'=>$valor[0]]);
@@ -63,41 +40,19 @@ class AcudienteController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($pk_acudiente)
-    {
+    public function edit($pk_acudiente){
         $acudiente = Acudiente::findOrFail($pk_acudiente);
         return view('acudientes.editarAcu',['acudiente' => $acudiente]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(AcudienteUpdateController $request, $pk_acudiente)
-    {
+    public function update(AcudienteUpdateController $request, $pk_acudiente){
         $unidad = Acudiente::findOrFail($pk_acudiente)->fill($request->all());
         $unidad->save();
         //return view('acudientes.verAcudiente',['acudiente' => $acudiente]);
         return 'Cambios guardados';
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //No se eliminan acudientes
     }
 }

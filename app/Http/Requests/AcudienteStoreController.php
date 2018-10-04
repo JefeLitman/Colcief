@@ -24,7 +24,6 @@ class AcudienteStoreController extends FormRequest
     public function rules()
     {
         return [
-            'pk_acudiente' => 'required|numeric|unique:acudiente',
             'nombre_acu_1' => 'required|string|max:20',
             'direccion_acu_1' => 'required|string|max:30',
             'telefono_acu_1' => 'required|numeric|digits_between:7,10',

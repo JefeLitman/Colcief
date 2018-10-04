@@ -11,7 +11,7 @@ class DivisionController extends Controller{
 
     public function __construct(){
         $this->ano = date('Y');
-        $this->date = date('MM-DD');
+        $this->date = date('Y-m-d');
     }
 
     public function index(){
@@ -45,9 +45,9 @@ class DivisionController extends Controller{
         }    
     }
 
-    public function edit($pk_division){
+    public function edit(){
         $division = Division::all()->where('ano', $this->ano);
-        if($this->date <= $division->limite){
+        if($this->date <= $division[0]->limite){
             return view('divisiones.editarDivision', ['division' => $division]);
         } else {
             return 'EL año escolar ya inicio';
