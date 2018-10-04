@@ -1,5 +1,5 @@
 @extends('contenedores.admin')
-@section('titulo','Estudiante '.$estudiante->pk_estudiante)
+@section('titulo',' Ver estudiante')
 @section('contenedor_principal')
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $estudiante y el objeto $acudiente --}}
@@ -24,16 +24,19 @@
                     <div class="row">
                         <div class="col s1"></div>
                         <div class="col s3">
-                            <i class="blue-grey-text medium material-icons">face</i>
+                            <i class="blue-grey-text small material-icons">face</i>
+                            <p class="blue-grey-text">Estudiante</p>
                         </div>
                         <div class="col s7">
                             <h5 class="blue-grey-text">{{$estudiante->nombre}}<br>{{$estudiante->apellido}}</h5>
                         </div>
                     </div>
+                    <div class="divider"></div>
                     <div class="row">
                             <div class="col s1"></div>
                             <div class="col s3">
-                                <i class="blue-grey-text medium material-icons">grade</i>
+                                <i class="blue-grey-text small material-icons">grade</i>
+                                <p class="blue-grey-text">Grado</p>
                             </div>
                             <div class="col s7">
                                 <h5 class="blue-grey-text"> @switch($estudiante->grado)
@@ -76,7 +79,18 @@
                                         
                                 @endswitch </h5>
                             </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col s1"></div>
+                        <div class="col s3">
+                            <i class="blue-grey-text small material-icons">group</i>
+                            <p class="blue-grey-text">Acudiente</p>
                         </div>
+                        <div class="col s7">
+                            <h5 class="blue-grey-text">{{$acudiente->nombre_acu_1}}</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
