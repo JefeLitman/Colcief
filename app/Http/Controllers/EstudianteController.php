@@ -46,6 +46,7 @@ class EstudianteController extends Controller{
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
+        $estudiante->clave="dasdassdas";
         $estudiante->save();
     }
 
@@ -67,17 +68,20 @@ class EstudianteController extends Controller{
 
     public function edit($pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante);
-        return view('estudiantes.editarEstudiante', ['estudiante' => $estudiante]);
+        $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
+        return view('estudiantes.editarEstudiante', ['estudiante' => $estudiante, 'acudiente'=> $acudiente]);
     }
 
     public function update(EstudianteUpdateController $request, $pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill($request->all());
+        $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill($request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action"));
+        // dd($acudiente);
         if($request->hasFile('foto')){
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
-        $estudiante->discapacidad = $request->discapacidad;
-        $estudiante->estado = $request->estado;
+        $estudiante->clave="dasdassdas";
+        $acudiente->save();
         $estudiante->save();
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
     }
