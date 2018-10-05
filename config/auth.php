@@ -46,14 +46,19 @@ return [
             'provider' => 'users',
         ],
 
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
         'estudiante' => [
             'driver' => 'session',
             'provider' => 'estudiante',
         ],
 
-        'empleado' => [
+        'profesor' => [
             'driver' => 'session',
-            'provider' => 'empleado',
+            'provider' => 'profesor',
         ],
     ],
 
@@ -75,17 +80,18 @@ return [
     */
 
     'providers' => [
-        'users' => [
+
+        'admin' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Empleado::class,
         ],
 
-        'users' => [
+        'profesor' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Empleado::class,
         ],
 
-        'empleado' => [
+        'estudiante' => [
             'driver' => 'eloquent',
             'model' => App\Empleado::class,
         ],

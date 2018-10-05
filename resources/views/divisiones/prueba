@@ -1,4 +1,4 @@
- @extends('contenedores.admin')
+@extends('contenedores.admin')
 @section('titulo','Estudiante Nuevo')
 @section('contenedor_principal')
 @guest

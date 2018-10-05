@@ -18,8 +18,18 @@ class LoginController extends Controller{
         return view('auth.login');
     }
 
-    public function authenticate(){
+    public function authenticate(Request $request){
 
+        switch($request){
+            case '1':
+                break;
+        }
+        $credentials = $request->only('codigo', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->intended('dashboard');
+        }
     }
 
     public function username(){

@@ -1,63 +1,95 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Division - Crear</title>
-    <script>var i=2</script>
-</head>
-<body>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+@extends('contenedores.admin')
+@section('titulo','Estudiante Nuevo')
+@section('contenedor_principal')
+@guest
+    @include('error.error')
+@endguest
+    <script>var i=1</script>
+<div class="row">
+    <div class="col s2"></div>
+    <div class="col s8 center"><br>
+        <div class="card green lighten-5">
+            <div class="card-content">
+                <h1>Divisiones</h1>
+                <form enctype="multipart/form-data" action="/divisiones" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col s4">
+                            <h5>Nombre</h5>
+                        </div>
+                        <div class="col s4">
+                            <h5>Descripción</h5>
+                        </div>
+                        <div class="col s4">
+                            <h5>Porcentaje</h5>
+                        </div>
+                    </div>
+                    <div id="div">
+                        @for ($i = 0 ; $i < 1; $i++)
+                            <div class="row" id="index[{{$i}}]">
+                                <div class="col s4">
+                                    <div class="input-field">
+                                        <input type="text" id="nombre[{{$i}}]" name="nombre[{{$i}}]" value="{{old('nombre(field.i)')}}">
+                                    </div>
+                                </div>
+                                <div class="col s4">
+                                    <div class="input-field">
+                                        <textarea class="materialize-textarea" id="descripcion[{{$i}}]" name="descripcion[{{$i}}]">{{old('descripcion(field.i)')}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col s4">
+                                    <div class="input-field">
+                                        <input type="number" id="porcentaje[{{$i}}]" name="porcentaje[{{$i}}]" value="{{old('porcentaje(field.i)')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                </form>
+            </div>
         </div>
-    @endif
-    <h1>Formulario</h1>
-    <form enctype="multipart/form-data" action="/divisiones" method="POST">
-        @csrf
-        <div id="div">
-            @for ($i = 0; $i < 3; $i++)
-                <div id="division[{{$i}}]">
-                    <label for="nombre[{{$i}}]">Nombre: </label>
-                    <input type="text" id="nombre[{{$i}}]" name="nombre[{{$i}}]" value="{{old('nombre(field.i)')}}">
-
-                    <label for="descripcion[{{$i}}]">Descripcion: </label>
-                    <textarea id="descripcion[{{$i}}]" name="descripcion[{{$i}}]">{{old('descripcion(field.i)')}}</textarea> 
-
-                    <label for="porcentaje[{{$i}}]">Porcentaje: </label>
-                    <input type="number" id="porcentaje[{{$i}}]" name="porcentaje[{{$i}}]" value="{{old('porcentaje(field.i)')}}">
-                </div>
-            @endfor
+    </div>
+    <div class="row center ">
+        <div class="col s6">
+            <a class="btn waves-effect cyan darken-3" id="create"> + </a>
         </div>
-        <a id="create"> + </a>
-        <button type="submit">Crear</button>
-        <a id="delete"> - </a>
-    </form>
-</body>
+        <div class="col s6">
+            <a class="btn waves-effect cyan darken-3" id="delete"> - </a>
+        </div>
+    </div>
+    <div class="input-field center">
+        <button class="btn waves-effect cyan darken-3" type="submit" name="action">Crear
+        </button>
+    </div>
+</div>
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script>
     $('#create').click(function(){
         i++;
         $('#div').append(
-            '<div id="division['+i+']">'+
-                '<label for="nombre['+i+']">Nombre: </label>' +
-                '<input type="text" id="nombre['+i+']" name="nombre['+i+']">' +
-
-                '<label for="descripcion['+i+']">Descripcion: </label>' +
-                '<textarea id="descripcion['+i+']" name="descripcion['+i+']"></textarea> ' +
-
-                '<label for="porcentaje['+i+']">Porcentaje: </label>' +
-                '<input type="number" id="porcentaje['+i+']" name="porcentaje['+i+']">' +
+            '<div class="row" id="index['+i+']">'+
+                '<div class="col s4">'+
+                    '<div class="input-field">'+
+                        '<input type="text" id="nombre['+i+']" name="nombre['+i+']">'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col s4">'+
+                    '<div class="input-field">'+
+                        '<textarea class="materialize-textarea" id="descripcion['+i+']" name="descripcion['+i+']">'+'</textarea>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col s4">'+
+                    '<div class="input-field">'+
+                        '<input type="number" id="porcentaje['+i+']" name="porcentaje['+i+']">'+
+                    '</div>'+
+                '</div>'+
             '</div>'
+            
         );
     });
     $('#delete').click(function(){
-        $('form div:last').remove();
+        $('#div .row:last').remove();
         i--;
     });
 </script>
-</html>
-
-        
+@endsection
