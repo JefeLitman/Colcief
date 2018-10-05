@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Empleado;
+use App\Estudiante;
 
 class LoginController extends Controller{
 
@@ -19,24 +22,28 @@ class LoginController extends Controller{
     }
 
     public function authenticate(Request $request){
-
-        switch($request){
-            case '1':
+        switch($request->role){
+            case '0':
+                $auth = Empleado::where('pk_estudiante', $request->username)
+                    ->where('clave',$request->password)
+                    ->where('role', '0')
+                    ->first();
                 break;
-        }
-        $credentials = $request->only('codigo', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('dashboard');
-        }
-    }
-
-    public function username(){
-        return 'codigo';
-    }
-
-    public function guard(){
-        return Auth::guard('teacher');
+            case '1':
+                $auth = Empleado::where('pk_estudiante', $request->username)
+                    ->where('clave',$request->password)
+                    ->where('role', '1')
+                    ->first();
+                break;
+            case '2':
+                $auth = Estudiante::where('pk_estudiante', $request->username)
+                    ->where('clave',$request->password)
+                    ->first();
+                if ($auth) {
+                    dd(Auth::login($auth));        
+                }
+                break;
+        } 
+        // dd(Auth::check());
     }
 }

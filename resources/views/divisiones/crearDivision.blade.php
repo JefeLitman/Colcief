@@ -4,7 +4,7 @@
 @guest
     @include('error.error')
 @endguest
-    <script>var i=1</script>
+    <script>var i=3</script>
 <div class="row">
     <div class="col s2"></div>
     <div class="col s8 center"><br>

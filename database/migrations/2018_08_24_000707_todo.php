@@ -112,8 +112,7 @@ class Todo extends Migration
         });
 
         Schema::create('empleado', function (Blueprint $table) {
-            $table->unsignedInteger('pk_empleado')->primary();
-            $table->integer('cedula');
+            $table->unsignedInteger('cedula');
             $table->string('nombre', 20);
             $table->string('apellido', 20);
             $table->string('correo', 20);
