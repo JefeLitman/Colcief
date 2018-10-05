@@ -24,26 +24,23 @@ class LoginController extends Controller{
     public function authenticate(Request $request){
         switch($request->role){
             case '0':
-                $auth = Empleado::where('pk_estudiante', $request->username)
-                    ->where('clave',$request->password)
-                    ->where('role', '0')
-                    ->first();
+                $auth = Auth::guard("admin")->attempt(["cedula" => $request->username, "password" => $request->password]);
+                if($auth){
+                    return redirect("/divisiones");
+                }
                 break;
             case '1':
-                $auth = Empleado::where('pk_estudiante', $request->username)
-                    ->where('clave',$request->password)
-                    ->where('role', '1')
-                    ->first();
+                $auth = Auth::guard("profesor")->attempt(["cedula" => $request->username, "password" => $request->password]);
+                if($auth){
+                    return redirect("/empleado");
+                }
                 break;
             case '2':
-                $auth = Estudiante::where('pk_estudiante', $request->username)
-                    ->where('clave',$request->password)
-                    ->first();
-                if ($auth) {
-                    dd(Auth::login($auth));        
+                $auth = Auth::guard("estudiante")->attempt(["pk_estudiante" => $request->username, "password" => $request->password]);
+                if($auth){
+                    return redirect("/estudiantes");
                 }
                 break;
         } 
-        // dd(Auth::check());
     }
 }

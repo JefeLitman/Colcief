@@ -93,7 +93,7 @@ return [
 
         'estudiante' => [
             'driver' => 'eloquent',
-            'model' => App\Empleado::class,
+            'model' => App\Estudiante::class,
         ],
     ],
 

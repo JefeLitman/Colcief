@@ -12,6 +12,7 @@ use App\Http\Controllers\AcudienteController;
 use App\Http\Requests\EstudianteStoreController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
+use Illuminate\Support\Facades\Hash;
 //librerias de autenticacion
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,8 @@ class EstudianteController extends Controller{
         $acudiente->save(); // se guarda el acudiente
         $estudiante = (new Estudiante)->fill($request->all()); //Se llena una instancia de estudiante con el request
         $estudiante->fk_acudiente=$acudiente->pk_acudiente;
-        $estudiante->clave="dasdassdas";
+        
+        $estudiante->password = Hash::make('dasdassdas');
         if($request->hasFile('foto')){ // se la guarda la imagen 
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');

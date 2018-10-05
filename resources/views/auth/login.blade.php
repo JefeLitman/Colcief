@@ -18,6 +18,7 @@
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
           <form class="col s12" method="post" action="{{route('login')}}">
             @csrf
+            
             <div class="row">
               <select name="role" id="role">
                 <option value="0">Administrador</option>

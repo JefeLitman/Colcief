@@ -29,7 +29,7 @@ class Todo extends Migration
             $table->unsignedInteger('fk_acudiente');
             $table->string('nombre', 20);
             $table->string('apellido', 20);
-            $table->string('clave', 80);
+            $table->string('password', 80);
             $table->date('fecha_nacimiento');
             $table->integer('grado');
             $table->boolean('discapacidad')->nullable()->default(false);
@@ -116,7 +116,7 @@ class Todo extends Migration
             $table->string('nombre', 20);
             $table->string('apellido', 20);
             $table->string('correo', 20);
-            $table->string('clave');
+            $table->string('password');
             $table->string('direccion', 20);
             $table->string('titulo', 20);
             $table->char('rol', 1);

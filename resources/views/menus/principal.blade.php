@@ -21,3 +21,4 @@
     <li><a href="#"><i class="material-icons right">local_phone</i>Cont&aacute;ctenos</a></li>
     <li><a href="{{ url('/home') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a></li>
     </ul>
+    
