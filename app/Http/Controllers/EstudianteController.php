@@ -21,11 +21,12 @@ use Illuminate\Support\Facades\Auth;
 
 class EstudianteController extends Controller{
 
-    // public function __construct(){ 
-    //     $this->middleware(['admin:profesor', 'admin:admin']); //restringir el acceso a los usuarios
-    // }
     //Funciones publicas de primeros y al final las privadas
 
+    public function __construct(){ 
+        $this->middleware(['admin:empleado']); //restringir el acceso a los usuarios
+    }
+    
     public function index(){
         $estudiante = Estudiante::all();
         return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);

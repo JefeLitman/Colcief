@@ -46,7 +46,7 @@ return [
             'provider' => 'users',
         ],
 
-        'admin' => [
+        'empleado' => [
             'driver' => 'session',
             'provider' => 'empleado',
         ],
@@ -54,11 +54,6 @@ return [
         'estudiante' => [
             'driver' => 'session',
             'provider' => 'estudiante',
-        ],
-
-        'profesor' => [
-            'driver' => 'session',
-            'provider' => 'empleado',
         ],
     ],
 

@@ -4,28 +4,38 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware{
 
-    protected $auth;
-
-    public function __construct(Auth $auth){
-        $this->auth = $auth;
-    }
-
-    public function handle($request, Closure $next, $guard='admin'){
-        $this->authenticate($guard);
-        return $next($request);
-    }
-
-    protected function authenticate($guard){
-        if (empty($guard)) {
-            return $this->auth->authenticate();
+    public function handle($request, Closure $next, ...$guards){
+        // dd($guards);
+        foreach ($guards as $guard) {
+            $auth = Auth::guard($guard);
+            if ($auth->check()) {
+                switch($guard){
+                    case 'administrador':
+                        if($auth->user()->role == '0'){
+                            return $next($request);
+                        }
+                        break;
+                    case 'profesor':
+                        if($auth->user()->role == '1'){
+                            return $next($request);
+                        }
+                        break;
+                    case 'director':
+                        if($auth->user()->role == '2'){
+                            return $next($request);
+                        }
+                        break;
+                    case 'estudiante':
+                        return $next($request);
+                        break;
+                }
+                // return redirect::back();
+            }
         }
-
-        if ($this->auth->guard($guard)->check()) {
-            return $this->auth->shouldUse($guard);
-        }
+        
     }
 }
