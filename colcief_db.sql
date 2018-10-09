@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2018 a las 01:33:43
+-- Tiempo de generación: 09-10-2018 a las 22:54:04
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.1.19
 
@@ -37,16 +37,21 @@ CREATE TABLE `acudiente` (
   `direccion_acu_2` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefono_acu_2` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `acudiente`
 --
 
-INSERT INTO `acudiente` (`pk_acudiente`, `nombre_acu_1`, `direccion_acu_1`, `telefono_acu_1`, `nombre_acu_2`, `direccion_acu_2`, `telefono_acu_2`, `created_at`, `updated_at`) VALUES
-(1, 'juan', 'asnjcsadcn', '234234', 'zjucsn', 'sndjsfsn', '3453', '2018-10-03 23:31:12', '2018-10-03 23:31:12'),
-(2, 'juan', 'asnjcsadcn', '234234', 'zjucsn', 'sndjsfsn', '3453', '2018-10-03 23:31:48', '2018-10-03 23:31:48');
+INSERT INTO `acudiente` (`pk_acudiente`, `nombre_acu_1`, `direccion_acu_1`, `telefono_acu_1`, `nombre_acu_2`, `direccion_acu_2`, `telefono_acu_2`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'jnasna', 'sdjbfsdhsdc', '847534534', 'sndchjsbd', 'sdchjsdbcsj', '345345343', '2018-10-08 22:51:12', '2018-10-08 22:51:12', NULL),
+(2, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:07:26', '2018-10-09 20:07:26', NULL),
+(3, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:19:00', '2018-10-09 20:19:00', NULL),
+(4, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:19:11', '2018-10-09 20:19:11', NULL),
+(5, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:20:40', '2018-10-09 20:20:40', NULL),
+(6, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:21:22', '2018-10-09 20:21:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,12 +107,11 @@ CREATE TABLE `division` (
 --
 
 CREATE TABLE `empleado` (
-  `pk_empleado` int(10) UNSIGNED NOT NULL,
-  `cedula` int(11) NOT NULL,
+  `cedula` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `correo` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `clave` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `direccion` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `titulo` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `rol` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -116,7 +120,8 @@ CREATE TABLE `empleado` (
   `estado` tinyint(1) DEFAULT '1',
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'descarga.png',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -130,23 +135,24 @@ CREATE TABLE `estudiante` (
   `fk_acudiente` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `clave` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `grado` int(11) NOT NULL,
   `discapacidad` tinyint(1) DEFAULT '0',
   `estado` tinyint(1) DEFAULT '1',
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'descarga.png',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `estudiante`
 --
 
-INSERT INTO `estudiante` (`pk_estudiante`, `fk_acudiente`, `nombre`, `apellido`, `clave`, `fecha_nacimiento`, `grado`, `discapacidad`, `estado`, `foto`, `created_at`, `updated_at`) VALUES
-(1, 1, 'juan', 'marcon', 'shgdasjgd273', '2016-10-18', 2, 1, 1, 'estudiante.jpeg', '2018-10-03 23:31:13', '2018-10-03 23:31:13'),
-(2, 2, 'juan', 'marcon', 'shgdasjgd273', '2016-10-18', 2, 1, 1, 'estudiante.jpeg', '2018-10-03 23:31:49', '2018-10-03 23:31:49');
+INSERT INTO `estudiante` (`pk_estudiante`, `fk_acudiente`, `nombre`, `apellido`, `password`, `fecha_nacimiento`, `grado`, `discapacidad`, `estado`, `foto`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'juasn', 'sdjnjcs', '$2y$10$v/fZvevh2vgoyjr7.P4us.PV2qwUp39o1R58VV2WAiwjwnBAWvuLS', '2018-10-15', 4, 1, 1, 'estudiante.jpeg', '2018-10-08 22:51:13', '2018-10-08 22:51:13', NULL),
+(2, 6, 'sandcjsdfsdssdf', 'njskadcn', '$2y$10$9ac3u6uvRwemVBP2eZHb3u0yfSXVbnHiU4qcZsSTWN44AE9jXk.x.', '2018-10-08', 3, 0, 1, 'descarga.png', '2018-10-09 20:21:22', '2018-10-09 20:21:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -176,7 +182,8 @@ CREATE TABLE `materia` (
   `contenido` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `logros_custom` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -229,8 +236,7 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2018_08_24_000707_todo', 1),
-(2, '2018_08_24_001806_fks', 1);
+(1, '2018_08_24_000707_todo', 1);
 
 -- --------------------------------------------------------
 
@@ -328,12 +334,6 @@ ALTER TABLE `division`
   ADD PRIMARY KEY (`pk_division`);
 
 --
--- Indices de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`pk_empleado`);
-
---
 -- Indices de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
@@ -344,8 +344,7 @@ ALTER TABLE `estudiante`
 -- Indices de la tabla `horario`
 --
 ALTER TABLE `horario`
-  ADD PRIMARY KEY (`pk_horario`),
-  ADD KEY `horario_fk_materia_pc_foreign` (`fk_materia_pc`);
+  ADD PRIMARY KEY (`pk_horario`);
 
 --
 -- Indices de la tabla `materia`
@@ -367,8 +366,7 @@ ALTER TABLE `materia_boletin`
 ALTER TABLE `materia_pc`
   ADD PRIMARY KEY (`pk_materia_pc`),
   ADD KEY `materia_pc_fk_curso_foreign` (`fk_curso`),
-  ADD KEY `materia_pc_fk_materia_foreign` (`fk_materia`),
-  ADD KEY `materia_pc_fk_empleado_foreign` (`fk_empleado`);
+  ADD KEY `materia_pc_fk_materia_foreign` (`fk_materia`);
 
 --
 -- Indices de la tabla `migrations`
@@ -415,7 +413,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
-  MODIFY `pk_acudiente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pk_acudiente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `boletin`
@@ -469,7 +467,7 @@ ALTER TABLE `materia_pc`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `nota`
@@ -513,12 +511,6 @@ ALTER TABLE `estudiante`
   ADD CONSTRAINT `estudiante_fk_acudiente_foreign` FOREIGN KEY (`fk_acudiente`) REFERENCES `acudiente` (`pk_acudiente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `horario`
---
-ALTER TABLE `horario`
-  ADD CONSTRAINT `horario_fk_materia_pc_foreign` FOREIGN KEY (`fk_materia_pc`) REFERENCES `materia_pc` (`pk_materia_pc`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `materia_boletin`
 --
 ALTER TABLE `materia_boletin`
@@ -530,7 +522,6 @@ ALTER TABLE `materia_boletin`
 --
 ALTER TABLE `materia_pc`
   ADD CONSTRAINT `materia_pc_fk_curso_foreign` FOREIGN KEY (`fk_curso`) REFERENCES `curso` (`pk_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `materia_pc_fk_empleado_foreign` FOREIGN KEY (`fk_empleado`) REFERENCES `empleado` (`pk_empleado`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `materia_pc_fk_materia_foreign` FOREIGN KEY (`fk_materia`) REFERENCES `materia` (`pk_materia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -554,76 +545,6 @@ ALTER TABLE `nota_estudiante`
 ALTER TABLE `nota_periodo`
   ADD CONSTRAINT `nota_periodo_fk_materia_boletin_foreign` FOREIGN KEY (`fk_materia_boletin`) REFERENCES `materia_boletin` (`pk_materia_boletin`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `nota_periodo_fk_periodo_foreign` FOREIGN KEY (`fk_periodo`) REFERENCES `periodo` (`pk_periodo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
---
--- Metadatos
---
-USE `phpmyadmin`;
-
---
--- Metadatos para la tabla acudiente
---
-
---
--- Metadatos para la tabla boletin
---
-
---
--- Metadatos para la tabla curso
---
-
---
--- Metadatos para la tabla division
---
-
---
--- Metadatos para la tabla empleado
---
-
---
--- Metadatos para la tabla estudiante
---
-
---
--- Metadatos para la tabla horario
---
-
---
--- Metadatos para la tabla materia
---
-
---
--- Metadatos para la tabla materia_boletin
---
-
---
--- Metadatos para la tabla materia_pc
---
-
---
--- Metadatos para la tabla migrations
---
-
---
--- Metadatos para la tabla nota
---
-
---
--- Metadatos para la tabla nota_estudiante
---
-
---
--- Metadatos para la tabla nota_periodo
---
-
---
--- Metadatos para la tabla periodo
---
-
---
--- Metadatos para la base de datos colcief_db
---
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
