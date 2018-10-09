@@ -11,9 +11,7 @@ use App\Http\Requests\EmpleadoUpdateController;
 use App\Http\Controllers\SupraController;
 
 class EmpleadoController extends Controller{
-    public function index(){
-        //
-    }
+    public function index(){}
 
     public function create(){
         return view('empleados.crearEmpleado');

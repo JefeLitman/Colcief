@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class RoleMiddleware{
 
     public function handle($request, Closure $next, ...$guards){
-        // dd($guards);
         foreach ($guards as $guard) {
             $auth = Auth::guard($guard);
             if ($auth->check()) {
@@ -19,13 +18,13 @@ class RoleMiddleware{
                             return $next($request);
                         }
                         break;
-                    case 'profesor':
-                        if($auth->user()->role == '1'){
+                    case 'director':
+                        if($auth->user()->role == '2'){
                             return $next($request);
                         }
                         break;
-                    case 'director':
-                        if($auth->user()->role == '2'){
+                    case 'profesor':
+                        if($auth->user()->role == '1'){
                             return $next($request);
                         }
                         break;
@@ -33,9 +32,8 @@ class RoleMiddleware{
                         return $next($request);
                         break;
                 }
-                // return redirect::back();
             }
         }
-        
+        // return redirect()->back();
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\AcudienteController;
 use App\Http\Requests\EstudianteStoreController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
+use App\Http\Controllers\NormalizarController as Nc;
 use Illuminate\Support\Facades\Hash;
 //librerias de autenticacion
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -24,7 +25,7 @@ class EstudianteController extends Controller{
     //Funciones publicas de primeros y al final las privadas
 
     public function __construct(){ 
-        $this->middleware(['admin:empleado']); //restringir el acceso a los usuarios
+        // $this->middleware('admin:administrador,director'); //restringir el acceso a los usuarios
     }
     
     public function index(){
@@ -36,13 +37,21 @@ class EstudianteController extends Controller{
         return view('estudiantes.crearEstudiante');
     }
 
-    public function store(EstudianteStoreController $request){
-
-        $acudiente = (new Acudiente)->fill(
-            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action","foto")
-        ); //Se llena una instancia de acudiente con el request
+    public function store(Request $request){
+        // normalizacion de los datos
+        dd($request->all());
+        $request_acudiente = Nc::minuscula(
+            $request->all(), 
+            ["nombre","apellido","grado","fecha_nacimiento","discapacidad","foto"] //datos q no quiere guardar
+        );
+        
+        $acudiente = (new Acudiente)->fill($request_acudiente); //Se llena una instancia de acudiente con el request
         $acudiente->save(); // se guarda el acudiente
-        $estudiante = (new Estudiante)->fill($request->all()); //Se llena una instancia de estudiante con el request
+        $request_estudiante = Nc::minuscula(
+            $request->all(), 
+            ["nombre_acu_1","direccion_acu_1","telefono_acu_1","nombre_acu_2","direccion_acu_2","telefono_acu_2"] //datos q no quiere guardar
+        );
+        $estudiante = (new Estudiante)->fill($request_estudiante); //Se llena una instancia de estudiante con el request
         $estudiante->fk_acudiente=$acudiente->pk_acudiente;
         
         $estudiante->password = Hash::make('clave');
@@ -53,7 +62,7 @@ class EstudianteController extends Controller{
         $estudiante->save(); // se guarda el estudiante
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
     }
-
+    
     public function show($pk_estudiante){
         /*@Autor Paola C.*/
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>estudiantes>verEstudiante.blade.php y allá se reciben todos los datos del respectivo estudiante y acudiente en las variables tipo Object $estudiante, $acudiente.
@@ -85,7 +94,7 @@ class EstudianteController extends Controller{
     public function update(EstudianteUpdateController $request, $pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill($request->all());
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
-            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad","action","foto")
+            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad", "foto")
         );
         if($request->hasFile('foto')){
           $nombre = 'estudiante'.$request->pk_estudiante;

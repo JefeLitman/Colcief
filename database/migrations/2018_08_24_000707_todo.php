@@ -120,7 +120,7 @@ class Todo extends Migration
             $table->string('password', 80);
             $table->string('direccion', 20);
             $table->string('titulo', 20);
-            $table->char('rol', 1); // 0 admin, //1 profe //2 dir
+            $table->char('rol', 1); // 0 administrador, //1 director //2 profesor
             $table->integer('tiempo_extra');
             $table->string('director', 20);
             $table->boolean('estado')->nullable()->default(true);
