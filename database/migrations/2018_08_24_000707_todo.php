@@ -22,6 +22,7 @@ class Todo extends Migration
             $table->string('direccion_acu_2',30)->nullable();
             $table->string('telefono_acu_2',10)->nullable(); //diferente
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('estudiante', function (Blueprint $table) {
@@ -36,6 +37,7 @@ class Todo extends Migration
             $table->boolean('estado')->nullable()->default(true);
             $table->string('foto')->default('descarga.png');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('periodo', function (Blueprint $table) {
@@ -44,7 +46,6 @@ class Todo extends Migration
             $table->dateTime('fecha_limite');
             $table->year('ano');
             $table->integer('nro_periodo');
-           
             $table->timestamps();
         });
 
@@ -116,7 +117,7 @@ class Todo extends Migration
             $table->string('nombre', 20);
             $table->string('apellido', 20);
             $table->string('correo', 20);
-            $table->string('password');
+            $table->string('password', 80);
             $table->string('direccion', 20);
             $table->string('titulo', 20);
             $table->char('rol', 1);
@@ -125,6 +126,7 @@ class Todo extends Migration
             $table->boolean('estado')->nullable()->default(true);
             $table->string('foto')->default('descarga.png');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('division', function (Blueprint $table) {
@@ -152,6 +154,7 @@ class Todo extends Migration
             $table->text('contenido');
             $table->text('logros_custom');
             $table->timestamps();
+            $table->softDeletes();
         });        
     }
 

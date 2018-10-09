@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Auth;
 
 class EstudianteController extends Controller{
 
-
+    // public function __construct(){ 
+    //     $this->middleware(['admin:profesor', 'admin:admin']); //restringir el acceso a los usuarios
+    // }
     //Funciones publicas de primeros y al final las privadas
 
     public function index(){
@@ -42,7 +44,7 @@ class EstudianteController extends Controller{
         $estudiante = (new Estudiante)->fill($request->all()); //Se llena una instancia de estudiante con el request
         $estudiante->fk_acudiente=$acudiente->pk_acudiente;
         
-        $estudiante->password = Hash::make('dasdassdas');
+        $estudiante->password = Hash::make('clave');
         if($request->hasFile('foto')){ // se la guarda la imagen 
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
@@ -88,7 +90,7 @@ class EstudianteController extends Controller{
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
-        $estudiante->clave="dasdassdas";
+        $estudiante->password="dasdassdas";
         $acudiente->save();
         $estudiante->save();
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));

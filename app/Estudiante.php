@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Estudiante extends Authenticatable{
+    use SoftDeletes;
     use Notifiable;
 	protected $primaryKey = "pk_estudiante";
     protected $table = 'estudiante';    

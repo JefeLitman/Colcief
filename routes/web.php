@@ -15,13 +15,9 @@ Route::get('/', function () {
     return view('pantallas.bienvenida');
 });
 
-Route::get('/login', 'Login\LoginController')->name('login');
-
 Route::get('/contacto', function () {
     return view('pantallas.contacto');
 });
-
-
 
 Route::get('/nosotros', function () {
     return view('pantallas.nosotros');
@@ -30,15 +26,18 @@ Route::get('/nosotros', function () {
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/estudiantes/ver', 'EstudianteController@view');
+// Route::get('/estudiantes/ver', 'EstudianteController@view'); //Puedo eliminar esto?. no se si alguien lo necesita
 Route::resource('/estudiantes', 'EstudianteController');
 Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
 Route::resource('/periodo','PeriodoController');
 Route::resource('/materias','MateriaController');
 Route::resource('/divisiones','DivisionController');
+Route::get('/login', 'Login\LoginController')->name('login');
+Route::post('/login', 'Login\LoginController@authenticate')->name('authenticate');
+Route::get('/logout', 'Login\LoginController@logout')->name('logout');
+//Ruta de autocompletado
 Route::post('/autocompletar/{text}', 'AjaxController')->name('autocompletar');
-Route::post('/login', 'Login\LoginController@authenticate')->name('login');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
