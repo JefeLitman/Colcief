@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmpleadoStoreController;
 use App\Http\Requests\EmpleadoUpdateController;
+use App\Http\Controllers\NormalizarController as Nc; //Normalizacion de datos
 use App\Http\Controllers\SupraController;
 
 class EmpleadoController extends Controller{
@@ -18,7 +19,8 @@ class EmpleadoController extends Controller{
     }
 
     public function store(EmpleadoStoreController $request){
-        $empleado = (new Empleado)->fill($request->all());
+        $empleado = (new Empleado)->fill(Nc::minuscula($request->all()));
+        $estudiante->password = Hash::make('clave');
         if($request->hasFile('foto')){
           $nombreArchivo = 'empleado'.$request->pk_empleado;
           $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo,'foto');
@@ -44,7 +46,7 @@ class EmpleadoController extends Controller{
     }
 
     public function update(EmpleadoUpdateController $request, $pk_empleado){
-        $empleado = Empleado::findOrFail($pk_empleado)->fill($request->all());
+        $empleado = Empleado::findOrFail($pk_empleado)->fill(Nc::minuscula($request->all()));
         if($request->hasFile('foto')){
             $nombreArchivo = 'empleado'.$request->pk_empleado;
             $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto');

@@ -15,10 +15,6 @@
                     @csrf
                     {{-- input field es necesario para la animación de los label --}}
                     <div class="input-field">
-                        <input type="number" name="pk_empleado" id="pk_empleado">
-                        <label for="pk_empleado">Código Empleado:</label>
-                    </div>
-                    <div class="input-field">
                         <input type="number" id="cedula" name="cedula">
                         <label for="cedula">Cedula: </label>
                     </div>
@@ -30,10 +26,6 @@
                         <div class="input-field col s4">
                             <input type="text" id="apellido" name="apellido">
                             <label for="apellido">Apellido: </label>
-                        </div>
-                        <div class="input-field col s4">
-                            <input type="password" id="clave" name="clave">
-                            <label for="clave">Contraseña: </label>
                         </div>
                     </div>
                     <div class="input-field">
@@ -59,19 +51,6 @@
                     <div class="input-field">
                         <input type="text" id="director" name="director">
                         <label for="director">Director: </label>
-                    </div>
-                    <div class="input-field row">
-                        <div class="col s12 center">
-                            <label for="estado">Estado: </label>
-                            <label>
-                                <input type="radio" id="estado" name="estado" value = "1">
-                                <span>Si</span>
-                            </label>
-                            <label>
-                                <input type="radio" id="estado" name="estado" value = "0">
-                                <span>No</span>
-                            </label>
-                        </div>
                     </div>
                     <div class="file-field input-field">
                         <div class="btn cyan darken-3 waves-effect">

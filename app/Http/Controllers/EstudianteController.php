@@ -37,25 +37,33 @@ class EstudianteController extends Controller{
         return view('estudiantes.crearEstudiante');
     }
 
-    public function store(Request $request){
-        // normalizacion de los datos
-        dd($request->all());
-        $request_acudiente = Nc::minuscula(
-            $request->all(), 
-            ["nombre","apellido","grado","fecha_nacimiento","discapacidad","foto"] //datos q no quiere guardar
+    public function store(EstudianteStoreController $request){    
+        $acudiente = (new Acudiente)->fill(
+            Nc::minuscula(
+                $request->all(), 
+                "nombre",
+                "apellido",
+                "grado",
+                "fecha_nacimiento",
+                "discapacidad",
+                "foto" //datos q no quiere guardar
+            )
         );
-        
-        $acudiente = (new Acudiente)->fill($request_acudiente); //Se llena una instancia de acudiente con el request
-        $acudiente->save(); // se guarda el acudiente
-        $request_estudiante = Nc::minuscula(
-            $request->all(), 
-            ["nombre_acu_1","direccion_acu_1","telefono_acu_1","nombre_acu_2","direccion_acu_2","telefono_acu_2"] //datos q no quiere guardar
+        $acudiente->save(); // se guarda el acudiente 
+        $estudiante = (new Estudiante)->fill(
+            Nc::minuscula($request->all(), 
+                "nombre_acu_1",
+                "direccion_acu_1",
+                "telefono_acu_1",
+                "nombre_acu_2",
+                "direccion_acu_2",
+                "telefono_acu_2" //datos q no quiere guardar
+            )
         );
-        $estudiante = (new Estudiante)->fill($request_estudiante); //Se llena una instancia de estudiante con el request
-        $estudiante->fk_acudiente=$acudiente->pk_acudiente;
-        
+        $estudiante->fk_acudiente = $acudiente->pk_acudiente;
         $estudiante->password = Hash::make('clave');
-        if($request->hasFile('foto')){ // se la guarda la imagen 
+
+        if($request->hasFile('foto')){ // se guarda la imagen 
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
@@ -92,17 +100,40 @@ class EstudianteController extends Controller{
     }
 
     public function update(EstudianteUpdateController $request, $pk_estudiante){
-        $estudiante = Estudiante::findOrFail($pk_estudiante)->fill($request->all());
+        $estudiante = Estudiante::findOrFail($pk_estudiante)->fill(
+            Nc::minuscula($request->all(), [
+                "nombre_acu_1",
+                "direccion_acu_1",
+                "telefono_acu_1",
+                "nombre_acu_2",
+                "direccion_acu_2",
+                "telefono_acu_2" //datos q no quiere guardar
+            ])
+        );
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
-            $request->except("nombre","apellido","grado","fecha_nacimiento","discapacidad", "foto")
+            Nc::minuscula($request->all(), [
+                "nombre",
+                "apellido",
+                "grado",
+                "fecha_nacimiento",
+                "discapacidad",
+                "foto" //datos q no quiere guardar
+            ])
         );
         if($request->hasFile('foto')){
           $nombre = 'estudiante'.$request->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
-        $estudiante->password="dasdassdas";
+        $estudiante->password= Hash::make('clave');
         $acudiente->save();
         $estudiante->save();
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
+    }
+
+    public function destroy($pk_estudiante){
+        $estudiante = Estudiante::findOrFail($pk_estudiante);
+        $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
+        $estudiante->delete();
+        $acudiente->delete();
     }
 }
