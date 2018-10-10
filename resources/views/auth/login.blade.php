@@ -11,8 +11,7 @@
     </div>
 @endif
 <div class="section center"></div>
-  <main>
-      <h5 class="blue-text text-darken-3 center">Por favor digite sus datos</h5>
+      <h5 class="blue-text text-darken-3 center">Acceso a ColCief</h5>
       <br/>
       <div class="container center">
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
@@ -20,23 +19,25 @@
             @csrf
             
             <div class="row">
-              <select name="role" id="role">
-                <option value="0">Administrador</option>
-                <option value="1">Profesor</option>
-                <option value="2">Estudiante</option>
-              </select>
-              <label for='role'>Role</label>
+              <div class='input-field col s12'>
+                <select name="role" id="role">
+                  <option value="0">Administrador</option>
+                  <option value="1">Profesor</option>
+                  <option value="2">Estudiante</option>
+                </select>
+                <label for='role'>Tipo de usuario <label class="rojo">*</label></label>
+              </div>
             </div>
             <div class='row'>
               <div class='input-field col s12'>
                 <input class='validate' type='text' name='username' id='username' />
-                <label for='username'>Codigo de usuario</label>
+                <label for='username'>Codigo de usuario <label class="rojo">*</label></label>
               </div>
             </div>
             <div class='row'>
               <div class='input-field col s12'>
                 <input class='validate' type='password' name='password' id='password' />
-                <label for='password'>Contraseña</label>
+                <label for='password'>Contraseña <label class="rojo">*</label></label>
               </div>
               <label style='float: right;'>
               <a class='grey-text text-darken-2' href='#!'><b>Olvido su contraseña?</b></a>
@@ -49,5 +50,5 @@
           </form>
         </div>
       </div>
-  </main>
+
 @endsection

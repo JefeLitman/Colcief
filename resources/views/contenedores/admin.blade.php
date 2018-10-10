@@ -86,11 +86,9 @@
             var instances = M.Materialbox.init(elems, options);
         });
 
-        // Or with jQuery
-
-        $(document).ready(function(){
-            $('select').formSelect();
-        });
+        // $(document).ready(function(){
+        //     $('select').formSelect();
+        // });
 
         //Para mostrar los modales al dar clic @Eduard
 
