@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 class AcudienteStoreController extends FormRequest
 {
     /**
@@ -24,6 +23,7 @@ class AcudienteStoreController extends FormRequest
     public function rules()
     {
         return [
+            'pk_acudiente' => 'required|numeric|digits_between:5,10',
             'nombre_acu_1' => 'required|string|max:20',
             'direccion_acu_1' => 'required|string|max:30',
             'telefono_acu_1' => 'required|numeric|digits_between:7,10',
@@ -32,12 +32,4 @@ class AcudienteStoreController extends FormRequest
             'telefono_acu_2' => 'numeric|digits_between:7,10'
         ];
     }
-    // public function messages(){
-    //     return [
-    //     'pk_acudiente.required' => 'campo 1',
-    //     'nombre_acu_1.required' => 'campo2',
-    //     'direccion_acu_1.required' => 'campo 3',
-    //     'telefono_acu_1.required' => 'campo 4'
-    //     ];
-    // }
 }

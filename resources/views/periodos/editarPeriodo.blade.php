@@ -5,16 +5,17 @@
     <title>Crear periodo</title>
   </head>
   <body>
-    <form class="" action="/periodos" method="post">
+    <form class="" action="{{route('periodos.update', $periodo->pk_periodo)}}" method="post">
       @csrf
+      {{ method_field('PATCH') }}
       <label for="">Fecha de inicio</label>
-      <input type="date" name="fecha_inicio" value=""><br>
+      <input type="date" name="fecha_inicio" value="{{$periodo->fecha_inicio}}"><br>
       <label for="">Fecha límite</label>
-      <input type="date" name="fecha_limite" value=""><br>
+      <input type="date" name="fecha_limite" value="{{$periodo->fecha_limite}}"><br>
       <label for="">Año</label>
-      <input type="number" name="ano" value=""><br>
+      <input type="number" name="ano" value="{{$periodo->ano}}"><br>
       <label for="">Número de periodo</label>
-      <input type="number" name="nro_periodo" value=""><br>
+      <input type="number" name="nro_periodo" value="{{$periodo->nro_periodo}}"><br>
       <input type="submit" name="" value="Enviar">
     </form>
     @foreach ($errors->all() as $message)

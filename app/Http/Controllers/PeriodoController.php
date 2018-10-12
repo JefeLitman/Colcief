@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Periodo;
 use App\Http\Requests\PeriodoStoreController;
+use App\Http\Requests\PeriodoUpdateController;
 class PeriodoController extends Controller
 {
     /**
@@ -43,7 +44,7 @@ class PeriodoController extends Controller
       $unidad->ano = $request->input('ano');
       $unidad->nro_periodo = $request->input('nro_periodo');
       $unidad->save();
-      return $request;
+      return 'Datos guardados con éxito';
     }
 
     /**
@@ -70,9 +71,10 @@ class PeriodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nro_periodo)
     {
-        //
+        $unidad = Periodo::findOrFail($nro_periodo);
+        return view('periodos.editarPeriodo',['periodo' => $unidad]);
     }
 
     /**
@@ -82,9 +84,12 @@ class PeriodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PeriodoUpdateController $request, $pk_periodo)
     {
-        //
+      $unidad = Periodo::findOrFail($pk_periodo)->fill($request->all());
+      $unidad->pk_periodo = $request->input('nro_periodo');
+      $unidad->save();
+      return view('periodos.verPeriodo',['mensaje'=>'Datos guardados correctamente','periodo' => $unidad]);
     }
 
     /**
