@@ -60,7 +60,7 @@ class Fks extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fk_materia')->references('pk_materia')->on('materia')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('fk_empleado')->references('pk_empleado')->on('empleado')
+            $table->foreign('fk_empleado')->references('cedula')->on('empleado')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 

@@ -22,8 +22,9 @@
               <div class='input-field col s12'>
                 <select name="role" id="role">
                   <option value="0">Administrador</option>
-                  <option value="1">Profesor</option>
-                  <option value="2">Estudiante</option>
+                  <option value="1">Director</option>
+                  <option value="2">Profesor</option>
+                  <option value="3">Estudiante</option>
                 </select>
                 <label for='role'>Tipo de usuario <label class="rojo">*</label></label>
               </div>

@@ -103,30 +103,13 @@ class Todo extends Migration
 
         Schema::create('materia_pc', function (Blueprint $table) {
             $table->increments('pk_materia_pc');
-            $table->unsignedInteger('fk_empleado');
             $table->unsignedInteger('fk_curso');
             $table->unsignedInteger('fk_materia');
+            $table->unsignedInteger('fk_empleado');
             $table->string('nombre', 20);
             $table->char('salon', 5);
             $table->string('logros_custom');
             $table->timestamps();
-        });
-
-        Schema::create('empleado', function (Blueprint $table) {
-            $table->unsignedInteger('cedula');
-            $table->string('nombre', 20);
-            $table->string('apellido', 20);
-            $table->string('correo', 20);
-            $table->string('password', 80);
-            $table->string('direccion', 20);
-            $table->string('titulo', 20);
-            $table->char('rol', 1); // 0 administrador, //1 director //2 profesor
-            $table->integer('tiempo_extra');
-            $table->string('director', 20);
-            $table->boolean('estado')->nullable()->default(true);
-            $table->string('foto')->default('descarga.png');
-            $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create('division', function (Blueprint $table) {
@@ -155,7 +138,24 @@ class Todo extends Migration
             $table->text('logros_custom');
             $table->timestamps();
             $table->softDeletes();
-        });        
+        });   
+        
+        Schema::create('empleado', function (Blueprint $table) {
+            $table->unsignedInteger('cedula')->primary();
+            $table->string('nombre', 20);
+            $table->string('apellido', 20);
+            $table->string('correo', 20);
+            $table->string('password', 80);
+            $table->string('direccion', 20);
+            $table->string('titulo', 20);
+            $table->char('role', 1); // 0 administrador, //1 director //2 profesor
+            $table->integer('tiempo_extra')->default(0);
+            $table->string('director', 20)->nullable();
+            $table->boolean('estado')->nullable()->default(true);
+            $table->string('foto')->default('descarga.png');
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
