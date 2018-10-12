@@ -30,7 +30,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/estudiantes', 'EstudianteController');
 Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
-Route::resource('/periodo','PeriodoController');
+Route::resource('/periodos','PeriodoController');
 Route::resource('/materias','MateriaController');
 Route::resource('/divisiones','DivisionController');
 Route::get('/login', 'Login\LoginController')->name('login');

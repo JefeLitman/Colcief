@@ -5,11 +5,14 @@
     <title>Ver Periodo</title>
   </head>
   <body>
-    <!-- Esta vista muestra todos los datos de un objeto 
+    <!-- Esta vista muestra todos los datos de un objeto
     periodo, si se accede al index devolverá todos los periodos
     si se accede al endpoint con un id, ej: /periodo/{id} devolverá
     solo los datos del periodo {id}
     By: Douglas -->
+    @if (isset($mensaje))
+    <p>{{$mensaje}}</p>
+    @endif
     @foreach ($periodo->all() as $p)
     <p>Periodo #: {{$p->nro_periodo}}</p>
     <p>Comprende entre: {{$p->fecha_inicio}} y {{$p->fecha_limite}} </p>

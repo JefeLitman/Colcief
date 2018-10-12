@@ -10,14 +10,15 @@ use App\Http\Requests\AcudienteUpdateController;
 class AcudienteController extends Controller{
 
     public function index(){
-        return 'Aquí va la vista';
+      $unidad = new Acudiente();
+        return view('acudientes.verAcu',['acudientes' => $unidad]);
     }
 
     public function create(){
         return view('acudientes.crearAcu');
     }
 
-    public function store(Request $request){
+    public function store(AcudienteStoreController $request){
       //Los datos al haber pasado por AcudienteStoreController ya están validados
       $unidad = new Acudiente(); //Creo el modelo de datos acudiente
       $unidad->pk_acudiente = $request->input('pk_acudiente');
@@ -28,13 +29,13 @@ class AcudienteController extends Controller{
       $unidad->direccion_acu_2 = $request->input('direccion_acu_2');
       $unidad->telefono_acu_2 = $request->input('telefono_acu_2');
       $unidad->save();
-      $this->fk_acudiente=$unidad->pk_acudiente;
+      return redirect(route('acudientes.show',$unidad->pk_acudiente));
     }
 
     public function show($pk_acudiente){
         $valor = Acudiente::where('pk_acudiente', $pk_acudiente)->get();
         if (!empty($valor[0])){
-          return view('acudientes.verAcu',['acudiente'=>$valor[0]]);
+          return view('acudientes.verAcu',['acudientes'=>$valor]);
         }else{
           return 'Acudiente no encontrado';
         }
