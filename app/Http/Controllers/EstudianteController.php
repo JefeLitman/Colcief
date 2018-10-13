@@ -8,12 +8,14 @@ use App\Estudiante;
 use App\Acudiente; //Pepe no me lo vuelva a borrar
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AcudienteController;
 use App\Http\Requests\EstudianteStoreController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
 use App\Http\Controllers\NormalizarController as Nc;
 use Illuminate\Support\Facades\Hash;
 //librerias de autenticacion
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,9 +30,8 @@ class EstudianteController extends Controller{
     
     public function index(){
         $estudiante = Estudiante::all();
-        // dd($estudiante[0]->fillable());
-        // dd(session('user'));
-        return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);
+        dd(session('user'));
+        // return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);
     }
 
     public function create(){
@@ -101,24 +102,24 @@ class EstudianteController extends Controller{
 
     public function update(EstudianteUpdateController $request, $pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill(
-            Nc::minuscula($request->all(),
+            Nc::minuscula($request->all(), [
                 "nombre_acu_1",
                 "direccion_acu_1",
                 "telefono_acu_1",
                 "nombre_acu_2",
                 "direccion_acu_2",
                 "telefono_acu_2" //datos q no quiere guardar
-            )
+            ])
         );
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
-            Nc::minuscula($request->all(),
+            Nc::minuscula($request->all(), [
                 "nombre",
                 "apellido",
                 "grado",
                 "fecha_nacimiento",
                 "discapacidad",
                 "foto" //datos q no quiere guardar
-            )
+            ])
         );
         if($request->hasFile('foto')){
           $nombre = 'estudiante'.$request->pk_estudiante;

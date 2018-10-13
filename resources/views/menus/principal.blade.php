@@ -19,6 +19,6 @@
     <li><a href="{{ url('/') }}"><i class="material-icons right">home</i>Inicio</a></li>
     <li><a href="#"><i class="material-icons right">school</i>Nuestro Colegio</a></li>
     <li><a href="#"><i class="material-icons right">local_phone</i>Cont&aacute;ctenos</a></li>
-    <li><a href="{{ url('/login') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a></li>
+    <li><a href="{{ route('login') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a></li>
     </ul>
     
