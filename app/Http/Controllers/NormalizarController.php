@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class NormalizarController extends Controller{
     public static function minuscula($array, ...$excepts){
-        array_push($array, "_token", "action");
+        array_push($excepts, "_token", "action");
         foreach($excepts as $except){
             unset($array[$except]);
         }

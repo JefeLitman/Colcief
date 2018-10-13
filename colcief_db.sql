@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2018 a las 22:54:04
+-- Tiempo de generación: 13-10-2018 a las 02:13:08
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.1.19
 
@@ -46,12 +46,7 @@ CREATE TABLE `acudiente` (
 --
 
 INSERT INTO `acudiente` (`pk_acudiente`, `nombre_acu_1`, `direccion_acu_1`, `telefono_acu_1`, `nombre_acu_2`, `direccion_acu_2`, `telefono_acu_2`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'jnasna', 'sdjbfsdhsdc', '847534534', 'sndchjsbd', 'sdchjsdbcsj', '345345343', '2018-10-08 22:51:12', '2018-10-08 22:51:12', NULL),
-(2, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:07:26', '2018-10-09 20:07:26', NULL),
-(3, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:19:00', '2018-10-09 20:19:00', NULL),
-(4, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:19:11', '2018-10-09 20:19:11', NULL),
-(5, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:20:40', '2018-10-09 20:20:40', NULL),
-(6, 'sdncs', 'bhcdbscdjsdfssdfsdfs', '768768767', 'hbhbjhb', 'bhjbjhbhj', '767678689', '2018-10-09 20:21:22', '2018-10-09 20:21:22', NULL);
+(1, 'juan silvestre', 'veneco :v', '3154390477', 'ana caballero', 'cra 19# 3-82', '3104390477', '2018-10-12 23:54:18', '2018-10-12 23:54:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -114,9 +109,9 @@ CREATE TABLE `empleado` (
   `password` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `direccion` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `titulo` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rol` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tiempo_extra` int(11) NOT NULL,
-  `director` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tiempo_extra` int(11) NOT NULL DEFAULT '0',
+  `director` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `estado` tinyint(1) DEFAULT '1',
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'descarga.png',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -151,8 +146,7 @@ CREATE TABLE `estudiante` (
 --
 
 INSERT INTO `estudiante` (`pk_estudiante`, `fk_acudiente`, `nombre`, `apellido`, `password`, `fecha_nacimiento`, `grado`, `discapacidad`, `estado`, `foto`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'juasn', 'sdjnjcs', '$2y$10$v/fZvevh2vgoyjr7.P4us.PV2qwUp39o1R58VV2WAiwjwnBAWvuLS', '2018-10-15', 4, 1, 1, 'estudiante.jpeg', '2018-10-08 22:51:13', '2018-10-08 22:51:13', NULL),
-(2, 6, 'sandcjsdfsdssdf', 'njskadcn', '$2y$10$9ac3u6uvRwemVBP2eZHb3u0yfSXVbnHiU4qcZsSTWN44AE9jXk.x.', '2018-10-08', 3, 0, 1, 'descarga.png', '2018-10-09 20:21:22', '2018-10-09 20:21:22', NULL);
+(1, 1, 'juan sebastian', 'marcon caballero', '$2y$10$c.s1N3W2tTK6P1ai3/MqZe/vLy1NHN0errswoj9b6ymKIfbfFs/VK', '2018-10-16', 2, 1, 1, 'estudiante.png', '2018-10-12 23:54:18', '2018-10-13 00:07:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -209,9 +203,9 @@ CREATE TABLE `materia_boletin` (
 
 CREATE TABLE `materia_pc` (
   `pk_materia_pc` int(10) UNSIGNED NOT NULL,
-  `fk_empleado` int(10) UNSIGNED NOT NULL,
   `fk_curso` int(10) UNSIGNED NOT NULL,
   `fk_materia` int(10) UNSIGNED NOT NULL,
+  `fk_empleado` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `salon` char(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `logros_custom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -236,7 +230,9 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2018_08_24_000707_todo', 1);
+(1, '2018_08_24_000707_todo', 1),
+(2, '2018_08_24_001806_fks', 1),
+(3, '2018_10_12_162552_create_sessions_table', 1);
 
 -- --------------------------------------------------------
 
@@ -303,6 +299,21 @@ CREATE TABLE `periodo` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -334,6 +345,12 @@ ALTER TABLE `division`
   ADD PRIMARY KEY (`pk_division`);
 
 --
+-- Indices de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD PRIMARY KEY (`cedula`);
+
+--
 -- Indices de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
@@ -344,7 +361,8 @@ ALTER TABLE `estudiante`
 -- Indices de la tabla `horario`
 --
 ALTER TABLE `horario`
-  ADD PRIMARY KEY (`pk_horario`);
+  ADD PRIMARY KEY (`pk_horario`),
+  ADD KEY `horario_fk_materia_pc_foreign` (`fk_materia_pc`);
 
 --
 -- Indices de la tabla `materia`
@@ -366,7 +384,8 @@ ALTER TABLE `materia_boletin`
 ALTER TABLE `materia_pc`
   ADD PRIMARY KEY (`pk_materia_pc`),
   ADD KEY `materia_pc_fk_curso_foreign` (`fk_curso`),
-  ADD KEY `materia_pc_fk_materia_foreign` (`fk_materia`);
+  ADD KEY `materia_pc_fk_materia_foreign` (`fk_materia`),
+  ADD KEY `materia_pc_fk_empleado_foreign` (`fk_empleado`);
 
 --
 -- Indices de la tabla `migrations`
@@ -406,6 +425,12 @@ ALTER TABLE `periodo`
   ADD PRIMARY KEY (`pk_periodo`);
 
 --
+-- Indices de la tabla `sessions`
+--
+ALTER TABLE `sessions`
+  ADD UNIQUE KEY `sessions_id_unique` (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -413,7 +438,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
-  MODIFY `pk_acudiente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pk_acudiente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `boletin`
@@ -437,7 +462,7 @@ ALTER TABLE `division`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `pk_estudiante` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pk_estudiante` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
@@ -467,7 +492,7 @@ ALTER TABLE `materia_pc`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `nota`
@@ -511,6 +536,12 @@ ALTER TABLE `estudiante`
   ADD CONSTRAINT `estudiante_fk_acudiente_foreign` FOREIGN KEY (`fk_acudiente`) REFERENCES `acudiente` (`pk_acudiente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `horario`
+--
+ALTER TABLE `horario`
+  ADD CONSTRAINT `horario_fk_materia_pc_foreign` FOREIGN KEY (`fk_materia_pc`) REFERENCES `materia_pc` (`pk_materia_pc`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `materia_boletin`
 --
 ALTER TABLE `materia_boletin`
@@ -522,6 +553,7 @@ ALTER TABLE `materia_boletin`
 --
 ALTER TABLE `materia_pc`
   ADD CONSTRAINT `materia_pc_fk_curso_foreign` FOREIGN KEY (`fk_curso`) REFERENCES `curso` (`pk_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `materia_pc_fk_empleado_foreign` FOREIGN KEY (`fk_empleado`) REFERENCES `empleado` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `materia_pc_fk_materia_foreign` FOREIGN KEY (`fk_materia`) REFERENCES `materia` (`pk_materia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
