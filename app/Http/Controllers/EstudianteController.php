@@ -14,7 +14,6 @@ use App\Http\Controllers\SupraController;
 use App\Http\Controllers\NormalizarController as Nc;
 use Illuminate\Support\Facades\Hash;
 //librerias de autenticacion
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -29,7 +28,8 @@ class EstudianteController extends Controller{
     
     public function index(){
         $estudiante = Estudiante::all();
-        // dd(session('users');
+        // dd($estudiante[0]->fillable());
+        // dd(session('user'));
         return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);
     }
 

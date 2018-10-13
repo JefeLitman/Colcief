@@ -15,4 +15,8 @@ class Empleado extends Authenticatable
     protected $fillable = ['pk_empleado', 'cedula','nombre', 'apellido', 'correo', 'password', 'direccion', 'titulo', 'rol', 'tiempo_extra', 'director', 'estado', 'foto'];
     protected $dates = ['deleted_at'];
     protected $casts = ['estado' => 'boolean'];
+
+    public function session(){
+        return $this->fillable;
+    }
 }
