@@ -24,7 +24,6 @@ class EmpleadoStoreController extends FormRequest
     public function rules()
     {
         return [
-            'pk_empleado' => 'required|numeric|unique:empleado',
             'cedula' => 'required|numeric|unique:empleado',
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',

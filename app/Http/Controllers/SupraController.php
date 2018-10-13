@@ -53,5 +53,24 @@
       }
       return 1; //Sí existe una fila creada con esa PK
     }
+
+    
+    public static function minuscula($array, ...$excepts){
+        array_push($excepts, "_token", "action");
+        foreach($excepts as $except){
+            unset($array[$except]);
+        }
+        foreach($array as $key => $value) { 
+            $array[$key] = strtolower($value);
+        }
+        return $array;
+    }
+
+    // public static function mostrar($array){ 
+    //     foreach($array as $key => $value) { 
+    //         $array[$key] = ucwords($value);
+    //     }
+    //     return $array;
+    // }
   }
 ?>

@@ -41,8 +41,8 @@
                         <label for="titulo">Título: </label>
                     </div>
                     <div class="input-field">
-                        <input type="text" id="rol" name="rol">
-                        <label for="rol">Rol: </label>
+                        <input type="text" id="role" name="role">
+                        <label for="role">Rol: </label>
                     </div>
                     <div class="input-field">
                         <input type="number" id="tiempo_extra" name="tiempo_extra">

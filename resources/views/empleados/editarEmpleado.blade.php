@@ -18,11 +18,11 @@
     @endif
 
     <h1>Formulario</h1>
-    <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->pk_empleado)}}" method = "POST">
+    <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->cedula)}}" method = "POST">
         {{ method_field('PATCH') }}
         @csrf
-        <label for="pk_empleado">Pk_empleado: </label>
-        <input type="number" name="pk_empleado" value="{{$empleado->pk_empleado}}" id="pk_empleado">
+        <label for="cedula">cedula: </label>
+        <input type="number" name="cedula" value="{{$empleado->cedula}}" id="cedula">
 
         <label for="cedula">Cedula: </label>
         <input type="number" id="cedula" name="cedula" value="{{$empleado->cedula}}">
@@ -45,8 +45,8 @@
         <label for="titulo">Título: </label>
         <input type="text" id="titulo" name="titulo" value="{{$empleado->titulo}}">
 
-        <label for="rol">Rol: </label>
-        <input type="text" id="rol" name="rol" value="{{$empleado->rol}}">
+        <label for="role">role: </label>
+        <input type="text" id="role" name="role" value="{{$empleado->role}}">
 
         <label for="tiempo_extra">Tiempo extra: </label>
         <input type="number" id="tiempo_extra" name="tiempo_extra" value="{{$empleado->tiempo_extra}}">
@@ -54,15 +54,22 @@
         <label for="director">Director: </label>
         <input type="text" id="director" name="director" value="{{$empleado->director}}">
 
-        <label for="estado">Estado: </label>
-        <label for="estado">Si </label>
-        <input type="radio" id="estado" name="estado" value = "1">
+        <div class="input-field col s4">
+            <label>
+                <input type="checkbox" name="discapacidad"
+                @if($empleado->estado == "1") {{-- verifico si el estudiante tiene discapacidad, en caso q si, imprimo checked para checkar el checkbox --}} 
+                    checked value="1"
+                @endif
+                >
+                <span>Estado</span>
+            </label>
+        </div>
         <label for="estado">No </label>
         <input type="radio" id="estado" name="estado" value = "0" checked>
 
         <label for="foto">Foto: </label>
         <input type="file" id="foto" name="foto"}}">
-        <img src="{{Storage::url($empleado->foto)}}" alt="Foto estudiante {{$empleado->pk_empleado}}">
+        <img src="{{Storage::url($empleado->foto)}}" alt="Foto estudiante {{$empleado->cedula}}">
 
         <button type="submit">Actualizar</button>
     </form>

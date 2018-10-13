@@ -144,7 +144,7 @@ class Todo extends Migration
             $table->unsignedInteger('cedula')->primary();
             $table->string('nombre', 20);
             $table->string('apellido', 20);
-            $table->string('correo', 20);
+            $table->string('correo', 40);
             $table->string('password', 80);
             $table->string('direccion', 20);
             $table->string('titulo', 20);

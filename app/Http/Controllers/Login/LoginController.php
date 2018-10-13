@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Empleado;
-use App\Estudiante;
 
 class LoginController extends Controller{
 

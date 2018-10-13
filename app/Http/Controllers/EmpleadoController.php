@@ -8,30 +8,34 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmpleadoStoreController;
 use App\Http\Requests\EmpleadoUpdateController;
-use App\Http\Controllers\NormalizarController as Nc; //Normalizacion de datos
 use App\Http\Controllers\SupraController;
+use Illuminate\Support\Facades\Hash;
 
 class EmpleadoController extends Controller{
-    public function index(){}
+    public function index(){
+        $empleado = Empleado::all();
+        return view('empleados.listaEmpleado', ['empleado' => $empleado]);
+    }
 
     public function create(){
         return view('empleados.crearEmpleado');
     }
 
     public function store(EmpleadoStoreController $request){
-        $empleado = (new Empleado)->fill(Nc::minuscula($request->all()));
-        $estudiante->password = Hash::make('clave');
+        $empleado = (new Empleado)->fill(SupraController::minuscula($request->all()));
+        $empleado->password = Hash::make('clave');
         if($request->hasFile('foto')){
-          $nombreArchivo = 'empleado'.$request->pk_empleado;
+          $nombreArchivo = 'empleado'.$request->cedula;
           $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo,'foto');
         }
+        // dd($empleado);
         $empleado->save();
     }
 
-    public function show($pk_empleado){   
+    public function show($cedula){   
         /*@Autor Paola C.*/
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>empleados>verEmpleado.blade.php y allá se reciben todos los datos del respectivo empleado en una variable tipo Object $empleado. 
-        $empleado = Empleado::where('pk_empleado', $pk_empleado)->get();
+        $empleado = Empleado::where('cedula', $cedula)->get();
         if(empty($empleado[0])){
             return "Empleado no encontrado."; //Esto debe ser cambiado por una view mjr
         }else{
@@ -40,18 +44,18 @@ class EmpleadoController extends Controller{
         
     }
 
-    public function edit($pk_empleado){
-        $empleado = Empleado::findOrFail($pk_empleado);
+    public function edit($cedula){
+        $empleado = Empleado::findOrFail($cedula);
         return view("empleados.editarEmpleado", compact('empleado'));
     }
 
-    public function update(EmpleadoUpdateController $request, $pk_empleado){
-        $empleado = Empleado::findOrFail($pk_empleado)->fill(Nc::minuscula($request->all()));
+    public function update(EmpleadoUpdateController $request, $cedula){
+        $empleado = Empleado::findOrFail($cedula)->fill(SupraController::minuscula($request->all()));
         if($request->hasFile('foto')){
-            $nombreArchivo = 'empleado'.$request->pk_empleado;
+            $nombreArchivo = 'empleado'.$request->cedula;
             $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto');
         }
         $empleado->save();
-        return redirect(route('empleados.show', $empleado->pk_empleado));
+        return redirect(route('empleados.show', $empleado->cedula));
     }
 }

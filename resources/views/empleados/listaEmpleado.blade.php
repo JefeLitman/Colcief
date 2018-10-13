@@ -19,23 +19,24 @@
         <table class="responsive-table striped">
             <thead>
                 <tr>
-                    <th>Codigo</th>
+                    <th>Cedula</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Clave</th>
+                    <th>Correo</th>
                     <th>Grado</th>
+                    <th>Cargo</th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach ($estudiante as $i)
+                @foreach ($empleado as $i)
                     <tr>
-                        <td>{{$i->pk_estudiante}}</td>
+                        <td>{{$i->cedula}}</td>
                         <td>{{$i->nombre}}</td>
                         <td>{{$i->apellido}}</td>
-                        <td>{{$i->clave}}</td>
-                        <td>{{$i->grado}}</td>
-                        <td><a href="{{ url('/estudiantes/'.$i->pk_estudiante.'/editar') }}"><i class="cyan-text darken-3 material-icons">edit</i></a></td>
+                        <td>{{$i->correo}}</td>
+                        <td>{{$i->role}}</td>
+                        <td><a href="{{ url('/empleados/'.$i->cedula.'/editar') }}"><i class="cyan-text darken-3 material-icons">edit</i></a></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -44,5 +45,5 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/autocomplete.js') }}"></script>
-<script>autocompletar('estudiante', ["nombre", "apellido"])</script>
+<script>autocompletar('empleado', ["nombre", "apellido"])</script>
 @endsection

@@ -17,7 +17,7 @@ class AjaxController extends Controller{
                 foreach($request->datos as $i){
                     $f .= $obj[$index]->$i.' ';
                 }
-                $result[$f] = null;
+                $result[ucwords($f)] = null;
             }
             return response()->json($result);
         }

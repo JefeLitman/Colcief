@@ -11,10 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EstudianteStoreController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
-use App\Http\Controllers\NormalizarController as Nc;
 use Illuminate\Support\Facades\Hash;
-//librerias de autenticacion
-use Illuminate\Support\Facades\Auth;
 
 
 
@@ -28,8 +25,6 @@ class EstudianteController extends Controller{
     
     public function index(){
         $estudiante = Estudiante::all();
-        // dd($estudiante[0]->fillable());
-        // dd(session('user'));
         return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);
     }
 
@@ -39,7 +34,7 @@ class EstudianteController extends Controller{
 
     public function store(EstudianteStoreController $request){    
         $acudiente = (new Acudiente)->fill(
-            Nc::minuscula(
+            SupraController::minuscula(
                 $request->all(), 
                 "nombre",
                 "apellido",
@@ -51,7 +46,7 @@ class EstudianteController extends Controller{
         );
         $acudiente->save(); // se guarda el acudiente 
         $estudiante = (new Estudiante)->fill(
-            Nc::minuscula($request->all(), 
+            SupraController::minuscula($request->all(), 
                 "nombre_acu_1",
                 "direccion_acu_1",
                 "telefono_acu_1",
@@ -101,7 +96,7 @@ class EstudianteController extends Controller{
 
     public function update(EstudianteUpdateController $request, $pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill(
-            Nc::minuscula($request->all(),
+            SupraController::minuscula($request->all(),
                 "nombre_acu_1",
                 "direccion_acu_1",
                 "telefono_acu_1",
@@ -111,7 +106,7 @@ class EstudianteController extends Controller{
             )
         );
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
-            Nc::minuscula($request->all(),
+            SupraController::minuscula($request->all(),
                 "nombre",
                 "apellido",
                 "grado",
