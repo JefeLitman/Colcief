@@ -31,7 +31,7 @@
       Autor: Douglas y Pepe
     */
     public static function subirArchivo(Request $request,String $nombre,String $input){
-      $nombre .= '.'.$request->file($input)->clientExtension();
+      $nombre = '/sistema/storage/app/public/'.$nombre.'.'.$request->file($input)->clientExtension();
       $file = $request->file($input)->storeAs('public', $nombre);
       return $nombre;
     }
