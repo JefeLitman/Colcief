@@ -34,6 +34,6 @@ class RoleMiddleware{
                 }
             }
         }
-        // return redirect()->back();
+        return back();
     }
 }

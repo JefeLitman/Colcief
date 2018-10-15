@@ -16,7 +16,7 @@ class Estudiante extends Authenticatable{
     protected $casts = ['discapacidad' => 'boolean', 'estado' => 'boolean'];
 
     public function session(){
-        return $this->fillable;
+        return $this->attributes;
     }
 }
 

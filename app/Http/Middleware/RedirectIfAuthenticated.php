@@ -11,7 +11,7 @@ class RedirectIfAuthenticated
         $guards = ['estudiante', 'administrador', 'director', 'profesor'];
         foreach($guards as $guard){
             if (Auth::guard($guard)->check()) {
-                return redirect('/estudiantes');
+                return redirect()->route('home');
             }
         }
         return $next($request);

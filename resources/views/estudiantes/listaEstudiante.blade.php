@@ -1,6 +1,6 @@
 @extends('contenedores.admin')
 @section('contenedor_principal')
-@section('titulo','No se q poner de titulo, se los dejo a uds xD')
+@section('titulo','Lista Estudiante')
 <div class="row">
     <form action="" id="autocompletar">
         <div class="col s12">

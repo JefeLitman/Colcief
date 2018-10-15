@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('pantallas.bienvenida');
-});
+})->name('home');
 
 Route::get('/contacto', function () {
     return view('pantallas.contacto');
@@ -25,9 +25,9 @@ Route::get('/nosotros', function () {
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/estudiantes/ver', 'EstudianteController@view'); //Puedo eliminar esto?. no se si alguien lo necesita
-Route::resource('/estudiantes', 'EstudianteController');
+Route::resource('/estudiantes', 'EstudianteController')->name('estudiantes');
 Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
 Route::resource('/periodos','PeriodoController');

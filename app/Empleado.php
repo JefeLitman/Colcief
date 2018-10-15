@@ -6,8 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Empleado extends Authenticatable
-{
+class Empleado extends Authenticatable{
     use Notifiable;
     use SoftDeletes;
     protected $table = 'empleado';
@@ -17,6 +16,6 @@ class Empleado extends Authenticatable
     protected $casts = ['estado' => 'boolean'];
 
     public function session(){
-        return $this->fillable;
+        return $this->attributes;
     }
 }
