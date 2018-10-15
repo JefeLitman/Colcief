@@ -37,7 +37,7 @@
                     
 					<div class="row">
 						<div class="input-field col s12">
-							<img class="responsive-img" style="max-width:400px;" src="{{$estudiante->foto}}">
+							<img class="responsive-img" style="max-width:400px;" src="{{Storage::url($estudiante->foto)}}">
                         </div>
                         <div class="input-field col s12">
                             <a class="btn waves-effect waves-teal ">
