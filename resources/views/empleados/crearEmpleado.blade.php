@@ -11,7 +11,7 @@
         <h2>Crear Empleado</h2>
         <div class="card green lighten-5">
             <div class="card-content">
-                <form enctype="multipart/form-data" action="/empleados" method = "POST">
+                <form enctype="multipart/form-data" action="{{ route('empleados') }}" method = "POST">
                     @csrf
                     {{-- input field es necesario para la animación de los label --}}
                     <div class="input-field">
