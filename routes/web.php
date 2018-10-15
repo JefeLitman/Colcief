@@ -27,24 +27,12 @@ Route::get('/nosotros', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/estudiantes/ver', 'EstudianteController@view'); //Puedo eliminar esto?. no se si alguien lo necesita
-Route::resource('/estudiantes', 'EstudianteController',[
-    'as' => 'estudiantes'
-]);
-Route::resource('/acudientes','AcudienteController',[
-    'as' => 'acudientes'
-]);
-Route::resource('/empleados','EmpleadoController',[
-    'as' => 'empleados'
-]);
-Route::resource('/periodos','PeriodoController',[
-    'as' => 'periodos'
-]);
-Route::resource('/materias','MateriaController',[
-    'as' => 'materias'
-]);
-Route::resource('/divisiones','DivisionController',[
-    'as' => 'divisiones'
-]);
+Route::resource('/estudiantes', 'EstudianteController');
+Route::resource('/acudientes','AcudienteController');
+Route::resource('/empleados','EmpleadoController');
+Route::resource('/periodos','PeriodoController');
+Route::resource('/materias','MateriaController');
+Route::resource('/divisiones','DivisionController');
 Route::get('/login', 'Login\LoginController')->name('login');
 Route::post('/login', 'Login\LoginController@authenticate')->name('authenticate');
 Route::get('/logout', 'Login\LoginController@logout')->name('logout');
