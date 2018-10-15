@@ -9,11 +9,7 @@
     <div class="col s8 center"><br>
         <div class="card green lighten-5">
             <div class="card-content">
-<<<<<<< HEAD
                 <form method="post" action="{{ route('estudiantes') }}" enctype="multipart/form-data">
-=======
-                <form method="post" action="{{ url('/estudiantes') }}" enctype="multipart/form-data">
->>>>>>> 488b0558ad7518819f3683ef712dcb406679c8cd
                     @csrf
                     <h4 class="center">Datos Estudiante</h4>
                     <div class="divider"></div>
