@@ -69,7 +69,7 @@
 
         <label for="foto">Foto: </label>
         <input type="file" id="foto" name="foto"}}">
-        <img src="{{Storage::url($empleado->foto)}}" alt="Foto estudiante {{$empleado->cedula}}">
+        <img src="{{$empleado->foto}}" alt="Foto estudiante {{$empleado->cedula}}">
 
         <button type="submit">Actualizar</button>
     </form>

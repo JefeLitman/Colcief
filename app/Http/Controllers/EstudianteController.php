@@ -118,7 +118,7 @@ class EstudianteController extends Controller{
             )
         );
         if($request->hasFile('foto')){
-          $nombre = 'estudiante'.$estudiante->pk_estudiante;
+          $nombre = 'estudiante'.$estudiantev->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
         $estudiante->password= Hash::make('clave');

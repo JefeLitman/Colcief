@@ -18,7 +18,7 @@
                 <div class="card-content">
                     <div class="row center">
                         <div class="col s12">
-                            <img class="responsive-img" style="max-width:400px;" src="{{Storage::url($estudiante->foto)}}">
+                            <img class="responsive-img" style="max-width:400px;" src="{{$estudiante->foto}}">
                         </div>
                     </div>
                     <div class="row">
