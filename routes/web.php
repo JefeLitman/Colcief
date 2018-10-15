@@ -27,7 +27,7 @@ Route::get('/nosotros', function () {
 
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/estudiantes/ver', 'EstudianteController@view'); //Puedo eliminar esto?. no se si alguien lo necesita
-Route::resource('/estudiantes', 'EstudianteController')->name('estudiantes');
+Route::resource('/estudiantes', 'EstudianteController');
 Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
 Route::resource('/periodos','PeriodoController');
