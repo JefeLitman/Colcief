@@ -13,16 +13,6 @@
   use Illuminate\Http\Request;
 
   class SupraController{
-    // public static function subirArchivo(Request $request, String $role){
-    //   if($role = "estudiante"){
-    //     $nombre = $role.$request->pk_estudiante;
-    //   }else if($role = "empleado"){
-    //     $nombre = $role.$request->pk_empleado;
-    //   }
-    //   $nombre .= '.'.$request->file('foto')->clientExtension();
-    //   $file = $request->file('foto')->storeAs('public', $nombre);
-    //   return $nombre;
-    // }
     /*
       SUBIR ARCHIVO:
       Método que sirve para subir cualquier tipo de archivo, es necesario pasarle como parametro
