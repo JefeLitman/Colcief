@@ -8,7 +8,7 @@
     <div class="col s2"></div>
     <div class="col s8 center">
         <br>
-        <h2>Crear Empleado</h2>
+        <h2>Editar Empleado</h2>
         <div class="card green lighten-5">
             <div class="card-content">
                 <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->cedula)}}" method = "POST">
