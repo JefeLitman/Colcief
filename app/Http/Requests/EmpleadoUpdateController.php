@@ -24,15 +24,13 @@ class EmpleadoUpdateController extends FormRequest
     public function rules()
     {
         return [
-            'pk_empleado' => 'required|numeric',
             'cedula' => 'required|numeric',
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
-            'correo' => 'required|email|max:20',
-            'clave' => 'required|string|max:40',
+            'correo' => 'required|email|max:40',
             'direccion' => 'required|string|max:20',
             'titulo' => 'required|string|max:20',
-            'rol' => 'required|string|max:1',
+            'role' => 'required|string|max:1',
             'tiempo_extra' => 'required|numeric',
             'director' => 'required|string|max:20',
             'estado' => 'boolean',
