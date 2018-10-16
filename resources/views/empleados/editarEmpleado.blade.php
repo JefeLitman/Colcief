@@ -45,7 +45,7 @@
         <label for="titulo">Título: </label>
         <input type="text" id="titulo" name="titulo" value="{{$empleado->titulo}}">
 
-        <label for="role">role: </label>
+        <label for="role">Role: </label>
         <input type="text" id="role" name="role" value="{{$empleado->role}}">
 
         <label for="tiempo_extra">Tiempo extra: </label>
