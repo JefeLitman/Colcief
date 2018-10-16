@@ -13,6 +13,11 @@
   use Illuminate\Http\Request;
 
   class SupraController{
+    
+    // este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
+    public static function machete(Request $request,String $nombre,String $input){
+      return '/sistema/storage/app/public/'.SupraController::subirArchivo($request,$nombre,$input);
+    }
     /*
       SUBIR ARCHIVO:
       Método que sirve para subir cualquier tipo de archivo, es necesario pasarle como parametro
@@ -21,7 +26,7 @@
       Autor: Douglas y Pepe
     */
     public static function subirArchivo(Request $request,String $nombre,String $input){
-      $nombre = '/sistema/storage/app/public/'.$nombre.'.'.$request->file($input)->clientExtension();
+      $nombre .= '.'.$request->file($input)->clientExtension();
       $file = $request->file($input)->storeAs('public', $nombre);
       return $nombre;
     }

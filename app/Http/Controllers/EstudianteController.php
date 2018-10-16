@@ -57,11 +57,10 @@ class EstudianteController extends Controller{
         );
         $estudiante->fk_acudiente = $acudiente->pk_acudiente;
         $estudiante->password = Hash::make('clave');
-        $estudiante->save();
         
         if($request->hasFile('foto')){ // se guarda la imagen 
           $nombre = 'estudiante'.$estudiante->pk_estudiante;
-          $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
+          $estudiante->foto = SupraController::machete($request,$nombre,'foto');
         }
         $estudiante->save();
          // se guarda el estudiante
@@ -118,8 +117,8 @@ class EstudianteController extends Controller{
             )
         );
         if($request->hasFile('foto')){
-          $nombre = 'estudiante'.$estudiante->pk_estudiante;
-          $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
+            $nombre = 'estudiante'.$estudiante->pk_estudiante;
+            $estudiante->foto = SupraController::machete($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
         }
         $estudiante->password= Hash::make('clave');
         $acudiente->save();

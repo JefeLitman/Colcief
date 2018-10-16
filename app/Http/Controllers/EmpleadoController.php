@@ -26,7 +26,7 @@ class EmpleadoController extends Controller{
         $empleado->password = Hash::make('clave');
         if($request->hasFile('foto')){
           $nombreArchivo = 'empleado'.$request->cedula;
-          $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo,'foto');
+          $empleado->foto = SupraController::machete($request, $nombreArchivo,'foto');
         }
         // dd($empleado);
         $empleado->save();
@@ -53,7 +53,7 @@ class EmpleadoController extends Controller{
         $empleado = Empleado::findOrFail($cedula)->fill(SupraController::minuscula($request->all()));
         if($request->hasFile('foto')){
             $nombreArchivo = 'empleado'.$request->cedula;
-            $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto');
+            $empleado->foto = SupraController::machete($request, $nombreArchivo, 'foto');
         }
         $empleado->save();
         return redirect(route('empleados.show', $empleado->cedula));
