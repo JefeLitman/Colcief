@@ -7,19 +7,18 @@
             <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <!--Menu normal en modo grande -->
             <ul class="right hide-on-med-and-down" id="menu">
-                <li><a href="#!">Notas<i class="material-icons right">developer_board</i></a></li>
+                <li><a href="#">Notas<i class="material-icons right">developer_board</i></a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="cursos">&nbsp &nbsp Cursos &nbsp &nbsp<i class="material-icons right">class</i></a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="empleados">Empleados<i class="material-icons right">group</i></a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="estudiantes">Estudiantes<i class="material-icons right">child_care</i></a></li>
-                <li><a href="{{ url('/') }}"><i class="material-icons">home</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="sesion"><i class="material-icons">account_circle</i></a></li>
+                <li><a class="dropdown-trigger" href="{{ url('/logout') }}" >Salir<i class="material-icons right">exit_to_app</i></a></li>
             </ul>
             <!-- Estructura del despegable del logo de inicio de sesion -->
-            <ul id="sesion" class="dropdown-content">
-                <li><a href="#!"><i class="material-icons right">portrait</i></a></li>
+            {{-- <ul id="sesion" class="dropdown-content">
+            <li><a href="" class="center"><i class="material-icons right">portrait</i>{{ucwords(session('user')['nombre'])}}</a></li>
                 <li class="divider"></li>
-                <li><a href="#!"><i class="material-icons right">exit_to_app</i></a></li>
-            </ul>
+                <li><a href="{{ url('/logout') }}" class="center"><i class="material-icons right">exit_to_app</i>Salir</a></li>
+            </ul> --}}
             <!-- Estructura del despegable de Estudiantes -->
             <ul id="estudiantes" class="dropdown-content">
                 <li><a href="{{ url('/estudiantes/crear') }}">Crear<i class="material-icons right">person_add</i></a></li>
@@ -30,9 +29,9 @@
             </ul>
             <!-- Estructura del despegable de Empleados -->
             <ul id="empleados" class="dropdown-content">
-                <li><a href="#!">Crear<i class="material-icons right">person_add</i></a></li>
+                <li><a href="{{ url('/empleados/crear') }}">Crear<i class="material-icons right">person_add</i></a></li>
                 <li class="divider"></li>
-                <li><a href="#!">Editar<i class="material-icons right">build</i></a></li>
+                <li><a href="{{ url('/empleados') }}">Editar<i class="material-icons right">build</i></a></li>
                 <li class="divider"></li>
                 <li><a href="#!">Eliminar<i class="material-icons right">delete</i></a></li>
             </ul>
