@@ -126,10 +126,14 @@ class EstudianteController extends Controller{
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
     }
 
-    public function destroy($pk_estudiante){
-        $estudiante = Estudiante::findOrFail($pk_estudiante);
-        $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
-        $estudiante->delete();
-        $acudiente->delete();
+    public function destroy(Request $request, $pk_estudiante){
+        if($request->ajax()){
+            $estudiante = Estudiante::findOrFail($pk_estudiante);
+            $estudiante->delete();
+
+            return response()->json([
+                'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue eliminado'
+            ]);
+        }
     }
 }

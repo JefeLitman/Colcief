@@ -33,7 +33,7 @@
         <br>
     @endforeach
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/autocomplete.js') }}"></script>
+<script src="{{ asset('js/ajax.js') }}"></script>
 <script>autocompletar('division', ['ano', 'nombre'])</script>
 @endsection
 

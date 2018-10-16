@@ -1,6 +1,6 @@
 @extends('contenedores.admin')
 @section('contenedor_principal')
-@section('titulo','No se q poner de titulo, se los dejo a uds xD')
+@section('titulo','Lista Empleados')
 <div class="row">
     <form action="" id="autocompletar">
         <div class="col s12">
@@ -23,8 +23,9 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Correo</th>
-                    <th>Grado</th>
                     <th>Cargo</th>
+                    {{-- <th>Editar</th>
+                    <th>Eliminar</th> --}}
                 </tr>
             </thead>
 
@@ -36,7 +37,8 @@
                         <td>{{$i->apellido}}</td>
                         <td>{{$i->correo}}</td>
                         <td>{{$i->role}}</td>
-                        <td><a href="{{ url('/empleados/'.$i->cedula.'/editar') }}"><i class="cyan-text darken-3 material-icons">edit</i></a></td>
+                        <td><a href="{{ route('empleados.edit', $i->cedula) }}"><i class="cyan-text darken-3 material-icons">edit</i></a></td>
+                        <td class="delete" tabla="empleado" identificador="{{$i->cedula}}"><i class="red-text darken-3 material-icons">delete</i></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -44,6 +46,6 @@
     </div>
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/autocomplete.js') }}"></script>
+<script src="{{ asset('js/ajax.js') }}"></script>
 <script>autocompletar('empleado', ["nombre", "apellido"])</script>
 @endsection

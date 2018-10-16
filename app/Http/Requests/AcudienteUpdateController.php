@@ -17,11 +17,6 @@ class AcudienteUpdateController extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
       $pk_futura = $this->input('pk_acudiente');

@@ -35,7 +35,8 @@
                         <td>{{$i->apellido}}</td>
                         <td>{{$i->clave}}</td>
                         <td>{{$i->grado}}</td>
-                        <td><a href="{{ url('/estudiantes/'.$i->pk_estudiante.'/editar') }}"><i class="cyan-text darken-3 material-icons">edit</i></a></td>
+                        <td><a href="{{ route('estudiantes.edit', $i->pk_estudiante) }}"><i class="cyan-text darken-3 material-icons">edit</i></a></td>
+                        <td class="delete" tabla="estudiante" identificador="{{$i->pk_estudiante}}"><i class="red-text darken-3 material-icons">delete</i></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -43,6 +44,6 @@
     </div>
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/autocomplete.js') }}"></script>
+<script src="{{ asset('js/ajax.js') }}"></script>
 <script>autocompletar('estudiante', ["nombre", "apellido"])</script>
 @endsection

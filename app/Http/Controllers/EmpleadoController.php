@@ -30,6 +30,7 @@ class EmpleadoController extends Controller{
         }
         // dd($empleado);
         $empleado->save();
+        return redirect(route('empleados.show', $empleado->cedula));
     }
 
     public function show($cedula){   
@@ -57,5 +58,16 @@ class EmpleadoController extends Controller{
         }
         $empleado->save();
         return redirect(route('empleados.show', $empleado->cedula));
+    }
+
+    public function destroy(Request $request, $cedula){
+        if($request->ajax()){
+            $empleado = Empleado::findOrFail($cedula);
+            $empleado->delete();
+
+            return response()->json([
+                'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' Fue eliminado'
+            ]);
+        }
     }
 }
