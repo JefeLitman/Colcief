@@ -14,7 +14,7 @@
 
 	<h1>Ejemplos</h1>
 	Foto:
-		<img src="{{Storage::url($empleado->foto)}}" width="200px">
+		<img src="{{$empleado->foto}}" width="200px">
 		<br>
 	Nombre: {{$empleado->nombre}} <br>
 	Apellido: {{$empleado->apellido}} <br>

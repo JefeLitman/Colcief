@@ -57,7 +57,8 @@ class EstudianteController extends Controller{
         );
         $estudiante->fk_acudiente = $acudiente->pk_acudiente;
         $estudiante->password = Hash::make('clave');
-
+        $estudiante->save();
+        
         if($request->hasFile('foto')){ // se guarda la imagen 
           $nombre = 'estudiante'.$estudiante->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
