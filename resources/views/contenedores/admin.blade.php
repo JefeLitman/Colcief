@@ -61,8 +61,9 @@
             $('.slider').slider();
             $('.dropdown-trigger').dropdown();
             //Ventana emergente modal @Eduu mira aqui esta el jquery
-            $('#modal1').modal();
+            $('.modal').modal();
             $('#modal1').modal('open');
+            // $('.modal').modal();
             //Configuración de la fecha
             $('.datepicker').datepicker();
             $('#datepicker').datepicker(
@@ -91,11 +92,7 @@
         // });
 
         //Para mostrar los modales al dar clic @Eduard
-        /*
-        $(document).ready(function(){
-            $('.modal').modal();
-        });
-        */
+
         //permite ver imagenes en materialboxed
 
         $(document).ready(function(){

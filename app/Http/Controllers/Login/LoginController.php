@@ -19,7 +19,7 @@ class LoginController extends Controller{
     public function authenticate(Request $request){
         switch($request->role){
             case '0':
-                return $this->auth('administrador', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleado');
+                return $this->auth('administrador', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados');
                 break;
             case '1':
                 return $this->auth('profesor', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleado');
