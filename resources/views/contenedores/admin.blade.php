@@ -60,7 +60,7 @@
             $('.sidenav').sidenav();
             $('.slider').slider();
             $('.dropdown-trigger').dropdown();
-            //Ventana emergente
+            //Ventana emergente modal @Eduu mira aqui esta el jquery
             $('#modal1').modal();
             $('#modal1').modal('open');
             //Configuración de la fecha
@@ -91,10 +91,11 @@
         // });
 
         //Para mostrar los modales al dar clic @Eduard
-
+        /*
         $(document).ready(function(){
             $('.modal').modal();
         });
+        */
         //permite ver imagenes en materialboxed
 
         $(document).ready(function(){

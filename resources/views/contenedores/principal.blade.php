@@ -55,8 +55,6 @@
             contenedor.style.visibility = 'hidden';
             contenedor.style.opacity = '0';
         }
-       
-        
     </script>
 </body>
 </html>
