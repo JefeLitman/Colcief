@@ -10,7 +10,7 @@
                <li><a href="{{ url('/') }}"><i class="material-icons right">home</i>Inicio</a></li>
                <li><a href="{{ url('/nosotros') }}"><i class="material-icons right">school</i>Nuestro Colegio</a></li>
                <li><a href="{{ url('/contacto') }}"><i class="material-icons right">local_phone</i>Cont&aacute;ctenos</a></li>
-               <li><a href="{{ url('/home') }}"><i class="material-icons">account_circle</i></a></li>
+               <li><a href="{{ url('/login') }}"><i class="material-icons">account_circle</i></a></li>
             </ul>
         </div>
     </nav>
