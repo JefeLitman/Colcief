@@ -68,24 +68,24 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input type="text" name="nombre" value="{{$estudiante->nombre}}" required>
+                            <input type="text" name="nombre" value="{{$estudiante->nombre}}" required   >
                             <label>Nombres <label class="rojo">*</label> </label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="apellido" value="{{$estudiante->apellido}}" required>
+                            <input type="text" name="apellido" value="{{$estudiante->apellido}}" required    >
                             <label>Apellido <label class="rojo">*</label> </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input type="text" name="fecha_nacimiento" class="datepicker" id="datepicker" value="{{$estudiante->fecha_nacimiento}}" required>
+                            <input type="text" name="fecha_nacimiento" class="datepicker" id="datepicker" value="{{$estudiante->fecha_nacimiento}}" required     >
                             <label>Fecha de nacimiento <label class="rojo">*</label></label>
                         </div>
                         
                         <div class="input-field col s4">
                                 
-                            <select name="grado" required>
-							  <option value="" disabled>Seleccionar</option>
+                            <select name="grado" required    >
+							  <option value=""  >Seleccionar</option>
 							  @php $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
 							  @endphp
 							  @foreach ($grado as $i=>$value)
@@ -100,7 +100,7 @@
                         </div>
                         <div class="input-field col s4">
                             <label>
-								<input type="checkbox" name="discapacidad"
+								<input type="checkbox" name="discapacidad"   
 								@if($estudiante->discapacidad == "1") {{-- verifico si el estudiante tiene discapacidad, en caso q si, imprimo checked para checkar el checkbox --}} 
 									checked value="1"
 								@endif
@@ -113,15 +113,15 @@
                     <div class="divider"></div>
                     <div class="row">
                             <div class="input-field col s4">
-                                <input type="text" name="nombre_acu_1" value="{{$acudiente->nombre_acu_1}}" required>
+                                <input type="text" name="nombre_acu_1" value="{{$acudiente->nombre_acu_1}}" required    >
                                 <label>Nombres <label class="rojo">*</label></label>
                             </div>
                             <div class="input-field col s4">
-                                <input type="text" name="direccion_acu_1" value="{{$acudiente->direccion_acu_1}}" required>
+                                <input type="text" name="direccion_acu_1" value="{{$acudiente->direccion_acu_1}}" required    >
                                 <label>Dirección <label class="rojo">*</label> </label>
                             </div>
                             <div class="input-field col s4">
-                                <input type="number" name="telefono_acu_1" value="{{$acudiente->telefono_acu_1}}" required>
+                                <input type="number" name="telefono_acu_1" value="{{$acudiente->telefono_acu_1}}" required    >
                                 <label>Celular <label class="rojo">*</label> </label>
                             </div>
                             
@@ -130,15 +130,15 @@
                     <div class="divider"></div>
                     <div class="row">
                             <div class="input-field col s4">
-                                <input type="text" name="nombre_acu_2" value="{{$acudiente->nombre_acu_2}}">
+                                <input type="text" name="nombre_acu_2" value="{{$acudiente->nombre_acu_2}}"  >
                                 <label>Nombres: </label>
                             </div>
                             <div class="input-field col s4">
-                                <input type="text" name="direccion_acu_2" value="{{$acudiente->direccion_acu_2}}">
+                                <input type="text" name="direccion_acu_2" value="{{$acudiente->direccion_acu_2}}"     >
                                 <label>Dirección: </label>
                             </div>
                             <div class="input-field col s4">
-                                <input type="number" name="telefono_acu_2" value="{{$acudiente->telefono_acu_2}}" >
+                                <input type="number" name="telefono_acu_2" value="{{$acudiente->telefono_acu_2}}"    >
                                 <label>Celular: </label>
                             </div>
                             

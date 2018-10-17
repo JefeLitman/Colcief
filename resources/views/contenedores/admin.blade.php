@@ -39,8 +39,8 @@
     <!-- Aqui en esta seccion va estar el contenido de la pagina -->
     <main>
 	    <div class="container">
-            @section('contenedor_principal')
-            @show
+            @yield('contenedor_principal')
+            {{-- @show --}}
         </div>
     </main>
 

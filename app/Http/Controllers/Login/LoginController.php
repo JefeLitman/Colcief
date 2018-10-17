@@ -46,7 +46,7 @@ class LoginController extends Controller{
     private function auth($guard, $credenciales, $ruta){
         $auth = Auth::guard($guard)->attempt($credenciales);
         if($auth){
-            session(['user'=> Auth::guard($guard)->user()->session()]);
+            session(['user'=> Auth::guard($guard)->user()->session(),'role' => $guard]);
             return redirect($ruta);
         }
     }

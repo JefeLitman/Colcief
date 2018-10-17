@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+        Blade::if('role', function ($role) {
+            switch($role){
+    
+                case 3:
+                    return auth()->guard(session('role'))->check() && session('role')=='estudiante';
+                default:
+                    return auth()->guard(session('role'))->check() && auth()->guard(session('role'))->user()->role == $role;
+            }
+
+        });
+
         Route::resourceVerbs([
             'create' => 'crear',
             'edit' => 'editar'
