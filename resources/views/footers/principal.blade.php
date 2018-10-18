@@ -1,23 +1,10 @@
 <!-- Footer de la pagina principal -->
-{{-- <footer class="page-footer teal lighten-5">
-            <div class="container">
-              <div class="row">
-                <div class="col l12 s12">
-                  <h5 class="blue-text text-darken-3 center">Colegio Integrado Ezequiel Florián</h5>
-                </div>
-              </div>
-            </div>
-            <div class="footer-copyright">
-              <div class="container">
-              <h6 class="blue-text text-darken-3 center">© 2018 JDWEP</h6>
-              </div>
-            </div>
-    </footer> --}}
-{{-- <article class="bg-secondary mb-3">   --}}
-    <div class="text-center">
-        <h5 class="">Colegio Integrado Ezequiel Florián</h5>
+
+<footer>
+    <div class="text-center" style="width:100%;color: #fff; background-color: #556270;padding:5px;left: 0;bottom: 0;">
+        <p style="font-size: 1.5rem;">Colegio Integrado Ezequiel Florián</p>
+        <p class="lead" style="font-size: 1rem;">
+          <strong>© 2018 JDWEP</strong> 
+        </p>
     </div>
-    <div class="text-center">
-      <h6 class="">© 2018 JDWEP</h6>
-    </div>
-{{-- </article> --}}
+</footer>
