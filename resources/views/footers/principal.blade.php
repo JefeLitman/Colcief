@@ -13,8 +13,11 @@
               </div>
             </div>
     </footer> --}}
-<article class="bg-secondary mb-3">  
-    <div class="card-body text-center">
-        <h5 class="text-white"><br>Colegio Integrado Ezequiel Florián</h5>
+{{-- <article class="bg-secondary mb-3">   --}}
+    <div class="text-center">
+        <h5 class="">Colegio Integrado Ezequiel Florián</h5>
     </div>
-</article>
+    <div class="text-center">
+      <h6 class="">© 2018 JDWEP</h6>
+    </div>
+{{-- </article> --}}
