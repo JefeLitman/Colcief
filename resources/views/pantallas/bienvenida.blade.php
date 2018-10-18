@@ -3,7 +3,7 @@
 @section('contenedor_principal')
 <!--Galeria por medio del materialize-->
 {{-- <section> --}}
-		<div class="fullscreen">
+		{{-- <div class="fullscreen">
 			<div class="slider">
 					<ul class="light-blue darken-1 slides">
 					<li>
@@ -42,6 +42,6 @@
 					</ul>
 			</div>
 		</div>
-<br>		
+<br>		 --}}
 	{{-- </section> --}}
 @endsection
