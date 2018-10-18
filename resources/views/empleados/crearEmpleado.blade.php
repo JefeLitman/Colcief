@@ -1,9 +1,9 @@
 @extends('contenedores.admin')
 @section('titulo','Empleado Nuevo')
 @section('contenedor_principal')
-@guest
+@auth
     @include('error.error')
-@endguest
+@endauth
 <div class="row">
     <div class="col s2"></div>
     <div class="col s8 center">

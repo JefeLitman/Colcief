@@ -6,7 +6,7 @@
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  media="screen,projection"/>
       <!--precarga-->
       <link type="text/css" rel="stylesheet" href="{{ asset('css/preload.css') }}"/>
       <!-- Definiendo el titulo de la pagina -->
@@ -44,16 +44,17 @@
         </div>
     </main>
 
-    <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
+    <!-- En esta parte va el pie de pagina con la directiva includee para que quede en el lugar -->
     @auth
         @include('footers.admin')
     @endauth
     @guest
         @include('footers.principal')
     @endguest
-    <!--JavaScript at end of body for optimized loading-->
+    <!--JavaScript at end of body forr optimized loading-->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //menu
@@ -61,17 +62,17 @@
             $('.slider').slider();
             $('.dropdown-trigger').dropdown();
             //Ventana emergente modal @Eduu mira aqui esta el jquery
-            $('.modal').modal();
+            $('modal').modal();
             $('#modal1').modal('open');
             // $('.modal').modal();
             //Configuración de la fecha
             $('.datepicker').datepicker();
-            $('#datepicker').datepicker(
+            /*$('#datepicker').datepicker(
                 {
                     format:'yyyy/mm/dd',
                     yearRange:150
                 }
-            );
+            );*/
         });
         //Configuracion de la precarga
         window.onload = function(){
@@ -84,7 +85,7 @@
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems);
             var elems = document.querySelectorAll('.materialboxed');
-            var instances = M.Materialbox.init(elems, options);
+           // var instances = M.Materialbox.init(elems, options);
         });
 
         // $(document).ready(function(){
@@ -95,9 +96,9 @@
 
         //permite ver imagenes en materialboxed
 
-        $(document).ready(function(){
+        /*$(document).ready(function(){
             $('.materialboxed').materialbox();
-        });
+        });*/
 
     </script>
 
