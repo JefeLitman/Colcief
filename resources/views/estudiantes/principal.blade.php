@@ -11,7 +11,7 @@
                 <div class="card-content">
                     <div class="row center">
                         <div class="col s12">
-                            <img class="responsive-img" style="max-width:400px;" src="{{session('user')['foto']}}">
+                            <img class="responsive-img" style="max-width:250px;" src="{{session('user')['foto']}}">
                         </div>
                     </div>
                     <div class="row">
