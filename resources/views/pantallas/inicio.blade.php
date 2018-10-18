@@ -6,7 +6,8 @@
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{ asset('css/menus.css') }}"  media="screen,projection"/>
       <!-- Definiendo el titulo de la pagina -->
       <title>ColCIEF - @yield('titulo')</title>
       <!--Let browser know website is optimized for mobile-->
@@ -16,7 +17,7 @@
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
     @auth
     @endauth
-    @guest 
+    @guest
         @include('menus.principal')
     @endguest
 
@@ -31,22 +32,7 @@
     @endguest
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.sidenav').sidenav();
-            $('.slider').slider();
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, options);
-        });
-
-        // Or with jQuery
-
-        $(document).ready(function(){
-        $('select').formSelect();
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
