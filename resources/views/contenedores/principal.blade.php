@@ -43,18 +43,7 @@
     @include('footers.principal')
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.sidenav').sidenav();
-            $('.slider').slider();
-            $(".dropdown-trigger").dropdown();
-        });
-        window.onload = function(){
-            var contenedor = document.getElementById('preloader-background');
-            contenedor.style.visibility = 'hidden';
-            contenedor.style.opacity = '0';
-        }
-    </script>
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>

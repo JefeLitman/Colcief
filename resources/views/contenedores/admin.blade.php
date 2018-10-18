@@ -55,53 +55,5 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            //menu
-            $('.sidenav').sidenav();
-            $('.slider').slider();
-            $('.dropdown-trigger').dropdown();
-            //Ventana emergente modal @Eduu mira aqui esta el jquery
-            $('modal').modal();
-            $('#modal1').modal('open');
-            // $('.modal').modal();
-            //Configuración de la fecha
-            $('.datepicker').datepicker();
-            /*$('#datepicker').datepicker(
-                {
-                    format:'yyyy/mm/dd',
-                    yearRange:150
-                }
-            );*/
-        });
-        //Configuracion de la precarga
-        window.onload = function(){
-            var contenedor = document.getElementById('preloader-background');
-            contenedor.style.visibility = 'hidden';
-            contenedor.style.opacity = '0';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems);
-            var elems = document.querySelectorAll('.materialboxed');
-           // var instances = M.Materialbox.init(elems, options);
-        });
-
-        // $(document).ready(function(){
-        //     $('select').formSelect();
-        // });
-
-        //Para mostrar los modales al dar clic @Eduard
-
-        //permite ver imagenes en materialboxed
-
-        /*$(document).ready(function(){
-            $('.materialboxed').materialbox();
-        });*/
-
-    </script>
-
-
 </body>
 </html>
