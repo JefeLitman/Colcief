@@ -17,6 +17,7 @@
   <div class="col-md-4 login-sec">
       <h2 class="text-center">Acceso a ColCief</h2>
       <form class="login-form" action="{{route('login')}}" method="POST">
+        @csrf
         <div class='form-group'>
           <label for="role" class="text-uppercase">Tipo de Usuario</label>
           <select class="custom-select" name="role" id="role">
