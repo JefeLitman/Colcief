@@ -1,6 +1,6 @@
 
 <!-- Menu principal -->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1e88e5;">
+<nav class="navbar navbar-expand-lg navbar-light lead" style="background-color: #1e88e5;">
         <!--Espacio donde estara el logo de la pagina -->
         <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('css/img/logo_min_1.png')}}"></a>
         {{--  boton de menu para el responsive  --}}
