@@ -1,68 +1,44 @@
 <!-- Menu principal para el administrador -->
-<nav class="cyan darken-3 nav-extended">
-        <div class="nav-wrapper">
-           <!--Espacio donde estara el logo de la pagina -->
-           <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('css/img/logo_min_1.png')}}"></a>
-            <!--Link que hace referencia al menu responsivo -->
-            <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1e88e5;">
+    <!--Espacio donde estara el logo de la pagina -->
+    <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('css/img/logo_min_1.png')}}"></a>
+    {{--  boton de menu para el responsive  --}}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        {{--  menu  --}}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {{--  <!--Link que hace referencia al menu responsivo -->
+            <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>  --}}
             <!--Menu normal en modo grande -->
-            <ul class="right hide-on-med-and-down" id="menu">
-                <li><a href="#">Notas<i class="material-icons right">developer_board</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="cursos">&nbsp &nbsp Cursos &nbsp &nbsp<i class="material-icons right">class</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="empleados">Empleados<i class="material-icons right">group</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="estudiantes">Estudiantes<i class="material-icons right">child_care</i></a></li>
-                <li><a class="dropdown-trigger" href="{{ url('/logout') }}" >Salir<i class="material-icons right">exit_to_app</i></a></li>
-            </ul>
-            <!-- Estructura del despegable del logo de inicio de sesion -->
-            {{-- <ul id="sesion" class="dropdown-content">
-            <li><a href="" class="center"><i class="material-icons right">portrait</i>{{ucwords(session('user')['nombre'])}}</a></li>
-                <li class="divider"></li>
-                <li><a href="{{ url('/logout') }}" class="center"><i class="material-icons right">exit_to_app</i>Salir</a></li>
-            </ul> --}}
-            <!-- Estructura del despegable de Estudiantes -->
-            <ul id="estudiantes" class="dropdown-content">
-                <li><a href="{{ url('/estudiantes/crear') }}">Crear<i class="material-icons right">person_add</i></a></li>
-                <li class="divider"></li>
-                <li><a href="{{ url('/estudiantes') }}">Editar<i class="material-icons right">build</i></a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Eliminar<i class="material-icons right">delete</i></a></li>
-            </ul>
-            <!-- Estructura del despegable de Empleados -->
-            <ul id="empleados" class="dropdown-content">
-                <li><a href="{{ url('/empleados/crear') }}">Crear<i class="material-icons right">person_add</i></a></li>
-                <li class="divider"></li>
-                <li><a href="{{ url('/empleados') }}">Editar<i class="material-icons right">build</i></a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Eliminar<i class="material-icons right">delete</i></a></li>
-            </ul>
-            <!-- Estructura del despegable de Cursos -->
-            <ul id="cursos" class="dropdown-content">
-                <li><a href="#!">Crear<i class="material-icons right">create</i></a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Editar<i class="material-icons right">build</i></a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Eliminar<i class="material-icons right">delete</i></a></li>
+            <ul class="nav navbar-nav navbar-right mr-auto"> {{-- id="menu" --}}
+                {{--  Notas  --}}
+                <li class="nav-item"><a class="nav-link" href="#" style="color: #ffffff;">&nbsp &nbsp Notas &nbsp &nbsp<span class="sr-only">(current)</span><i class="material-icons right">developer_board</i></a></li>
+                {{--  Cursos  --}}
+                <li class="nav-item"><a class="nav-link" href="#!" style="color: #ffffff;">&nbsp &nbsp Cursos &nbsp &nbsp<i class="material-icons right">class</i></a></li>
+                {{--  empleados  --}}
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Empleados &nbsp &nbsp<i class="material-icons right">group</i></a></li>
+                    {{--  desplegable de empleados  --}}
+                    <div class="dropdown-menu">
+                        {{--  crear empleados  --}}
+                        <a class="dropdown-item" href="{{ url('/empleados/crear') }}">&nbsp &nbsp Crear &nbsp &nbsp<i class="material-icons right">person_add</i></a></li>
+                        {{--  Editar empleados  --}}
+                        <a class="dropdown-item"
+                        href="{{ url('/empleados') }}">Editar<i class="material-icons right">build</i></a></li>
+                        {{--  Eliminar empleados  --}}
+                        <a href="#!">Eliminar<i class="material-icons right">delete</i></a></li>
+                    </div>
+                {{--  Estudiantes  --}}
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Estudiantes &nbsp &nbsp<i class="material-icons right">child_care</i></a></li>
+                    {{--  desplegable de estudiantes  --}}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {{--  Crear estdiantes  --}}
+                        <a href="{{ url('/estudiantes/crear') }}">Crear<i class="material-icons right">person_add</i></a>
+                        {{--  Editar empleados  --}}
+                        <a href="{{ url('/estudiantes') }}">Editar<i class="material-icons right">build</i></a>
+                        {{--  Eliminar empleados  --}}
+                        <a href="#!">Eliminar<i class="material-icons right">delete</i></a>
+                    </div>
+                {{--  Salir  --}}
+                <li class="nav-item"><a  class="nav-link" href="{{ url('/logout') }}" style="color: #ffffff;">&nbsp &nbsp Salir &nbsp &nbsp<i class="material-icons right">exit_to_app</i></a></li>
             </ul>
         </div>
     </nav>
-    <!--Menu responsive en modo movil -->
-    <ul class="sidenav" id="menu-responsivo">
-        <li>
-            <a href="#!"><i class="material-icons right">developer_board</i>Notas</a>
-        </li>
-        <li>
-            <a href="#!"><i class="material-icons right">class</i>Cursos</a>
-        </li>
-        <li>
-            <a href="{{ url('/empleadoss') }}"><i class="material-icons right">group</i>Empleados</a>
-        </li>
-        <li>
-            <a href="{{ url('/estudiantes') }}"><i class="material-icons right">child_care</i>Estudiantes</a>
-        </li>
-        <li>
-            <a href="{{ url('/') }}" data-target="sesion"><i class="material-icons right">home</i>Inicio</a>
-        </li>
-        <li>
-            <a href="{{ url('/home') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a>
-        </li>
-    </ul>
