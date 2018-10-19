@@ -4,7 +4,7 @@
 <head>
     <!-- Esta es la plantilla para el manejo de sesion en laravel -->
       <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="{{ asset('css/icons.css') }}" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  media="screen,projection"/>
       <!-- Definiendo el titulo de la pagina -->
@@ -28,15 +28,6 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.sidenav').sidenav();
-            $('.slider').slider();
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems);
-        });
-    </script>
+
 </body>
 </html>

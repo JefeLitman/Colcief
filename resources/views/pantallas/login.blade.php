@@ -5,7 +5,7 @@
 
 
 <section class="login-block">
-  <div class="container">
+  <div class="container2">
     <div class="row">
       <div class="col-md-4 login-sec">
           <h2 class="text-center">Acceso a ColCief</h2>

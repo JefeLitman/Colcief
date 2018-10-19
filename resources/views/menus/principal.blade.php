@@ -7,8 +7,8 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         {{--  menu  --}}
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        {{--  <!--Link que hace referencia al menu responsivo -->
-        <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>  --}}
+         <!--Link que hace referencia al menu responsivo -->
+        {{-- <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>  --}}
         <div>
             <!--Menu normal en modo grande -->
             <ul class="nav navbar-nav navbar-right mr-auto"> {{-- id="menu" --}}
@@ -19,7 +19,21 @@
                 {{--  Contactenos  --}}
                 <li class="nav-item"><a class="nav-link" href="{{ url('/contacto') }}" style="color: #ffffff;">&nbsp &nbsp Contactenos &nbsp &nbsp<i class="material-icons right">local_phone</i></a></li>
                 {{--  Login  --}}
-                <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}" style="color: #ffffff;">&nbsp &nbsp Login &nbsp &nbsp<i class="material-icons right">account_circle</i></a></li>
+                <li class="nav-item"><a class="nav-link" href="
+                @switch(session('role'))
+                @case('estudiante')
+                    {{ url('/estudiantes') }}" style="color: #ffffff;">&nbsp &nbsp {{ucwords(session('user')['nombre'])}}
+                    @break
+            
+                @case('admin')
+                    /admin
+                    @break
+            
+                @default
+                    {{ url('/login') }}" style="color: #ffffff;">&nbsp &nbsp Login 
+                @endswitch
+               
+                &nbsp &nbsp<i class="material-icons right">account_circle</i></a></li>
 
             </ul>
         </div>
