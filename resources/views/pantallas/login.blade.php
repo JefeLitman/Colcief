@@ -1,15 +1,8 @@
-@extends('contenedores.principal')
+@extends('contenedores.sesion')
 @section('titulo','Inicio de Sesion')
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
+
 
 <section class="login-block">
   <div class="container">
