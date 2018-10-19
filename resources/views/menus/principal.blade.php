@@ -13,13 +13,13 @@
             <!--Menu normal en modo grande -->
             <ul class="nav navbar-nav navbar-right mr-auto"> {{-- id="menu" --}}
                 {{--  Inicio  --}}
-                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}" style="color: #ffffff;">&nbsp &nbsp Inicio &nbsp &nbsp<span class="sr-only">(current)</span><i class="material-icons right">home</i></a></li>
+                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/') }}" style="color: #ffffff;">&nbsp &nbsp Inicio &nbsp &nbsp<span class="sr-only">(current)</span><i class="material-icons right">home</i></a></li>
                 {{--  Nuestro Colegio  --}}
-                <li class="nav-item"><a class="nav-link" href="{{ url('/nosotros') }}" style="color: #ffffff;">&nbsp &nbsp Nuestro Colegio &nbsp &nbsp<i class="material-icons right">school</i></a></li>
+                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/nosotros') }}" style="color: #ffffff;">&nbsp &nbsp Nuestro Colegio &nbsp &nbsp<i class="material-icons right">school</i></a></li>
                 {{--  Contactenos  --}}
-                <li class="nav-item"><a class="nav-link" href="{{ url('/contacto') }}" style="color: #ffffff;">&nbsp &nbsp Contactenos &nbsp &nbsp<i class="material-icons right">local_phone</i></a></li>
+                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/contacto') }}" style="color: #ffffff;">&nbsp &nbsp Contactenos &nbsp &nbsp<i class="material-icons right">local_phone</i></a></li>
                 {{--  Login  --}}
-                <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}" style="color: #ffffff;">&nbsp &nbsp Login &nbsp &nbsp<i class="material-icons right">account_circle</i></a></li>
+                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/login') }}" style="color: #ffffff;">&nbsp &nbsp Login &nbsp &nbsp<i class="material-icons right">account_circle</i></a></li>
 
             </ul>
         </div>

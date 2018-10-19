@@ -23,17 +23,16 @@
         @include('menus.principal')
     @endguest --}}
     <!-- Aqui en esta seccion va estar el contenido de la pagina -->
-    <main>
-	    <div class="container">
-            @yield('contenedor_principal')
+
+
+    @yield('contenedor_principal')
             {{-- @show --}}
-        </div>
-    </main>
+
 
     <!-- En esta parte va el pie de pagina con la directiva includee para que quede en el lugar -->
-    @auth
+    {{-- @auth
         @include('footers.admin')
-    @endauth
+    @endauth --}}
     @guest
         @include('footers.principal')
     @endguest
@@ -41,5 +40,12 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#myModal').modal(open);
+
+        });
+    </script>
 </body>
 </html>
