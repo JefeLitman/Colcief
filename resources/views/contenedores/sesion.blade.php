@@ -5,7 +5,7 @@
     <!-- Esta es la plantilla para el manejo de sesion en laravel -->
       <!--Import Google Icon Font-->
       <link href="{{ asset('css/icons.css') }}" rel="stylesheet">
-      <!--Import materialize.css-->
+      <!--Import bootstrap.css-->
       <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{{ asset('css/menus.css') }}"  media="screen,projection"/>
       <!-- Definiendo el titulo de la pagina -->
