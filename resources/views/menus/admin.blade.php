@@ -13,13 +13,14 @@
                 <ul class="nav navbar-nav mr-auto">{{-- id="menu" --}}
                     {{--  Notas  --}}
                     <li class="nav-item">
-                        <a class="nav-link" id="nav2" href="#" style="color: #ffffff;">&nbsp &nbsp Notas &nbsp &nbsp<span class="sr-only">(current)</span><i class="material-icons right">developer_board</i></a></li>
+                    <a class="nav-link navi2" class="navi2" href="#" style="color: #ffffff;">&nbsp &nbsp Notas &nbsp &nbsp<span class="sr-only">(current)</span><i class="material-icons right">developer_board</i></a></li>
 
                     {{--  Cursos  --}}
-                    <li class="nav-item"><a class="nav-link" href="#!" style="color: #ffffff;">&nbsp &nbsp Cursos &nbsp &nbsp<i class="material-icons right">class</i></a></li>
+                    <li class="nav-item"><a class="nav-link navi2" href="#!" style="color: #ffffff;">&nbsp &nbsp Cursos &nbsp &nbsp<i class="material-icons right">class</i></a></li>
 
                     {{--  empleados  --}}
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Empleados &nbsp &nbsp<i class="material-icons right">group</i></a>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle navi2" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Empleados &nbsp &nbsp<i class="material-icons right">group</i></a>
 
                         {{--  desplegable de empleados  --}}
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,7 +39,7 @@
                         </div>
                     </li>
                     {{--  Estudiantes  --}}
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Estudiantes &nbsp &nbsp<i class="material-icons right">child_care</i></a>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle navi2" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Estudiantes &nbsp &nbsp<i class="material-icons right">child_care</i></a>
 
                         {{--  desplegable de estudiantes  --}}
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -56,7 +57,7 @@
                         </div>
                     </li>
                     {{--  Salir  --}}
-                    <li class="nav-item"><a  class="nav-link" href="{{ url('/logout') }}" style="color: #ffffff;">&nbsp &nbsp Salir &nbsp &nbsp<i class="material-icons right">exit_to_app</i></a></li>
+                    <li class="nav-item"><a  class="nav-link navi2" href="{{ url('/logout') }}" style="color: #ffffff;">&nbsp &nbsp Salir &nbsp &nbsp<i class="material-icons right">exit_to_app</i></a></li>
                 </ul>
             </div>
         </div>

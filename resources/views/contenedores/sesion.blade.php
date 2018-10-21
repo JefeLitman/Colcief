@@ -7,6 +7,7 @@
       <link href="{{ asset('css/icons.css') }}" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{ asset('css/menus.css') }}"  media="screen,projection"/>
       <!-- Definiendo el titulo de la pagina -->
       <title>ColCIEF - @yield('titulo')</title>
       <!--Let browser know website is optimized for mobile-->
@@ -23,7 +24,7 @@
 
     <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
     @include('footers.principal')
-    
+
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
