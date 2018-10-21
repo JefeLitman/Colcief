@@ -19,7 +19,6 @@
                 {{--  Contactenos  --}}
                 <li class="nav-item"><a class="nav-link navi2" href="{{ url('/contacto') }}" style="color: #ffffff;">&nbsp &nbsp Contactenos &nbsp &nbsp<i class="material-icons right">local_phone</i></a></li>
                 {{--  Login  --}}
-<<<<<<< HEAD
                 <li class="nav-item"><a class="nav-link" href="
                 @switch(session('role'))
                 @case('estudiante')
@@ -35,9 +34,6 @@
                 @endswitch
                
                 &nbsp &nbsp<i class="material-icons right">account_circle</i></a></li>
-=======
-                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/login') }}" style="color: #ffffff;">&nbsp &nbsp Login &nbsp &nbsp<i class="material-icons right">account_circle</i></a></li>
->>>>>>> b55f228cb47a4b8c05e3eb1351862435996eea89
 
             </ul>
         </div>
