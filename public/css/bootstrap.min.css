@@ -13,14 +13,11 @@ width:100%;
 padding : 50px 0;
 }
 .banner-sec{background:url(../img/login.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
-<<<<<<< HEAD
 .container2{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
 .container2{width:85%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:576px){.container2{max-width:540px}}@media (min-width:768px){.container2{max-width:720px;}}@media (min-width:992px){.container2{max-width:960px}}@media (min-width:1200px){.container2{max-width:1140px}}.container2-fluid{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
 /* .carousel-inner{border-radius:0 10px 10px 0;} */
-=======
 .container{background:#fff;}
 .carousel-inner{border-radius:0 10px 10px 0;}
->>>>>>> b55f228cb47a4b8c05e3eb1351862435996eea89
 .carousel-caption{text-align:left; left:5%;}
 .login-sec{padding: 50px 30px; position:relative;}
 .login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
