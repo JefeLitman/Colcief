@@ -57,21 +57,8 @@
                             <i class="material-icons">school</i>
                         </div>
                         <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control">
-                    {{-- Rol --}}
-                        &nbsp &nbsp &nbsp &nbsp <div class="input-group-text">
-                            <i class="material-icons">supervisor_account</i>
-                        </div>
-                        <select class="custom-select" name="role">
-                            <option selected>Seleccionar el rol</option>
-                            <option value="1">Profesor</option>
-                            <option value="2">Administrador</option>
-                            {{-- <option value="3">Three</option> --}}
-                        </select>
-                    </div>
-
-                    <div class="input-group mb-2">
                     {{-- Tiempo extra --}}
-                        <div class="input-group-text">
+                         &nbsp &nbsp <div class="input-group-text">
                             <i class="material-icons">access_time</i>
                         </div>
                         <input type="number" id="tiempo_extra" name="tiempo_extra" placeholder="Tiempo extra" class="form-control">
@@ -80,6 +67,19 @@
                             <i class="material-icons">work</i>
                         </div>
                         <input type="text" id="director" name="director" placeholder="Director" class="form-control">
+                    </div>
+
+                    <div class="input-group mb-2">
+                    {{-- Rol --}}
+                        <div class="input-group-text">
+                            <i class="material-icons">supervisor_account</i>
+                        </div>
+                        <select class="custom-select" name="role">
+                            <option selected>Seleccionar el rol</option>
+                            <option value="0">Profesor</option>
+                            <option value="1">Administrador</option>
+                            {{-- <option value="3">Three</option> --}}
+                        </select>
                     </div>
 
                     <div class="input-group mb-2">
