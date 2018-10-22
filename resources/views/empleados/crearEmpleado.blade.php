@@ -22,7 +22,7 @@
                         <div class="input-group-text">
                             <i class="material-icons">contacts</i>
                         </div>
-                        <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula">
+                        <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
                     </div>
 
                     <div class="input-group mb-2">
@@ -30,12 +30,12 @@
                         <div class="input-group-text">
                             <i class="material-icons">face</i>
                         </div>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control">
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control" value="@eachError('nombre', $errors)@endeachError">
                     {{-- apellido --}}
                          &nbsp &nbsp <div class="input-group-text">
                             <i class="material-icons">face</i>
                         </div>
-                        <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control">
+                        <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control" value="@eachError('apellido', $errors)@endeachError">
                     </div>
 
                     <div class="input-group mb-2">
@@ -43,12 +43,12 @@
                         <div class="input-group-text">
                             <i class="material-icons">mail</i>
                         </div>
-                        <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control">
+                        <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control" value="@eachError('correo', $errors)@endeachError">
                     {{-- Direccion --}}
                         &nbsp &nbsp <div class="input-group-text">
                             <i class="material-icons">location_on</i>
                         </div>
-                        <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control">
+                        <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control" value="@eachError('direccion', $errors)@endeachError">
                     </div>
 
                     <div class="input-group mb-2">
@@ -56,17 +56,17 @@
                         <div class="input-group-text">
                             <i class="material-icons">school</i>
                         </div>
-                        <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control">
+                        <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control" value="@eachError('titulo', $errors)@endeachError">
                     {{-- Tiempo extra --}}
                          &nbsp &nbsp <div class="input-group-text">
                             <i class="material-icons">access_time</i>
                         </div>
-                        <input type="number" id="tiempo_extra" name="tiempo_extra" placeholder="Tiempo extra" class="form-control">
+                        <input type="number" id="tiempo_extra" name="tiempo_extra" placeholder="Tiempo extra" class="form-control" value="@eachError('tiempo_extra', $errors)@endeachError">
                     {{-- Director --}}
                         &nbsp &nbsp <div class="input-group-text">
                             <i class="material-icons">work</i>
                         </div>
-                        <input type="text" id="director" name="director" placeholder="Director" class="form-control">
+                        <input type="text" id="director" name="director" placeholder="Director" class="form-control" value="@eachError('director', $errors)@endeachError">
                     </div>
 
                     <div class="input-group mb-2">

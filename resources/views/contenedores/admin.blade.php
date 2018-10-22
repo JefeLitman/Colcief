@@ -3,7 +3,7 @@
 <html>
 <head>
     <!-- Esta es la plantilla para el manejo de sesion en laravel -->
-      <!--Import Google Icon Font-->
+      {{-- <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--para importar los iconos de google-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,7 +13,7 @@
       <!-- Definiendo el titulo de la pagina -->
       <title>ColCIEF - @yield('titulo')</title>
       <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/> --}}
 </head>
 <body>
 
@@ -45,32 +45,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script>
-        //Jquery
-        $(document).ready(function()
-        {
-            $("#myModal").modal("show");
 
-        });
-        $custom-file-text: (
-        en: "Browse",
-        es: "Elegir"
-        );
-
-        $(document).on('click', '#close-preview', function(){
-            $('.image-preview').popover('hide');
-            // para mostrar la foto del empleado o estudiante
-            $('.image-preview').hover(
-                function () {
-                   $('.image-preview').popover('show');
-                },
-                 function () {
-                   $('.image-preview').popover('hide');
-                }
-            );
-        });
-        //java Script
-    </script>
 
 </body>
 </html>

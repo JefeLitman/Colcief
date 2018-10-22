@@ -19,9 +19,7 @@ class EmpleadoStoreController extends FormRequest{
             'direccion' => 'required|string|max:20',
             'titulo' => 'required|string|max:20',
             'role' => 'required|string|max:1',
-            'tiempo_extra' => 'required|numeric',
             'director' => 'required|string|max:20',
-            'estado' => 'boolean',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg'
         ];
     }

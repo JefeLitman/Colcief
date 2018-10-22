@@ -15,21 +15,29 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::if('role', function ($role) {
-            switch($role){
+        // Blade::if('role', function ($role) {
+        //     switch($role){
     
-                case 3:
-                    return auth()->guard(session('role'))->check() && session('role')=='estudiante';
-                default:
-                    return auth()->guard(session('role'))->check() && auth()->guard(session('role'))->user()->role == $role;
-            }
+        //         case 3:
+        //             return auth()->guard(session('role'))->check() && session('role')=='estudiante';
+        //         default:
+        //             return auth()->guard(session('role'))->check() && auth()->guard(session('role'))->user()->role == $role;
+        //     }
 
+        // });
+
+        Blade::if('eachError', function ($campo, $errors) {
+            if(!$errors->get($campo)){
+                echo old($campo);
+            }
         });
+
 
         Route::resourceVerbs([
             'create' => 'crear',
             'edit' => 'editar'
         ]); //Para que las url's queden completamente en español
+
     }
 
     /**

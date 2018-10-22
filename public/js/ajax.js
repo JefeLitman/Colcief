@@ -1,5 +1,4 @@
 function autocompletar(tabla, datos){
-    alert($('input[name=_token]').val())
     $.ajax({
         type: 'POST',
         url: '/autocompletar/'+tabla,
