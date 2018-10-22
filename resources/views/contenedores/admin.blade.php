@@ -3,7 +3,7 @@
 <html>
 <head>
     <!-- Esta es la plantilla para el manejo de sesion en laravel -->
-      {{-- <!--Import Google Icon Font-->
+      <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--para importar los iconos de google-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,7 +13,7 @@
       <!-- Definiendo el titulo de la pagina -->
       <title>ColCIEF - @yield('titulo')</title>
       <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/> --}}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 
