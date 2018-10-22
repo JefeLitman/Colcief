@@ -28,7 +28,7 @@
     public static function subirArchivo(Request $request,String $nombre,String $input){
       $nombre .= '.'.$request->file($input)->clientExtension();
       $file = $request->file($input)->storeAs('public', $nombre);
-      return $nombre;
+      return "storage/".$nombre;
     }
     /*
       COMPROBAR REPETICION:

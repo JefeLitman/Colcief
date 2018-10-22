@@ -23,6 +23,14 @@ Route::get('/nosotros', function () {
     return view('pantallas.nosotros');
 });
 
+Route::get('estudiantes/principal', function () {
+    return view('estudiantes.principal');
+});
+
+Route::get('empleados/principal', function () {
+    return view('empleados.principal');
+});
+
 //Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

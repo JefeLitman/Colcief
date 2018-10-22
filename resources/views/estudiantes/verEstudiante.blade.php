@@ -1,6 +1,6 @@
-@extends('contenedores.admin')
-@section('titulo',' Ver estudiante')
-@section('contenedor_principal')
+@extends('contenedores.estudiante')
+@section('titulo','Inicio')
+@section('contenedor_estudiante')
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $estudiante y el objeto $acudiente --}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>EstudianteController.php  funcion show()
