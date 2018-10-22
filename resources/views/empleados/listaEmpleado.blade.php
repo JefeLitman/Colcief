@@ -10,6 +10,7 @@
         <div class="col-md-12">
             <form action="" id="autocompletar">
                 <div class="input-group mb-3">
+                    @csrf
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="material-icons prefix" style="color:white;">textsms</i></span>
                     </div>

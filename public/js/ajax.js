@@ -1,7 +1,8 @@
 function autocompletar(tabla, datos){
+    alert($('input[name=_token]').val())
     $.ajax({
         type: 'POST',
-        url: '/sistema/public/autocompletar/'+tabla,
+        url: '/autocompletar/'+tabla,
         data: {_token:$('input[name=_token]').val(), datos:datos},
         success: function(data) {
             $(document).ready(function(){
@@ -11,7 +12,7 @@ function autocompletar(tabla, datos){
             });                                                  
         },
         error: function(){
-
+            alert('Algo salio mal :C')
         }
     });
 }
@@ -26,7 +27,7 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type: 'POST',
-                url: '/sistema/public/'+tabla+'s/'+id,
+                url: '/'+tabla+'s/'+id,
                 data: {_token:$('input[name=_token]').val(), _method:'DELETE'},
                 success: function(data) {
                     row.fadeOut();
