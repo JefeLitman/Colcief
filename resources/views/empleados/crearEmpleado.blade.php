@@ -1,83 +1,104 @@
 @extends('contenedores.admin')
 @section('titulo','Empleado Nuevo')
 @section('contenedor_principal')
-@auth
+@guest
     @include('error.error')
-@endauth
-<div class="row">
-    <div class="col s2"></div>
-    <div class="col s8 center">
-        <br>
-        <h2>Crear Empleado</h2>
-        <div class="card green lighten-5">
-            <div class="card-content">
-                <form enctype="multipart/form-data" action="{{ url('/empleados') }}" method = "POST">
-                    @csrf
-                    {{-- input field es necesario para la animación de los label --}}
-                    <div class="input-field">
-                        <input type="number" id="cedula" name="cedula">
-                        <label for="cedula">Cedula: </label>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s4">
-                            <input type="text" id="nombre" name="nombre">
-                            <label for="nombre">Nombre: </label>
+@endguest
+<br>
+<div class="row justify-content-center">
+    <div class="col-10">
+        <form enctype="multipart/form-data" action="{{ url('/empleados') }}" method = "POST">
+        @csrf
+        <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
+            <div class="card-header p-0">
+                <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
+                    <h3><i class="fa fa-envelope"></i>Crear empleados</h3>
+                </div>
+            </div>
+            <div class="card-body p-3">
+                <div class="form-group">
+                    <div class="input-group mb-2">
+                        {{-- cedula --}}
+                        <div class="input-group-text">
+                            <i class="material-icons">contacts</i>
                         </div>
-                        <div class="input-field col s4">
-                            <input type="text" id="apellido" name="apellido">
-                            <label for="apellido">Apellido: </label>
+                        <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula">
+                    </div>
+
+                    <div class="input-group mb-2">
+                    {{-- nombre --}}
+                        <div class="input-group-text">
+                            <i class="material-icons">face</i>
                         </div>
-                    </div>
-                    <div class="input-field">
-                        <input type="email" id="correo" name="correo">
-                        <label for="correo">Correo: </label>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" id="direccion" name="direccion">
-                        <label for="direccion">Dirección: </label>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" id="titulo" name="titulo">
-                        <label for="titulo">Título: </label>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" id="role" name="role">
-                        <label for="role">Role: </label>
-                    </div>
-                    <div class="input-field">
-                        <input type="number" id="tiempo_extra" name="tiempo_extra">
-                        <label for="tiempo_extra">Tiempo extra: </label>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" id="director" name="director">
-                        <label for="director">Director: </label>
-                    </div>
-                    <div class="file-field input-field">
-                        <div class="btn cyan darken-3 waves-effect">
-                            <span>Seleccionar archivo</span>
-                            <input type="file" id="foto" name="foto">
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control">
+                    {{-- apellido --}}
+                         &nbsp &nbsp <div class="input-group-text">
+                            <i class="material-icons">face</i>
                         </div>
-                        <div class="file-path-wrapper">{{-- file-path-wrapper es para mostrar el nombre la foto que subio y verificar que subio --}}
-                            <input class="file-path validate" type="text">
+                        <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control">
+                    </div>
+
+                    <div class="input-group mb-2">
+                    {{-- Correo --}}
+                        <div class="input-group-text">
+                            <i class="material-icons">mail</i>
                         </div>
+                        <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control">
+                    {{-- Direccion --}}
+                        &nbsp &nbsp <div class="input-group-text">
+                            <i class="material-icons">location_on</i>
+                        </div>
+                        <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control">
                     </div>
-                    <div class="input-field center">
-                        <button class="btn waves-effect cyan darken-3" type="submit" name="action">Enviar<i class="material-icons right">send</i>
-                        </button>
+
+                    <div class="input-group mb-2">
+                    {{-- Titulo --}}
+                        <div class="input-group-text">
+                            <i class="material-icons">school</i>
+                        </div>
+                        <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control">
+                    {{-- Rol --}}
+                        &nbsp &nbsp &nbsp &nbsp <div class="input-group-text">
+                            <i class="material-icons">supervisor_account</i>
+                        </div>
+                        <select class="custom-select" name="role">
+                            <option selected>Seleccionar el rol</option>
+                            <option value="1">Profesor</option>
+                            <option value="2">Administrador</option>
+                            {{-- <option value="3">Three</option> --}}
+                        </select>
                     </div>
-                </form>
+
+                    <div class="input-group mb-2">
+                    {{-- Tiempo extra --}}
+                        <div class="input-group-text">
+                            <i class="material-icons">access_time</i>
+                        </div>
+                        <input type="number" id="tiempo_extra" name="tiempo_extra" placeholder="Tiempo extra" class="form-control">
+                    {{-- Director --}}
+                        &nbsp &nbsp <div class="input-group-text">
+                            <i class="material-icons">work</i>
+                        </div>
+                        <input type="text" id="director" name="director" placeholder="Director" class="form-control">
+                    </div>
+
+                    <div class="input-group mb-2">
+                    {{-- Foto --}}
+                    <div class="input-group-text">
+                        <i class="material-icons">add_photo_alternate</i>
+                    </div>
+                    &nbsp &nbsp <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/gif">&nbsp &nbsp
+                    </div>
+
+                    {{-- enviar --}}
+                    <div class="text-center">
+                        <input type="submit" name="action" value="Enviar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
+                    </div>
+                </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
-{{-- <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div> --}}
+<br>
 @endsection
