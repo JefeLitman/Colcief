@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Materia;
+use App\MateriaPC;
 
 use App\Http\Requests\MateriaStoreController;
 use App\Http\Requests\MateriaUpdateController;
@@ -81,6 +82,10 @@ class MateriaController extends Controller
     {
         $materia = Materia::findOrFail($id)->fill($request->all());
         $materia->save();
+        
+        //Debido a que el atributo materia.nombre debe ser igual a materia_pc.nombre, cada que el nombre de una materia se modifique la otra debe actualizarse
+        $materiapc = MateriaPC::where('fk_materia','=',$materia->pk_materia)->update(['nombre'=>$materia->nombre]);
+
         return "Se actualizó correctamente";
     }
 

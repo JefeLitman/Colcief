@@ -33,6 +33,8 @@ Route::resource('/empleados','EmpleadoController');
 Route::resource('/periodos','PeriodoController');
 Route::resource('/materias','MateriaController');
 Route::resource('/divisiones','DivisionController');
+Route::resource('/cursos','CursoController');
+Route::resource('/materiaspc','MateriaPCController');
 Route::get('/login', 'Login\LoginController')->name('login');
 Route::post('/login', 'Login\LoginController@authenticate')->name('authenticate');
 Route::get('/logout', 'Login\LoginController@logout')->name('logout');

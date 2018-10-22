@@ -7,6 +7,11 @@
         </ul>
     </div>
 @endif
+{{-- Guia Front --}}
+{{-- Se envía el objeto $materia --}}
+{{-- Variables enviadas desde Local>App>Http>Controllers>MateriaController.php  funcion edit() 
+	 @Autor Paola C. --}}
+{{-- URL: localhost:8000\materias\{pk_materia}\editar --}}
 <form method="post" action="{{route('materias.update', $materia->pk_materia)}}" >
     {{ method_field('PATCH') }}
     @csrf

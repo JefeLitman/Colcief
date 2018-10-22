@@ -7,6 +7,10 @@
         </ul>
     </div>
 @endif
+{{-- Guia Front --}}
+{{-- No se envia objeto --}}
+{{-- @Autor Paola C. --}}
+{{-- URL: localhost:8000\materias\crear --}}
 <form method="post" action="/materias" >
     @csrf
     <h1>CREAR MATERIA</h1>

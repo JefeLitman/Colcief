@@ -5,14 +5,14 @@
 </head>
 <body>
 	{{-- Guia Front --}}
-	{{-- Se envía el objeto $estudiante y el objeto $acudiente --}}
-	{{-- Variables enviadas desde Local>App>Http>Controllers>EstudianteController.php  funcion show() 
+	{{-- Se envía el objeto $materia --}}
+	{{-- Variables enviadas desde Local>App>Http>Controllers>MateriaController.php  funcion show() 
 		 @Autor Paola C. --}}
-	{{-- URL: localhost:8000\estudiantes\{pk_estudiante} --}}
+	{{-- URL: localhost:8000\materia\{pk_materia} --}}
 	<h3>Tipo de Archivos:</h3> $materia: {{ gettype($materia)}} <br>
 	<h3>Contenido materia:</h3> {{$materia}} <br>
 
-	{{-- <h1>Ejemplos</h1>
+	<h1>Ejemplos</h1>
 	Nombre: {{$estudiante->nombre}} <br>
 	Apellido: {{$estudiante->apellido}} <br> --}}
 

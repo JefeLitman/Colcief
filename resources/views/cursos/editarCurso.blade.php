@@ -1,5 +1,4 @@
-@extends('.contenedorAdmin')
-@section('contenedorAdmin')
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -29,4 +28,3 @@
             </div>
         </div>
     </div>
-@endsection
