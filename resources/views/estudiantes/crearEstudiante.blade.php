@@ -1,9 +1,11 @@
 @extends('contenedores.admin')
 @section('titulo','Estudiante Nuevo')
 @section('contenedor_principal')
-@guest
-    @include('error.error')
-@endguest
+@if($errors->any())
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+@endif
 <div class="row">
     <div class="col s2"></div>
     <div class="col s8 center"><br>

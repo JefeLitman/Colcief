@@ -19,16 +19,16 @@ class LoginController extends Controller{
     public function authenticate(Request $request){
         switch($request->role){
             case '0':
-                return $this->auth('administrador', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados');
+                return $this->auth('administrador', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados/principal');
                 break;
             case '1':
-                return $this->auth('profesor', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleado');
+                return $this->auth('profesor', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados/principal');
                 break;
             case '2':
-                $this->auth('profesor', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleado');
+                $this->auth('profesor', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados/principal');
                 break;
             case '3':
-                return $this->auth('estudiante', ["pk_estudiante" => $request->username, "password" => $request->password], '/estudiantes');
+                return $this->auth('estudiante', ["pk_estudiante" => $request->username, "password" => $request->password], '/estudiantes/principal');
                 break;
             default:
                 return redirect(route("login"));

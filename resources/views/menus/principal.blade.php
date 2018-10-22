@@ -1,41 +1,37 @@
 
-<!-- Menu principal -->
-<nav class="navbar navbar-expand-lg navbar-light lead" style="background-color: #1e88e5;">
-    <!--Espacio donde estara el logo de la pagina -->
-    <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('css/img/logo_min_1.png')}}"></a>
-    {{--  boton de menu para el responsive  --}}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        {{--  menu  --}}
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-         <!--Link que hace referencia al menu responsivo -->
-        {{-- <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>  --}}
-        <div>
-            <!--Menu normal en modo grande -->
-            <ul class="nav navbar-nav navbar-right mr-auto"> {{-- id="menu" --}}
-                {{--  Inicio  --}}
-                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/') }}" style="color: #ffffff;">&nbsp &nbsp Inicio &nbsp &nbsp<span class="sr-only">(current)</span><i class="material-icons right">home</i></a></li>
-                {{--  Nuestro Colegio  --}}
-                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/nosotros') }}" style="color: #ffffff;">&nbsp &nbsp Nuestro Colegio &nbsp &nbsp<i class="material-icons right">school</i></a></li>
-                {{--  Contactenos  --}}
-                <li class="nav-item"><a class="nav-link navi2" href="{{ url('/contacto') }}" style="color: #ffffff;">&nbsp &nbsp Contactenos &nbsp &nbsp<i class="material-icons right">local_phone</i></a></li>
-                {{--  Login  --}}
-                <li class="nav-item"><a class="nav-link" href="
-                @switch(session('role'))
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top lead" style="background-color: #1e88e5; height:50px;">
+    <a class="navbar-brand" href="#">
+        <img src="{{asset('css/img/logo_min_1.png')}}"  height="30" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item @if (Request::path()=="/") active @endif ">
+          <a class="nav-link " href="{{ url('/') }}"> <i class="fas fa-home"></i> Inicio</a>
+        </li>
+        <li class="nav-item @if (Request::path()=="nosotros") active @endif ">
+          <a class="nav-link" href="{{ url('/nosotros') }}"><i class="fas fa-graduation-cap"></i> Nuestro Colegio</a>
+        </li>
+        <li class="nav-item @if (Request::path()=="contacto") active @endif ">
+          <a class="nav-link" href="{{ url('/contacto') }}"><i class="fas fa-phone"></i> Contactenos</a>
+        </li>
+        <li class="nav-item @if (Request::path()=="login") active @endif ">
+          <a class="nav-link" href="
+          @switch(session('role'))
                 @case('estudiante')
-                    {{ url('/estudiantes') }}" style="color: #ffffff;">&nbsp &nbsp {{ucwords(session('user')['nombre'])}}
+                    {{ url('/estudiantes/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
             
                 @case('admin')
-                    /admin
+                    {{ url('/empleados/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
             
                 @default
-                    {{ url('/login') }}" style="color: #ffffff;">&nbsp &nbsp Login 
+                    {{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>
                 @endswitch
-               
-                &nbsp &nbsp<i class="material-icons right">account_circle</i></a></li>
-
-            </ul>
-        </div>
+        </li>
+      </ul>
     </div>
-</nav>
+  </nav>
