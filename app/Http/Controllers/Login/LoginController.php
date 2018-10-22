@@ -48,6 +48,8 @@ class LoginController extends Controller{
         if($auth){
             session(['user'=> Auth::guard($guard)->user()->session(),'role' => $guard]);
             return redirect($ruta);
+        }else{
+            return redirect()->route('login')->withInput()->with('error', 'Las credenciales no son correctas');
         }
     }
 }

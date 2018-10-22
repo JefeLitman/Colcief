@@ -19,7 +19,7 @@ class AjaxController extends Controller{
                 }
                 $result[ucwords($f)] = null;
             }
-            return response()->json($result);
+            return response()->json('hola');
         }
     }
 }
