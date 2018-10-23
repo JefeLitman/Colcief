@@ -1,6 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Empleado Nuevo')
-@section('contenedor_principal')
+@section('contenedor_admin')
 @guest
     @include('error.error')
 @endguest
@@ -20,7 +20,7 @@
                     <div class="input-group mb-2">
                         {{-- cedula --}}
                         <div class="input-group-text">
-                            <i class="material-icons">contacts</i>
+                                <i class="fas fa-id-card"></i>
                         </div>
                         <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
                     </div>
@@ -28,12 +28,12 @@
                     <div class="input-group mb-2">
                     {{-- nombre --}}
                         <div class="input-group-text">
-                            <i class="material-icons">face</i>
+                                <i class="fas fa-user-circle"></i>
                         </div>
                         <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control" value="@eachError('nombre', $errors)@endeachError">
                     {{-- apellido --}}
                          &nbsp &nbsp <div class="input-group-text">
-                            <i class="material-icons">face</i>
+                                <i class="fas fa-user-circle"></i>
                         </div>
                         <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control" value="@eachError('apellido', $errors)@endeachError">
                     </div>
@@ -41,12 +41,12 @@
                     <div class="input-group mb-2">
                     {{-- Correo --}}
                         <div class="input-group-text">
-                            <i class="material-icons">mail</i>
+                                <i class="fas fa-at"></i>
                         </div>
                         <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control" value="@eachError('correo', $errors)@endeachError">
                     {{-- Direccion --}}
                         &nbsp &nbsp <div class="input-group-text">
-                            <i class="material-icons">location_on</i>
+                                <i class="fas fa-map-marked-alt"></i>
                         </div>
                         <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control" value="@eachError('direccion', $errors)@endeachError">
                     </div>
@@ -54,17 +54,17 @@
                     <div class="input-group mb-2">
                     {{-- Titulo --}}
                         <div class="input-group-text">
-                            <i class="material-icons">school</i>
+                                <i class="fas fa-user-lock"></i>
                         </div>
                         <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control" value="@eachError('titulo', $errors)@endeachError">
                     {{-- Tiempo extra --}}
                          &nbsp &nbsp <div class="input-group-text">
-                            <i class="material-icons">access_time</i>
+                                <i class="fas fa-stopwatch"></i>
                         </div>
                         <input type="number" id="tiempo_extra" name="tiempo_extra" placeholder="Tiempo extra" class="form-control" value="@eachError('tiempo_extra', $errors)@endeachError">
                     {{-- Director --}}
                         &nbsp &nbsp <div class="input-group-text">
-                            <i class="material-icons">work</i>
+                                <i class="fas fa-user-lock"></i>
                         </div>
                         <input type="text" id="director" name="director" placeholder="Director" class="form-control" value="@eachError('director', $errors)@endeachError">
                     </div>
@@ -72,7 +72,7 @@
                     <div class="input-group mb-2">
                     {{-- Rol --}}
                         <div class="input-group-text">
-                            <i class="material-icons">supervisor_account</i>
+                                <i class="fas fa-user-cog"></i>
                         </div>
                         <select class="custom-select" name="role">
                             <option selected>Seleccionar el rol</option>
@@ -85,7 +85,7 @@
                     <div class="input-group mb-2">
                     {{-- Foto --}}
                     <div class="input-group-text">
-                        <i class="material-icons">add_photo_alternate</i>
+                            <i class="fas fa-file-image"></i>
                     </div>
                     &nbsp &nbsp <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/gif">&nbsp &nbsp
                     </div>

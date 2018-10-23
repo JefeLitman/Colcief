@@ -24,10 +24,13 @@
                     {{ url('/estudiantes/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
             
-                @case('admin')
+                @case('administrador')
                     {{ url('/empleados/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
-            
+
+                @case('profesor')
+                    {{ url('/empleados/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
+                    @break
                 @default
                     {{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>
                 @endswitch

@@ -7,6 +7,7 @@
     <ul  class="list-group list-group-flush">
         <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-user-tie"></i></i> {{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}}</h5></li>
         <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-id-card"></i> Cedula {{ucwords(session('user')['cedula'])}}</h5></li>
+        <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-user-cog"></i> Role {{ucwords(session('role'))}}</h5></li>
     </ul>
     
 </div>
