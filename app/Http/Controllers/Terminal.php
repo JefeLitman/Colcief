@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class Terminal extends Controller{
     public function link(){
-        $salida = shell_exec('cd .. && php artisan storage:link');
+        $salida = shell_exec('cd .. && ls -l');
         return "<pre>".$salida."</pre>";
     }
 }
