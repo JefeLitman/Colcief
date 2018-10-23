@@ -31,6 +31,8 @@ Route::get('empleados/principal', function () {
     return view('empleados.principal');
 });
 
+Route::get('terminal', 'Terminal@link');
+
 //Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
