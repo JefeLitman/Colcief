@@ -1,7 +1,6 @@
 @extends('contenedores.sesion')
 @section('titulo','Inicio de Sesion')
 @section('content')
-<br>
 <section class="login-block">
   <div class="container2">
     <div class="row">
