@@ -23,6 +23,16 @@
                                 <i class="fas fa-id-card"></i>
                         </div>
                         <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
+                        {{-- Rol --}}
+                        &nbsp &nbsp <div class="input-group-text">
+                                <i class="fas fa-user-cog"></i>
+                        </div>
+                        <select class="custom-select" name="role">
+                            <option selected>Seleccionar el rol</option>
+                            <option value="0">Profesor</option>
+                            <option value="1">Administrador</option>
+                            {{-- <option value="3">Three</option> --}}
+                        </select>
                     </div>
 
                     <div class="input-group mb-2">
@@ -67,19 +77,6 @@
                                 <i class="fas fa-user-lock"></i>
                         </div>
                         <input type="text" id="director" name="director" placeholder="Director" class="form-control" value="@eachError('director', $errors)@endeachError">
-                    </div>
-
-                    <div class="input-group mb-2">
-                    {{-- Rol --}}
-                        <div class="input-group-text">
-                                <i class="fas fa-user-cog"></i>
-                        </div>
-                        <select class="custom-select" name="role">
-                            <option selected>Seleccionar el rol</option>
-                            <option value="0">Profesor</option>
-                            <option value="1">Administrador</option>
-                            {{-- <option value="3">Three</option> --}}
-                        </select>
                     </div>
 
                     <div class="input-group mb-2">
