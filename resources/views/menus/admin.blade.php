@@ -1,64 +1,59 @@
 <!-- Menu principal para el administrador -->
-<nav class="navbar navbar-expand-lg navbar-light lead" style="background-color: #1e88e5;">
-    <!--Espacio donde estara el logo de la pagina -->
-    <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('css/img/logo_min_1.png')}}"></a>
-
-    {{--  boton de menu para el responsive  --}}
-    <button style="color: #ffffff;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon " style=" color: #ffffff; !import"></span></button>
-
-        {{--  menu  --}}
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <div>
-                <!--Menu normal en modo grande -->
-                <ul class="nav navbar-nav mr-auto">{{-- id="menu" --}}
-                    {{--  Notas  --}}
-                    <li class="nav-item">
-                    <a class="nav-link navi2" class="navi2" href="#" style="color: #ffffff;">&nbsp &nbsp Notas &nbsp &nbsp<span class="sr-only">(current)</span><i class="material-icons right">developer_board</i></a></li>
-
-                    {{--  Cursos  --}}
-                    <li class="nav-item"><a class="nav-link navi2" href="#!" style="color: #ffffff;">&nbsp &nbsp Cursos &nbsp &nbsp<i class="material-icons right">class</i></a></li>
-
-                    {{--  empleados  --}}
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle navi2" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Empleados &nbsp &nbsp<i class="material-icons right">group</i></a>
+<nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;">   
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{asset('css/img/logo_min_1.png')}}"  height="30" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item @if (Request::path()=="empleados/principal") active @endif ">
+                    <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-sticky-note"></i> Notas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chalkboard-teacher"></i></i> Cursos </a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Empleados</a>
 
                         {{--  desplegable de empleados  --}}
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                             {{--  crear empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/empleados/crear') }}">&nbsp &nbsp Crear &nbsp &nbsp<i class="material-icons right">person_add</i></a>
+                            <a class="dropdown-item" href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
                             <div class="dropdown-divider"></div>
 
                             {{--  Editar empleados  --}}
-                            <a class="dropdown-item"
-                            href="{{ url('/empleados') }}">&nbsp &nbsp Editar &nbsp &nbsp<i class="material-icons right">build</i></a>
+                            <a class="dropdown-item" href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
                             <div class="dropdown-divider"></div>
 
                             {{--  Eliminar empleados  --}}
-                            <a class="dropdown-item" href="#!">&nbsp &nbsp Eliminar &nbsp &nbsp<i class="material-icons right">delete</i></a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user-minus"></i> Eliminar</a>
                         </div>
-                    </li>
-                    {{--  Estudiantes  --}}
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle navi2" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">&nbsp &nbsp Estudiantes &nbsp &nbsp<i class="material-icons right">child_care</i></a>
+                </li>
+                
+                 {{--  Estudiantes  --}}
+                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-graduate"></i> Estudiantes</a>
 
-                        {{--  desplegable de estudiantes  --}}
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{--  desplegable de estudiantes  --}}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            {{--  Crear estdiantes  --}}
-                            <a class="dropdown-item" href="{{ url('/estudiantes/crear') }}">&nbsp &nbsp Crear &nbsp &nbsp<i class="material-icons right">person_add</i></a>
-                            <div class="dropdown-divider"></div>
+                        {{--  Crear estudiantes  --}}
+                        <a class="dropdown-item" href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+                        <div class="dropdown-divider"></div>
 
-                            {{--  Editar empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/estudiantes') }}">&nbsp &nbsp Editar &nbsp &nbsp<i class="material-icons right">build</i></a>
-                            <div class="dropdown-divider"></div>
+                        {{--  Editar estudiantes  --}}
+                        <a class="dropdown-item" href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                        <div class="dropdown-divider"></div>
 
-                            {{--  Eliminar empleados  --}}
-                            <a class="dropdown-item" href="#!">&nbsp &nbsp Eliminar &nbsp &nbsp<i class="material-icons right">delete</i></a>
-                        </div>
-                    </li>
-                    {{--  Salir  --}}
-                    <li class="nav-item"><a  class="nav-link navi2" href="{{ url('/logout') }}" style="color: #ffffff;">&nbsp &nbsp Salir &nbsp &nbsp<i class="material-icons right">exit_to_app</i></a></li>
-                </ul>
-            </div>
+                        {{--  Eliminar estudiantes  --}}
+                        <a class="dropdown-item" href="#"><i class="fas fa-user-minus"></i> Eliminar</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
+                </li>
+            </ul>
         </div>
-    </nav>
+</nav>

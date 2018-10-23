@@ -6,6 +6,7 @@
     <img class="card-img-top" src="{{session('user')['foto']}}" alt="Card image cap"><br>
     <ul  class="list-group list-group-flush">
         <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-user-graduate"></i> {{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}}</h5></li>
+        <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-hashtag"></i> Código {{ucwords(session('user')['pk_estudiante'])}}</h5></li>
         <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-star"></i> @switch(session('user')['grado'])
                 @case(0)
                     Preescolar
@@ -46,6 +47,7 @@
                     
             @endswitch </h5>
         </li>
+        
     </ul>
     
 </div>
