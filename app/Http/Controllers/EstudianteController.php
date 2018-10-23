@@ -20,7 +20,7 @@ class EstudianteController extends Controller{
     //Funciones publicas de primeros y al final las privadas
 
     public function __construct(){ 
-        $this->middleware('admin:administrador,estudiante'); //restringir el acceso a los usuarios
+        $this->middleware('admin:administrador'); //restringir el acceso a los usuarios
     }
     
     public function index(){

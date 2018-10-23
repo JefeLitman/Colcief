@@ -12,6 +12,9 @@ use App\Http\Controllers\SupraController;
 use Illuminate\Support\Facades\Hash;
 
 class EmpleadoController extends Controller{
+    public function __contructor(){
+        $this->middleware('admin:administrador');
+    }
     public function index(){
         $empleado = Empleado::all();
         return view('empleados.listaEmpleado', ['empleado' => $empleado]);
@@ -26,11 +29,15 @@ class EmpleadoController extends Controller{
         $empleado->password = Hash::make('clave');
         if($request->hasFile('foto')){
           $nombreArchivo = 'empleado'.$request->cedula;
-          $empleado->foto = SupraController::machete($request, $nombreArchivo,'foto');
+          $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo,'foto');
         }
-        // dd($empleado);
-        $empleado->save();
-        return redirect(route('empleados.show', $empleado->cedula));
+        $cedula = $empleado->cedula;
+        if($empleado->save()){
+            return redirect(route('empleados.show', $cedula))->with('true', 'El registro fue guardado con exito');
+        }else{
+            return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
+        
     }
 
     public function show($cedula){   
@@ -54,7 +61,7 @@ class EmpleadoController extends Controller{
         $empleado = Empleado::findOrFail($cedula)->fill(SupraController::minuscula($request->all()));
         if($request->hasFile('foto')){
             $nombreArchivo = 'empleado'.$request->cedula;
-            $empleado->foto = SupraController::machete($request, $nombreArchivo, 'foto');
+            $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto');
         }
         $empleado->save();
         return redirect(route('empleados.show', $empleado->cedula));

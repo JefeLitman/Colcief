@@ -32,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
             }
         });
 
+        Blade::if('select', function($campo, $comparacion){
+            if(old($campo) == $comparacion){
+                echo "selected";
+            }
+        });
 
         Route::resourceVerbs([
             'create' => 'crear',

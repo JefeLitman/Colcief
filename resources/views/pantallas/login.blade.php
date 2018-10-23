@@ -6,9 +6,9 @@
     <div class="row">
       <div class="col-md-4 login-sec">
           <h2 class="text-center">Acceso a ColCief</h2>
-          @if(session()->has('error'))
+          @if(session()->has('false'))
               <div class="alert alert-danger danger-dismissible fade show hidden" role="alert">
-                {{session('error')}}
+                {{session('false')}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true" style="color:#812c3b">&times;</span>
                 </button>
