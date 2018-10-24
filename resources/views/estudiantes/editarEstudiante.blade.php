@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-    @endif
+        @endif
         <div class="card green lighten-5">
             <div class="card-content">
 					<form enctype="multipart/form-data" action="{{route('estudiantes.update', $estudiante->pk_estudiante)}}" method="POST">
