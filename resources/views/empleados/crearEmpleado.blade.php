@@ -116,7 +116,7 @@
                                 <i class="fas fa-file-image input-group-text"></i>
                             </div>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input form-group" id="customFileLang" lang="es">
+                                <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es">
                                 <label class="custom-file-label" for="customFileLang">Sube una foto</label>
                             </div>
                         </div>
