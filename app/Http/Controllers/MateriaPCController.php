@@ -24,6 +24,7 @@ class MateriaPCController extends Controller
     {
         $user=session('user');
         $role=session('role');
+        #dd($user);
         switch($role){
             case "administrador": 
                 // Cuando es admin
@@ -59,6 +60,32 @@ class MateriaPCController extends Controller
                 // Cuando es director...  que pase a profesor(Por eso omito el break).
             case "profesor":
                 // cuando es profesor
+                $result=[];
+                
+                $materiaspc = null;
+                // Busco las tuplas de materia_pc creadas el actual año, y ademas solo las que pertenescan al profesor logeado
+                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','materia_pc.nombre','curso.nombre as curso')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['materia_pc.fk_empleado','=',$user["cedula"]]]);
+
+                // Con esos valores realizo un join con empleado y curso
+                $materiaspc=$materiaspc->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get();
+
+                // Aqui extraigo las materias que tienen alguna tupla en materia_pc creadas en el actual año, y que el dicta para que no se repita la materias las agrupo.
+                $materias=MateriaPC::select('nombre')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['materia_pc.fk_empleado','=',$user["cedula"]]])->groupBy('nombre')->get();
+                
+                // El array asosiativo $result, se declara y se declaran sus item como un array para poder 
+                // ingresarles array's posteriormente. Es decir cada item del array asosiativo $result contendrá matrices.
+                // Ejemplo de lo que sería $result={"Etica":[[1,"8-2"],[2,"8-2"]],"Software":[[3,"8-2"]]}
+                foreach($materias as $j){
+                    $result[$j->nombre]=[];
+                }
+                foreach ($materiaspc as $i){
+                    foreach($materias as $j){
+                        if($j->nombre==$i->nombre){
+                            array_push($result[$j->nombre],[$i->pk_materia_pc,$i->curso]);
+                        }
+                    }
+                }
+                return view('materiaspc.listaMateriasPC_profesor',["result"=>$result]);
                 break;
             case "estudiante":
                 // cuando es estudiantes
