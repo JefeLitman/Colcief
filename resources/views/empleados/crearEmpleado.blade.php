@@ -27,7 +27,7 @@
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class= "input-group-text">
-                                    <i class="fas fa-user-lock"></i>
+                                    <i class="fas fa-id-card"></i>
                                 </span>
                             </div>
                             <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
@@ -95,7 +95,7 @@
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class= "input-group-text">
-                                    <i class="fas fa-user-lock "></i>
+                                    <i class="fas fa-user-graduate"></i>
                                 </span>
                             </div>
                             <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control" value="@eachError('titulo', $errors)@endeachError">
@@ -104,7 +104,7 @@
                     <div class="col-md-6">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user-lock"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user-check"></i></span>
                             </div>
                             <input type="text" id="director" name="director" placeholder="Director" class="form-control" value="@eachError('director', $errors)@endeachError">
                         </div>
