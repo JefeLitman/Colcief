@@ -1,9 +1,14 @@
 @extends('contenedores.admin')
 @section('titulo','Empleado Nuevo')
 @section('contenedor_admin')
-@guest
+{{-- @guest
     @include('error.error')
-@endguest
+@endguest --}}
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+@endif
 <br>
 <div class="row justify-content-center">
     <div class="col-10">
@@ -12,85 +17,115 @@
         <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
             <div class="card-header p-0">
                 <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                    <h3><i class="fa fa-envelope"></i>Crear empleados</h3>
+                    <h3><i class="fa fa-envelope"></i> Crear empleados</h3>
                 </div>
             </div>
             <div class="card-body p-3">
-                <div class="form-group">
-                    <div class="input-group mb-2">
-                        {{-- cedula --}}
-                        <div class="input-group-text">
-                                <i class="fas fa-id-card"></i>
+                <div class="row">
+                    {{-- cedula --}}
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class= "input-group-text">
+                                    <i class="fas fa-id-card"></i>
+                                </span>
+                            </div>
+                            <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
                         </div>
-                        <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
-                        {{-- Rol --}}
-                        &nbsp &nbsp <div class="input-group-text">
-                                <i class="fas fa-user-cog"></i>
-                        </div>
-                        <select class="custom-select" name="role">
-                            <option selected>Seleccionar el rol</option>
-                            <option value="0">Profesor</option>
-                            <option value="1">Administrador</option>
-                            {{-- <option value="3">Three</option> --}}
-                        </select>
                     </div>
 
-                    <div class="input-group mb-2">
+                    {{-- Rol --}}
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class= "input-group-text">
+                                    <i class="fas fa-user-cog"></i>
+                                </span>
+                            </div>
+                            <select class="custom-select" name="role" id="role">
+                                <option if>Seleccionar el rol</option>
+                                <option @select('role', '0') @endselect value="0">Administrador</option>
+                                <option @select('role', '1') @endselect value="1">Director</option>
+                                <option @select('role', '2') @endselect value="2">Profesor</option>
+                                {{-- <option value="3">Three</option> --}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     {{-- nombre --}}
-                        <div class="input-group-text">
-                                <i class="fas fa-user-circle"></i>
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                            </div>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control" value="@eachError('nombre', $errors)@endeachError">
                         </div>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control" value="@eachError('nombre', $errors)@endeachError">
+                    </div>
                     {{-- apellido --}}
-                         &nbsp &nbsp <div class="input-group-text">
-                                <i class="fas fa-user-circle"></i>
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                            </div>
+                            <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control" value="@eachError('apellido', $errors)@endeachError">
                         </div>
-                        <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control" value="@eachError('apellido', $errors)@endeachError">
                     </div>
-
-                    <div class="input-group mb-2">
-                    {{-- Correo --}}
-                        <div class="input-group-text">
-                                <i class="fas fa-at"></i>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                            </div>
+                            <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control" value="@eachError('correo', $errors)@endeachError">
                         </div>
-                        <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control" value="@eachError('correo', $errors)@endeachError">
-                    {{-- Direccion --}}
-                        &nbsp &nbsp <div class="input-group-text">
-                                <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                            </div>
+                            <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control" value="@eachError('direccion', $errors)@endeachError">
                         </div>
-                        <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control" value="@eachError('direccion', $errors)@endeachError">
                     </div>
-
-                    <div class="input-group mb-2">
-                    {{-- Titulo --}}
-                        <div class="input-group-text">
-                                <i class="fas fa-user-lock"></i>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class= "input-group-text">
+                                    <i class="fas fa-user-graduate"></i>
+                                </span>
+                            </div>
+                            <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control" value="@eachError('titulo', $errors)@endeachError">
                         </div>
-                        <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control" value="@eachError('titulo', $errors)@endeachError">
-                    {{-- Tiempo extra --}}
-                         &nbsp &nbsp <div class="input-group-text">
-                                <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-check"></i></span>
+                            </div>
+                            <input type="text" id="director" name="director" placeholder="Director" class="form-control" value="@eachError('director', $errors)@endeachError">
                         </div>
-                        <input type="number" id="tiempo_extra" name="tiempo_extra" placeholder="Tiempo extra" class="form-control" value="@eachError('tiempo_extra', $errors)@endeachError">
-                    {{-- Director --}}
-                        &nbsp &nbsp <div class="input-group-text">
-                                <i class="fas fa-user-lock"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group mb-2">
+                        {{-- Foto --}}
+                            <div class="input-group-prepend">
+                                <i class="fas fa-file-image input-group-text"></i>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input form-group" id="customFileLang" lang="es">
+                                <label class="custom-file-label" for="customFileLang">Sube una foto</label>
+                            </div>
                         </div>
-                        <input type="text" id="director" name="director" placeholder="Director" class="form-control" value="@eachError('director', $errors)@endeachError">
                     </div>
-
-                    <div class="input-group mb-2">
-                    {{-- Foto --}}
-                    <div class="input-group-text">
-                            <i class="fas fa-file-image"></i>
-                    </div>
-                    &nbsp &nbsp <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/gif">&nbsp &nbsp
-                    </div>
-
-                    {{-- enviar --}}
-                    <div class="text-center">
-                        <input type="submit" name="action" value="Enviar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
-                    </div>
+                </div>
+                <div class="text-center">
+                    <input type="submit" name="action" value="Enviar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
                 </div>
             </div>
         </div>

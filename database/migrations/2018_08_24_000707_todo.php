@@ -35,7 +35,7 @@ class Todo extends Migration
             $table->integer('grado');
             $table->boolean('discapacidad')->nullable()->default(false);
             $table->boolean('estado')->nullable()->default(true);
-            $table->string('foto')->default('descarga.png');
+            $table->string('foto')->default('/storage/default.png');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -144,7 +144,7 @@ class Todo extends Migration
             $table->unsignedInteger('cedula')->primary();
             $table->string('nombre', 20);
             $table->string('apellido', 20);
-            $table->string('correo', 40);
+            $table->string('correo', 50);
             $table->string('password', 80);
             $table->string('direccion', 20);
             $table->string('titulo', 20);
@@ -152,7 +152,7 @@ class Todo extends Migration
             $table->integer('tiempo_extra')->default(0);
             $table->string('director', 20)->nullable();
             $table->boolean('estado')->nullable()->default(true);
-            $table->string('foto')->default('descarga.png');
+            $table->string('foto')->default('/storage/default.png');
             $table->timestamps();
             $table->softDeletes();
         });
