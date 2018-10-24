@@ -25,11 +25,11 @@ Route::get('/nosotros', function () {
 
 Route::get('estudiantes/principal', function () {
     return view('estudiantes.principal');
-});
+})->middleware('auth');
 
 Route::get('empleados/principal', function () {
     return view('empleados.principal');
-});
+})->middleware('auth');
 
 Route::get('terminal', 'Terminal@link');
 
