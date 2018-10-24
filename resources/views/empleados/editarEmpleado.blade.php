@@ -1,9 +1,8 @@
 @extends('contenedores.admin')
 @section('titulo','Empleado Nuevo')
-@section('contenedor_principal')
-@guest
-    @include('error.error')
-@endguest
+@section('contenedor_admin')
+{{-- errores --}}
+@include('error.error')
 <br>
 <div class="row justify-content-center">
     <div class="col-10">
@@ -12,7 +11,7 @@
         <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h3><i class="fa fa-envelope"></i>Crear empleados</h3>
+                        <h3><i class="fa fa-envelope"></i> Crear empleados</h3>
                     </div>
                 </div>
                 <div class="card-body p-3">

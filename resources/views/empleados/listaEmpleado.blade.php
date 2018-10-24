@@ -1,5 +1,5 @@
 @extends('contenedores.admin')
-@section('contenedor_principal')
+@section('contenedor_admin')
 @section('titulo','Lista Empleados')
 <div class="container">
     <div class="row center">

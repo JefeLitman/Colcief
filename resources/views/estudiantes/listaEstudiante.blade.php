@@ -1,5 +1,5 @@
 @extends('contenedores.admin')
-@section('contenedor_principal')
+@section('contenedor_admin')
 @section('titulo','Lista Estudiante')
 <div class="row">
     <form action="" id="autocompletar">
@@ -43,7 +43,6 @@
         </table>
     </div>
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/ajax.js') }}"></script>
 <script>autocompletar('estudiante', ["nombre", "apellido"])</script>
 @endsection
