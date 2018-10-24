@@ -13,7 +13,7 @@
 	
 	<h3>Tipo de Archivos:</h3> $result: {{ gettype($result)}} <br>
 	<h3>Contenido materias:</h3> Ejemplo: $result={"Etica":[[1,"8-2"],[2,"8-2"]],"Software":[[3,"8-2"]]} <br> 
-
+	
 	<h1>Ejemplo</h1>
 	<h2>Materias</h2>
 	@foreach ($result as $materia => $materias_pc)

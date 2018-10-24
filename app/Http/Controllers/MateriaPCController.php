@@ -24,6 +24,8 @@ class MateriaPCController extends Controller
     {
         $user=session('user');
         $role=session('role');
+        $url="";    
+
         #dd($user);
         switch($role){
             case "administrador": 
@@ -54,7 +56,7 @@ class MateriaPCController extends Controller
                         }
                     }
                 }
-                return view('materiaspc.listaMateriasPC_admin',["result"=>$result]);
+                $url='materiaspc.listaMateriasPC_admin';
                 break;
             case "director":
                 // Cuando es director...  que pase a profesor(Por eso omito el break).
@@ -85,13 +87,20 @@ class MateriaPCController extends Controller
                         }
                     }
                 }
-                return view('materiaspc.listaMateriasPC_profesor',["result"=>$result]);
+                $url='materiaspc.listaMateriasPC_profesor';
                 break;
             case "estudiante":
                 // cuando es estudiantes
                 break;    
             default:
                 // Cuando no encaja en ningun role
+                return "Su role no es valido";
+        }
+        if(count($result)==0){
+            return "Este usuario no tiene Materias_PC a su cargo o no hay instancias en Materia_PC"; 
+            //Sugeto a cambios, cuando no encuentra nada en la BD.
+        }else{ 
+            return view($url,["result"=>$result]);
         }
         
 
