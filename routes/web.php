@@ -29,7 +29,7 @@ Route::get('estudiantes/principal', function () {
 
 Route::get('empleados/principal', function () {
     return view('empleados.principal');
-})->middleware('admin:profesor, director, administrador');
+})->middleware('admin:profesor,director,administrador');
 
 Route::get('terminal', 'Terminal@link');
 
