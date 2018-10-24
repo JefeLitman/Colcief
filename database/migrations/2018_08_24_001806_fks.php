@@ -11,8 +11,7 @@ class Fks extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
         Schema::table('estudiante', function (Blueprint $table) {
             $table->foreign('fk_acudiente')->references('pk_acudiente')->on('acudiente')
                 ->onUpdate('cascade')->onDelete('cascade');
