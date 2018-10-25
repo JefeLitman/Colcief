@@ -30,11 +30,4 @@
     {{-- @endguest --}}
 
 </body>
-{{-- <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker3').datetimepicker({
-            format: 'LT'
-        });
-    }); --}}
-</script>
 </html>

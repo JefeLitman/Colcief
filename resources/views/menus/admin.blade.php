@@ -8,7 +8,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                
                 <li class="nav-item @if (Request::path()=="empleados/principal") active @endif ">
                     <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
@@ -16,7 +15,6 @@
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chalkboard-teacher"></i></i> Cursos </a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Empleados</a>
-
                         {{--  desplegable de empleados  --}}
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
@@ -34,8 +32,7 @@
                 </li>
                 
                  {{--  Estudiantes  --}}
-                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-graduate"></i> Estudiantes</a>
-
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-graduate"></i> Estudiantes</a>
                     {{--  desplegable de estudiantes  --}}
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 

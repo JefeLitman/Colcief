@@ -28,7 +28,7 @@
                                             <i class="fas fa-user-circle"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="@eachError('nombre', $errors)@endeachError">
+                                    <input type="text" name="nombre" placeholder="Nombre" class="form-control form-control-sm" value="@eachError('nombre', $errors)@endeachError">
                                 </div>
                             </div>
                             {{-- apellido --}}
@@ -37,7 +37,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                     </div>
-                                    <input type="text" name="apellido" placeholder="Apellidos" class="form-control" value="@eachError('apellido', $errors)@endeachError">
+                                    <input type="text" name="apellido" placeholder="Apellidos" class="form-control form-control-sm" value="@eachError('apellido', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control" value="@eachError('fecha_nacimiento', $errors)@endeachError">
+                                    <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('fecha_nacimiento', $errors)@endeachError">
                                 </div>
                             </div>
                             {{-- grado --}}
@@ -62,7 +62,7 @@
                                             <i class="fas fa-user-cog"></i>
                                         </span>
                                     </div>
-                                    <select class="custom-select" name="grado" id="grado">
+                                    <select class="custom-select custom-select-sm" name="grado" id="grado">
                                         <option if>Seleccionar el grado</option>
                                         <option @select('grado', '0') @endselect value="0">Preescolar</option>
                                         <option @select('grado', '1') @endselect value="1">Primero</option>
@@ -90,7 +90,7 @@
                                         <input type="radio" name="discapacidad" value="1" aria-label="Radio button for following text input">
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Discapacidad">
+                                    <input type="text" class="form-control form-control-sm" aria-label="Text input with radio button" placeholder="Discapacidad">
                                 </div>
                             </div>
                             {{-- foto --}}
@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="custom-file">
                                         <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es">
-                                        <label class="custom-file-label" for="customFileLang">Sube una foto</label>
+                                        <label id="file" class="custom-file-label" for="customFileLang">Sube una foto</label>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                             <i class="fas fa-user-circle"></i>
                                         </span>
                                     </div>
-                                    <input type="text"  name="nombre_acu_1" placeholder="Nombres" class="form-control" value="@eachError('nombre_acu_1', $errors)@endeachError">
+                                    <input type="text"  name="nombre_acu_1" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
                         {{-- Direccion --}}
@@ -129,7 +129,7 @@
                                             <i class="fas fa-map-marked-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control" value="@eachError('direccion_acu_1', $errors)@endeachError">
+                                    <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
                         {{-- celular --}}
@@ -140,7 +140,7 @@
                                             <i class="fas fa-mobile-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control" value="@eachError('telefono_acu_1', $errors)@endeachError">
+                                    <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control form-control-sm" value="@eachError('telefono_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                                             <i class="fas fa-user-circle"></i>
                                         </span>
                                     </div>
-                                    <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control" value="@eachError('nombre_acu_2', $errors)@endeachError">
+                                    <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
                         {{-- Direccion --}}
@@ -167,7 +167,7 @@
                                             <i class="fas fa-map-marked-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control" value="@eachError('direccion_acu_2', $errors)@endeachError">
+                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
                         {{-- celular --}}
@@ -178,7 +178,7 @@
                                             <i class="fas fa-mobile-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control" value="@eachError('telefono_acu_2', $errors)@endeachError">
+                                    <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control form-control-sm" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
