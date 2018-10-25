@@ -25,7 +25,7 @@ class EstudianteController extends Controller{
     
     public function index(){
         $estudiante = Estudiante::all();
-        return view('estudiantes.principal', ['estudiante' => $estudiante]);
+        return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);
     }
 
     public function create(){

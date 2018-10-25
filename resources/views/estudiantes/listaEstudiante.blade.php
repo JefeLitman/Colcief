@@ -1,16 +1,6 @@
-@role('0')
-    <p>Hola eres un admin y todo lo que tenga que ver contigo aparecerá aquí</p>
-    {{-- @extends('contenedores.admin')
-    @section('titulo','Lista Estudiante')
-    @section('contenedor_principal')  --}}
-@endrole
-@role('3')
-    <p>Hola eres un estudiante y todo lo que tenga que ver contigo aparecerá aquí</p>
-    @include('contenedores.estudiante')
-    @section('titulo','Estudiante')
-    @section('contenedor_estudiante')
-@endrole
-
+@extends('contenedores.admin')
+@section('contenedor_admin')
+@section('titulo','Lista Estudiante')
 <div class="row">
     <form action="" id="autocompletar">
         <div class="col s12">
@@ -18,7 +8,6 @@
                 @csrf
                 <i class="material-icons prefix">textsms</i>
                 <input type="text" id="autocomplete-input" class="autocomplete">
-    
                 <label for="autocomplete-input">Autocomplete</label>
             </div>
         </div>
@@ -54,7 +43,6 @@
         </table>
     </div>
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/ajax.js') }}"></script>
 <script>autocompletar('estudiante', ["nombre", "apellido"])</script>
 @endsection

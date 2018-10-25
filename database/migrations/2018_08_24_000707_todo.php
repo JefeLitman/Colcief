@@ -4,15 +4,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Todo extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
+class Todo extends Migration{
+
+    public function up(){
+        
         Schema::create('acudiente', function (Blueprint $table) {
             $table->increments('pk_acudiente'); //diferente
             $table->string('nombre_acu_1', 50);

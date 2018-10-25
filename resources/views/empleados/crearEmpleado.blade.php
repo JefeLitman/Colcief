@@ -1,14 +1,8 @@
 @extends('contenedores.admin')
 @section('titulo','Empleado Nuevo')
 @section('contenedor_admin')
-{{-- @guest
-    @include('error.error')
-@endguest --}}
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-@endif
+{{-- mensajes de error --}}
+@include('error.error')
 <br>
 <div class="row justify-content-center">
     <div class="col-10">
@@ -73,6 +67,7 @@
                     </div>
                 </div>
                 <div class="row">
+                    {{-- correo --}}
                     <div class="col-md-6">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -81,6 +76,7 @@
                             <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control" value="@eachError('correo', $errors)@endeachError">
                         </div>
                     </div>
+                    {{-- direccion --}}
                     <div class="col-md-6">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -91,6 +87,7 @@
                     </div>
                 </div>
                 <div class="row">
+                    {{-- titulo --}}
                     <div class="col-md-6">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -101,6 +98,7 @@
                             <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control" value="@eachError('titulo', $errors)@endeachError">
                         </div>
                     </div>
+                    {{-- director --}}
                     <div class="col-md-6">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -118,7 +116,7 @@
                                 <i class="fas fa-file-image input-group-text"></i>
                             </div>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input form-group" id="customFileLang" lang="es">
+                                <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es">
                                 <label class="custom-file-label" for="customFileLang">Sube una foto</label>
                             </div>
                         </div>

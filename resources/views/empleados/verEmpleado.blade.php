@@ -1,6 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo',' Ver empleado')
-@section('contenedor_principal')
+@section('contenedor_admin')
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $empleado --}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>EmpleadoController.php  funcion show()
@@ -66,13 +66,4 @@
             </div>
         </div>
     </div>
-	{{--  <h3>Tipo de Archivos:</h3> $estudiante: {{ gettype($empleado)}} <br>
-	<h3>Contenido acudiente:</h3> {{$empleado}} <br>
-
-	<h1>Ejemplos</h1>
-	Foto:
-		<img src="{{$empleado->foto}}" width="200px">
-		<br>
-	Nombre: {{$empleado->nombre}} <br>
-	Apellido: {{$empleado->apellido}} <br>  --}}
 @endsection

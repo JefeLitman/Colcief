@@ -19,12 +19,12 @@ class RoleMiddleware{
                         }
                         break;
                     case 'director':
-                        if($auth->user()->role == '2'){
+                        if($auth->user()->role == '1'){
                             return $next($request);
                         }
                         break;
                     case 'profesor':
-                        if($auth->user()->role == '1'){
+                        if($auth->user()->role == '2'){
                             return $next($request);
                         }
                         break;
