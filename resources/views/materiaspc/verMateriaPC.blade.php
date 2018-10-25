@@ -10,6 +10,7 @@
 		 @Autor Paola C. --}}
 	{{-- Estado: En construccion --}}
 	{{-- URL: localhost:8000\estudiantes\{pk_estudiante} --}}
+
 	{{-- <h3>Tipo de Archivos:</h3> $materia: {{ gettype($materia)}} <br> --}}
 	{{-- <h3>Contenido materia:</h3> {{$materia}} <br> --}}
 

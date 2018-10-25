@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\MateriaPC;
 use App\Empleado;
 use App\Materia;
+use App\Curso;
 
+use App\Http\Requests\MateriaPCStoreController;
+use App\Http\Requests\MateriaPCUpdateController;
 
 /*
 @Autora -> Paola Caicedo
@@ -90,7 +93,11 @@ class MateriaPCController extends Controller
                 $url='materiaspc.listaMateriasPC_profesor';
                 break;
             case "estudiante":
-                // cuando es estudiantes
+                // Cuando es estudiantes
+                //Para los estudiantes esta la llamada materia_boletin.
+                //La tabla solo puede ser modificada por los empleados. 
+                //Y puede ser vista desde los estudiantes, a traves de materia_boletin.
+                return "Los estudiantes no tienen acceso a esta sección (MateriaPCController@Index)."; 
                 break;    
             default:
                 // Cuando no encaja en ningun role
@@ -98,12 +105,10 @@ class MateriaPCController extends Controller
         }
         if(count($result)==0){
             return "Este usuario no tiene Materias_PC a su cargo o no hay instancias en Materia_PC"; 
-            //Sugeto a cambios, cuando no encuentra nada en la BD.
+            //Sujeto a cambios.
         }else{ 
             return view($url,["result"=>$result]);
         }
-        
-
     }
 
     /**
@@ -113,7 +118,14 @@ class MateriaPCController extends Controller
      */
     public function create()
     {
-        //
+        if(session('role')=="administrador"){
+            $materias=Materia::select("pk_materia","nombre","logros_custom")->get();
+            $cursos=Curso::select("pk_curso","nombre")->get();
+            $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->get();
+            return view("materiaspc.crearMateriaPC",["materias"=>$materias,"cursos"=>$cursos,"profesores"=>$profesores]);
+        }else{
+            return "Solo los administradores pueden crear este tipo de instancias.";
+        }
     }
 
     /**
@@ -122,9 +134,22 @@ class MateriaPCController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MateriaPCStoreController $request)
     {
-        //
+        $materiapc = (new MateriaPC)->fill($request->all());
+
+        // Buscando la respectiva materia
+        $materia = Materia::select("nombre","logros_custom")->where("pk_materia","=",$materiapc->fk_materia)->get();
+        
+        // Asignando los valores que por defecto deben ser iguales que en la tabla materia.
+        $materiapc->nombre = $materia[0]['nombre'];
+        $materiapc->logros_custom = $materia[0]['logros_custom'];
+        try{
+            $materiapc->save();
+            return "Ha sido guardado con exito";
+        }catch(Exception $e){
+            return "Ha ocurido un error con el servidor, vuelva a intentarlo.";
+        }
     }
 
     /**
