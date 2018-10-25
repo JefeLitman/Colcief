@@ -1,6 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Editar estudiante')
-@section('contenedor_principal')
+@section('contenedor_admin')
 <div class="row">
     <div class="col s2"></div>
 	<div class="col s8 center"><br>
@@ -34,7 +34,7 @@
 					@method("PUT")
                     <h4 class="center">Datos Estudiante</h4>
                     <div class="divider"></div>
-                    
+
 					<div class="row">
 						<div class="input-field col s12">
 							<img class="responsive-img" style="max-width:400px;" src="{{$estudiante->foto}}">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    
+
                      <!-- Modal Structure -->
                     <div id="modal2" class="modal open">
                         <div class="modal-content">
@@ -81,9 +81,9 @@
                             <input type="text" name="fecha_nacimiento" class="datepicker" id="datepicker" value="{{$estudiante->fecha_nacimiento}}" required     >
                             <label>Fecha de nacimiento <label class="rojo">*</label></label>
                         </div>
-                        
+
                         <div class="input-field col s4">
-                                
+
                             <select name="grado" required    >
 							  <option value=""  >Seleccionar</option>
 							  @php $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
@@ -100,8 +100,8 @@
                         </div>
                         <div class="input-field col s4">
                             <label>
-								<input type="checkbox" name="discapacidad"   
-								@if($estudiante->discapacidad == "1") {{-- verifico si el estudiante tiene discapacidad, en caso q si, imprimo checked para checkar el checkbox --}} 
+								<input type="checkbox" name="discapacidad"
+								@if($estudiante->discapacidad == "1") {{-- verifico si el estudiante tiene discapacidad, en caso q si, imprimo checked para checkar el checkbox --}}
 									checked value="1"
 								@endif
 								>
@@ -124,7 +124,7 @@
                                 <input type="number" name="telefono_acu_1" value="{{$acudiente->telefono_acu_1}}" required    >
                                 <label>Celular <label class="rojo">*</label> </label>
                             </div>
-                            
+
                     </div>
                     <h4 class="center">Datos Acudiente 2</h4>
                     <div class="divider"></div>
@@ -141,7 +141,7 @@
                                 <input type="number" name="telefono_acu_2" value="{{$acudiente->telefono_acu_2}}"    >
                                 <label>Celular: </label>
                             </div>
-                            
+
                     </div>
                     <div class="input-field center">
                         <button class="btn waves-effect cyan darken-3" type="submit" name="action">Enviar<i class="material-icons right">send</i>

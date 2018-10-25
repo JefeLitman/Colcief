@@ -12,7 +12,7 @@
                 <div class="input-group mb-3">
                     @csrf
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="material-icons prefix" style="color:white;">textsms</i></span>
+                        <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
                     </div>
                     <input type="text" class="form-control"  id="autocomplete-input" class="autocomplete" placeholder="Nombre" aria-label="lead" aria-describedby="basic-addon1">
                 </div>
@@ -42,8 +42,9 @@
                         <td>{{$i->apellido}}</td>
                         <td>{{$i->correo}}</td>
                         <td>{{$i->role}}</td>
-                        <td><a href="{{ route('empleados.edit', $i->cedula) }}"><i class="material-icons" style="color:#00838f">edit</i></a></td>
-                        <td class="delete" tabla="empleado" identificador="{{$i->cedula}}"><i class="material-icons" style="color:#c62828">delete</i></td>
+                        <td><a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#00838f"></i>
+                        </a></td>
+                        <td class="delete" tabla="empleado" identificador="{{$i->cedula}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
                     </tr>
                 @endforeach
             </tbody>
