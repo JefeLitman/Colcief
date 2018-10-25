@@ -136,4 +136,11 @@ class EstudianteController extends Controller{
             ]);
         }
     }
+    
+    public function periodo($periodo){
+        return redirect(route('estudiantes.periodo', $periodo));
+        // return view("estudiantes.periodo",[
+        //     'periodo'=>$p
+        //  ]); 
+    }
 }

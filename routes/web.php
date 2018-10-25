@@ -27,11 +27,18 @@ Route::get('estudiantes/principal', function () {
     return view('estudiantes.principal');
 })->middleware('admin:estudiante');
 
+Route::get('estudiantes/periodo/{p}', function ($p) {
+    return view('estudiantes.periodo',['periodo' => $p]);
+})->middleware('admin:estudiante');
+
 Route::get('empleados/principal', function () {
     return view('empleados.principal');
 })->middleware('admin:profesor,director,administrador');
 
 Route::get('terminal', 'Terminal@link');
+
+//para ver las notas del periodo
+// Route::get('/estudiantes/periodo/{periodo}', 'EstudianteController@periodo')->middleware('admin:estudiante');
 
 //Auth::routes();
 

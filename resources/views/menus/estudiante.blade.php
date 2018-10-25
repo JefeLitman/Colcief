@@ -12,18 +12,18 @@
                 <li class="nav-item @if (Request::path()=="estudiantes/principal") active @endif ">
                     <a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown @if (Request::path()=="estudiantes/periodo") active @endif">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
                             <i class="fas fa-sticky-note"></i> Notas
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Periodo 1</a>
+                        <a class="dropdown-item" href="{{ url('estudiantes/periodo/1') }}">Periodo 1</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Periodo 2</a>
+                        <a class="dropdown-item" href="{{ url('estudiantes/periodo/2') }}">Periodo 2</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Periodo 3</a>
+                        <a class="dropdown-item" href="{{ url('estudiantes/periodo/3') }}">Periodo 3</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Periodo 4</a>
+                        <a class="dropdown-item" href="{{ url('estudiantes/periodo/4') }}">Periodo 4</a>
                     </div>
                 </li>
                 <li class="nav-item">
