@@ -113,7 +113,7 @@
                         <div class="col-md-12">
                             <div class="input-group mb-2">
                             {{-- Foto --}}
-                                <div class="input-group-prepend">
+                                <div class="input-group-prepend" style="height: calc(1.8125rem + 2px); font-size: .875rem;">
                                     <i class="fas fa-file-image input-group-text"></i>
                                 </div>
                                 <div class="custom-file">
