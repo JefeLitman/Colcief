@@ -8,6 +8,7 @@
     <div class="col-10">
         <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->cedula)}}" method = "POST">
         @csrf
+        @method("PUT")
         <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
