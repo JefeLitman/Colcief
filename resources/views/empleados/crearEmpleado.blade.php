@@ -25,7 +25,7 @@
                                         <i class="fas fa-id-card"></i>
                                     </span>
                                 </div>
-                                <input type="number" class="form-control"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
+                                <input type="number" class="form-control form-control-sm"  id="cedula" name="cedula" placeholder="Cedula" value="@eachError('cedula', $errors) @endeachError">
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@
                                         <i class="fas fa-user-cog"></i>
                                     </span>
                                 </div>
-                                <select class="custom-select" name="role" id="role">
+                                <select class="custom-select custom-select-sm" name="role" id="role">
                                     <option if>Seleccionar el rol</option>
                                     <option @select('role', '0') @endselect value="0">Administrador</option>
                                     <option @select('role', '1') @endselect value="1">Director</option>
@@ -54,7 +54,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                 </div>
-                                <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control" value="@eachError('nombre', $errors)@endeachError">
+                                <input type="text" id="nombre" name="nombre" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre', $errors)@endeachError">
                             </div>
                         </div>
                         {{-- apellido --}}
@@ -63,7 +63,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                 </div>
-                                <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control" value="@eachError('apellido', $errors)@endeachError">
+                                <input type="text" id="apellido" name="apellido" placeholder="Apellidos" class="form-control form-control-sm" value="@eachError('apellido', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-at"></i></span>
                                 </div>
-                                <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control" value="@eachError('correo', $errors)@endeachError">
+                                <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control form-control-sm" value="@eachError('correo', $errors)@endeachError">
                             </div>
                         </div>
                         {{-- direccion --}}
@@ -83,7 +83,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
-                                <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control" value="@eachError('direccion', $errors)@endeachError">
+                                <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                                         <i class="fas fa-user-graduate"></i>
                                     </span>
                                 </div>
-                                <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control" value="@eachError('titulo', $errors)@endeachError">
+                                <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control form-control-sm" value="@eachError('titulo', $errors)@endeachError">
                             </div>
                         </div>
                         {{-- director --}}
@@ -105,7 +105,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-check"></i></span>
                                 </div>
-                                <input type="text" id="director" name="director" placeholder="Director" class="form-control" value="@eachError('director', $errors)@endeachError">
+                                <input type="text" id="director" name="director" placeholder="Director" class="form-control form-control-sm" value="@eachError('director', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
@@ -118,13 +118,13 @@
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es">
-                                    <label class="custom-file-label" for="customFileLang">Sube una foto</label>
+                                    <label id="file" class="custom-file-label" for="customFileLang">Sube una foto</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <input type="submit" name="action" value="Enviar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
+                        <input type="submit" name="action" value="Enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
                     </div>
                 </div>
             </div>
