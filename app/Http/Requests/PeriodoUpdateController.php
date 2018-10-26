@@ -5,8 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Periodo;
 use App\Http\Controllers\SupraController as SC;
-class PeriodoUpdateController extends FormRequest
-{
+class PeriodoUpdateController extends FormRequest{
     /**
      * Determine if the user is authorized to make this request.
      *

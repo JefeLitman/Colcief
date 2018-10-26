@@ -84,13 +84,16 @@
                         <div class="row">
                             {{-- Discapacidad --}}
                             <div class="col-md-6">
-                                <div class="input-group mb-2">
+                                <div class="input-group mb-2 disabled">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                        <input type="radio" name="discapacidad" value="1" aria-label="Radio button for following text input">
+                                            <i class="fas fa-wheelchair"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm" aria-label="Text input with radio button" placeholder="Discapacidad">
+                                    <input type="text" class="form-control form-control-sm" aria-label="Text input with radio button" placeholder="Discapacidad" disabled>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><input type="checkbox"></span>
+                                    </div>
                                 </div>
                             </div>
                             {{-- foto --}}
@@ -107,11 +110,11 @@
                             </div>
                         </div>
                         <br>
-                    {{-- DATOS DEL ACUDIENTE 1 --}}
+                        {{-- DATOS DEL ACUDIENTE 1 --}}
                         <h4 class="text-center">Datos del acudiente 1</h4>
-                        {{-- nombres --}}
                         <div class="row">
-                            <div class="col-md-4">
+                            {{-- nombres --}}
+                            <div class="col-lg-4 col-md-6">
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -121,19 +124,8 @@
                                     <input type="text"  name="nombre_acu_1" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
-                        {{-- Direccion --}}
-                            <div class="col-md-4">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-map-marked-alt"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_1', $errors)@endeachError">
-                                </div>
-                            </div>
-                        {{-- celular --}}
-                                <div class="col-md-4">
+                            {{-- celular --}}
+                            <div class="col-lg-4 col-md-6">
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -143,13 +135,24 @@
                                     <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control form-control-sm" value="@eachError('telefono_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
+                            {{-- Direccion --}}
+                            <div class="col-lg-4 col-md-12">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_1', $errors)@endeachError">
+                                </div>
+                            </div>
                         </div>
                         <br>
                         {{-- DATOS DEL ACUDIENTE 2 --}}
                         <h4 class="text-center">Datos del acudiente 2</h4>
                         {{-- nombres --}}
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -159,19 +162,8 @@
                                     <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
-                        {{-- Direccion --}}
-                            <div class="col-md-4">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-map-marked-alt"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_2', $errors)@endeachError">
-                                </div>
-                            </div>
-                        {{-- celular --}}
-                                <div class="col-md-4">
+                            {{-- celular --}}
+                            <div class="col-lg-4 col-md-6">
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -181,6 +173,17 @@
                                     <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control form-control-sm" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
+                            {{-- Direccion --}}
+                            <div class="col-lg-4 col-md-12">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-map-marked-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_2', $errors)@endeachError">
+                                    </div>
+                                </div>
                         </div>
                         <br>
                         {{-- enviar --}}

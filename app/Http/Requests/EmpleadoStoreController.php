@@ -24,9 +24,9 @@ class EmpleadoStoreController extends FormRequest{
         ];
     }
 
-    public function message(){
-        return [
-            'role' => 'El role no corresponde a los establecidos, intente nuevamente'
-        ];
-    }
+    // public function message(){
+    //     return [
+    //         'role' => 'El role no corresponde a los establecidos, intente nuevamente'
+    //     ];
+    // }
 }

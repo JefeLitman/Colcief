@@ -21,8 +21,7 @@ class EmpleadoUpdateController extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(){
         return [
             'cedula' => 'required|numeric',
             'nombre' => 'required|string|max:20',
@@ -31,15 +30,9 @@ class EmpleadoUpdateController extends FormRequest
             'direccion' => 'required|string|max:20',
             'titulo' => 'required|string|max:20',
             'role' => 'required|string|max:1',
-            'tiempo_extra' => 'required|numeric',
             'director' => 'required|string|max:20',
             'estado' => 'boolean',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg'
-        ];
-    }
-
-    public function messages(){
-        return [
         ];
     }
 }
