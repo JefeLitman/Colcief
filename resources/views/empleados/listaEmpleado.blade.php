@@ -6,7 +6,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <br>
-        <br>
+        <br id="br">
         <div class="col-md-12">
             <form action="" id="autocompletar">
                 <div class="input-group mb-3">
@@ -55,7 +55,6 @@
 </div>
     <br>
     <br>
-<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/ajax.js') }}"></script>
 <script>autocompletar('empleado', ["nombre", "apellido"])</script>
 @endsection

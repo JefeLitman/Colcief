@@ -26,6 +26,7 @@
             </button>
         </div>
     @endif
+<div class="container">
     <div class="row">
         <div class="col s1"></div>
         <div class="col s2"></div>
@@ -66,4 +67,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
