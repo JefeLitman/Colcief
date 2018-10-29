@@ -96,19 +96,22 @@
                     <div class="row">
                         {{-- Discapacidad --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <input type="radio" name="discapacidad" aria-label="Radio button for following text input"
+                                <div class="input-group mb-2 disabled">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-wheelchair"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm" aria-label="Text input with radio button" placeholder="Discapacidad" disabled >
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><input type="checkbox"
                                             @if($estudiante->discapacidad == "1") {{-- verifico si el estudiante tiene discapacidad, en caso q si, imprimo checked para checkar el checkbox --}}
                                                 checked value="1"
                                             @endif
-                                        >
+                                        ></span>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Discapacidad">
                             </div>
-                        </div>
                         {{-- foto --}}
                         <div class="col-md-6">
                             <div class="input-group mb-2">

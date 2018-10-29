@@ -42,7 +42,7 @@
                                 <select class="custom-select custom-select-sm" name="role" id="role">
                                 <option selected>Seleccionar el rol</option>
                                     @php
-                                        $role=["Profesor","Administrador"]
+                                        $role=["Profesor","Administrador","Director"]
                                     @endphp
                                     @foreach ($role as $i=>$value)
                                         @if (intval($empleado->role)==$i)

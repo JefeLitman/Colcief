@@ -26,8 +26,38 @@
             </button>
         </div>
     @endif
+<br>
 <div class="container">
-    <div class="row">
+    <div class="card mx-auto bg-light" style="width: 20rem; border-color:#00695c;">
+        <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item border-dark bg-light">
+                <h5 class="card-title text-center">
+                    <i class="fas fa-user-tie"></i>
+                    <br>
+                    {{$empleado->nombre}}
+                    <br>
+                    {{$empleado->apellido}}
+                </h5>
+            </li>
+            <li class="list-group-item border-dark bg-light">
+                <h5 class="card-title text-center">
+                    <i class="fas fa-id-card"></i>
+                    <br>
+                    {{$empleado->cedula}}
+                </h5>
+            </li>
+            <li class="list-group-item border-dark bg-light">
+                <h5 class="card-title text-center">
+                    <i class="fas fa-graduation-cap"></i>
+                    <br>
+                    {{$empleado->titulo}}
+                </h5>
+            </li>
+        </ul>
+    </div>
+    {{-- <div class="row">
         <div class="col s1"></div>
         <div class="col s2"></div>
         <div class="col s5 centar"><br>
@@ -66,6 +96,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
+<br>
 @endsection
