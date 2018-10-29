@@ -28,7 +28,7 @@
     @endif
 <br>
 <div class="container">
-    <div class="card mx-auto bg-light" style="width: 20rem; border-color:#00695c;">
+    <div class="card mx-auto border-dark bg-light" style="width: 20rem;">
         <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
 
         <ul class="list-group list-group-flush">
