@@ -12,7 +12,8 @@ use App\Http\Controllers\SupraController;
 use Illuminate\Support\Facades\Hash;
 
 class EmpleadoController extends Controller{
-    public function __contructor(){
+
+    public function __construct (){   
         $this->middleware('admin:administrador');
     }
     public function index(){

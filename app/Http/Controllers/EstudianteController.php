@@ -6,6 +6,7 @@ use App\Estudiante;
 
 /*@Autor Paola*/
 use App\Acudiente; //Pepe no me lo vuelva a borrar
+use App\Curso; 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EstudianteStoreController;
@@ -19,13 +20,26 @@ class EstudianteController extends Controller{
 
     //Funciones publicas de primeros y al final las privadas
 
-    public function __construct(){ 
-        $this->middleware('admin:administrador'); //restringir el acceso a los usuarios
+    public function __construct (){ 
+        $this->middleware('admin:administrador');
     }
     
     public function index(){
         $estudiante = Estudiante::all();
-        return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante]);
+        $curso = Curso::all();
+        
+        // dd($estudiante);
+        return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante, 'curso' => $curso]);
+    }
+
+    public function filtro(Request $request){
+        $estudiante = new Estudiante;
+        $estudiante = $estudiante->curso();
+        // foreach($request->all() as $consulta){
+        //     $estudiante = $estudiante->where('pk_curso',$consulta);
+        // }
+        // $estudiante = Estudiante::find('1')->curso()->where('pk_curso','1')->
+        print_r($estudiante);
     }
 
     public function create(){
