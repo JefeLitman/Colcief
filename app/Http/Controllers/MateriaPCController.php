@@ -160,7 +160,12 @@ class MateriaPCController extends Controller
      */
     public function show($id)
     {
-        //
+        $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.nombre as curso","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
+        if(empty($materiapc[0])){
+            return "No se ha encontrado la materia.";
+        }else{
+            return view("materiaspc.verMateriaPC",["materiapc"=>$materiapc[0]]);
+        }
     }
 
     /**
@@ -171,7 +176,11 @@ class MateriaPCController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $materiapc = MateriaPC::findOrFail($id);
+        
+        return $materiapc;
+        //return view('materias.editarMateria', compact('materia'));
     }
 
     /**
