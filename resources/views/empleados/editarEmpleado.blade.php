@@ -14,7 +14,7 @@
             <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h3><i class="fas fa-user-tie"></i> Crear empleados</h3>
+                        <h3><i class="fas fa-user-tie"></i> Editar empleado</h3>
                     </div>
                 </div>
                 <div class="card-body p-3">
@@ -42,7 +42,7 @@
                                 <select class="custom-select custom-select-sm" name="role" id="role">
                                 <option selected>Seleccionar el rol</option>
                                     @php
-                                        $role=["Profesor","Administrador","Director"]
+                                        $role=["Administrador","Director","Profesor"]
                                     @endphp
                                     @foreach ($role as $i=>$value)
                                         @if (intval($empleado->role)==$i)

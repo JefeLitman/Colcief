@@ -14,6 +14,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
 <body>
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
@@ -25,10 +29,7 @@
     <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
     @include('footers.principal')
 
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 
 </body>
 </html>

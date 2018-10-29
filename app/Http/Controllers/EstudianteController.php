@@ -12,6 +12,7 @@ use App\Http\Requests\EstudianteStoreController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -19,8 +20,10 @@ class EstudianteController extends Controller{
 
     //Funciones publicas de primeros y al final las privadas
 
-    public function __construct(){ 
-        $this->middleware('admin:administrador'); //restringir el acceso a los usuarios
+    public function __construct(){
+        $this->middleware('admin:estudiante')->only('perfil'); //restringir el acceso a los usuarios
+        // $this->middleware('admin:administrador');
+         //restringir el acceso a los usuarios
     }
     
     public function index(){
@@ -124,6 +127,21 @@ class EstudianteController extends Controller{
         $acudiente->save();
         $estudiante->save();
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
+    }
+
+    public function perfil(Request $request,$pk_estudiante){
+        // dd('hola');
+        $estudiante = Estudiante::findOrFail($pk_estudiante);
+        $guard=session('role');
+        if($request->hasFile('foto')){
+            $nombre = 'estudiante'.$estudiante->pk_estudiante;
+            $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
+        }
+        $estudiante->save();
+        $var = Estudiante::findOrFail($pk_estudiante);
+        session(['user'=> $var->session(),'role' => $guard]);
+        // dd(Auth::guard($guard)->user()->session());
+        return redirect(url('/estudiantes/principal'));
     }
 
     public function destroy(Request $request, $pk_estudiante){

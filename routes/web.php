@@ -31,6 +31,7 @@ Route::get('estudiantes/periodo/{p}', function ($p) {
     return view('estudiantes.periodo',['periodo' => $p]);
 })->middleware('admin:estudiante');
 
+
 Route::get('empleados/principal', function () {
     return view('empleados.principal');
 })->middleware('admin:profesor,director,administrador');
@@ -44,6 +45,8 @@ Route::get('terminal', 'Terminal@link');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/estudiantes/ver', 'EstudianteController@view'); //Puedo eliminar esto?. no se si alguien lo necesita
+Route::post('/estudiantes/perfil/{pk_estudiante}', 'EstudianteController@perfil');
+
 Route::resource('/estudiantes', 'EstudianteController');
 Route::resource('/acudientes','AcudienteController');
 Route::resource('/empleados','EmpleadoController');
