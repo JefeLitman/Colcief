@@ -7,7 +7,7 @@
     height:300px;background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 50%;
-    background-size: 100% auto;" src="{{session('user')['foto']}}" alt="Card image cap"><br>
+    background-size: 100% auto;" src="{{session('user')['foto']}}" alt="Foto estudiante"><br>
     <button type="button" class="btn btn-primary w-50 mx-auto" data-toggle="modal" data-target="#exampleModal">
         Cambiar Imagen
     </button><br>
@@ -100,6 +100,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 <br>
 @endsection

@@ -12,7 +12,7 @@
             <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h3><i class="fas fa-user-tie"></i> Crear empleados</h3>
+                        <h3><i class="fas fa-user-tie"></i> Crear empleado</h3>
                     </div>
                 </div>
                 <div class="card-body p-3">
@@ -37,11 +37,22 @@
                                         <i class="fas fa-user-cog"></i>
                                     </span>
                                 </div>
-                                <select class="custom-select custom-select-sm" name="role" id="role">
-                                    <option if>Seleccionar el rol</option>
+                                <script>
+                                    function desactivar(p1,p2){
+                                        var s1 = document.getElementById(p1);
+                                        var s2 = document.getElementById(p2);
+                                        if(s1.value=='0' || s1.value=='2'){
+                                            s2.value="";
+                                            s2.disabled = true;
+                                        }else{
+                                            s2.disabled = false;
+                                        }
+                                    }
+                                </script>
+                                <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'director')">
                                     <option @select('role', '0') @endselect value="0">Administrador</option>
                                     <option @select('role', '1') @endselect value="1">Director</option>
-                                    <option @select('role', '2') @endselect value="2">Profesor</option>
+                                    <option @select('role', '2') @endselect value="2" selected>Profesor</option>
                                     {{-- <option value="3">Three</option> --}}
                                 </select>
                             </div>
@@ -105,7 +116,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-check"></i></span>
                                 </div>
-                                <input type="text" id="director" name="director" placeholder="Director" class="form-control form-control-sm" value="@eachError('director', $errors)@endeachError">
+                                <input type="text" id="director" name="director" disabled placeholder="Director" class="form-control form-control-sm" value="@eachError('director', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
