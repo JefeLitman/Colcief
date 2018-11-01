@@ -3,7 +3,11 @@
 @section('contenedor_estudiante')
 <br>
 <div class="card mx-auto border-dark bg-light" style="width: 20rem;"><br>
-    <img class="card-img-top" src="{{session('user')['foto']}}" alt="Card image cap"><br>
+    <img class="mx-auto" style="width:300px;
+    height:300px;background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;" src="{{session('user')['foto']}}" alt="Card image cap"><br>
     <button type="button" class="btn btn-primary w-50 mx-auto" data-toggle="modal" data-target="#exampleModal">
         Cambiar Imagen
     </button><br>
