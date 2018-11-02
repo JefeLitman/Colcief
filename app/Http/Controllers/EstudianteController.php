@@ -21,15 +21,8 @@ class EstudianteController extends Controller{
 
     //Funciones publicas de primeros y al final las privadas
 
-<<<<<<< HEAD
     public function __construct (){ 
-        $this->middleware('admin:administrador');
-=======
-    public function __construct(){
-        $this->middleware('admin:estudiante')->only('perfil'); //restringir el acceso a los usuarios
         // $this->middleware('admin:administrador');
-         //restringir el acceso a los usuarios
->>>>>>> de87c3d7f817f74565a0e3742c0a63aeb515a177
     }
     
     public function index(){
