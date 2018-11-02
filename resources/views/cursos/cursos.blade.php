@@ -5,7 +5,7 @@
 <div class="container">
     <div class="accordion" id="accordion">
             <div class="card-header bg-secondary text-center text-white">
-                    ESTUDIANTES COLCIEF
+                    Cursos COLCIEF
             </div>
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -44,32 +44,32 @@
                     {{-- Contenidos para primaria --}}
                     <div class="collapse" id="preescolar">
                         <div class="card card-body">
-                            estudiantes de preescolar
+                            Cursos de preescolar
                         </div>
                     </div>
                     <div class="collapse" id="primero">
                         <div class="card card-body">
-                            Estudiantes de primero
+                            Cursos de primero
                         </div>
                     </div>
                     <div class="collapse" id="segundo">
                         <div class="card card-body">
-                            estudiantes de segundo
+                            Cursos de segundo
                         </div>
                     </div>
                     <div class="collapse" id="tercero">
                         <div class="card card-body">
-                            Estudiantes de tercero
+                            Cursos de tercero
                         </div>
                     </div>
                     <div class="collapse" id="cuarto">
                         <div class="card card-body">
-                            Estudiantes de cuarto
+                            Cursos de cuarto
                         </div>
                     </div>
                     <div class="collapse" id="quinto">
                         <div class="card card-body">
-                            Estudiantes de quinto
+                            Cursos de quinto
                         </div>
                     </div>
 
@@ -112,32 +112,32 @@
                     {{-- Contenidos para secundaria --}}
                     <div class="collapse" id="sexto">
                         <div class="card card-body">
-                            estudiantes de sexto
+                            Cursos de sexto
                         </div>
                     </div>
                     <div class="collapse" id="septimo">
                         <div class="card card-body">
-                            Estudiantes de septimo
+                            Cursos de septimo
                         </div>
                     </div>
                     <div class="collapse" id="octavo">
                         <div class="card card-body">
-                            estudiantes de octavo
+                            Cursos de octavo
                         </div>
                     </div>
                     <div class="collapse" id="noveno">
                         <div class="card card-body">
-                            Estudiantes de noveno
+                            Cursos de noveno
                         </div>
                     </div>
                     <div class="collapse" id="decimo">
                         <div class="card card-body">
-                            Estudiantes de decimo
+                            Cursos de decimo
                         </div>
                     </div>
                     <div class="collapse" id="once">
                         <div class="card card-body">
-                            Estudiantes de once
+                            Cursos de once
                         </div>
                     </div>
             </div>
