@@ -36,10 +36,13 @@ Route::get('empleados/principal', function () {
     return view('empleados.principal');
 })->middleware('admin:profesor,director,administrador');
 
-Route::get('estudiantes/cursos', function () {
-    return view('cursos.cursos');
+Route::get('empleados/editarEstudiantes', function () {
+    return view('cursos.editarEstudiante');
 });
 
+Route::get('empleados/eliminarEstudiantes', function () {
+    return view('cursos.eliminarEstudiante');
+});
 
 Route::get('terminal', 'Terminal@link');
 

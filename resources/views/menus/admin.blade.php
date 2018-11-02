@@ -41,11 +41,11 @@
                         <div class="dropdown-divider"></div>
 
                         {{--  Editar estudiantes  --}}
-                        <a class="dropdown-item" href="{{ url('/estudiantes/cursos') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                        <a class="dropdown-item" href="{{ url('/empleados/editarEstudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
                         <div class="dropdown-divider"></div>
 
                         {{--  Eliminar estudiantes  --}}
-                        <a class="dropdown-item" href="#"><i class="fas fa-user-minus"></i> Eliminar</a>
+                        <a class="dropdown-item" href="{{ url('/empleados/eliminarEstudiantes') }}"><i class="fas fa-user-minus"></i> Eliminar</a>
                     </div>
                 </li>
 
