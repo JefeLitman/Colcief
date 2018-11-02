@@ -30,7 +30,6 @@
 <div class="container">
     <div class="card mx-auto border-dark bg-light" style="width: 20rem;">
         <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
-
         <ul class="list-group list-group-flush">
             <li class="list-group-item border-dark bg-light">
                 <h5 class="card-title text-center">

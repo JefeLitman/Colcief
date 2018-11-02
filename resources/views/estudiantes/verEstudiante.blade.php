@@ -13,8 +13,8 @@
 
 <br>
 <div class="container">
-    <div class="card  mx-auto border-dark bg-light" style="width: 20rem;">
-        <img class="responsive-img" style="max-width:400px;" src="{{$estudiante->foto}}">
+    <div class="card mx-auto border-dark bg-light" style="width: 20rem;">
+        <img class="card-img-top" src="{{$estudiante->foto}}">
         <ul class="list-group list-group-flush">
             <li class="list-group-item border-dark bg-light">
                 <h5 class="card-title text-center">
