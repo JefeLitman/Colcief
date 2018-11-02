@@ -25,9 +25,8 @@ class MateriaPCUpdateController extends FormRequest
     {
       return [
         //   Aun no se ha ajustado para el controlador de MateriaPC
-            'nombre' => 'required|string|max:20',
-            'contenido' => 'required|string|max:255',
-            'logros_custom' => 'string|max:255'
+            'salon' => 'required|string|max:5',
+            'logros_custom' => 'required|string|max:255'
         ];
     }
 }

@@ -28,6 +28,7 @@ class DivisionController extends Controller{
     }
 
     public function store(DivisionStoreController $request){
+        // dd($request->all());
         $total = 0;
         for($i=0;$i<count($request->nombre);$i++){
             $total += $request->porcentaje[$i];
@@ -41,8 +42,8 @@ class DivisionController extends Controller{
                 $division -> ano = $this->ano;
                 $division -> limite = '2018-09-14';
                 $division->save();
-            }           
-        }    
+            }
+        }
     }
 
     public function edit(){

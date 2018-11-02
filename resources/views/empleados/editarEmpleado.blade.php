@@ -14,7 +14,7 @@
             <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h3><i class="fas fa-user-tie"></i> Crear empleados</h3>
+                        <h3><i class="fas fa-user-tie"></i> Editar empleado</h3>
                     </div>
                 </div>
                 <div class="card-body p-3">
@@ -39,10 +39,9 @@
                                         <i class="fas fa-user-cog"></i>
                                     </span>
                                 </div>
-                                <select class="custom-select custom-select-sm" name="role" id="role">
-                                <option selected>Seleccionar el rol</option>
+                                <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'director')">
                                     @php
-                                        $role=["Profesor","Administrador","Director"]
+                                        $role=["Administrador","Director","Profesor"]
                                     @endphp
                                     @foreach ($role as $i=>$value)
                                         @if (intval($empleado->role)==$i)
@@ -113,7 +112,9 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-check"></i></span>
                                 </div>
-                                <input type="text" id="director" name="director" placeholder="Director" class="form-control form-control-sm" value="{{$empleado->director}}" value="@eachError ('director', $errors)@endeachError">
+                                <input type="text" id="director" name="director"  @if ($empleado->role=='0' or $empleado->role=='2' )
+                                disabled
+                            @endif placeholder="Director" class="form-control form-control-sm" value="{{$empleado->director}}" value="@eachError ('director', $errors)@endeachError">
                             </div>
                         </div>
                     </div>

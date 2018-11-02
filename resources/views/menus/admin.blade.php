@@ -1,5 +1,5 @@
 <!-- Menu principal para el administrador -->
-<nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;">   
+<nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{asset('css/img/logo_min_1.png')}}"  height="30" alt="">
         </a>
@@ -23,14 +23,14 @@
                             <div class="dropdown-divider"></div>
 
                             {{--  Editar empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                            <a class="dropdown-item" href="{{ url('/empleados/roles') }}"><i class="fas fa-user-edit"></i> Editar</a>
                             <div class="dropdown-divider"></div>
 
                             {{--  Eliminar empleados  --}}
                             <a class="dropdown-item" href="#"><i class="fas fa-user-minus"></i> Eliminar</a>
                         </div>
                 </li>
-                
+
                  {{--  Estudiantes  --}}
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-graduate"></i> Estudiantes</a>
                     {{--  desplegable de estudiantes  --}}
@@ -41,11 +41,29 @@
                         <div class="dropdown-divider"></div>
 
                         {{--  Editar estudiantes  --}}
-                        <a class="dropdown-item" href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                        <a class="dropdown-item" href="{{ url('/estudiantes/cursos') }}"><i class="fas fa-user-edit"></i> Editar</a>
                         <div class="dropdown-divider"></div>
 
                         {{--  Eliminar estudiantes  --}}
                         <a class="dropdown-item" href="#"><i class="fas fa-user-minus"></i> Eliminar</a>
+                    </div>
+                </li>
+
+                {{-- Divisiones --}}
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-th-list"></i> Divisones</a>
+                    {{--  desplegable de divisones  --}}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        {{--  Crear divisones  --}}
+                        <a class="dropdown-item" href="{{ url('/divisiones/crear') }}"><i class="fas fa-plus-circle"></i> Crear</a>
+                        <div class="dropdown-divider"></div>
+
+                        {{--  Editar divisones  --}}
+                        <a class="dropdown-item" href="{{ url('/divisiones') }}"><i class="fas fa-pen"></i> Editar</a>
+                        <div class="dropdown-divider"></div>
+
+                        {{--  Eliminar divisones  --}}
+                        <a class="dropdown-item" href="#"><i class="fas fa-minus"></i> Eliminar</a>
                     </div>
                 </li>
                 <li class="nav-item">

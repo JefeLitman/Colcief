@@ -68,6 +68,22 @@ class EmpleadoController extends Controller{
         return redirect(route('empleados.show', $empleado->cedula));
     }
 
+    public function perfil(Request $request,$cedula){
+        // dd('hola');
+        $empleado = Empleado::findOrFail($cedula);
+        $guard=session('role');
+        if($request->hasFile('foto')){
+            $nombre = 'empleado'.$empleado->cedula;
+            $empleado->foto = SupraController::subirArchivo($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
+        }
+        $empleado->save();
+        $var = Empleado::findOrFail($cedula);
+        session(['user'=> $var->session(),'role' => $guard]);
+        // dd(Auth::guard($guard)->user()->session());
+        return redirect(url('/empleados/principal'));
+    }
+
+
     public function destroy(Request $request, $cedula){
         if($request->ajax()){
             $empleado = Empleado::findOrFail($cedula);
