@@ -10,7 +10,7 @@
     <form class="" action="/acudientes" method="post">
       @csrf
       Clave primaria [integer] <br>
-      <input type="text" name="pk_acudiente" value="">
+      <input type="text" name="pk_acudiente" value="@if (!in_array('pk_acudiente',$errors->getBag('default')->keys())) {{old('pk_acudiente')}} @endif">
       <br>
       Nombre acudiente 1 [string] <br>
       <input type="text" name="nombre_acu_1" value="">
@@ -19,7 +19,7 @@
       <input type="text" name="direccion_acu_1" value="">
       <br>
       Telefono acudiente 1 [string (númerico)] <br>
-      <input type="text" name="telefono_acu_1" value="">
+      <input type="text" name="telefono_acu_1" value="@if (!in_array('telefono_acu_1',$errors->getBag('default')->keys())) {{old('telefono_acu_1')}} @endif">
       <br>
       Nombre acudiente 2 [string] <br>
       <input type="text" name="nombre_acu_2" value="">
