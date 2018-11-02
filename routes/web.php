@@ -36,6 +36,11 @@ Route::get('empleados/principal', function () {
     return view('empleados.principal');
 })->middleware('admin:profesor,director,administrador');
 
+Route::get('estudiantes/cursos', function () {
+    return view('cursos.cursos');
+});
+
+
 Route::get('terminal', 'Terminal@link');
 
 //para ver las notas del periodo
