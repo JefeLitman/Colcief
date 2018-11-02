@@ -9,7 +9,6 @@
         <div class="col-10">
             <form method="post" action="{{ route('estudiantes.store') }}" enctype="multipart/form-data">
                 @csrf
-
                 <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                     <div class="card-header p-0">
                         <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
@@ -111,7 +110,7 @@
                         </div>
                         <br>
                         {{-- DATOS DEL ACUDIENTE 1 --}}
-                        <h4 class="text-center">Datos del acudiente 1</h4>
+                        <h4 class="text-center">Datos del acudiente</h4>
                         <div class="row">
                             {{-- nombres --}}
                             <div class="col-lg-4 col-md-6">
@@ -148,33 +147,36 @@
                             </div>
                         </div>
                         <br>
-                        {{-- DATOS DEL ACUDIENTE 2 --}}
-                        <h4 class="text-center">Datos del acudiente 2</h4>
-                        {{-- nombres --}}
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-user-circle"></i>
-                                        </span>
+                        {{-- <a class="btn btn-outline-success" data-toggle="collapse" data-target="#acudiente2">Agregar Acudiente</a> --}}
+                        <button type="button" class="btn btn-outline-success btn-sm btn-block" data-toggle="collapse" data-target="#acudiente2" onclick="$(this).remove()" style="@if(!is_null(old('nombre_acu_2')) || !is_null(old('direccion_acu_2')) || !is_null(old('telefono_acu_2'))) display:none @endif">¿Desea ingresar otro acudiente?</button>
+                        <div class="collapse @if(!is_null(old('nombre_acu_2')) || !is_null(old('direccion_acu_2')) || !is_null(old('telefono_acu_2'))) show @endif" id="acudiente2">
+                            {{-- DATOS DEL ACUDIENTE 2 --}}
+                            <h4 class="text-center">Datos del acudiente 2</h4>
+                            {{-- nombres --}}
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user-circle"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                     </div>
-                                    <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                 </div>
-                            </div>
-                            {{-- celular --}}
-                            <div class="col-lg-4 col-md-6">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-mobile-alt"></i>
-                                        </span>
+                                {{-- celular --}}
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-mobile-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control form-control-sm" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                     </div>
-                                    <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control form-control-sm" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                 </div>
-                            </div>
-                            {{-- Direccion --}}
-                            <div class="col-lg-4 col-md-12">
+                                {{-- Direccion --}}
+                                <div class="col-lg-4 col-md-12">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -184,9 +186,10 @@
                                         <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_2', $errors)@endeachError">
                                     </div>
                                 </div>
+                            </div>
                         </div>
-                        <br>
                         {{-- enviar --}}
+                        <br>
                         <div class="text-center">
                             <input type="submit" name="action" value="Enviar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
                         </div>
