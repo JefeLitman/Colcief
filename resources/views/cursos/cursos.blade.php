@@ -4,7 +4,7 @@
 @yield('nombre')
 <div class="accordion" id="accordion">
         <div class="card-header bg-secondary text-center text-white">
-                Cursos COLCIEF @yield('modo')
+                Cursos COLCIEF
         </div>
         <div class="card">
             <div class="card-header" id="headingOne">
@@ -43,7 +43,14 @@
                 {{-- Contenidos para primaria --}}
                 <div class="collapse" id="preescolar">
                     <div class="card card-body">                       
-                        Cursos de preescolar
+                        Cursos de preescolar: 
+                        <a class="btn btn-primary mt-3" href="
+                        @if ($pas=='0')
+                        {{ url('/estudiantes') }}
+                        @else
+                        {{ url('/estudiantes') }}
+                        @endif
+                        " role="button">Uno</a>
                     </div>
                 </div>
                 <div class="collapse" id="primero">

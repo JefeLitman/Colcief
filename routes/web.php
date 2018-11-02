@@ -37,11 +37,11 @@ Route::get('empleados/principal', function () {
 })->middleware('admin:profesor,director,administrador');
 
 Route::get('empleados/editarEstudiantes', function () {
-    return view('cursos.editarEstudiante');
+    return view('cursos.editarEstudiante',['pas'=>'0']);
 });
 
 Route::get('empleados/eliminarEstudiantes', function () {
-    return view('cursos.eliminarEstudiante');
+    return view('cursos.eliminarEstudiante',['pas'=>'1']);
 });
 
 Route::get('terminal', 'Terminal@link');
