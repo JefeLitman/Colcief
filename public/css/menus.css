@@ -24,17 +24,13 @@
     font-size: .800rem !important;
     line-height: 1.5 !important;
 }
-html {
-    min-height: 100%;
-    position: relative;
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
   }
-  body {
-    margin: 0;
-    margin-bottom: 40px;
+  
+  .main {
+    flex: 1;
   }
-  footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height:50px;
-  }
+  
