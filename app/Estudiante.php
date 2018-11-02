@@ -6,7 +6,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Estudiante extends Authenticatable{
+class Estudiante extends Authenticatable {
+    
     use SoftDeletes;
     use Notifiable;
 	protected $primaryKey = "pk_estudiante";
@@ -17,6 +18,10 @@ class Estudiante extends Authenticatable{
 
     public function session(){
         return $this->attributes;
+    }
+
+    public function curso(){
+        return $this->belongsToMany('App\Curso', 'boletin', 'fk_estudiante', 'fk_curso');
     }
 }
 

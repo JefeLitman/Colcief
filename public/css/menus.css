@@ -24,3 +24,13 @@
     font-size: .800rem !important;
     line-height: 1.5 !important;
 }
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .main {
+    flex: 1;
+  }
+  

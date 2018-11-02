@@ -36,6 +36,14 @@ Route::get('empleados/principal', function () {
     return view('empleados.principal');
 })->middleware('admin:profesor,director,administrador');
 
+Route::get('empleados/editarEstudiantes', function () {
+    return view('cursos.editarEstudiante');
+});
+
+Route::get('empleados/eliminarEstudiantes', function () {
+    return view('cursos.eliminarEstudiante');
+});
+
 Route::get('terminal', 'Terminal@link');
 
 //para ver las notas del periodo
@@ -46,6 +54,7 @@ Route::get('terminal', 'Terminal@link');
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/estudiantes/ver', 'EstudianteController@view'); //Puedo eliminar esto?. no se si alguien lo necesita
 Route::post('/estudiantes/perfil/{pk_estudiante}', 'EstudianteController@perfil');
+Route::post('/empleados/perfil/{cedula}', 'EmpleadoController@perfil');
 
 Route::resource('/estudiantes', 'EstudianteController');
 Route::resource('/acudientes','AcudienteController');
@@ -55,6 +64,8 @@ Route::resource('/materias','MateriaController');
 Route::resource('/divisiones','DivisionController');
 Route::resource('/cursos','CursoController');
 Route::resource('/materiaspc','MateriaPCController');
+Route::resource('/notas','NotaController');
+Route::get('/notas/crear/{materia}','NotaController@create');
 Route::get('/login', 'Login\LoginController')->name('login');
 Route::post('/login', 'Login\LoginController@authenticate')->name('authenticate');
 Route::get('/logout', 'Login\LoginController@logout')->name('logout');

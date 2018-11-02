@@ -112,17 +112,6 @@ CREATE TABLE `empleado` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`cedula`, `nombre`, `apellido`, `correo`, `password`, `direccion`, `titulo`, `role`, `tiempo_extra`, `director`, `estado`, `foto`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(0, 'juan sebastian', 'marcon caballero', 'juanmarcon1080@gmail.com', '$2y$10$9uK02ZHI5UyxmqgYoxM6ienrubdjfMF7YAP.Rh41qEvfSFftLOdCG', 'cra 19#3-82 apt 102', 'estudiante', '0', 0, '4', 1, '/storage/empleado1102384370.png', '2018-10-20 21:32:37', '2018-10-20 21:32:37', NULL),
-(1, 'juan sebastian', 'marcon caballero', 'juanmarcon1080@gmail.com', '$2y$10$a8lCmoXt2.8XdeoMSMDrJO3C6uqnumMngnjYs1o.GIQ07kHVJW8QC', 'cra 19#3-82 apt 102', 'profesor', '1', 0, '9', 1, '/storage/empleado1102384371.png', '2018-10-23 17:09:24', '2018-10-23 17:09:24', NULL),
-(2, 'juan sebastian', 'marcon caballero', 'juanmarcon1080@gmail.com', '$2y$10$xCqpY.lNY9B9xVhC52H7ye8tDEoxKzahv74x6w18bLIC/wOzCZ5HC', 'cra 19#3-82 apt 102', 'profesor', '2', 0, '9', 1, '/storage/descarga.png', '2018-10-23 17:15:39', '2018-10-23 17:15:39', NULL),
-(3, 'juan sebastian', 'marcon caballero', 'juanmarcon1080@gmail.com', '$2y$10$FNLUeI4FAB.AZH8EjUxf4ueHlXDZ0N5QXIShX0HTj9xfyukg8J9bK', 'cra 19#3-82 apt 102', 'profesor', '0', 0, '9', 1, '/storage/empleado1102384379.png', '2018-10-23 17:35:10', '2018-10-23 17:35:10', NULL),
-(4, 'juan sebastian', 'marcon caballero', 'juanmarcon1080@gmail.com', '$2y$10$6Xru0GcEAlb9vdpSSDh23uxMwUAWUdB.E6d/GCmUt6MW/mjXdNvSa', 'cra 19#3-82 apt 102', 'profesor', '0', 0, '9', 1, '/storage/empleado2102384370.png', '2018-10-23 18:15:27', '2018-10-23 18:15:27', NULL);
-
 -- --------------------------------------------------------
 
 --
