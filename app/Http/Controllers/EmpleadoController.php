@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Hash;
 
 class EmpleadoController extends Controller{
 
-    public function __construct (){   
-        $this->middleware('admin:administrador');
-    }
+    // public function __construct (){
+    //     $this->middleware('admin:administrador');
+    // }
+    //Comentado temporalmente porque la auth está remal hecha
     public function index(){
         $empleado = Empleado::all();
         return view('empleados.listaEmpleado', ['empleado' => $empleado]);
@@ -38,19 +39,21 @@ class EmpleadoController extends Controller{
         }else{
             return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
         }
-        
+
     }
 
-    public function show($cedula){   
-        /*@Autor Paola C.*/
-        //En este momento se muestra en la view que se encuentra en Local>Resource>View>empleados>verEmpleado.blade.php y allá se reciben todos los datos del respectivo empleado en una variable tipo Object $empleado. 
+    public function show($cedula){
+        /*@Autor Douglas R*/
+        //Anteriormente Paola era la autora. Modifiqué todo el código para optimizarlo y cubrir un hueco de seguridad
+        //En este momento se muestra en la view que se encuentra en Local>Resource>View>empleados>verEmpleado.blade.php y allá se reciben todos los datos del respectivo empleado en una variable tipo Object $empleado.
+        if (!(session('role')=='administrador')) {
+          $cedula = ''.session('user')['cedula'];
+        }
         $empleado = Empleado::where('cedula', $cedula)->get();
-        if(empty($empleado[0])){
-            return "Empleado no encontrado."; //Esto debe ser cambiado por una view mjr
-        }else{
+        if(!empty($empleado[0])){
             return view("empleados.verEmpleado",['empleado'=>$empleado[0]]);
-        }        
-        
+        }
+        return 'Empleado no encontrado';
     }
 
     public function edit($cedula){

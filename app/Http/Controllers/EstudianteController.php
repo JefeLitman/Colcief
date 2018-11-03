@@ -6,7 +6,7 @@ use App\Estudiante;
 
 /*@Autor Paola*/
 use App\Acudiente; //Pepe no me lo vuelva a borrar
-use App\Curso; 
+use App\Curso;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EstudianteStoreController;
@@ -21,14 +21,14 @@ class EstudianteController extends Controller{
 
     //Funciones publicas de primeros y al final las privadas
 
-    public function __construct (){ 
+    public function __construct (){
         // $this->middleware('admin:administrador');
     }
-    
+
     public function index(){
         $estudiante = Estudiante::all();
         $curso = Curso::all();
-        
+
         // dd($estudiante);
         return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante, 'curso' => $curso]);
     }
@@ -47,10 +47,10 @@ class EstudianteController extends Controller{
         return view('estudiantes.crearEstudiante');
     }
 
-    public function store(EstudianteStoreController $request){    
+    public function store(EstudianteStoreController $request){
         $acudiente = (new Acudiente)->fill(
             SupraController::minuscula(
-                $request->all(), 
+                $request->all(),
                 "nombre",
                 "apellido",
                 "grado",
@@ -59,9 +59,9 @@ class EstudianteController extends Controller{
                 "foto" //datos q no quiere guardar
             )
         );
-        $acudiente->save(); // se guarda el acudiente 
+        $acudiente->save(); // se guarda el acudiente
         $estudiante = (new Estudiante)->fill(
-            SupraController::minuscula($request->all(), 
+            SupraController::minuscula($request->all(),
                 "nombre_acu_1",
                 "direccion_acu_1",
                 "telefono_acu_1",
@@ -72,8 +72,8 @@ class EstudianteController extends Controller{
         );
         $estudiante->fk_acudiente = $acudiente->pk_acudiente;
         $estudiante->password = Hash::make('clave');
-        
-        if($request->hasFile('foto')){ // se guarda la imagen 
+
+        if($request->hasFile('foto')){ // se guarda la imagen
           $nombre = 'estudiante'.$estudiante->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
@@ -81,31 +81,32 @@ class EstudianteController extends Controller{
          // se guarda el estudiante
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
     }
-    
+
     public function show($pk_estudiante){
-        /*@Autor Paola C.*/
-        //En este momento se muestra en la view que se encuentra en Local>Resource>View>estudiantes>verEstudiante.blade.php y allá se reciben todos los datos del respectivo estudiante y acudiente en las variables tipo Object $estudiante, $acudiente.
-        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get();
-        if(empty($estudiante[0])){
-            return "No se ha encontrado el estudiante.";
-        }else{
-            $acudiente= Acudiente::where('pk_acudiente', $estudiante[0]->fk_acudiente)->get();
-            if(empty($acudiente[0])){
-                return "No se ha encontrado al respectivo acudiente.";
-            }else{
-                return view("estudiantes.verEstudiante",[
-                   'estudiante'=>$estudiante[0],
-                   'acudiente' =>$acudiente[0]
-                ]); 
-            }
+        /*@Autor Douglas R.*/
+        //Código optimizado y mejorado para tapar un hueco de seguridad
+        if (!(session('role')=='administrador')) {
+          $pk_estudiante=''.session('user')['pk_estudiante'];
         }
+        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get();
+        if (!empty($estudiante[0])) {
+          $acudiente= Acudiente::where('pk_acudiente', $estudiante[0]->fk_acudiente)->get();
+          if(!empty($acudiente[0])){
+            return view("estudiantes.verEstudiante",[
+                       'estudiante'=>$estudiante[0],
+                       'acudiente' =>$acudiente[0]
+            ]);
+          }
+          return 'Error en el estudiante: No tiene acudientes';
+        }
+        return 'Estudiante no encontrado';
     }
 
     public function edit($pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante);
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
         return view('estudiantes.editarEstudiante', [
-            'estudiante' => $estudiante, 
+            'estudiante' => $estudiante,
             'acudiente'=> $acudiente
         ]);
     }
@@ -166,11 +167,11 @@ class EstudianteController extends Controller{
             ]);
         }
     }
-    
+
     public function periodo($periodo){
         return redirect(route('estudiantes.periodo', $periodo));
         // return view("estudiantes.periodo",[
         //     'periodo'=>$p
-        //  ]); 
+        //  ]);
     }
 }
