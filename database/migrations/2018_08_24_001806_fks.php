@@ -15,6 +15,8 @@ class Fks extends Migration
         Schema::table('estudiante', function (Blueprint $table) {
             $table->foreign('fk_acudiente')->references('pk_acudiente')->on('acudiente')
                 ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fk_curso')->references('pk_curso')->on('curso')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::table('boletin', function (Blueprint $table) {

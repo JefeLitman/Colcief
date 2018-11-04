@@ -23,6 +23,7 @@ class Todo extends Migration{
         Schema::create('estudiante', function (Blueprint $table) {
             $table->increments('pk_estudiante');
             $table->unsignedInteger('fk_acudiente');
+            $table->unsignedInteger('fk_curso')->nullable();
             $table->string('nombre', 20);
             $table->string('apellido', 20);
             $table->string('password', 80);
@@ -82,7 +83,9 @@ class Todo extends Migration{
 
         Schema::create('curso', function (Blueprint $table) {
             $table->increments('pk_curso');
-            $table->string('nombre', 20);
+            $table->string('prefijo', 15);
+            $table->string('sufijo', 4);
+            $table->year('ano');
             $table->timestamps();
         });
 
