@@ -1,20 +1,20 @@
-function autocompletar(tabla, datos){
-    $.ajax({
-        type: 'POST',
-        url: '/autocompletar/'+tabla,
-        data: {_token:$('input[name=_token]').val(), datos:datos},
-        success: function(data) {
-            $(document).ready(function(){
-                $('input.autocomplete').autocomplete({
-                    data: data,
-                });
-            });
-        },
-        error: function(){
-            alert('Algo salio mal :C')
-        }
-    });
-}
+// function autocompletar(tabla, datos){
+//     $.ajax({
+//         type: 'POST',
+//         url: '/autocompletar/'+tabla,
+//         data: {_token:$('input[name=_token]').val(), datos:datos},
+//         success: function(data) {
+//             $(document).ready(function(){
+//                 $('input.autocomplete').autocomplete({
+//                     data: data,
+//                 });
+//             });
+//         },
+//         error: function(){
+//             alert('Algo salio mal :C')
+//         }
+//     });
+// }
 
 $(document).ready(function(){
     $('.delete').click(function(){
@@ -48,7 +48,6 @@ $(document).ready(function(){
             '</div>';
             return modal;
         }
-
         var montar = function(titulo,mensaje,botones){
             $('#br').after(newModal(titulo,mensaje,botones));
             $('#exampleModalCenter').modal('show');
@@ -65,7 +64,6 @@ $(document).ready(function(){
                 $("#exampleModalCenter").modal('hide');
             });
         };
-
         modalConfirm(function(confirm){
             if(confirm){
                 $.ajax({
