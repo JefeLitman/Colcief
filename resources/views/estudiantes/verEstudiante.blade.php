@@ -13,16 +13,18 @@
 
 <br>
 <div class="container">
-    <div class="card mx-auto border-dark bg-light" style="width: 20rem;">
-        <img class="card-img-top" src="{{$estudiante->foto}}">
+    <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
+        <div class="card-header" style="background-color:#66ba6a7d !important;">
+            <img class="card-img-top" src="{{$estudiante->foto}}">
+        </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item border-dark bg-light">
+            <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
                 <h5 class="card-title text-center">
                     <i class="fas fa-id-card-alt"></i>
                     <br> {{$estudiante->nombre}}<br>{{$estudiante->apellido}}
                 </h5>
             </li>
-            <li class="list-group-item border-dark bg-light">
+            <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
                 <h5 class="card-title text-center">
                     <i class="fas fa-star"></i>
                     <br>
@@ -66,7 +68,7 @@
                     @endswitch
                 </h5>
             </li>
-            <li class="list-group-item border-dark bg-light">
+            <li class="list-group-item " style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
                 <h5 class="card-title text-center">
                     <i class="fas fa-user-tie"></i>
                     <br>
