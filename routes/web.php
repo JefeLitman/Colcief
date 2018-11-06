@@ -11,6 +11,13 @@
 |
 */
 
+/*
+=============INFORMACIÓN IMPORTANTE======================
+Las rutas de tipo recurso de más bajo URL (ex: "/ruta" es de más bajo nivel que "/ruta/rutita")
+deben ir abajo de todas las otras rutas que accedan a la misma tabla para que no ocurra
+solapamiento.
+*/
+
 /* RUTAS MISCELANEA
   Aquí van todas las rutas que no estén ligadas exáctamente a una tabla o query
 */
@@ -32,7 +39,6 @@ Route::post('/login', 'Login\LoginController@authenticate')->name('authenticate'
 Route::get('/logout', 'Login\LoginController@logout')->name('logout');
 
 /* RUTAS ESTUDIANTE */
-Route::resource('/estudiantes', 'EstudianteController');
 Route::post('/estudiantes/perfil/{pk_estudiante}', 'EstudianteController@perfil');
 Route::get('estudiantes/principal', function () {
     return view('estudiantes.principal');
@@ -40,10 +46,10 @@ Route::get('estudiantes/principal', function () {
 Route::get('estudiantes/periodo/{p}', function ($p) {
     return view('estudiantes.periodo',['periodo' => $p]);
 })->middleware('admin:estudiante');
+Route::resource('/estudiantes', 'EstudianteController');
 
 
 /* RUTAS EMPLEADO */
-Route::resource('/empleados','EmpleadoController');
 Route::get('empleados/principal', function () {
     return view('empleados.principal');
 })->middleware('admin:profesor,director,administrador');
@@ -54,6 +60,7 @@ Route::get('empleados/eliminarEstudiantes', function () {
     return view('cursos.eliminarEstudiante',['pas'=>'1']);
 });
 Route::post('/empleados/perfil/{cedula}', 'EmpleadoController@perfil');
+Route::resource('/empleados','EmpleadoController');
 
 /* RUTAS DE ACUDIENTE */
 Route::resource('/acudientes','AcudienteController');
