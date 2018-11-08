@@ -48,6 +48,7 @@ class CursoController extends Controller
         $curso->save();
         return redirect(route('cursos.show', $curso->pk_curso));
     }
+
     public function conteoEstudiantes($prefijo,$sufijo)
     {
         $estudiantes = Curso::where('prefijo','=',$prefijo)
@@ -57,5 +58,11 @@ class CursoController extends Controller
           array_push($listado,$estudiante->getAttributes());
         }
         return json_encode($listado);
+    }
+
+    public function conteoCursosPorGrado($grado)
+    {
+        $cursos = Curso::where('prefijo','=',$grado)->get()->toArray();
+        return json_encode($cursos);
     }
 }
