@@ -76,6 +76,7 @@ Route::resource('/divisiones','DivisionController');
 
 /* RUTAS DE CURSO */
 Route::get('/cursos/estudiantes/{prefijo}/{sufijo}','CursoController@conteoEstudiantes');
+Route::get('/cursos/grados/{grado}','CursoController@conteoCursosPorGrado');
 Route::resource('/cursos','CursoController');
 
 /* RUTAS DE MATERIAPC */
