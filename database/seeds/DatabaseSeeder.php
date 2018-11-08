@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        /* EL ORDEN IMPORTA
+          Como algunas tablas requieren foraneas, es necesario que, obviamente,
+          el dato exista antes de ser asignado.
+        */
+        $this->call(AcudienteSeeder::class);
+        $this->call(CursoSeeder::class);
+        $this->call(EmpleadoSeeder::class);
+        $this->call(EstudianteSeeder::class);
     }
 }

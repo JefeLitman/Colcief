@@ -48,4 +48,14 @@ class CursoController extends Controller
         $curso->save();
         return redirect(route('cursos.show', $curso->pk_curso));
     }
+    public function conteoEstudiantes($prefijo,$sufijo)
+    {
+        $estudiantes = Curso::where('prefijo','=',$prefijo)
+        ->where('sufijo','=',$sufijo)->first()->estudiantes;
+        $listado = [];
+        foreach ($estudiantes as $estudiante) {
+          array_push($listado,$estudiante->getAttributes());
+        }
+        return json_encode($listado);
+    }
 }

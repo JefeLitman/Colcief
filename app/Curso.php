@@ -11,10 +11,10 @@ class Curso extends Model {
     protected $dates = ['deleted_at'];
 
     public function boletin(){
-        return $this->hasMany('App\Boletin');
+        return $this->hasMany('App\Boletin', 'fk_curso', 'pk_curso');
     }
 
-    public function estudiante(){
-        return $this->hasMany('App\Estudiante');
+    public function estudiantes(){
+        return $this->hasMany('App\Estudiante', 'fk_curso','pk_curso');
     }
 }
