@@ -10,6 +10,10 @@ class Curso extends Model {
     protected $fillable = ['pk_curso', 'prefijo', 'sufijo','ano'];
     protected $dates = ['deleted_at'];
 
+    public function datos(){
+        $this->attributes;
+    }
+
     public function boletin(){
         return $this->hasMany('App\Boletin', 'fk_curso', 'pk_curso');
     }

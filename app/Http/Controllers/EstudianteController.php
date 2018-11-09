@@ -22,15 +22,15 @@ class EstudianteController extends Controller{
     //Funciones publicas de primeros y al final las privadas
 
     public function __construct (){
-        // $this->middleware('admin:administrador');
+        $this->middleware('admin:estudiante')->only('perfil');
+        $this->middleware('admin:director,profesor,administrador')->only(['index', 'show']);
+        $this->middleware('admin:administrador')->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     public function index(){
-        $estudiante = Estudiante::all();
-        $curso = Curso::all();
-
-        // dd($estudiante);
-        return view('estudiantes.listaEstudiante', ['estudiante' => $estudiante, 'curso' => $curso]);
+        $curso = Curso::all()->groupBy('prefijo');
+        $grado = ["01" => "Uno","02" => "Dos", '03' => "Tres" , '04' => 'Cuatro', '05' =>  'Cinco', '06' =>  'Seis', '07' => 'Siete', '08' => 'Ocho', '09' => 'Nueve'];
+        return view('cursos.editarEstudiante', ['curso' => $curso, 'grado' => $grado]);
     }
 
     public function filtro(Request $request){
@@ -142,13 +142,13 @@ class EstudianteController extends Controller{
         return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
     }
 
-    public function perfil(Request $request,$pk_estudiante){
+    public function perfil(Request $request, $pk_estudiante){
         // dd('hola');
         $estudiante = Estudiante::findOrFail($pk_estudiante);
         $guard=session('role');
         if($request->hasFile('foto')){
             $nombre = 'estudiante'.$estudiante->pk_estudiante;
-            $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
+            $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
         $estudiante->save();
         $var = Estudiante::findOrFail($pk_estudiante);

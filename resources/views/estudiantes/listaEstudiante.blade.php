@@ -1,18 +1,6 @@
 @extends('contenedores.admin')
 @section('contenedor_admin')
 @section('titulo','Lista Estudiante')
-    <form id="grado" method="post">
-        @csrf
-        @for ($i = 0; $i < 12; $i++)
-            <label for="grado[{{$i}}]">{{$i}}</label>
-            <input type="checkbox" name="grado[{{$i}}]" id="grado[{{$i}}]" value="{{$i}}">
-        @endfor
-        <br>
-        @foreach ($curso as $item)
-            <label for="curso[{{$item->pk_curso}}]">{{$item->nombre}}</label>
-            <input type="checkbox" name="curso[{{$item->pk_curso}}]" id="curso[{{$item->pk_curso}}]" value="{{$item->pk_curso}}">
-        @endforeach
-    </form>
     <div class="container">
         <br>
         <br id="br">

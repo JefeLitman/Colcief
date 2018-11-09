@@ -54,7 +54,7 @@ Route::get('empleados/principal', function () {
     return view('empleados.principal');
 })->middleware('admin:profesor,director,administrador');
 Route::get('empleados/editarEstudiantes', function () {
-    return view('cursos.editarEstudiante',['pas'=>'0']);
+    return view('cursos.editarEstudiante');
 });
 Route::get('empleados/eliminarEstudiantes', function () {
     return view('cursos.eliminarEstudiante',['pas'=>'1']);
