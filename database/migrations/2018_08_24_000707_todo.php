@@ -123,7 +123,7 @@ class Todo extends Migration{
         Schema::create('horario', function (Blueprint $table) {
             $table->increments('pk_horario');
             $table->unsignedInteger('fk_materia_pc');
-            $table->date('dia');
+            $table->string('dia');
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->timestamps();

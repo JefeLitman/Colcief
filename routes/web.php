@@ -86,5 +86,9 @@ Route::resource('/materiaspc','MateriaPCController');
 Route::resource('/notas','NotaController');
 Route::get('/notas/crear/{materia}','NotaController@create');
 
+/* RUTAS DE HORARIO */
+Route::resource('/horarios','HorarioController');
+Route::get('/horarios/crear/{pk_materiaPC}','HorarioController@create');
+
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
