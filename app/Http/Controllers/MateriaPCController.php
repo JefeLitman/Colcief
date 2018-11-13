@@ -204,8 +204,12 @@ class MateriaPCController extends Controller
                  * Puede modificar todos miestras hayan creados el mismo año. Esto con el fin de proteger la integridad de los datos.
                  * Valores que puede modificar: Salon, Materia, Profesor, Curso, Salon
                  */
-                $materias=Materia::select("pk_materia","prefijo","sufijo","logros_custom")->get();
-                $cursos=Curso::select('pk_curso','nombre')->get();
+                $materias=Materia::select("pk_materia","nombre","logros_custom")->get();
+                $cursos=Curso::select('pk_curso','prefijo',"sufijo")->get();
+                foreach ($cursos as $key=>$i) {
+                    $prefijo=($i->prefijo==0)?"Prescolar":$i->prefijo;
+                    $cursos[$key]->nombre=$prefijo."-".$i->sufijo;
+                }
                 $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->get();
                 $materiapc = MateriaPC::select('pk_materia_pc','fk_materia','fk_empleado','fk_curso','salon','logros_custom')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['pk_materia_pc','=',$id]])->get();
                 if(empty($materiapc[0])){
