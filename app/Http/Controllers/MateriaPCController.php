@@ -336,17 +336,17 @@ class MateriaPCController extends Controller
             $materiapc = MateriaPC::where("pk_materia_pc","=",$id)->get();
             if(empty($materiapc[0])){
                 return response()->json([
-                    'mensaje' => 'Esta materia no existe'
+                    'mensaje' => 'Esta materia no existe.'
                 ]);
             }else{
                 $materiapc[0]->delete();
                 return response()->json([
-                    'mensaje' => 'Fue eliminado'
+                    'mensaje' => 'Fue eliminado.'
                 ]);
             }
         }
         return response()->json([
-            'mensaje' => 'No tienes los permmisos necesarios'
+            'mensaje' => 'No tienes los permmisos necesarios.'
         ]);
     }
 
