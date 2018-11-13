@@ -1,3 +1,6 @@
+@extends('contenedores.admin')
+@section('contenedor_admin')
+@section('titulo','Lista Empleados')
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -13,6 +16,7 @@
      @Autor Paola C. --}}
 {{-- Estado: Terminada para admin --}}
 {{-- URL: localhost:8000\materiaspc\{pk_materia_pc}\editar --}}
+
 
 <form method="post" action="{{route('materiaspc.update', $materiapc->pk_materia_pc)}}" >
     {{ method_field('PATCH') }}
@@ -66,7 +70,17 @@
     Logros custom (Este campo solo puede ser modificado por el docente a cargo): {{$materiapc->logros_custom}} 
     {{-- Esto no puede ser modificado por el administrador, pero si puede observar el contenido de este. Se le debe informar que este campo solo puede ser modificado por el docente a cargo. --}}
 
+
     <br>
     <br>
     <button type="submit">Guardar</button>
+
+    
 </form>
+
+{{-- Esto es necesario para poder eliminar una materiapc, ademas de importar el jquery --}}
+<br id="br">
+<button class="delete" tabla="materiaspc" identificador="{{$materiapc->pk_materia_pc}}">Eliminar MateriaPC</button>
+<script src="{{ asset('js/ajax.js') }}"></script>
+
+@endsection
