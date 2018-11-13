@@ -44,7 +44,7 @@
                         <td>{{$i->role}}</td>
                         <td><a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#00838f"></i>
                         </a></td>
-                        <td class="delete" tabla="empleado" identificador="{{$i->cedula}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                        <td class="delete" ruta="empleados" identificador="{{$i->cedula}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
                     </tr>
                 @endforeach
             </tbody>
