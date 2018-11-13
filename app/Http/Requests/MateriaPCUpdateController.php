@@ -25,11 +25,11 @@ class MateriaPCUpdateController extends FormRequest
     {
       return [
         //   Aun no se ha ajustado para el controlador de MateriaPC
-            'fk_materia' => 'required|numeric',
-            'fk_empleado' => 'required|numeric',
-            'fk_curso' => 'required|numeric',
-            'salon' => 'required|string|max:5',
-            'logros_custom' => 'required|string|max:255'
+            'fk_materia' => 'numeric',
+            'fk_empleado' => 'numeric',
+            'fk_curso' => 'numeric',
+            'salon' => 'string|max:5',
+            'logros_custom' => 'string|max:255'
         ];
     }
 }
