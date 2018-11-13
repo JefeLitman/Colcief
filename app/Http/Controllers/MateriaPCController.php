@@ -132,7 +132,11 @@ class MateriaPCController extends Controller
     {
         if(session('role')=="administrador"){
             $materias=Materia::select("pk_materia","nombre","logros_custom")->get();
-            $cursos=Curso::select("pk_curso","nombre")->get();
+            $cursos=Curso::select("pk_curso","prefijo","sufijo")->get();
+            foreach ($cursos as $key=>$i) {
+                $prefijo=($i->prefijo==0)?"Prescolar":$i->prefijo;
+                $cursos[$key]->nombre=$prefijo."-".$i->sufijo;
+            }
             $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->get();
             return view("materiaspc.crearMateriaPC",["materias"=>$materias,"cursos"=>$cursos,"profesores"=>$profesores]);
         }else{
