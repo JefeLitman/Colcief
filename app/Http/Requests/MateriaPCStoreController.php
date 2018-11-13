@@ -24,6 +24,9 @@ class MateriaPCStoreController extends FormRequest
     public function rules()
     {
         return [
+            'fk_materia' => 'required|numeric',
+            'fk_empleado' => 'required|numeric',
+            'fk_curso' => 'required|numeric',
             'salon' => 'required|string|max:5'
         ];
     }

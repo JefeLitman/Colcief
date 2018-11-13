@@ -19,6 +19,10 @@ use App\Http\Requests\MateriaPCUpdateController;
 class MateriaPCController extends Controller
 {
     /**
+     * Funciones Publicas
+     */
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,7 +42,7 @@ class MateriaPCController extends Controller
                 $result=[];
 
                 // Busco las tuplas de materia_pc creadas el actual año
-                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.nombre','curso.nombre as curso')->where('materia_pc.created_at','like','%'.date('Y').'%');
+                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.nombre','curso.prefijo','curso.sufijo')->where('materia_pc.created_at','like','%'.date('Y').'%');
 
                 // Con esos valores realizo un join con empleado y curso
                 $materiaspc=$materiaspc->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get();
@@ -46,7 +50,7 @@ class MateriaPCController extends Controller
                 // Aqui extraigo las materias que tienen alguna tupla en materia_pc creadas en el actual año, y para que no se repita la materias las agrupo.
                 $materias=MateriaPC::select('nombre')->where('created_at','like','%'.date('Y').'%')->groupBy('nombre')->get();
                 
-                // El array asosiativo $result, se declara y se declaran sus item como un array para poder 
+                // El array asosiativo $result, se declara y se  declaran sus item como un array para poder 
                 // ingresarles array's posteriormente. Es decir cada item del array asosiativo $result contendrá matrices.
                 // Ejemplo de lo que sería $result={"Etica":[[1,"edward","caballero","8-2"],[2,"edward","caballero","8-2"]],"Software":[[3,"paola","caicedo","8-2"]]}
                 foreach($materias as $j){
@@ -55,7 +59,11 @@ class MateriaPCController extends Controller
                 foreach ($materiaspc as $i){
                     foreach($materias as $j){
                         if($j->nombre==$i->nombre){
-                            array_push($result[$j->nombre],[$i->pk_materia_pc,$i->nombreP,$i->apellido,$i->curso]);
+                            $prefijo=$i->prefijo;
+                            if($prefijo=="0"){
+                                $prefijo="Prescolar";
+                            }
+                            array_push($result[$j->nombre],[$i->pk_materia_pc,$i->nombreP,$i->apellido,$prefijo."-".$i->sufijo]);
                         }
                     }
                 }
@@ -69,7 +77,7 @@ class MateriaPCController extends Controller
                 
                 $materiaspc = null;
                 // Busco las tuplas de materia_pc creadas el actual año, y ademas solo las que pertenescan al profesor logeado
-                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','materia_pc.nombre','curso.nombre as curso')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['materia_pc.fk_empleado','=',$user["cedula"]]]);
+                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','materia_pc.nombre','curso.prefijo','curso.sufijo')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['materia_pc.fk_empleado','=',$user["cedula"]]]);
 
                 // Con esos valores realizo un join con empleado y curso
                 $materiaspc=$materiaspc->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get();
@@ -86,7 +94,11 @@ class MateriaPCController extends Controller
                 foreach ($materiaspc as $i){
                     foreach($materias as $j){
                         if($j->nombre==$i->nombre){
-                            array_push($result[$j->nombre],[$i->pk_materia_pc,$i->curso]);
+                            $prefijo=$i->prefijo;
+                            if($prefijo=="0"){
+                                $prefijo="Prescolar";
+                            }
+                            array_push($result[$j->nombre],[$i->pk_materia_pc,$prefijo."-".$i->sufijo]);
                         }
                     }
                 }
@@ -160,10 +172,15 @@ class MateriaPCController extends Controller
      */
     public function show($id)
     {
-        $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.nombre as curso","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
+        $this->login();
+        $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.prefijo","curso.sufijo","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
+        
         if(empty($materiapc[0])){
             return "No se ha encontrado la materia.";
         }else{
+            $materiapc2=$materiapc[0];
+            $prefijo=($materiapc2->prefijo==0)?"Prescolar":$materiapc2->prefijo;
+            $materiapc2->curso=$prefijo."-".$materiapc2->sufijo;
             return view("materiaspc.verMateriaPC",["materiapc"=>$materiapc[0]]);
         }
     }
@@ -176,11 +193,54 @@ class MateriaPCController extends Controller
      */
     public function edit($id)
     {
+        $user=session('user');
+        $role=session('role');
+        switch($role){
+            case "administrador":
+                //Caso administrador
+                /**
+                 * El administrador puede modificar todo a excepcion de la fecha de creacion, fechas de edicion (O no directamente), 
+                 * y los logros custom tampoco los puede modificar. 
+                 * Puede modificar todos miestras hayan creados el mismo año. Esto con el fin de proteger la integridad de los datos.
+                 * Valores que puede modificar: Salon, Materia, Profesor, Curso, Salon
+                 */
+                $materias=Materia::select("pk_materia","prefijo","sufijo","logros_custom")->get();
+                $cursos=Curso::select('pk_curso','nombre')->get();
+                $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->get();
+                $materiapc = MateriaPC::select('pk_materia_pc','fk_materia','fk_empleado','fk_curso','salon','logros_custom')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['pk_materia_pc','=',$id]])->get();
+                if(empty($materiapc[0])){
+                    return "Esta matedia no existe o no se permite modificarla";
+                }else{
+                    return view('materiaspc.editarMateriaPC_admin',['materias'=>$materias,'cursos'=>$cursos,'profesores'=>$profesores,'materiapc'=>$materiapc[0]]);
+                }
+                
+                break;
+            case "director":
+                //Caso director
+                /**
+                 * El director solo puede modificar las materias_pc que estan a su cargo y del presente año.
+                 * Por lo que se comporta como profesor.(Por eso la omision del break)
+                 */
+            case "profesor":
+                //Caso profesor
+                /**
+                 * El profesor unicamente puede modificar el logros_custom de las materias acargo de el, 
+                 * el año presente.
+                 */
+                $materiapc = MateriaPC::select('materia_pc.pk_materia_pc','materia_pc.fk_materia','materia_pc.fk_empleado','materia_pc.fk_curso','materia_pc.salon','materia_pc.logros_custom');
+                $materiapc = $materiapc->where([ ['materia_pc.created_at','like','%'.date('Y').'%'] , ['materia_pc.pk_materia_pc','=',$id] , ['materia_pc.fk_empleado','=',$user['cedula']] ])->get();
+                if(empty($materiapc[0])){
+                    return "Esta matedia no existe o no se permite modificarla";
+                }else{
+                    return view('materiaspc.editarMateriaPC_profesor',['materiapc'=>$materiapc]);
+                }
+                break;
+
+            default:
+                //Aqui entras los estudiantes y los que no han logeado.
+                return "Rol no valido.";
+        }
         
-        $materiapc = MateriaPC::findOrFail($id);
-        
-        return $materiapc;
-        //return view('materias.editarMateria', compact('materia'));
     }
 
     /**
@@ -190,9 +250,9 @@ class MateriaPCController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MateriaPCUpdateController $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -203,6 +263,18 @@ class MateriaPCController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Borrado suave
+    }
+
+    /**
+     * Funciones Privadas
+     */
+
+    //Verificacion de logeo
+    private function login(){
+        if(empty(session('user'))){
+            return redirect(route("/login"));
+        }
+        
     }
 }

@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Estudiante</title>
-</head>
-<body>
+
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $materiapc--}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>MateriaPCController.php  funcion show() 
@@ -19,6 +14,3 @@
 	Curso: <a href="/cursos/{{$materiapc->fk_curso}}">{{$materiapc->curso}} </a><br>
 	Salon: {{$materiapc->salon}} <br>
 	Logros Custom: {{$materiapc->logros_custom}} <br>
-	
-</body>
-</html>
