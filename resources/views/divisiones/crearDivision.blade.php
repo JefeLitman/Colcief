@@ -8,8 +8,10 @@
         Divisiones
     </h1>
     <br>
+    <form enctype="multipart/form-data" action="/divisiones" method="POST">
+    @csrf
         <div class="table-responsive">
-            <script>var i=3</script>
+            <script>var i=0</script>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -19,8 +21,6 @@
                     </tr>
                 </thead>
                 <tbody id="div">
-                    <form enctype="multipart/form-data" action="/divisiones" method="POST">
-                    @csrf
                     @for ($i = 0 ; $i < 1; $i++)
                     <tr  class="menos" id="index[{{$i}}]">
                         <th scope="row">
@@ -39,26 +39,26 @@
                 </tbody>
             </table>
         </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-4 mb-2 mx-auto">
-                    <a class=" btn btn-info btn-block rounded-0 py-2" style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-4 mb-2 mx-auto">
-                    <a class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
-                </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 mb-2 mx-auto">
+                <a class=" btn btn-info btn-block rounded-0 py-2" style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <button class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #0277bd !important; border-color: #0277bd !important; width: 40%;" type="submit" name="action">
-                        Crear
-                    </button>
-                <div class="col-md-4"></div>
-                </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4 mb-2 mx-auto">
+                <a class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #0277bd !important; border-color: #0277bd !important; width: 40%;" type="submit" name="action">
+                    Crear
+                </button>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </form>
 </div>
 <script>
     $('#create').click(function(){

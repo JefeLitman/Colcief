@@ -28,7 +28,6 @@ class DivisionController extends Controller{
     }
 
     public function store(DivisionStoreController $request){
-        // dd($request->all());
         $total = 0;
         for($i=0;$i<count($request->nombre);$i++){
             $total += $request->porcentaje[$i];
