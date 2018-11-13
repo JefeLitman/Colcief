@@ -80,6 +80,7 @@ Route::get('/cursos/grados/{grado}','CursoController@conteoCursosPorGrado');
 Route::resource('/cursos','CursoController');
 
 /* RUTAS DE MATERIAPC */
+// Debe estar logeado para acceder
 Route::resource('/materiaspc','MateriaPCController');
 
 /* RUTAS DE NOTA */

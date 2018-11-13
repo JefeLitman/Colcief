@@ -172,15 +172,13 @@ class MateriaPCController extends Controller
      */
     public function show($id)
     {
-        $this->login();
         $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.prefijo","curso.sufijo","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
         
         if(empty($materiapc[0])){
             return "No se ha encontrado la materia.";
         }else{
-            $materiapc2=$materiapc[0];
-            $prefijo=($materiapc2->prefijo==0)?"Prescolar":$materiapc2->prefijo;
-            $materiapc2->curso=$prefijo."-".$materiapc2->sufijo;
+            $prefijo=($materiapc[0]->prefijo==0)?"Prescolar":$materiapc[0]->prefijo;
+            $materiapc[0]->curso=$prefijo."-".$materiapc[0]->sufijo;
             return view("materiaspc.verMateriaPC",["materiapc"=>$materiapc[0]]);
         }
     }
@@ -213,7 +211,7 @@ class MateriaPCController extends Controller
                 $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->get();
                 $materiapc = MateriaPC::select('pk_materia_pc','fk_materia','fk_empleado','fk_curso','salon','logros_custom')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['pk_materia_pc','=',$id]])->get();
                 if(empty($materiapc[0])){
-                    return "Esta matedia no existe o no se permite modificarla";
+                    return "Esta materia no existe o no se permite modificarla";
                 }else{
                     return view('materiaspc.editarMateriaPC_admin',['materias'=>$materias,'cursos'=>$cursos,'profesores'=>$profesores,'materiapc'=>$materiapc[0]]);
                 }
@@ -231,12 +229,16 @@ class MateriaPCController extends Controller
                  * El profesor unicamente puede modificar el logros_custom de las materias acargo de el, 
                  * el año presente.
                  */
-                $materiapc = MateriaPC::select('materia_pc.pk_materia_pc','materia_pc.fk_materia','materia_pc.fk_empleado','materia_pc.fk_curso','materia_pc.salon','materia_pc.logros_custom');
-                $materiapc = $materiapc->where([ ['materia_pc.created_at','like','%'.date('Y').'%'] , ['materia_pc.pk_materia_pc','=',$id] , ['materia_pc.fk_empleado','=',$user['cedula']] ])->get();
+                $materiapc = MateriaPC::select("materia_pc.fk_empleado","empleado.nombre","empleado.apellido",'materia_pc.pk_materia_pc','materia_pc.nombre as materia','materia_pc.fk_curso','materia_pc.salon','materia_pc.logros_custom',"curso.prefijo","curso.sufijo");
+                $materiapc = $materiapc->where([ ['materia_pc.created_at','like','%'.date('Y').'%'] , ['materia_pc.pk_materia_pc','=',$id] , ['materia_pc.fk_empleado','=',$user['cedula']] ]);
+                $materiapc = $materiapc->join('curso','materia_pc.fk_curso',"=","curso.pk_curso");
+                $materiapc = $materiapc->join('empleado','materia_pc.fk_empleado',"=","empleado.cedula")->get();
                 if(empty($materiapc[0])){
-                    return "Esta matedia no existe o no se permite modificarla";
+                    return "Esta materia no existe o no se permite modificarla";
                 }else{
-                    return view('materiaspc.editarMateriaPC_profesor',['materiapc'=>$materiapc]);
+                    $prefijo=($materiapc[0]->prefijo==0)?"Prescolar":$materiapc[0]->prefijo;
+                    $materiapc[0]->curso=$prefijo."-".$materiapc[0]->sufijo;
+                    return view('materiaspc.editarMateriaPC_profesor',['materiapc'=>$materiapc[0]]);
                 }
                 break;
 
@@ -256,7 +258,69 @@ class MateriaPCController extends Controller
      */
     public function update(MateriaPCUpdateController $request, $id)
     {
-        
+        $user=session('user');
+        $role=session('role');
+        switch($role){
+            case "administrador":
+                //Caso administrador
+                /**
+                 * El administrador puede modificar todo a excepcion de la fecha de creacion, fechas de edicion (O no directamente), 
+                 * y los logros custom tampoco los puede modificar. 
+                 * Puede modificar todos miestras hayan creados el mismo año. Esto con el fin de proteger la integridad de los datos.
+                 * Valores que puede modificar: Salon, Materia, Profesor, Curso, Salon
+                 */
+                $materiapc=MateriaPC::where("pk_materia_pc","=",$id)->get();
+                if(empty($materiapc[0])){
+                    return "Esta materia no existe.";
+                }else{
+                    $materiapc=$materiapc[0];
+                    if( $request->salon != "" and $request->fk_curso!="" and $request->fk_empleado!="" and $request->fk_materia!="" ){
+                        $materiapc->salon=$request->salon;
+                        $materiapc->fk_curso=$request->fk_curso;
+                        $materiapc->fk_empleado=$request->fk_empleado;
+                        if($materiapc->fk_materia != $request->fk_materia){
+                            $materiapc->fk_materia=$request->fk_materia;
+                            $m=Materia::select("nombre")->where("pk_materia","=",$request->fk_materia)->get()[0];
+                            $materiapc->nombre=$m->nombre;
+                        }
+                        $materiapc->save();
+                        return redirect("/materiaspc/$id");
+                    }else{
+                        return "Alguno de los valores se envia como nulo.";
+                    }
+                }
+                break;
+            case "director":
+                //Caso director
+                /**
+                 * El director solo puede modificar las materias_pc que estan a su cargo y del presente año.
+                 * Por lo que se comporta como profesor.(Por eso la omision del break)
+                 */
+            case "profesor":
+                //Caso profesor
+                /**
+                 * El profesor unicamente puede modificar el logros_custom de las materias acargo de el, 
+                 * el año presente.
+                 */
+                $materiapc=MateriaPC::where([["pk_materia_pc","=",$id],["fk_empleado","=",$user["cedula"]]])->get();
+                if(empty($materiapc[0])){
+                    return "Esta materia no existe o no tienes permisos para modificarla.";
+                }else{
+                    $materiapc=$materiapc[0];
+                    if($materiapc->logros_custom != $request->logros_custom){
+                        $materiapc->logros_custom=$request->logros_custom;
+                        $materiapc->save();
+                        return redirect("/materiaspc/$id");
+                    }else{
+                        return "No hay ningun cambio para guardar.";
+                    }
+                }
+                break;
+
+            default:
+                //Aqui entran los estudiantes y los que no han logeado.
+                return "Rol no valido.";
+        }
     }
 
     /**
@@ -267,18 +331,7 @@ class MateriaPCController extends Controller
      */
     public function destroy($id)
     {
-        //Borrado suave
-    }
-
-    /**
-     * Funciones Privadas
-     */
-
-    //Verificacion de logeo
-    private function login(){
-        if(empty(session('user'))){
-            return redirect(route("/login"));
-        }
         
     }
+
 }

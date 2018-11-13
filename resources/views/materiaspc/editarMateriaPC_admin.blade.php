@@ -60,7 +60,7 @@
     <br><br>
 
     {{--No debe superar una long de 5--}}
-    Salón: <input type="text" value="{{$materiapc->salon}}">
+    Salón: <input name="salon" id="salon" type="text" value="{{$materiapc->salon}}">
     <br><br>
     
     Logros custom (Este campo solo puede ser modificado por el docente a cargo): {{$materiapc->logros_custom}} 
