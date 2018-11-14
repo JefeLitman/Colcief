@@ -35,18 +35,32 @@ class NotaController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * Para que funcione correctamente, las autenticaciones deben servir y se
+     * debe de estar logeado.
+     *
+     * @param $pk_materia
+     * Por defecto es null, ergo, se puede acceder a la ruta para crear una nota
+     * de cualquier materia o de una en concreto si se le manda el pk.
      */
     public function create($pk_materia=null)
     {
       if (!empty($pk_materia)) {
-        $divisiones = Division::select('pk_division','nombre')->get();
         $materiasPC = MateriaPC::select('pk_materia_pc','nombre')->where([
           ['pk_materia_pc','=',$pk_materia],
           ['fk_empleado','=',session('user')['cedula']]
           ])->get();
-        return view('notas.crearNota',['divisiones' => $divisiones, 'materias' => $materiasPC]);
+      }else{
+        $materiasPC = MateriaPC::select('pk_materia_pc','nombre')->where(
+          'fk_empleado','=',session('user')['cedula'])->get();
       }
-      return 'Debe especificar la materia';
+      if ($materiasPC->count()>0) {
+        $divisiones = Division::select('pk_division','nombre')->get();
+        if ($divisiones->count()>0) {
+          return view('notas.crearNota',['divisiones' => $divisiones, 'materias' => $materiasPC]);
+        }
+        return 'No hay divisiones existentes para asignar notas';
+      }
+      return 'La materia no existe o no tiene materias asignadas';
     }
 
     /**
@@ -70,6 +84,7 @@ class NotaController extends Controller
      */
     public function show($pk_nota)
     {
+      //No dejar entrar si la nota no pertenece a la del profesor
         $unidad = Nota::find($pk_nota);
         if (!empty($unidad)) {
           $datos = [$this->arrayzar($unidad)];
