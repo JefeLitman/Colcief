@@ -23,7 +23,7 @@ class MateriaPCSeeder extends Seeder
         $curso = $faker->randomElement($cursos);
         $materia = $faker->randomElement($materias);
         $empleado = $faker->randomElement($empleados);
-        #error_log( implode(",",$materias));
+        #error_log(); //Muestra en consola cuando se ejecuta el "php artisan db:seed" // @Modificacion Paola C. 
         MateriaPC::create([
             'fk_materia' => $materia->pk_materia,// @Modificacion Paola C.
             'fk_empleado' => $empleado,
