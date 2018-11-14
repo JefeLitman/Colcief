@@ -8,7 +8,6 @@ use App\Http\Requests\NotaStoreController;
 use App\Nota;
 use App\Division;
 use App\MateriaPC;
-use App\Acudiente;
 
 class NotaController extends Controller
 {
@@ -84,9 +83,8 @@ class NotaController extends Controller
      */
     public function show($pk_nota)
     {
-      //No dejar entrar si la nota no pertenece a la del profesor
         $unidad = Nota::find($pk_nota);
-        if (!empty($unidad)) {
+        if (!empty($unidad) and $this->verificarProfesor($unidad,session('user')['cedula'])) {
           $datos = [$this->arrayzar($unidad)];
           return view('notas.verNota',['datos' => $datos]);
         }
@@ -122,24 +120,54 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($pk_nota)
     {
-        //
+        $unidad = Nota::find($pk_nota);
+        if ($this->verificarProfesor($unidad,session('user')['cedula'])) {
+          if (!empty($unidad)) {
+            $unidad->delete();
+            return 'Nota eliminada';
+          }
+          return 'Nota no encontrada';
+        }
+        return 'No tiene permisos para hacer esta acción';
     }
 
-    //Este métodop devuelve dos colecciones, una que corresponde a la division y otro a la materia
+    /**
+    * Verifica que al objeto nota solicitado le corresponda el profesor
+    * indicado o que en su defecto, sea un usuario administrador
+    * @param Nota el objeto nota
+    * @param string $cedula_prof Es la cédula del usuario
+    * @return boolean
+    */
+    private function verificarProfesor($nota,$cedula_prof)
+    {
+        $materiaPC = MateriaPC::find($nota['fk_materia_pc']);
+        if ($materiaPC['fk_empleado']==$cedula_prof or session('user')['role']==0) {
+          return true;
+        }
+        return false;
+    }
+
+    /**
+     * Este método devuelve dos colecciones, una que corresponde a la division y otro a la materia
+     * @param Nota el objeto Nota
+     * @return Array
+     */
     private function inspeccionarNota($Nota)
     {
-        $datosDivision = Division::select('nombre','descripcion')->where('pk_division','=',$Nota['fk_division'])->get();
-        $datosMateriaPC = MateriaPC::select('fk_materia','nombre')->where('pk_materia_pc','=',$Nota['fk_materia_pc'])->get();
         return [
-          'division' => $datosDivision,
-          'materia' => $datosMateriaPC
+          'division' => $Nota->Division,
+          'materia' => $Nota->MateriaPC
         ];
     }
 
-    //Este método devuelve un array que contiene el objeto Nota, Divison y Materia
-    //donde Division y Materia están capados a los [nombre,descripcion] y [fk_materia, nombre]
+    /**
+     * Este método devuelve un array que contiene el objeto Nota, Divison y Materia
+     * donde Division y Materia están capados a los [nombre,descripcion] y [fk_materia, nombre]
+     * @param Nota
+     * @return Array
+     */
     private function arrayzar($Nota)
     {
       $foraneas = $this->inspeccionarNota($Nota);
