@@ -18,18 +18,17 @@ class MateriaPCSeeder extends Seeder
     {
         $faker = Faker::create();
         $cursos = Curso::all()->pluck('pk_curso')->toArray();
-        $materias = Materia::all()->pluck('pk_materia')->toArray();
+        $materias = Materia::select("pk_materia","nombre")->get();// @Modificacion Paola C.
         $empleados = Empleado::all()->pluck('cedula')->toArray();
-
         $curso = $faker->randomElement($cursos);
         $materia = $faker->randomElement($materias);
         $empleado = $faker->randomElement($empleados);
-
+        #error_log( implode(",",$materias));
         MateriaPC::create([
-            'fk_materia' => $materia,
+            'fk_materia' => $materia->pk_materia,// @Modificacion Paola C.
             'fk_empleado' => $empleado,
             'fk_curso' => $curso,
-            'nombre' => $materia->nombre,
+            'nombre' => $materia->nombre,// @Modificacion Paola C.
             'salon' => '101',
             'logros_custom' => 'logros 1',
             'created_at' => date('Y-m-d H:m:s'),
@@ -41,10 +40,10 @@ class MateriaPCSeeder extends Seeder
         $empleado2 = $faker->randomElement($empleados);
         
         MateriaPC::create([
-            'fk_materia' => $materia2,
+            'fk_materia' => $materia2->pk_materia,// @Modificacion Paola C.
             'fk_empleado' => $empleado2,
             'fk_curso' => $curso2,
-            'nombre' => $materia->nombre,
+            'nombre' => $materia2->nombre,// @Modificacion Paola C.
             'salon' => '201',
             'logros_custom' => 'logros 2',
             'created_at' => date('Y-m-d H:m:s'),
