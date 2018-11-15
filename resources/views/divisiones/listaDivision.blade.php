@@ -38,8 +38,8 @@
                             <td><a href="{{ route('divisiones.edit', $i->pk_division) }}"><i class="fas fa-edit" style="color:#00838f"></i>
                             </a></td>
                             <td class="delete" tabla="divisiones" identificador="{{$i->pk_division}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
-                        @endforeach
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
