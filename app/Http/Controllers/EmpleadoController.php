@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Empleado;
+use App\Curso;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,8 @@ class EmpleadoController extends Controller{
     }
 
     public function create(){
-        return view('empleados.crearEmpleado');
+        $cursos=Curso::where("ano",date('Y'))->get(); //Agregado by Paola
+        return view('empleados.crearEmpleado',['cursos'=>$cursos]);
     }
 
     public function store(EmpleadoStoreController $request){
@@ -49,7 +51,7 @@ class EmpleadoController extends Controller{
         if (!(session('role')=='administrador')) {
           $cedula = ''.session('user')['cedula'];
         }
-        $empleado = Empleado::where('cedula', $cedula)->get();
+        $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso')->get();
         if(!empty($empleado[0])){
             return view("empleados.verEmpleado",['empleado'=>$empleado[0]]);
         }
@@ -58,7 +60,8 @@ class EmpleadoController extends Controller{
 
     public function edit($cedula){
         $empleado = Empleado::findOrFail($cedula);
-        return view("empleados.editarEmpleado", compact('empleado'));
+        $cursos=Curso::where("ano",date('Y'))->get();//agregado by Paola
+        return view("empleados.editarEmpleado", ['empleado'=>$empleado,"cursos"=>$cursos]);//Modificado by Paola
     }
 
     public function update(EmpleadoUpdateController $request, $cedula){

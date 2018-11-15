@@ -16,18 +16,6 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script>
-        function desactivar(p1,p2){
-            var s1 = document.getElementById(p1);
-            var s2 = document.getElementById(p2);
-            if(s1.value=='0' || s1.value=='2'){
-                s2.value="";
-                s2.disabled = true;
-            }else{
-                s2.disabled = false;
-            }
-        }
-    </script>
 </head>
 <body>
 

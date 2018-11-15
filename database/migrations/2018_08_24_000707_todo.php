@@ -148,7 +148,8 @@ class Todo extends Migration{
             $table->string('titulo', 50);
             $table->char('role', 1); // 0 administrador, //1 director //2 profesor
             $table->integer('tiempo_extra')->default(0);
-            $table->string('director', 50)->nullable();
+            //$table->string('director', 50)->nullable(); //Borrado By: Paola
+            $table->unsignedInteger('fk_curso')->nullable(); //Foranea, curso del cual el empleado es director //Agregado By:Paola
             $table->boolean('estado')->nullable()->default(true);
             $table->string('foto')->default('/storage/default.png');
             $table->timestamps();
