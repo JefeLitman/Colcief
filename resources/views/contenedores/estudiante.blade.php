@@ -28,8 +28,5 @@
 
     <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
     @include('footers.principal')
-
-
-
 </body>
 </html>

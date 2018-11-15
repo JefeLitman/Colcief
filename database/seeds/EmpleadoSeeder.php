@@ -36,7 +36,7 @@ class EmpleadoSeeder extends Seeder
           'password' => Hash::make('clave'),
           'direccion' => $faker->address,
           'titulo' => 'Profesor de algo',
-          'role' => '1',
+          'role' => '2',
           'created_at' => date('Y-m-d H:m:s'),
           'updated_at' => date('Y-m-d H:m:s')
         ]);

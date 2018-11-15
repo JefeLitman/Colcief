@@ -7,13 +7,13 @@
   <body>
     <form class="" action="/notas" method="post">
       @csrf
-      <label for="">Fk_Division [numero_natural]</label>
+      <label for="">Fk_Division</label>
       <select name="fk_division" required>
         @foreach ($divisiones as $division)
           <option value="{{$division['pk_division']}}">{{$division['nombre']}}</option>
         @endforeach
       </select><br>
-      <label for="">Fk_MateriaPC [numero_natural]</label>
+      <label for="">Fk_MateriaPC</label>
       <select name="fk_materia_pc" required>
         @foreach ($materias as $materia)
           <option value="{{$materia['pk_materia_pc']}}">{{$materia['nombre']}}</option>

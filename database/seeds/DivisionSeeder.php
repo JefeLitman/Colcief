@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Division;
+
+class DivisionSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+      for ($i=1; $i <=4 ; $i++) {
+        Division::create([
+          'nombre' => 'Div_'.$i,
+          'descripcion' => 'Corte'.$i,
+          'porcentaje' => 25,
+          'limite' => '2019-09-14',
+          'ano' => '2018',
+          'created_at' => date('Y-m-d H:m:s'),
+          'updated_at' => date('Y-m-d H:m:s')
+        ]);
+      }      
+    }
+}
