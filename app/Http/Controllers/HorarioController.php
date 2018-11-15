@@ -20,7 +20,8 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        return 'por definir vista :p';
+        $horarios = Horario::all();
+        return view('horarios.listaHorarios', compact('horarios'));
     }
 
     /**
@@ -30,8 +31,9 @@ class HorarioController extends Controller
      */
     public function create($pk_materiaPC=null)
     {        
+        // Verifico que en la URL venga la $pk_materiaPC para saber a que materiaPC le creare los horarios
         if (!empty($pk_materiaPC)) {
-            //Info para mostrar en la vista
+            // 
             $materiaPC = MateriaPC::find($pk_materiaPC);
             $empleado = Empleado::find($materiaPC->fk_empleado);
             $curso = Curso::find($materiaPC->fk_curso);
@@ -80,9 +82,10 @@ class HorarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pk_horario)
     {
-        //
+        $horario = Horario::find($pk_horario);
+        return 'Formulario para editar ' .$horario->pk_horario. ' - ' .$horario->dia;
     }
 
     /**
@@ -106,25 +109,5 @@ class HorarioController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    //Este métodop devuelve dos colecciones, una que corresponde a la division y otro a la materia
-    private function inspeccionarNota($Nota)
-    {
-        $datosDivision = Division::select('nombre','descripcion')->where('pk_division','=',$Nota['fk_division'])->get();
-        $datosMateriaPC = MateriaPC::select('fk_materia','nombre')->where('pk_materia_pc','=',$Nota['fk_materia_pc'])->get();
-        return [
-          'division' => $datosDivision,
-          'materia' => $datosMateriaPC
-        ];
-    }
-
-    //Este método devuelve un array que contiene el objeto Nota, Divison y Materia
-    //donde Division y Materia están capados a los [nombre,descripcion] y [fk_materia, nombre]
-    private function arrayzar($Nota)
-    {
-      $foraneas = $this->inspeccionarNota($Nota);
-      $coleccion = [$Nota,$foraneas['division']->all()[0],$foraneas['materia']->all()[0]];
-      return $coleccion;
     }
 }
