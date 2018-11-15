@@ -1,8 +1,8 @@
 @extends('contenedores.admin')
 @section('titulo',' Ver Notas')
 @section('contenedor_admin')
-
 <br>
+{{-- Diseño opcional --}}
 <div class="container">
     <div class="row">
         {{-- NOTAS --}}
@@ -99,7 +99,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
                         @foreach ($datos as $dato)
-                        <h5 class="card-title text-center">Código de materia - profesor</h5>
+                        <h5 class="card-title text-center">Código de materia - profesor </h5>
                         <h5 class="card-title text-center">
                             <i class="fas fa-star"></i>
                             {{$dato[2]['fk_materia']}}
