@@ -16,7 +16,7 @@ class EmpleadoStoreController extends FormRequest{
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
             'correo' => 'required|email|max:50',
-            'direccion' => 'required|string|max:20',
+            'direccion' => 'required|string|max:255',
             'titulo' => 'required|string|max:20',
             'role' => 'required|string|max:1',
             'director' => 'string|max:20',

@@ -30,7 +30,7 @@ class EmpleadoUpdateController extends FormRequest
             'direccion' => 'required|string|max:20',
             'titulo' => 'required|string|max:20',
             'role' => 'required|string|max:1',
-            'director' => 'string|max:20',
+            'director' => 'string|max:255',
             'estado' => 'boolean',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg'
         ];

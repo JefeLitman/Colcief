@@ -39,7 +39,7 @@
                                         <i class="fas fa-user-cog"></i>
                                     </span>
                                 </div>
-                                <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'director')">
+                                <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'fk_curso')">
                                     @php
                                         $role=["Administrador","Director","Profesor"]
                                     @endphp
@@ -112,9 +112,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-check"></i></span>
                                 </div>
-                                <input type="text" id="director" name="director"  @if ($empleado->role=='0' or $empleado->role=='2' )
-                                disabled
-                            @endif placeholder="Director" class="form-control form-control-sm" value="{{$empleado->director}}" value="@eachError ('director', $errors)@endeachError">
+                                <select id="fk_curso" name="fk_curso" {{($empleado->role=='0' or $empleado->role=='2')?"disabled":""}}  placeholder="Director" class="form-control form-control-sm" value="{{$empleado->director}}" value="@eachError ('director', $errors)@endeachError">
+                                    <option value="">Seleccione el curso</option>
+                                    @foreach ( $cursos as $c )
+                                        <option value="{{$c->pk_curso}}" {{($empleado->fk_curso==$c->pk_curso)?"selected":""}}>{{($c->prefijo=="0")?"Preescolar":$c->prefijo}} - {{$c->sufijo}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
