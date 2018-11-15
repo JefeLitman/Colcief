@@ -91,5 +91,8 @@ Route::get('/notas/crear/{materia}','NotaController@create');
 Route::resource('/horarios','HorarioController');
 Route::get('/horarios/crear/{pk_materiaPC}','HorarioController@create');
 
+/* RUTAS DE BOLETIN */
+Route::resource('/boletines','BoletinController');
+
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
