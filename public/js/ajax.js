@@ -40,6 +40,20 @@ function modalConfirm (callback, titulo, mensaje, botones){
         $("#exampleModalCenter").modal('hide');
     });
 }
+function deleteRegistro(ruta, id, row){
+    $.ajax({
+        type: 'POST',
+        url: '/'+ruta+'/'+id,
+        data: {_token:$('input[name=_token]').val(), _method:'DELETE'},
+        success: function(data) {
+            row.fadeOut();
+            newModal('Acción satisfactoria',data.mensaje, false);
+        },
+        error: function(){
+            newModal('Error','La accion no pudo llevarse a cabo', false);
+        }
+    });
+}
 
 $(document).ready(function(){
     $('.delete').click(function(){
@@ -48,18 +62,7 @@ $(document).ready(function(){
         var id = $(this).attr('identificador');
         modalConfirm(function(confirm){
             if(confirm){
-                $.ajax({
-                    type: 'POST',
-                    url: '/'+ruta+'/'+id,
-                    data: {_token:$('input[name=_token]').val(), _method:'DELETE'},
-                    success: function(data) {
-                        row.fadeOut();
-                        montar('Acción satisfactoria',data.mensaje, false);
-                    },
-                    error: function(){
-                        montar('Error','La accion no pudo llevarse a cabo', false);
-                    }
-                });
+                deleteRegistro(ruta, id, row)
             }
         },'Confirmar','¿Desea Eliminar el registro?',true);
     });

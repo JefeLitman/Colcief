@@ -10,6 +10,7 @@ use App\Curso;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EstudianteStoreController;
+use App\Http\Controllers\CursoController;
 use App\Http\Requests\EstudianteUpdateController;
 use App\Http\Controllers\SupraController;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,13 @@ class EstudianteController extends Controller{
         $curso = Curso::all()->groupBy('prefijo');
         $grado = ["01" => "Uno","02" => "Dos", '03' => "Tres" , '04' => 'Cuatro', '05' =>  'Cinco', '06' =>  'Seis', '07' => 'Siete', '08' => 'Ocho', '09' => 'Nueve'];
         return view('cursos.editarEstudiante', ['curso' => $curso, 'grado' => $grado]);
+    }
+
+    public function estudianteGrado($prefijo,$sufijo){
+        $curso = new CursoController;
+        $curso = $curso->conteoEstudiantes($prefijo,$sufijo);
+        $curso = json_decode($curso);
+        return view('estudiantes.estudiantesGrado',['curso'=>$curso]);
     }
 
     public function filtro(Request $request){
