@@ -4,13 +4,13 @@
 
 <h1>Lista horarios</h1>
 
-@foreach ($horarios as $horario)
+@foreach ($materias as $materia)
     <ul>
-        <li>{{$horario->pk_horario}}</li>
-        <li>{{$horario->fk_materia_pc}}</li>
-        <li>{{$horario->dia}}</li>
-        <li>{{$horario->hora_inicio}}</li>
-        <li>{{$horario->hora_fin}}</li>
+        <li><a href="/horarios/{{$materia->pk_materia}}">{{$materia->nombre}}</a></li>
+        {{-- <li>{{$materia->fk_materia_pc}}</li>
+        <li>{{$materia->dia}}</li>
+        <li>{{$materia->hora_inicio}}</li>
+        <li>{{$materia->hora_fin}}</li> --}}
     </ul>
 @endforeach
 
