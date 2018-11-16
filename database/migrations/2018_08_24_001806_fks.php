@@ -69,6 +69,11 @@ class Fks extends Migration
             $table->foreign('fk_materia_pc')->references('pk_materia_pc')->on('materia_pc')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
+
+        Schema::table('empleado', function (Blueprint $table) {
+            $table->foreign('fk_curso')->references('pk_curso')->on('curso')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
@@ -116,6 +121,10 @@ class Fks extends Migration
 
         Schema::table('horario', function (Blueprint $table) {
             $table->dropForeign('horario_fk_materia_pc_foreign');
+        });
+
+        Schema::table('empleado', function (Blueprint $table) { //Agregado By: Paola
+            $table->dropForeign('empleado_fk_curso_foreign');
         });
     }
 }

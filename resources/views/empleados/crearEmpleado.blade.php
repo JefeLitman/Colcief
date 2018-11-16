@@ -38,7 +38,7 @@
                                     </span>
                                 </div>
                                 
-                                <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'director')">
+                                <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'fk_curso')">
                                     <option @select('role', '0') @endselect value="0">Administrador</option>
                                     <option @select('role', '1') @endselect value="1">Director</option>
                                     <option @select('role', '2') @endselect value="2" selected>Profesor</option>
@@ -105,7 +105,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-check"></i></span>
                                 </div>
-                                <input type="text" id="director" name="director" disabled placeholder="Director" class="form-control form-control-sm" value="@eachError('director', $errors)@endeachError">
+                                <select  id="fk_curso" name="fk_curso" disabled placeholder="Director" class="form-control form-control-sm" value="@eachError('director', $errors)@endeachError">
+                                    <option value="">Seleccione el curso</option>
+                                    @foreach ( $cursos as $c )
+                                        <option value="{{$c->pk_curso}}">{{($c->prefijo=="0")?"Preescolar":$c->prefijo}} - {{$c->sufijo}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -132,5 +137,17 @@
         </div>
     </div>
 </div>
+<script>
+    function desactivar(p1,p2){
+        var s1 = document.getElementById(p1);
+        var s2 = document.getElementById(p2);
+        if(s1.value=='0' || s1.value=='2'){
+            s2.value="";
+            s2.disabled = true;
+        }else{
+            s2.disabled = false;
+        }
+    }
+</script>
 <br>
 @endsection
