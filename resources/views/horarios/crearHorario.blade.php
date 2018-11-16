@@ -27,12 +27,12 @@
                         <input type="hidden" name = "fk_materia_pc[{{$i}}]" id = "fk_materia_pc[{{$i}}]" value = "{{$materiaPC->pk_materia_pc}}">
                         <th scope="row">
                             <select class="custom-select custom-select-sm" name="dia[{{$i}}]" id="dia[{{$i}}]" value="{{old('dia(field.i)')}}">
-                                <option if>Seleccionar día</option>
-                                <option @select('dia[{{$i}}]', 'Lunes') @endselect value="Lunes">Lunes</option>
-                                <option @select('dia[{{$i}}]', 'Martes') @endselect value="Martes">Martes</option>
-                                <option @select('dia[{{$i}}]', 'Miercoles') @endselect value="Miercoles">Miercoles</option>
-                                <option @select('dia[{{$i}}]', 'Jueves') @endselect value="Jueves">Jueves</option>
-                                <option @select('dia[{{$i}}]', 'Viernes') @endselect value="Viernes">Viernes</option>
+                                <option >Seleccionar día</option>
+                                <option @select('dia[{{$i}}]', 'lunes') @endselect value="lunes">Lunes</option>
+                                <option @select('dia[{{$i}}]', 'martes') @endselect value="martes">Martes</option>
+                                <option @select('dia[{{$i}}]', 'miercoles') @endselect value="miercoles">Miercoles</option>
+                                <option @select('dia[{{$i}}]', 'jueves') @endselect value="jueves">Jueves</option>
+                                <option @select('dia[{{$i}}]', 'viernes') @endselect value="viernes">Viernes</option>
                             </select>
                         </th>
                         <td>

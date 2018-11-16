@@ -19,26 +19,29 @@ class HorarioController extends Controller {
                 return view('horarios.listaHorarios', ['materias' => $materias]);
                 break;
             case 'estudiante':
-                $horarios = Horario::select('horario.*')->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->join('estudiante','estudiante.fk_curso','=','curso.pk_curso')->orderBy('hora_inicio')->get();
-                foreach($horarios as $j){
-                    $result[$j->nombre]=[];
-                }
-                foreach ($materiaspc as $i){
-                    foreach($materias as $j){
-                        if($j->nombre==$i->nombre){
-                            $prefijo=$i->prefijo;
-                            if($prefijo=="0"){
-                                $prefijo="Prescolar";
-                            }
-                            array_push($result[$j->nombre],[$i->pk_materia_pc,$prefijo."-".$i->sufijo]);
-                        }
+                $horarios = Horario::select('horario.*','materia_pc.nombre')->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->join('estudiante','estudiante.fk_curso','=','curso.pk_curso')->orderBy('hora_inicio')->get();
+                $dias = ['lunes'=>[],'martes'=>[],'miercoles'=>[],'jueves'=>[],'viernes'=>[]];
+                foreach($horarios as $horario){
+                    switch($horario->dia){
+                        case 'lunes':
+                            array_push($dias['lunes'],$horario);
+                            break;
+                        case 'martes':
+                            array_push($dias['martes'],$horario);
+                            break;
+                        case 'miercoles':
+                            array_push($dias['miercoles'],$horario);
+                            break;
+                        case 'jueves':
+                            array_push($dias['jueves'],$horario);
+                            break;
+                        case 'viernes':
+                            array_push($dias['viernes'],$horario);
+                            break;
                     }
                 }
-                foreach($horarios as $horario){
-                    $temp = explode(':',$horario->hora_inicio);
-                    $hora[intval($temp[0])] = 1;
-                }
-                dd($horarios);
+                // dd($dias);
+                return view('horarios.horarios', ['horarios' => $dias]);
                 break;
 
         }
