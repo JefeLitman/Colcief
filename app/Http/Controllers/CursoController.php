@@ -52,17 +52,26 @@ class CursoController extends Controller
     public function conteoEstudiantes($prefijo,$sufijo)
     {
         $estudiantes = Curso::where('prefijo','=',$prefijo)
-        ->where('sufijo','=',$sufijo)->first()->estudiantes;
-        $listado = [];
-        foreach ($estudiantes as $estudiante) {
-          array_push($listado,$estudiante->getAttributes());
+        ->where('sufijo','=',$sufijo)->first();
+        if (!empty($estudiantes)) {
+          $estudiantes = $estudiantes->estudiantes;
+          $listado = [];
+          foreach ($estudiantes as $estudiante) {
+            array_push($listado,$estudiante->getAttributes());
+          }
+          return json_encode($listado);
         }
-        return json_encode($listado);
+        return 0;
     }
 
     public function conteoCursosPorGrado($grado)
     {
         $cursos = Curso::where('prefijo','=',$grado)->get()->toArray();
         return json_encode($cursos);
+    }
+
+    public function prueba()
+    {
+      return view('cursos.prueba');
     }
 }
