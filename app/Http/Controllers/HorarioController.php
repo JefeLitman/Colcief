@@ -19,8 +19,10 @@ class HorarioController extends Controller {
                 return view('horarios.listaHorarios', ['materias' => $materias]);
                 break;
             case 'estudiante':
-                $horarios = Horario::select('horario.*','materia_pc.nombre')->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->join('estudiante','estudiante.fk_curso','=','curso.pk_curso')->orderBy('hora_inicio')->get();
+                $pk_estudiante = session('user')['pk_estudiante'];
+                $horarios = Horario::select('horario.*','materia_pc.nombre')->where('estudiante.pk_estudiante',$pk_estudiante)->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->join('estudiante','estudiante.fk_curso','=','curso.pk_curso')->orderBy('hora_inicio')->get();
                 $dias = ['lunes'=>[],'martes'=>[],'miercoles'=>[],'jueves'=>[],'viernes'=>[]];
+                $copia = $dias;
                 foreach($horarios as $horario){
                     switch($horario->dia){
                         case 'lunes':
@@ -41,7 +43,7 @@ class HorarioController extends Controller {
                     }
                 }
                 // dd($dias);
-                return view('horarios.horarios', ['horarios' => $dias]);
+                return view('horarios.horarios', ['horarios' => $dias, 'dias' => $copia]);
                 break;
 
         }
