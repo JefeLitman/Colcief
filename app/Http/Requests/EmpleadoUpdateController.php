@@ -28,8 +28,9 @@ class EmpleadoUpdateController extends FormRequest
             'apellido' => 'required|string|max:20',
             'correo' => 'required|email|max:40',
             'direccion' => 'required|string|max:20',
-            'titulo' => 'required|string|max:20',
+            'titulo' => 'required|string|max:50',
             'role' => 'required|string|max:1',
+            'fk_curso' => 'numeric',
             'director' => 'string|max:255',
             'estado' => 'boolean',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg'
