@@ -11,7 +11,6 @@ use App\MateriaPC;
 
 class NotaController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -44,12 +43,12 @@ class NotaController extends Controller
     public function create($pk_materia=null)
     {
       if (!empty($pk_materia)) {
-        $materiasPC = MateriaPC::select('pk_materia_pc','nombre')->where([
+        $materiasPC = MateriaPC::select('pk_materia_pc','nombre', 'salon')->where([
           ['pk_materia_pc','=',$pk_materia],
           ['fk_empleado','=',session('user')['cedula']]
           ])->get();
       }else{
-        $materiasPC = MateriaPC::select('pk_materia_pc','nombre')->where(
+        $materiasPC = MateriaPC::select('pk_materia_pc','nombre', 'salon')->where(
           'fk_empleado','=',session('user')['cedula'])->get();
       }
       if ($materiasPC->count()>0) {
@@ -97,9 +96,23 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pk_nota)
     {
-        //
+        $Nota = Nota::find($pk_nota);
+        if ($this->verificarProfesor($Nota,session('user')['cedula'])) {
+          if (!empty($Nota)) {
+            $divisiones = Division::select('pk_division','nombre')->get();
+            $materiasPC = MateriaPC::select('pk_materia_pc','nombre','salon')->where(
+              'fk_empleado','=',session('user')['cedula'])->get();
+            return view('notas.editarNota',[
+              'nota' => $Nota,
+              'divisiones' => $divisiones,
+              'materias' => $materiasPC
+            ]);
+          }
+          return 'Nota no encontrada';
+        }
+        return 'No tiene permisos para hacer esto';
     }
 
     /**
@@ -109,9 +122,15 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NotaStoreController $request, $pk_nota)
     {
-        //
+        $nota_modificada = Nota::find($pk_nota);
+        if (!empty($nota_modificada)) {
+          $nota_modificada->fill($request->all());
+          $nota_modificada->save();
+          return redirect('/notas/'.$nota_modificada['pk_nota']); //Cuando se guarda
+        }
+        return 'Error';
     }
 
     /**
@@ -142,10 +161,12 @@ class NotaController extends Controller
     */
     private function verificarProfesor($nota,$cedula_prof)
     {
+      if (!($cedula_prof===null)) {
         $materiaPC = MateriaPC::find($nota['fk_materia_pc']);
-        if ($materiaPC['fk_empleado']==$cedula_prof or session('user')['role']==0) {
+        if ($materiaPC['fk_empleado']==$cedula_prof or session('user')['role']==='0') {
           return true;
         }
+      }
         return false;
     }
 
@@ -171,7 +192,7 @@ class NotaController extends Controller
     private function arrayzar($Nota)
     {
       $foraneas = $this->inspeccionarNota($Nota);
-      $coleccion = [$Nota,$foraneas['division']->all()[0],$foraneas['materia']->all()[0]];
-      return $coleccion;
+      $array = [$Nota,$foraneas['division']->all()[0],$foraneas['materia']->all()[0]];
+      return $array;
     }
 }
