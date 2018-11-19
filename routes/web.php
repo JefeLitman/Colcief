@@ -79,15 +79,16 @@ Route::resource('/divisiones','DivisionController');
 Route::get('/cursos/estudiantes/{prefijo}/{sufijo}','CursoController@conteoEstudiantes');
 Route::get('/cursos/grados/{grado}','CursoController@conteoCursosPorGrado');
 Route::resource('/cursos','CursoController');
-Route::get('/pruebajax','CursoController@prueba');
+Route::get('/pruebajax','CursoController@prueba'); //Eliminar método y ruta
 
 /* RUTAS DE MATERIAPC */
 // Debe estar logeado para acceder
 Route::resource('/materiaspc','MateriaPCController');
 
 /* RUTAS DE NOTA */
-Route::resource('/notas','NotaController');
 Route::get('/notas/crear/{materia}','NotaController@create');
+Route::get('/notas/total/{cedula_prof}/{division}/{pk_materia_pc}','NotaController@sumaPorcentajes');
+Route::resource('/notas','NotaController');
 
 /* RUTAS DE HORARIO */
 Route::get('/horarios/{pk_materia}','HorarioController@materias');

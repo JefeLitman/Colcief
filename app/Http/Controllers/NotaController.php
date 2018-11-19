@@ -69,9 +69,13 @@ class NotaController extends Controller
      */
     public function store(NotaStoreController $request)
     {
-        $Nota = (new Nota)->fill($request->all());
-        $Nota->save();
-        return redirect('/notas');
+        if ($request['porcentaje']+$this->sumaPorcentajes($request,$request['fk_division'],
+            session('user')['cedula'],$request['fk_materia_pc'])<=100) {
+          $Nota = (new Nota)->fill($request->all());
+          $Nota->save();
+          return redirect('/notas');
+        }
+        return 'La suma de los porcentajes de las demás notas supera el 100%';
     }
 
     /**
@@ -126,9 +130,14 @@ class NotaController extends Controller
     {
         $nota_modificada = Nota::find($pk_nota);
         if (!empty($nota_modificada)) {
-          $nota_modificada->fill($request->all());
-          $nota_modificada->save();
-          return redirect('/notas/'.$nota_modificada['pk_nota']); //Cuando se guarda
+          if ($request['porcentaje']+$this->sumaPorcentajes($request,$request['fk_division'],
+              session('user')['cedula'],$request['fk_materia_pc'])-$nota_modificada['porcentaje']<=100)
+              {
+                $nota_modificada->fill($request->all());
+                $nota_modificada->save();
+                return redirect('/notas/'.$nota_modificada['pk_nota']); //Cuando se guarda
+              }
+              return 'La suma de los porcentajes de las demás notas supera el 100%';
         }
         return 'Error';
     }
@@ -150,6 +159,22 @@ class NotaController extends Controller
           return 'Nota no encontrada';
         }
         return 'No tiene permisos para hacer esta acción';
+    }
+
+    /**
+     * Este método devuelve la suma de los porcentajes de las notas correspondietes
+     * a una materia y división.
+     * Funciona tanto con Ajax como con una petición normal a la ruta.
+     * @return $suma
+     */
+    public function sumaPorcentajes(Request $request, $division, $cedula_prof, $pk_materia_pc)
+    {
+        $suma = MateriaPC::find($pk_materia_pc)->Notas()
+        ->where('fk_division','=',$division)->sum('porcentaje');
+        if ($request->ajax()) {
+          return json_encode(['total' => $suma]);
+        }
+        return $suma;
     }
 
     /**
@@ -177,9 +202,11 @@ class NotaController extends Controller
      */
     private function inspeccionarNota($Nota)
     {
+      $datosDivision = Division::select('nombre','descripcion')->where('pk_division','=',$Nota['fk_division'])->first();
+      $datosMateriaPC = MateriaPC::select('fk_materia','nombre')->where('pk_materia_pc','=',$Nota['fk_materia_pc'])->first();
         return [
-          'division' => $Nota->Division,
-          'materia' => $Nota->MateriaPC
+          'division' => $datosDivision,
+          'materia' => $datosMateriaPC
         ];
     }
 
@@ -192,7 +219,7 @@ class NotaController extends Controller
     private function arrayzar($Nota)
     {
       $foraneas = $this->inspeccionarNota($Nota);
-      $array = [$Nota,$foraneas['division']->all()[0],$foraneas['materia']->all()[0]];
+      $array = [$Nota,$foraneas['division'],$foraneas['materia']];
       return $array;
     }
 }

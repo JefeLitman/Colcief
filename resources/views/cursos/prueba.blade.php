@@ -12,17 +12,17 @@
       $('input').keyup(function() {
         $.ajax({
             method: 'get',
-            url: 'cursos/estudiantes/9/01',
+            url: 'notas/total/1',
             dataType: "json",
             success: function(data){
-               $('#name').text(data[0].pk_estudiante);
+               $('#name').text(data.total);
             },
             statusCode: {
                 500: function() {
-                    //
+                    $('#name').text('1');
                 },
                 422: function(data) {
-                    //
+                    $('#name').text('2');
                 }
             }
         });
