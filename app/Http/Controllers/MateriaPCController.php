@@ -345,7 +345,7 @@ class MateriaPCController extends Controller
             }else{
                 $materiapc[0]->delete();
                 return response()->json([
-                    'mensaje' => 'Fue eliminado.'
+                    'mensaje' => 'La materia fue eliminada.'
                 ]);
             }
         }
