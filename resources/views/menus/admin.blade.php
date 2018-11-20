@@ -12,7 +12,11 @@
                     <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-sticky-note"></i> Notas</a></li>
+
+                {{-- Cursos --}}
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chalkboard-teacher"></i></i> Cursos </a></li>
+
+                {{-- Empleados --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Empleados</a>
                         {{--  desplegable de empleados  --}}

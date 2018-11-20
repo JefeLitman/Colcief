@@ -1,6 +1,6 @@
-@extends('contenedores.admin')
+@extends('contenedores.profesor')
 @section('titulo',' Ver Notas')
-@section('contenedor_admin')
+@section('contenedor_profesor')
 <br>
 {{-- Diseño opcional --}}
 <div class="container">
