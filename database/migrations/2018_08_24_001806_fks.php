@@ -74,6 +74,11 @@ class Fks extends Migration
             $table->foreign('fk_curso')->references('pk_curso')->on('curso')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
+
+        Schema::table('recuperacion', function (Blueprint $table) {
+            $table->foreign('fk_nota_periodo')->references('pk_nota_periodo')->on('nota_periodo')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
@@ -125,6 +130,10 @@ class Fks extends Migration
 
         Schema::table('empleado', function (Blueprint $table) { //Agregado By: Paola
             $table->dropForeign('empleado_fk_curso_foreign');
+        });
+
+        Schema::table('recuperacion', function (Blueprint $table) { //Agregado By: Paola
+            $table->dropForeign('recuperacion_fk_nota_periodo_foreign');
         });
     }
 }
