@@ -40,8 +40,11 @@
                                 <tbody>
                                     @foreach($materia as $j)
                                         <tr>
+                                            {{--  nombre del profe  --}}
                                             <td class="text-center"> {{$j[1]}}</td>
+                                            {{--  apellido del profe  --}}
                                             <td class="text-center"> {{$j[2]}}</td>
+                                            {{--  curso  --}}
                                             <td class="text-center"> {{$j[3]}}</td>
                                             {{-- editar materia --}}
                                             <td class="text-center"><a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f"></i>
