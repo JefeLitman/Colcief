@@ -105,7 +105,7 @@ class Todo extends Migration{
             $table->unsignedInteger('fk_materia');
             $table->unsignedInteger('fk_empleado');
             $table->string('nombre', 50);
-            $table->char('salon', 5);
+            $table->char('salon', 5)->nullable();
             $table->string('logros_custom')->nullable();
             $table->timestamps();
         });
