@@ -15,6 +15,7 @@ class Estudiante extends Authenticatable {
     protected $fillable = ['pk_estudiante', 'fk_acudiente','nombre', 'apellido', 'password', 'fecha_nacimiento', 'grado', 'discapacidad', 'estado', 'foto'];
     protected $dates = ['deleted_at'];
     protected $casts = ['discapacidad' => 'boolean', 'estado' => 'boolean'];
+    protected $hidden = ['password'];
 
     public function session(){
         return $this->attributes;

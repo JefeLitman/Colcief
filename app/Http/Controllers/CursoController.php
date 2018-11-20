@@ -57,7 +57,15 @@ class CursoController extends Controller
           $estudiantes = $estudiantes->estudiantes;
           $listado = [];
           foreach ($estudiantes as $estudiante) {
-            array_push($listado,$estudiante->getAttributes());
+            array_push($listado,[
+              'pk_estudiante' => $estudiante->pk_estudiante,
+              'fk_acudiente' => $estudiante->fk_acudiente,
+              'fk_curso' => $estudiante->fk_curso,
+              'nombre' => $estudiante->nombre,
+              'apellido' => $estudiante->apellido,
+              'grado' => $estudiante->grado,
+              'discapacidad' => $estudiante->discapacidad
+            ]);
           }
           return json_encode($listado);
         }
