@@ -10,4 +10,8 @@ class Horario extends Model
     protected $primaryKey = 'pk_horario';
     protected $fillable = ['pk_horario', 'fk_materia_pc','dia', 'hora_inicio', 'hora_fin'];
     protected $guarded = [];
+
+    public function MateriaPC(){
+      return belongsTo('App\Horario','fk_materia_pc','pk_materia_pc');
+    }
 }

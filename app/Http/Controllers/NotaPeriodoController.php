@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Curso;
-use App\Boletin;
-use App\Division;
-use App\empleado;
+use App\NotaPeriodo;
+use App\Dvision;
+use App\NotaEstudiante;
 
-class BoletinController extends Controller
+class NotaPeriodoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +16,7 @@ class BoletinController extends Controller
      */
     public function index()
     {
+        //
     }
 
     /**
@@ -26,7 +26,7 @@ class BoletinController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -46,21 +46,9 @@ class BoletinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) //El id es el id del estudiante
-    {   
-        $msj='';
-        $divisiones=Division::select('pk_division','nombre','porcentaje')->where('ano',date('Y'));
-        if(empty($divisiones[0])){
-            $msj='No hayn divisiones creadas.';
-        }else{
-            $divs=[];
-            foreach ($divisiones as $d) {
-                $divs[$d->pk_division]=[$d->nombre,$d->porcentaje];
-            }
-        }
-        
-        $notas_boletin=Boletin::select()->where([['fk_estudiante',$id],['ano',date('Y')]])->leftjoin('materia_boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')->get();
-        dd($notas_boletin);
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -95,5 +83,25 @@ class BoletinController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**Retorna las notas que cada division tuvo en ese periodo */
+    public function notasDivs($id){
+        $divs=Division::select('pk_division')->where('ano',date('Y'));
+        $notasdivs=[];
+        if (!empty($divs)) {
+            foreach ($divisiones as $d) {
+                $notasdivs[$d->pk_division]=0;
+            }
+            $notas=NotaEstudiante::select('nota_estudiante.nota','nota.fk_division','nota.porcentaje')->where('fk_nota_periodo','=',$id)->join('nota','nota_estudiante.fk_nota','=','nota.pk_nota')->get();
+            if (!empty($notas[0])) {
+                foreach ($notas as $n) {
+                    $notasdivs[$n->fk_division]=$n->nota*$n->porcentaje;
+                }
+            }
+        }
+        return $notasdivs;
+        
     }
 }

@@ -29,5 +29,37 @@ class MateriaSeeder extends Seeder
             'created_at' => date('Y-m-d H:m:s'),
             'updated_at' => date('Y-m-d H:m:s')
         ]);
+
+        Materia::create([
+            'nombre' => 'Castellano',
+            'contenido' => 'Pasado, presente y futuro',
+            'logros_custom' => 'Descripcion castellano',
+            'created_at' => date('Y-m-d H:m:s'),
+            'updated_at' => date('Y-m-d H:m:s')
+        ]);
+
+        Materia::create([
+            'nombre' => 'Sociales',
+            'contenido' => 'La historia de colombia',
+            'logros_custom' => 'Descripcion de sociales',
+            'created_at' => date('Y-m-d H:m:s'),
+            'updated_at' => date('Y-m-d H:m:s')
+        ]);
+
+        Materia::create([
+            'nombre' => 'Religion',
+            'contenido' => 'La historia de todos los dioses',
+            'logros_custom' => 'Descripcion de religion',
+            'created_at' => date('Y-m-d H:m:s'),
+            'updated_at' => date('Y-m-d H:m:s')
+        ]);
+
+        Materia::create([
+            'nombre' => 'Etica',
+            'contenido' => 'La historia de la etica',
+            'logros_custom' => 'Descripcion de etica',
+            'created_at' => date('Y-m-d H:m:s'),
+            'updated_at' => date('Y-m-d H:m:s')
+        ]);
     }
 }

@@ -3,11 +3,22 @@
 @section('contenedor_admin')
     @include('error.error')
 <br>
+
 <div class="container">
     <h1 class="card-title text-center">
-        Crear horario para la materia {{$materiaPC->nombre}} del curso {{$curso->prefijo}}-{{$curso->sufijo}}
-        con el profesor: {{$empleado->nombre}} {{$empleado->apellido}} 
+        Crear horario para la materia {{$materiaPC->nombre_materia}} del curso {{$materiaPC->prefijo}}-{{$materiaPC->sufijo}}
+        con el profesor: {{$materiaPC->nombre_empleado}} {{$materiaPC->apellido}}
     </h1>
+
+    @if(session()->has('false'))
+        <div class="alert alert-danger danger-dismissible fade show hidden" role="alert">
+        {{session('false')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" style="color:#812c3b">&times;</span>
+            </button>
+        </div>
+    @endif
+    
     <br>
     <form enctype="multipart/form-data" action="/horarios" method="POST">
     @csrf        
@@ -28,18 +39,18 @@
                         <th scope="row">
                             <select class="custom-select custom-select-sm" name="dia[{{$i}}]" id="dia[{{$i}}]" value="{{old('dia(field.i)')}}">
                                 <option >Seleccionar día</option>
-                                <option @select('dia[{{$i}}]', 'lunes') @endselect value="lunes">Lunes</option>
-                                <option @select('dia[{{$i}}]', 'martes') @endselect value="martes">Martes</option>
-                                <option @select('dia[{{$i}}]', 'miercoles') @endselect value="miercoles">Miercoles</option>
-                                <option @select('dia[{{$i}}]', 'jueves') @endselect value="jueves">Jueves</option>
-                                <option @select('dia[{{$i}}]', 'viernes') @endselect value="viernes">Viernes</option>
+                                <option @select('dia[{{$i}}]', 'Lunes') @endselect value="Lunes">Lunes</option>
+                                <option @select('dia[{{$i}}]', 'Martes') @endselect value="Martes">Martes</option>
+                                <option @select('dia[{{$i}}]', 'Miercoles') @endselect value="Miercoles">Miercoles</option>
+                                <option @select('dia[{{$i}}]', 'Jueves') @endselect value="Jueves">Jueves</option>
+                                <option @select('dia[{{$i}}]', 'Viernes') @endselect value="Viernes">Viernes</option>
                             </select>
                         </th>
                         <td>
-                            <input type="time" class="form-control" id="hora_inicio[{{$i}}]" name="hora_inicio[{{$i}}]" value="{{old('hora_inicio(field.i)')}}" min="06:00" max="17:00" step = "1800">
+                            <input type="time" class="form-control" id="hora_inicio[{{$i}}]" name="hora_inicio[{{$i}}]" value="{{old('hora_inicio(field.i)')}}" min="07:00" max="15:00" step = "300">
                         </td>
                         <td>
-                            <input type="time" class="form-control" id="hora_fin[{{$i}}]" name="hora_fin[{{$i}}]" value="{{old('hora_fin(field.i)')}}" min="07:00" max="18:00" step = "1800">
+                            <input type="time" class="form-control" id="hora_fin[{{$i}}]" name="hora_fin[{{$i}}]" value="{{old('hora_fin(field.i)')}}" min="08:00" max="16:00" step = "300">
                         </td>
                     </tr>
                     @endfor
@@ -47,6 +58,8 @@
             </table>
         
         </div>
+        <input type="hidden" value = "{{$materiaPC->f_curso}}" name = "curso">
+        <input type="hidden" value = "{{$materiaPC->fk_empleado}}" name = "empleado">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-4 mb-2 mx-auto">
@@ -69,9 +82,15 @@
     </form>
 </div>
 <script>
+
+    $("#hora_inicio\\[0\\]").on("focusout", function(){
+        var hora_inicio = document.getElementById("hora_inicio[0]").value;
+        document.getElementById("hora_fin[0]").value = hora_inicio;
+        document.getElementById("hora_fin[0]").stepUp(12);
+    });
+
     $('#create').click(function(){
         i++;
-        {{$i}}
         if(i<3){
             $('#div').append(
                 '<tr class="menos" id="index['+i+']">'+
@@ -87,13 +106,21 @@
                         '</select>'+
                     '</th>'+
                     '<td>'+
-                        '<input type="time" class="form-control" id="hora_inicio['+i+']" name="hora_inicio['+i+']" min="06:00" max="17:00" step = "1800">'+
+                        '<input type="time" class="form-control" id="hora_inicio['+i+']" name="hora_inicio['+i+']" min="07:00" max="15:00" step = "300">'+
                     '</td>'+
                     '<td>'+
-                        '<input type="time" class="form-control" id="hora_fin['+i+']" name="hora_fin['+i+']" min="07:00" max="18:00" step = "1800">'+
+                        '<input type="time" class="form-control" id="hora_fin['+i+']" name="hora_fin['+i+']" min="08:00" max="16:00" step = "300">'+
                     '</td>'+
                 '</tr>'
             );
+        }
+        
+        for (let i = 1; i < 3; i++) {
+            $("#hora_inicio\\["+i+"\\]").on("focusout", function(){
+                var hora_inicio = document.getElementById("hora_inicio["+i+"]").value;
+                document.getElementById("hora_fin["+i+"]").value = hora_inicio;
+                document.getElementById("hora_fin["+i+"]").stepUp(12);
+            });
         }
     });
 
@@ -101,6 +128,7 @@
         $('#div .menos:last').remove();
         i--;
     });
+
 </script>
 <br>
 @endsection

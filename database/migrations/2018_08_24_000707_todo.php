@@ -105,7 +105,7 @@ class Todo extends Migration{
             $table->unsignedInteger('fk_materia');
             $table->unsignedInteger('fk_empleado');
             $table->string('nombre', 50);
-            $table->char('salon', 5);
+            $table->char('salon', 5)->nullable();
             $table->string('logros_custom')->nullable();
             $table->timestamps();
         });
@@ -155,6 +155,16 @@ class Todo extends Migration{
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create('recuperacion', function (Blueprint $table) {
+            $table->unsignedInteger('pk_recuperacion')->primary();
+            $table->integer('nota')->nullable();
+            $table->string('acta', 80);
+            $table->date('fecha_presentacion');
+            $table->unsignedInteger('fk_nota_periodo');
+            $table->timestamps();
+
+        });
     }
 
     /**
@@ -178,5 +188,6 @@ class Todo extends Migration{
         Schema::dropIfExists('division');
         Schema::dropIfExists('horario');
         Schema::dropIfExists('materia');
+        Schema::dropIfExists('recuperacion');
     }
 }

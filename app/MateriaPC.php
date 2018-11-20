@@ -30,8 +30,7 @@ class MateriaPC extends Model
       return $this->belongsTo('App\Curso','fk_curso','pk_curso');
     }
 
-    // public function Horarios()
-    // {
-    //   return hasMany('App\Horario','fk_materia_pc','pk_materia_pc');
-    // }
+    public function Horarios(){
+      return $this->hasMany('App\Horario', 'fk_materia_pc', 'pk_materia_pc');
+    }
 }

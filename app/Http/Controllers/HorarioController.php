@@ -64,15 +64,16 @@ class HorarioController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($pk_materiaPC=null)
-    {        
+    public function create($pk_materiaPC=null) {
+
         // Verifico que en la URL venga la $pk_materiaPC para saber a que materiaPC le creare los horarios
         if (!empty($pk_materiaPC)) {
-            // 
-            $materiaPC = MateriaPC::find($pk_materiaPC);
-            $empleado = Empleado::find($materiaPC->fk_empleado);
-            $curso = Curso::find($materiaPC->fk_curso);
-            return view('horarios.crearHorario', compact('materiaPC', 'empleado', 'curso'));
+            // Envio una colección de MateriaPC con la información del profesor y curso en el cual se desarrolla para imprimir en la vista
+            $materiaPC = MateriaPC::select('*','materia_pc.nombre as nombre_materia', 'materia_pc.fk_curso as f_curso')
+                ->where('pk_materia_pc', $pk_materiaPC)
+                ->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')
+                ->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get()[0];
+            return view('horarios.crearHorario', compact('materiaPC'));
         }
         return 'debe especificar la materia';
     }
@@ -83,15 +84,46 @@ class HorarioController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        for($i=0;$i<count($request->dia);$i++){
-            $horario = new Horario();
-            $horario -> fk_materia_pc = $request->fk_materia_pc[$i];
-            $horario -> dia = $request->dia[$i];
-            $horario -> hora_inicio = $request->hora_inicio[$i];
-            $horario -> hora_fin = $request->hora_fin[$i];
-            $horario->save();
+    public function store(Request $request) {
+        // Obtener los horarios de todas las MateriasPC para un curso
+        $horariosCurso = MateriaPC::where('fk_curso', $request->curso)
+            ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
+        
+        // Consulta de todas las materiasPC para el empleado
+        $materiasEmpleado = MateriaPC::where('fk_empleado', $request->empleado)
+            ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
+
+        $crear = true;
+        // Recorrer los requests
+        for($i=0;$i<count($request->dia);$i++){            
+            // Recorrer los horarios de todas las MateriasPC para un mismo curso para comparar que sus horarios no se crucen
+            foreach ($horariosCurso as $horarioCurso) {
+                // Si algunas de las horas del request esta contenida por algun horario de las materiasPC y estos ocurren en el mismo día entonces no dejamos crear
+                if(((($request->hora_inicio[$i] < $horarioCurso->hora_fin) && ($request->hora_inicio[$i] > $horarioCurso->hora_inicio)) || (($request->hora_fin[$i] < $horarioCurso->hora_fin) && ($request->hora_fin[$i] > $horarioCurso->hora_inicio))) && ($request->dia[$i] == $horarioCurso->dia)){
+                    $crear = false;
+                    $posicion = $i;
+                }
+            }
+        } 
+        
+        // Si crear es verdadero significa que no encontramos ninguna hora que se cruza entonces creamos todos los requests, de lo contrario no creamos ninguno
+        if ($crear) {
+            for ($i=0;$i<count($request->dia);$i++) { 
+                $horario = new Horario();
+                $horario -> fk_materia_pc = $request->fk_materia_pc[$i];
+                $horario -> dia = $request->dia[$i];
+                $horario -> hora_inicio = $request->hora_inicio[$i];
+                $horario -> hora_fin = $request->hora_fin[$i];
+                $horario->save();
+            }
+        } else {
+            return back()->withInput()->with(
+                'false', 
+                'No se puede asignar un horario el dia '.$request->all()['dia'][$posicion].
+                ' entre las '.$request->all()['hora_inicio'][$posicion].
+                ' a las '.$request->all()['hora_fin'][$posicion].
+                ' debido a una interferencia horaria con otra materia'
+            );
         }
     }
 
