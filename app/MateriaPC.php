@@ -12,26 +12,25 @@ class MateriaPC extends Model
 
     public function Notas()
     {
-      return hasMany('App\Nota','fk_materia_pc','pk_materia_pc');
+      return $this->hasMany('App\Nota','fk_materia_pc','pk_materia_pc');
     }
 
     public function Materia()
     {
-      return belongsTo('App\Materia','fk_materia','pk_materia');
+      return $this->belongsTo('App\Materia','fk_materia','pk_materia');
     }
 
     public function Empleado()
     {
-      return belongsTo('App\Empleado','fk_empleado','pk_empleado');
+      return $this->belongsTo('App\Empleado','fk_empleado','pk_empleado');
     }
 
     public function Curso()
     {
-      return belongsTo('App\Curso','fk_curso','pk_curso');
+      return $this->belongsTo('App\Curso','fk_curso','pk_curso');
     }
 
-    // public function Horarios()
-    // {
-    //   return hasMany('App\Horario','fk_materia_pc','pk_materia_pc');
-    // }
+    public function Horarios(){
+      return $this->hasMany('App\Horario', 'fk_materia_pc', 'pk_materia_pc');
+    }
 }
