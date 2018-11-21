@@ -9,6 +9,12 @@ use App\Http\Requests\AcudienteUpdateController;
 
 class AcudienteController extends Controller{
 
+    public function __construct()
+    {
+      $this->middleware('admin:administrador');
+      $this->middleware('admin:director')->only(['index','show']);
+    }
+
     public function index(){
       $unidad = new Acudiente();
         return view('acudientes.verAcu',['acudientes' => $unidad]);
