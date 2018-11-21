@@ -19,7 +19,8 @@
         </li>
         <li class="nav-item @if (Request::path()=="login") active @endif ">
           <a class="nav-link" href="
-          @auth
+          
+          @if(!empty(session('role')))
             @switch(session('role'))
                 @case('estudiante')
                     {{ url('/estudiantes/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
@@ -35,10 +36,9 @@
                 @default
                     {{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>
                 @endswitch
-          @endauth
-          @guest
+          @else
             {{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>
-          @endguest
+          @endif
         </li>
       </ul>
     </div>
