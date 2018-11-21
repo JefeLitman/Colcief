@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin:administrador,director');
+    }
+
     /**
      * Display a listing of the resource.
      *

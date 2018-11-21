@@ -19,20 +19,21 @@ class LoginController extends Controller{
     public function authenticate(Request $request){
         switch($request->role){
             case '0':
-                return $this->auth('administrador', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados/principal');
+                $guardia = 'administrador';
                 break;
             case '1':
-                return $this->auth('director', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados/principal');
+                $guardia = 'director';
                 break;
             case '2':
-                return $this->auth('profesor', ["cedula" => $request->username, "password" => $request->password, 'role' => $request->role], '/empleados/principal');
+                $guardia = 'profesor';
                 break;
             case '3':
-                return $this->auth('estudiante', ["pk_estudiante" => $request->username, "password" => $request->password], '/estudiantes/principal');
+                return $this->auth('estudiante', ['pk_estudiante' => $request->username, 'password' => $request->password], '/estudiantes/principal');
                 break;
             default:
                 return redirect(route("login"));
-        } 
+        }
+        return $this->auth($guardia, ['cedula' => $request->username, 'password' => $request->password, 'role' => $request->role], '/empleados/principal');
     }
 
     public function logout(){
@@ -41,7 +42,7 @@ class LoginController extends Controller{
         return redirect(route("login"));
     }
 
-    /* Este metodo verifica el login, ademas de esto, crea una variable de session con los datos 
+    /* Este metodo verifica el login, ademas de esto, crea una variable de session con los datos
        del usuario autenticado */
     private function auth($guard, $credenciales, $ruta){
         $auth = Auth::guard($guard)->attempt($credenciales);

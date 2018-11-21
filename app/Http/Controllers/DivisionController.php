@@ -10,6 +10,7 @@ use App\Http\Requests\DivisionStoreController;
 class DivisionController extends Controller{
 
     public function __construct(){
+        $this->middleware('admin:administrador');
         $this->ano = date('Y');
         $this->date = date('Y-m-d');
     }

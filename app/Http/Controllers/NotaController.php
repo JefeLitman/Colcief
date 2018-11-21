@@ -11,6 +11,11 @@ use App\MateriaPC;
 
 class NotaController extends Controller
 {
+
+    public function __construct()
+    {
+       $this->middleware('admin:director,profesor,administrador');
+    }
     /**
      * Display a listing of the resource.
      *
