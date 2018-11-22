@@ -10,12 +10,19 @@
         con el profesor: {{$materiaPC->nombre_empleado}} {{$materiaPC->apellido}}
     </h1>
 
-    @if(session()->has('false'))
+    @if(session()->has('error'))
         <div class="alert alert-danger danger-dismissible fade show hidden" role="alert">
-        {{session('false')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true" style="color:#812c3b">&times;</span>
-            </button>
+            No se pueden crear los siguientes horarios debido a los siguientes problemas:<br>
+            <ul>
+                @foreach(session()->get('error') as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            <div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true" style="color:#812c3b">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     
@@ -37,8 +44,8 @@
                     <tr  class="menos" id="index[{{$i}}]">                        
                         <input type="hidden" name = "fk_materia_pc[{{$i}}]" id = "fk_materia_pc[{{$i}}]" value = "{{$materiaPC->pk_materia_pc}}">
                         <th scope="row">
-                            <select class="custom-select custom-select-sm" name="dia[{{$i}}]" id="dia[{{$i}}]" value="{{old('dia(field.i)')}}">
-                                <option >Seleccionar día</option>
+                            <select class="custom-select custom-select-sm" name="dia[{{$i}}]" id="dia[{{$i}}]" value="{{old('dia(field.i)')}}" required>
+                                <option value="" disabled selected>Seleccionar día</option>
                                 <option @select('dia[{{$i}}]', 'Lunes') @endselect value="Lunes">Lunes</option>
                                 <option @select('dia[{{$i}}]', 'Martes') @endselect value="Martes">Martes</option>
                                 <option @select('dia[{{$i}}]', 'Miercoles') @endselect value="Miercoles">Miercoles</option>
@@ -47,10 +54,10 @@
                             </select>
                         </th>
                         <td>
-                            <input type="time" class="form-control" id="hora_inicio[{{$i}}]" name="hora_inicio[{{$i}}]" value="{{old('hora_inicio(field.i)')}}" min="07:00" max="15:00" step = "300">
+                            <input type="time" class="form-control" id="hora_inicio[{{$i}}]" name="hora_inicio[{{$i}}]" value="{{old('hora_inicio(field.i)')}}" min="07:00" max="15:00" step = "300" required>
                         </td>
                         <td>
-                            <input type="time" class="form-control" id="hora_fin[{{$i}}]" name="hora_fin[{{$i}}]" value="{{old('hora_fin(field.i)')}}" min="08:00" max="16:00" step = "300">
+                            <input type="time" class="form-control" id="hora_fin[{{$i}}]" name="hora_fin[{{$i}}]" value="{{old('hora_fin(field.i)')}}" min="08:00" max="16:00" step = "300" required>
                         </td>
                     </tr>
                     @endfor
@@ -96,8 +103,8 @@
                 '<tr class="menos" id="index['+i+']">'+
                     '<input type="hidden" name = "fk_materia_pc['+i+']" id = "fk_materia_pc['+i+']" value = "{{$materiaPC->pk_materia_pc}}">'+
                     '<th scope="row">'+
-                        '<select class="custom-select custom-select-sm" name="dia['+i+']" id="dia['+i+']">'+
-                            '<option if>Seleccionar nivel</option>'+
+                        '<select class="custom-select custom-select-sm" name="dia['+i+']" id="dia['+i+']" required>'+
+                            '<option value="" disabled selected>Seleccionar nivel</option>'+
                             '<option @select("dia['+i+']", "Lunes") @endselect value="Lunes">Lunes</option>'+
                             '<option @select("dia['+i+']", "Martes") @endselect value="Martes">Martes</option>'+
                             '<option @select("dia['+i+']", "Miercoles") @endselect value="Miercoles">Miercoles</option>'+
@@ -106,10 +113,10 @@
                         '</select>'+
                     '</th>'+
                     '<td>'+
-                        '<input type="time" class="form-control" id="hora_inicio['+i+']" name="hora_inicio['+i+']" min="07:00" max="15:00" step = "300">'+
+                        '<input type="time" class="form-control" id="hora_inicio['+i+']" name="hora_inicio['+i+']" min="07:00" max="15:00" step = "300" required>'+
                     '</td>'+
                     '<td>'+
-                        '<input type="time" class="form-control" id="hora_fin['+i+']" name="hora_fin['+i+']" min="08:00" max="16:00" step = "300">'+
+                        '<input type="time" class="form-control" id="hora_fin['+i+']" name="hora_fin['+i+']" min="08:00" max="16:00" step = "300" required>'+
                     '</td>'+
                 '</tr>'
             );
