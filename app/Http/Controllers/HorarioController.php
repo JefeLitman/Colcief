@@ -43,7 +43,8 @@ class HorarioController extends Controller {
                     }
                 }
                 // dd($dias);
-                return view('horarios.horarios', ['horarios' => $dias, 'dias' => $copia]);
+                // dd($dias);
+                return view('horarios.index', ['horarios' => $dias, 'dias' => $copia]);
                 break;
 
         }
