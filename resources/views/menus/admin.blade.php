@@ -11,8 +11,6 @@
                 <li class="nav-item @if (Request::path()=="empleados/principal") active @endif ">
                     <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-sticky-note"></i> Notas</a></li>
-
                 {{-- Cursos --}}
                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chalkboard-teacher"></i> Cursos</a>
                     {{--  desplegable de cursos  --}}
