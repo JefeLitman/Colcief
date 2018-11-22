@@ -14,8 +14,18 @@
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-sticky-note"></i> Notas</a></li>
 
                 {{-- Cursos --}}
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chalkboard-teacher"></i></i> Cursos </a></li>
+                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chalkboard-teacher"></i> Cursos</a>
+                    {{--  desplegable de cursos  --}}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+                        {{--  Crear cursos  --}}
+                        <a class="dropdown-item" href="{{ url('/cursos/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+                        <div class="dropdown-divider"></div>
+
+                        {{--  Editar cursos  --}}
+                        <a class="dropdown-item" href="{{ url('/cursos') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                    </div>
+                </li>
                 {{-- Empleados --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Empleados</a>
@@ -23,11 +33,11 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                             {{--  crear empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+                            <a class="dropdown-item" href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
                             <div class="dropdown-divider"></div>
 
                             {{--  Editar empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/empleados/roles') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                            <a class="dropdown-item" href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
                         </div>
                 </li>
 
