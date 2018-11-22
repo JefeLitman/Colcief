@@ -1,6 +1,8 @@
 @extends('contenedores.profesor')
 @section('titulo',' Ver Notas')
 @section('contenedor_profesor')
+{{-- mensajes de error --}}
+@include('error.error')
 <br>
 {{-- Diseño opcional --}}
 <div class="container">

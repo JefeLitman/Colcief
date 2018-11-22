@@ -68,7 +68,7 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="text-center">
-                                <input type="submit" name="action" value="Crear" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
+                                <input type="submit" name="action" value="Guardar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
                             </div>
                         </div>
                     </div>

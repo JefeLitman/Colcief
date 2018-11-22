@@ -1,6 +1,6 @@
 @extends('contenedores.admin')
 @section('contenedor_admin')
-@section('titulo','Lista de Materias - Profesor - Curso')
+@section('titulo','Editar de Materias - Profesor - Curso')
 {{-- mensajes de error --}}
 @include('error.error')
 

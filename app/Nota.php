@@ -8,7 +8,7 @@ class Nota extends Model
 {
     protected $table = 'nota';
     protected $primaryKey = 'pk_nota';
-    protected $guarded = [];
+    protected $guarded = ['porcentaje'];
 
     public function MateriaPC()
     {
@@ -20,8 +20,8 @@ class Nota extends Model
       return $this->belongsTo('App\division','fk_division','pk_division');
     }
 
-    // public function NotaEstudiantes()
-    // {
-    //   return $this->hasMany('App\NotaEstudiante',...);
-    // }
+    public function NotaEstudiantes()
+    {
+      return $this->hasMany('App\NotaEstudiante','fk_nota','pk_nota');
+    }
 }

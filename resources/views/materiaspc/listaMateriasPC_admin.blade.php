@@ -19,12 +19,12 @@
             <div class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
                 <div id="headingOne">
                     <div class="card-header" style="background-color:#66ba6a7d !important; cursor: pointer;" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" >
-                            <h5 class="text-center mb-0">
-                                {{ $nombre }}
-                            </h5>
+                        <h5 class="text-center mb-0">
+                            {{ $nombre }}
+                        </h5>
                     </div>
                 </div>
-                <div id="collapse{{$i}}" class="collapse show" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
+                <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover mr-auto">
@@ -51,6 +51,8 @@
                                             </a></td>
                                             {{-- eliminar materia --}}
                                             <td class="delete" tabla="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                                            {{-- ver --}}
+
                                         </tr>
                                     @endforeach
                                 </tbody>
