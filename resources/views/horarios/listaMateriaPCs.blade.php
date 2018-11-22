@@ -7,25 +7,21 @@
 @foreach ($materiaPCs as $key => $materia)
     <ul>
         <table>
-            <thead></thead>
+            <thead>
+                <tr>
+                    <th>{{$materia->materia_nombre}} {{$materia->prefijo}}-{{$materia->sufijo}} <a href="/horarios/{{$materia->pk_materia_pc}}/crear">Crear</a></th>
+                </tr>
+                <tr>
+                    <td>{{$materia->nombre}} {{$materia->apellido}}</td>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
-                    <td>{{$materia->materia_nombre}}</td>
-                    <td>{{$materia->salon}}</td>
-                    <td>{{$materia->nombre}} {{$materia->apellido}}</td>
-                    <td>{{$materia->prefijo}}-{{$materia->sufijo}}</td>
                     <td>
-                        <table>
-                            <tr>
-                                @foreach ($horarios[$key] as $horario)
-                                    <td>{{$horario->hora_inicio}}</td>    
-                                    <td>{{$horario->hora_fin}}</td>    
-                                @endforeach
-                            </tr>
-                        </table>
+                        @foreach ($horarios[$key] as $horario)
+                            {{$horario->dia}} {{substr($horario->hora_inicio, 0, 5)}} - {{substr($horario->hora_fin, 0, 5)}} <a href="/horarios/{{$horario->pk_horario}}/editar">Editar</a> ||
+                        @endforeach
                     </td>
-                    <td><a href="/horarios/{{$pk_materia}}/{{$materia->pk_materia_pc}}/crear">Crear</a></td>
-                    <td><a href="/horarios/{{$pk_materia}}/{{$materia->pk_materia_pc}}/editar">Editar</a></td>
                 </tr>
             </tbody>
         </table>
