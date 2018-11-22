@@ -9,4 +9,9 @@ class Acudiente extends Model{
     protected $table = 'acudiente';
     protected $guarded = [];
     protected $dates = ['deleted_at'];
+
+    public function estudiantes()
+    {
+      return $this->hasMany('App\Estudiante','fk_acudiente','pk_acudiente');
+    }
 }

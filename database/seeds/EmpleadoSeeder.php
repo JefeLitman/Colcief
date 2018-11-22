@@ -18,6 +18,7 @@ class EmpleadoSeeder extends Seeder
       $faker = Faker::create();
       $cursos = Curso::all()->pluck('pk_curso')->toArray();
       $curso = $faker->randomElement($cursos);
+      Empleado::unguard();
       Empleado::create([
         'cedula' => 1,
         'nombre' => 'Douglas Sebastian',
@@ -52,5 +53,6 @@ class EmpleadoSeeder extends Seeder
           'role' => '2'
         ]);
       }
+      Empleado::reguard();
     }
 }

@@ -11,11 +11,16 @@ class Empleado extends Authenticatable{
     use SoftDeletes;
     protected $table = 'empleado';
     protected $primaryKey = 'cedula';
-    protected $fillable = ['cedula','nombre', 'apellido', 'correo', 'password', 'direccion', 'titulo', 'role', 'tiempo_extra', 'fk_curso', 'estado', 'foto'];
+    protected $fillable = ['cedula','nombre', 'apellido', 'correo', 'password', 'direccion', 'titulo', 'tiempo_extra', 'fk_curso', 'estado', 'foto'];
     protected $dates = ['deleted_at'];
     protected $casts = ['estado' => 'boolean'];
 
     public function session(){
         return $this->attributes;
+    }
+
+    public function materiasPC()
+    {
+      return $this->hasMany('App\MateriaPC','fk_empleado','cedula');
     }
 }
