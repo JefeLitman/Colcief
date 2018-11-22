@@ -30,15 +30,16 @@ class EstudianteController extends Controller{
 
     public function index(){
         $curso = Curso::all()->groupBy('prefijo');
-        $grado = ["01" => "Uno","02" => "Dos", '03' => "Tres" , '04' => 'Cuatro', '05' =>  'Cinco', '06' =>  'Seis', '07' => 'Siete', '08' => 'Ocho', '09' => 'Nueve'];
-        return view('cursos.editarEstudiante', ['curso' => $curso, 'grado' => $grado]);
+        $grado = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
+        return view('cursos.cursos', ['curso' => $curso, 'grado' => $grado]);
     }
 
     public function estudianteGrado($prefijo,$sufijo){
         $curso = new CursoController;
         $curso = $curso->conteoEstudiantes($prefijo,$sufijo);
         $curso = json_decode($curso);
-        return view('estudiantes.estudiantesGrado',['curso'=>$curso]);
+        $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
+        return view('estudiantes.estudiantesGrado',['curso'=>$curso,'grado'=>$g[$prefijo]." - ".$sufijo]);
     }
 
     public function filtro(Request $request){

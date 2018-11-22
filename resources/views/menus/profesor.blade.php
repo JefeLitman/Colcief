@@ -1,31 +1,92 @@
 <!-- Menu principal para el profesor -->
-<nav class="cyan darken-3 nav-extended">
-        <div class="nav-wrapper">
-           <!--Espacio donde estara el logo de la pagina -->
-           <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('css/img/logo_min_3.png')}}"></a>
-            <!--Link que hace referencia al menu responsivo -->
-            <a href="#" data-target="menu-responsivo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <!--Menu normal en modo grande -->
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#!">Observador<i class="material-icons right">folder_shared</i></a></li>
-                <li><a href="#!">Cursos<i class="material-icons right">class</i></a></li>
-                <li><a href="{{ url('/') }}"><i class="material-icons">home</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="sesion"><i class="material-icons">account_circle</i></a></li>
-            </ul>
-            <!-- Estructura del despegable del logo de inicio de sesion -->
-            <ul id="sesion" class="dropdown-content">
-                <li><a href="#!"><i class="material-icons right">portrait</i></a></li>
-                <li class="divider"></li>
-                <li><a href="#!"><i class="material-icons right">exit_to_app</i></a></li>
-            </ul>
-        </div>
-    </nav>
-    <!--Menu responsive en modo movil -->
-    <ul class="sidenav" id="menu-responsivo">
-    <li><a href="#!"><i class="material-icons right">developer_board</i>Notas</a></li>
-    <li><a href="#!"><i class="material-icons right">class</i>Cursos</a></li>
-    <li><a href="{{ url('/empleadoss') }}"><i class="material-icons right">group</i>Empleados</a></li>
-    <li><a href="{{ url('/estudiantes') }}"><i class="material-icons right">child_care</i>Estudiantes</a></li>
-    <li><a href="{{ url('/') }}"><i class="material-icons right">home</i>Inicio</a></li>
-    <li><a href="{{ url('/home') }}"><i class="material-icons right">account_circle</i>Iniciar Sesi&oacute;n</a></li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;">
+    <a class="navbar-brand" href="{{ url('/') }}">
+        <img src="{{asset('css/img/logo_min_1.png')}}"  height="30" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item @if (Request::path()=="empleados/principal") active @endif ">
+                <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
+            </li>
+
+            {{-- Notas --}}
+            <li class="nav-item"><a class="nav-link" href="{{ url('/notas/crear') }}"><i class="fas fa-sticky-note"></i> Notas</a></li>
+
+            {{-- Asignaturas --}}
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chalkboard-teacher"></i></i> Asiganturas </a>
+                {{--  desplegable de empleados  --}}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                {{--  crear empleados  --}}
+                {{-- @foreach ($materia_pc as $pc)
+                    <a class="dropdown-item" href="{{ url('#') }}"><i class="fas fa-user-plus"></i> --}}
+                      {{-- @if (intval ($materia_pc-> fk_empleado)== )
+                      @endif --}}
+                    {{-- </a>
+                    <div class="dropdown-divider"></div>
+                @endforeach --}}
+            </li>
+
+            {{-- Empleados --}}
+            {{-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Empleados</a> --}}
+                    {{--  desplegable de empleados  --}}
+                    {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> --}}
+
+                        {{--  crear empleados  --}}
+                        {{-- <a class="dropdown-item" href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+                        <div class="dropdown-divider"></div> --}}
+
+                        {{--  Editar empleados  --}}
+                        {{-- <a class="dropdown-item" href="{{ url('/empleados/roles') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                    </div> --}}
+            {{-- </li> --}}
+
+             {{--  Estudiantes sin desplehable --}}
+
+             <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-graduate"></i> Estudiantes</a></li>
+
+             {{--  Estudiantes con desplehable --}}
+             {{-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-graduate"></i> Estudiantes</a> --}}
+                {{--  desplegable de estudiantes  --}}
+                {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> --}}
+
+                    {{--  Crear estudiantes  --}}
+                    {{-- <a class="dropdown-item" href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+                    <div class="dropdown-divider"></div> --}}
+
+                    {{--  Editar estudiantes  --}}
+                    {{-- <a class="dropdown-item" href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a> --}}
+                {{-- </div> --}}
+            {{-- </li> --}}
+
+
+            {{-- Divisiones sin desplegables --}}
+            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-th-list"></i> Divisiones </a></li>
+
+            {{-- Divisiones con desplehable--}}
+            {{-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-th-list"></i> Divisones</a> --}}
+                {{--  desplegable de divisones  --}}
+                {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> --}}
+
+                    {{--  Crear divisones  --}}
+                    {{-- <a class="dropdown-item" href="{{ url('/divisiones/crear') }}"><i class="fas fa-plus-circle"></i> Crear</a>
+                    <div class="dropdown-divider"></div> --}}
+
+                    {{--  Editar divisones  --}}
+                    {{-- <a class="dropdown-item" href="{{ url('/divisiones') }}"><i class="fas fa-pen"></i> Editar</a>
+                    <div class="dropdown-divider"></div> --}}
+
+                    {{--  Eliminar divisones  --}}
+                    {{-- <a class="dropdown-item" href="#"><i class="fas fa-minus"></i> Eliminar</a>
+                </div> --}}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
+            </li>
+        </ul>
+    </div>
+</nav>

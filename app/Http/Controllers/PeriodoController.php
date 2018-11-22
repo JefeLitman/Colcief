@@ -8,6 +8,13 @@ use App\Http\Requests\PeriodoStoreController;
 use App\Http\Requests\PeriodoUpdateController;
 class PeriodoController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->middleware('admin:administrador');
+      $this->middleware('admin:director,profesor')->only(['index','show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -102,4 +109,5 @@ class PeriodoController extends Controller
     {
         //
     }
+
 }

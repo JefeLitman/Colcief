@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Hash;
 
 class EmpleadoController extends Controller{
 
-    // public function __construct (){
-    //     $this->middleware('admin:administrador');
-    // }
-    //Comentado temporalmente porque la auth está remal hecha
+    public function __construct (){
+        $this->middleware('admin:administrador');
+    }
     public function index(){
         $empleado = Empleado::all();
         return view('empleados.listaEmpleado', ['empleado' => $empleado]);

@@ -3,7 +3,9 @@
 @section('titulo','Cursos')
 @yield('nombre')
 {{-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> --}}
-
+<div class="container">
+<br>
+<h1 class="text-center"><i class="fas fa-user-edit"></i> Editar Estudiantes </h1><br>
 <div class="accordion" id="accordion">
         <div class="card-header bg-secondary text-center text-white">
                 Cursos COLCIEF
@@ -47,19 +49,23 @@
                 <div class="collapse" id="preescolar">
                     <div class="card card-body">                       
                         Cursos de preescolar 
-                        @isset($curso[0])
+                        @if(empty($curso[0]))
+                            <div class="text-center">No hay Cursos</div>
+                        @else
                             @foreach ($curso[0] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit" role="button" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
-                        @endisset
+                        @endif
                     </div>
                 </div>
                 <div class="collapse" id="primero">
                     <div class="card card-body">
                         Cursos de primero
-                        @isset($curso[1])
+                        @if(empty($curso[1]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[1] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit w-25" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit w-25" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -67,9 +73,11 @@
                 <div class="collapse" id="segundo">
                     <div class="card card-body">
                         Cursos de segundo
-                        @isset($curso[2])
+                        @if(empty($curso[2]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[2] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -77,9 +85,11 @@
                 <div class="collapse" id="tercero">
                     <div class="card card-body">
                         Cursos de tercero
-                        @isset($curso[3])
+                        @if(empty($curso[3]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[3] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -87,9 +97,11 @@
                 <div class="collapse" id="cuarto">
                     <div class="card card-body">
                         Cursos de cuarto
-                        @isset($curso[4])
+                        @if(empty($curso[4]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[4] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -97,9 +109,11 @@
                 <div class="collapse" id="quinto">
                     <div class="card card-body">
                         Cursos de quinto
-                        @isset($curso[5])
+                        @if(empty($curso[5]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[5] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -145,9 +159,11 @@
                 <div class="collapse" id="sexto">
                     <div class="card card-body">
                         Cursos de sexto
-                        @isset($curso[6])
+                        @if(empty($curso[6]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[6] as $c)
-                                <a class="btn btn-primary mt-3 submit"  prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25"  prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset                        
                     </div>
@@ -155,9 +171,11 @@
                 <div class="collapse" id="septimo">
                     <div class="card card-body">
                         Cursos de septimo
-                        @isset($curso[7])
+                        @if(empty($curso[7]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[7] as $c)
-                                <a class="btn btn-primary mt-3 submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -165,9 +183,11 @@
                 <div class="collapse" id="octavo">
                     <div class="card card-body">
                         Cursos de octavo
-                        @isset($curso[8])
+                        @if(empty($curso[8]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[8] as $c)
-                                <a class="btn btn-primary mt-3 submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -175,9 +195,11 @@
                 <div class="collapse" id="noveno">
                     <div class="card card-body">
                         Cursos de noveno
-                        @isset($curso[9])
+                        @if(empty($curso[9]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[9] as $c)
-                                <a class="btn btn-primary mt-3 submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -185,9 +207,11 @@
                 <div class="collapse" id="decimo">
                     <div class="card card-body">
                         Cursos de decimo
-                        @isset($curso[10])
+                        @if(empty($curso[10]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[10] as $c)
-                                <a class="btn btn-primary mt-3 submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -195,9 +219,11 @@
                 <div class="collapse" id="once">
                     <div class="card card-body">
                         Cursos de once
-                        @isset($curso[11])
+                        @if(empty($curso[11]))
+                        <div class="text-center">No hay cursos</div>
+                        @else
                             @foreach ($curso[11] as $c)
-                                <a class="btn btn-primary mt-3 submit" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" role="button">{{$grado[$c->sufijo]}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -206,6 +232,5 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('js/ajax.js') }}"></script>
+<br>
 @endsection
