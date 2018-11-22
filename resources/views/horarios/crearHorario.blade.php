@@ -2,12 +2,8 @@
 @section('titulo','Crear Horario')
 @section('contenedor_admin')
     @include('error.error')
-<<<<<<< HEAD
 <br id = "br">
 
-=======
-<br>
->>>>>>> a209381ca7b6dc42adf77cb5d3d2b25396a64339
 <div class="container">
     <div class="row">
         <div class="col-md-12">
