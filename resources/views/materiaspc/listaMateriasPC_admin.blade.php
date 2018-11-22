@@ -51,6 +51,8 @@
                                             </a></td>
                                             {{-- eliminar materia --}}
                                             <td class="delete" tabla="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                                            {{-- ver --}}
+
                                         </tr>
                                     @endforeach
                                 </tbody>

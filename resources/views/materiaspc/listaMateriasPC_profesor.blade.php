@@ -38,6 +38,7 @@
                                         <th scope="col" style="color:#00695c" class="text-center"> Curso </th>
                                         <th></th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,6 +53,9 @@
                                             </a></td>
                                             {{-- eliminar materia --}}
                                             <td class="delete" tabla="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                                            <td class="text-center">
+                                                <a href="{{route('materiaspc.show',$j[0]) }}"><i class="far fa-eye" style="color:#00897b"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

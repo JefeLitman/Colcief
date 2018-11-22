@@ -1,15 +1,36 @@
 @extends('contenedores.admin')
-@section('titulo','Estudiante Nuevo')
+@section('titulo','Crear Horario')
 @section('contenedor_admin')
     @include('error.error')
 <br>
-
 <div class="container">
-    <h1 class="card-title text-center">
-        Crear horario para la materia {{$materiaPC->nombre_materia}} del curso {{$materiaPC->prefijo}}-{{$materiaPC->sufijo}}
-        con el profesor: {{$materiaPC->nombre_empleado}} {{$materiaPC->apellido}}
-    </h1>
-
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="card-title text-center">
+                Crear horario
+            </h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="card-title text-center">
+                <i class="fas fa-book"></i> <br>{{$materiaPC->nombre_materia}}
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="card-title text-center">
+                <i class="fas fa-chalkboard"></i><br>
+                {{$materiaPC->prefijo}}-{{$materiaPC->sufijo}}
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="card-title text-center">
+                <i class="fas fa-user-tie"></i><br>
+                {{$materiaPC->nombre_empleado}}{{$materiaPC->apellido}}
+            </h3>
+        </div>
+    </div>
     @if(session()->has('error'))
         <div class="alert alert-danger danger-dismissible fade show hidden" role="alert">
             No se pueden crear los siguientes horarios debido a los siguientes problemas:<br>
@@ -25,10 +46,10 @@
             </div>
         </div>
     @endif
-    
+
     <br>
     <form enctype="multipart/form-data" action="/horarios" method="POST">
-    @csrf        
+    @csrf
         <div class="table-responsive">
             <script>var i=0</script>
             <table class="table table-striped">
@@ -41,7 +62,7 @@
                 </thead>
                 <tbody id="div">
                     @for ($i = 0 ; $i < 1; $i++)
-                    <tr  class="menos" id="index[{{$i}}]">                        
+                    <tr  class="menos" id="index[{{$i}}]">
                         <input type="hidden" name = "fk_materia_pc[{{$i}}]" id = "fk_materia_pc[{{$i}}]" value = "{{$materiaPC->pk_materia_pc}}">
                         <th scope="row">
                             <select class="custom-select custom-select-sm" name="dia[{{$i}}]" id="dia[{{$i}}]" value="{{old('dia(field.i)')}}" required>
@@ -63,7 +84,7 @@
                     @endfor
                 </tbody>
             </table>
-        
+
         </div>
         <input type="hidden" value = "{{$materiaPC->f_curso}}" name = "curso">
         <input type="hidden" value = "{{$materiaPC->fk_empleado}}" name = "empleado">
@@ -121,7 +142,7 @@
                 '</tr>'
             );
         }
-        
+
         for (let i = 1; i < 3; i++) {
             $("#hora_inicio\\["+i+"\\]").on("focusout", function(){
                 var hora_inicio = document.getElementById("hora_inicio["+i+"]").value;
