@@ -12,6 +12,7 @@ class DivisionSeeder extends Seeder
      */
     public function run()
     {
+      Division::unguard();
       for ($i=1; $i <=4 ; $i++) {
         Division::create([
           'nombre' => 'Div_'.$i,
@@ -22,6 +23,7 @@ class DivisionSeeder extends Seeder
           'created_at' => date('Y-m-d H:m:s'),
           'updated_at' => date('Y-m-d H:m:s')
         ]);
-      }      
+      }
+      Division::reguard();      
     }
 }

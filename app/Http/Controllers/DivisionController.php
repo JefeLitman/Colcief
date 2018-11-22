@@ -56,8 +56,9 @@ class DivisionController extends Controller{
     }
 
     public function update(Request $request, $pk_division){
-        // $division = Division::findOrFail($pk_division)->fill($request->all());
-        // $division->save();
-        // return redirect(route('divisiones.verDivision', $division->pk_division));
+        $division = Division::findOrFail($pk_division)->fill($request->all());
+        $division->porcentaje=$request->porcentaje;
+        $division->save();
+        return redirect(route('divisiones.verDivision', $division->pk_division));
     }
 }

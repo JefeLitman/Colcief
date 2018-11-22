@@ -2,7 +2,8 @@
 @section('titulo','Crear Horario')
 @section('contenedor_admin')
     @include('error.error')
-<br>
+<br id = "br">
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -32,19 +33,16 @@
         </div>
     </div>
     @if(session()->has('error'))
-        <div class="alert alert-danger danger-dismissible fade show hidden" role="alert">
-            No se pueden crear los siguientes horarios debido a los siguientes problemas:<br>
-            <ul>
-                @foreach(session()->get('error') as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-            <div>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true" style="color:#812c3b">&times;</span>
-                </button>
-            </div>
-        </div>
+        <script src = "{{asset('js/ajax.js')}}"></script>
+        <script> newModal('Problemas', 
+                'No se pueden crear los siguientes horarios debido a los siguientes problemas:<br><br>'+
+                '<ul>'+
+                    '@foreach(session()->get('error') as $error)'+
+                        '<li>{{$error}}</li>'+
+                    '@endforeach'+
+                '</ul>', false
+            ); 
+        </script>
     @endif
 
     <br>
@@ -67,11 +65,11 @@
                         <th scope="row">
                             <select class="custom-select custom-select-sm" name="dia[{{$i}}]" id="dia[{{$i}}]" value="{{old('dia(field.i)')}}" required>
                                 <option value="" disabled selected>Seleccionar día</option>
-                                <option @select('dia[{{$i}}]', 'Lunes') @endselect value="Lunes">Lunes</option>
-                                <option @select('dia[{{$i}}]', 'Martes') @endselect value="Martes">Martes</option>
-                                <option @select('dia[{{$i}}]', 'Miercoles') @endselect value="Miercoles">Miercoles</option>
-                                <option @select('dia[{{$i}}]', 'Jueves') @endselect value="Jueves">Jueves</option>
-                                <option @select('dia[{{$i}}]', 'Viernes') @endselect value="Viernes">Viernes</option>
+                                <option @select('dia[{{$i}}]', 'lunes') @endselect value="lunes">Lunes</option>
+                                <option @select('dia[{{$i}}]', 'martes') @endselect value="martes">Martes</option>
+                                <option @select('dia[{{$i}}]', 'miercoles') @endselect value="miercoles">Miercoles</option>
+                                <option @select('dia[{{$i}}]', 'jueves') @endselect value="jueves">Jueves</option>
+                                <option @select('dia[{{$i}}]', 'viernes') @endselect value="viernes">Viernes</option>
                             </select>
                         </th>
                         <td>
@@ -126,11 +124,11 @@
                     '<th scope="row">'+
                         '<select class="custom-select custom-select-sm" name="dia['+i+']" id="dia['+i+']" required>'+
                             '<option value="" disabled selected>Seleccionar nivel</option>'+
-                            '<option @select("dia['+i+']", "Lunes") @endselect value="Lunes">Lunes</option>'+
-                            '<option @select("dia['+i+']", "Martes") @endselect value="Martes">Martes</option>'+
-                            '<option @select("dia['+i+']", "Miercoles") @endselect value="Miercoles">Miercoles</option>'+
-                            '<option @select("dia['+i+']", "Jueves") @endselect value="Jueves">Jueves</option>'+
-                            '<option @select("dia['+i+']", "Viernes") @endselect value="Viernes">Viernes</option>'+
+                            '<option @select("dia['+i+']", "lunes") @endselect value="lunes">Lunes</option>'+
+                            '<option @select("dia['+i+']", "martes") @endselect value="martes">Martes</option>'+
+                            '<option @select("dia['+i+']", "miercoles") @endselect value="miercoles">Miercoles</option>'+
+                            '<option @select("dia['+i+']", "jueves") @endselect value="jueves">Jueves</option>'+
+                            '<option @select("dia['+i+']", "viernes") @endselect value="viernes">Viernes</option>'+
                         '</select>'+
                     '</th>'+
                     '<td>'+
@@ -158,5 +156,6 @@
     });
 
 </script>
+
 <br>
 @endsection
