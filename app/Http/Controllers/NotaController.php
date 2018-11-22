@@ -76,7 +76,12 @@ class NotaController extends Controller
     {
         if ($request['porcentaje']+$this->sumaPorcentajes($request,$request['fk_division'],
             session('user')['cedula'],$request['fk_materia_pc'])<=100) {
-          $Nota = (new Nota)->fill($request->all());
+          $Nota = new Nota();
+          $Nota->porcentaje=$request->porcentaje;
+          $Nota->fk_division=$request->fk_division;
+          $Nota->fk_materia_pc=$request->fk_materia_pc;
+          $Nota->nombre=$request->nombre;
+          $Nota->descripcion=$request->descripcion;
           $Nota->save();
           return redirect('/notas');
         }
@@ -138,7 +143,11 @@ class NotaController extends Controller
           if ($request['porcentaje']+$this->sumaPorcentajes($request,$request['fk_division'],
               session('user')['cedula'],$request['fk_materia_pc'])-$nota_modificada['porcentaje']<=100)
               {
-                $nota_modificada->fill($request->all());
+                $nota_modificada->porcentaje=$request->porcentaje;
+                $nota_modificada->fk_division=$request->fk_division;
+                $nota_modificada->fk_materia_pc=$request->fk_materia_pc;
+                $nota_modificada->nombre=$request->nombre;
+                $nota_modificada->descripcion=$request->descripcion;
                 $nota_modificada->save();
                 return redirect('/notas/'.$nota_modificada['pk_nota']); //Cuando se guarda
               }
