@@ -50,15 +50,15 @@
                                     </select>
                                     <select class="custom-select custom-select-sm" name="sufijo" id="sufijo">
                                         <option if>Selecciona el salón</option>
-                                        <option @select('sufijo', '1') @endselect value="1" {{$curso->sufijo === "1" ? 'selected' : '' }}>1</option>
-                                        <option @select('sufijo', '2') @endselect value="2" {{$curso->sufijo === "2" ? 'selected' : '' }}>2</option>
-                                        <option @select('sufijo', '3') @endselect value="3" {{$curso->sufijo === "3" ? 'selected' : '' }}>3</option>
-                                        <option @select('sufijo', '4') @endselect value="4" {{$curso->sufijo === "4" ? 'selected' : '' }}>4</option>
-                                        <option @select('sufijo', '5') @endselect value="5" {{$curso->sufijo === "5" ? 'selected' : '' }}>5</option>
-                                        <option @select('sufijo', '6') @endselect value="6" {{$curso->sufijo === "6" ? 'selected' : '' }}>6</option>
-                                        <option @select('sufijo', '7') @endselect value="7" {{$curso->sufijo === "7" ? 'selected' : '' }}>7</option>
-                                        <option @select('sufijo', '8') @endselect value="8" {{$curso->sufijo === "8" ? 'selected' : '' }}>8</option>
-                                        <option @select('sufijo', '9') @endselect value="9" {{$curso->sufijo === "9" ? 'selected' : '' }}>9</option>
+                                        <option @select('sufijo', '01') @endselect value="01" {{$curso->sufijo === "01" ? 'selected' : '' }}>01</option>
+                                        <option @select('sufijo', '02') @endselect value="02" {{$curso->sufijo === "02" ? 'selected' : '' }}>02</option>
+                                        <option @select('sufijo', '03') @endselect value="03" {{$curso->sufijo === "03" ? 'selected' : '' }}>03</option>
+                                        <option @select('sufijo', '04') @endselect value="04" {{$curso->sufijo === "04" ? 'selected' : '' }}>04</option>
+                                        <option @select('sufijo', '05') @endselect value="05" {{$curso->sufijo === "05" ? 'selected' : '' }}>05</option>
+                                        <option @select('sufijo', '06') @endselect value="06" {{$curso->sufijo === "06" ? 'selected' : '' }}>06</option>
+                                        <option @select('sufijo', '07') @endselect value="07" {{$curso->sufijo === "07" ? 'selected' : '' }}>07</option>
+                                        <option @select('sufijo', '08') @endselect value="08" {{$curso->sufijo === "08" ? 'selected' : '' }}>08</option>
+                                        <option @select('sufijo', '09') @endselect value="09" {{$curso->sufijo === "09" ? 'selected' : '' }}>09</option>
                                     </select>
                                     <input type="number" min = "1990" max = "2050" step = "1" value = {{$curso->ano}} name="ano" id="ano"
                                     placeholder="Año"

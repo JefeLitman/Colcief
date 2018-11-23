@@ -13,6 +13,8 @@
     <!--Let browser know website is optimized for mobile-->
     <!--JavaScript at end of body forr optimized loading-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {{-- Codificación --}}
+    <meta charset="UTF-8">
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>

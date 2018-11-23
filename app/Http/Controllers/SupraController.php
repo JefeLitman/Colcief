@@ -13,7 +13,7 @@
   use Illuminate\Http\Request;
 
   class SupraController{
-    
+
     // este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
     public static function machete(Request $request,String $nombre,String $input){
       return '/sistema/storage/app/public/'.SupraController::subirArchivo($request,$nombre,$input);
@@ -43,26 +43,26 @@
       if($pk_futura!=$pk_original){
         $query = $Modelo::where($campo_pk,$pk_futura)->get();
         if(!empty($query[0])){
-          return 0; //No existe una fila con ese dato, se viola dicha fila, es decir, SÍ se repite la pk
+          return 0;
         }
       }
-      return 1; //Sí existe una fila creada con esa PK
+      return 1;
     }
 
-    
+
     public static function minuscula($array, ...$excepts){
         array_push($excepts, "_token", "action");
         foreach($excepts as $except){
             unset($array[$except]);
         }
-        foreach($array as $key => $value) { 
-            $array[$key] = strtolower($value);
+        foreach($array as $key => $value) {
+            $array[$key] = mb_strtolower($value);
         }
         return $array;
     }
 
-    // public static function mostrar($array){ 
-    //     foreach($array as $key => $value) { 
+    // public static function mostrar($array){
+    //     foreach($array as $key => $value) {
     //         $array[$key] = ucwords($value);
     //     }
     //     return $array;

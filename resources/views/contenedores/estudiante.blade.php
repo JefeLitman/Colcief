@@ -14,6 +14,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- Codificación --}}
+    <meta charset="UTF-8">
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
@@ -29,4 +31,3 @@
     <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
     @include('footers.principal')
 </body>
-</html>
