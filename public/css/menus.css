@@ -29,8 +29,16 @@ body {
     min-height: 100vh;
     flex-direction: column;
   }
-  
+
   .main {
     flex: 1;
   }
-  
+
+  /* este hover es para listaHorarios de la carpeta de horarios  */
+.cambio:hover{
+    color:#00695c !important;
+}
+/* este hover es para listamateriaspc de la carpeta horarios */
+.cambiob:hover{
+    color:white !important;
+}

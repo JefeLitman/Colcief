@@ -5,27 +5,50 @@
 <br id = "br">
 
 <div class="container">
-  <h1 class="card-title text-center">
-      Editar horario para la materia {{$horario->nombre_materia}} del curso {{$horario->prefijo}}-{{$horario->sufijo}}
-      con el profesor {{$horario->nombre}} {{$horario->apellido}}
-  </h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="card-title text-center">
+                Editar horario
+            </h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="card-title text-center">
+                <i class="fas fa-book"></i> <br> {{$horario->nombre_materia}}
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="card-title text-center">
+                <i class="fas fa-chalkboard"></i><br>
+                {{$horario->prefijo}}-{{$horario->sufijo}}
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="card-title text-center">
+                <i class="fas fa-user-tie"></i><br>
+                {{$horario->nombre}} {{$horario->apellido}}
+            </h3>
+        </div>
+    </div>
 
   @if(session()->has('error'))
       <script src = "{{asset('js/ajax.js')}}"></script>
-      <script> newModal('Problemas', 
+      <script> newModal('Problemas',
               'No se pueden actualizar los siguientes horario debido a los siguientes problemas:<br><br>'+
               '<ul>'+
                   '@foreach(session()->get('error') as $error)'+
                       '<li>{{$error}}</li>'+
                   '@endforeach'+
               '</ul>', false
-          ); 
+          );
       </script>
   @endif
-  
+
   <br>
   <form enctype="multipart/form-data" action="{{route('horarios.update', $horario->pk_horario)}}" method="POST">
-    @csrf        
+    @csrf
     @method("PUT")
     <div class="table-responsive">
       <table class="table table-striped">
@@ -33,11 +56,12 @@
           <tr>
               <th scope="col" class="text-center">Día</th>
               <th scope="col" class="text-center">Hora inicio</th>
-              <th scope="col" class="text-center">Hora fin</th>
+              <th scope="col" class="text-center">Hora fin
+              </th>
           </tr>
         </thead>
         <tbody id="div">
-            <tr id="index">                
+            <tr id="index">
               <input type="hidden" name = "pk_horario" id = "pk_horario" value = "{{$horario->pk_horario}}">
               <th scope="row">
                 <select class="custom-select custom-select-sm" name="dia" id="dia" value="{{old('dia(field.i)')}}" required>
@@ -61,6 +85,7 @@
     </div>
     <input type="hidden" value = "{{$horario->fk_curso}}" name = "curso">
     <input type="hidden" value = "{{$horario->fk_empleado}}" name = "empleado">
+
     <div class="row justify-content-center">
       <div class="col-md-3"></div>
       <div class="col-md-6">
