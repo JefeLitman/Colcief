@@ -28,7 +28,7 @@
         <div class="col-md-4">
             <h3 class="card-title text-center">
                 <i class="fas fa-user-tie"></i><br>
-                {{$materiaPC->nombre_empleado}}{{$materiaPC->apellido}}
+                {{$materiaPC->nombre}} {{$materiaPC->apellido}}
             </h3>
         </div>
     </div>

@@ -93,7 +93,7 @@ Route::resource('/notas','NotaController');
 /* RUTAS DE HORARIO */
 Route::get('/horarios/{pk_materia}','HorarioController@materias');
 Route::resource('/horarios','HorarioController');
-Route::get('/horarios/{pk_materiaPC}/crear','HorarioController@create');
+Route::get('/horarios/{pk_materiaPC}/crear','HorarioController@create')->name('crearHorario');
 Route::get('/horarios/{pk_materiaPC}/editar','HorarioController@edit');
 
 /* RUTAS DE BOLETIN */
