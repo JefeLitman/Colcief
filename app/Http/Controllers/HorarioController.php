@@ -26,20 +26,49 @@ class HorarioController extends Controller {
                 break;
             case 'estudiante':
                 $pk_estudiante = session('user')['pk_estudiante'];
-                $horarios = Horario::select('horario.*','materia_pc.nombre')
-                    ->where('estudiante.pk_estudiante',$pk_estudiante)
-                    ->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')
-                    ->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')
-                    ->join('estudiante','estudiante.fk_curso','=','curso.pk_curso')
-                    ->orderBy('hora_inicio')->get();
-                $dias = $this->verHorario($horarios);
-                return view('horarios.horarios', ['horarios' => $dias]);
+                return view('horarios.horarioEstudiante', ['estudiante' => $this->getHorarioEstudiante($pk_estudiante)]);
+                break;
+            case 'director':
+                $fk_curso = session('user')['fk_curso'];
+                $cur = Curso::find($fk_curso);
+                $c = $cur->prefijo.'-'.$cur->sufijo;
+                return view('horarios.horarioDirector', ['c' => $c ]);
+                break;
+            case 'profesor':
+                $cedula = session('user')['cedula'];
+                return view('horarios.horarioProfesor', ['empleado' => $this->getHorarioEmpleado($cedula)]);
                 break;
         }
+        
     }
-
-    // PONGALE COMENTARIOS A LAS COSAS PEPE, PL0X
-    public function verHorario($horarios){
+    //Retorna una vista con el horario de un curso correspondiente al director
+    public function verHorarioDirectorCurso(){
+        $fk_curso = session('user')['fk_curso'];
+        $cur = Curso::find($fk_curso);
+        return view('horarios.horarioProfesor', ['empleado' => $this->getHorarioCurso($fk_curso), 'curso' => $cur]);
+    }
+    //Retorna una vista para el director donde tiene la opccion de ver su horario o el horario de su curso
+    public function verHorarioDirector(){
+        $cedula = session('user')['cedula'];
+        return view('horarios.horarioProfesor', ['empleado' => $this->getHorarioEmpleado($cedula)]);
+    }
+    //Realiza la consulta correspondiente a un estudiante
+    private function getHorarioEstudiante($pk_estudiante){
+        $estudiante = Horario::select('horario.*','materia_pc.nombre')->where('estudiante.pk_estudiante',$pk_estudiante)->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->join('estudiante','estudiante.fk_curso','=','curso.pk_curso')->orderBy('hora_inicio')->get();
+        return $this->organizacion($estudiante);
+    }
+    //realiza la consulta de un horario correspondiente a un curso
+    private function getHorarioCurso($fk_curso){
+        $curso = Horario::select('horario.*','materia_pc.nombre')->where('empleado.fk_curso',$fk_curso)->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->orderBy('hora_inicio')->get();
+        return $this->organizacion($curso);
+    }
+    //realiza la consulta correspondiete a un empleado
+    private function getHorarioEmpleado($cedula){
+        $empleado = Horario::select('horario.*','materia_pc.nombre')->where('materia_pc.fk_empleado',$cedula)   ->join('materia_pc', 'materia_pc.pk_materia_pc','=','horario.fk_materia_pc')->orderBy('hora_inicio')->get();
+        return $this->organizacion($empleado);
+    }
+    //Organiza los horarios en un array asocitivo
+    public function organizacion($horarios){
         $dias = ['lunes'=>[],'martes'=>[],'miercoles'=>[],'jueves'=>[],'viernes'=>[]];
         foreach($horarios as $horario){
             switch($horario->dia){
@@ -60,8 +89,10 @@ class HorarioController extends Controller {
                     break;
             }
         }
-        
+        return $dias;
     }
+                
+     
 
     // Devuelve una vista con las materiasPC de una materia. A la vista se le pasa una colección con los datos
     // de la materiaPC, curso y empleado para que se puedan mostrar y además una colección de cada horario  

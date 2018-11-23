@@ -4,13 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Fks extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+class Fks extends Migration {
+
     public function up(){
         Schema::table('estudiante', function (Blueprint $table) {
             $table->foreign('fk_acudiente')->references('pk_acudiente')->on('acudiente')

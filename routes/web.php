@@ -91,6 +91,8 @@ Route::get('/notas/total/{cedula_prof}/{division}/{pk_materia_pc}','NotaControll
 Route::resource('/notas','NotaController');
 
 /* RUTAS DE HORARIO */
+Route::get('/horarios/curso','HorarioController@verHorarioDirectorCurso');
+Route::get('/horarios/director','HorarioController@verHorarioDirector');
 Route::get('/horarios/{pk_materia}','HorarioController@materias');
 Route::resource('/horarios','HorarioController');
 Route::get('/horarios/{pk_materiaPC}/crear','HorarioController@create')->name('crearHorario');
