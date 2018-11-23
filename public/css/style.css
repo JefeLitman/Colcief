@@ -1,4 +1,4 @@
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -7,25 +7,25 @@ Primary style
   box-sizing: border-box;
 }
 
-html {
+html-pepe {
   font-size: 62.5%;
 }
 
-body {
+body-pepe {
   font-size: 1.6rem;
   font-family: "Source Sans Pro", sans-serif;
   color: #222222;
   background-color: white;
 }
 
-a {
+a-pepe {
   color: #A2B9B2;
   text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .cd-schedule {
@@ -107,28 +107,28 @@ Main Components
   }
 }
 
-.cd-schedule .events {
+.cd-schedule .eventpsp {
   position: relative;
   z-index: 1;
 }
 
-.cd-schedule .events .events-group {
+.cd-schedule .eventpsp .eventpsp-group {
   margin-bottom: 30px;
 }
 
-.cd-schedule .events .top-info {
+.cd-schedule .eventpsp .top-infop {
   width: 100%;
   padding: 0 5%;
 }
 
-.cd-schedule .events .top-info > span {
+.cd-schedule .eventpsp .top-infop > span {
   display: inline-block;
   line-height: 1.2;
   margin-bottom: 10px;
   font-weight: bold;
 }
 
-.cd-schedule .events .events-group > ul {
+.cd-schedule .eventpsp .eventpsp-group > ul {
   position: relative;
   padding: 0 5%;
   /* force its children to stay on one line */
@@ -139,8 +139,8 @@ Main Components
   -webkit-overflow-scrolling: touch;
 }
 
-.cd-schedule .events .events-group > ul::after {
-  /* never visible - used to add a right padding to .events-group > ul */
+.cd-schedule .eventpsp .eventpsp-group > ul::after {
+  /* never visible - used to add a right padding to .eventpsp-group > ul */
   display: inline-block;
   content: '-';
   width: 1px;
@@ -149,7 +149,7 @@ Main Components
   color: transparent;
 }
 
-.cd-schedule .events .single-event {
+.cd-schedule .eventpsp .single-eventp {
   /* force them to stay on one line */
   -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -163,38 +163,38 @@ Main Components
   transition: opacity .2s, background .2s;
 }
 
-.cd-schedule .events .single-event:last-of-type {
+.cd-schedule .eventpsp .single-eventp:last-of-type {
   margin-right: 5%;
 }
 
-.cd-schedule .events .single-event a {
+.cd-schedule .eventpsp .single-eventp a-pepe {
   display: block;
   height: 100%;
   padding: .8em;
 }
 
 @media only screen and (min-width: 550px) {
-  .cd-schedule .events .single-event {
+  .cd-schedule .eventpsp .single-eventp {
     width: 40%;
   }
 }
 
 @media only screen and (min-width: 800px) {
-  .cd-schedule .events {
+  .cd-schedule .eventpsp {
     float: left;
     width: 100%;
   }
-  .cd-schedule .events .events-group {
+  .cd-schedule .eventpsp .eventpsp-group {
     width: 20%;
     float: left;
     border: 1px solid #EAEAEA;
     /* reset style */
     margin-bottom: 0;
   }
-  .cd-schedule .events .events-group:not(:first-of-type) {
+  .cd-schedule .eventpsp .eventpsp-group:not(:first-of-type) {
     border-left-width: 0;
   }
-  .cd-schedule .events .top-info {
+  .cd-schedule .eventpsp .top-infop {
     /* vertically center its content */
     display: table;
     height: 50px;
@@ -202,7 +202,7 @@ Main Components
     /* reset style */
     padding: 0;
   }
-  .cd-schedule .events .top-info > span {
+  .cd-schedule .eventpsp .top-infop > span {
     /* vertically center inside its parent */
     display: table-cell;
     vertical-align: middle;
@@ -212,23 +212,23 @@ Main Components
     font-weight: normal;
     margin-bottom: 0;
   }
-  .cd-schedule .events .events-group > ul {
-    height: 950px;
+  .cd-schedule .eventpsp .eventpsp-group > ul {
+    height: 750px !important;
     /* reset style */
     display: block;
     overflow: visible;
     padding: 0;
   }
-  .cd-schedule .events .events-group > ul::after {
+  .cd-schedule .eventpsp .eventpsp-group > ul::after {
     clear: both;
     content: "";
     display: block;
   }
-  .cd-schedule .events .events-group > ul::after {
+  .cd-schedule .eventpsp .eventpsp-group > ul::after {
     /* reset style */
     display: none;
   }
-  .cd-schedule .events .single-event {
+  .cd-schedule .eventpsp .single-eventp {
     position: absolute;
     z-index: 3;
     /* top position and height will be set using js */
@@ -242,35 +242,35 @@ Main Components
     max-width: none;
     margin-right: 0;
   }
-  .cd-schedule .events .single-event a {
+  .cd-schedule .eventpsp .single-eventp a-pepe {
     padding: 1.2em;
   }
-  .cd-schedule .events .single-event:last-of-type {
+  .cd-schedule .eventpsp .single-eventp:last-of-type {
     /* reset style */
     margin-right: 0;
   }
-  .cd-schedule .events .single-event.selected-event {
-    /* the .selected-event class is added when an user select the event */
+  .cd-schedule .eventpsp .single-eventp.selected-eventp {
+    /* the .selected-eventp class is added when an user select the eventp */
     visibility: hidden;
   }
 }
 
 @media only screen and (min-width: 1000px) {
-  .cd-schedule .events {
+  .cd-schedule .eventpsp {
     /* 60px is the .timeline element width */
     width: calc(100% - 60px);
     margin-left: 60px;
   }
 }
 
-.cd-schedule.loading .events .single-event {
+.cd-schedule.loading .eventpsp .single-eventp {
   /* the class .loading is added by default to the .cd-schedule element
-	   it is removed as soon as the single events are placed in the schedule plan (using javascript) */
+	   it is removed as soon as the single eventpsp are placed in the schedule plan (using javascript) */
   opacity: 0;
 }
 
-.cd-schedule .event-name,
-.cd-schedule .event-date {
+.cd-schedule .eventp-name,
+.cd-schedule .eventp-date {
   display: block;
   color: white;
   font-weight: bold;
@@ -278,17 +278,17 @@ Main Components
   -moz-osx-font-smoothing: grayscale;
 }
 
-.cd-schedule .event-name {
+.cd-schedule .eventp-name {
   font-size: 2.4rem;
 }
 
 @media only screen and (min-width: 800px) {
-  .cd-schedule .event-name {
+  .cd-schedule .eventp-name {
     font-size: 2rem;
   }
 }
 
-.cd-schedule .event-date {
+.cd-schedule .eventp-date {
   /* they are not included in the the HTML but added using JavScript */
   font-size: 1.4rem;
   opacity: .7;
@@ -296,44 +296,44 @@ Main Components
   margin-bottom: .2em;
 }
 
-.cd-schedule .single-event[data-event="event-1"],
-.cd-schedule [data-event="event-1"] .header-bg {
-  /* this is used to set a background color for the event and the modal window */
+.cd-schedule .single-eventp[data-eventp="eventp-1"],
+.cd-schedule [data-eventp="eventp-1"] .headerp-bg {
+  /* this is used to set a background color for the eventp and the modal window */
   background: #577F92;
 }
 
-.cd-schedule .single-event[data-event="event-1"]:hover {
+.cd-schedule .single-eventp[data-eventp="eventp-1"]:hover {
   background: #618da1;
 }
 
-.cd-schedule .single-event[data-event="event-2"],
-.cd-schedule [data-event="event-2"] .header-bg {
+.cd-schedule .single-eventp[data-eventp="eventp-2"],
+.cd-schedule [data-eventp="eventp-2"] .headerp-bg {
   background: #443453;
 }
 
-.cd-schedule .single-event[data-event="event-2"]:hover {
+.cd-schedule .single-eventp[data-eventp="eventp-2"]:hover {
   background: #513e63;
 }
 
-.cd-schedule .single-event[data-event="event-3"],
-.cd-schedule [data-event="event-3"] .header-bg {
+.cd-schedule .single-eventp[data-eventp="eventp-3"],
+.cd-schedule [data-eventp="eventp-3"] .headerp-bg {
   background: #A2B9B2;
 }
 
-.cd-schedule .single-event[data-event="event-3"]:hover {
+.cd-schedule .single-eventp[data-eventp="eventp-3"]:hover {
   background: #b1c4be;
 }
 
-.cd-schedule .single-event[data-event="event-4"],
-.cd-schedule [data-event="event-4"] .header-bg {
+.cd-schedule .single-eventp[data-eventp="eventp-4"],
+.cd-schedule [data-eventp="eventp-4"] .headerp-bg {
   background: #f6b067;
 }
 
-.cd-schedule .single-event[data-event="event-4"]:hover {
+.cd-schedule .single-eventp[data-eventp="eventp-4"]:hover {
   background: #f7bd7f;
 }
 
-.cd-schedule .event-modal {
+.cd-schedule .eventp-modal {
   position: fixed;
   z-index: 3;
   top: 0;
@@ -355,7 +355,7 @@ Main Components
           transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
 }
 
-.cd-schedule .event-modal .header {
+.cd-schedule .eventp-modal .headerp {
   position: relative;
   height: 70px;
   /* vertically center its content */
@@ -363,7 +363,7 @@ Main Components
   width: 100%;
 }
 
-.cd-schedule .event-modal .header .content {
+.cd-schedule .eventp-modal .headerp .content {
   position: relative;
   z-index: 3;
   /* vertically center inside its parent */
@@ -372,14 +372,14 @@ Main Components
   padding: .6em 5%;
 }
 
-.cd-schedule .event-modal .body {
+.cd-schedule .eventp-modal .body-pepe {
   position: relative;
   width: 100%;
-  /* 70px is the .header height */
+  /* 70px is the .headerp height */
   height: calc(100% - 70px);
 }
 
-.cd-schedule .event-modal .event-info {
+.cd-schedule .eventp-modal .eventp-infop {
   position: relative;
   z-index: 2;
   line-height: 1.4;
@@ -387,13 +387,13 @@ Main Components
   overflow: hidden;
 }
 
-.cd-schedule .event-modal .event-info > div {
+.cd-schedule .eventp-modal .eventp-infop > div {
   overflow: auto;
   height: 100%;
   padding: 1.4em 5%;
 }
 
-.cd-schedule .event-modal .header-bg, .cd-schedule .event-modal .body-bg {
+.cd-schedule .eventp-modal .headerp-bg, .cd-schedule .eventp-modal .body-pepe-bg {
   /* these are the morphing backgrounds - visible on desktop only */
   position: absolute;
   top: 0;
@@ -402,7 +402,7 @@ Main Components
   width: 100%;
 }
 
-.cd-schedule .event-modal .body-bg {
+.cd-schedule .eventp-modal .body-pepe-bg {
   z-index: 1;
   background: white;
   -webkit-transform-origin: top left;
@@ -410,14 +410,14 @@ Main Components
           transform-origin: top left;
 }
 
-.cd-schedule .event-modal .header-bg {
+.cd-schedule .eventp-modal .headerp-bg {
   z-index: 2;
   -webkit-transform-origin: top center;
       -ms-transform-origin: top center;
           transform-origin: top center;
 }
 
-.cd-schedule .event-modal .close {
+.cd-schedule .eventp-modal .closep {
   /* this is the 'X' icon */
   position: absolute;
   top: 0;
@@ -432,7 +432,7 @@ Main Components
   width: 70px;
 }
 
-.cd-schedule .event-modal .close::before, .cd-schedule .event-modal .close::after {
+.cd-schedule .eventp-modal .closep::before, .cd-schedule .eventp-modal .closep::after {
   /* these are the two lines of the 'X' icon */
   content: '';
   position: absolute;
@@ -445,34 +445,34 @@ Main Components
   backface-visibility: hidden;
 }
 
-.cd-schedule .event-modal .close::before {
+.cd-schedule .eventp-modal .closep::before {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
       -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
           transform: translateX(-50%) translateY(-50%) rotate(45deg);
 }
 
-.cd-schedule .event-modal .close::after {
+.cd-schedule .eventp-modal .closep::after {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
       -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
           transform: translateX(-50%) translateY(-50%) rotate(-45deg);
 }
 
-.cd-schedule .event-modal .event-date {
+.cd-schedule .eventp-modal .eventp-date {
   display: none;
 }
 
-.cd-schedule .event-modal.no-transition {
+.cd-schedule .eventp-modal.no-transition {
   -webkit-transition: none;
   transition: none;
 }
 
-.cd-schedule .event-modal.no-transition .header-bg, .cd-schedule .event-modal.no-transition .body-bg {
+.cd-schedule .eventp-modal.no-transition .headerp-bg, .cd-schedule .eventp-modal.no-transition .body-pepe-bg {
   -webkit-transition: none;
   transition: none;
 }
 
 @media only screen and (min-width: 800px) {
-  .cd-schedule .event-modal {
+  .cd-schedule .eventp-modal {
     /* reset style */
     right: auto;
     width: auto;
@@ -488,26 +488,26 @@ Main Components
     -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
             transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
   }
-  .cd-schedule .event-modal .header {
+  .cd-schedule .eventp-modal .headerp {
     position: absolute;
     display: block;
     top: 0;
     left: 0;
     height: 100%;
   }
-  .cd-schedule .event-modal .header .content {
+  .cd-schedule .eventp-modal .headerp .content {
     /* reset style */
     display: block;
     padding: .8em;
   }
-  .cd-schedule .event-modal .event-info > div {
+  .cd-schedule .eventp-modal .eventp-infop > div {
     padding: 2em 3em 2em 2em;
   }
-  .cd-schedule .event-modal .body {
+  .cd-schedule .eventp-modal .body-pepe {
     height: 100%;
     width: auto;
   }
-  .cd-schedule .event-modal .header-bg, .cd-schedule .event-modal .body-bg {
+  .cd-schedule .eventp-modal .headerp-bg, .cd-schedule .eventp-modal .body-pepe-bg {
     /* Force Hardware acceleration */
     -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -515,7 +515,7 @@ Main Components
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
   }
-  .cd-schedule .event-modal .header-bg {
+  .cd-schedule .eventp-modal .headerp-bg {
     -webkit-transition: -webkit-transform .4s;
     transition: -webkit-transform .4s;
     transition: transform .4s;
@@ -523,58 +523,58 @@ Main Components
     -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
             transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
   }
-  .cd-schedule .event-modal .body-bg {
+  .cd-schedule .eventp-modal .body-pepe-bg {
     opacity: 0;
     -webkit-transform: none;
         -ms-transform: none;
             transform: none;
   }
-  .cd-schedule .event-modal .event-date {
+  .cd-schedule .eventp-modal .eventp-date {
     display: block;
   }
-  .cd-schedule .event-modal .close, .cd-schedule .event-modal .event-info {
+  .cd-schedule .eventp-modal .closep, .cd-schedule .eventp-modal .eventp-infop {
     opacity: 0;
   }
-  .cd-schedule .event-modal .close {
+  .cd-schedule .eventp-modal .closep {
     width: 40px;
     height: 40px;
     background: transparent;
   }
-  .cd-schedule .event-modal .close::after, .cd-schedule .event-modal .close::before {
+  .cd-schedule .eventp-modal .closep::after, .cd-schedule .eventp-modal .closep::before {
     background: #222222;
     height: 16px;
   }
 }
 
 @media only screen and (min-width: 1000px) {
-  .cd-schedule .event-modal .header .content {
+  .cd-schedule .eventp-modal .headerp .content {
     padding: 1.2em;
   }
 }
 
-.cd-schedule.modal-is-open .event-modal {
-  /* .modal-is-open class is added as soon as an event is selected */
+.cd-schedule.modal-is-open .eventp-modal {
+  /* .modal-is-open class is added as soon as an eventp is selected */
   -webkit-transform: translateX(0);
       -ms-transform: translateX(0);
           transform: translateX(0);
   visibility: visible;
 }
 
-.cd-schedule.modal-is-open .event-modal .event-info > div {
+.cd-schedule.modal-is-open .eventp-modal .eventp-infop > div {
   /* smooth scroll on iOS touch devices */
   -webkit-overflow-scrolling: touch;
 }
 
 @media only screen and (min-width: 800px) {
-  .cd-schedule.animation-completed .event-modal .close,
-  .cd-schedule.content-loaded.animation-completed .event-modal .event-info {
+  .cd-schedule.animation-completed .eventp-modal .closep,
+  .cd-schedule.content-loaded.animation-completed .eventp-modal .eventp-infop {
     /* 	the .animation-completed class is added when the modal animation is completed
 			the .content-loaded class is added when the modal content has been loaded (using ajax) */
     opacity: 1;
     -webkit-transition: opacity .2s;
     transition: opacity .2s;
   }
-  .cd-schedule.modal-is-open .body-bg {
+  .cd-schedule.modal-is-open .body-pepe-bg {
     opacity: 1;
     -webkit-transition: -webkit-transform .4s;
     transition: -webkit-transform .4s;

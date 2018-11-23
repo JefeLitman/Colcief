@@ -5,3 +5,4 @@
 <div class="container">
     @include('horarios.horario', ['horarios' => $estudiante])
 </div>
+@endsection
