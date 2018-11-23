@@ -9,7 +9,7 @@
             <div class="card-body">
                 <h5 class="card-title">Grado: {{$curso->prefijo}}-{{$curso->sufijo}}</h5>
                 <p class="card-text">Año: {{$curso->ano}}</p>
-                <a href="cursos/{{$curso->pk_curso}}/editar" class="btn btn-primary">Editar</a>
+                <a href="/cursos/{{$curso->pk_curso}}/editar" class="btn btn-primary">Editar</a>
             </div>
         </div>
     @endforeach

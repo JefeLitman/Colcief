@@ -31,11 +31,11 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                             {{--  crear empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+                            <a class="dropdown-item" href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
                             <div class="dropdown-divider"></div>
 
                             {{--  Editar empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
+                            <a class="dropdown-item" href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
                         </div>
                 </li>
 
