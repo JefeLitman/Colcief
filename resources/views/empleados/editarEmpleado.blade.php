@@ -3,7 +3,6 @@
 @section('contenedor_admin')
 {{-- errores --}}
 @include('error.error')
-<br>
 <div class="container">
     <h3 class="text-center">Editar Empleado</h3>
     <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->cedula)}}" method = "POST">
@@ -107,7 +106,6 @@
         </div>
     </form>
 </div>
-<br>
 <script>
     function desactivar(p1,p2){
         var s1 = document.getElementById(p1);

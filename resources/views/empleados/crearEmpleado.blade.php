@@ -3,7 +3,6 @@
 @section('contenedor_admin')
 {{-- mensajes de error --}}
 @include('error.error')
-<br>
 <div class="container">
     <h3 class="text-center">Crear Empleado</h3>
     <form enctype="multipart/form-data" action="{{ url('/empleados') }}" method = "POST">
@@ -112,5 +111,4 @@
         }
     }
 </script>
-<br>
 @endsection
