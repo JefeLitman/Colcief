@@ -32,8 +32,8 @@
                                             <i class="fas fa-book-open"></i>
                                         </span>
                                     </div>
-                                    <select class="custom-select custom-select-sm" name="prefijo" id="prefijo">
-                                        <option if>Seleccionar nivel</option>
+                                    <select class="custom-select custom-select-sm" name="prefijo" id="prefijo" required>
+                                        <option if value="" disabled selected>Seleccionar nivel</option>
                                         <option @select('prefijo', '0') @endselect value="0">Preescolar</option>
                                         <option @select('prefijo', '1') @endselect value="1">Primero</option>
                                         <option @select('prefijo', '2') @endselect value="2">Segundo</option>
@@ -47,21 +47,10 @@
                                         <option @select('prefijo', '10') @endselect value="10">Decimo</option>
                                         <option @select('prefijo', '11') @endselect value="11">Undecimo</option>
                                     </select>
-                                    <select class="custom-select custom-select-sm" name="sufijo" id="sufijo">
-                                        <option if>Selecciona el salón</option>
-                                        <option @select('sufijo', '01') @endselect value="01">01</option>
-                                        <option @select('sufijo', '02') @endselect value="02">02</option>
-                                        <option @select('sufijo', '03') @endselect value="03">03</option>
-                                        <option @select('sufijo', '04') @endselect value="04">04</option>
-                                        <option @select('sufijo', '05') @endselect value="05">05</option>
-                                        <option @select('sufijo', '06') @endselect value="06">06</option>
-                                        <option @select('sufijo', '07') @endselect value="07">07</option>
-                                        <option @select('sufijo', '08') @endselect value="08">08</option>
-                                        <option @select('sufijo', '09') @endselect value="09">09</option>
-                                    </select>
+                                    {{ csrf_field() }}
+                                    <input type="text" lass="form-control form-control-sm" name="sufijo" id="sufijo" readonly="readonly">
                                     <input type="number" min = "1990" max = "2050" step = "1" value = {{now()->year}} name="ano" id="ano"
-                                    placeholder="Año"
-                                    class="form-control form-control-sm">
+                                    placeholder="Año" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
@@ -76,4 +65,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#prefijo').change(function(){ 
+            var query = $(this).val();
+            if(query != '') {
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{ route('cursos.sigSufijo') }}",
+                    method:"POST",
+                    data:{query:query, _token:_token},
+                    success:function(data){
+                        $('#sufijo').val(data);
+                    }
+                });
+            }
+        });    
+    });
+</script>
 @endsection

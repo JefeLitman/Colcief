@@ -12,7 +12,7 @@ class CursoSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i <12 ; $i++) {
+        for ($i=0; $i <12 ; $i++) {
           Curso::create([
             'prefijo' => $i,
             'sufijo' => '01',

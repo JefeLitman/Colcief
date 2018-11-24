@@ -3,15 +3,21 @@
 @section('titulo','Lista Cursos')
 <div class="container">
     <br><br>
-    <div class="card-group">
-    @foreach ($cursos as $curso)
-        <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Grado: {{$curso->prefijo}}-{{$curso->sufijo}}</h5>
-                <p class="card-text">Año: {{$curso->ano}}</p>
-                <a href="/cursos/{{$curso->pk_curso}}/editar" class="btn btn-primary">Editar</a>
-            </div>
-        </div>
+    @foreach ($cursos as $prefijo => $curso)
+        <table>
+            <h3>{{$prefijo}}</h3>
+            @foreach ($curso as $c)
+                <tr>
+                    <td>Curso: {{$c->prefijo}}-{{$c->sufijo}} Año: {{$c->ano}} 
+                        <form action="{{route('cursos.destroy', $c->pk_curso)}}" method = "post">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td> 
+                </tr>
+            @endforeach
+        </table>
     @endforeach
     </div>
 </div>

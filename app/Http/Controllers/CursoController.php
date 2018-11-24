@@ -9,54 +9,56 @@ use Illuminate\Http\Request;
 class CursoController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('admin:administrador,director');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $cursos = Curso::all();
+    public function index() {
+        $agruparCursos = Curso::all()->groupBy('prefijo');
+        $cursos = [
+            'Prescolar' => $agruparCursos['0'],
+            'Primero' => $agruparCursos['1'],
+            'Segundo' => $agruparCursos['2'],
+            'Tercero' => $agruparCursos['3'],
+            'Cuarto' => $agruparCursos['4'],
+            'Quinto' => $agruparCursos['5'],
+            'Sexto' => $agruparCursos['6'],
+            'Septimo' => $agruparCursos['7'],
+            'Octavo' => $agruparCursos['8'],
+            'Noveno' => $agruparCursos['9'],
+            'Decimo' => $agruparCursos['10'],
+            'Undecimo' => $agruparCursos['11']
+        ];
+        // dd($cursos);
         return view('cursos.listaCurso', compact('cursos'));
     }
 
-    public function create()
-    {
-        return view('cursos.crearCurso');
+    public function create() {
+        return view('cursos.crearCurso', compact('cursos'));
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $curso = (new Curso)->fill($request->all());
         $curso->save();
     }
 
-    public function show($pk_curso)
-    {
+    public function show($pk_curso) {
         $curso = Curso::findOrFail($pk_curso);
         return view("cursos.verCurso", compact('curso'));
     }
 
-    public function edit($pk_curso)
-    {
-        $curso = Curso::findOrFail($pk_curso);
-        return view("cursos.editarCurso", compact('curso'));
-    }
+    // public function edit($pk_curso) {
+    //     $curso = Curso::findOrFail($pk_curso);
+    //     return view("cursos.editarCurso", compact('curso'));
+    // }
 
-    public function update(Request $request, $pk_curso)
-    {
-        $curso = Curso::findOrFail($pk_curso)->fill($request->all());
-        $curso->save();
-        return redirect(route('cursos.show', $curso->pk_curso));
-    }
+    // public function update(Request $request, $pk_curso) {
+    //     $curso = Curso::findOrFail($pk_curso)->fill($request->all());
+    //     $curso->save();
+    //     return redirect(route('cursos.show', $curso->pk_curso));
+    // }
 
-    public function conteoEstudiantes($prefijo,$sufijo)
-    {
+    public function conteoEstudiantes($prefijo,$sufijo) {
         $estudiantes = Curso::where('prefijo','=',$prefijo)
         ->where('sufijo','=',$sufijo)->first();
         if (!empty($estudiantes)) {
@@ -78,14 +80,28 @@ class CursoController extends Controller
         return 0;
     }
 
-    public function conteoCursosPorGrado($grado)
-    {
+    public function destroy($pk_curso){
+        $curso = Curso::findOrFail($pk_curso);
+        $curso->delete();
+        return redirect()->back();
+    }
+
+    public function conteoCursosPorGrado($grado) {
         $cursos = Curso::where('prefijo','=',$grado)->get()->toArray();
         return json_encode($cursos);
     }
 
-    public function prueba()
-    {
+    public function sigSufijo(Request $request){
+        if($request->get('query')){
+            $query = $request->get('query');
+            $ultimoCurso = Curso::where('prefijo', $query)->orderBy('sufijo', 'desc')->first();
+            $siguienteSufijo = intval($ultimoCurso->sufijo) + 1;
+            $sufijoString = '0'.strval($siguienteSufijo);
+            echo $sufijoString;
+        }
+    }
+
+    public function prueba() {
       return view('cursos.prueba');
     }
 }
