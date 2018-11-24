@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;">
+<nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5">
     <a class="navbar-brand" href="#">
         <img src="{{asset('css/img/logo_min_1.png')}}"  height="30" alt="">
     </a>

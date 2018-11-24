@@ -2,23 +2,19 @@
 @section('contenedor_admin')
 @section('titulo','Lista Empleados')
 <div class="container">
-    <div class="row center">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <br>
-        <br id="br">
-        <div class="col-md-12">
-            <form action="" id="autocompletar">
-                <div class="input-group mb-3">
-                    @csrf
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
-                    </div>
-                    <input type="text" class="form-control"  id="autocomplete-input" class="autocomplete" placeholder="Nombre" aria-label="lead" aria-describedby="basic-addon1">
+    <div id="br"></div>
+    <div class="col-md-12">
+        <form action="" id="autocompletar">
+            <div class="input-group mb-3">
+                @csrf
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
                 </div>
-            </form>
-        </div>
-        <br>
+                <input type="text" class="form-control"  id="autocomplete-input" class="autocomplete" placeholder="Nombre" aria-label="lead" aria-describedby="basic-addon1">
+            </div>
+        </form>
+    </div>
+    <br>
     <div class="table-responsive">
         <table class="table table-hover mr-auto">
             <thead>
@@ -50,11 +46,6 @@
             </tbody>
         </table>
     </div>
-    </div>
-    </div>
 </div>
-    <br>
-    <br>
 <script src="{{ asset('js/ajax.js') }}"></script>
-<script>autocompletar('empleado', ["nombre", "apellido"])</script>
 @endsection
