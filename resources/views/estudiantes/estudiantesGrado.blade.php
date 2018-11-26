@@ -1,10 +1,9 @@
 @extends('contenedores.admin')
 @section('contenedor_admin')
 @section('titulo','Estudiantes/Grado')
-
+<div id="br"></div>
 <div class="container">
-    <br>
-    <h1 class="text-center"> Curso {{$grado}} </h1><br>
+    <h4 class="text-center"> Curso {{$grado}} </h4><br>
     <div class="table-responsive" >
         <table class="table table-hover mr-auto" id="myTable">
             <thead>
@@ -12,15 +11,11 @@
                     <th scope="col" style="color:#00695c">Código</th>
                     <th scope="col" style="color:#00695c">Nombre</th>
                     <th scope="col" style="color:#00695c">Apellido</th>
-                    {{-- <th scope="col" style="color:#00695c">Clave</th> --}}
                     <th scope="col" style="color:#00695c">Grado</th>
-                    <th  scope="col" colspan="3" style="color:#00695c">Acciones</th>
-                    {{-- <th>Editar</th>
-                    <th>Eliminar</th> --}}
+                    <th scope="col" style="color:#00695c">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                    {{-- @php print_r($curso) @endphp --}}
                 @if (empty($curso[0]))
                     <tr>
                         <td colspan="7">
@@ -35,11 +30,12 @@
                             <td>{{$c->nombre}}</td>
                             <td>{{$c->apellido}}</td>
                             <td>{{$c->grado}}</td>
-                            <td> <a href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas">  <i class="fas fa-clipboard-list"  style="color:#00838f"></i> </td> </a>
-                            <td><a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
-                            </a></td>
-                            <td class="delete" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></td>
-                            
+                            <td>
+                                <a href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
+                                <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
+                                </a>
+                                <a class="delete" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                            </td> 
                         </tr>
                     @endforeach
                 @endif

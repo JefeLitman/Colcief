@@ -18,7 +18,6 @@
                     <div class="card-body p-3">
                         {{-- DATOS DEL ESTUDIANTE --}}
                         <h4 class="text-center">Datos del estudiante</h4>
-                        <br>
                         <div class="row">
                             {{-- nombre --}}
                             <div class="col-md-6">
@@ -127,7 +126,6 @@
                                 </div>
                             </div>
                         </div>
-                        <br>
                         {{-- DATOS DEL ACUDIENTE 1 --}}
                         <h4 class="text-center">Datos del acudiente</h4>
                         <div class="row">
@@ -176,7 +174,7 @@
                         </div>
                         <br>
                         {{-- <a class="btn btn-outline-success" data-toggle="collapse" data-target="#acudiente2">Agregar Acudiente</a> --}}
-                        <button type="button" class="btn btn-outline-success btn-sm btn-block" data-toggle="collapse" data-target="#acudiente2" onclick="$(this).remove()" style="@if(!is_null(old('nombre_acu_2')) || !is_null(old('direccion_acu_2')) || !is_null(old('telefono_acu_2'))) display:none @endif">¿Desea ingresar otro acudiente?</button>
+                        <button type="button" class="btn btn-outline-success btn-sm btn-block" data-toggle="collapse" data-target="#acudiente2" onclick="$(this).remove()" style="@if(!is_null(old('nombre_acu_2')) || !is_null(old('direccion_acu_2')) || !is_null(old('telefono_acu_2'))) display:none @endif">¿Otro acudiente?</button>
                         <div class="collapse @if(!is_null(old('nombre_acu_2')) || !is_null(old('direccion_acu_2')) || !is_null(old('telefono_acu_2'))) show @endif" id="acudiente2">
                             {{-- DATOS DEL ACUDIENTE 2 --}}
                             <h4 class="text-center">Datos del acudiente 2</h4>

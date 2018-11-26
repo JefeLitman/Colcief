@@ -4,7 +4,6 @@
 @yield('nombre')
 {{-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> --}}
 <div class="container">
-<br>
 <h1 class="text-center"><i class="fas fa-user-edit"></i> Editar Estudiantes </h1><br>
 <div class="accordion" id="accordion">
         <div class="card-header bg-secondary text-center text-white">
@@ -53,7 +52,7 @@
                             <div class="text-center">No hay Cursos</div>
                         @else
                             @foreach ($curso[0] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endif
                     </div>
@@ -65,7 +64,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[1] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit w-25" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit w-25" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -77,7 +76,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[2] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -89,7 +88,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[3] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -101,7 +100,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[4] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -113,7 +112,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[5] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -163,7 +162,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[6] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25"  prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25"  prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset                        
                     </div>
@@ -175,7 +174,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[7] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -187,7 +186,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[8] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -199,7 +198,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[9] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -211,7 +210,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[10] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>
@@ -223,7 +222,7 @@
                         <div class="text-center">No hay cursos</div>
                         @else
                             @foreach ($curso[11] as $c)
-                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
+                                <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->prefijo}}/{{$c->sufijo}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
                         @endisset
                     </div>

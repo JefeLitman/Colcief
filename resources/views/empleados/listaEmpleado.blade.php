@@ -24,12 +24,14 @@
                     <th scope="col" style="color:#00695c">Apellido</th>
                     <th scope="col" style="color:#00695c">Correo</th>
                     <th scope="col" style="color:#00695c">Cargo</th>
-                    <th scope="col" style="color:#00695c"></th>
-                    <th scope="col" style="color:#00695c"></th>
+                    <th scope="col" style="color:#00695c">Acciones</th>
                     {{-- <th>Editar</th>
                     <th>Eliminar</th> --}}
                 </tr>
             </thead>
+            @php
+                $cargo = ['Administrador', 'Director', 'Profesor']
+            @endphp
             <tbody>
                 @foreach ($empleado as $i)
                     <tr>
@@ -37,10 +39,11 @@
                         <td>{{$i->nombre}}</td>
                         <td>{{$i->apellido}}</td>
                         <td>{{$i->correo}}</td>
-                        <td>{{$i->role}}</td>
-                        <td><a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#00838f"></i>
-                        </a></td>
-                        <td class="delete" ruta="empleados" identificador="{{$i->cedula}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                        <td>{{$cargo[$i->role]}}</td>
+                        <td>
+                            <a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#00838f"></i></a>
+                            <a class="delete" ruta="empleados" identificador="{{$i->cedula}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
