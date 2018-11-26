@@ -37,22 +37,28 @@
                     <div class="row">
                         {{-- nombre --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Nombre</small></strong></label>
+                                <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fas fa-user-circle"></i>
                                     </span>
                                 </div>
-                                <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{$estudiante->nombre}}" value="@eachError('nombre', $errors)@endeachError">
+                                    <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{$estudiante->nombre}}" value="@eachError('nombre', $errors)@endeachError">
+                                </div>
                             </div>
                         </div>
                         {{-- apellido --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Apellido</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                                    </div>
+                                    <input type="text" name="apellido" placeholder="Apellidos" class="form-control" value="{{$estudiante->apellido}}" value="@eachError('apellido', $errors)@endeachError">
                                 </div>
-                                <input type="text" name="apellido" placeholder="Apellidos" class="form-control" value="{{$estudiante->apellido}}" value="@eachError('apellido', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
@@ -60,35 +66,41 @@
                     <div class="row">
                         {{-- fecha --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="far fa-calendar-alt"></i>
-                                    </span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Fecha</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control" value="{{$estudiante->fecha_nacimiento}}" value="@eachError('fecha_nacimiento', $errors)@endeachError">
                                 </div>
-                                <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control" value="{{$estudiante->fecha_nacimiento}}" value="@eachError('fecha_nacimiento', $errors)@endeachError">
                             </div>
                         </div>
                         {{-- grado --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class= "input-group-text">
-                                        <i class="fas fa-user-cog"></i>
-                                    </span>
+                            <div class="form-group">
+                                <label for="cedula"><strong><small style="color : #616161">Grado</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class= "input-group-text">
+                                            <i class="fas fa-user-cog"></i>
+                                        </span>
+                                    </div>
+                                    <select class="custom-select" name="grado" id="grado">
+                                        <option selected>Seleccionar el grado</option>
+                                        @php $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
+                                        @endphp
+                                        @foreach ($grado as $i=>$value)
+                                            @if (intval($estudiante->grado)==$i)
+                                                <option value="{{$i}}" selected>{{$value}}</option>
+                                            @else
+                                                <option value="{{$i}}">{{$value}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <select class="custom-select" name="grado" id="grado">
-                                    <option selected>Seleccionar el grado</option>
-                                    @php $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
-                                    @endphp
-                                    @foreach ($grado as $i=>$value)
-                                      @if (intval($estudiante->grado)==$i)
-                                          <option value="{{$i}}" selected>{{$value}}</option>
-                                      @else
-                                          <option value="{{$i}}">{{$value}}</option>
-                                      @endif
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -96,6 +108,8 @@
                     <div class="row">
                         {{-- Discapacidad --}}
                         <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Discapacidad</small></strong></label>
                                 <div class="input-group mb-2 disabled">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -112,15 +126,19 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         {{-- foto --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend" style="height: calc(1.8125rem + 2px); font-size: .875rem;">
-                                    <i class="fas fa-file-image input-group-text"></i>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" value="{{$estudiante->foto}}" lang="es">
-                                    <label class="custom-file-label" for="customFileLang">Actualizar Foto</label>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Foto</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend" style="height: calc(1.8125rem + 2px); font-size: .875rem;">
+                                        <i class="fas fa-file-image input-group-text"></i>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" value="{{$estudiante->foto}}" lang="es">
+                                        <label class="custom-file-label" for="customFileLang">Actualizar Foto</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -131,36 +149,45 @@
                     {{-- nombres --}}
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-user-circle"></i>
-                                    </span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Nombres</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user-circle"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text"  name="nombre_acu_1" placeholder="Nombres" class="form-control" value="{{$acudiente->nombre_acu_1}}" value="@eachError('nombre_acu_1', $errors)@endeachError">
                                 </div>
-                                <input type="text"  name="nombre_acu_1" placeholder="Nombres" class="form-control" value="{{$acudiente->nombre_acu_1}}" value="@eachError('nombre_acu_1', $errors)@endeachError">
                             </div>
                         </div>
                     {{-- Direccion --}}
                         <div class="col-md-4">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-map-marked-alt"></i>
-                                    </span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Dirección</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_1}}" value="@eachError('direccion_acu_1', $errors)@endeachError">
                                 </div>
-                                <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_1}}" value="@eachError('direccion_acu_1', $errors)@endeachError">
                             </div>
                         </div>
                     {{-- celular --}}
-                            <div class="col-md-4">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-mobile-alt"></i>
-                                    </span>
-                                </div>
-                                <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_1}}" value="@eachError('telefono_acu_1', $errors)@endeachError">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="cedula"><strong><small style="color : #616161">Celular</small></strong></label>
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </span>
                             </div>
+                            <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_1}}" value="@eachError('telefono_acu_1', $errors)@endeachError">
+                        </div>
                         </div>
                     </div>
                     <br>
@@ -169,35 +196,44 @@
                     {{-- nombres --}}
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-user-circle"></i>
-                                    </span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Nombres</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user-circle"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control" value="{{$acudiente->nombre_acu_2}}" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                 </div>
-                                <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control" value="{{$acudiente->nombre_acu_2}}" value="@eachError('nombre_acu_2', $errors)@endeachError">
                             </div>
                         </div>
                     {{-- Direccion --}}
                         <div class="col-md-4">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-map-marked-alt"></i>
-                                    </span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Dirección</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_2}}" value="@eachError('direccion_acu_2', $errors)@endeachError">
                                 </div>
-                                <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_2}}" value="@eachError('direccion_acu_2', $errors)@endeachError">
                             </div>
                         </div>
                     {{-- celular --}}
-                            <div class="col-md-4">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-mobile-alt"></i>
-                                    </span>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="cedula"><strong><small style="color : #616161">Celular</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_2}}" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                 </div>
-                                <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_2}}" value="@eachError('telefono_acu_2', $errors)@endeachError">
                             </div>
                         </div>
                     </div>

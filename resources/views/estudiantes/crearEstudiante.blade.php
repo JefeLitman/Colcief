@@ -23,12 +23,12 @@
                             {{-- nombre --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Nombre:</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Nombre</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                    <i class="fas fa-user-circle"></i>
-                                                </span>
+                                                <i class="fas fa-user-circle"></i>
+                                            </span>
                                         </div>
                                         <input type="text" name="nombre" class="form-control form-control-sm" value="@eachError('nombre', $errors)@endeachError">
                                     </div>
@@ -37,7 +37,7 @@
                             {{-- apellido --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Apellido:</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Apellido</small></strong></label>
                                     <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
@@ -114,7 +114,7 @@
                             {{-- foto --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Foto:</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Foto</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend" style="height: calc(1.8125rem + 2px); font-size: .875rem;">
                                             <i class="fas fa-file-image input-group-text"></i>
@@ -183,35 +183,44 @@
                             {{-- nombres --}}
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-user-circle"></i>
-                                            </span>
+                                    <div class="form-group mb-2">
+                                        <label for="cedula"><strong><small style="color : #616161">Nombres</small></strong></label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-user-circle"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text"  name="nombre_acu_2"  class="form-control form-control-sm" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                         </div>
-                                        <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control form-control-sm" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                     </div>
                                 </div>
                                 {{-- celular --}}
                                 <div class="col-lg-4 col-md-6">
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-mobile-alt"></i>
-                                            </span>
+                                    <div class="form-group mb-2">
+                                        <label for="cedula"><strong><small style="color : #616161">Celular</small></strong></label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-mobile-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="number" name="telefono_acu_2" class="form-control form-control-sm" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                         </div>
-                                        <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control form-control-sm" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                     </div>
                                 </div>
                                 {{-- Direccion --}}
                                 <div class="col-lg-4 col-md-12">
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-map-marked-alt"></i>
-                                            </span>
+                                    <div class="form-group">
+                                        <label for="cedula"><strong><small style="color : #616161">Dirección</small></strong></label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-map-marked-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="direccion_acu_2" class="form-control form-control-sm" value="@eachError('direccion_acu_2', $errors)@endeachError">
                                         </div>
-                                        <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion_acu_2', $errors)@endeachError">
                                     </div>
                                 </div>
                             </div>
