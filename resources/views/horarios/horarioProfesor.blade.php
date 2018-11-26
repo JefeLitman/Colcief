@@ -6,6 +6,9 @@
     {{$curso->prefijo}} - {{$curso->sufijo}}
 @endisset
 <div class="container">
+    <h1 class="card-title text-center">
+        Horario
+    </h1>
     @include('horarios.horario', ['horarios' => $empleado])
 </div>
 @endsection

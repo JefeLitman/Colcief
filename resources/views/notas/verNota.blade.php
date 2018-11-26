@@ -3,115 +3,71 @@
 @section('contenedor_profesor')
 {{-- mensajes de error --}}
 @include('error.error')
-<br>
-{{-- Diseño opcional --}}
+<br id="br">
 <div class="container">
-    <div class="row">
-        {{-- NOTAS --}}
-        <div class="col-md-4 text-center">
-            <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
-                <div class="card-header" style="background-color:#66ba6a7d !important;">
-                    @foreach ($datos as $dato)
-                        <h2 class="text-center">{{$dato[0]['nombre']}}</h2>
-                    @endforeach
+        <div class="accordion" id="accordionExample">
+        @php
+            $i=0;
+        @endphp
+        @foreach ($datos as $dato)
+            <div class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
+                <div id="headingOne">
+                    <div class="card-header" style="background-color:#66ba6a7d !important; cursor: pointer;" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" >
+                        <h5 class="text-center mb-0">
+                            {{$dato[2]['nombre']}}
+                        </h5>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    {{-- codigo de la nota --}}
-                    <li  class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                        @foreach ($datos as $dato)
-                        <h5 class="card-title text-center">Código de la nota</h5>
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-star"></i>
-                            {{$dato[0]['pk_nota']}}
-                        </h5>
-                        @endforeach
-                    </li>
+                <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover mr-auto">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="color:#00695c" class="text-center">Nota </th>
+                                        <th scope="col" style="color:#00695c" class="text-center">División </th>
+                                        <th scope="col" style="color:#00695c" class="text-center"><i class="fas fa-percentage"> </th>
+                                        <th scope="col" style="color:#00695c" class="text-center">Salón </th>
+                                        <th scope="col" style="color:#00695c" class="text-center">Descripción</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{--  @foreach($materia as $j)  --}}
+                                        <tr>
+                                            {{--  NOTA  --}}
+                                            <td class="text-center">{{$dato[0]['nombre']}}</td>
+                                            {{--  DIVISIÓN  --}}
+                                            <td class="text-center">{{$dato[1]['nombre']}}</td>
+                                            {{--  PORCENTAJE  --}}
+                                            <td class="text-center">{{$dato[0]['porcentaje']}}</td>
+                                            {{--  SALÓN  --}}
+                                            <td class="text-center"></td>
+                                            {{--  DESCRIPCIÓN  --}}
+                                            <td class="text-center">{{$dato[0]['descripcion']}}</td>
+                                            {{-- editar materia --}}
+                                            <td class="text-center"><a href="{{ route('notas.edit',$dato[0]['pk_nota']) }}"><i class="fas fa-edit" style="color:#00838f"></i>
+                                            </a></td>
+                                            {{-- eliminar materia --}}
+                                            <td class="delete" tabla="notas" identificador="{{$dato[0]['pk_nota']}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                                            {{-- ver --}}
 
-                    {{-- descripcion de la nota --}}
-                    <li  class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                        @foreach ($datos as $dato)
-                        {{-- <h5 class="card-title text-center">Descripción</h5> --}}
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-book-open"></i><br>
-                            {{$dato[0]['descripcion']}}
-                        </h5>
-                        @endforeach
-                    </li>
-
-                    {{-- porcentaje de nota --}}
-                    <li  class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                        @foreach ($datos as $dato)
-                        {{-- <h5 class="card-title text-center">Descripción</h5> --}}
-                        <h5 class="card-title text-center">
-                            {{$dato[0]['porcentaje']}}   <i class="fas fa-percentage"></i>
-                        </h5>
-                        @endforeach
-                    </li>
-                </ul>
-            </div>
-            {{-- @foreach ($datos as $dato)
-            <p>pk_nota: {{$dato[0]['pk_nota']}}</p>
-            <p>nombre: {{$dato[0]['nombre']}}</p>
-            <p>descripcion: {{$dato[0]['descripcion']}}</p>
-            <p>porcentaje: {{$dato[0]['porcentaje']}}</p>
-            @endforeach --}}
-        </div>
-
-        {{-- Divisiones --}}
-        <div class="col-md-4 text-center">
-            <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
-                <div class="card-header" style="background-color:#66ba6a7d !important;">
-                    @foreach ($datos as $dato)
-                        <h2 class="text-center">{{$dato[1]['nombre']}}</h2>
-                    @endforeach
+                                        </tr>
+                                    {{--  @endforeach  --}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    {{-- codigo de division --}}
-                    <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                        @foreach ($datos as $dato)
-                        <h5 class="card-title text-center">Código de división</h5>
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-star"></i>
-                            {{$dato[0]['fk_division']}}
-                        </h5>
-                        @endforeach
-                    </li>
-
-                    {{-- descripcion de la division --}}
-                    <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                        @foreach ($datos as $dato)
-                        {{-- <h5 class="card-title text-center">Descripción</h5> --}}
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-book-open"></i><br>
-                            {{$dato[1]['descripcion']}}
-                        </h5>
-                        @endforeach
-                    </li>
-                </ul>
             </div>
-        </div>
-        {{-- Materia profesor --}}
-        <div class="col-md-4 text-center">
-            <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
-                <div class="card-header" style="background-color:#66ba6a7d !important;">
-                    @foreach ($datos as $dato)
-                        <h2 class="text-center">{{$dato[2]['nombre']}}</h2>
-                    @endforeach
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                        @foreach ($datos as $dato)
-                        <h5 class="card-title text-center">Código de materia - profesor </h5>
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-star"></i>
-                            {{$dato[2]['fk_materia']}}
-                        </h5>
-                        @endforeach
-                    </li>
-                </ul>
-            </div>
-        </div>
+            {{--  @endfor  --}}
+            @php
+                $i++;
+            @endphp
+        @endforeach
     </div>
 </div>
+<script src="{{ asset('js/ajax.js') }}"></script>
 @endsection
 
