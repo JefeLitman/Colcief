@@ -50,7 +50,14 @@
                                             <td class="text-center"><a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f"></i>
                                             </a></td>
                                             {{-- eliminar materia --}}
-                                            <td class="delete" tabla="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                                            <td class="text-center">
+                                                <form action="{{route('materiaspc.destroy', $j[0])}}" method = "post">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
+                                                    <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
+                                                </form>
+                                            </td>
                                             {{-- ver --}}
 
                                         </tr>

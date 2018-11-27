@@ -48,7 +48,7 @@
                                         <option @select('prefijo', '11') @endselect value="11">Undecimo</option>
                                     </select>
                                     {{ csrf_field() }}
-                                    <input type="text" lass="form-control form-control-sm" name="sufijo" id="sufijo" readonly="readonly">
+                                    <input type="text" class="form-control form-control-sm" name="sufijo" id="sufijo" readonly="readonly">
                                     <input type="number" min = "1990" max = "2050" step = "1" value = {{now()->year}} name="ano" id="ano"
                                     placeholder="Año" class="form-control form-control-sm">
                                 </div>

@@ -42,3 +42,16 @@ body {
 .cambiob:hover{
     color:white !important;
 }
+
+/* lista de cursos arreglando el boton eliminar */
+.btn-outline-danger{
+    color: #dc354500 !important;
+    background-color: #dc354500 !important;
+    border-color: #dc354500 !important;
+}
+
+.btn-outline-danger:hover {
+    color:#dc354500 !important;
+    background-color:  #dc354500 !important;
+    border-color: #dc354500 !important;
+  }

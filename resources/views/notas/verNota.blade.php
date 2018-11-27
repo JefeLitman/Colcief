@@ -50,7 +50,14 @@
                                             <td class="text-center"><a href="{{ route('notas.edit',$dato[0]['pk_nota']) }}"><i class="fas fa-edit" style="color:#00838f"></i>
                                             </a></td>
                                             {{-- eliminar materia --}}
-                                            <td class="delete" tabla="notas" identificador="{{$dato[0]['pk_nota']}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                                            <td class="text-center">
+                                                <form action="{{route('notas.destroy', $dato[0]['pk_nota'])}}" method = "post">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
+                                                    <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
+                                                </form>
+                                            </td>
                                             {{-- ver --}}
 
                                         </tr>

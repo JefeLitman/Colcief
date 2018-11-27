@@ -3,7 +3,7 @@
 @section('contenedor_admin')
     @include('error.error')
 <br>
-    {{-- @if ($errors->any())
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -12,7 +12,7 @@
             </ul>
         </div>
     @endif
-    <h1>Formulario</h1> --}}
+
 <div class="container">
     <h3 class="card-title text-center">
         Editar divisiones
