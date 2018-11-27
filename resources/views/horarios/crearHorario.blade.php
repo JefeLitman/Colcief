@@ -7,41 +7,41 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="card-title text-center">
+            <h3 class="card-title text-center">
                 Crear horario
-            </h1>
+            </h3>
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col-md-4">
-            <h3 class="card-title text-center">
+            <h4 class="card-title text-center">
                 <i class="fas fa-book"></i> <br>{{$materiaPC->nombre_materia}}
-            </h3>
+            </h4>
         </div>
         <div class="col-md-4">
-            <h3 class="card-title text-center">
+            <h4 class="card-title text-center">
                 <i class="fas fa-chalkboard"></i><br>
                 {{$materiaPC->prefijo}}-{{$materiaPC->sufijo}}
-            </h3>
+            </h4>
         </div>
         <div class="col-md-4">
-            <h3 class="card-title text-center">
+            <h4 class="card-title text-center">
                 <i class="fas fa-user-tie"></i><br>
                 {{$materiaPC->nombre}} {{$materiaPC->apellido}}
-            </h3>
+            </h4>
         </div>
     </div>
     @if(session()->has('error'))
         <script src = "{{asset('js/ajax.js')}}"></script>
-        <script> newModal('Problemas', 
+        <script> newModal('Problemas',
                 'No se pueden crear los siguientes horarios debido a los siguientes problemas:<br><br>'+
                 '<ul>'+
                     '@foreach(session()->get('error') as $error)'+
                         '<li>{{$error}}</li>'+
                     '@endforeach'+
                 '</ul>', false
-            ); 
+            );
         </script>
     @endif
 
@@ -86,7 +86,7 @@
         </div>
         <input type="hidden" value = "{{$materiaPC->f_curso}}" name = "curso">
         <input type="hidden" value = "{{$materiaPC->fk_empleado}}" name = "empleado">
-        <div class="row">
+        <div class="row justify-content-center ">
             <div class="col-md-2"></div>
             <div class="col-md-4 mb-2 mx-auto">
                 <a class=" btn btn-info btn-block rounded-0 py-2" style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>

@@ -12,12 +12,12 @@
                 <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                     <div class="card-header p-0">
                         <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                            <h3><i class="fas fa-address-card"></i> Crear estudiante</h3>
+                            <h4><i class="fas fa-address-card"></i> Crear estudiante</h4>
                         </div>
                     </div>
                     <div class="card-body p-3">
                         {{-- DATOS DEL ESTUDIANTE --}}
-                        <h4 class="text-center">Datos del estudiante</h4>
+                        <h5 class="text-center">Datos del estudiante</h5>
                         <div class="row">
                             {{-- nombre --}}
                             <div class="col-md-6">
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         {{-- DATOS DEL ACUDIENTE 1 --}}
-                        <h4 class="text-center">Datos del acudiente</h4>
+                        <h5 class="text-center">Datos del acudiente</h5>
                         <div class="row">
                             {{-- nombres --}}
                             <div class="col-lg-4 col-md-6">
@@ -177,7 +177,7 @@
                         <button type="button" class="btn btn-outline-success btn-sm btn-block" data-toggle="collapse" data-target="#acudiente2" onclick="$(this).remove()" style="@if(!is_null(old('nombre_acu_2')) || !is_null(old('direccion_acu_2')) || !is_null(old('telefono_acu_2'))) display:none @endif">¿Otro acudiente?</button>
                         <div class="collapse @if(!is_null(old('nombre_acu_2')) || !is_null(old('direccion_acu_2')) || !is_null(old('telefono_acu_2'))) show @endif" id="acudiente2">
                             {{-- DATOS DEL ACUDIENTE 2 --}}
-                            <h4 class="text-center">Datos del acudiente 2</h4>
+                            <h5 class="text-center">Datos del acudiente 2</h5>
                             {{-- nombres --}}
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">

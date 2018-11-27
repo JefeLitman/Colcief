@@ -21,7 +21,7 @@
                 <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                     <div class="card-header p-0">
                         <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                            <h3><i class="fas fa-chalkboard-teacher"></i> Editar Materia - Profesor - Curso</h3>
+                            <h4><i class="fas fa-chalkboard-teacher"></i> Editar Materia - Profesor - Curso</h4>
                         </div>
                     </div>
 

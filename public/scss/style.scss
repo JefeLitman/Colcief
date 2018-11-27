@@ -6,7 +6,7 @@
 
 @import '../partials/layout'; // responsive grid and media queries
 
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -16,11 +16,11 @@ Primary style
 	box-sizing: border-box;
 }
 
-html {
+html-pepe {
 	font-size: 62.5%;
 }
 
-body {
+body-pepe {
 	font: {
 		size: 1.6rem;
 		family: $primary-font; // variables inside partials > _variables.scss
@@ -29,14 +29,14 @@ body {
 	background-color: $bg-color;
 }
 
-a {
+a-pepe {
 	color: $link-color;
 	text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .cd-schedule {
@@ -44,7 +44,7 @@ Main Components
 	margin: 2em 0;
 
 	&::before {
-		/* never visible - this is used in js to check the current MQ */ 
+		/* never visible - this is used in js to check the current MQ */
 		content: 'mobile';
 		display: none;
 	}
@@ -119,11 +119,11 @@ Main Components
 	}
 }
 
-.cd-schedule .events {
+.cd-schedule .eventps {
 	position: relative;
 	z-index: 1;
 
-	.events-group {
+	.eventps-group {
 		margin-bottom: 30px;
 	}
 
@@ -139,7 +139,7 @@ Main Components
 		}
 	}
 
-	.events-group > ul {
+	.eventps-group > ul {
 		position: relative;
 		padding: 0 5%;
 		/* force its children to stay on one line */
@@ -148,7 +148,7 @@ Main Components
 		-webkit-overflow-scrolling: touch;
 
 		&::after {
-			/* never visible - used to add a right padding to .events-group > ul */
+			/* never visible - used to add a right padding to .eventps-group > ul */
 			display: inline-block;
 			content: '-';
 			width: 1px;
@@ -158,7 +158,7 @@ Main Components
 		}
 	}
 
-	.single-event {
+	.single-eventp {
 		/* force them to stay on one line */
 		flex-shrink: 0;
 
@@ -173,7 +173,7 @@ Main Components
 		&:last-of-type {
 			margin-right: 5%;
 		}
-		
+
 		a {
 			display: block;
 			height: 100%;
@@ -182,7 +182,7 @@ Main Components
 	}
 
 	@include MQ(S) {
-		.single-event {
+		.single-eventp {
 			width: 40%;
 		}
 	}
@@ -191,7 +191,7 @@ Main Components
 		float: left;
 		width: 100%;
 
-		.events-group {
+		.eventps-group {
 			width: 100%/$columns-number;
 			float: left;
 			border: 1px solid $border-color;
@@ -223,7 +223,7 @@ Main Components
 			}
 		}
 
-		.events-group > ul {
+		.eventps-group > ul {
 			@include clearfix;
 			// 19 is the number of list items in the .timeline
 			height: $row-height*19;
@@ -238,7 +238,7 @@ Main Components
 			}
 		}
 
-		.single-event {
+		.single-eventp {
 			position: absolute;
 			z-index: 3;
 			/* top position and height will be set using js */
@@ -260,8 +260,8 @@ Main Components
 				margin-right: 0;
 			}
 
-			&.selected-event {
-				/* the .selected-event class is added when an user select the event */
+			&.selected-eventp {
+				/* the .selected-eventp class is added when an user select the eventp */
 				visibility: hidden;
 			}
 		}
@@ -274,21 +274,21 @@ Main Components
 	}
 }
 
-.cd-schedule.loading .events .single-event {
+.cd-schedule.loading .eventps .single-eventp {
 	/* the class .loading is added by default to the .cd-schedule element
-	   it is removed as soon as the single events are placed in the schedule plan (using javascript) */
+	   it is removed as soon as the single eventps are placed in the schedule plan (using javascript) */
 	opacity: 0;
 }
 
-.cd-schedule .event-name,
-.cd-schedule .event-date {
+.cd-schedule .eventp-name,
+.cd-schedule .eventp-date {
 	display: block;
 	color: white;
 	font-weight: bold;
 	@include font-smoothing;
 }
 
-.cd-schedule .event-name {
+.cd-schedule .eventp-name {
 	font-size: 2.4rem;
 
 	@include MQ(M) {
@@ -296,52 +296,52 @@ Main Components
 	}
 }
 
-.cd-schedule .event-date {
-	/* they are not included in the the HTML but added using JavScript */
+.cd-schedule .eventp-date {
+	/* they are not included in the the html-pepe but added using JavScript */
 	font-size: 1.4rem;
 	opacity: .7;
 	line-height: 1.2;
 	margin-bottom: .2em;
 }
 
-.cd-schedule .single-event[data-event="event-1"],
-.cd-schedule [data-event="event-1"] .header-bg {
-	/* this is used to set a background color for the event and the modal window */
-	background: $event-color-1;
+.cd-schedule .single-eventp[data-eventp="eventp-1"],
+.cd-schedule [data-eventp="eventp-1"] .header-bg {
+	/* this is used to set a background color for the eventp and the modal window */
+	background: $eventp-color-1;
 }
 
-.cd-schedule .single-event[data-event="event-1"]:hover {
-	background: lighten($event-color-1, 5%);
+.cd-schedule .single-eventp[data-eventp="eventp-1"]:hover {
+	background: lighten($eventp-color-1, 5%);
 }
 
-.cd-schedule .single-event[data-event="event-2"],
-.cd-schedule [data-event="event-2"] .header-bg {
-	background: $event-color-2;
+.cd-schedule .single-eventp[data-eventp="eventp-2"],
+.cd-schedule [data-eventp="eventp-2"] .header-bg {
+	background: $eventp-color-2;
 }
 
-.cd-schedule .single-event[data-event="event-2"]:hover {
-	background: lighten($event-color-2, 5%);
+.cd-schedule .single-eventp[data-eventp="eventp-2"]:hover {
+	background: lighten($eventp-color-2, 5%);
 }
 
-.cd-schedule .single-event[data-event="event-3"],
-.cd-schedule [data-event="event-3"] .header-bg {
-	background: $event-color-3;
+.cd-schedule .single-eventp[data-eventp="eventp-3"],
+.cd-schedule [data-eventp="eventp-3"] .header-bg {
+	background: $eventp-color-3;
 }
 
-.cd-schedule .single-event[data-event="event-3"]:hover {
-	background: lighten($event-color-3, 5%);
+.cd-schedule .single-eventp[data-eventp="eventp-3"]:hover {
+	background: lighten($eventp-color-3, 5%);
 }
 
-.cd-schedule .single-event[data-event="event-4"],
-.cd-schedule [data-event="event-4"] .header-bg {
-	background: $event-color-4;
+.cd-schedule .single-eventp[data-eventp="eventp-4"],
+.cd-schedule [data-eventp="eventp-4"] .header-bg {
+	background: $eventp-color-4;
 }
 
-.cd-schedule .single-event[data-event="event-4"]:hover {
-	background: lighten($event-color-4, 5%);
+.cd-schedule .single-eventp[data-eventp="eventp-4"]:hover {
+	background: lighten($eventp-color-4, 5%);
 }
 
-.cd-schedule .event-modal {
+.cd-schedule .eventp-modal {
 	position: fixed;
 	z-index: 3;
 	top: 0;
@@ -373,14 +373,14 @@ Main Components
 		}
 	}
 
-	.body {
+	.body-pepe {
 		position: relative;
 		width: 100%;
 		/* 70px is the .header height */
 		height: calc(100% - 70px);
 	}
 
-	.event-info {
+	.eventp-info {
 		position: relative;
 		z-index: 2;
 		line-height: 1.4;
@@ -394,7 +394,7 @@ Main Components
 		}
 	}
 
-	.header-bg, .body-bg {
+	.header-bg, .body-pepe-bg {
 		/* these are the morphing backgrounds - visible on desktop only */
 		position: absolute;
 		top: 0;
@@ -403,7 +403,7 @@ Main Components
 		width: 100%;
 	}
 
-	.body-bg {
+	.body-pepe-bg {
 		z-index: 1;
 		background: $bg-color;
 		transform-origin: top left;
@@ -450,14 +450,14 @@ Main Components
 		}
 	}
 
-	.event-date {
+	.eventp-date {
 		display: none;
 	}
 
 	&.no-transition {
 		transition: none;
 
-		.header-bg, .body-bg {
+		.header-bg, .body-pepe-bg {
 			transition: none;
 		}
 	}
@@ -486,16 +486,16 @@ Main Components
 			}
 		}
 
-		.event-info > div {
+		.eventp-info > div {
 			padding: 2em 3em 2em 2em;
 		}
 
-		.body {
+		.body-pepe {
 			height: 100%;
 			width: auto;
 		}
 
-		.header-bg, .body-bg {
+		.header-bg, .body-pepe-bg {
 			/* Force Hardware acceleration */
 			transform: translateZ(0);
 			will-change: transform;
@@ -507,16 +507,16 @@ Main Components
 			transition-timing-function: cubic-bezier(.5,0,.1,1);
 		}
 
-		.body-bg {
+		.body-pepe-bg {
 			opacity: 0;
 			transform: none;
 		}
 
-		.event-date {
+		.eventp-date {
 			display: block;
 		}
 
-		.close, .event-info {
+		.close, .eventp-info {
 			opacity: 0;
 		}
 
@@ -539,27 +539,27 @@ Main Components
 	}
 }
 
-.cd-schedule.modal-is-open  .event-modal {
-	/* .modal-is-open class is added as soon as an event is selected */
+.cd-schedule.modal-is-open  .eventp-modal {
+	/* .modal-is-open class is added as soon as an eventp is selected */
 	transform: translateX(0);
 	visibility: visible;
 
-	.event-info > div {
+	.eventp-info > div {
 		/* smooth scroll on iOS touch devices */
 		-webkit-overflow-scrolling: touch;
 	}
 }
 
 @include MQ(M) {
-	.cd-schedule.animation-completed  .event-modal .close,
-	.cd-schedule.content-loaded.animation-completed  .event-modal .event-info {
-		/* 	the .animation-completed class is added when the modal animation is completed
+	.cd-schedule.a - pepenimation-completed  .eventp-modal .close,
+	.cd-schedule.content-loaded.a - pepenimation-completed  .eventp-modal .eventp-info {
+		/* 	the .a - pepenimation-completed class is added when the modal animation is completed
 			the .content-loaded class is added when the modal content has been loaded (using ajax) */
 		opacity: 1;
 		transition: opacity .2s;
 	}
 
-	.cd-schedule.modal-is-open .body-bg {
+	.cd-schedule.modal-is-open .body-pepe-bg {
 		opacity: 1;
 		transition: transform .4s;
 		transition-timing-function: cubic-bezier(.5,0,.1,1);

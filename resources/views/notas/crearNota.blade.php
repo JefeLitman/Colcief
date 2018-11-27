@@ -12,7 +12,7 @@
             <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h3><i class="fas fa-book-open"></i> Crear nota</h3>
+                        <h4><i class="fas fa-book-open"></i> Crear nota</h4>
                     </div>
                 </div>
                 <div class="card-body p-3">

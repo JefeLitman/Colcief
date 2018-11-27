@@ -13,12 +13,12 @@
             <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h3><i class="fas fa-address-card"></i> Crear estudiante</h3>
+                        <h4><i class="fas fa-address-card"></i> Crear estudiante</h4>
                     </div>
                 </div>
                 <div class="card-body p-3">
                     {{-- DATOS DEL ESTUDIANTE --}}
-                    <h4 class="text-center">Datos del estudiante</h4>
+                    <h5 class="text-center">Datos del estudiante</h5>
                     {{-- foto --}}
                     {{-- <div class="row">
                         <div class="col-md-12 text-center">
@@ -145,7 +145,7 @@
                     </div>
                     <br>
                 {{-- DATOS DEL ACUDIENTE 1 --}}
-                    <h4 class="text-center">Datos del acudiente 1</h4>
+                    <h5 class="text-center">Datos del acudiente 1</h5>
                     {{-- nombres --}}
                     <div class="row">
                         <div class="col-md-4">
@@ -192,7 +192,7 @@
                     </div>
                     <br>
                     {{-- DATOS DEL ACUDIENTE 2 --}}
-                    <h4 class="text-center">Datos del acudiente 2</h4>
+                    <h5 class="text-center">Datos del acudiente 2</h5>
                     {{-- nombres --}}
                     <div class="row">
                         <div class="col-md-4">
@@ -254,7 +254,7 @@
 					<form enctype="multipart/form-data" action="{{route('estudiantes.update', $estudiante->pk_estudiante)}}" method="POST">
 					@csrf
 					@method("PUT")
-                    <h4 class="center">Datos Estudiante</h4>
+                    <h5 class="center">Datos Estudiante</h5>
                     <div class="divider"></div>
 
 					<div class="row">
@@ -272,7 +272,7 @@
                      <!-- Modal Structure -->
                     <div id="modal2" class="modal open">
                         <div class="modal-content">
-                            <h4>Cargar Imagen</h4>
+                            <h5>Cargar Imagen</h5>
                             <div class="file-field input-field">
                                     <div class="btn cyan darken-3 waves-effect">
                                         <span>Seleccionar</span>
@@ -331,7 +331,7 @@
                             </label>
                         </div>
                     </div>
-                    <h4 class="center">Datos Acudiente 1</h4>
+                    <h5 class="center">Datos Acudiente 1</h5>
                     <div class="divider"></div>
                     <div class="row">
                             <div class="input-field col s4">
@@ -348,7 +348,7 @@
                             </div>
 
                     </div>
-                    <h4 class="center">Datos Acudiente 2</h4>
+                    <h5 class="center">Datos Acudiente 2</h5>
                     <div class="divider"></div>
                     <div class="row">
                             <div class="input-field col s4">

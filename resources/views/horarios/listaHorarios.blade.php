@@ -4,9 +4,9 @@
 
 <br>
 <div class="container">
-    <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
+    <div class="card mx-auto border-dark bg-light" style="max-width: 20rem; border-color:#66bb6a !important;">
         <div class="card-header" style="background-color:#66ba6a7d !important;">
-            <h2 class="text-center">Lista de horarios</h2>
+            <h3 class="text-center">Lista de horarios</h3>
         </div>
         <ul class="list-group list-group-flush">
             @foreach ($materias as $materia)

@@ -4,7 +4,7 @@
 {{-- mensajes de error --}}
 @include('error.error')
 <div class="container">
-    <h3 class="text-center">Crear Empleado</h3>
+    <h4 class="text-center">Crear Empleado</h4>
     <form enctype="multipart/form-data" action="{{ url('/empleados') }}" method = "POST">
         @csrf
         <div class="row">

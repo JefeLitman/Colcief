@@ -20,7 +20,7 @@
                 <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                     <div class="card-header p-0">
                         <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                            <h3><i class="fas fa-book"></i> Crear curso</h3>
+                            <h4><i class="fas fa-book"></i> Crear curso</h4>
                         </div>
                     </div>
                     <div class="card-body p-3">
@@ -68,7 +68,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#prefijo').change(function(){ 
+        $('#prefijo').change(function(){
             var query = $(this).val();
             if(query != '') {
                 var _token = $('input[name="_token"]').val();
@@ -81,7 +81,7 @@
                     }
                 });
             }
-        });    
+        });
     });
 </script>
 @endsection

@@ -4,7 +4,7 @@
 {{-- errores --}}
 @include('error.error')
 <div class="container">
-    <h3 class="text-center">Editar Empleado</h3>
+    <h4 class="text-center">Editar Empleado</h4>
     <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->cedula)}}" method = "POST">
         @csrf
         @method("PUT")

@@ -4,9 +4,9 @@
     @include('error.error')
 <br>
 <div class="container">
-    <h1 class="card-title text-center">
+    <h3 class="card-title text-center">
         Divisiones
-    </h1>
+    </h3>
     <br>
     <form enctype="multipart/form-data" action="/divisiones" method="POST">
     @csrf

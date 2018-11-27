@@ -7,29 +7,29 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="card-title text-center">
+            <h3 class="card-title text-center">
                 Editar horario
-            </h1>
+            </h3>
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col-md-4">
-            <h3 class="card-title text-center">
+            <h4 class="card-title text-center">
                 <i class="fas fa-book"></i> <br> {{$horario->nombre_materia}}
-            </h3>
+            </h4>
         </div>
         <div class="col-md-4">
-            <h3 class="card-title text-center">
+            <h4 class="card-title text-center">
                 <i class="fas fa-chalkboard"></i><br>
                 {{$horario->prefijo}}-{{$horario->sufijo}}
-            </h3>
+            </h4>
         </div>
         <div class="col-md-4">
-            <h3 class="card-title text-center">
+            <h4 class="card-title text-center">
                 <i class="fas fa-user-tie"></i><br>
                 {{$horario->nombre}} {{$horario->apellido}}
-            </h3>
+            </h4>
         </div>
     </div>
 
