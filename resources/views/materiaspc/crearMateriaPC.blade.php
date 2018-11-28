@@ -74,29 +74,35 @@
                 <div class="row">
                     {{-- curso --}}
                     <div class="col-md-6">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-pen"></i>
-                                </span>
+                        <div class="form-group mb-2">
+                            <label for="cedula"><strong><small style="color : #616161">Curso</small></strong></label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-pen"></i>
+                                    </span>
+                                </div>
+                                <select class="custom-select custom-select-sm" name="fk_curso" id="fk_curso" required>
+                                    <option if>Seleccionar el curso</option>
+                                    @foreach ( $cursos as $curso)
+                                        <option value="{{$curso["pk_curso"]}}">{{$curso["nombre"]}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <select class="custom-select custom-select-sm" name="fk_curso" id="fk_curso" required>
-                                <option if>Seleccionar el curso</option>
-                                @foreach ( $cursos as $curso)
-                                    <option value="{{$curso["pk_curso"]}}">{{$curso["nombre"]}}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                     {{-- salon --}}
                     <div class="col-md-6">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-chalkboard-teacher"></i>
-                                </span>
+                        <div class="form-group mb-2">
+                            <label for="cedula"><strong><small style="color : #616161">Salón</small></strong></label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                    </span>
+                                </div>
+                                <input type="text" placeholder="(máx 5 caracteres)" class="form-control form-control-sm" name="salon" id="salon" maxlength="5" required>
                             </div>
-                            <input type="text" placeholder="Salón (máx 5 caracteres)" class="form-control form-control-sm" name="salon" id="salon" maxlength="5" required>
                         </div>
                     </div>
                 </div>
