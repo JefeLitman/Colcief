@@ -61,14 +61,25 @@
                                                 <i class="fas fa-chalkboard-teacher"></i>
                                             </span>
                                         </div>
+                                        {{ csrf_field() }}
+                                        <input type="text" class="form-control form-control-sm" name="sufijo" id="sufijo" readonly="readonly">
                                     </div>
                                 </div>
                             </div>
-                            {{ csrf_field() }}
-                            <input type="text" class="form-control form-control-sm" name="sufijo" id="sufijo" readonly="readonly">
 
-                            <input type="number" min = "1990" max = "2050" step = "1" value = {{now()->year}} name="ano" id="ano"
-                            placeholder="Año" class="form-control form-control-sm">
+                            <div class="col-md-4">
+                                <div class="form-group mb-2">
+                                    <label for="cedula"><strong><small style="color : #616161">Año</small></strong></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-calendar-check"></i>
+                                            </span>
+                                        </div>
+                                        <input type="number" min = "1990" max = "2050" step = "1" value = {{now()->year}} name="ano" id="ano" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="text-center">

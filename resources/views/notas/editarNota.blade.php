@@ -20,34 +20,40 @@
                     <div class="row">
                         {{-- Division --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class= "input-group-text">
-                                        <i class="fas fa-boxes"></i></i>
-                                    </span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">División</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class= "input-group-text">
+                                            <i class="fas fa-boxes"></i></i>
+                                        </span>
+                                    </div>
+                                    <select class="custom-select custom-select-sm" name="fk_division" required>
+                                        @foreach ($divisiones as $division)
+                                            <option value="{{$division['pk_division']}}" @if ($division['pk_division']==$nota['fk_division'])
+                                            selected
+                                            @endif >{{$division['nombre']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <select class="custom-select custom-select-sm" name="fk_division" required>
-                                    @foreach ($divisiones as $division)
-                                        <option value="{{$division['pk_division']}}" @if ($division['pk_division']==$nota['fk_division'])
-                                        selected
-                                        @endif >{{$division['nombre']}}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                         {{-- materia y salon --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-chalkboard-teacher"></i>
-                                    </span>
+                            <div class="from-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Materia y Salón</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                        </span>
+                                    </div>
+                                    <select class="custom-select custom-select-sm" name="fk_materia_pc" required>
+                                        @foreach ($materias as $materia)
+                                            <option value="{{$materia['pk_materia_pc']}}">{{$materia['nombre'].' Salón: '.$materia['salon']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <select class="custom-select custom-select-sm" name="fk_materia_pc" required>
-                                    @foreach ($materias as $materia)
-                                        <option value="{{$materia['pk_materia_pc']}}">{{$materia['nombre'].' Salón: '.$materia['salon']}}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -55,41 +61,51 @@
                     <div class="row">
                         {{-- Nombre de la nota --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-book"></i>
-                                    </span>
+                            <div class="from-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Nombre de la nota</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-book"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control form-control-sm" type="text" placeholder="Nombre de la nota [máx 20 caracteres]"
+                                    name="nombre" value="{{$nota['nombre']}}">
                                 </div>
-                                <input class="form-control form-control-sm" type="text" placeholder="Nombre de la nota [máx 20 caracteres]"
-                                name="nombre" value="{{$nota['nombre']}}">
                             </div>
                         </div>
 
                         {{-- porcentaje --}}
                         <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-percentage"></i>
-                                    </span>
+                            <div class="from-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Porcentaje</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-percentage"></i>
+                                        </span>
+                                    </div>
+                                    <input type="number"
+                                    class="form-control form-control-sm"
+                                    placeholder="Porcentaje [número entero]"
+                                    name="porcentaje" value="{{$nota['porcentaje']}}">
                                 </div>
-                                <input type="number"
-                                class="form-control form-control-sm"
-                                placeholder="Porcentaje [número entero]"
-                                name="porcentaje" value="{{$nota['porcentaje']}}">
                             </div>
                         </div>
                     </div>
+                {{--  Descripción  --}}
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-marker"></i>
-                                    </span>
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Descripción</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-marker"></i>
+                                        </span>
+                                    </div>
+                                    <textarea class="form-control form-control-sm" placeholder="Descripción de la nota [máx 255 caracteres]" name="descripcion" >{{$nota['descripcion']}}</textarea>
                                 </div>
-                                <textarea class="form-control form-control-sm" placeholder="Descripción de la nota [máx 255 caracteres]" name="descripcion" >{{$nota['descripcion']}}</textarea>
                             </div>
                         </div>
                     </div>

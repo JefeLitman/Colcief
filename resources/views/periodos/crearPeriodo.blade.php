@@ -40,7 +40,7 @@
                                         <i class="fas fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input class="form-control form-control-sm" type="date" name="fecha_limite" value="">
+                                <input class="form-control form-control-sm" type="datetime" name="fecha_limite" value="">
                             </div>
                         </div>
                     </div>
