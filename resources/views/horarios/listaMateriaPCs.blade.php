@@ -34,10 +34,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($horarios[$key] as $horario)
                                     <tr>
                                         {{--  nombre del profe  --}}
                                         <td class="text-center"> {{$materia->nombre}} {{$materia->apellido}}</td>
-                                     @foreach($horarios[$key] as $horario)
                                         {{--  Dia  --}}
                                         <td class="text-center"> {{$horario->dia}}</td>
                                         {{--  horas  --}}
@@ -46,11 +46,12 @@
                                         <td class="text-center"><a href="{{ route('horarios.edit', $horario->pk_horario)}}"><i class="fas fa-edit" style="color:#00838f"></i>
                                         </a></td>
                                         {{-- eliminar materia --}}
-                                        <td>
-                                            <form action="{{route('horarios.destroy', $horario->pk_horario)}}" method = "post">
+                                        <td class="text-center">
+                                            <form action="{{route('horarios.destroy',$horario->pk_horario)}}" method = "post">
                                                 @csrf
                                                 @method("DELETE")
-                                                <i class="fas fa-trash-alt" style="color:#c62828; cursor: pointer;" type="submit"></i>
+                                                {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
+                                                <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
                                             </form>
                                         </td>
                                         {{-- ver --}}

@@ -32,35 +32,41 @@
                     <div class="row">
                         {{-- Datos de la materia --}}
                         <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Materia</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-book"></i>
+                                        </span>
+                                    </div>
+                                <select class="custom-select custom-select-sm" name="fk_materia" id="fk_materia" onchange="logros(this.value)" required>
+                                    <option if>Seleccionar la materia</option>
+                                    @foreach ( $materias as $materia)
+                                        <option value="{{$materia["pk_materia"]}}">{{$materia["nombre"]}}</option>
+                                    @endforeach
+                                </select>
+                                </div>
+                            </div>
+                         </div>
+                    {{-- profesor --}}
+                    <div class="col-md-6">
+                        <div class="form-group mb-2">
+                            <label for="cedula"><strong><small style="color : #616161">Profesor</small></strong></label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="fas fa-book"></i>
+                                        <i class="fas fa-user-tie"></i>
                                     </span>
                                 </div>
-                            <select class="custom-select custom-select-sm" name="fk_materia" id="fk_materia" onchange="logros(this.value)" required>
-                                <option if>Seleccionar la materia</option>
-                                @foreach ( $materias as $materia)
-                                    <option value="{{$materia["pk_materia"]}}">{{$materia["nombre"]}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    {{-- profesor --}}
-                    <div class="col-md-6">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-user-tie"></i>
-                                </span>
+                                <select class="custom-select custom-select-sm" name="fk_empleado" id="fk_empleado" required>
+                                    <option if>Seleccionar profesor</option>
+                                    @foreach ( $profesores as $profesor)
+                                        <option value="{{$profesor["cedula"]}}">{{ucwords($profesor["nombre"])}} {{ucwords($profesor["apellido"])}}</option>
+                                        {{-- Los nombres y apellidos estan normalizados a estar completamente en minuscula --}}
+                                    @endforeach
+                                </select>
                             </div>
-                            <select class="custom-select custom-select-sm" name="fk_empleado" id="fk_empleado" required>
-                                <option if>Seleccionar profesor</option>
-                                @foreach ( $profesores as $profesor)
-                                    <option value="{{$profesor["cedula"]}}">{{ucwords($profesor["nombre"])}} {{ucwords($profesor["apellido"])}}</option>
-                                    {{-- Los nombres y apellidos estan normalizados a estar completamente en minuscula --}}
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                 </div>
