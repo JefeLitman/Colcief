@@ -87,8 +87,7 @@ class NotaPeriodoController extends Controller
 
 
     /**Retorna las notas que cada division tuvo en ese periodo y en el actual año*/
-    public static function notasDivs($id){
-        $divs=Division::select('pk_division')->where('ano',date('Y'))->get();
+    public static function notasDivs($id,$divs){
         $notasdivs=[];
         if (!empty($divs[0])) {
             foreach ($divs as $d) {
@@ -98,7 +97,8 @@ class NotaPeriodoController extends Controller
             foreach ($notas as $n) {
                 $notasdivs[$n->fk_division]=$n->nota*($n->porcentaje/100);
             }
+            return $notasdivs;
         }
-        return $notasdivs;
+        return [];
     }
 }
