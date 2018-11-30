@@ -35,9 +35,7 @@ class MateriaPCSeeder extends Seeder
                     'fk_curso' => $curso->pk_curso,
                     'nombre' => $materia->nombre,// @Modificacion Paola C.
                     'salon' => '101',
-                    'logros_custom' => 'logros 1',
-                    'created_at' => date('Y-m-d H:m:s'),
-                    'updated_at' => date('Y-m-d H:m:s')
+                    'logros_custom' => 'logros 1'
                 ]);
             }
         }

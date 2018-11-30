@@ -37,9 +37,7 @@ class EstudianteSeeder extends Seeder
             'fecha_nacimiento' => $faker->date,
             'grado' => $grado,
             'discapacidad' => 0,
-            'estado' => 1,
-            'created_at' => date('Y-m-d H:m:s'),
-            'updated_at' => date('Y-m-d H:m:s')
+            'estado' => 1
           ]);
           array_push($usado,$acudiente);
         }

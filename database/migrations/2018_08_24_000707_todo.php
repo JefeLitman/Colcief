@@ -75,7 +75,7 @@ class Todo extends Migration{
             $table->increments('pk_boletin');
             $table->unsignedInteger('fk_curso');
             $table->unsignedInteger('fk_estudiante');
-            $table->char('estado', 1);
+            $table->char('estado', 1)->default('i');
             $table->year('ano');
             $table->integer('nota_final');
             $table->timestamps();

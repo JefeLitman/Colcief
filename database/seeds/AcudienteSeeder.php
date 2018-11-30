@@ -21,9 +21,7 @@ class AcudienteSeeder extends Seeder
             'telefono_acu_1' => '1234567890',
             'nombre_acu_2' => $faker->name,
             'direccion_acu_2' => $faker->address,
-            'telefono_acu_2' => '0987654321',
-            'created_at' => date('Y-m-d H:m:s'),
-            'updated_at' => date('Y-m-d H:m:s')
+            'telefono_acu_2' => '0987654321'
           ]);
         }
     }
