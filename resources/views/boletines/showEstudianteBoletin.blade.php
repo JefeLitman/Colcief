@@ -14,7 +14,7 @@
         <b> Estudiante:</b> {{$boletin->nombre}} {{$boletin->apellido}} <br>
         <b> Fecha de nacimiento:</b> {{$boletin->fecha_nacimiento}} <br>
         <b> Discapasidad:</b> {{($boletin->discapacidad)?"Si":"No"}} <br>
-        <b> Curso:</b> {{($boletin->prefijo==0)?Preescolar:$boletin->prefijo}} - {{$boletin->sufijo}}<br> <br>
+        <b> Curso:</b> {{($boletin->prefijo==0)?"Preescolar":$boletin->prefijo}} - {{$boletin->sufijo}}<br> <br>
         <script>
             function cambioPeriodo($value){
                 elements=document.getElementsByClassName('T');
