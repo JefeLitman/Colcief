@@ -51,8 +51,8 @@
                                             <th class="P{{$periodo->nro_periodo}} T" scope="col" style="color:#00695c;display:none;">{{$div->nombre}} ({{$div->porcentaje}}%)</th>
                                     @endforeach
                                     <th class="P{{$periodo->nro_periodo}} P T" scope="col" style="color:#00695c">Nota P{{$periodo->nro_periodo}}</th>
-                                    <th class="P T" scope="col" style="color:#00695c">Nota final</th>
                                 @endforeach
+                                <th class="P T" scope="col" style="color:#00695c">Nota final</th>
                             </tr>
                         </thead>
                         <tbody>

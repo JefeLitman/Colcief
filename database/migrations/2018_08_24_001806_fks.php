@@ -35,12 +35,19 @@ class Fks extends Migration {
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
+        Schema::table('nota_division', function (Blueprint $table) {
+            $table->foreign('fk_division')->references('pk_division')->on('division')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fk_nota_periodo')->references('pk_nota_periodo')->on('nota_periodo')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
+
         Schema::table('nota_estudiante', function (Blueprint $table) {
             $table->foreign('fk_estudiante')->references('pk_estudiante')->on('estudiante')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fk_nota')->references('pk_nota')->on('nota')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('fk_nota_periodo')->references('pk_nota_periodo')->on('nota_periodo')
+            $table->foreign('fk_nota_division')->references('pk_nota_division')->on('nota_division')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -48,6 +55,8 @@ class Fks extends Migration {
             $table->foreign('fk_division')->references('pk_division')->on('division')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fk_materia_pc')->references('pk_materia_pc')->on('materia_pc')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fk_periodo')->references('pk_periodo')->on('periodo')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -105,12 +114,13 @@ class Fks extends Migration {
         Schema::table('nota_estudiante', function (Blueprint $table) {
             $table->dropForeign('nota_estudiante_fk_estudiante_foreign');
             $table->dropForeign('nota_estudiante_fk_nota_foreign'); 
-            $table->dropForeign('nota_estudiante_fk_nota_periodo_foreign');
+            $table->dropForeign('nota_estudiante_fk_nota_division_foreign');
         });
 
         Schema::table('nota', function (Blueprint $table) {
             $table->dropForeign('nota_fk_division_foreign');
             $table->dropForeign('nota_fk_materia_pc_foreign'); 
+            $table->dropForeign('nota_fk_periodo_foreign'); 
         });
 
         Schema::table('materia_pc', function (Blueprint $table) {

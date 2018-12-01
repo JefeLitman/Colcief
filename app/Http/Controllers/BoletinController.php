@@ -43,7 +43,7 @@ class BoletinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -123,7 +123,7 @@ class BoletinController extends Controller
                     $notaPeriodos[$i->pk_materia_boletin]=[];
                     $periodos=NotaPeriodo::where('nota_periodo.fk_materia_boletin',$i->pk_materia_boletin)->join('periodo','nota_periodo.fk_periodo','=','periodo.pk_periodo')->orderBy('periodo.nro_periodo','asc')->get();
                     foreach ($periodos as $j) {
-                        $notaPeriodos[$i->pk_materia_boletin][$j->pk_periodo]=$j->nota_final;
+                        $notaPeriodos[$i->pk_materia_boletin][$j->pk_periodo]=$j->nota_periodo;
                         $notaDivs[$i->pk_materia_boletin][$j->pk_periodo]=NotaPeriodoController::notasDivs($j->pk_nota_periodo,$infoDivs);
                     }
                 }
@@ -136,6 +136,27 @@ class BoletinController extends Controller
 
     public function showCurso($fk_curso){
 
+    }
+
+    public function actualizarEstado($pk_boletin){
+        $B=Boletin::where($pk_boletin)->get();
+        if(empty($B[0])){
+            return "Boletin no encontrado";
+        }else{
+            $cont=0; //Contador Materias perdidas
+            $M=MateriaBoletin::where('fk_boletin',$pk_boletin)->get();
+            if(!empty($M[0])){
+                foreach ($M as $i) {
+                   if($i->nota_materia<3){
+                        $cont=+1;
+                   }
+                }
+                $B[0]->estado=($cont>=3)?'p':'a'; //Si perdio 3 o mas materias repite el año.
+            }else{
+                $B[0]->estado='i'; //Si no hay materias aun, el estado es indefinido.
+            }
+            $B[0]->save();
+        }
     }
 
 }

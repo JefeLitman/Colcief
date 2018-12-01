@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(MateriaSeeder::class);
         $this->call(MateriaPCSeeder::class);
         $this->call(DivisionSeeder::class);
+        $this->call(PeriodoSeeder::class);
+        $this->call(BoletinSeeder::class);
+        $this->call(MateriaBoletinSeeder::class);
     }
 }

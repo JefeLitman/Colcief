@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\NotaPeriodo;
 use App\Division;
 use App\NotaEstudiante;
+use App\NotaDivision;
 
 class NotaPeriodoController extends Controller
 {
@@ -43,10 +44,10 @@ class NotaPeriodoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $pk_nota_periodo
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($pk_nota_periodo)
     {
         //
     }
@@ -54,10 +55,10 @@ class NotaPeriodoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $pk_nota_periodo
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pk_nota_periodo)
     {
         //
     }
@@ -66,10 +67,10 @@ class NotaPeriodoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $pk_nota_periodo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $pk_nota_periodo)
     {
         //
     }
@@ -77,28 +78,36 @@ class NotaPeriodoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $pk_nota_periodo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($pk_nota_periodo)
     {
         //
     }
 
 
-    /**Retorna las notas que cada division tuvo en ese periodo y en el actual año*/
-    public static function notasDivs($id,$divs){
+    /**Retorna las notas que cada division tuvo en ese periodo*/
+    public static function notasDivs($pk_nota_periodo,$divs){
         $notasdivs=[];
         if (!empty($divs[0])) {
             foreach ($divs as $d) {
-                $notasdivs[$d->pk_division]=0;
-            }
-            $notas=NotaEstudiante::select('nota_estudiante.nota','nota.fk_division','nota.porcentaje')->where('fk_nota_periodo','=',$id)->join('nota','nota_estudiante.fk_nota','=','nota.pk_nota')->get();
-            foreach ($notas as $n) {
-                $notasdivs[$n->fk_division]=$n->nota*($n->porcentaje/100);
+                $nota_div=NotaDivision::where([["fk_nota_periodo",$pk_nota_periodo],["fk_division",$d->pk_division]])->get();
+                if (empty($nota_div[0])) {
+                    $notasdivs[$d->pk_division]=0;
+                } else {
+                    $notasdivs[$d->pk_division]=$nota_div[0]->nota_division;
+                }
             }
             return $notasdivs;
         }
         return [];
+    }
+
+    public static function actualizarNota($pk_nota_periodo){
+        $divs=Division::select('pk_division','nombre','porcentaje')->where('ano',date('Y'))->orderBy('pk_division','asc')->get();
+        $notasDivs=notasDivs($pk_nota_periodo,$divs);
+
+
     }
 }

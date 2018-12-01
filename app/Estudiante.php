@@ -12,7 +12,7 @@ class Estudiante extends Authenticatable {
     use Notifiable;
 	protected $primaryKey = "pk_estudiante";
     protected $table = 'estudiante';
-    protected $fillable = ['pk_estudiante', 'fk_acudiente','nombre', 'apellido', 'password', 'fecha_nacimiento', 'grado', 'discapacidad', 'estado', 'foto'];
+    protected $fillable = ['pk_estudiante','fk_curso','fk_acudiente','nombre', 'apellido', 'password', 'fecha_nacimiento', 'grado', 'discapacidad', 'estado', 'foto'];
     protected $dates = ['deleted_at'];
     protected $casts = ['discapacidad' => 'boolean', 'estado' => 'boolean'];
     protected $hidden = ['password'];

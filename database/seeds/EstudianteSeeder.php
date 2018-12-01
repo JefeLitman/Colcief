@@ -18,7 +18,7 @@ class EstudianteSeeder extends Seeder
     {
         $faker = Faker::create();
         $acudientes = Acudiente::all()->pluck('pk_acudiente')->toArray();
-        $cursos = Curso::all()->pluck('pk_curso')->toArray();
+        $cursos = Curso::get();
         $usado = [];
         for ($i=0; $i < 5; $i++) {
           $acudiente = $faker->randomElement($acudientes);
@@ -27,10 +27,10 @@ class EstudianteSeeder extends Seeder
             //No es muy óptimo pero sirve.
           }
           $curso = $faker->randomElement($cursos);
-          $grado = Curso::select('prefijo')->where('pk_curso','=',$curso)->get()->pluck('prefijo')->toArray()[0];
+          $grado = Curso::select('prefijo')->where('pk_curso','=',$curso->pk_curso)->get()->pluck('prefijo')->toArray()[0];
           Estudiante::create([
             'fk_acudiente' => $acudiente,
-            'fk_curso' => $curso,
+            'fk_curso' => $curso->pk_curso,
             'nombre' => $faker->firstName,
             'apellido' => $faker->lastName,
             'password' => Hash::make('clave'),

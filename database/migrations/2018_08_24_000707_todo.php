@@ -49,8 +49,16 @@ class Todo extends Migration{
             $table->increments('pk_nota_estudiante');//diferente
             $table->unsignedInteger('fk_estudiante');
             $table->unsignedInteger('fk_nota');
+            $table->unsignedInteger('fk_nota_division');
+            $table->float('nota')->default(0);
+            $table->timestamps();
+        });
+
+        Schema::create('nota_division', function (Blueprint $table) {
+            $table->increments('pk_nota_division');
+            $table->unsignedInteger('fk_division');
             $table->unsignedInteger('fk_nota_periodo');
-            $table->integer('nota');
+            $table->float('nota_division')->default(0);
             $table->timestamps();
         });
 
@@ -58,7 +66,7 @@ class Todo extends Migration{
             $table->increments('pk_nota_periodo');
             $table->unsignedInteger('fk_periodo');
             $table->unsignedInteger('fk_materia_boletin');
-            $table->integer('nota_final');
+            $table->float('nota_periodo')->default(0);
             $table->string('habilidad');
             $table->timestamps();
         });
@@ -67,7 +75,7 @@ class Todo extends Migration{
             $table->increments('pk_materia_boletin');
             $table->unsignedInteger('fk_materia_pc');
             $table->unsignedInteger('fk_boletin');
-            $table->integer('nota_materia');
+            $table->float('nota_materia')->default(0);
             $table->timestamps();
         });
 
@@ -77,7 +85,6 @@ class Todo extends Migration{
             $table->unsignedInteger('fk_estudiante');
             $table->char('estado', 1)->default('i');
             $table->year('ano');
-            $table->integer('nota_final');
             $table->timestamps();
         });
 
@@ -93,6 +100,7 @@ class Todo extends Migration{
             $table->increments('pk_nota');
             $table->unsignedInteger('fk_division');
             $table->unsignedInteger('fk_materia_pc');
+            $table->unsignedInteger('fk_periodo');
             $table->string('nombre', 50);
             $table->string('descripcion');
             $table->integer('porcentaje');
@@ -158,7 +166,7 @@ class Todo extends Migration{
 
         Schema::create('recuperacion', function (Blueprint $table) {
             $table->unsignedInteger('pk_recuperacion')->primary();
-            $table->integer('nota')->nullable();
+            $table->float('nota')->nullable();
             $table->string('acta', 80);
             $table->date('fecha_presentacion');
             $table->unsignedInteger('fk_nota_periodo');
@@ -179,6 +187,7 @@ class Todo extends Migration{
         Schema::dropIfExists('curso');
         Schema::dropIfExists('periodo');
         Schema::dropIfExists('nota_estudiante');
+        Schema::dropIfExists('nota_division');
         Schema::dropIfExists('nota_periodo');
         Schema::dropIfExists('materia_boletin');
         Schema::dropIfExists('boletin');

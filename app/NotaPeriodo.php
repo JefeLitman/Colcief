@@ -8,7 +8,7 @@ class NotaPeriodo extends Model
 {
     protected $table = 'nota_periodo';
     protected $primaryKey = 'pk_nota_periodo';
-    // protected $fillable = [];
+    protected $fillable = ['pk_nota_periodo','fk_periodo','fk_materia_boletin','nota_periodo','habilidad'];
 
     public function notasEstudiantes()
     {

@@ -8,7 +8,8 @@ class Boletin extends Model
 {
     protected $table = 'boletin';
     protected $primaryKey = 'pk_boletin';
-    protected $guarded = ['nota_final'];
+    protected $fillable = ['pk_boletin','fk_estudiante','fk_curso','estado','ano'];
+    protected $guarded = [];
 
     public function estudiante()
     {
