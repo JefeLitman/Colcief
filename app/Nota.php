@@ -8,7 +8,8 @@ class Nota extends Model
 {
     protected $table = 'nota';
     protected $primaryKey = 'pk_nota';
-    protected $guarded = ['porcentaje'];
+    // protected $fillable = ["pk_nota","fk_materia_pc","fk_periodo","fk_division","nombre","descripcion","porcentaje"];
+    protected $guarded = [];
 
     public function MateriaPC()
     {

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MateriaPCSeeder::class);
         $this->call(DivisionSeeder::class);
         $this->call(PeriodoSeeder::class);
+        $this->call(NotaSeeder::class);
         $this->call(BoletinSeeder::class);
         $this->call(MateriaBoletinSeeder::class);
     }
