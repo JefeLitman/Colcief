@@ -116,9 +116,32 @@
                                     <td>{{$m->nombre}}</td>
                                     @foreach ($infoPeriodos as $periodo)
                                         @foreach ($infoDivs as $div)
-                                            <td class="P{{$periodo->nro_periodo}} T" style="display:none">{{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division] or "-"}}{{--Info: Echoing Data If It Exists -> https://laravel.com/docs/5.1/blade --}}</td>
+                                            <td class="P{{$periodo->nro_periodo}} T" style="display:none">
+
+                                                @if (intval($notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division]) >= '3')
+                                                    <p>
+                                                        {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division] or "-"}}
+                                                    </p>
+                                                @else
+                                                    <b style="color: red;">
+                                                        {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division] or "-"}}
+                                                    </b>
+                                                @endif
+                                                {{--Info: Echoing Data If It Exists -> https://laravel.com/docs/5.1/blade --}}
+                                            </td>
                                         @endforeach
-                                        <td class="P{{$periodo->nro_periodo}} P T">{{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo] or "-"}}</td>
+                                        <td class="P{{$periodo->nro_periodo}} P T">
+
+                                                @if (intval($notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo]) >= '3')
+                                                    <p>
+                                                    {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo] or "-"}}
+                                                    </p>
+                                                @else
+                                                <b style="color: red;">
+                                                    {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo] or "-"}}
+                                                </b>
+                                                @endif
+                                        </td>
                                     @endforeach
                                     <td class="P T">{{$m->nota_materia or "-"}}</td>
                                 </tr>
