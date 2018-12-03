@@ -8,6 +8,7 @@
       <!--Import bootstrap.css-->
       <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{{ asset('css/menus.css') }}"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{ asset('css/precarga.css') }}"  media="screen,projection"/>
       <!-- Definiendo el titulo de la pagina -->
       <title>ColCIEF - @yield('titulo')</title>
       <!--Let browser know website is optimized for mobile-->
@@ -22,6 +23,10 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
 <body>
+
+    <!-- precarga  de la pagina -->
+    @include('precarga.precarga')
+
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
     @include('menus.estudiante')
 
