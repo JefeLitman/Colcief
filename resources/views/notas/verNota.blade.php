@@ -59,8 +59,8 @@
                                                 </form>
                                             </td>
                                             {{-- ver --}}
-
                                         </tr>
+
                                     {{--  @endforeach  --}}
                                 </tbody>
                             </table>

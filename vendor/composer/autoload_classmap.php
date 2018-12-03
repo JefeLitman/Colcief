@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AcudienteSeeder' => $baseDir . '/database/seeds/AcudienteSeeder.php',
     'App\\Acudiente' => $baseDir . '/app/Acudiente.php',
-    'App\\Boletin' => $baseDir . '/app/Boletin.php',
+    'App\\Boletin' => $baseDir . '/app/boletin.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Curso' => $baseDir . '/app/Curso.php',
     'App\\Division' => $baseDir . '/app/Division.php',
