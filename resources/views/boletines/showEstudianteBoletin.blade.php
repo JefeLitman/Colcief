@@ -10,7 +10,7 @@
     @else
         {{-- Solo el boletin aparece, curso y en si defecto estudiante sin materias asignadas --}}
         {{-- El encabezado es comun para el 2 y 3 por eso realicé asi la estructura --}}
-        <h3 class='card-title text-center'> Datos del estudiante</h3>
+        <h3 class="card-title text-center">Boletín {{$boletin->ano}}</h3>
         <br>
         {{--  Información del estudiantes  --}}
         <script>
@@ -87,7 +87,6 @@
             <option value="P" selected>Todos los periodos</option>
         </select><br><br>  --}}
         <br>
-        <h3 class="card-title text-center">Boletín {{$boletin->ano}}</h3>
         @switch($msj)
             @case(2)
                 <h4> NOTAS </h4>
