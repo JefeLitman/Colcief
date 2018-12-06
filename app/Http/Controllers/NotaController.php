@@ -8,6 +8,8 @@ use App\Http\Requests\NotaStoreController;
 use App\Nota;
 use App\Division;
 use App\MateriaPC;
+use App\Curso;
+use App\Periodo;
 
 class NotaController extends Controller
 {
@@ -23,15 +25,26 @@ class NotaController extends Controller
      */
     public function index()
     {
-        $NotasDelProfesor = Nota::select('pk_nota','fk_division','fk_materia_pc','nota.nombre','nota.descripcion','nota.porcentaje')->
-        join('materia_pc','nota.fk_materia_pc','=','materia_pc.pk_materia_pc')->
-        join('empleado','materia_pc.fk_empleado','=','empleado.cedula')->
-        where('empleado.cedula','=',session('user')['cedula'])->get();
+        $MateriasDelProfesor = MateriaPC::where('fk_empleado','=',session('user')['cedula'])->get();
+        $numeroPeriodos = Periodo::count();
         $datos = [];
-        foreach ($NotasDelProfesor->all() as $Nota) {
-          array_push($datos,$this->arrayzar($Nota));
+        $notasPorPeriodo = [];
+        foreach ($MateriasDelProfesor as $materia) {
+          $curso = Curso::find($materia->fk_curso);
+          $nombreCurso = $curso->prefijo.'-'.$curso->sufijo;
+          $notas = $materia->Notas()->get()->toArray();
+          $numeroNotas = count($notas);
+          for ($i=0; $i <$numeroNotas ; $i++) {
+            $notasPorPeriodo = SC::array_push_wKey($notas[$i]['fk_periodo'],$notasPorPeriodo,$notas[$i]);
+          }
+          $array = [
+            'materia' => $materia->nombre,
+            'salon' => $materia->salon,
+            'periodos' => $notasPorPeriodo
+          ];
+          $datos = SC::array_push_wKey($nombreCurso,$datos,$array);
         }
-        return view('notas.verNota',['datos' => $datos]);
+        return view('notas.verTodasNotas',['datos' => $datos, 'numeroPeriodos'=> $numeroPeriodos]);
     }
 
     /**
@@ -80,6 +93,7 @@ class NotaController extends Controller
           $Nota->porcentaje=$request->porcentaje;
           $Nota->fk_division=$request->fk_division;
           $Nota->fk_materia_pc=$request->fk_materia_pc;
+          $Nota->fk_periodo=$request->fk_periodo;
           $Nota->nombre=$request->nombre;
           $Nota->descripcion=$request->descripcion;
           $Nota->save();
@@ -146,6 +160,7 @@ class NotaController extends Controller
                 $nota_modificada->porcentaje=$request->porcentaje;
                 $nota_modificada->fk_division=$request->fk_division;
                 $nota_modificada->fk_materia_pc=$request->fk_materia_pc;
+                $nota_modificada->fk_periodo=$request->fk_periodo;
                 $nota_modificada->nombre=$request->nombre;
                 $nota_modificada->descripcion=$request->descripcion;
                 $nota_modificada->save();
@@ -217,7 +232,7 @@ class NotaController extends Controller
     private function inspeccionarNota($Nota)
     {
       $datosDivision = Division::select('nombre','descripcion')->where('pk_division','=',$Nota['fk_division'])->first();
-      $datosMateriaPC = MateriaPC::select('fk_materia','nombre')->where('pk_materia_pc','=',$Nota['fk_materia_pc'])->first();
+      $datosMateriaPC = MateriaPC::select('fk_materia','nombre','salon','fk_curso')->where('pk_materia_pc','=',$Nota['fk_materia_pc'])->first();
         return [
           'division' => $datosDivision,
           'materia' => $datosMateriaPC

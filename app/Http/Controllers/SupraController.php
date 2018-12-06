@@ -61,6 +61,16 @@
         return $array;
     }
 
+    public static function array_push_wKey($llave,$array,$contenido)
+    {
+      if (!array_key_exists($llave,$array)) {
+        $array[$llave] = array($contenido);
+      }else{
+        array_push($array[$llave],$contenido);
+      }
+      return $array;
+    }
+
     // public static function mostrar($array){
     //     foreach($array as $key => $value) {
     //         $array[$key] = ucwords($value);

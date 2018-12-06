@@ -43,7 +43,7 @@
                                             {{--  PORCENTAJE  --}}
                                             <td class="text-center">{{$dato[0]['porcentaje']}}</td>
                                             {{--  SALÓN  --}}
-                                            <td class="text-center"></td>
+                                            <td class="text-center">{{$dato[2]['salon']}}</td>
                                             {{--  DESCRIPCIÓN  --}}
                                             <td class="text-center">{{$dato[0]['descripcion']}}</td>
                                             {{-- editar materia --}}
@@ -77,4 +77,3 @@
 </div>
 <script src="{{ asset('js/ajax.js') }}"></script>
 @endsection
-
