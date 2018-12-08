@@ -1,7 +1,7 @@
 .contenedor_carga {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    /* display: flex; */
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -9,14 +9,25 @@
         -ms-flex-pack: center;
             justify-content: center;
     min-height: 100vh;
-    background-color: #ededed;
+    background-color:white;
+
+  }
+
+  #contenedor_carga{
+      text-align: center;
+      display: block;
+      justify-content: center;
+      float: center;
   }
 
   .loader {
     max-width: 15rem;
     width: 100%;
+    float: center;
     height: auto;
     stroke-linecap: round;
+    float:center !important;
+    min-height: 100vh;
   }
 
   circle {
