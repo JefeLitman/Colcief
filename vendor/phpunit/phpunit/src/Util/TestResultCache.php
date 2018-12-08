@@ -9,8 +9,6 @@
  */
 namespace PHPUnit\Runner;
 
-use PHPUnit\Framework\Test;
-
 class TestResultCache implements \Serializable, TestResultCacheInterface
 {
     /**

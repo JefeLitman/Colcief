@@ -55,10 +55,3 @@ body {
     background-color:  #dc354500 !important;
     border-color: #dc354500 !important;
   }
-
-/* lista de notas de la carpeta de NOTAS */
-.cambiop:hover{
-    font-weight: bold !important;
-    color: #00695c !important;
-    text-decoration: none !important;
-}

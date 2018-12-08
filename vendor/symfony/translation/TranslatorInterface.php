@@ -12,7 +12,6 @@
 namespace Symfony\Component\Translation;
 
 use Symfony\Component\Translation\Exception\InvalidArgumentException;
-use Symfony\Contracts\Translation\LocaleAwareInterface;
 
 /**
  * TranslatorInterface.
@@ -21,7 +20,7 @@ use Symfony\Contracts\Translation\LocaleAwareInterface;
  *
  * @deprecated since Symfony 4.2, use Symfony\Contracts\Translation\TranslatorInterface instead
  */
-interface TranslatorInterface extends LocaleAwareInterface
+interface TranslatorInterface
 {
     /**
      * Translates the given message.

@@ -772,7 +772,7 @@ class Generator
             $cloneTemplate = $cloneTemplate->render();
         }
 
-        if ($explicitMethods === [] &&
+        if (\is_array($explicitMethods) && empty($explicitMethods) &&
             ($isClass || $isInterface)) {
             $mockMethods->addMethods(
                 ...$this->mockClassMethods($mockClassName['fullClassName'], $callOriginalMethods, $cloneArguments)

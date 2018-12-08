@@ -704,10 +704,12 @@ class TestSuite implements Test, SelfDescribing, IteratorAggregate
                 }
             }
         } catch (SkippedTestSuiteError $e) {
-            foreach ($this->tests() as $test) {
-                $result->startTest($test);
-                $result->addFailure($test, $e, 0);
-                $result->endTest($test, 0);
+            $numTests = \count($this);
+
+            for ($i = 0; $i < $numTests; $i++) {
+                $result->startTest($this);
+                $result->addFailure($this, $e, 0);
+                $result->endTest($this, 0);
             }
 
             $this->tearDown();
@@ -715,14 +717,16 @@ class TestSuite implements Test, SelfDescribing, IteratorAggregate
 
             return $result;
         } catch (Throwable $t) {
-            foreach ($this->tests() as $test) {
+            $numTests = \count($this);
+
+            for ($i = 0; $i < $numTests; $i++) {
                 if ($result->shouldStop()) {
                     break;
                 }
 
-                $result->startTest($test);
-                $result->addError($test, $t, 0);
-                $result->endTest($test, 0);
+                $result->startTest($this);
+                $result->addError($this, $t, 0);
+                $result->endTest($this, 0);
             }
 
             $this->tearDown();

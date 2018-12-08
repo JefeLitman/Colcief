@@ -1123,11 +1123,6 @@ abstract class TestCase extends Assert implements Test, SelfDescribing
         return $this->data;
     }
 
-    public function addWarning(string $warning): void
-    {
-        $this->warnings[] = $warning;
-    }
-
     /**
      * Override to run the test and assert its state.
      *
@@ -1992,7 +1987,13 @@ abstract class TestCase extends Assert implements Test, SelfDescribing
             return true;
         }
 
-        return !\in_array($mock, $enumerator->enumerate($this->testResult), true);
+        foreach ($enumerator->enumerate($this->testResult) as $object) {
+            if ($mock === $object) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

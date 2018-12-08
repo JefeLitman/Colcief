@@ -67,7 +67,7 @@ trait PhpMatcherTrait
         throw new ResourceNotFoundException();
     }
 
-    private function doMatch(string $rawPathinfo, array &$allow = array(), array &$allowSchemes = array()): array
+    private function doMatch(string $rawPathinfo, array &$allow = array(), array &$allowSchemes = array()): ?array
     {
         $allow = $allowSchemes = array();
         $pathinfo = rawurldecode($rawPathinfo) ?: '/';
@@ -90,8 +90,8 @@ trait PhpMatcherTrait
 
             if ('/' === $pathinfo || $hasTrailingSlash === ('/' === $pathinfo[-1])) {
                 // no-op
-            } elseif ($this instanceof RedirectableUrlMatcherInterface && (!$requiredMethods || isset($requiredMethods['GET'])) && 'GET' === $canonicalMethod) {
-                return $allow = $allowSchemes = array();
+            } elseif ($this instanceof RedirectableUrlMatcherInterface) {
+                return null;
             } else {
                 continue;
             }
@@ -130,20 +130,12 @@ trait PhpMatcherTrait
                         continue;
                     }
 
-                    if ('/' !== $pathinfo) {
-                        if ('/' === $pathinfo[-1]) {
-                            if (preg_match($regex, substr($pathinfo, 0, -1), $n) && $m === (int) $n['MARK']) {
-                                $matches = $n;
-                            } else {
-                                $hasTrailingSlash = true;
-                            }
-                        }
-                        if ($hasTrailingSlash !== ('/' === $pathinfo[-1])) {
-                            if ($this instanceof RedirectableUrlMatcherInterface && (!$requiredMethods || isset($requiredMethods['GET'])) && 'GET' === $canonicalMethod) {
-                                return $allow = $allowSchemes = array();
-                            }
-                            continue;
-                        }
+                    if ('/' === $pathinfo || (!$hasTrailingSlash ? '/' !== $pathinfo[-1] || !preg_match($regex, substr($pathinfo, 0, -1), $n) || $m !== (int) $n['MARK'] : '/' === $pathinfo[-1])) {
+                        // no-op
+                    } elseif ($this instanceof RedirectableUrlMatcherInterface) {
+                        return null;
+                    } else {
+                        continue;
                     }
 
                     foreach ($vars as $i => $v) {
@@ -176,6 +168,6 @@ trait PhpMatcherTrait
             throw new NoConfigurationException();
         }
 
-        return array();
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-<div class="contenedor_carga" id="contenedor_carga" >
+<div class="contenedor_carga" id="contenedor_carga">
     <svg class="loader" id="carga" viewBox="0 0 340 340">
         <circle cx="170" cy="170" r="160" stroke="#1e88e5"/>
         <circle cx="170" cy="170" r="135" stroke="#404041"/>
