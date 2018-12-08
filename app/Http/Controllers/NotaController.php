@@ -28,8 +28,8 @@ class NotaController extends Controller
         $MateriasDelProfesor = MateriaPC::where('fk_empleado','=',session('user')['cedula'])->get();
         $numeroPeriodos = Periodo::count();
         $datos = [];
-        $notasPorPeriodo = [];
         foreach ($MateriasDelProfesor as $materia) {
+          $notasPorPeriodo = [];
           $curso = Curso::find($materia->fk_curso);
           $nombreCurso = $curso->prefijo.'-'.$curso->sufijo;
           $notas = $materia->Notas()->get()->toArray();
