@@ -31,9 +31,7 @@
     {{-- @endguest --}}
     @section('contenedor_admin')
     @show
-    {{-- @guest --}}
-    @include('footers.principal')
-    {{-- @endguest --}}
+   
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 @section('titulo','Cursos')
 @yield('nombre')
 {{-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> --}}
-<div class="container">
+<div >
 <h1 class="text-center"><i class="fas fa-user-edit"></i> Editar Estudiantes </h1><br>
 <div class="accordion" id="accordion">
         <div class="card-header bg-secondary text-center text-white">

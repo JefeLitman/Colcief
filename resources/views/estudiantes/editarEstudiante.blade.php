@@ -4,7 +4,7 @@
 @include('error.error')
 {{-- //////////////// --}}
 <br>
-<div class="container">
+<div>
     <div class="row justify-content-center">
         <div class="col-10">
             <form enctype="multipart/form-data" action="{{route('estudiantes.update', $estudiante->pk_estudiante)}}" method="POST">

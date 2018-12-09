@@ -1,78 +1,107 @@
-<!-- Menu principal para el administrador -->
-<nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;margin-bottom:25px;">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{asset('css/img/logo_min_1.png')}}"  height="30" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item @if (Request::path()=="empleados/principal") active @endif ">
-                    <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
-                </li>
-                {{-- Cursos --}}
-                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chalkboard-teacher"></i> Cursos</a>
-                    {{--  desplegable de cursos  --}}
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                        {{--  Crear cursos  --}}
-                        <a class="dropdown-item" href="{{ url('/cursos/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
-                        <div class="dropdown-divider"></div>
+<!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
+   
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header" id="sidebarCollapse" style="cursor: pointer;">
+                <h3><i class="fas fa-bars"></i> ColCief</h3>
+                <strong><i class="fas fa-bars"></i></strong>
+            </div>
 
-                        {{--  Editar cursos  --}}
-                        <a class="dropdown-item" href="{{ url('/cursos') }}"><i class="fas fa-user-edit"></i> Editar</a>
-                    </div>
-                </li>
-                {{-- Empleados --}}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Empleados</a>
-                        {{--  desplegable de empleados  --}}
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                            {{--  crear empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
-                            <div class="dropdown-divider"></div>
-
-                            {{--  Editar empleados  --}}
-                            <a class="dropdown-item" href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
-                        </div>
-                </li>
-
-                 {{--  Estudiantes  --}}
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-graduate"></i> Estudiantes</a>
-                    {{--  desplegable de estudiantes  --}}
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        {{--  Crear estudiantes  --}}
-                        <a class="dropdown-item" href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
-                        <div class="dropdown-divider"></div>
-
-                        {{--  Editar estudiantes  --}}
-                        <a class="dropdown-item" href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
-                    </div>
-                </li>
-
-                {{-- Divisiones --}}
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-th-list"></i> Divisones</a>
-                    {{--  desplegable de divisones  --}}
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        {{--  Crear divisones  --}}
-                        <a class="dropdown-item" href="{{ url('/divisiones/crear') }}"><i class="fas fa-plus-circle"></i> Crear</a>
-                        <div class="dropdown-divider"></div>
-
-                        {{--  Editar divisones  --}}
-                        <a class="dropdown-item" href="{{ url('/divisiones') }}"><i class="fas fa-pen"></i> Editar</a>
-                        <div class="dropdown-divider"></div>
-
-                        {{--  Eliminar divisones  --}}
-                        <a class="dropdown-item" href="#"><i class="fas fa-minus"></i> Eliminar</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
-                </li>
+            <ul class="list-unstyled components">
+				<li @if (Request::path()=="empleados/principal") class="active" @endif >
+					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
+				</li>
+				<li @if (Request::path()=="cursos") class="active" @endif>
+					<a href="#cursosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+						<i class="fas fa-chalkboard-teacher"></i> Cursos
+					</a>
+					<ul class="collapse list-unstyled" id="cursosSubmenu">
+						<li>
+							<a href="{{ url('/cursos/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+						</li>
+						<li>
+							<a href="{{ url('/cursos') }}"><i class="fas fa-user-edit"></i> Editar</a>
+						</li>
+					</ul>
+				</li>
+				<li @if (Request::path()=="empleados") class="active" @endif >
+					<a href="#empleadoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+						<i class="fas fa-users"></i> Empleados
+					</a>
+					<ul class="collapse list-unstyled" id="empleadoSubmenu">
+						<li>
+							<a href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+						</li>
+						<li>
+							<a href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#estudianteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+						<i class="fas fa-user-graduate"></i> Estudiantes
+					</a>
+					<ul class="collapse list-unstyled" id="estudianteSubmenu">
+						<li>
+							<a href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+						</li>
+						<li>
+							<a href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#divisionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+						<i class="fas fa-th-list"></i> Divisones
+					</a>
+					<ul class="collapse list-unstyled" id="divisionesSubmenu">
+						<li>
+							<a href="{{ url('/divisiones/crear') }}"><i class="fas fa-plus-circle"></i> Crear</a>
+						</li>
+						<li>
+							<a href="{{ url('/divisiones') }}"><i class="fas fa-pen"></i> Editar</a>
+						</li>
+						<li>
+							<a  href="#"><i class="fas fa-minus"></i> Eliminar</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
+				</li>
+                
             </ul>
-        </div>
-</nav>
+        </nav>
+	
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('empleados/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-bell"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+			</nav>
+    
+
+    
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
