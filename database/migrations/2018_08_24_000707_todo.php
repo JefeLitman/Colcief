@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Todo extends Migration{
+class Todo extends Migration {
 
     public function up(){
 
-        Schema::create('acudiente', function (Blueprint $table) {
+        Schema::create('acudiente', function (Blueprint $table){
             $table->increments('pk_acudiente'); //diferente
             $table->string('nombre_acu_1', 50);
             $table->string('direccion_acu_1',255);
@@ -123,7 +123,6 @@ class Todo extends Migration{
             $table->string('nombre', 50);
             $table->string('descripcion')->nullable();
             $table->integer('porcentaje');
-            $table->date('limite');
             $table->year('ano');
             $table->timestamps();
         });
