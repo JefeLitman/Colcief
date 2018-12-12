@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Boletin;
 use App\MateriaPC;
 use App\Empleado;
 use App\Materia;
@@ -354,4 +355,13 @@ class MateriaPCController extends Controller
         ]);
     }
 
+    public function showPlanillasCurso($pk_curso,$pk_materia_pc){
+        $curso=Curso::findOrFail($pk_curso);
+        $materia_pc=MateriaPC::findOrFail($pk_materia_pc);
+        if ($materia_pc->fk_curso == $curso->pk_curso) {
+           
+            return "Si corresponde... En contrucción.";
+        }
+        return "Error: Esa materia no corresponde a ese curso.";
+    }
 }

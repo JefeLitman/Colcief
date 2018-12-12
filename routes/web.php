@@ -81,10 +81,13 @@ Route::get('/cursos/grados/{grado}','CursoController@conteoCursosPorGrado');
 Route::resource('/cursos','CursoController');
 Route::get('/pruebajax','CursoController@prueba'); //Eliminar método y ruta
 Route::post('/cursos/sigSufijo', 'CursoController@sigSufijo')->name('cursos.sigSufijo');
+Route::get('/cursos/{pk_curso}/planillas','CursoController@cursoPlanillas');
+
 
 /* RUTAS DE MATERIAPC */
 // Debe estar logeado para acceder
 Route::resource('/materiaspc','MateriaPCController');
+Route::get('/cursos/{pk_curso}/planillas/{pk_materia_pc}','MateriaPCController@showPlanillasCurso');
 
 /* RUTAS DE NOTA */
 Route::get('/notas/crear/{materia}','NotaController@create');
@@ -102,7 +105,6 @@ Route::get('/horarios/{pk_materiaPC}/editar','HorarioController@edit');
 /* RUTAS DE BOLETIN */
 Route::resource('/boletines','BoletinController');
 Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@showEstudiante');
-Route::get('/boletines/actual/cursos/{fk_curso}','BoletinController@showCurso');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel

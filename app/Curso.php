@@ -19,6 +19,10 @@ class Curso extends Model {
         return $this->hasMany('App\Boletin', 'fk_curso', 'pk_curso');
     }
 
+    public function materiaspc(){
+        return $this->hasMany('App\MateriaPC', 'fk_curso', 'pk_curso');
+    }
+
     public function estudiantes(){
         return $this->hasMany('App\Estudiante', 'fk_curso','pk_curso');
     }

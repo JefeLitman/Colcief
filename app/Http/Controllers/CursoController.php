@@ -100,6 +100,15 @@ class CursoController extends Controller
         }
     }
 
+    public function cursoPlanillas($pk_curso){  //By Paola
+        $grado=Curso::where('pk_curso',$pk_curso)->get();
+        if (!empty($grado[0])) {
+            $materias=$grado[0]->materiaspc;
+            return view("cursos.planillasCurso",["grado"=>$grado[0],"materias"=>$materias]);
+        }
+        return "Error: El curso solicitado no existe";
+    }
+
     public function prueba() {
       return view('cursos.prueba');
     }
