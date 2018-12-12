@@ -34,12 +34,11 @@ class EstudianteController extends Controller{
         return view('cursos.cursos', ['curso' => $curso, 'grado' => $grado]);
     }
 
-    public function estudianteGrado($prefijo,$sufijo){
-        $curso = new CursoController;
-        $curso = $curso->conteoEstudiantes($prefijo,$sufijo);
-        $curso = json_decode($curso);
-        $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
-        return view('estudiantes.estudiantesGrado',['curso'=>$curso,'grado'=>$g[$prefijo]." - ".$sufijo]);
+    public function estudianteGrado($pk_curso){
+        $curso = json_decode((new CursoController)->conteoEstudiantes($pk_curso));
+        $c=Curso::findOrFail($pk_curso);
+        // $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
+        return view('estudiantes.estudiantesGrado',['curso'=>$curso,'grado'=>$c]);
     }
 
     public function filtro(Request $request){

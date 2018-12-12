@@ -47,7 +47,7 @@ Route::get('estudiantes/periodo/{p}', function ($p) {
     return view('estudiantes.periodo',['periodo' => $p]);
 })->middleware('admin:estudiante');
 Route::resource('/estudiantes', 'EstudianteController');
-Route::get('estudiantes/cursos/{p}/{s}', 'EstudianteController@estudianteGrado' )->middleware('admin:administrador');
+Route::get('estudiantes/cursos/{pk_curso}', 'EstudianteController@estudianteGrado' )->middleware('admin:administrador');
 
 
 /* RUTAS EMPLEADO */

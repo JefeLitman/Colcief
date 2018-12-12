@@ -3,7 +3,10 @@
 @section('titulo','Estudiantes/Grado')
 <div id="br"></div>
 <div class="container">
-    <h4 class="text-center"> Curso {{$grado}} </h4><br>
+    @php
+       $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once']; 
+    @endphp
+    <h4 class="text-center"> Curso {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4><br>
     <div class="table-responsive" >
         <table class="table table-hover mr-auto" id="myTable">
             <thead>
