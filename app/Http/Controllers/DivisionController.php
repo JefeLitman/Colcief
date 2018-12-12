@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DivisionStoreController;
 
-class DivisionController extends Controller{
+class DivisionController extends Controller {
 
     public function __construct(){
         $this->middleware('admin:administrador');
@@ -40,7 +40,6 @@ class DivisionController extends Controller{
                 $division -> descripcion = $request->descripcion[$i];
                 $division -> porcentaje = $request->porcentaje[$i];
                 $division -> ano = $this->ano;
-                $division -> limite = '2018-09-14';
                 $division->save();
             }
         }
@@ -48,17 +47,52 @@ class DivisionController extends Controller{
 
     public function edit(){
         $division = Division::all()->where('ano', $this->ano);
-        if($this->date <= $division[0]->limite){
-            return view('divisiones.editarDivision', ['division' => $division]);
-        } else {
-            return 'EL año escolar ya inicio';
-        }
+        // if($this->date <= $division[0]->limite){
+        return view('divisiones.editarDivision', ['division' => $division]);
+        // } else {
+        //     return 'EL año escolar ya inicio';
+        // }
     }
 
-    public function update(Request $request, $pk_division){
-        $division = Division::findOrFail($pk_division)->fill($request->all());
-        $division->porcentaje=$request->porcentaje;
-        $division->save();
-        return redirect(route('divisiones.verDivision', $division->pk_division));
+    public function update(Request $request){
+        $division = Division::all()->where('ano', $this->ano);
+        $total = 0;
+        $form = count($request->nombre);
+        $consulta = count($division);
+
+        for($i=0;$i<$form;$i++){
+            $total += $request->porcentaje[$i];
+        }
+        if($total == 100){
+            if($consulta <= $form){
+                for($i=0;$i<$consulta;$i++){
+                    $division[$i] -> nombre = $request->nombre[$i];
+                    $division[$i] -> descripcion = $request->descripcion[$i];
+                    $division[$i] -> porcentaje = $request->porcentaje[$i];
+                    $division[$i] -> save();
+                }
+                for($i=$consulta;$i<$form;$i++){
+                    $newDivision = new Division();
+                    $newDivision -> nombre = $request->nombre[$i];
+                    $newDivision -> descripcion = $request->descripcion[$i];
+                    $newDivision -> porcentaje = $request->porcentaje[$i];
+                    $newDivision -> ano = $this->ano;
+                    $newDivision -> save();
+                }
+            }else{
+                for($i=0;$i<$form;$i++){
+                    $division[$i] -> nombre = $request->nombre[$i];
+                    $division[$i] -> descripcion = $request->descripcion[$i];
+                    $division[$i] -> porcentaje = $request->porcentaje[$i];
+                    $division[$i] -> save();
+                }
+                for($i=$form;$i<$consulta;$i++){
+                    // $division[$i] -> porcentaje = 0;
+                    // $division[$i] -> save();
+                    $division[$i] -> delete();
+                }
+            }
+        }
+        return redirect('/divisiones');
     }
 }

@@ -45,9 +45,4 @@
         </div>
     </div>
     <br>
-    <script>
-    
-    </script>
-    <script src="{{ asset('js/ajax.js') }}"></script>
-    {{-- <script>autocompletar('estudiante', ["nombre", "apellido"])</script> --}}
 @endsection

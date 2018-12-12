@@ -3,6 +3,7 @@
 @section('contenedor_admin')
     @include('error.error')
 <br>
+<div id="br"></div>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -12,16 +13,15 @@
             </ul>
         </div>
     @endif
-
 <div class="container">
     <h3 class="card-title text-center">
         Editar divisiones
     </h3>
     <br>
-    <form enctype="multipart/form-data" action="/divisiones" method="POST">
-        @csrf
+<form id="editar" enctype="multipart/form-data" action="/divisiones/{{date('Y')}}" method="POST">
+    @csrf
+    @method('PUT')
     <div class="table-responsive">
-        <script> var i=0 </script>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -61,18 +61,19 @@
     <div class="row justify-content-center">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <button class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #0277bd !important; border-color: #0277bd !important; width: 40%;" type="submit" name="action">
+            <button id="enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #0277bd !important; border-color: #0277bd !important; width: 40%;" type="submit" name="action">
                 Crear
             </button>
             <div class="col-md-4"></div>
         </div>
     </div>
+
     </form>
+    
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script>
+    i = {{count($division)}};
     $('#create').click(function(){
-        i++;
         $('#div').append(
             '<tr class="menos" id="index['+i+']">'+
                ' <th scope="row">'+
@@ -86,10 +87,20 @@
                 '</td>'+
             '</tr>'
         );
+        i++;
     });
     $('#delete').click(function(){
         $('form .menos:last').remove();
         i--;
+    });
+    function onSubmit(){}
+    $('#enviar').click(function(e){
+        e.preventDefault();
+        modalConfirm(function(confirm){
+            if(confirm){
+                $('#editar').submit();
+            }
+        },'¿Desea actualizar las divisiones?','Este cambio afectara el valor de cada una de las notas establecidas hasta el momento',true);
     });
 </script>
 <br>
