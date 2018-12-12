@@ -58,24 +58,23 @@ class CursoController extends Controller
     //     return redirect(route('cursos.show', $curso->pk_curso));
     // }
 
-    public function conteoEstudiantes($prefijo,$sufijo) {
-        $estudiantes = Curso::where('prefijo','=',$prefijo)
-        ->where('sufijo','=',$sufijo)->first();
-        if (!empty($estudiantes)) {
-          $estudiantes = $estudiantes->estudiantes;
-          $listado = [];
-          foreach ($estudiantes as $estudiante) {
-            array_push($listado,[
-              'pk_estudiante' => $estudiante->pk_estudiante,
-              'fk_acudiente' => $estudiante->fk_acudiente,
-              'fk_curso' => $estudiante->fk_curso,
-              'nombre' => $estudiante->nombre,
-              'apellido' => $estudiante->apellido,
-              'grado' => $estudiante->grado,
-              'discapacidad' => $estudiante->discapacidad
-            ]);
-          }
-          return json_encode($listado);
+    public function conteoEstudiantes($pk_curso) {
+        $estudiantes = Curso::where('pk_curso','=',$pk_curso)->get();
+        if (!empty($estudiantes[0])) {
+            $estudiantes = $estudiantes[0]->estudiantes;
+            $listado = [];
+            foreach ($estudiantes as $estudiante) {
+                array_push($listado,[
+                    'pk_estudiante' => $estudiante->pk_estudiante,
+                    'fk_acudiente' => $estudiante->fk_acudiente,
+                    'fk_curso' => $estudiante->fk_curso,
+                    'nombre' => $estudiante->nombre,
+                    'apellido' => $estudiante->apellido,
+                    'grado' => $estudiante->grado,
+                    'discapacidad' => $estudiante->discapacidad
+                ]);
+            }
+            return json_encode($listado);
         }
         return 0;
     }
