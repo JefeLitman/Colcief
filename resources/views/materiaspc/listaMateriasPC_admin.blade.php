@@ -10,7 +10,7 @@
 	{{-- Estado: Aparentemente finalizado (Sujeto a cambios) --}}
 	{{-- URL: localhost:8000\materiaspc  -> Logeado en un usuario de tipo administrador--}}
 <br id="br">
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
         <div class="accordion" id="accordionExample">
         @php
             $i=0;

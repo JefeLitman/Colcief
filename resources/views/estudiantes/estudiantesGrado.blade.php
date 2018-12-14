@@ -2,9 +2,9 @@
 @section('contenedor_admin')
 @section('titulo','Estudiantes/Grado')
 <div id="br"></div>
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     @php
-       $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once']; 
+       $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
     @endphp
     <h4 class="text-center"> Curso {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4>
     <div class="text-center">
@@ -33,7 +33,7 @@
                             <div class="text-center">No hay estudiantes</div>
                         </td>
                     </tr>
-                    
+
                 @else
                     @foreach ($curso as $c)
                         <tr>
@@ -46,11 +46,11 @@
                                 <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
                                 </a>
                                 <a class="delete" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
-                            </td> 
+                            </td>
                         </tr>
                     @endforeach
                 @endif
-                
+
             </tbody>
         </table>
 

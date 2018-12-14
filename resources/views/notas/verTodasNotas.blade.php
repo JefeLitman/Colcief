@@ -4,7 +4,7 @@
 {{-- mensajes de error --}}
 @include('error.error')
 <br id="br">
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordionExample">
         {{--  recorre el acordion del curso --}}
         @php

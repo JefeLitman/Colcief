@@ -2,7 +2,7 @@
 @section('contenedor_admin')
 @section('titulo','Lista Cursos')
 <br id="br">
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordionExample">
         @php
             $i=0;

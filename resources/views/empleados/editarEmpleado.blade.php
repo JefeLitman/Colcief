@@ -4,7 +4,7 @@
 {{-- errores --}}
 @include('error.error')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form enctype="multipart/form-data" action="{{route('empleados.update', $empleado->cedula)}}" method = "POST">
             <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">

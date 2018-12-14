@@ -17,7 +17,7 @@
 <b>Contenido $profesores: </b>{{$profesores}} <br><br> --}}
 <br>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form method="post" action="/materiaspc" onload="logros(document.getElementById('fk_materia').value)">
                 @csrf

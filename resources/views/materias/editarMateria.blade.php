@@ -10,7 +10,7 @@
 {{-- URL: localhost:8000\materias\{pk_materia}\editar --}}
 <br>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form method="post" action="{{route('materias.update', $materia->pk_materia)}}" >
             {{ method_field('PATCH') }}

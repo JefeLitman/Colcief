@@ -3,7 +3,7 @@
 @section('titulo','Lista de Divisiones')
 <br>
 <div id="br"></div>
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div class="row center">
         <div class="col-md-1"></div>
         <div class="col-md-10">

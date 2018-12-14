@@ -4,7 +4,7 @@
 {{-- mensajes de error --}}
 @include('error.error')
 <br id="br">
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     @foreach ($datos as $dato)
         <div class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
             <div class="card-header" style="background-color:#66ba6a7d !important;">

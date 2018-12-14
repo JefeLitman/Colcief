@@ -5,7 +5,7 @@
 @isset($curso)
     {{$curso->prefijo}} - {{$curso->sufijo}}
 @endisset
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <h1 class="card-title text-center">
         Horario
     </h1>
