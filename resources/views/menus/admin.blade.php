@@ -5,9 +5,9 @@
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-            <div class="sidebar-header" id="sidebarCollapse" style="cursor: pointer;">
-                <h3><i class="fas fa-bars"></i> ColCief</h3>
-                <strong><i class="fas fa-bars"></i></strong>
+            <div class="sidebar-header"  style="cursor: pointer;">
+                <h3 style="color: Dodgerblue;"><i  class="fab fa-contao"></i>olCief</h3>
+                <strong style="color: Dodgerblue;" ><i class="fab fa-contao"></i></strong>
             </div>
 
             <ul class="list-unstyled components">
@@ -81,7 +81,9 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
+					<div class="sidebar-header" id="sidebarCollapse" style="cursor: pointer;">
+						<h3><i class="fas fa-bars"></i></h3>
+					</div>
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
