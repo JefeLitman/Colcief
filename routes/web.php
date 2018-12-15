@@ -51,8 +51,18 @@ Route::get('estudiantes/cursos/{pk_curso}', 'EstudianteController@estudianteGrad
 
 
 /* RUTAS EMPLEADO */
-Route::get('empleados/principal', function () {
-    return view('empleados.principal');
+Route::get('empleados/principal/{rol}', function ($rol) {
+    switch($rol){
+        case '0':
+            return view('empleados.adminPrincipal');
+            break;
+        case '1':
+            return view('empleados.directorPrincipal');
+            break;
+        case '2':
+            return view('empleados.profesorPrincipal');
+            break;
+    }
 })->middleware('admin:profesor,director,administrador');
 Route::get('empleados/editarEstudiantes', function () {
     return view('cursos.editarEstudiante');
