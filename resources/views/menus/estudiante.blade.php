@@ -5,7 +5,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header"  style="cursor: pointer;">
-                <h3 style="color: Dodgerblue;"><i  class="fab fa-contao"></i>olCief</h3>
+                <h3 style="color: white;"><i  style="color: Dodgerblue;" class="fab fa-contao"></i>olCief</h3>
                 <strong style="color: Dodgerblue;" ><i class="fab fa-contao"></i></strong>
             </div>
 
@@ -13,13 +13,13 @@
 				<li @if (Request::path()=="estudiantes/principal") class="active" @endif >
 					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
-                <li @if (Request::path()=="estudiantes/principal") class="active" @endif >
-					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="far fa-calendar-alt"></i> Horario</a>
+                <li @if (Request::path()=="horarios") class="active" @endif >
+					<a class="nav-link " href="{{ url('horarios') }}"> <i class="far fa-calendar-alt"></i> Horario</a>
                 </li>
-                <li @if (Request::path()=="estudiantes/principal") class="active" @endif >
+                <li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-sticky-note"></i> Notas</a>
 				</li>
-                <li @if (Request::path()=="estudiantes/principal") class="active" @endif >
+                <li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion</a>
 				</li>
 				<li class="nav-item">
@@ -40,8 +40,8 @@
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('empleados/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-bell"></i></a>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('estudiantes/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
                             </li>
                         </ul>
                     </div>

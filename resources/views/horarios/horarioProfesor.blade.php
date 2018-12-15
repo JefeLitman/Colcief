@@ -1,4 +1,4 @@
-@extends('contenedores.profesor')
+{{-- @extends('contenedores.profesor')
 @section('titulo',' Horarios')
 @section('contenedor_profesor')
 <br>
@@ -9,6 +9,6 @@
     <h1 class="card-title text-center">
         Horario
     </h1>
-    @include('horarios.horario', ['horarios' => $empleado])
-</div>
-@endsection
+    @include('horarios.horario', ['horarios' => $empleado]) --}}
+{{-- </div>
+@endsection --}}
