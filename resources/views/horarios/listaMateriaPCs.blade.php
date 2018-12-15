@@ -3,7 +3,7 @@
 @section('contenedor_admin')
 
 <br id="br">
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordionExample">
         @php
             $i=0;

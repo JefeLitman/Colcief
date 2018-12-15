@@ -1,13 +1,13 @@
 @extends('contenedores.admin')
 @section('contenedor_admin')
 @section('titulo','Lista Estudiante')
-    <div class="container">
+    <div class="container" style="background:#fafafa !important;">
         <br>
         <br id="br">
         <div class="col-md-12">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <button id="filter" type="submit" form="grado" class="btn btn-outline-secondary"><i class="fas fa-filter"></i></button> 
+                    <button id="filter" type="submit" form="grado" class="btn btn-outline-secondary"><i class="fas fa-filter"></i></button>
                 </div>
                 <input type="text" class="form-control" aria-label="Text input with dropdown button">
             </div>

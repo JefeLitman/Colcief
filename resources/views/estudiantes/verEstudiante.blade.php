@@ -12,7 +12,7 @@
     <h1>Ejemplos</h1> --}}
 
 <br>
-<div >
+<div class="container" style="background:#fafafa !important;">
     <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
         <div class="card-header" style="background-color:#66ba6a7d !important;">
             <img class="card-img-top" src="{{$estudiante->foto}}">

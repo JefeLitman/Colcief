@@ -11,7 +11,7 @@
 	{{-- <h3>Tipo de Archivos:</h3> $materia: {{ gettype($materia)}} <br>
     <h3>Contenido materia:</h3> {{$materia}} <br> --}}
     <br>
-    <div class="container">
+    <div class="container" style="background:#fafafa !important;">
         <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
             <div class="card-header" style="background-color:#66ba6a7d !important;">
                 <h2 class="text-center">{{$materia->nombre}}</h2>

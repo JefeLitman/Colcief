@@ -3,7 +3,7 @@
 @section('titulo','Cursos')
 @yield('nombre')
 {{-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> --}}
-<div >
+<div class="container" style="background:#fafafa !important;">
 <h1 class="text-center"><i class="fas fa-user-edit"></i> Editar Estudiantes </h1><br>
 <div class="accordion" id="accordion">
         <div class="card-header bg-secondary text-center text-white">
@@ -18,9 +18,9 @@
                 </button>
                 </h5>
             </div>
-        
+
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-             
+
                 <div class="text-center">
                     {{-- Muestra los grados para primaria --}}
                     <p>
@@ -46,8 +46,8 @@
                 </div>
                 {{-- Contenidos para primaria --}}
                 <div class="collapse" id="preescolar">
-                    <div class="card card-body">                       
-                        Cursos de preescolar 
+                    <div class="card card-body">
+                        Cursos de preescolar
                         @if(empty($curso[0]))
                             <div class="text-center">No hay Cursos</div>
                         @else
@@ -130,7 +130,7 @@
             </h5>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                
+
                 <div class="text-center">
                     {{-- Muestra los grados para secundaria --}}
                     <p>
@@ -164,7 +164,7 @@
                             @foreach ($curso[6] as $c)
                                 <a class="btn btn-primary mt-3 text-light submit  w-25"  prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
                             @endforeach
-                        @endisset                        
+                        @endisset
                     </div>
                 </div>
                 <div class="collapse" id="septimo">

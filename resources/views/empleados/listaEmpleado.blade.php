@@ -1,7 +1,7 @@
 @extends('contenedores.admin')
 @section('contenedor_admin')
 @section('titulo','Lista Empleados')
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div id="br"></div>
     <div class="col-md-12">
         <form action="" id="autocompletar">

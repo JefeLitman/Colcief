@@ -12,7 +12,7 @@
 {{-- URL: localhost:8000\materiaspc\{pk_materia_pc}\editar --}}
 <br>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form method="post" action="{{route('materiaspc.update', $materiapc->pk_materia_pc)}}" >
                 {{ method_field('PATCH') }}

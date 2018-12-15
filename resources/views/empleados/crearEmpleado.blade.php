@@ -4,7 +4,7 @@
 {{-- mensajes de error --}}
 @include('error.error')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form enctype="multipart/form-data" action="{{ url('/empleados') }}" method = "POST">
             @csrf

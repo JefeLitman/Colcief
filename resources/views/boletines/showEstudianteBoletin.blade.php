@@ -4,7 +4,7 @@
 {{-- Envio ["msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notasDiv"=>$notaDivs] --}}
 
 <br>
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     @if ($msj == 1)
         <h3 class="card-title text-center"> No hay estudiantes o boletines correspondientes</h3>
     @else

@@ -5,7 +5,7 @@
 @include('error.error')
 <br>
 <div >
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form method="post" action="{{ route('estudiantes.store') }}" enctype="multipart/form-data">
                 @csrf

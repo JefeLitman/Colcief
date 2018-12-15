@@ -58,7 +58,7 @@
             <a class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <button id="enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #0277bd !important; border-color: #0277bd !important; width: 40%;" type="submit" name="action">
@@ -69,7 +69,7 @@
     </div>
 
     </form>
-    
+
 </div>
 <script>
     i = {{count($division)}};
