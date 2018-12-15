@@ -23,6 +23,10 @@
                             {{ $nombre }}
                         </h5>
                     </div>
+                    <div>
+                        {{-- Botones --}}
+                          
+                    </div>
                 </div>
                 <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
                     <div class="card-body">

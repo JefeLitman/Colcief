@@ -51,7 +51,7 @@ class MateriaPCController extends Controller
                 $result=[];
 
                 // Busco las tuplas de materia_pc creadas el actual año
-                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.nombre','curso.prefijo','curso.sufijo')->where('materia_pc.created_at','like','%'.date('Y').'%');
+                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.fk_materia','materia_pc.nombre','curso.prefijo','curso.sufijo')->where('materia_pc.created_at','like','%'.date('Y').'%');
 
                 // Con esos valores realizo un join con empleado y curso
                 $materiaspc=$materiaspc->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get();
@@ -92,26 +92,26 @@ class MateriaPCController extends Controller
                 $materiaspc=$materiaspc->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get();
 
                 // Aqui extraigo las materias que tienen alguna tupla en materia_pc creadas en el actual año, y que el dicta para que no se repita la materias las agrupo.
-                $materias=MateriaPC::select('nombre')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['materia_pc.fk_empleado','=',$user["cedula"]]])->groupBy('nombre')->get();
+                $materias=MateriaPC::select('nombre','fk_materia as pk_materia')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['materia_pc.fk_empleado','=',$user["cedula"]]])->groupBy('fk_materia')->get();
                 
                 // El array asosiativo $result, se declara y se declaran sus item como un array para poder 
                 // ingresarles array's posteriormente. Es decir cada item del array asosiativo $result contendrá matrices.
-                // Ejemplo de lo que sería $result={"Etica":[[1,"8-2"],[2,"8-2"]],"Software":[[3,"8-2"]]}
+                // Ejemplo de lo que sería $result={"fk_materia":[[1,"8-2"],[2,"8-2"]],"fk_materia":[[3,"8-2"]]}
                 foreach($materias as $j){
-                    $result[$j->nombre]=[];
+                    $result[$j->pk_materia]=[];
                 }
                 foreach ($materiaspc as $i){
                     foreach($materias as $j){
-                        if($j->nombre==$i->nombre){
+                        if($j->pk_materia==$i->fk_materia){
                             $prefijo=$i->prefijo;
                             if($prefijo=="0"){
                                 $prefijo="Prescolar";
                             }
-                            array_push($result[$j->nombre],[$i->pk_materia_pc,$prefijo."-".$i->sufijo]);
+                            array_push($result[$j->pk_materia],[$i->pk_materia_pc,$prefijo."-".$i->sufijo]);
                         }
                     }
                 }
-                $url='materiaspc.listaMateriasPC_profesor';
+                return view('materiaspc.listaMateriasPC_profesor');
                 break;
             case "estudiante":
                 // Cuando es estudiantes
