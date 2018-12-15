@@ -97,6 +97,22 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(session('role')=="administrador"){
+            // Solo el administrador puede eliminar una MateriaPC
+            $materia = Materia::where("pk_materia","=",$id)->get();
+            if(empty($materia[0])){
+                return response()->json([
+                    'mensaje' => 'Esta materia no existe.'
+                ]);
+            }
+            $materia[0]->delete();
+            return response()->json([
+                'mensaje' => 'La materia fue eliminada.'
+            ]);
+            
+        }
+        return response()->json([
+            'mensaje' => 'No tienes los permisos necesarios.'
+        ]);
     }
 }

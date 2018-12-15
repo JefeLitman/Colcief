@@ -38,6 +38,7 @@ function modalConfirm (callback, titulo, mensaje, botones){
     $("#modal-btn-no").on("click", function(){
         callback(false);
         $("#exampleModalCenter").modal('hide');
+        
     });
 }
 function deleteRegistro(ruta, id, row){
@@ -46,7 +47,7 @@ function deleteRegistro(ruta, id, row){
         url: '/'+ruta+'/'+id,
         data: {_token:$('input[name=_token]').val(), _method:'DELETE'},
         success: function(data) {
-            row.fadeOut();
+            // row.fadeOut();
             newModal('Acción satisfactoria',data.mensaje, false);
         },
         error: function(){
@@ -59,8 +60,10 @@ $(document).ready(function(){
     $('.delete').click(function(){
         var row = $(this).parents('tr');
         var ruta = $(this).attr('ruta');
+        alert(ruta);
         var id = $(this).attr('identificador');
         modalConfirm(function(confirm){
+            $("#exampleModalCenter").modal('hide');
             if(confirm){
                 deleteRegistro(ruta, id, row)
             }
