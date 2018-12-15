@@ -17,10 +17,10 @@
 					<a class="nav-link " href="{{ url('horarios') }}"> <i class="far fa-calendar-alt"></i> Horario</a>
                 </li>
                 <li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-sticky-note"></i> Notas</a>
+					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-sticky-note"></i> Notas*</a>
 				</li>
                 <li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion</a>
+					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion*</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
