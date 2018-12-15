@@ -1,7 +1,7 @@
 
 <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
-   
+
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -11,12 +11,15 @@
             </div>
 
             <ul class="list-unstyled components">
+                {{--  INICIO  --}}
 				<li @if (Request::path()=="empleados/principal") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
-				</li>
+                </li>
+                {{--  HORARIOS  --}}
 				<li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="far fa-calendar-alt"></i> Horarios*</a>
-				</li>
+					<a class="nav-link " href="{{ url('/horarios') }}"> <i class="far fa-calendar-alt"></i> Horarios</a>
+                </li>
+                {{--  CURSOS  --}}
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-chalkboard-teacher"></i> Cursos*</a>
 				</li>
@@ -112,10 +115,10 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>
-                
+
             </ul>
         </nav>
-	
+
         <!-- Page Content  -->
         <div id="content">
 
@@ -124,7 +127,7 @@
 					<div class="sidebar-header" id="sidebarCollapse" style="cursor: pointer;">
 						<h3><i class="fas fa-bars"></i></h3>
 					</div>
-                    
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
@@ -134,12 +137,12 @@
                     </div>
                 </div>
 			</nav>
-    
 
-    
+
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
- 
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
