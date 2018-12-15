@@ -1,5 +1,5 @@
 @extends('contenedores.admin')
-@section('titulo','Empleado Nuevo')
+@section('titulo','Ver materia')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
 @include('error.error')

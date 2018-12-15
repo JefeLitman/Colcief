@@ -36,20 +36,20 @@ class MateriaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return 
+     * @return
      */
     public function store(MateriaStoreController $request)
-    {   
-        // Los datos al haber pasado por AcudienteStoreController ya están validados en la clase 
+    {
+        // Los datos al haber pasado por AcudienteStoreController ya están validados en la clase
         // Local>app>Http>Requests>MateriaStoreController.php
         $materia = (new Materia)->fill($request->all());
         try{
             $materia->save();
-            return "Ha sido guardado con exito";
+            return view('mensajes/exitoMaterias');
         }catch(Exception $e){
-            return "Ha ocurido un error con el servidor, vuelva a intentarlo.";
+            return view('mensajes/errorMaterias');
         }
-        
+
     }
 
 
@@ -82,11 +82,11 @@ class MateriaController extends Controller
     {
         $materia = Materia::findOrFail($id)->fill($request->all());
         $materia->save();
-        
+
         //Debido a que el atributo materia.nombre debe ser igual a materia_pc.nombre, cada que el nombre de una materia se modifique la otra debe actualizarse
         $materiapc = MateriaPC::where('fk_materia','=',$materia->pk_materia)->update(['nombre'=>$materia->nombre]);
 
-        return "Se actualizó correctamente";
+        return view('mensajes/actualizoMaterias');
     }
 
     /**

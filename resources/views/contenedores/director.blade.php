@@ -26,12 +26,12 @@
     @include('precarga.precarga')
 
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
-    @include('menus.profesor')
+    @include('menus.director')
 
     <!-- Aqui en esta seccion va estar el contenido de la pagina -->
-    @yield('contenedor_profesor')
+    @yield('contenedor_director')
 
-    <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
-    {{-- @include('footers.principal') --}}
+    {{-- <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
+    @include('footers.principal') --}}
 </body>
 </html>

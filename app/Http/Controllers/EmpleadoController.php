@@ -55,7 +55,9 @@ class EmpleadoController extends Controller{
         if(!empty($empleado[0])){
             return view("empleados.verEmpleado",['empleado'=>$empleado[0]]);
         }
-        return 'Empleado no encontrado';
+        /*@Autor Karen*/
+        //Colocandole estilo al mensaje("Empleado no encontrado").
+        return view('mensajes/Noempleado');
     }
 
     public function edit($cedula){
