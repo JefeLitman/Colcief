@@ -33,7 +33,7 @@ class LoginController extends Controller{
             default:
                 return redirect(route("login"));
         }
-        return $this->auth($guardia, ['cedula' => $request->username, 'password' => $request->password, 'role' => $request->role], '/empleados/principal');
+        return $this->auth($guardia, ['cedula' => $request->username, 'password' => $request->password, 'role' => $request->role], '/empleados/principal/'.$request->role);
     }
 
     public function logout(){

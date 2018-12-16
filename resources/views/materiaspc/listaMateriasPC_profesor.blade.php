@@ -14,7 +14,7 @@
 	<h3>Contenido materias:</h3> Ejemplo: $result={"Etica":[[1,"8-2"],[2,"8-2"]],"Software":[[3,"8-2"]]} <br> --}}
 
     <br id="br">
-    <div class="container">
+    <div class="container" style="background:#fafafa !important;">
         <div class="accordion" id="accordionExample">
         @php
             $i=0;

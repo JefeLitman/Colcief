@@ -134,10 +134,6 @@ class BoletinController extends Controller
         }
     }
 
-    public function showCurso($fk_curso){
-
-    }
-
     public function actualizarEstado($pk_boletin){
         $B=Boletin::where($pk_boletin)->get();
         if(empty($B[0])){

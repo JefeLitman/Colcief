@@ -169,6 +169,7 @@ class Todo extends Migration {
             $table->string('acta', 80);
             $table->date('fecha_presentacion');
             $table->unsignedInteger('fk_nota_periodo');
+            $table->unsignedInteger('fk_empleado')->nullable();
             $table->timestamps();
 
         });

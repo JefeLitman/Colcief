@@ -51,32 +51,27 @@ class MateriaPCController extends Controller
                 $result=[];
 
                 // Busco las tuplas de materia_pc creadas el actual año
-                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.nombre','curso.prefijo','curso.sufijo')->where('materia_pc.created_at','like','%'.date('Y').'%');
+                $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.fk_materia','materia_pc.nombre','curso.prefijo','curso.sufijo')->where('materia_pc.created_at','like','%'.date('Y').'%');
 
                 // Con esos valores realizo un join con empleado y curso
                 $materiaspc=$materiaspc->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get();
 
                 // Aqui extraigo las materias que tienen alguna tupla en materia_pc creadas en el actual año, y para que no se repita la materias las agrupo.
-                $materias=MateriaPC::select('nombre')->where('created_at','like','%'.date('Y').'%')->groupBy('nombre')->get();
-                
+                $materias=MateriaPC::select('fk_materia as pk_materia','nombre')->where('created_at','like','%'.date('Y').'%')->groupBy(['fk_materia','nombre'])->get();
                 // El array asosiativo $result, se declara y se  declaran sus item como un array para poder 
                 // ingresarles array's posteriormente. Es decir cada item del array asosiativo $result contendrá matrices.
-                // Ejemplo de lo que sería $result={"Etica":[[1,"edward","caballero","8-2"],[2,"edward","caballero","8-2"]],"Software":[[3,"paola","caicedo","8-2"]]}
+                // Ejemplo de lo que sería $result={"fk_materia":[[1,"edward","caballero","8-2"],[2,"edward","caballero","8-2"]],"fk_materia":[[3,"paola","caicedo","8-2"]]}
                 foreach($materias as $j){
-                    $result[$j->nombre]=[];
+                    $result[$j->pk_materia]=[];
                 }
                 foreach ($materiaspc as $i){
-                    foreach($materias as $j){
-                        if($j->nombre==$i->nombre){
-                            $prefijo=$i->prefijo;
-                            if($prefijo=="0"){
-                                $prefijo="Prescolar";
-                            }
-                            array_push($result[$j->nombre],[$i->pk_materia_pc,$i->nombreP,$i->apellido,$prefijo."-".$i->sufijo]);
-                        }
+                    $prefijo=$i->prefijo;
+                    if($prefijo=="0"){
+                        $prefijo="Prescolar";
                     }
+                    array_push($result[$i->fk_materia],[$i->pk_materia_pc,$i->nombreP,$i->apellido,$prefijo."-".$i->sufijo]);
                 }
-                $url='materiaspc.listaMateriasPC_admin';
+                return view('materiaspc.listaMateriasPC_admin',['result'=>$result,'materias'=>$materias]);
                 break;
             case "director":
                 // Cuando es director...  que pase a profesor(Por eso omito el break).
@@ -349,17 +344,20 @@ class MateriaPCController extends Controller
             $materiapc = MateriaPC::where("pk_materia_pc","=",$id)->get();
             if(empty($materiapc[0])){
                 return response()->json([
-                    'mensaje' => 'Esta materia no existe.'
-                ]);
-            }else{
-                $materiapc[0]->delete();
-                return response()->json([
-                    'mensaje' => 'La materia fue eliminada.'
+                    'mensaje' => 'Este profesor no esta asignado a ninguna materia.'
                 ]);
             }
+            $docente=Empleado::select('nombre','apellido')->where("cedula",$materiapc[0]->fk_empleado)->get()[0];
+            $curso=Curso::select('prefijo','sufijo')->where("pk_curso",$materiapc[0]->fk_curso)->get()[0];
+            $materia=$materiapc[0]->nombre;
+            $curso=($curso->prefijo=='0')?'Preescolar-'.$curso->sufijo:$curso->prefijo.'-'.$curso->sufijo;
+            $materiapc[0]->delete();
+            return response()->json([
+                'mensaje' => ucwords($docente->nombre).' '.ucwords($docente->apellido).' ya no dicta '.$materia.' al curso '.$curso.'.'
+            ]);
         }
         return response()->json([
-            'mensaje' => 'No tienes los permmisos necesarios.'
+            'mensaje' => 'No tienes los permisos necesarios.'
         ]);
     }
 

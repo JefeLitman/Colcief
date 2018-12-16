@@ -3,9 +3,9 @@
 @section('titulo','Planillas {{$materiapc->nombre}}')
 <br id="br">
 @php
-    $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once']; 
+    $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
 @endphp
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     {{-- <h4 class="text-center"> Planilla: {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4> --}}
     <table>
         <thead>
@@ -24,8 +24,8 @@
                             {{$d->nombre}} ({{$d->porcentaje}}%)
                         </th>
                     @endforeach
-                    <th> 
-                        P{{$p->nro_periodo}}  
+                    <th>
+                        P{{$p->nro_periodo}}
                     </th>
                 @endforeach
                 <th>
@@ -50,8 +50,8 @@
                                 {{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division}}
                             </td>
                         @endforeach
-                        <td> 
-                            {{$notaPer[$e->pk_estudiante][$p->pk_periodo]->nota_periodo}} 
+                        <td>
+                            {{$notaPer[$e->pk_estudiante][$p->pk_periodo]->nota_periodo}}
                         </td>
                     @endforeach
                     <td>
@@ -62,6 +62,6 @@
         </tbody>
 
     </table>
-    
+
 </div>
 @endsection

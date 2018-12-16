@@ -10,17 +10,20 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li @if (Request::path()=="estudiantes/principal") class="active" @endif >
-                    <a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
+				<li @if (Request::path()=="estudiantes/principal") class="active" @endif >
+					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 <li @if (Request::path()=="horarios") class="active" @endif >
-                    <a class="nav-link " href="{{ url('horarios') }}"> <i class="far fa-calendar-alt"></i> Mi Horario*</a>
+					<a class="nav-link " href="{{ url('horarios') }}"> <i class="far fa-calendar-alt"></i> Mi Horario*</a>
+                </li>
+                <li @if (Request::path()=="horarios") class="active" @endif >
+                    <a class="nav-link " href="{{ url('horarios') }}"> <i class="fas fa-chalkboard-teacher"></i> Mi Curso*</a>
                 </li>
                 <li @if (Request::path()=="") class="active" @endif >
-                    <a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-book"></i> Mis Materias*</a>
-                </li>
+					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-book"></i> Mis Materias*</a>
+				</li>
                 <li @if (Request::path()=="") class="active" @endif >
-                    <a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion*</a>
+					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion*</a>
                 </li>
                 <li @if (Request::path()=="") class="active" @endif >
                     <a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-file"></i> Plantillas*</a>

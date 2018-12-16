@@ -11,9 +11,9 @@
     </ul>
 </div>
 @endif
-<div class="container">
 <br>
-    <div class="row justify-content-center">
+<div class="container">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form enctype="multipart/form-data" action="/cursos" method = "POST">
                 @csrf
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center" style="background:#fafafa !important;">
                             <div class="text-center">
                                 <input type="submit" name="action" value="Crear" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
                             </div>

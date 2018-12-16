@@ -2,7 +2,7 @@
 @section('titulo',' Horarios')
 @section('contenedor_profesor')
 <br>
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordion">
         <div class="card-header bg-secondary text-center text-white">
             Horarios

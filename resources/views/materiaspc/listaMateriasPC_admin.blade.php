@@ -10,18 +10,26 @@
 	{{-- Estado: Aparentemente finalizado (Sujeto a cambios) --}}
 	{{-- URL: localhost:8000\materiaspc  -> Logeado en un usuario de tipo administrador--}}
 <br id="br">
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
         <div class="accordion" id="accordionExample">
+        @csrf
         @php
             $i=0;
         @endphp
-        @foreach ($result as $nombre => $materia)
+        @foreach ($materias as $m)
             <div class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
                 <div id="headingOne">
                     <div class="card-header" style="background-color:#66ba6a7d !important; cursor: pointer;" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" >
                         <h5 class="text-center mb-0">
-                            {{ $nombre }}
+                            {{ $m->nombre }}
                         </h5>
+                    </div>
+                    <div>
+                        {{-- Botones --}}
+                        {{-- editar materia --}}
+                                <a href="{{ route('materias.edit', $m->pk_materia) }}"><i class="fas fa-edit" style="color:#00838f"></i></a>
+                                {{-- eliminar materia --}}
+                                <div class="delete" ruta="materias" identificador="{{$m->pk_materia}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></div>
                     </div>
                 </div>
                 <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
@@ -32,13 +40,11 @@
                                     <tr>
                                         <th scope="col" style="color:#00695c" class="text-center"> Nombre del profesor </th>
                                         <th scope="col" style="color:#00695c" class="text-center"> Apellido del profesor</th>
-                                        <th scope="col" style="color:#00695c" class="text-center"> Curso </th>
-                                        <th></th>
-                                        <th></th>
+                                        <th scope="col" style="color:#00695c" class="text-center" colspan="3"> Curso </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($materia as $j)
+                                    @foreach($result[$m->pk_materia] as $j)
                                         <tr>
                                             {{--  nombre del profe  --}}
                                             <td class="text-center"> {{$j[1]}}</td>
@@ -51,12 +57,8 @@
                                             </a></td>
                                             {{-- eliminar materia --}}
                                             <td class="text-center">
-                                                <form action="{{route('materiaspc.destroy', $j[0])}}" method = "post">
-                                                    @csrf
-                                                    @method("DELETE")
-                                                    {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
-                                                    <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
-                                                </form>
+                                                <a class="delete" ruta="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                                                
                                             </td>
                                             {{-- ver --}}
 
@@ -75,5 +77,7 @@
         @endforeach
     </div>
 </div>
-<script src="{{ asset('js/ajax.js') }}"></script>
+{{-- Fue añadida en los cabeceros asi que ya no es necesario añadirla manualmente --}}
+{{-- <script src="{{ asset('js/ajax.js') }}"></script> --}} 
+
 @endsection

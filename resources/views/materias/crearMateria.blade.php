@@ -9,7 +9,7 @@
 {{-- URL: localhost:8000\materias\crear --}}
 <br>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form method="post" action="/materias" >
             @csrf

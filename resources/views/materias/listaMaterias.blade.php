@@ -12,7 +12,7 @@
     {{-- el id del br es importante para poder suscribir el modal de eliminar materia --}}
     <br id="br">
     <div class="container">
-       <div class="row center">
+       <div class="row center" style="background-color: #fafafa !important;">
            <div class="col-md-1"></div>
            <div class="col-md-10">
                <br>

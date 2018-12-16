@@ -3,7 +3,7 @@
 @section('contenedor_admin')
 
 <br>
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div class="card mx-auto border-dark bg-light" style="max-width: 20rem; border-color:#66bb6a !important;">
         <div class="card-header" style="background-color:#66ba6a7d !important;">
             <h3 class="text-center">Lista de horarios</h3>
