@@ -1,8 +1,35 @@
 @extends('contenedores.admin')
 @section('titulo','Ediar División')
 @section('contenedor_admin')
-    @include('error.error')
+
+@include('error.error')
 <br>
+{{-- <script>
+    $(document).ready(function() {
+        prueba_notificacion();
+    });
+    function prueba_notificacion() {
+        if (Notification) {
+            if (Notification.permission !== "granted") {
+                Notification.requestPermission()
+            }
+            var title = "Xitrus"
+            var extra = {
+                icon: "http://xitrus.es/imgs/logo_claro.png",
+                body: "Notificación de prueba en Xitrus"
+            }
+            var noti = new Notification( title, extra)
+            noti.onclick = {
+            // Al hacer click
+            }
+            noti.onclose = {
+            // Al cerrar
+            }
+            setTimeout( function() { noti.close() }, 10000)
+        }
+    }
+    
+</script> --}}
 <div id="br"></div>
     @if ($errors->any())
         <div class="alert alert-danger">
