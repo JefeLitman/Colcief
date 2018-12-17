@@ -20,8 +20,8 @@
 					<a class="nav-link " href="{{ url('/horarios') }}"> <i class="far fa-calendar-alt"></i> Horarios</a>
                 </li>
                 {{--  CURSOS  --}}
-				<li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-chalkboard-teacher"></i> Cursos*</a>
+				<li @if (Request::path()=="estudiantes") class="active" @endif >
+					<a class="nav-link " href="{{ url('estudiantes') }}"> <i class="fas fa-chalkboard-teacher"></i> Cursos</a>
 				</li>
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-user-graduate"></i> Estudiantes*</a>
