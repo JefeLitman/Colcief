@@ -37,7 +37,7 @@
 
                 @else
                     @foreach ($curso as $c)
-                        <tr>
+                        <tr id="estudiantes{{$c->pk_estudiante}}">
                             <td>{{$c->pk_estudiante}}</td>
                             <td>{{$c->nombre}}</td>
                             <td>{{$c->apellido}}</td>
@@ -46,7 +46,7 @@
                                 <a href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
                                 <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
                                 </a>
-                                <a class="delete" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                                <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
                             </td>
                         </tr>
                     @endforeach

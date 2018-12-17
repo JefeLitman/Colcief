@@ -5,6 +5,7 @@
 <br id="br">
 <div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordionExample">
+        @csrf
         @php
             $i=0;
         @endphp
@@ -30,12 +31,11 @@
                                         <th scope="col" style="color:#00695c" class="text-center">Día</th>
                                         <th scope="col" style="color:#00695c" class="text-center">Horas</th>
                                         <th></th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($horarios[$key] as $horario)
-                                    <tr>
+                                    <tr id="horarios{{$horario->pk_horario}}">
                                         {{--  nombre del profe  --}}
                                         <td class="text-center"> {{$materia->nombre}} {{$materia->apellido}}</td>
                                         {{--  Dia  --}}
@@ -43,17 +43,24 @@
                                         {{--  horas  --}}
                                         <td class="text-center"> {{substr($horario->hora_inicio, 0, 5)}} - {{substr($horario->hora_fin, 0, 5)}}</td>
                                         {{-- editar materia --}}
-                                        <td class="text-center"><a href="{{ route('horarios.edit', $horario->pk_horario)}}"><i class="fas fa-edit" style="color:#00838f"></i>
-                                        </a></td>
-                                        {{-- eliminar materia --}}
                                         <td class="text-center">
+                                            <a href="{{ route('horarios.edit', $horario->pk_horario)}}">
+                                                <i class="fas fa-edit" style="color:#00838f"></i>
+                                            </a>
+                                            <a padre="horarios{{$horario->pk_horario}}" class="delete" ruta="horarios" identificador="{{$horario->pk_horario}}">
+                                                <i class="fas fa-trash-alt" style="color:#c62828"></i>
+                                            </a>
+                                        </td>
+                                        {{-- eliminar materia --}}
+                                        {{-- <td class="text-center">
+                                            
                                             <form action="{{route('horarios.destroy',$horario->pk_horario)}}" method = "post">
                                                 @csrf
                                                 @method("DELETE")
-                                                {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
+                                                <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i>
                                                 <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                         {{-- ver --}}
                                     </tr>
                                     @endforeach

@@ -174,7 +174,7 @@ class Todo extends Migration {
 
         });
 
-        Schema::create('fecha', function(){
+        Schema::create('fecha', function(Blueprint $table){
             $table->increments('pk_fecha');
             $table->date('inicio_escolar');
             $table->date('fin_escolar');

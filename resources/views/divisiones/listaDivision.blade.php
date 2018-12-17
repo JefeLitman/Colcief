@@ -23,7 +23,7 @@
                         <th scope="col" style="color:#00695c">Nombre</th>
                         <th scope="col" style="color:#00695c">Descripción</th>
                         <th scope="col" style="color:#00695c"><i class="fas fa-percentage"></i></th>
-                        <th scope="col" style="color:#00695c">Acciones</th>
+                        {{-- <th scope="col" style="color:#00695c">Acciones</th> --}}
                     </thead>
                     <tbody>
                         @foreach ($division as $i)
@@ -31,8 +31,8 @@
                                 <td scope="row">{{ $i->nombre }}</td>
                                 <td>{{ $i->descripcion }}</td>
                                 <td>{{ $i->porcentaje }}</td>
-                                <td><a href="{{ route('divisiones.edit', date('Y')) }}"><i class="fas fa-edit" style="color:#00838f"></i>
-                                </a></td>
+                                {{-- <td><a href="{{ route('divisiones.edit', date('Y')) }}"><i class="fas fa-edit" style="color:#00838f"></i>
+                                </a></td> --}}
                             </tr>
                         @endforeach
                     </tbody>

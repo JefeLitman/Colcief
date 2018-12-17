@@ -34,7 +34,7 @@
             @endphp
             <tbody>
                 @foreach ($empleado as $i)
-                    <tr>
+                    <tr id="empleados{{$i->cedula}}"> 
                         <td scope="row">{{$i->cedula}}</td>
                         <td>{{$i->nombre}}</td>
                         <td>{{$i->apellido}}</td>
@@ -42,7 +42,7 @@
                         <td>{{$cargo[$i->role]}}</td>
                         <td>
                             <a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#00838f"></i></a>
-                            <a class="delete" ruta="empleados" identificador="{{$i->cedula}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                            <a padre="empleados{{$i->cedula}}" class="delete" ruta="empleados" identificador="{{$i->cedula}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
                         </td>
                     </tr>
                 @endforeach

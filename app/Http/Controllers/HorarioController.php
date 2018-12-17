@@ -366,9 +366,13 @@ class HorarioController extends Controller {
 
     // Elimina el horario con pk_horario igual al parametro que se le pasa de la base de datos
     // Y luego retorna la vista que lista los horarios de las materiasPC y su descripcion
-    public function destroy($pk_horario) {
-        $horario = Horario::findOrFail($pk_horario);
-        $horario->delete();
-        return redirect()->back();
+    public function destroy(Request $request, $pk_horario) {
+        if($request->ajax()){
+            $horario = Horario::findOrFail($pk_horario);
+            $horario -> delete();
+            return response()->json([
+                'mensaje' => 'El registro fue eliminado con exito'
+            ]);
+        }
     }
 }

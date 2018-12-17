@@ -9,4 +9,19 @@ class Terminal extends Controller{
         $salida = shell_exec('cd ColCief && php artisan serve --host=localhost --port=80');
         return "<pre>".$salida."</pre>";
     }
+
+    public function migrateAndSeeders(){
+        $salida = shell_exec('cd ColCief && php artisan migrate --seed');
+        return "<pre>".$salida."</pre>";
+    }
+
+    public function migrate(){
+        $salida = shell_exec('cd ColCief && php artisan migrate');
+        return "<pre>".$salida."</pre>";
+    }
+
+    public function seed(){
+        $salida = shell_exec('cd ColCief && php artisan db:seed');
+        return "<pre>".$salida."</pre>";
+    }
 }

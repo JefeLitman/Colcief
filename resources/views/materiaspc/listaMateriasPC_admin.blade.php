@@ -15,9 +15,10 @@
         @csrf
         @php
             $i=0;
+            $k=0;
         @endphp
         @foreach ($materias as $m)
-            <div class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
+            <div id="materia{{$i}}" class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
                 <div id="headingOne">
                     <div class="card-header" style="background-color:#66ba6a7d !important; cursor: pointer;" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" >
                         <h5 class="text-center mb-0">
@@ -27,9 +28,9 @@
                     <div>
                         {{-- Botones --}}
                         {{-- editar materia --}}
-                                <a href="{{ route('materias.edit', $m->pk_materia) }}"><i class="fas fa-edit" style="color:#00838f"></i></a>
-                                {{-- eliminar materia --}}
-                                <div class="delete" ruta="materias" identificador="{{$m->pk_materia}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></div>
+                        <a href="{{ route('materias.edit', $m->pk_materia) }}"><i class="fas fa-edit" style="color:#00838f"></i></a>
+                        {{-- eliminar materia --}}
+                        <div padre="materia{{$i}}" class="delete" ruta="materias" identificador="{{$m->pk_materia}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></div>
                     </div>
                 </div>
                 <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
@@ -45,7 +46,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($result[$m->pk_materia] as $j)
-                                        <tr>
+                                        <tr id="materiapc{{$k}}">
                                             {{--  nombre del profe  --}}
                                             <td class="text-center"> {{$j[1]}}</td>
                                             {{--  apellido del profe  --}}
@@ -57,23 +58,24 @@
                                             </a></td>
                                             {{-- eliminar materia --}}
                                             <td class="text-center">
-                                                <a class="delete" ruta="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
-                                                
+                                                <a padre="materiapc{{$k}}" class="delete" ruta="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
                                             </td>
                                             {{-- ver --}}
-
                                         </tr>
+                                        @php
+                                            $k++
+                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                @php
+                    $i++;
+                @endphp
             </div>
             {{--  @endfor  --}}
-            @php
-                $i++;
-            @endphp
         @endforeach
     </div>
 </div>
