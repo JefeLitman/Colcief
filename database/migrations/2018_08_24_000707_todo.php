@@ -173,6 +173,14 @@ class Todo extends Migration {
             $table->timestamps();
 
         });
+
+        Schema::create('fecha', function(){
+            $table->increments('pk_fecha');
+            $table->date('inicio_escolar');
+            $table->date('fin_escolar');
+            $table->year('ano');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -198,5 +206,6 @@ class Todo extends Migration {
         Schema::dropIfExists('horario');
         Schema::dropIfExists('materia');
         Schema::dropIfExists('recuperacion');
+        Schema::dropIfExists('fecha');
     }
 }
