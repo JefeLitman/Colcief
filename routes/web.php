@@ -30,7 +30,7 @@ Route::get('/contacto', function () {
 Route::get('/nosotros', function () {
     return view('pantallas.nosotros');
 });
-Route::get('/terminal', 'Terminal@link');
+Route::get('/terminal/link', 'Terminal@link');
 Route::get('/terminal/migrate/seed', 'Terminal@migrateAndSeeders');
 Route::get('/terminal/migrate', 'Terminal@migrate');
 Route::get('/terminal/seed', 'Terminal@seed');
