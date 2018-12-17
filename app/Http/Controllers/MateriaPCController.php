@@ -415,4 +415,17 @@ class MateriaPCController extends Controller
         }
         return "Error: Esa materia no corresponde a ese curso.";
     }
+
+    private function notasPeriodo($pk_materia_pc,$periodo){
+
+    }
+
+    public function indexPlanillasProfesor($pk_materia_pc){
+        $materiapc=MateriaPC::where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','materia_pc.fk_curso')->get();
+        $periodos=Periodo::where('ano',date('Y'))->get();
+        if (!empty($materiapc[0])) {
+            return view('materiaspc.listaPlanillasMateriasPC_profesor',['materiapc'=>$materiapc[0],'periodos'=>$periodos]);
+        }
+        return "Error: MateriaPC no encontrada.";
+    }
 }

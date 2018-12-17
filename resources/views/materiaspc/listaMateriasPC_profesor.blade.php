@@ -52,7 +52,7 @@
                                                 {{-- Editar logros de una materia --}}
                                                 <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
                                                 {{-- Ver planillas/Notas --}}
-                                                <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
+                                                <a href="/materiaspc/{{$j[0]}}/planillas"><i class="fas fa-clipboard-list" style="color:#00838f" title="Planillas"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

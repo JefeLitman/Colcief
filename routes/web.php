@@ -101,6 +101,7 @@ Route::get('/cursos/{pk_curso}/planillas','CursoController@cursoPlanillas');
 /* RUTAS DE MATERIAPC */
 // Debe estar logeado para acceder
 Route::resource('/materiaspc','MateriaPCController');
+Route::get('/materiaspc/{pk_materia_pc}/planillas','MateriaPCController@indexPlanillasProfesor');
 Route::get('/cursos/{pk_curso}/planillas/{pk_materia_pc}','MateriaPCController@showPlanillasCurso');
 
 /* RUTAS DE NOTA */
