@@ -10,7 +10,7 @@
     @foreach ($materias as $m)
         <a href="/cursos/{{$grado->pk_curso}}/planillas/{{$m->pk_materia_pc}}">
             <button>
-                {{$m->nombre}}
+                {{ucwords($m->nombre)}}
             </button>
         </a><br><br>
     @endforeach
