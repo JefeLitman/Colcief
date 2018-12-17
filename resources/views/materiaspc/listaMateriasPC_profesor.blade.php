@@ -1,6 +1,6 @@
-@extends('contenedores.admin')
+@extends('contenedores.profesor')
 @section('titulo','Materia-Profesor-Curso Nuevo')
-@section('contenedor_admin')
+@section('contenedor_profesor')
 {{-- mensajes de error --}}
 @include('error.error')
 	{{-- Guia Front --}}
@@ -15,6 +15,7 @@
 
     <br id="br">
     <div class="container" style="background:#fafafa !important;">
+        <h4 class="text-center"><i class="fas fa-book"></i> Mis Materias</h4> <br>
         <div class="accordion" id="accordionExample">
         @php
             $i=0;
@@ -34,11 +35,9 @@
                             <table class="table table-hover mr-auto">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="color:#00695c" class="text-center">Código </th>
+                                        <th scope="col" style="color:#00695c" class="text-center"> Código </th>
                                         <th scope="col" style="color:#00695c" class="text-center"> Curso </th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th scope="col" style="color:#00695c" class="text-center"> Acciones </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,12 +48,11 @@
                                             {{--  curso  --}}
                                             <td class="text-center"> {{$j[1]}}</td>
                                             {{-- editar materia --}}
-                                            <td class="text-center"><a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f"></i>
-                                            </a></td>
-                                            {{-- eliminar materia --}}
-                                            <td class="delete" tabla="materiaspc" identificador="{{$j[0]}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
                                             <td class="text-center">
-                                                <a href="{{route('materiaspc.show',$j[0]) }}"><i class="far fa-eye" style="color:#00897b"></i></a>
+                                                {{-- Editar logros de una materia --}}
+                                                <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
+                                                {{-- Ver planillas/Notas --}}
+                                                <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
