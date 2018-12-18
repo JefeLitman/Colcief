@@ -25,7 +25,7 @@ class EstudianteController extends Controller{
     public function __construct (){
         $this->middleware('admin:estudiante')->only('perfil');
         $this->middleware('admin:director,profesor,administrador')->only(['index', 'show']);
-        $this->middleware('admin:administrador')->only(['create', 'store', 'edit', 'update', 'destroy']);
+        $this->middleware('admin:administrador')->except(['perfil', 'index', 'show']);
     }
 
     public function index(){
@@ -39,16 +39,6 @@ class EstudianteController extends Controller{
         $c=Curso::findOrFail($pk_curso);
         // $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
         return view('estudiantes.estudiantesGrado',['curso'=>$curso,'grado'=>$c]);
-    }
-
-    public function filtro(Request $request){
-        $estudiante = new Estudiante;
-        $estudiante = $estudiante->curso();
-        // foreach($request->all() as $consulta){
-        //     $estudiante = $estudiante->where('pk_curso',$consulta);
-        // }
-        // $estudiante = Estudiante::find('1')->curso()->where('pk_curso','1')->
-        print_r($estudiante);
     }
 
     public function create(){

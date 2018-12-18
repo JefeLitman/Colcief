@@ -1,8 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Editar estudiante')
 @section('contenedor_admin')
-{{-- //////////////// --}}
-<br>
 <div>
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
@@ -12,7 +10,7 @@
             <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                 <div class="card-header p-0">
                     <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h4><i class="fas fa-address-card"></i> Crear estudiante</h4>
+                        <h4><i class="fas fa-address-card"></i> Editar estudiante</h4>
                     </div>
                 </div>
                 <div class="card-body p-3">
@@ -32,7 +30,6 @@
                             <button type="button" class="btn btn-success">Nueva foto</button>
                         </div>
                     </div> --}}
-                    <br>
                     <div class="row">
                         {{-- nombre --}}
                         <div class="col-md-6">
@@ -147,7 +144,7 @@
                     <h5 class="text-center">Datos del acudiente 1</h5>
                     {{-- nombres --}}
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mb-2">
                                 <label for="cedula"><strong><small style="color : #616161">Nombres</small></strong></label>
                                 <div class="input-group mb-2">
@@ -160,8 +157,22 @@
                                 </div>
                             </div>
                         </div>
-                    {{-- Direccion --}}
-                        <div class="col-md-4">
+                        {{-- celular --}}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <label for="cedula"><strong><small style="color : #616161">Celular</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_1}}" value="@eachError('telefono_acu_1', $errors)@endeachError">
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Direccion --}}
+                        <div class="col-lg-4 col-md-12">
                             <div class="form-group mb-2">
                                 <label for="cedula"><strong><small style="color : #616161">Dirección</small></strong></label>
                                 <div class="input-group mb-2">
@@ -174,27 +185,13 @@
                                 </div>
                             </div>
                         </div>
-                    {{-- celular --}}
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="cedula"><strong><small style="color : #616161">Celular</small></strong></label>
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </span>
-                            </div>
-                            <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_1}}" value="@eachError('telefono_acu_1', $errors)@endeachError">
-                        </div>
-                        </div>
                     </div>
                     <br>
                     {{-- DATOS DEL ACUDIENTE 2 --}}
                     <h5 class="text-center">Datos del acudiente 2</h5>
-                    {{-- nombres --}}
                     <div class="row">
-                        <div class="col-md-4">
+                        {{-- nombres --}}
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mb-2">
                                 <label for="cedula"><strong><small style="color : #616161">Nombres</small></strong></label>
                                 <div class="input-group mb-2">
@@ -207,22 +204,8 @@
                                 </div>
                             </div>
                         </div>
-                    {{-- Direccion --}}
-                        <div class="col-md-4">
-                            <div class="form-group mb-2">
-                                <label for="cedula"><strong><small style="color : #616161">Dirección</small></strong></label>
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-map-marked-alt"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_2}}" value="@eachError('direccion_acu_2', $errors)@endeachError">
-                                </div>
-                            </div>
-                        </div>
-                    {{-- celular --}}
-                        <div class="col-md-4">
+                        {{-- celular --}}
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label for="cedula"><strong><small style="color : #616161">Celular</small></strong></label>
                                 <div class="input-group mb-2">
@@ -232,6 +215,20 @@
                                         </span>
                                     </div>
                                     <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_2}}" value="@eachError('telefono_acu_2', $errors)@endeachError">
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Direccion --}}
+                        <div class="col-lg-4 col-md-12">
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Dirección</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_2}}" value="@eachError('direccion_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
