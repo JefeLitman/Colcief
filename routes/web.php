@@ -102,7 +102,7 @@ Route::get('/cursos/{pk_curso}/planillas','CursoController@cursoPlanillas');
 // Debe estar logeado para acceder
 Route::resource('/materiaspc','MateriaPCController');
 Route::get('/materiaspc/{pk_materia_pc}/planillas','MateriaPCController@indexPlanillasProfesor');
-Route::get('/cursos/{pk_curso}/planillas/{pk_materia_pc}','MateriaPCController@showPlanillasCurso');
+Route::get('/cursos/{pk_curso}/planillas/{pk_materia_pc}/periodo/{pk_periodo}','MateriaPCController@showPlanillasCurso');
 
 /* RUTAS DE NOTA */
 Route::get('/notas/crear/{materia}','NotaController@create');

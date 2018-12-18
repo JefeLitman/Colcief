@@ -13,7 +13,6 @@
                 <th>
                     Nombre estudiante
                 </th>
-                @foreach ($periodos as $p)
                     @foreach ($divisiones as $d)
                         @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                             <th>
@@ -27,7 +26,6 @@
                     <th>
                         P{{$p->nro_periodo}}
                     </th>
-                @endforeach
                 <th>
                     NF
                 </th>
@@ -39,7 +37,6 @@
                     <td>
                         {{$e->nombre}} {{$e->apellido}}
                     </td>
-                    @foreach ($periodos as $p)
                         @foreach ($divisiones as $d)
                             @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                                 <td>
@@ -53,7 +50,6 @@
                         <td>
                             {{$notaPer[$e->pk_estudiante][$p->pk_periodo]->nota_periodo}}
                         </td>
-                    @endforeach
                     <td>
                         {{$e->nota_materia}}
                     </td>
