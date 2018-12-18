@@ -38,7 +38,7 @@
                         <th>
                             P{{$z->nro_periodo}}
                         </th>
-                    @endforeach  
+                    @endforeach
                 <th>
                     NF
                 </th>

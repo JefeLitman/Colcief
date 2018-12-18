@@ -30,7 +30,7 @@
                         <tbody>
                             @foreach ($materias as $materia)
                             <tr>
-                                <td class="text-center">{{ $materia->pk_materia }}</td>
+                                <td class="text-center">{{$materia->pk_materia }}</td>
                                 <td class="text-center">{{$materia->nombre}}</td>
                                 <td class="text-center">{{$materia->contenido}}</td>
                                 {{-- editar materia --}}

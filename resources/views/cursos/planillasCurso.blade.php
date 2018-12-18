@@ -42,7 +42,7 @@
                                         Periodo {{$p->nro_periodo}}
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" title="Ver planilla"><i class="fas fa-eye" style="color:#00838f"></i>
+                                        <a href="/planillas/{{$m->pk_materia_pc}}/periodos/{{$p->pk_periodo}}" title="Ver planilla"><i class="fas fa-eye" style="color:#00838f"></i>
                                     </td>
                                     @endforeach
                                 </tr>
