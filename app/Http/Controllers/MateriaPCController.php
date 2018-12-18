@@ -361,20 +361,20 @@ class MateriaPCController extends Controller
         ]);
     }
 
-    public function showPlanillasCurso($pk_curso,$pk_materia_pc){
-        $curso=Curso::findOrFail($pk_curso);
-        $materia_pc=MateriaPC::findOrFail($pk_materia_pc);
-        if ($materia_pc->fk_curso == $curso->pk_curso) {
-            $periodos=Periodo::where('ano',date('Y'))->get();
-            $divisiones=Division::where('ano',date('Y'))->get();
-            $ns=Nota::where('fk_materia_pc',$pk_materia_pc)->get();
-            $notas=[];
-            foreach ($periodos as $p) {
-                $notas[$p->pk_periodo]=[];
-                foreach ($divisiones as $d) {
-                    $notas[$p->pk_periodo][$d->pk_division]=[];
-                }
+    public function showPlanillasCurso($pk_materia_pc,$pk_periodo){
+        $materia_pc=MateriaPC::select('materia_pc.*','materia_pc.nombre as materia','curso.*','empleado.*')->where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->get()[0];
+        $p=Periodo::where([['ano',date('Y')],['pk_periodo',$pk_periodo]])->get();
+        $periodos=Periodo::where('ano',date('Y'))->get();
+        $divisiones=Division::where('ano',date('Y'))->get();
+        $ns=Nota::where([['fk_materia_pc',$pk_materia_pc],['fk_periodo',$pk_periodo]])->get();
+        $notas=[];
+        if(!empty($p[0])){
+            $p=$p[0];
+            $notas[$p->pk_periodo]=[];
+            foreach ($divisiones as $d) {
+                $notas[$p->pk_periodo][$d->pk_division]=[];
             }
+            // dd($notas);
             foreach ($ns as $n) {
                 array_push($notas[$n->fk_periodo][$n->fk_division],$n);
             }
@@ -385,34 +385,47 @@ class MateriaPCController extends Controller
             foreach ($estudiantes as $e) {
                 $notaE[$e->pk_estudiante]=[];
                 $notaDiv[$e->pk_estudiante]=[];
-                $notaPer[$e->pk_estudiante]=[];
-                foreach ($periodos as $p) {
-                    $notaE[$e->pk_estudiante][$p->pk_periodo]=[];
-                    $notaDiv[$e->pk_estudiante][$p->pk_periodo]=[];
-                    $notaPer[$e->pk_estudiante][$p->pk_periodo]=null;
-                    $notap=NotaPeriodo::where([['fk_materia_boletin',$e->pk_materia_boletin],['fk_periodo',$p->pk_periodo]])->get();
+                $notaPer[$e->pk_estudiante]=[]; 
+                $notaE[$e->pk_estudiante][$p->pk_periodo]=[];
+                $notaDiv[$e->pk_estudiante][$p->pk_periodo]=[];
+                $notaPer[$e->pk_estudiante][$p->pk_periodo]=null;
+                foreach ($periodos as $z) {
+                    $notap=NotaPeriodo::where([['fk_materia_boletin',$e->pk_materia_boletin],['fk_periodo',$z->pk_periodo]])->get();
                     if(!empty($notap[0])){
-                        $notaPer[$e->pk_estudiante][$p->pk_periodo]=$notap[0];
-                        foreach ($divisiones as $d) {
-                            $notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]=[];
-                            $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]=null;
-                            $notad=NotaDivision::where([['fk_nota_periodo',$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo],['fk_division',$d->pk_division]])->get();
+                        $notaPer[$e->pk_estudiante][$z->pk_periodo]=$notap[0];
+                    }
+                }   
+                foreach ($divisiones as $d) {
+                    $notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]=[];
+                    $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]=null;
+                    $notad=NotaDivision::where([['fk_nota_periodo',$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo],['fk_division',$d->pk_division]])->get();
+                    if(!empty($notad[0])){
+                        $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]=$notad[0];
+                        foreach ($notas[$p->pk_periodo][$d->pk_division] as  $n) {
+                            $notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]=null;
+                            $nts=NotaEstudiante::where([['fk_nota_division',$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division],['fk_nota',$n->pk_nota]])->get();
                             if(!empty($notad[0])){
-                                $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]=$notad[0];
-                                foreach ($notas[$p->pk_periodo][$d->pk_division] as  $n) {
-                                    $notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]=null;
-                                    $nts=NotaEstudiante::where([['fk_nota_division',$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division],['fk_nota',$n->pk_nota]])->get();
-                                    if(!empty($notad[0])){
-                                        $notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]=$nts[0];
-                                    }
-                                }
+                                $notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]=$nts[0];
                             }
                         }
                     }
                 }
+                
             }
-            return view('cursos.showPlanillaCurso',['materiapc'=>$materia_pc,'curso'=>$curso,'periodos'=>$periodos,'divisiones'=>$divisiones,'notas'=>$notas,'notaE'=>$notaE,'notaDiv'=>$notaDiv,'notaPer'=>$notaPer,'estudiantes'=>$estudiantes]);
         }
-        return "Error: Esa materia no corresponde a ese curso.";
+        return view('cursos.showPlanillaCurso',['materiapc'=>$materia_pc,'p'=>$p,'periodos'=>$periodos,'divisiones'=>$divisiones,'notas'=>$notas,'notaE'=>$notaE,'notaDiv'=>$notaDiv,'notaPer'=>$notaPer,'estudiantes'=>$estudiantes]);
+    }
+
+    private function notasPeriodo($pk_materia_pc,$periodo){
+
+    }
+
+    public function indexPlanillasProfesor($pk_materia_pc){
+        $materiapc=MateriaPC::where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','materia_pc.fk_curso')->get();
+        $periodos=Periodo::where('ano',date('Y'))->get();
+        if (!empty($materiapc[0])) {
+            return view('materiaspc.listaPlanillasMateriasPC_profesor',['materiapc'=>$materiapc[0],'periodos'=>$periodos]);
+        }
+        return "Error: MateriaPC no encontrada.";
     }
 }

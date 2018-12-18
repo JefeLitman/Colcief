@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Curso;
+use App\Periodo;
 
 use Illuminate\Http\Request;
 
@@ -102,9 +103,10 @@ class CursoController extends Controller
 
     public function cursoPlanillas($pk_curso){  //By Paola
         $grado=Curso::where('pk_curso',$pk_curso)->get();
+        $periodos=Periodo::where('ano',date('Y'))->get();
         if (!empty($grado[0])) {
             $materias=$grado[0]->materiaspc;
-            return view("cursos.planillasCurso",["grado"=>$grado[0],"materias"=>$materias]);
+            return view("cursos.planillasCurso",["grado"=>$grado[0],"materias"=>$materias,"periodos"=>$periodos]);
         }
         return "Error: El curso solicitado no existe";
     }

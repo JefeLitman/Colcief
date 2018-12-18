@@ -8,8 +8,12 @@ $baseDir = dirname($vendorDir);
 return array(
     'AcudienteSeeder' => $baseDir . '/database/seeds/AcudienteSeeder.php',
     'App\\Acudiente' => $baseDir . '/app/Acudiente.php',
+<<<<<<< HEAD
     'App\\Boletin' => $baseDir . '/app/boletin.php',
     'App\\Console\\Commands\\fin_escolar' => $baseDir . '/app/Console/Commands/fin_escolar.php',
+=======
+    'App\\Boletin' => $baseDir . '/app/Boletin.php',
+>>>>>>> 2bcde65ec3af41bfc3b80147697027df74426c60
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Curso' => $baseDir . '/app/Curso.php',
     'App\\Division' => $baseDir . '/app/Division.php',

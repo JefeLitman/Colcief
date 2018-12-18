@@ -334,8 +334,12 @@ class ComposerStaticInit5636c29f6462375adf7242b3d0ccf3b0
     public static $classMap = array (
         'AcudienteSeeder' => __DIR__ . '/../..' . '/database/seeds/AcudienteSeeder.php',
         'App\\Acudiente' => __DIR__ . '/../..' . '/app/Acudiente.php',
+<<<<<<< HEAD
         'App\\Boletin' => __DIR__ . '/../..' . '/app/boletin.php',
         'App\\Console\\Commands\\fin_escolar' => __DIR__ . '/../..' . '/app/Console/Commands/fin_escolar.php',
+=======
+        'App\\Boletin' => __DIR__ . '/../..' . '/app/Boletin.php',
+>>>>>>> 2bcde65ec3af41bfc3b80147697027df74426c60
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Curso' => __DIR__ . '/../..' . '/app/Curso.php',
         'App\\Division' => __DIR__ . '/../..' . '/app/Division.php',
