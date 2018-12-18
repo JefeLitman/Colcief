@@ -36,14 +36,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($periodos as $p)
                                 <tr>
-                                    @foreach ($periodos as $p)
-                                        <td class="text-center">
-                                            Periodo {{$p->nro_periodo}}
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#"><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
-                                        </td>
+                                    <td class="text-center">
+                                        Periodo {{$p->nro_periodo}}
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" title="Ver planilla"><i class="fas fa-eye" style="color:#00838f"></i>
+                                    </td>
                                     @endforeach
                                 </tr>
                             </tbody>

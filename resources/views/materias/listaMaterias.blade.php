@@ -24,8 +24,7 @@
                                 <th scope="col" style="color:#00695c" class="text-center">Código</th>
                                 <th scope="col" style="color:#00695c" class="text-center">Nombre</th>
                                 <th scope="col" style="color:#00695c" class="text-center">Contenido</th>
-                                <th></th>
-                                <th></th>
+                                <th scope="col" style="color:#00695c" class="text-center" colspan="2">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,10 +34,10 @@
                                 <td class="text-center">{{$materia->nombre}}</td>
                                 <td class="text-center">{{$materia->contenido}}</td>
                                 {{-- editar materia --}}
-                                <td class="text-center"><a href="{{ route('materias.edit', $materia->pk_materia) }}"><i class="fas fa-edit" style="color:#00838f"></i>
+                                <td class="text-center"><a href="{{ route('materias.edit', $materia->pk_materia) }}" title="Editar"><i class="fas fa-edit" style="color:#00838f"></i>
                                 </a></td>
                                 {{-- eliminar materia --}}
-                                <td class="delete" tabla="materia" identificador="{{$materia->pk_materia}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
+                                <td class="delete" tabla="materia" identificador="{{$materia->pk_materia}}" title="Eliminar"><i class="fas fa-trash-alt" style="color:#c62828"></i></td>
                             </tr>
                             @endforeach
                         </tbody>

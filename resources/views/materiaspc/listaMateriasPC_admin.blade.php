@@ -21,16 +21,19 @@
             <div id="materia{{$i}}" class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
                 <div id="headingOne">
                     <div class="card-header" style="background-color:#66ba6a7d !important; cursor: pointer;" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" >
-                        <h5 class="text-center mb-0">
-                            {{ $m->nombre }}
-                        </h5>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h5 class="text-center mb-0">
+                                {{ $m->nombre }}
+                            </h5>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="{{ route('materias.edit', $m->pk_materia) }}" style="text-decoration:none !important; color:#004d40 !important;"><i class="fas fa-edit cambiob"></i></a>
+                        </div>
+                        <div padre="materia{{$i}}" class="delete col-md-1" ruta="materias" identificador="{{$m->pk_materia}}">
+                            <i class="fas fa-trash-alt cambiob" style="color:#c62828"></i>
+                        </div>
                     </div>
-                    <div>
-                        {{-- Botones --}}
-                        {{-- editar materia --}}
-                        <a href="{{ route('materias.edit', $m->pk_materia) }}"><i class="fas fa-edit" style="color:#00838f"></i></a>
-                        {{-- eliminar materia --}}
-                        <div padre="materia{{$i}}" class="delete" ruta="materias" identificador="{{$m->pk_materia}}"><i class="fas fa-trash-alt" style="color:#c62828"></i></div>
                     </div>
                 </div>
                 <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
@@ -41,7 +44,10 @@
                                     <tr>
                                         <th scope="col" style="color:#00695c" class="text-center"> Nombre del profesor </th>
                                         <th scope="col" style="color:#00695c" class="text-center"> Apellido del profesor</th>
-                                        <th scope="col" style="color:#00695c" class="text-center" colspan="3"> Curso </th>
+                                        <th scope="col" style="color:#00695c" class="text-center"> Curso </th>
+                                        <th scope="col" style="color:#00695c" class="text-center" colspan="2">
+                                            Acciones
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,6 +86,6 @@
     </div>
 </div>
 {{-- Fue añadida en los cabeceros asi que ya no es necesario añadirla manualmente --}}
-{{-- <script src="{{ asset('js/ajax.js') }}"></script> --}} 
+{{-- <script src="{{ asset('js/ajax.js') }}"></script> --}}
 
 @endsection
