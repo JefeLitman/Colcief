@@ -34,9 +34,11 @@
                             {{$d->nombre}} ({{$d->porcentaje}}%)
                         </th>
                     @endforeach
-                    <th>
-                        P{{$p->nro_periodo}}
-                    </th>
+                    @foreach ($periodos as $z)
+                        <th>
+                            P{{$z->nro_periodo}}
+                        </th>
+                    @endforeach  
                 <th>
                     NF
                 </th>
@@ -58,9 +60,11 @@
                                 {{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division}}
                             </td>
                         @endforeach
-                        <td>
-                            {{$notaPer[$e->pk_estudiante][$p->pk_periodo]->nota_periodo}}
-                        </td>
+                        @foreach ($periodos as $z)
+                            <td>
+                                {{$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo}}
+                            </td>
+                        @endforeach
                     <td>
                         {{$e->nota_materia}}
                     </td>
