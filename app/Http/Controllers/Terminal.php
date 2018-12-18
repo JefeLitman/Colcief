@@ -20,6 +20,11 @@ class Terminal extends Controller{
         return "<pre>".$salida."</pre>";
     }
 
+    public function migrateReset(){
+        $salida = shell_exec('cd ColCief && php artisan migrate:reset');
+        return "<pre>".$salida."</pre>";
+    }
+
     public function seed(){
         $salida = shell_exec('cd ColCief && php artisan db:seed');
         return "<pre>".$salida."</pre>";
