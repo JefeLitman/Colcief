@@ -106,7 +106,7 @@ class CursoController extends Controller
         $periodos=Periodo::where('ano',date('Y'))->get();
         if (!empty($grado[0])) {
             $materias=$grado[0]->materiaspc;
-            return view("cursos.planillasCurso",["grado"=>$grado[0],"materias"=>$materias,"periodos",$periodos]);
+            return view("cursos.planillasCurso",["grado"=>$grado[0],"materias"=>$materias,"periodos"=>$periodos]);
         }
         return "Error: El curso solicitado no existe";
     }
