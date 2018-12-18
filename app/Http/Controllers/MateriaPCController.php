@@ -366,12 +366,13 @@ class MateriaPCController extends Controller
         $materia_pc=MateriaPC::select('materia_pc.*','materia_pc.nombre as materia','curso.*','empleado.*')->where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->get()[0];
         // dd($materia_pc);
         if ($materia_pc->pk_curso == $curso->pk_curso) {
-            $periodo=Periodo::where([['ano',date('Y')],['pk_periodo',$pk_periodo]])->get();
+            $p=Periodo::where([['ano',date('Y')],['pk_periodo',$pk_periodo]])->get();
+            $periodos=Periodo::where('ano',date('Y'))->get();
             $divisiones=Division::where('ano',date('Y'))->get();
             $ns=Nota::where([['fk_materia_pc',$pk_materia_pc],['fk_periodo',$pk_periodo]])->get();
             $notas=[];
-            if(!empty($periodo[0])){
-                $p=$periodo[0];
+            if(!empty($p[0])){
+                $p=$p[0];
                 $notas[$p->pk_periodo]=[];
                 foreach ($divisiones as $d) {
                     $notas[$p->pk_periodo][$d->pk_division]=[];
