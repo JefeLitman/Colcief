@@ -56,13 +56,30 @@ function deleteRegistro(ruta, id, padre){
     });
 }
 
+var cargarNotificaciones = function(){
+    var noti = $('#notificaciones');
+    $.ajax({
+        type: 'POST',
+        url: '/notificaciones',
+        data: {_token:$('input[name=_token]').val(), _method:'POST'},
+        success: function(data) {
+            noti.html(data.cant)
+            console.log(data.cant)
+        },
+        // error: function(){
+        //     newModal('Error','La accion no pudo llevarse a cabo', false);
+        // }
+    });
+}
+
 $(document).ready(function(){
+    $.ajaxSetup({'cache':false});
+    cargarNotificaciones()
+    setInterval(cargarNotificaciones, 8000);
     $('.delete').click(function(){
         var ruta = $(this).attr('ruta');
         var padre = $(this).attr('padre');
-        alert(padre);
         var padre = $('#'+padre);
-        alert(padre);
         var id = $(this).attr('identificador');
         modalConfirm(function(confirm){
             $("#exampleModalCenter").modal('hide');

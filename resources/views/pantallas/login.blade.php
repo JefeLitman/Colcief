@@ -6,7 +6,7 @@
   <div class="container2">
     <div class="row">
       <div class="col-md-4 login-sec">
-          <h2 class="text-center">Acceso a ColCief 2</h2>
+          <h2 class="text-center">Acceso a ColCief</h2>
           @include('error.login')
           <form class="login-form" action="{{route('login')}}" method="POST">
             @csrf
