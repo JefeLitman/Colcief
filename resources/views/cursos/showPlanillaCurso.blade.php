@@ -6,7 +6,18 @@
     $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
 @endphp
 <div class="container" style="background:#fafafa !important;">
-    {{-- <h4 class="text-center"> Planilla: {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4> --}}
+    {{-- Encabezado --}}
+    <div>
+        <h5 class="text-center"> COLEGIO INTEGRADO EZEQUIEL FLORIAN </h5>
+        <h5 class="text-center">FLORIAN - SANTANDER </h5>
+        <b>Materia: </b> {{ucwords($materiapc->materia)}}
+        <b>Curso: </b> {{$g[$materiapc->prefijo]}} - {{$materiapc->sufijo}}
+        <b>Año: </b> {{$materiapc->created_at->year}}
+        <br>
+        <b>Docente: </b> {{ucwords($materiapc->nombre)}} {{ucwords($materiapc->apellido)}}
+        <b>Periodo: </b> {{strtoupper($g[$p->nro_periodo])}}
+    </div>
+    <br>
     <table>
         <thead>
             <tr>

@@ -363,7 +363,7 @@ class MateriaPCController extends Controller
 
     public function showPlanillasCurso($pk_curso,$pk_materia_pc,$pk_periodo){
         $curso=Curso::findOrFail($pk_curso);
-        $materia_pc=MateriaPC::where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->get()[0];
+        $materia_pc=MateriaPC::select('materia_pc.*','materia_pc.nombre as materia','curso.*','empleado.*')->where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->get()[0];
         // dd($materia_pc);
         if ($materia_pc->pk_curso == $curso->pk_curso) {
             $periodo=Periodo::where([['ano',date('Y')],['pk_periodo',$pk_periodo]])->get();
