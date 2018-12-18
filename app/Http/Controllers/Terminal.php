@@ -25,6 +25,11 @@ class Terminal extends Controller{
         return "<pre>".$salida."</pre>";
     }
 
+    public function migrateRefresh(){
+        $salida = shell_exec('cd ColCief && php artisan migrate:refresh');
+        return "<pre>".$salida."</pre>";
+    }
+
     public function seed(){
         $salida = shell_exec('cd ColCief && php artisan db:seed');
         return "<pre>".$salida."</pre>";
