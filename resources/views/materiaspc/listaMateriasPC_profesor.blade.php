@@ -35,9 +35,15 @@
                             <table class="table table-hover mr-auto">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="color:#00695c" class="text-center"> Código </th>
-                                        <th scope="col" style="color:#00695c" class="text-center"> Curso </th>
-                                        <th scope="col" style="color:#00695c" class="text-center"> Acciones </th>
+                                        <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Código </th>
+                                        <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Curso </th>
+                                        <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Logros </th>
+                                        <th colspan="{{count($periodos)}}" scope="col" style="color:#00695c" class="text-center"> Periodos </th>
+                                    </tr>
+                                    <tr>
+                                        @foreach ($periodos as $p)
+                                            <th scope="col" style="color:#00695c" class="text-center">P{{$p->nro_periodo}}</th>
+                                        @endforeach
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,11 +55,20 @@
                                             <td class="text-center"> {{$j[1]}}</td>
                                             {{-- editar materia --}}
                                             <td class="text-center">
+                                                {{-- Ver logros de una materia --}}
+                                                <a href="/materiaspc/{{$j[0]}}"><i class="fas fa-eye" style="color:#00838f"></i></a>
                                                 {{-- Editar logros de una materia --}}
                                                 <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
-                                                {{-- Ver planillas/Notas --}}
-                                                <a href="/materiaspc/{{$j[0]}}/planillas"><i class="fas fa-clipboard-list" style="color:#00838f" title="Planillas"></i></a>
                                             </td>
+                                            @foreach ($periodos as $p)
+                                                <td class="text-center">
+                                                    {{-- Ver planillas/Notas --}}
+                                                    <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}"><i class="fas fa-eye" style="color:#00838f" title="Ver notas"></i></a>
+                                                    {{-- Editar planillas/Notas  --}}
+                                                    <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar"><i class="fas fa-edit" style="color:#00838f" title="Modificar notas"></i></a>
+                                                </td>
+                                            @endforeach
+                                            
                                         </tr>
                                     @endforeach
                                 </tbody>

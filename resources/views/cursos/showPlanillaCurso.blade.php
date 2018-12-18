@@ -1,5 +1,5 @@
-@extends('contenedores.admin')
-@section('contenedor_admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':'profesor'))
+@section('contenedor_'.((session('role')=='administrador')?'admin':'profesor'))
 @section('titulo','Planilla '.$materiapc->materia)
 <br id="br">
 @php

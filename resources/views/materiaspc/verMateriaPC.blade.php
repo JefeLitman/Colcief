@@ -1,6 +1,6 @@
-@extends('contenedores.admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':'profesor'))
 @section('titulo','Ver Materia - Profesor - Curso')
-@section('contenedor_admin')
+@section('contenedor_'.((session('role')=='administrador')?'admin':'profesor'))
 {{-- mensajes de error --}}
 @include('error.error')
 	{{-- Guia Front --}}

@@ -78,7 +78,7 @@ class MateriaPCController extends Controller
             case "profesor":
                 // cuando es profesor
                 $result=[];
-                
+                $periodos=Periodo::where('ano',date('Y'))->get();
                 $materiaspc = null;
                 // Busco las tuplas de materia_pc creadas el actual año, y ademas solo las que pertenescan al profesor logeado
                 $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','materia_pc.nombre','curso.prefijo','curso.sufijo')->where([['materia_pc.created_at','like','%'.date('Y').'%'],['materia_pc.fk_empleado','=',$user["cedula"]]]);
@@ -106,7 +106,7 @@ class MateriaPCController extends Controller
                         }
                     }
                 }
-                $url='materiaspc.listaMateriasPC_profesor';
+                return view('materiaspc.listaMateriasPC_profesor',["result"=>$result,'periodos'=>$periodos]);
                 break;
             case "estudiante":
                 // Cuando es estudiantes
