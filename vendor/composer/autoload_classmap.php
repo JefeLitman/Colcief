@@ -8,12 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'AcudienteSeeder' => $baseDir . '/database/seeds/AcudienteSeeder.php',
     'App\\Acudiente' => $baseDir . '/app/Acudiente.php',
-<<<<<<< HEAD
     'App\\Boletin' => $baseDir . '/app/boletin.php',
     'App\\Console\\Commands\\fin_escolar' => $baseDir . '/app/Console/Commands/fin_escolar.php',
-=======
-    'App\\Boletin' => $baseDir . '/app/Boletin.php',
->>>>>>> 2bcde65ec3af41bfc3b80147697027df74426c60
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Curso' => $baseDir . '/app/Curso.php',
     'App\\Division' => $baseDir . '/app/Division.php',
@@ -39,6 +35,7 @@ return array(
     'App\\Http\\Controllers\\NotaController' => $baseDir . '/app/Http/Controllers/NotaController.php',
     'App\\Http\\Controllers\\NotaEstudianteController' => $baseDir . '/app/Http/Controllers/NotaEstudianteController.php',
     'App\\Http\\Controllers\\NotaPeriodoController' => $baseDir . '/app/Http/Controllers/NotaPeriodoController.php',
+    'App\\Http\\Controllers\\NotificacionController' => $baseDir . '/app/Http/Controllers/NotificacionController.php',
     'App\\Http\\Controllers\\PeriodoController' => $baseDir . '/app/Http/Controllers/PeriodoController.php',
     'App\\Http\\Controllers\\SupraController' => $baseDir . '/app/Http/Controllers/SupraController.php',
     'App\\Http\\Controllers\\Terminal' => $baseDir . '/app/Http/Controllers/Terminal.php',
@@ -92,7 +89,6 @@ return array(
     'Collective\\Html\\HtmlBuilder' => $vendorDir . '/laravelcollective/html/src/HtmlBuilder.php',
     'Collective\\Html\\HtmlFacade' => $vendorDir . '/laravelcollective/html/src/HtmlFacade.php',
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
-    'CreateNotificacionsTable' => $baseDir . '/database/migrations/2018_12_17_191430_create_notificacions_table.php',
     'CreateSessionsTable' => $baseDir . '/database/migrations/2018_10_12_162552_create_sessions_table.php',
     'Cron\\AbstractField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
