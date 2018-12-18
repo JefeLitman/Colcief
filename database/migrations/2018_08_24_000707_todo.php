@@ -182,6 +182,15 @@ class Todo extends Migration {
             $table->year('ano');
             $table->timestamps();
         });
+
+        Schema::create('notificacion', function(Blueprint $table){
+            $table->increments('pk_notificacion');
+            $table->unsignedInteger('fk_empleado');
+            $table->string('titulo', 50);
+            $table->text('descripcion');
+            $table->text('link');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -208,5 +217,6 @@ class Todo extends Migration {
         Schema::dropIfExists('materia');
         Schema::dropIfExists('recuperacion');
         Schema::dropIfExists('fecha');
+        Schema::dropIfExists('notificacion');
     }
 }

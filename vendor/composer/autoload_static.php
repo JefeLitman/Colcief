@@ -334,7 +334,12 @@ class ComposerStaticInit5636c29f6462375adf7242b3d0ccf3b0
     public static $classMap = array (
         'AcudienteSeeder' => __DIR__ . '/../..' . '/database/seeds/AcudienteSeeder.php',
         'App\\Acudiente' => __DIR__ . '/../..' . '/app/Acudiente.php',
+<<<<<<< HEAD
+        'App\\Boletin' => __DIR__ . '/../..' . '/app/boletin.php',
+        'App\\Console\\Commands\\fin_escolar' => __DIR__ . '/../..' . '/app/Console/Commands/fin_escolar.php',
+=======
         'App\\Boletin' => __DIR__ . '/../..' . '/app/Boletin.php',
+>>>>>>> 2bcde65ec3af41bfc3b80147697027df74426c60
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Curso' => __DIR__ . '/../..' . '/app/Curso.php',
         'App\\Division' => __DIR__ . '/../..' . '/app/Division.php',
@@ -392,6 +397,7 @@ class ComposerStaticInit5636c29f6462375adf7242b3d0ccf3b0
         'App\\NotaDivision' => __DIR__ . '/../..' . '/app/NotaDivision.php',
         'App\\NotaEstudiante' => __DIR__ . '/../..' . '/app/NotaEstudiante.php',
         'App\\NotaPeriodo' => __DIR__ . '/../..' . '/app/NotaPeriodo.php',
+        'App\\Notificacion' => __DIR__ . '/../..' . '/app/Notificacion.php',
         'App\\Periodo' => __DIR__ . '/../..' . '/app/Periodo.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -412,6 +418,7 @@ class ComposerStaticInit5636c29f6462375adf7242b3d0ccf3b0
         'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
+        'CreateNotificacionsTable' => __DIR__ . '/../..' . '/database/migrations/2018_12_17_191430_create_notificacions_table.php',
         'CreateSessionsTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_12_162552_create_sessions_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',

@@ -122,5 +122,8 @@ Route::get('/horarios/{pk_materiaPC}/editar','HorarioController@edit');
 Route::resource('/boletines','BoletinController');
 Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@showEstudiante');
 
+/* RUTAS DE NOTIFICACION */
+Route::post('/notificaciones','NotificacionController@index');
+
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
