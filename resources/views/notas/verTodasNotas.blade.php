@@ -2,7 +2,7 @@
 @section('titulo',' Ver Notas')
 @section('contenedor_profesor')
 {{-- mensajes de error --}}
-@include('error.error')
+
 <br id="br">
 <div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordionExample">

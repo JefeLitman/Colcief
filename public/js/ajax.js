@@ -45,7 +45,7 @@ function deleteRegistro(ruta, id, padre){
     $.ajax({
         type: 'POST',
         url: '/'+ruta+'/'+id,
-        data: {_token:$('input[name=_token]').val(), _method:'DELETE'},
+        data: {_token:$('#csrf_token').attr('content'), _method:'DELETE'},
         success: function(data) {
             padre.fadeOut();
             newModal('Acción satisfactoria',data.mensaje, false);
@@ -61,7 +61,7 @@ var cargarNotificaciones = function(){
     $.ajax({
         type: 'POST',
         url: '/notificaciones',
-        data: {_token:$('input[name=_token]').val(), _method:'POST'},
+        data: {_token:$('#csrf_token').attr('content'), _method:'POST'},
         success: function(data) {
             noti.html(data.cant)
             console.log(data.cant)

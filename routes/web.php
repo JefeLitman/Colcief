@@ -125,5 +125,7 @@ Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@sh
 /* RUTAS DE NOTIFICACION */
 Route::post('/notificaciones','NotificacionController@index');
 
+Route::resource('/fechas', 'FechaController');
+
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel

@@ -2,7 +2,7 @@
 @section('contenedor_profesor')
 @section('titulo','Editar de Materias - Profesor - Curso')
 {{-- mensajes de error --}}
-@include('error.error')
+
 
 {{-- Guia Front --}}
 {{-- Se envian un Objeto $materiapc --}}

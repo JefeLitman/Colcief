@@ -2,7 +2,6 @@
 @section('titulo','Empleado Nuevo')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
-@include('error.error')
 {{-- Guia Front --}}
 {{-- No se envia objeto --}}
 {{-- @Autor Paola C. --}}

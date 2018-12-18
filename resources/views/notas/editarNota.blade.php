@@ -2,7 +2,7 @@
 @section('titulo','Editar notas')
 @section('contenedor_profesor')
 {{-- mensajes de error --}}
-@include('error.error')
+
 <br>
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">

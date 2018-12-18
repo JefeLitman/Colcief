@@ -1,7 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Editar estudiante')
 @section('contenedor_admin')
-@include('error.error')
 {{-- //////////////// --}}
 <br>
 <div>

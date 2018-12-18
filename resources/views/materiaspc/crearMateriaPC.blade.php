@@ -2,7 +2,7 @@
 @section('titulo','Materia-Profesor-Curso Nuevo')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
-@include('error.error')
+
 {{-- Guia Front --}}
 {{-- Se envia $cursos, $materias, $profesores --}}
 {{-- Los empleados qie se envian --}}

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmpleadoStoreController;
 use App\Http\Requests\EmpleadoUpdateController;
+use App\Http\Requests\EmpleadoUpdateFoto;
 use App\Http\Controllers\SupraController;
 use Illuminate\Support\Facades\Hash;
 
@@ -77,10 +78,10 @@ class EmpleadoController extends Controller{
         return redirect(route('empleados.show', $empleado->cedula));
     }
 
-    public function perfil(Request $request,$cedula){
+    public function perfil(EmpleadoUpdateFoto $request,$cedula){
         // dd('hola');
         $empleado = Empleado::findOrFail($cedula);
-        $guard=session('role');
+        $guard = session('role');
         if($request->hasFile('foto')){
             $nombre = 'empleado'.$empleado->cedula;
             $empleado->foto = SupraController::subirArchivo($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)

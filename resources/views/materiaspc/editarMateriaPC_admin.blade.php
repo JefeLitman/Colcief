@@ -2,7 +2,7 @@
 @section('contenedor_admin')
 @section('titulo','Editar de Materias - Profesor - Curso')
 {{-- mensajes de error --}}
-@include('error.error')
+
 
 {{-- Guia Front --}}
 {{-- Se envian array's de objetos $cursos, $materias, $profesores y un {Objeto $materiapc} --}}

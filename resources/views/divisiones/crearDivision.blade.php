@@ -1,7 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Estudiante Nuevo')
 @section('contenedor_admin')
-    @include('error.error')
 <br>
 <div class="container">
     <h3 class="card-title text-center">

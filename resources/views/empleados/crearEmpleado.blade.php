@@ -2,7 +2,6 @@
 @section('titulo','Empleado Nuevo')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
-@include('error.error')
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">

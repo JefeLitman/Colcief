@@ -2,7 +2,7 @@
 @section('contenedor_admin')
 @section('titulo','Editar Periodo')
 {{-- mensajes de error --}}
-@include('error.error')
+
 <br>
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">

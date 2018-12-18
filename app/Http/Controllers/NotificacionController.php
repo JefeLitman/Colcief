@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 class NotificacionController extends Controller {
     
     public function index(Request $request){
-        // return response()->json([
-        //     'data' => 'notificaciones',
-        //     'cant' => 'count($notificaciones)'
-        // ]);
         if($request->ajax()){
             $notificaciones = Notificacion::all()->where('fk_empleado',session('user')['cedula']);
             return response()->json([
