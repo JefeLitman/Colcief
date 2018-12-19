@@ -16,7 +16,7 @@ class Terminal extends Controller{
     }
 
     public function migrate(){
-        $salida = shell_exec('cd ColCief && php artisan migrate');
+        $salida = shell_exec('cd ColCief && php artisan escolar:fin');
         return "<pre>".$salida."</pre>";
     }
 
