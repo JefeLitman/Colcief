@@ -57,61 +57,6 @@
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-user-check"></i> Nivelaciones*</a>
 				</li>
-				{{-- <li @if (Request::path()=="cursos") class="active" @endif>
-					<a href="#cursosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<i class="fas fa-chalkboard-teacher"></i> Cursos
-					</a>
-					<ul class="collapse list-unstyled" id="cursosSubmenu">
-						<li>
-							<a href="{{ url('/cursos/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
-						</li>
-						<li>
-							<a href="{{ url('/cursos') }}"><i class="fas fa-user-edit"></i> Editar</a>
-						</li>
-					</ul>
-				</li>
-				<li @if (Request::path()=="empleados") class="active" @endif >
-					<a href="#empleadoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<i class="fas fa-users"></i> Empleados
-					</a>
-					<ul class="collapse list-unstyled" id="empleadoSubmenu">
-						<li>
-							<a href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
-						</li>
-						<li>
-							<a href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#estudianteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<i class="fas fa-user-graduate"></i> Estudiantes
-					</a>
-					<ul class="collapse list-unstyled" id="estudianteSubmenu">
-						<li>
-							<a href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
-						</li>
-						<li>
-							<a href="{{ url('/estudiantes') }}"><i class="fas fa-user-edit"></i> Editar</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#divisionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<i class="fas fa-th-list"></i> Divisones
-					</a>
-					<ul class="collapse list-unstyled" id="divisionesSubmenu">
-						<li>
-							<a href="{{ url('/divisiones/crear') }}"><i class="fas fa-plus-circle"></i> Crear</a>
-						</li>
-						<li>
-							<a href="{{ url('/divisiones') }}"><i class="fas fa-pen"></i> Editar</a>
-						</li>
-						<li>
-							<a  href="#"><i class="fas fa-minus"></i> Eliminar</a>
-						</li>
-					</ul>
-				</li> --}}
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>
