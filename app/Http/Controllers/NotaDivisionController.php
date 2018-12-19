@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MateriaBoletin;
-use App\NotaPeriodo;
+use App\Http\Controllers\Controller;
 
-class MateriaBoletinController extends Controller
+use App\NotaDivision;
+
+class NotaDivisionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -68,21 +69,22 @@ class MateriaBoletinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $pk_materia_boletin)
+    public function update(Request $request, $pk_nota_division)
     {
         if($request->ajax()){
-            $notaMateria=MateriaBoletin::where('pk_materia_boletin',$pk_materia_boletin)->get();
-            if (!empty($notaMateria[0])) {
-                $notaMateria=$notaMateria[0];
-                $notaMateria->nota_materia=$request->nota_materia; 
-                $notaMateria->save();
+            $notaDivision=NotaDivision::where('pk_nota_division',$pk_nota_division)->get();
+            if (!empty($notaDivision[0])) {
+                $notaDivision=$notaDivision[0];
+                $notaDivision->nota_division=$request->nota_division; 
+                $notaDivision->save();
                 return response()->json([
                     'mensaje' => 'Guardada con exito.'
                 ]);
             }
             return response()->json([
-                'mensaje' => 'Error: La nota no ha sido encontrada. Los datos no guardados aparecen en rojo'
+                'mensaje' => 'Error al guardar la nota, la nota no ha sido encontrada. Los datos no guardados aparecen en rojo'
             ]);
+            
         }
     }
 
@@ -95,25 +97,5 @@ class MateriaBoletinController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public static function actualizarNota(int $pk_materia_boletin){
-        $m=MateriaBotelin::where($pk_materia_boletin)->get();
-        if (empty($m[0])) {
-            return "Materia boletin no encontrada.";
-        }else{
-            $m=$m[0];
-            $m->nota_materia=0;
-            $periodos=NotaPeriodo::where('fk_materia_boletin',$pk_materia_boletin)->get();
-            if (empty($periodos[0])) {
-                $m[0]->save();
-            } else {
-                foreach ($periodos as $p) {
-                    $m->nota_materia=+$p->nota_final;
-                }
-            }
-            $m->nota_materia=$m->nota_materia/4; //Porque siempre son 4 periodos
-            $m->save();
-        }
     }
 }

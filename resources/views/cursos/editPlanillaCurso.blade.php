@@ -68,27 +68,27 @@
                     </td>
                     <td>
                         {{-- Numero de inasistencias por el periodo seleccionado del estudiante --}}
-                        <input name="inasistencias" min="0" id="inasistencias{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}"  tabla="nota_periodo"  type="number" value="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->inasistencias}}" onchange="updateInasistencias(this);">
+                        <input min="0" id="inasistencias{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}"  type="number" value="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->inasistencias}}" onchange="updateInasistencias(this);">
                     </td>
                         @foreach ($divisiones as $d)
                             @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                                 <td>
                                     {{-- Notas del estudiante --}}
-                                    <input class="update" max="5" name="nota" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" tabla="nota_estudiante" type="number" value="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}" onchange="updateNotasE(this);">
+                                    <input max="5" p="{{$n->porcentaje}}" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" fk="notaDiv{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->fk_nota_division}}" type="number" value="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}" onchange="updateNotasE(this);">
                                 </td>
                             @endforeach
-                            <td id="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}">
+                            <td p="{{$d->porcentaje}}" id="notaDiv{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" pk="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" fk="notaPer{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->fk_nota_periodo}}" onchange="updateNotasDiv(this);">
                                 {{-- Notas por division del estudiante --}}
                                 {{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division}}
                             </td>
                         @endforeach
                         @foreach ($periodos as $z)
-                            <td id="{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}">
+                            <td id="notaPer{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}" fk="materia{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->fk_materia_boletin}}">
                                 {{-- Notas por periodo del estudiante --}}
                                 {{$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo}}
                             </td>
                         @endforeach
-                    <td id="{{$e->pk_materia_boletin}}">
+                    <td id="materia{{$e->pk_materia_boletin}}" pk="{{$e->pk_materia_boletin}}">
                         {{-- Nota final del estudiante --}}
                         {{$e->nota_materia}}
                     </td>

@@ -25,7 +25,7 @@ class NotaPeriodoUpdateController extends FormRequest
     {
       return [
         //   Aun no se ha ajustado para el controlador de MateriaPC
-            'inasistencias' => 'numeric|min:0',
+            'inasistencias' => 'numeric|integer|min:0',
             'nota_periodo' => 'numeric|min:0|max:5'
         ];
     }

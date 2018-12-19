@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\NotaEstudiante;
 
 class NotaEstudianteController extends Controller
 {
@@ -66,9 +67,23 @@ class NotaEstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $pk_nota_estudiante)
     {
-        //
+        if($request->ajax()){
+            $notaEstudiante=NotaEstudiante::where('pk_nota_estudiante',$pk_nota_estudiante)->get();
+            if (!empty($notaEstudiante[0])) {
+                $notaEstudiante=$notaEstudiante[0];
+                $notaEstudiante->nota=$request->nota; 
+                $notaEstudiante->save();
+                return response()->json([
+                    'mensaje' => 'Guardada con exito.'
+                ]);
+            }
+            return response()->json([
+                'mensaje' => 'Error: La nota no ha sido encontrada. Los datos no guardados aparecen en rojo'
+            ]);
+            
+        }
     }
 
     /**

@@ -127,11 +127,19 @@ Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@sh
 
 /* RUTAS DE NOTIFICACION */
 Route::post('/notificaciones','NotificacionController@index');
-
 Route::resource('/fechas', 'FechaController');
 
 /* RUTAS DE NOTAS PERIODO */
 Route::resource('/notasperiodo','NotaPeriodoController')->middleware('admin:profesor');
+
+/* RUTAS DE NOTAS ESTUDIANTE */
+Route::resource('/notasestudiante','NotaEstudianteController')->middleware('admin:profesor');
+
+/* RUTAS DE NOTAS DIVISION */
+Route::resource('/notasdivision','NotaDivisionController')->middleware('admin:profesor');
+
+/* RUTAS DE MATERIA BOLETIN */
+Route::resource('/materiasboletin','MateriaBoletinController')->middleware('admin:profesor');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel

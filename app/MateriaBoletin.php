@@ -9,7 +9,7 @@ class MateriaBoletin extends Model
 {
     protected $table = 'materia_boletin';
     protected $primaryKey = 'pk_materia_boletin';
-    protected $fillable = ['fk_materia_pc','fk_boletin','nota_materia'];
+    protected $fillable = ['fk_materia_pc','fk_boletin','nota_materia','pk_materia_boletin'];
 
     public function actualizarNota(){
         $periodos=NotaPeriodo::select('nota_periodo')->where("fk_materia_boletin",$this->pk_materia_boletin)->get();
