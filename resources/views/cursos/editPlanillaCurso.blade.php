@@ -18,7 +18,10 @@
         <b>Periodo: </b> {{strtoupper($g[$p->nro_periodo])}}
     </div>
     <br>
-
+    {{-- Notificaciones del guardado de la planilla --}}
+    <div id="avisos">
+    </div>
+    <br>
     {{-- Planilla --}}
     <table>
         {{-- Encabezado planilla --}}

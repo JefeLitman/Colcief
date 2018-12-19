@@ -67,7 +67,7 @@ var cargarNotificaciones = function(){
             console.log(data.cant)
         },
         error: function(){
-            newModal('Error','La accion no pudo llevarse a cabo', false);
+            // newModal('Error','La accion no pudo llevarse a cabo', true);
         }
     });
 }

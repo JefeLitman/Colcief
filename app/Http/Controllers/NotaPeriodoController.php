@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\NotaPeriodoUpdateController;
 use App\NotaPeriodo;
 use App\Division;
 use App\NotaEstudiante;
@@ -70,9 +71,29 @@ class NotaPeriodoController extends Controller
      * @param  int  $pk_nota_periodo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $pk_nota_periodo)
+    public function update(NotaPeriodoUpdateController $request, $pk_nota_periodo)
     {
-        
+        if($request->ajax()){
+            $notaPeriodo=NotaPeriodo::where('pk_nota_periodo',$pk_nota_periodo)->get();
+            if (!empty($notaPeriodo[0])) {
+                $notaPeriodo=$notaPeriodo[0];
+                if($request->inasistencias!=null){
+                    $notaPeriodo->inasistencias=$request->inasistencias;
+                    $notaPeriodo->save();
+                }
+                if ($request->nota_periodo!=null) {
+                    $notaPeriodo->nota_periodo=$request->nota_periodo; 
+                    $notaPeriodo->save();
+                }
+                return response()->json([
+                    'mensaje' => 'Guardada con exito.'
+                ]);
+            }
+            return response()->json([
+                'mensaje' => 'Error al guardar la nota, la nota no ha sido encontrada. Los datos no guardados aparecen en rojo'
+            ]);
+            
+        }
     }
 
     /**
