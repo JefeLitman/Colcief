@@ -72,7 +72,7 @@ class NotaPeriodoController extends Controller
      */
     public function update(Request $request, $pk_nota_periodo)
     {
-        //
+        
     }
 
     /**

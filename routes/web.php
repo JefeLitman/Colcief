@@ -130,5 +130,8 @@ Route::post('/notificaciones','NotificacionController@index');
 
 Route::resource('/fechas', 'FechaController');
 
+/* RUTAS DE NOTAS PERIODO */
+Route::resource('/notasperiodo','NotaPeriodoController')->middleware('admin:profesor');
+
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel

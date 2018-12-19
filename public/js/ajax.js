@@ -66,9 +66,9 @@ var cargarNotificaciones = function(){
             noti.html(data.cant)
             console.log(data.cant)
         },
-        // error: function(){
-        //     newModal('Error','La accion no pudo llevarse a cabo', false);
-        // }
+        error: function(){
+            newModal('Error','La accion no pudo llevarse a cabo', false);
+        }
     });
 }
 
@@ -88,9 +88,7 @@ $(document).ready(function(){
             }
         },'Confirmar','¿Desea Eliminar el registro?',true);
     });    
-    function updateNotasE(e) {
-        alert('holiss');
-    };
+    
 });
 
 // function myFunction(){

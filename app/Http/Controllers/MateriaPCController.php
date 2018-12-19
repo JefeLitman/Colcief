@@ -339,6 +339,7 @@ class MateriaPCController extends Controller
      */
     public function destroy($id)
     {
+        
         if(session('role')=="administrador"){
             // Solo el administrador puede eliminar una MateriaPC
             $materiapc = MateriaPC::where("pk_materia_pc","=",$id)->get();

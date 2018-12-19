@@ -65,27 +65,27 @@
                     </td>
                     <td>
                         {{-- Numero de inasistencias por el periodo seleccionado del estudiante --}}
-                        <input name="inasistencias" min="0" id="inasistencias{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}"  tabla="nota_periodo"  type="number" value="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->inasistencias}}" onchange="updateNotasE(this);">
+                        <input name="inasistencias" min="0" id="inasistencias{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}"  tabla="nota_periodo"  type="number" value="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->inasistencias}}" onchange="updateInasistencias(this);">
                     </td>
                         @foreach ($divisiones as $d)
                             @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                                 <td>
                                     {{-- Notas del estudiante --}}
-                                    <input class="update" name="nota" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" tabla="nota_estudiante" type="number" value="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}">
+                                    <input class="update" max="5" name="nota" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" tabla="nota_estudiante" type="number" value="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}" onchange="updateNotasE(this);">
                                 </td>
                             @endforeach
-                            <td>
+                            <td id="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}">
                                 {{-- Notas por division del estudiante --}}
                                 {{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division}}
                             </td>
                         @endforeach
                         @foreach ($periodos as $z)
-                            <td>
+                            <td id="{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}">
                                 {{-- Notas por periodo del estudiante --}}
                                 {{$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo}}
                             </td>
                         @endforeach
-                    <td>
+                    <td id="{{$e->pk_materia_boletin}}">
                         {{-- Nota final del estudiante --}}
                         {{$e->nota_materia}}
                     </td>
@@ -96,5 +96,5 @@
     </table>
 
 </div>
-<script src="{{ asset('js/ajax.js') }}"></script>
+<script src="{{ asset('js/editarNotasProfesor.js') }}"></script>
 @endsection
