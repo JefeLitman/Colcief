@@ -16,7 +16,7 @@ class DivisionController extends Controller {
     }
 
     public function index(){
-        $division = Division::all()->where('ano', $this->ano);
+        $division = Division::all();
         return view('divisiones.listaDivision', ['division' => $division]);
     }
 
