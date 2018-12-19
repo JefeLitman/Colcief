@@ -72,8 +72,7 @@ class NotificacionController extends Controller {
      * @param  \App\Notificacion  $notificacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notificacion $notificacion)
-    {
+    public function destroy(Notificacion $notificacion){
         //
     }
 }

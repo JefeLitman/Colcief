@@ -337,29 +337,29 @@ class MateriaPCController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        
-        if(session('role')=="administrador"){
-            // Solo el administrador puede eliminar una MateriaPC
-            $materiapc = MateriaPC::where("pk_materia_pc","=",$id)->get();
-            if(empty($materiapc[0])){
+    public function destroy(Request $request, $id){
+        if($request->ajax()){
+            if(session('role')=="administrador"){
+                // Solo el administrador puede eliminar una MateriaPC
+                $materiapc = MateriaPC::where("pk_materia_pc","=",$id)->get();
+                if(empty($materiapc[0])){
+                    return response()->json([
+                        'mensaje' => 'Este profesor no esta asignado a ninguna materia.'
+                    ]);
+                }
+                $docente=Empleado::select('nombre','apellido')->where("cedula",$materiapc[0]->fk_empleado)->get()[0];
+                $curso=Curso::select('prefijo','sufijo')->where("pk_curso",$materiapc[0]->fk_curso)->get()[0];
+                $materia=$materiapc[0]->nombre;
+                $curso=($curso->prefijo=='0')?'Preescolar-'.$curso->sufijo:$curso->prefijo.'-'.$curso->sufijo;
+                $materiapc[0]->delete();
                 return response()->json([
-                    'mensaje' => 'Este profesor no esta asignado a ninguna materia.'
+                    'mensaje' => ucwords($docente->nombre).' '.ucwords($docente->apellido).' ya no dicta '.$materia.' al curso '.$curso.'.'
                 ]);
             }
-            $docente=Empleado::select('nombre','apellido')->where("cedula",$materiapc[0]->fk_empleado)->get()[0];
-            $curso=Curso::select('prefijo','sufijo')->where("pk_curso",$materiapc[0]->fk_curso)->get()[0];
-            $materia=$materiapc[0]->nombre;
-            $curso=($curso->prefijo=='0')?'Preescolar-'.$curso->sufijo:$curso->prefijo.'-'.$curso->sufijo;
-            $materiapc[0]->delete();
             return response()->json([
-                'mensaje' => ucwords($docente->nombre).' '.ucwords($docente->apellido).' ya no dicta '.$materia.' al curso '.$curso.'.'
+                'mensaje' => 'No tienes los permisos necesarios.'
             ]);
         }
-        return response()->json([
-            'mensaje' => 'No tienes los permisos necesarios.'
-        ]);
     }
 
     public function planillas($pk_materia_pc,$pk_periodo){

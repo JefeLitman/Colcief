@@ -177,8 +177,8 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($pk_nota)
-    {
+    public function destroy(Request $request, $pk_nota){
+      if($request->ajax()){
         $unidad = Nota::find($pk_nota);
         if ($this->verificarProfesor($unidad,session('user')['cedula'])) {
           if (!empty($unidad)) {
@@ -188,6 +188,7 @@ class NotaController extends Controller
           return 'Nota no encontrada';
         }
         return 'No tiene permisos para hacer esta acción';
+      }
     }
 
     /**
