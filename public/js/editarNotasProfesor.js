@@ -31,8 +31,7 @@ function updateNotasE(e) {
             total += (parseFloat($(this).val())*(parseFloat($(this).attr('p'))/100));    
         }
     });
-    $("#"+fk).text(total);
-    total=total.toFixed(1);
+    $("#"+fk).text(total.toFixed(1));
     updateNotasDiv($("#"+fk));
     // console.log(total);
     // total=total/parseFloat(notas.toArray().length);
