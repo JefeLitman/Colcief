@@ -2,7 +2,7 @@
 @section('titulo','Ver Materia - Profesor - Curso')
 @section('contenedor_'.((session('role')=='administrador')?'admin':'profesor'))
 {{-- mensajes de error --}}
-@include('error.error')
+
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $materiapc--}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>MateriaPCController.php  funcion show()

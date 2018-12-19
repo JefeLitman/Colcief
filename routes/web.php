@@ -33,6 +33,8 @@ Route::get('/nosotros', function () {
 Route::get('/terminal/link', 'Terminal@link');
 Route::get('/terminal/migrate/seed', 'Terminal@migrateAndSeeders');
 Route::get('/terminal/migrate', 'Terminal@migrate');
+Route::get('/terminal/migrate/reset', 'Terminal@migrateReset');
+Route::get('/terminal/migrate/refresh', 'Terminal@migrateRefresh');
 Route::get('/terminal/seed', 'Terminal@seed');
 
 Route::post('/autocompletar/{text}', 'AjaxController')->name('autocompletar');
@@ -125,6 +127,8 @@ Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@sh
 
 /* RUTAS DE NOTIFICACION */
 Route::post('/notificaciones','NotificacionController@index');
+
+Route::resource('/fechas', 'FechaController');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel

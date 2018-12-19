@@ -2,7 +2,7 @@
 @section('titulo','Lista de materias')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
-@include('error.error')
+
 	{{-- Guia Front --}}
 	{{-- Se envía array de objetos $materias --}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>MateriaController.php  funcion index()

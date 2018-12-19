@@ -2,7 +2,7 @@
 @section('titulo','Editar materia')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
-@include('error.error')
+
 {{-- Guia Front --}}
 {{-- Se envía el objeto $materia --}}
 {{-- Variables enviadas desde Local>App>Http>Controllers>MateriaController.php  funcion edit()

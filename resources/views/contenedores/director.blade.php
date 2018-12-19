@@ -19,6 +19,8 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/ajax.js') }}"></script>
+    <meta id="csrf_token" name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 

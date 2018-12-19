@@ -2,8 +2,6 @@
 @section('titulo','Estudiante Nuevo')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
-@include('error.error')
-<br>
 <div >
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">

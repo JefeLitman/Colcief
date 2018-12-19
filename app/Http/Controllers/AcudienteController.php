@@ -9,19 +9,9 @@ use App\Http\Requests\AcudienteUpdateController;
 
 class AcudienteController extends Controller{
 
-    public function __construct()
-    {
-      $this->middleware('admin:administrador');
+    public function __construct(){
+      $this->middleware('admin:administrador')->except(['index','show']);
       $this->middleware('admin:director')->only(['index','show']);
-    }
-
-    public function index(){
-      $unidad = new Acudiente();
-        return view('acudientes.verAcu',['acudientes' => $unidad]);
-    }
-
-    public function create(){
-        return view('acudientes.crearAcu');
     }
 
     public function store(AcudienteStoreController $request){

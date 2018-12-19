@@ -2,7 +2,7 @@
 @section('titulo','Materia-Profesor-Curso Nuevo')
 @section('contenedor_admin')
 {{-- mensajes de error --}}
-@include('error.error')
+
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $result--}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>MateriaPCController.php  funcion index()

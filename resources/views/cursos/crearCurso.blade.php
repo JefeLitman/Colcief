@@ -1,7 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Crear curso')
 @section('contenedor_admin')
-@include('error.error')
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>

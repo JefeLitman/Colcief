@@ -1,7 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Estudiante Nuevo')
 @section('contenedor_admin')
-    @include('error.error')
 <br id = "br">
 
 <div class="container">
