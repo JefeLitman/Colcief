@@ -74,7 +74,7 @@ var cargarNotificaciones = function(){
 
 $(document).ready(function(){
     $.ajaxSetup({'cache':false});
-    cargarNotificaciones()
+    cargarNotificaciones();
     setInterval(cargarNotificaciones, 8000);
     $('.delete').click(function(){
         var ruta = $(this).attr('ruta');
@@ -87,7 +87,10 @@ $(document).ready(function(){
                 deleteRegistro(ruta, id, padre)
             }
         },'Confirmar','¿Desea Eliminar el registro?',true);
-    });
+    });    
+    function updateNotasE(e) {
+        alert('holiss');
+    };
 });
 
 // function myFunction(){

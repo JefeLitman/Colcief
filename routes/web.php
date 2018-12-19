@@ -101,8 +101,9 @@ Route::get('/cursos/{pk_curso}/planillas','CursoController@cursoPlanillas');
 /* RUTAS DE MATERIAPC */
 // Debe estar logeado para acceder
 Route::resource('/materiaspc','MateriaPCController');
-Route::get('/materiaspc/{pk_materia_pc}/planillas','MateriaPCController@indexPlanillasProfesor');
-Route::get('/planillas/{pk_materia_pc}/periodos/{pk_periodo}','MateriaPCController@showPlanillasCurso');
+Route::get('/planillas/{pk_materia_pc}/periodos/{pk_periodo}','MateriaPCController@showPlanillas');
+Route::get('/planillas/{pk_materia_pc}/periodos/{pk_periodo}/editar','MateriaPCController@editarPlanillas');
+Route::put('/planillas/{pk_materia_pc}/periodos/{pk_periodo}','MateriaPCController@updatePlanillas')->middleware('admin:profesor');
 
 
 /* RUTAS DE NOTA */

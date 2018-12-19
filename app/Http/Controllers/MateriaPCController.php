@@ -361,7 +361,7 @@ class MateriaPCController extends Controller
         ]);
     }
 
-    public function showPlanillasCurso($pk_materia_pc,$pk_periodo){
+    public function planillas($pk_materia_pc,$pk_periodo){
         $materia_pc=MateriaPC::select('materia_pc.*','materia_pc.nombre as materia','curso.*','empleado.*')->where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->get()[0];
         $p=Periodo::where([['ano',date('Y')],['pk_periodo',$pk_periodo]])->get();
         $periodos=Periodo::where('ano',date('Y'))->get();
@@ -413,19 +413,20 @@ class MateriaPCController extends Controller
                 
             }
         }
-        return view('cursos.showPlanillaCurso',['materiapc'=>$materia_pc,'p'=>$p,'periodos'=>$periodos,'divisiones'=>$divisiones,'notas'=>$notas,'notaE'=>$notaE,'notaDiv'=>$notaDiv,'notaPer'=>$notaPer,'estudiantes'=>$estudiantes]);
+        return ['materiapc'=>$materia_pc,'p'=>$p,'periodos'=>$periodos,'divisiones'=>$divisiones,'notas'=>$notas,'notaE'=>$notaE,'notaDiv'=>$notaDiv,'notaPer'=>$notaPer,'estudiantes'=>$estudiantes];
     }
 
-    private function notasPeriodo($pk_materia_pc,$periodo){
+    public function showPlanillas($pk_materia_pc,$pk_periodo){
+        return view('cursos.showPlanillaCurso',$this->planillas($pk_materia_pc,$pk_periodo));
+    }
+
+    public function editarPlanillas($pk_materia_pc,$pk_periodo){
+        return view('cursos.editPlanillaCurso',$this->planillas($pk_materia_pc,$pk_periodo));
+    }
+
+    public function updatePlanillas($request){
 
     }
 
-    public function indexPlanillasProfesor($pk_materia_pc){
-        $materiapc=MateriaPC::where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','materia_pc.fk_curso')->get();
-        $periodos=Periodo::where('ano',date('Y'))->get();
-        if (!empty($materiapc[0])) {
-            return view('materiaspc.listaPlanillasMateriasPC_profesor',['materiapc'=>$materiapc[0],'periodos'=>$periodos]);
-        }
-        return "Error: MateriaPC no encontrada.";
-    }
+    
 }
