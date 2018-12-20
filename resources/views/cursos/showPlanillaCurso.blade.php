@@ -79,9 +79,9 @@
                                     @endforeach
                                     <td data-toggle="tooltip" data-placement="bottom" @if ($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 2.9)
                                         class="table-danger"  title="Nota Baja"
-                                    @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 3.9)
+                                    @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 3 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 3.9)
                                         class="table-warning"  title="Nota Basica"
-                                    @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 4.5)
+                                    @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 4 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 4.5)
                                         class="table-primary"  title="Nota Alta"
                                     @else
                                         class="table-success" title="Nota Superior"
