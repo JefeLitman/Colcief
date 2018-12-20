@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\MateriaBoletinUpdateController;
 use App\MateriaBoletin;
 use App\NotaPeriodo;
 
@@ -68,7 +69,7 @@ class MateriaBoletinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $pk_materia_boletin)
+    public function update(MateriaBoletinUpdateController $request, $pk_materia_boletin)
     {
         if($request->ajax()){
             $notaMateria=MateriaBoletin::where('pk_materia_boletin',$pk_materia_boletin)->get();

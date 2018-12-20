@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\NotaEstudianteUpdateController;
 use App\NotaEstudiante;
 
 class NotaEstudianteController extends Controller
@@ -67,7 +68,7 @@ class NotaEstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $pk_nota_estudiante)
+    public function update(NotaEstudianteUpdateController $request, $pk_nota_estudiante)
     {
         if($request->ajax()){
             $notaEstudiante=NotaEstudiante::where('pk_nota_estudiante',$pk_nota_estudiante)->get();

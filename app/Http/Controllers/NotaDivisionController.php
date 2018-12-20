@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\NotaDivisionUpdateController;
 use App\Http\Controllers\Controller;
 
 use App\NotaDivision;
@@ -69,7 +70,7 @@ class NotaDivisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $pk_nota_division)
+    public function update(NotaDivisionUpdateController $request, $pk_nota_division)
     {
         if($request->ajax()){
             $notaDivision=NotaDivision::where('pk_nota_division',$pk_nota_division)->get();
