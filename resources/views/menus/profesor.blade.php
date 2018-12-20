@@ -3,7 +3,7 @@
    
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" class="active">
             <div class="sidebar-header"  style="cursor: pointer;">
                 <h3 style="color: white;"><i  style="color: Dodgerblue;" class="fab fa-contao"></i>olCief</h3>
                 <strong style="color: Dodgerblue;" ><i class="fab fa-contao"></i></strong>
@@ -37,20 +37,28 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-					<div class="sidebar-header" id="sidebarCollapse" style="cursor: pointer;">
-						<h3><i class="fas fa-bars"></i></h3>
-					</div>
-                    
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <button class="btn btn-info d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('estudiantes/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
+                                <a class="nav-link" href="{{ url('empleados/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
+                    
+                            </li>
+                            <li class="nav-item">
+								<a class="nav-link active" href="#">Notificaciones <span id="notificaciones" class="badge badge-pill badge-secondary">0</span> </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-			</nav>
-    
+            </nav>
+
 
     
     <!-- jQuery CDN - Slim version (=without AJAX) -->

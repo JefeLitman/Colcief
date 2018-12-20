@@ -2,9 +2,9 @@
 <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
 
-    <div class="wrapper">
+    <div class="wrapper" >
         <!-- Sidebar  -->
-        <nav id="sidebar" class="active">
+        <nav id="sidebar" class="active" >
             <div class="sidebar-header"  style="cursor: pointer;">
                 <h3 style="color: white;"><i style="color: Dodgerblue;" class="fab fa-contao"></i>olCief</h3>
                 <strong style="color: Dodgerblue;" ><i class="fab fa-contao"></i></strong>

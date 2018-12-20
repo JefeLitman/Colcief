@@ -27,11 +27,15 @@
                     @break
             
                 @case('administrador')
-                    {{ url('/empleados/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
+                    {{ url('/empleados/principal/0') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
+                    @break
+                
+                @case('director')
+                    {{ url('/empleados/principal/1') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
 
                 @case('profesor')
-                    {{ url('/empleados/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
+                    {{ url('/empleados/principal/2') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
                 @default
                     {{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>

@@ -57,19 +57,32 @@ Route::get('estudiantes/cursos/{pk_curso}', 'EstudianteController@estudianteGrad
 
 
 /* RUTAS EMPLEADO */
-Route::get('empleados/principal/{rol}', function ($rol) {
-    switch($rol){
-        case '0':
-            return view('empleados.adminPrincipal');
-            break;
-        case '1':
-            return view('empleados.directorPrincipal');
-            break;
-        case '2':
-            return view('empleados.profesorPrincipal');
-            break;
-    }
-})->middleware('admin:profesor,director,administrador');
+Route::get('empleados/principal/0', function () {
+    return view('empleados.adminPrincipal');
+})->middleware('admin:administrador');
+
+Route::get('empleados/principal/1', function () {
+    return view('empleados.directorPrincipal');
+})->middleware('admin:director');
+
+Route::get('empleados/principal/2', function () {
+    return view('empleados.profesorPrincipal');
+})->middleware('admin:profesor');
+
+// Route::get('empleados/principal/{rol}', function ($rol) {
+//     switch($rol){
+//         case '0':
+//             return view('empleados.adminPrincipal');
+//             break;
+//         case '1':
+//             return view('empleados.directorPrincipal');
+//             break;
+//         case '2':
+//             return view('empleados.profesorPrincipal');
+//             break;
+//     }
+// })->middleware('admin:profesor,director,administrador');
+
 Route::get('empleados/editarEstudiantes', function () {
     return view('cursos.editarEstudiante');
 });
