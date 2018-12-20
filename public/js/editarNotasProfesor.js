@@ -1,35 +1,34 @@
 
 
 function updateAjax(pk,link,parametro){
-    bandera=false;
     // Aqui dibujariamos el preload
     document.getElementById('avisos').innerHTML="Guardando...";
     // Guardando
-    $.ajax({
-        type: 'POST',
-        url: '/'+link+'/'+pk,
-        data: parametro,
-        success: function(data) {
-            bandera=true;
-            $('#avisos').text(data.mensaje);
-        },
-        error: function(data){
-            bandera=false;
-            // newModal('Error','La accion no pudo llevarse a cabo', false);
-            // console.log('Error: La accion no pudo llevarse a cabo.'+data);
-            $('#avisos').text('Error: No es posible guardar, verifique que:');
-            
-        }
+    return new Promise(function(resolver,rechazar){
+        $.ajax({
+            type: 'POST',
+            url: '/'+link+'/'+pk,
+            data: parametro,
+            success: function(data) {
+                $('#avisos').text(data.mensaje);
+                resolver();
+            },
+            error: function(data){
+                // newModal('Error','La accion no pudo llevarse a cabo', false);
+                // console.log('Error: La accion no pudo llevarse a cabo.'+data);
+                $('#avisos').text('Error: No es posible guardar, verifique que:');
+                rechazar();
+            }
+        });
     });
-    return bandera;
 }
 
 function updateInasistencias(e) {
     updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"inasistencias":e.value});
 }
 function updateNotasE(e) {
-    bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":e.value});	
-    if(bandera){
+    bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":e.value});
+    bandera.then(function() {
         fk=$(e).attr('fk');
         total=0;   $( "[fk="+fk+"]").each(function(){
             if (!isNaN(parseFloat($(this).val()))){
@@ -38,15 +37,15 @@ function updateNotasE(e) {
         });
         $("#"+fk).text(total.toFixed(1));
         updateNotasDiv($("#"+fk));
-    }else{
-
-    }
+    },function() {
+        console.log("error");
+    });
     
 }
 function updateNotasDiv(e) {
     // console.log("Hola"+);
     bandera=updateAjax($(e).attr('pk'),"notasdivision",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_division":parseFloat(e.html())});	
-    if(bandera){
+    bandera.then(function() {
         fk=$(e).attr('fk');
         total=0;
         $( "[fk="+fk+"]").each(function(){
@@ -56,15 +55,17 @@ function updateNotasDiv(e) {
         });
         $("#"+fk).text(total.toFixed(1));
         updateNotasPer($("#"+fk));
-    }else{
+    },function() {
+        console.log("error");
+    });
+        
 
-    }
     
     // console.log(total);
 }
 function updateNotasPer(e) {
     bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_periodo":e.html()});
-    if(bandera){
+    bandera.then(function() {
         fk=$(e).attr('fk');
         total=0;
         periodos=$( "[fk="+fk+"]");
@@ -76,9 +77,9 @@ function updateNotasPer(e) {
         total=total/parseFloat(periodos.toArray().length);
         $("#"+fk).text(total.toFixed(1));
         updateNotasDef($("#"+fk));
-    }else{
-
-    }
+    },function() {
+        console.log("error");
+    });
     
 } 
 function updateNotasDef(e) {
