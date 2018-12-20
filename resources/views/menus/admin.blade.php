@@ -80,11 +80,13 @@
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{ url('empleados/principal/0') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
-                    
                             </li>
-                            <li class="nav-item">
-								<a class="nav-link active" href="#">Notificaciones <span id="notificaciones" class="badge badge-pill badge-secondary">0</span> </a>
-                            </li>
+                            <li class="nav-item active">
+								<a class="nav-link active noti" style="cursor: pointer;" data-toggle="popover" data-placement="bottom" title="Notificaciones" data-content="No tienes notificaciones nuevas"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary">0</span> </a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>								
+							</li>
                         </ul>
                     </div>
                 </div>
@@ -100,5 +102,10 @@
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
+		});
+		$('.noti').popover().click(function () {
+            setTimeout(function () {
+                $('.noti').popover('hide');
+            }, 2000);
         });
     </script>
