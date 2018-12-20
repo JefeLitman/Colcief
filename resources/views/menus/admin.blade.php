@@ -12,8 +12,8 @@
 
             <ul class="list-unstyled components">
                 {{--  INICIO  --}}
-				<li @if (Request::path()=="empleados/principal") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
+				<li @if (Request::path()=="empleados/principal/0") class="active" @endif >
+					<a class="nav-link " href="{{ url('empleados/principal/0') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 {{--  HORARIOS  --}}
 				<li @if (Request::path()=="") class="active" @endif >
@@ -79,7 +79,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('empleados/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
+                                <a class="nav-link" href="{{ url('empleados/principal/0') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
                     
                             </li>
                             <li class="nav-item">
