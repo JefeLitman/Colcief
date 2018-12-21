@@ -45,12 +45,16 @@ function desempeno(nota) {
 }
 
 function updateInasistencias(e) {
+    $('#myModal').modal('show');
     bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"inasistencias":$(e).html()});
+    setInterval(function(){$('#myModal').modal('hide') }, 3000);
     bandera.then(function () {
         console.log("Inasistencia guardada con exito.");
     },function() {
         console.log("Error");
     });
+    
+
 }
 
 function updateNotasE(e) {

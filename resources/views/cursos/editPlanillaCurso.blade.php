@@ -25,7 +25,12 @@
                     </tbody>
                 </table>
                 <h5 class="text-center card-title">Modo Edición</h5>
-
+                <div class="input-group input-group-sm mb-3 w-50 mx-auto">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Filtrar</span>
+                    </div>
+                    <input id="entradafilter" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
         <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content" id="avisos" >
@@ -68,7 +73,7 @@
                     </tr>
                
                 </thead>
-                <tbody>
+                <tbody class="contenidobusqueda ">
                         @foreach ($estudiantes as $e)
                         <tr>
                             <td>
@@ -151,6 +156,17 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+        $(document).ready(function(){
+            $('#entradafilter').keyup(function () {
+            var rex = new RegExp($(this).val(), 'i');
+                $('.contenidobusqueda tr').hide();
+                $('.contenidobusqueda tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+  
+        })
+      
+  });
     </script>
     
     

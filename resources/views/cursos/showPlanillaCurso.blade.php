@@ -27,6 +27,12 @@
                     </tbody>
                 </table>
                 <h5 class="text-center card-title">Modo Vista</h5>
+                <div class="input-group input-group-sm mb-3 w-50 mx-auto">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Filtrar</span>
+                    </div>
+                    <input id="entradafilter" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
           <p class="card-text">
             <div class="table-responsive">
             <table class="table table-striped table-condensed table-sm  table-hover text-center">
@@ -62,7 +68,7 @@
                     </tr>
                
                 </thead>
-                <tbody>
+                <tbody class="contenidobusqueda">
                         @foreach ($estudiantes as $e)
                         <tr>
                             <td>
@@ -143,5 +149,14 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+        $(document).ready(function(){
+            $('#entradafilter').keyup(function () {
+            var rex = new RegExp($(this).val(), 'i');
+                $('.contenidobusqueda tr').hide();
+                $('.contenidobusqueda tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+        })
+    });
     </script>
 @endsection
