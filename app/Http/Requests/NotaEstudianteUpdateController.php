@@ -25,7 +25,7 @@ class NotaEstudianteUpdateController extends FormRequest
     {
       return [
         //   Aun no se ha ajustado para el controlador de MateriaPC
-            'nota' => 'numeric|min:0|max:5'
+            'nota' => 'numeric|min:1|max:5'
         ];
     }
 }
