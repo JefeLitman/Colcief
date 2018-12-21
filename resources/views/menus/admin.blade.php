@@ -106,6 +106,6 @@
 		$('.noti').popover().click(function () {
             setTimeout(function () {
                 $('.noti').popover('hide');
-            }, 2000);
+            }, 5000);
         });
     </script>
