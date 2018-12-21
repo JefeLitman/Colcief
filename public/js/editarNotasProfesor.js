@@ -13,8 +13,6 @@ function updateAjax(pk,link,parametro){
                 resolver();
             },
             error: function(data){
-                // newModal('Error','La accion no pudo llevarse a cabo', false);
-                // console.log('Error: La accion no pudo llevarse a cabo.'+data);
                 $('#avisos').text('Error: No es posible guardar, verifique que:');
                 rechazar();
             }
@@ -23,7 +21,8 @@ function updateAjax(pk,link,parametro){
 }
 
 function desempeno(nota) {
-    if (nota >= 1 && nota <= 2.9){
+    //Favor no cambiar el 0 By:Paola 
+    if (nota >= 0 && nota <= 2.9){
         clase="table-danger";
         titulo="Nota Final Baja";
     }else if(nota >= 3 && nota <= 3.9){
@@ -32,8 +31,8 @@ function desempeno(nota) {
     }else if(nota >= 4 && nota <= 4.5){
         clase="table-primary";  
         titulo="Nota Final Alta";
-    }else{
-        clase="table-success2"; 
+    }else if(nota >= 4.6 && nota <= 5.0){
+        clase="table-success"; 
         titulo="Nota Final Superior";
     }
     return [clase,titulo];

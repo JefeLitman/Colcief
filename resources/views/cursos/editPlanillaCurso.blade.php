@@ -116,7 +116,7 @@
                                 @elseif($e->nota_materia >= 4 && $e->nota_materia <= 4.5)
                                     class="table-primary"  title="Nota Final Alta"
                                 @else
-                                    class="table-success2" title="Nota Final Superior"
+                                    class="table-success" title="Nota Final Superior"
                                 @endif >
                                 {{-- Nota final del estudiante --}}
                                 {{$e->nota_materia}}

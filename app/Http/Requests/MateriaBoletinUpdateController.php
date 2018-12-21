@@ -25,7 +25,7 @@ class MateriaBoletinUpdateController extends FormRequest
     {
         return [
             //   Aun no se ha ajustado para el controlador de MateriaPC
-                'nota_materia' => 'numeric|min:1|max:5'
+                'nota_materia' => 'numeric|min:0|max:5'
             ];
     }
 }
