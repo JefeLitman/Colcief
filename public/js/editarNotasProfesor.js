@@ -45,9 +45,7 @@ function desempeno(nota) {
 }
 
 function updateInasistencias(e) {
-    $('#myModal').modal('show');
     bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"inasistencias":$(e).html()});
-    setInterval(function(){$('#myModal').modal('hide') }, 3000);
     bandera.then(function () {
         console.log("Inasistencia guardada con exito.");
     },function() {
@@ -58,9 +56,7 @@ function updateInasistencias(e) {
 }
 
 function updateNotasE(e) {
-    $('#myModal').modal('show');
     bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":$(e).html()});
-    setInterval(function(){$('#myModal').modal('hide') }, 3000);
     bandera.then(function() {
         fk=$(e).attr('fk');
         total=0;   $( "[fk="+fk+"]").each(function(){

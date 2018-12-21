@@ -31,7 +31,7 @@
                     </div>
                     <input id="entradafilter" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
-                <div class="alert alert-secondary" role="alert" id="avisos"></div>
+                <div id="avisos"></div>
         <div id="table" class="table-editable">
           <p class="card-text">
             <div class="table-responsive">
