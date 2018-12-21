@@ -26,6 +26,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <h5 class="text-center card-title">Modo Vista</h5>
           <p class="card-text">
             <div class="table-responsive">
             <table class="table table-striped table-condensed table-sm  table-hover text-center">

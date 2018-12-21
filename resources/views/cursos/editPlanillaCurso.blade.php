@@ -25,6 +25,7 @@
                     </tbody>
                 </table>
                  {{-- Notificaciones del guardado de la planilla --}}
+        <h5 class="text-center card-title">Modo Editar</h5>
         <div id="avisos"></div>
         <div id="table" class="table-editable">
           <p class="card-text">
