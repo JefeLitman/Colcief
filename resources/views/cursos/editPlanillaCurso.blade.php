@@ -87,7 +87,7 @@
                                     @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 4 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 4.5)
                                         class="table-primary"  title="Nota Alta"
                                     @else
-                                        class="table-success" title="Nota Superior"
+                                        class="table-success2" title="Nota Superior"
                                     @endif >
                                         {{-- Notas por division del estudiante --}}
                                         {{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division}}
@@ -101,7 +101,7 @@
                                     @elseif($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo >= 4 && $notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo <= 4.5 )
                                         class="table-primary"  title="Nota Periodo Alta"
                                     @else
-                                        class="table-success" title="Nota Periodo Superior"
+                                        class="table-success2" title="Nota Periodo Superior"
                                     @endif >
                                 {{-- Notas por periodo del estudiante --}}
                                 {{$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo}}
@@ -115,7 +115,7 @@
                                     @elseif($e->nota_materia >= 4 && $e->nota_materia <= 4.5)
                                         class="table-primary"  title="Nota Final Alta"
                                     @else
-                                        class="table-success" title="Nota Final Superior"
+                                        class="table-success2" title="Nota Final Superior"
                                     @endif >
                                 {{-- Nota final del estudiante --}}
                                 {{$e->nota_materia}}
