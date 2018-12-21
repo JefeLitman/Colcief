@@ -36,7 +36,7 @@
                         <th rowspan="2">IA</th>
                         @foreach ($divisiones as $d)
                         {{-- Encabezado: Nota de  la division --}}
-                        <th data-toggle="tooltip" data-placement="bottom" title="{{$d->porcentaje}}%" colspan="{{count($notas[$p->pk_periodo][$d->pk_division])}}" class="table-primary">
+                        <th data-toggle="tooltip" data-placement="bottom" title="{{$d->descripcion}}" colspan="{{count($notas[$p->pk_periodo][$d->pk_division])}}" class="table-primary">
                             {{$d->nombre}} <span class="badge badge-pill badge-primary">{{$d->porcentaje}}%</span>
                         </th>
                         <th></th>
@@ -53,7 +53,7 @@
                             @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                                 {{-- Encabezado: Notas--}}
                                 
-                                <th class="table-secondary" data-toggle="tooltip" data-placement="bottom" title="{{$n->porcentaje}}%" >
+                                <th class="table-secondary" data-toggle="tooltip" data-placement="bottom" title="{{$n->descripcion}}" >
                                     {{$n->nombre}} <span class="badge badge-pill badge-secondary">{{$n->porcentaje}}%</span>
                                 </th>
                             @endforeach
