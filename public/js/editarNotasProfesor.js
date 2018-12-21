@@ -24,7 +24,7 @@ function updateAjax(pk,link,parametro){
 }
 
 function updateInasistencias(e) {
-    bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"inasistencias":e.innerText});
+    bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"inasistencias":$(e).html()});
     bandera.then(function () {
         console.log("Inasistencia guardada con exito.");
     },function() {
@@ -32,7 +32,7 @@ function updateInasistencias(e) {
     });
 }
 function updateNotasE(e) {
-    bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":e.innerText});
+    bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":$(e).html()});
     bandera.then(function() {
         fk=$(e).attr('fk');
         total=0;   $( "[fk="+fk+"]").each(function(){
