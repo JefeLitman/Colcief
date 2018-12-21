@@ -30,16 +30,16 @@ function desempeno(nota) {
     //Favor no cambiar el 0 By:Paola 
     if (nota >= 0 && nota <= 2.9){
         clase="table-danger";
-        titulo="Nota Final Baja";
+        titulo="Nota Baja";
     }else if(nota >= 3 && nota <= 3.9){
         clase="table-warning";  
-        titulo="Nota Final Basica";
+        titulo="Nota Basica";
     }else if(nota >= 4 && nota <= 4.5){
         clase="table-primary";  
-        titulo="Nota Final Alta";
+        titulo="Nota Alta";
     }else if(nota >= 4.6 && nota <= 5.0){
         clase="table-success"; 
-        titulo="Nota Final Superior";
+        titulo="Nota Superior";
     }
     return [clase,titulo];
 }
