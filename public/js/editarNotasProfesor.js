@@ -1,6 +1,7 @@
-
+$('#myModal').modal('hide')
 function updateAjax(pk,link,parametro){
     // Aqui dibujariamos el preload
+    // $('#avisos').removeAttr('hidden');
     document.getElementById('avisos').innerHTML="Guardando...";
     // Guardando
     return new Promise(function(resolver,rechazar){
@@ -9,14 +10,19 @@ function updateAjax(pk,link,parametro){
             url: '/'+link+'/'+pk,
             data: parametro,
             success: function(data) {
+                $('#avisos').attr({'class':'alert alert-success'});
                 $('#avisos').text(data.mensaje);
                 resolver();
             },
             error: function(data){
-                $('#avisos').text('Error: No es posible guardar, verifique que:');
+                $('#avisos').attr({'class':'alert alert-danger'});
+                $('#avisos').text('Error: No es posible guardar, verifique');
                 rechazar();
+                
             }
         });
+        
+        
     });
 }
 
@@ -48,7 +54,9 @@ function updateInasistencias(e) {
 }
 
 function updateNotasE(e) {
+    $('#myModal').modal('show');
     bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":$(e).html()});
+    setInterval(function(){$('#myModal').modal('hide') }, 3000);
     bandera.then(function() {
         fk=$(e).attr('fk');
         total=0;   $( "[fk="+fk+"]").each(function(){
@@ -65,7 +73,6 @@ function updateNotasE(e) {
     },function() {
         console.log("error");
     });
-    
 }
 function updateNotasDiv(e) {
     // console.log("Hola"+);

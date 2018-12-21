@@ -24,9 +24,14 @@
                         </tr>
                     </tbody>
                 </table>
-                 {{-- Notificaciones del guardado de la planilla --}}
-        <h5 class="text-center card-title">Modo Editar</h5>
-        <div id="avisos"></div>
+                <h5 class="text-center card-title">Modo Edición</h5>
+
+        <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" id="avisos" >
+            </div>
+        </div>
+        </div>
         <div id="table" class="table-editable">
           <p class="card-text">
             <div class="table-responsive">
