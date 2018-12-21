@@ -1,5 +1,4 @@
 
-
 function updateAjax(pk,link,parametro){
     // Aqui dibujariamos el preload
     document.getElementById('avisos').innerHTML="Guardando...";
@@ -23,6 +22,23 @@ function updateAjax(pk,link,parametro){
     });
 }
 
+function desempeno(nota) {
+    if (nota >= 1 && nota <= 2.9){
+        clase="table-danger";
+        titulo="Nota Final Baja";
+    }else if(nota >= 3 && nota <= 3.9){
+        clase="table-warning";  
+        titulo="Nota Final Basica";
+    }else if(nota >= 4 && nota <= 4.5){
+        clase="table-primary";  
+        titulo="Nota Final Alta";
+    }else{
+        clase="table-success2"; 
+        titulo="Nota Final Superior";
+    }
+    return [clase,titulo];
+}
+
 function updateInasistencias(e) {
     bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"inasistencias":$(e).html()});
     bandera.then(function () {
@@ -31,6 +47,7 @@ function updateInasistencias(e) {
         console.log("Error");
     });
 }
+
 function updateNotasE(e) {
     bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":$(e).html()});
     bandera.then(function() {
@@ -40,7 +57,11 @@ function updateNotasE(e) {
                 total += (parseFloat($(this).html())*(parseFloat($(this).attr('p'))/100));    
             }
         });
-        $("#"+fk).text(total.toFixed(1));
+        total=total.toFixed(1);
+        div=$("#"+fk);
+        div.text(total);
+        [clase,titulo]=desempeno(total);
+        div.attr({'class':clase,'title':titulo});
         updateNotasDiv($("#"+fk));
     },function() {
         console.log("error");
@@ -58,16 +79,17 @@ function updateNotasDiv(e) {
                 total += (parseFloat($(this).html())*(parseFloat($(this).attr('p'))/100));    
             }
         });
-        $("#"+fk).text(total.toFixed(1));
+        total=total.toFixed(1);
+        per=$("#"+fk);
+        per.text(total);
+        [clase,titulo]=desempeno(total);
+        per.attr({'class':clase,'title':titulo});
         updateNotasPer($("#"+fk));
     },function() {
         console.log("error");
     });
-        
-
-    
-    // console.log(total);
 }
+
 function updateNotasPer(e) {
     bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_periodo":e.html()});
     bandera.then(function() {
@@ -80,13 +102,18 @@ function updateNotasPer(e) {
             }
         });
         total=total/parseFloat(periodos.toArray().length);
-        $("#"+fk).text(total.toFixed(1));
+        total=total.toFixed(1);
+        def=$("#"+fk);
+        def.text(total);
+        [clase,titulo]=desempeno(total);
+        def.attr({'class':clase,'title':titulo});
         updateNotasDef($("#"+fk));
     },function() {
         console.log("error");
     });
     
 } 
+
 function updateNotasDef(e) {
     updateAjax($(e).attr('pk'),"materiasboletin",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_materia":e.html()});
 }
@@ -96,7 +123,7 @@ var $BTN = $('#export-btn');
 var $EXPORT = $('#export');
 
 $('.table-add').click(function () {
-var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+var $clone = $TABLE.find('tr.hide').clone(true).removeclase('hide table-line');
 $TABLE.find('table').append($clone);
 });
 
