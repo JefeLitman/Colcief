@@ -8,7 +8,7 @@
 <div class="container" style="background:#fafafa !important;">
     {{-- Encabezado --}}
     <div class="card bg-light border-info mb-3">
-        <div class="card-header text-center"><h5>COLEGIO INTEGRADO EZEQUIEL FLORIAN</h5></div>
+            <div class="card-header text-center"><h5>COLEGIO INTEGRADO EZEQUIEL FLORIAN<span class="table-add float-right"><a  href='{{url(str_replace('/editar', '', Request::path()))}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Ver Planilla" class="far fa-eye fa-lg"></i></a></span></h5></div>        
         <div class="card-body">
                 <table class="table table-borderless table-sm w-75 mx-auto">
                     <tbody>
