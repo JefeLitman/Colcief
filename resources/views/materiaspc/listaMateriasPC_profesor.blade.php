@@ -62,16 +62,16 @@
                                                 {{-- editar materia --}}
                                                 <td class="text-center">
                                                     {{-- Ver logros de una materia --}}
-                                                    <a href="/materiaspc/{{$j[0]}}"><i class="fas fa-eye" style="color:#00838f"></i></a>
+                                                    <a href="/materiaspc/{{$j[0]}}"><i class="fas fa-eye text-info" ></i></a>
                                                     {{-- Editar logros de una materia --}}
-                                                    <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
+                                                    <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit text-secondary"  title="Modificar logros"></i></a>
                                                 </td>
                                                 @foreach ($periodos as $p)
                                                     <td class="text-center">
                                                         {{-- Ver planillas/Notas --}}
-                                                        <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}"><i class="fas fa-eye" style="color:#00838f" title="Ver notas"></i></a>
+                                                        <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}"><i class="fas fa-eye text-info"  title="Ver notas"></i></a>
                                                         {{-- Editar planillas/Notas  --}}
-                                                        <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar"><i class="fas fa-edit" style="color:#00838f" title="Modificar notas"></i></a>
+                                                        <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar"><i class="fas fa-edit text-secondary"  title="Modificar notas"></i></a>
                                                     </td>
                                                 @endforeach
                                                 

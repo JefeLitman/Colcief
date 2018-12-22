@@ -67,7 +67,8 @@ var cargarNotificaciones = function(){
             mensaje='';
             console.log(data.data);
             $.each( data.data, function(key, notificar) {
-                mensaje+='<div class="alert alert-secondary" role="alert"><a href="'+notificar.link+'" class="alert-link">'+notificar.titulo+'</a>: '+notificar.descripcion+'</div>'
+                mensaje+='<div class="alert alert-secondary" role="alert"><a href="'+notificar.link+'" class="alert-link">'+notificar.titulo+'</a>: '+notificar.descripcion
+                +'<button type="button" class="close cerrar" pk="'+notificar.pk_notificacion+'"><span aria-hidden="true">&times;</span></button></div>'
             });
             $('#shownoti').attr("data-content",mensaje);
             console.log(data.cant)
