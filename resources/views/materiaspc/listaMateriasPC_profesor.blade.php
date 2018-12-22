@@ -38,7 +38,7 @@
                     @foreach ($result as $nombre => $materia)
                     <div class="tab-pane fade @if($k==0) show active @endif" id="id{{$k}}" role="tabpanel" aria-labelledby="tab{{$k}}">
                         <div class="table-responsive">
-                                <table class="table table-hover mr-auto">
+                                <table class="table table-striped table-condensed table-sm  table-hover text-center">
                                     <thead>
                                         <tr>
                                             <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Código </th>
