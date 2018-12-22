@@ -52,7 +52,7 @@
                     
                             </li>
                             <li class="nav-item active">
-								<a class="nav-link active noti" style="cursor: pointer;" data-toggle="popover" data-placement="bottom" title="Notificaciones" data-content="No tienes notificaciones nuevas"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary">0</span> </a>
+								<a class="nav-link active noti" style="cursor: pointer;" data-toggle="popover" data-placement="bottom" data-html="true" title="Notificaciones" id="shownoti"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary">0</span> </a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>								
