@@ -51,8 +51,18 @@
                                 <a class="nav-link" href="{{ url('empleados/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
                     
                             </li>
-                            <li class="nav-item active">
+                            {{-- <li class="nav-item active">
 								<a class="nav-link active noti" style="cursor: pointer;" data-toggle="popover" data-placement="bottom" data-html="true" title="Notificaciones" id="shownoti"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary">0</span> </a>
+                            </li> --}}
+                            <li id="notification_li">
+                                <a href="#" id="notificationLink" class="nav-link"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary"></span></a>
+                                
+                                <div id="notificationContainer">
+                                <div id="notificationTitle">Notificaciones</div>
+                                <div id="notificationsBody" class="notifications"><table id="noo" class="table table-hover"></table></div>
+                                <div id="notificationFooter"><a href="{{ url('/notificaciones') }}">ver todas</a></div>
+                                </div>
+                                
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>								
@@ -79,4 +89,27 @@
             }, 5000);
         });
     </script>
-    
+    <script type="text/javascript" >
+        $(document).ready(function()
+        {
+        $("#notificationLink").click(function()
+        {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+        });
+        
+        //Document Click hiding the popup 
+        $(document).click(function()
+        {
+        $("#notificationContainer").hide();
+        });
+        
+        //Popup on click
+        $("#notificationContainer").click(function()
+        {
+        return false;
+        });
+        
+        });
+    </script>

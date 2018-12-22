@@ -67,10 +67,17 @@ var cargarNotificaciones = function(){
             mensaje='';
             console.log(data.data);
             $.each( data.data, function(key, notificar) {
-                mensaje+='<div class="alert alert-secondary" role="alert"><a href="'+notificar.link+'" class="alert-link">'+notificar.titulo+'</a>: '+notificar.descripcion
-                +'<button type="button" class="close cerrar" pk="'+notificar.pk_notificacion+'"><span aria-hidden="true">&times;</span></button></div>'
+                mensaje+= '<tr class="n'+notificar.pk_notificacion+'"><td class="notifica p-0"><a class="d-block w-100 p-2" href="'+notificar.link
+                +'"><span class="text-info">'+notificar.titulo+': </span><br>'+notificar.descripcion+'</a>'
+                +'</td><td class="align-middle p-0" style="cursor:pointer"><span onclick="eliminarNotificacion(this)" id="n'+notificar.pk_notificacion+'" pk="'
+                +notificar.pk_notificacion+'" class="cerrar p-2">x</span></td><tr>';
             });
-            $('#shownoti').attr("data-content",mensaje);
+            document.getElementById('noo').innerHTML=mensaje;
+            // $('#notificationsBody').innerHtml = mensaje;
+            // $('#shownoti').attr("data-content",mensaje);
+            if(data.cant==0){
+                document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
+            }
             console.log(data.cant)
         },
         error: function(){
@@ -79,10 +86,30 @@ var cargarNotificaciones = function(){
     });
 }
 
+var eliminarNotificacion = function(e){
+    var noti = $('#notificaciones');
+    var id = $(e).attr('pk');
+    var idc = $(e).attr('id');
+    var n = document.getElementsByClassName(idc);
+    $.ajax({
+        type: 'POST',
+        url: '/notificaciones/'+id,
+        data: {_token:$('#csrf_token').attr('content'), _method:'DELETE'},
+        success: function(data) {
+            noti.html(noti.html()-1);
+            n[0].remove();
+            // document.getElementById('#n'+id).remove();
+        },
+        error: function(){
+            // newModal('Error','La accion no pudo llevarse a cabo', true);
+        }
+    }); 
+}
+
 $(document).ready(function(){
     $.ajaxSetup({'cache':false});
     cargarNotificaciones();
-    setInterval(cargarNotificaciones, 8000);
+    setInterval(cargarNotificaciones, 5000);
     $('.delete').click(function(){
         var ruta = $(this).attr('ruta');
         var padre = $(this).attr('padre');

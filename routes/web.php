@@ -142,6 +142,7 @@ Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@sh
 
 /* RUTAS DE NOTIFICACION */
 Route::post('/notificaciones','NotificacionController@index');
+Route::delete('/notificaciones/{pk_notificacion}','NotificacionController@destroy');
 Route::resource('/fechas', 'FechaController');
 
 /* RUTAS DE NOTAS PERIODO */

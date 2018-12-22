@@ -9,7 +9,7 @@
     {{-- Encabezado --}}
     
     <div class="card bg-light border-info mb-3">
-        <div class="card-header text-center"><h5>COLEGIO INTEGRADO EZEQUIEL FLORIAN <span class="table-add float-right"><a  href='{{url(Request::path().'/editar')}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Editar Planilla" class="far fa-edit fa-lg"></i></a></span></h5></div>
+        <div class="card-header text-center"><h5>COLEGIO INTEGRADO EZEQUIEL FLORIAN @if(session('role')=='profesor')<span class="table-add float-right"><a  href='{{url(Request::path().'/editar')}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Editar Planilla" class="far fa-edit fa-lg"></i></a></span>@endif</h5></div>
         <div class="card-body">
             
                 <table class="table table-borderless table-sm w-75 mx-auto">
