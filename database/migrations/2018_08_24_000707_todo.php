@@ -47,7 +47,6 @@ class Todo extends Migration {
 
         Schema::create('nota_estudiante', function (Blueprint $table) {
             $table->increments('pk_nota_estudiante');//diferente
-            $table->unsignedInteger('fk_estudiante');
             $table->unsignedInteger('fk_nota');
             $table->unsignedInteger('fk_nota_division');
             $table->float('nota')->default(0);

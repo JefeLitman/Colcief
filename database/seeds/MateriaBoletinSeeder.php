@@ -27,7 +27,7 @@ class MateriaBoletinSeeder extends Seeder
                     'fk_materia_pc'=>$m->pk_materia_pc,
                     'fk_boletin'=>$b->pk_boletin
                 ]);
-                NotaPeriodoSeeder::create($b->fk_estudiante,$m->pk_materia_pc,$materia->pk_materia_boletin);
+                NotaPeriodoSeeder::create($m->pk_materia_pc,$materia->pk_materia_boletin);
             }
             error_log("    ".((($key+1)*100)/$total)." %"); //Muestra el porcentaje de creacion que lleva
         }
