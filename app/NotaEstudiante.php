@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\NotaDivision;
 
 class NotaEstudiante extends Model
 {
@@ -24,4 +25,12 @@ class NotaEstudiante extends Model
     {
       return $this->belongsTo('App\NotaPeriodo','fk_nota_periodo','pk_nota_periodo');
     }
+
+    public function actualizarNota(){
+      $d=NotaDivision::where("pk_nota_division",$this->fk_nota_division)->get();
+      if (!empty($d[0])) {
+        $d[0]->actualizarNota();
+      }
+    }
+
 }

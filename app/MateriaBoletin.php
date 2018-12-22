@@ -18,6 +18,7 @@ class MateriaBoletin extends Model
             $this->nota_materia+=$p->nota_periodo;
         }
         $this->nota_materia=$this->nota_materia/4; //Siempre son 4 periodos
+        $this->nota_materia=round($this->nota_materia, 1);  //Redondeo
         $this->save();
     }
 }

@@ -43,8 +43,6 @@ class Fks extends Migration {
         });
 
         Schema::table('nota_estudiante', function (Blueprint $table) {
-            $table->foreign('fk_estudiante')->references('pk_estudiante')->on('estudiante')
-                ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fk_nota')->references('pk_nota')->on('nota')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fk_nota_division')->references('pk_nota_division')->on('nota_division')
@@ -114,7 +112,6 @@ class Fks extends Migration {
         });
 
         Schema::table('nota_estudiante', function (Blueprint $table) {
-            $table->dropForeign('nota_estudiante_fk_estudiante_foreign');
             $table->dropForeign('nota_estudiante_fk_nota_foreign'); 
             $table->dropForeign('nota_estudiante_fk_nota_division_foreign');
         });

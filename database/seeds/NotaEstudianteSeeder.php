@@ -18,14 +18,13 @@ class NotaEstudianteSeeder extends Seeder
         //
     }
 
-    public static function create($fk_estudiante,$fk_materia_pc,$fk_periodo,$fk_division,$fk_nota_division){
+    public static function create($fk_materia_pc,$fk_periodo,$fk_division,$fk_nota_division){
         $notas=Nota::where([['fk_materia_pc',$fk_materia_pc],['fk_periodo',$fk_periodo],['fk_division',$fk_division]])->get();
         foreach ($notas as $n) {
             $notaE=NotaEstudiante::create([
-                "fk_estudiante"=>$fk_estudiante,
                 "fk_nota"=>$n->pk_nota,
                 "fk_nota_division"=>$fk_nota_division,
-                "nota"=>mt_rand(mt_rand(0,50),50)/10 //Lo hago asi para que la mayoria pase el año 
+                "nota"=>mt_rand(mt_rand(1,50),50)/10 //Lo hago asi para que la mayoria pase el año 
             ]);
         }
         NotaDivision::where("pk_nota_division",$fk_nota_division)->get()[0]->actualizarNota();        
