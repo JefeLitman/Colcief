@@ -68,7 +68,7 @@ function updateNotasE(e) {
         div=$("#"+fk);
         div.text(total);
         [clase,titulo]=desempeno(total);
-        div.attr({'class':clase,'title':titulo});
+        div.attr({'class':clase,'data-original-title':titulo});
         updateNotasDiv($("#"+fk));
     },function() {
         console.log("error");
@@ -89,7 +89,7 @@ function updateNotasDiv(e) {
         per=$("#"+fk);
         per.text(total);
         [clase,titulo]=desempeno(total);
-        per.attr({'class':clase,'title':titulo});
+        per.attr({'class':clase,'data-original-title':titulo});
         updateNotasPer($("#"+fk));
     },function() {
         console.log("error");
@@ -112,7 +112,7 @@ function updateNotasPer(e) {
         def=$("#"+fk);
         def.text(total);
         [clase,titulo]=desempeno(total);
-        def.attr({'class':clase,'title':titulo});
+        def.attr({'class':clase,'data-original-title':titulo});
         updateNotasDef($("#"+fk));
     },function() {
         console.log("error");
