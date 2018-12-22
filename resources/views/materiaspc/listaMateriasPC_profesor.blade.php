@@ -15,73 +15,78 @@
 
     <br id="br">
     <div class="container" style="background:#fafafa !important;">
-        <h4 class="text-center"><i class="fas fa-book"></i> Mis Materias</h4> <br>
-        <div class="accordion" id="accordionExample">
-        @php
-            $i=0;
-        @endphp
-        @foreach ($result as $nombre => $materia)
-            <div class="card mx-auto border-dark bg-light" style="border-color:#66bb6a !important;">
-                <div id="headingOne">
-                    <div class="card-header" style="background-color:#66ba6a7d !important; cursor: pointer;" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" >
-                        <h5 class="text-center mb-0">
-                            {{ $nombre }}
-                        </h5>
-                    </div>
-                </div>
-                <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
-                    <div class="card-body">
+        <div class="card bg-light border-info">
+            <h4 class="card-header text-center"><i class="fas fa-book"></i> Mis Materias</h4>
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    @php
+                        $j=0;
+                    @endphp
+                    @foreach ($result as $nombre => $materia)
+                        <li class="nav-item">
+                            <a class="nav-link @if($j==0) active @endif" id="tab{{$j}}" data-toggle="tab" href="#id{{$j}}" role="tab" aria-controls="id{{$j}}" aria-selected="true">{{ $nombre }}</a>
+                        </li>
+                    @php
+                        $j++;
+                    @endphp
+                    @endforeach
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    @php
+                        $k=0;
+                    @endphp
+                    @foreach ($result as $nombre => $materia)
+                    <div class="tab-pane fade @if($k==0) show active @endif" id="id{{$k}}" role="tabpanel" aria-labelledby="tab{{$k}}">
                         <div class="table-responsive">
-                            <table class="table table-hover mr-auto">
-                                <thead>
-                                    <tr>
-                                        <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Código </th>
-                                        <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Curso </th>
-                                        <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Logros </th>
-                                        <th colspan="{{count($periodos)}}" scope="col" style="color:#00695c" class="text-center"> Periodos </th>
-                                    </tr>
-                                    <tr>
-                                        @foreach ($periodos as $p)
-                                            <th scope="col" style="color:#00695c" class="text-center">P{{$p->nro_periodo}}</th>
-                                        @endforeach
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($materia as $j)
+                                <table class="table table-hover mr-auto">
+                                    <thead>
                                         <tr>
-                                            {{--  código  --}}
-                                            <td class="text-center"> {{$j[0]}}</td>
-                                            {{--  curso  --}}
-                                            <td class="text-center"> {{$j[1]}}</td>
-                                            {{-- editar materia --}}
-                                            <td class="text-center">
-                                                {{-- Ver logros de una materia --}}
-                                                <a href="/materiaspc/{{$j[0]}}"><i class="fas fa-eye" style="color:#00838f"></i></a>
-                                                {{-- Editar logros de una materia --}}
-                                                <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
-                                            </td>
-                                            @foreach ($periodos as $p)
-                                                <td class="text-center">
-                                                    {{-- Ver planillas/Notas --}}
-                                                    <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}"><i class="fas fa-eye" style="color:#00838f" title="Ver notas"></i></a>
-                                                    {{-- Editar planillas/Notas  --}}
-                                                    <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar"><i class="fas fa-edit" style="color:#00838f" title="Modificar notas"></i></a>
-                                                </td>
-                                            @endforeach
-                                            
+                                            <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Código </th>
+                                            <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Curso </th>
+                                            <th rowspan="2" scope="col" style="color:#00695c" class="text-center"> Logros </th>
+                                            <th colspan="{{count($periodos)}}" scope="col" style="color:#00695c" class="text-center"> Periodos </th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                        <tr>
+                                            @foreach ($periodos as $p)
+                                                <th scope="col" style="color:#00695c" class="text-center">P{{$p->nro_periodo}}</th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($materia as $j)
+                                            <tr>
+                                                {{--  código  --}}
+                                                <td class="text-center"> {{$j[0]}}</td>
+                                                {{--  curso  --}}
+                                                <td class="text-center"> {{$j[1]}}</td>
+                                                {{-- editar materia --}}
+                                                <td class="text-center">
+                                                    {{-- Ver logros de una materia --}}
+                                                    <a href="/materiaspc/{{$j[0]}}"><i class="fas fa-eye" style="color:#00838f"></i></a>
+                                                    {{-- Editar logros de una materia --}}
+                                                    <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit" style="color:#00838f" title="Modificar logros"></i></a>
+                                                </td>
+                                                @foreach ($periodos as $p)
+                                                    <td class="text-center">
+                                                        {{-- Ver planillas/Notas --}}
+                                                        <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}"><i class="fas fa-eye" style="color:#00838f" title="Ver notas"></i></a>
+                                                        {{-- Editar planillas/Notas  --}}
+                                                        <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar"><i class="fas fa-edit" style="color:#00838f" title="Modificar notas"></i></a>
+                                                    </td>
+                                                @endforeach
+                                                
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                     </div>
+                    @php
+                        $k++;
+                    @endphp
+                    @endforeach
                 </div>
-            </div>
-            {{--  @endfor  --}}
-            @php
-                $i++;
-            @endphp
-        @endforeach
+        </div>
     </div>
 </div>
 <script src="{{ asset('js/ajax.js') }}"></script>
