@@ -64,6 +64,11 @@ var cargarNotificaciones = function(){
         data: {_token:$('#csrf_token').attr('content'), _method:'POST'},
         success: function(data) {
             noti.html(data.cant)
+            mensaje='';
+            data.data.forEach( function(notificar, indice, array) {
+                mensaje+='<div class="alert alert-secondary" role="alert"><a href="'+notificar.link+'" class="alert-link">'+notificar.titulo+'</a>: '+notificar.descripcion+'</div>'
+            });
+            $('#shownoti').attr("data-content",mensaje);
             console.log(data.cant)
         },
         error: function(){
