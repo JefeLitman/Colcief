@@ -32,7 +32,7 @@
 						@foreach ($item as $horario)
 							<li class="single-eventp" data-start="{{explode(':', $horario->hora_inicio)[0]}}:{{explode(':', $horario->hora_inicio)[1]}}" data-end="{{explode(':', $horario->hora_fin)[0]}}:{{explode(':', $horario->hora_fin)[1]}}" data-content="eventp-abs-circuit" data-eventp="eventp-1">
 								<a href="#0">
-									<em class="eventp-name">{{$horario->nombre}}</em>
+									<em class="eventp-name" style="font-size:1.5rem !important; text-align:center !important;">{{$horario->nombre}}</em>
 								</a>
 							</li>
 						@endforeach

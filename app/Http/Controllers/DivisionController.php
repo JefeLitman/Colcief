@@ -22,7 +22,7 @@ class DivisionController extends Controller {
 
     public function create(){
         if(Division::all()->where('ano', $this->ano)->count()>0){
-            return view('mensajes/divisiones');
+            return view('mensajes.divisiones');
         }else{
             return view('divisiones.crearDivision');
         }
