@@ -31,6 +31,14 @@
                     </div>
                     <input id="entradafilter" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
+                <div id="avisoError" class="alert alert-danger" style="display:none">
+                    Error: Verifique que: <br>
+                    <ul> 
+                        <li>Las asistencias no pueden ser negativas. </li>
+                        <li>Las notas deben ser entre 1.0 y 5.0.</li>
+                        <li>Las casillas con errores tienen un borde rojo y no son guardadas en el sistema.</li>
+                    </ul>
+                </div>
                 <div id="avisos"></div>
         <div id="table" class="table-editable">
           <p class="card-text">
@@ -81,20 +89,22 @@
                             </td>
                                 @foreach ($divisiones as $d)
                                     @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
-                                        <td contenteditable="true" p="{{$n->porcentaje}}" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" fk="notaDiv{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->fk_nota_division}}"  onkeyup="updateNotasE(this);">
+                                        <td contenteditable="true" p="{{$n->porcentaje}}" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" fk="notaDiv{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->fk_nota_division}}"  onkeyup="updateNotasE(this);" notaAceptada="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}">
                                             {{-- Notas del estudiante --}}
                                             {{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}
                                         </td>
                                     @endforeach
-                                    <td p="{{$d->porcentaje}}" id="notaDiv{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" pk="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" fk="notaPer{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->fk_nota_periodo}}" onchange="updateNotasDiv(this);" data-toggle="tooltip" data-placement="bottom" @if ($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 2.9)
-                                        class="table-danger"  title="Nota Baja"
-                                    @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 3 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 3.9)
-                                        class="table-warning"  title="Nota Basica"
-                                    @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 4 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 4.5)
-                                        class="table-primary"  title="Nota Alta"
-                                    @else
-                                        class="table-success" title="Nota Superior"
-                                    @endif >
+                                    <td p="{{$d->porcentaje}}" id="notaDiv{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" pk="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" fk="notaPer{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->fk_nota_periodo}}" 
+                                         data-toggle="tooltip" data-placement="bottom" 
+                                        @if ($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 2.9)
+                                            class="table-danger"  title="Nota Baja"
+                                        @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 3 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 3.9)
+                                            class="table-warning"  title="Nota Basica"
+                                        @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 4 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 4.5)
+                                            class="table-primary"  title="Nota Alta"
+                                        @else
+                                            class="table-success" title="Nota Superior"
+                                        @endif >
                                         {{-- Notas por division del estudiante --}}
                                         {{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division}}
                                     </td>

@@ -1,8 +1,12 @@
+
 $('#myModal').modal('hide')
+
+var errores=[];
+
 function updateAjax(pk,link,parametro){
     // Aqui dibujariamos el preload
-    // $('#avisos').removeAttr('hidden');
-    document.getElementById('avisos').innerHTML="Guardando...";
+    $('#avisos').attr('class','alert alert-primary');
+    $('#avisos').text('Guardando...');
     // Guardando
     return new Promise(function(resolver,rechazar){
         $.ajax({
@@ -10,13 +14,12 @@ function updateAjax(pk,link,parametro){
             url: '/'+link+'/'+pk,
             data: parametro,
             success: function(data) {
-                $('#avisos').attr({'class':'alert alert-success'});
-                $('#avisos').text(data.mensaje);
                 resolver();
             },
             error: function(data){
-                $('#avisos').attr({'class':'alert alert-danger'});
-                $('#avisos').text('Error: No es posible guardar, verifique');
+                $('#avisos').attr('class','');
+                $('#avisos').text('');
+                $('#avisoError').css('display','block');
                 rechazar();
                 
             }
@@ -47,9 +50,24 @@ function desempeno(nota) {
 function updateInasistencias(e) {
     bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"inasistencias":$(e).html()});
     bandera.then(function () {
+        $(e).attr('class','');
+        if (errores.includes($(e).attr('id'))) {
+            errores.splice(errores.indexOf($(e).attr('id')),1);
+        }
+        $('#avisos').attr('class','alert alert-success');
+        if (errores.length==0) {
+            $('#avisoError').css('display','none');
+            $('#avisos').text('Todo los cambios han sido guardados con exito.');  
+        } else {
+            $('#avisos').text('Nota guardada con exito.');   
+        }
         console.log("Inasistencia guardada con exito.");
     },function() {
-        console.log("Error");
+        if (!errores.includes($(e).attr('id'))) {
+            errores.push($(e).attr('id'));
+            $(e).attr('class','border border-danger');
+        }
+        console.log("Error de guardado, inasistencia.");
     });
     
 
@@ -58,10 +76,12 @@ function updateInasistencias(e) {
 function updateNotasE(e) {
     bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":$(e).html()});
     bandera.then(function() {
+        $(e).attr('notaAceptada',$(e).html());
         fk=$(e).attr('fk');
-        total=0;   $( "[fk="+fk+"]").each(function(){
-            if (!isNaN(parseFloat($(this).html()))){
-                total += (parseFloat($(this).html())*(parseFloat($(this).attr('p'))/100));    
+        total=0; 
+        $( "[fk="+fk+"]").each(function(){
+            if (!isNaN(parseFloat($(this).attr('notaAceptada')))){
+                total += (parseFloat($(this).attr('notaAceptada'))*(parseFloat($(this).attr('p'))/100));    
             }
         });
         total=total.toFixed(1);
@@ -70,8 +90,16 @@ function updateNotasE(e) {
         [clase,titulo]=desempeno(total);
         div.attr({'class':clase,'data-original-title':titulo});
         updateNotasDiv($("#"+fk));
+        $(e).attr('class','');
+        if (errores.includes($(e).attr('id'))) {
+            errores.splice(errores.indexOf($(e).attr('id')),1);
+        }
     },function() {
-        console.log("error");
+        if (!errores.includes($(e).attr('id'))) {
+            errores.push($(e).attr('id'));
+            $(e).attr('class','border border-danger');
+        }
+        console.log("Error de guardado, nota estudiante.");
     });
 }
 function updateNotasDiv(e) {
@@ -92,7 +120,7 @@ function updateNotasDiv(e) {
         per.attr({'class':clase,'data-original-title':titulo});
         updateNotasPer($("#"+fk));
     },function() {
-        console.log("error");
+        console.log("Error de guardado, division.");
     });
 }
 
@@ -115,13 +143,25 @@ function updateNotasPer(e) {
         def.attr({'class':clase,'data-original-title':titulo});
         updateNotasDef($("#"+fk));
     },function() {
-        console.log("error");
+        console.log("Error de guardado, periodo.");
     });
     
 } 
 
 function updateNotasDef(e) {
-    updateAjax($(e).attr('pk'),"materiasboletin",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_materia":e.html()});
+    bandera=updateAjax($(e).attr('pk'),"materiasboletin",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_materia":e.html()});
+    bandera.then(function () {
+        $('#avisos').attr('class','alert alert-success');
+        if (errores.length==0) {
+            $('#avisoError').css('display','none');
+            $('#avisos').text('Todo los cambios han sido guardados con exito.');  
+        } else {
+            $('#avisos').text('Nota guardada con exito.');   
+        }
+    },function () {
+        console.log("Error de guardado, definitiva.");
+    });
+
 }
 
 var $TABLE = $('#table');
