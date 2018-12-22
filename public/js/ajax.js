@@ -65,7 +65,8 @@ var cargarNotificaciones = function(){
         success: function(data) {
             noti.html(data.cant)
             mensaje='';
-            data.data.forEach( function(notificar, indice, array) {
+            console.log(data.data);
+            $.each( data.data, function(key, notificar) {
                 mensaje+='<div class="alert alert-secondary" role="alert"><a href="'+notificar.link+'" class="alert-link">'+notificar.titulo+'</a>: '+notificar.descripcion+'</div>'
             });
             $('#shownoti').attr("data-content",mensaje);
