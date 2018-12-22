@@ -68,7 +68,7 @@ var cargarNotificaciones = function(){
             console.log(data.data);
             $.each( data.data, function(key, notificar) {
                 mensaje+='<div class="alert alert-secondary" role="alert"><a href="'+notificar.link+'" class="alert-link">'+notificar.titulo+'</a>: '+notificar.descripcion
-                +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+                +'<button type="button" class="close"><span aria-hidden="true">&times;</span></button></div>'
             });
             $('#shownoti').attr("data-content",mensaje);
             console.log(data.cant)
