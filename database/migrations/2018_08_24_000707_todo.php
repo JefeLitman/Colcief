@@ -189,6 +189,7 @@ class Todo extends Migration {
             $table->string('titulo', 50);
             $table->text('descripcion');
             $table->text('link');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

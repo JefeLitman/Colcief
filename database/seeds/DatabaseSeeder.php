@@ -2,15 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
+class DatabaseSeeder extends Seeder {
+
+    public function run(){
         /* EL ORDEN IMPORTA
           Como algunas tablas requieren foraneas, es necesario que, obviamente,
           el dato exista antes de ser asignado.
@@ -26,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NotaSeeder::class);
         $this->call(BoletinSeeder::class);
         $this->call(MateriaBoletinSeeder::class);
+        $this->call(NotificacionSeeder::class);
     }
 }

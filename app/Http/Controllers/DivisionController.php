@@ -17,7 +17,6 @@ class DivisionController extends Controller {
 
     public function index(){
         $division = Division::all();
-        dd($division);
         return view('divisiones.listaDivision', ['division' => $division]);
     }
 

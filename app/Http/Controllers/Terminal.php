@@ -34,4 +34,9 @@ class Terminal extends Controller{
         $salida = shell_exec('cd ColCief && php artisan db:seed');
         return "<pre>".$salida."</pre>";
     }
+
+    public function migrateResetSeeder(){
+        $salida = shell_exec('cd ColCief && php artisan migrate:reset && php artisan migrate --seed');
+        return "<pre>".$salida."</pre>";
+    }
 }
