@@ -67,11 +67,16 @@ var cargarNotificaciones = function(){
             mensaje='';
             console.log(data.data);
             $.each( data.data, function(key, notificar) {
-                mensaje+='<a href="'+notificar.link+'" class="alert-link"><div class="alert alert-secondary" role="alert"><span class="text-info">'
-                +notificar.titulo+'</span>: '+notificar.descripcion
-                +'<button type="button" class="close cerrar" pk="'+notificar.pk_notificacion+'"><span aria-hidden="true">&times;</span></button></div></a>'
+                mensaje+= '<tr><td class="notifica p-0"><a class="d-block w-100 p-2" href="'+notificar.link
+                +'"><span class="text-info">'+notificar.titulo+': </span><br>'+notificar.descripcion+'</a>'
+                +'</td><td class="align-middle p-0" style="cursor:pointer"><span  pk="'+notificar.pk_notificacion+'" class="cerrar p-2">x</span></td><tr>';
             });
-            $('#shownoti').attr("data-content",mensaje);
+            document.getElementById('noo').innerHTML=mensaje;
+            // $('#notificationsBody').innerHtml = mensaje;
+            // $('#shownoti').attr("data-content",mensaje);
+            if(data.cant==0){
+                document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
+            }
             console.log(data.cant)
         },
         error: function(){
