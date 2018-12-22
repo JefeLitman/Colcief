@@ -6,10 +6,14 @@ use App\Notificacion;
 use Illuminate\Http\Request;
 
 class NotificacionController extends Controller {
+
+    public function __construct(){
+        // $this->middleware('admin:administrador');
+    }
     
     public function index(Request $request){
         if($request->ajax()){
-            $notificaciones = Notificacion::all()->where('fk_empleado',session('user')['cedula']);
+            $notificaciones = Notificacion::all() -> where('fk_empleado',session('user')['cedula']) -> where('estado', true);
             return response()->json([
                 'data' => $notificaciones,
                 'cant' => count($notificaciones)
@@ -21,58 +25,30 @@ class NotificacionController extends Controller {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Notificacion  $notificacion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Notificacion $notificacion)
-    {
+    public function show(Notificacion $notificacion){
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Notificacion  $notificacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Notificacion $notificacion)
-    {
+    public function edit(Notificacion $notificacion){
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Notificacion  $notificacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Notificacion $notificacion)
-    {
+    public function update(Request $request, Notificacion $notificacion){
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Notificacion  $notificacion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Notificacion $notificacion){
-        //
+    public function destroy(Request $request, $pk_notificacion){
+        if($request->ajax()){
+            $notificacion = Notificacion::where('fk_empleado',session('user')['cedula']) -> where('estado', true) -> where('pk_notificacion', $pk_notificacion) -> get()[0];
+            $notificacion -> estado = false;
+            $notificacion -> save();
+            return response()->json([
+                'cant' => 0,
+            ]);
+        }
     }
 }
