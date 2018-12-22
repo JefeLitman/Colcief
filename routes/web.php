@@ -37,6 +37,7 @@ Route::get('/terminal/migrate/reset', 'Terminal@migrateReset');
 Route::get('/terminal/migrate/refresh', 'Terminal@migrateRefresh');
 Route::get('/terminal/seed', 'Terminal@seed');
 Route::get('/terminal/main', 'Terminal@migrateResetSeeder');
+Route::get('/terminal/autoload', 'Terminal@autoload');
 
 Route::post('/autocompletar/{text}', 'AjaxController')->name('autocompletar');
 

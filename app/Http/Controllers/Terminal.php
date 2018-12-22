@@ -16,7 +16,7 @@ class Terminal extends Controller{
     }
 
     public function migrate(){
-        $salida = shell_exec('cd ColCief && php artisan escolar:fin');
+        $salida = shell_exec('cd ColCief && php migrate');
         return "<pre>".$salida."</pre>";
     }
 
@@ -37,6 +37,11 @@ class Terminal extends Controller{
 
     public function migrateResetSeeder(){
         $salida = shell_exec('cd ColCief && php artisan migrate:reset && php artisan migrate --seed');
+        return "<pre>".$salida."</pre>";
+    }
+
+    public function autoload(){
+        $salida = shell_exec('cd ColCief && composer dump-autoload');
         return "<pre>".$salida."</pre>";
     }
 }
