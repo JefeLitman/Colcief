@@ -7,11 +7,11 @@
 @endphp
 <div class="container" style="background:#fafafa !important;">
     {{-- Encabezado --}}
-    
+
     <div class="card bg-light border-info mb-3">
         <div class="card-header text-center"><h5>COLEGIO INTEGRADO EZEQUIEL FLORIAN @if(session('role')=='profesor')<span class="table-add float-right"><a  href='{{url(Request::path().'/editar')}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Editar Planilla" class="far fa-edit fa-lg"></i></a></span>@endif</h5></div>
         <div class="card-body">
-            
+
                 <table class="table table-borderless table-sm w-75 mx-auto">
                     <tbody>
                         <tr>
@@ -55,10 +55,10 @@
                     </tr>
                     <tr>
                         @foreach ($divisiones as $d)
-                        
+
                             @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                                 {{-- Encabezado: Notas--}}
-                                
+
                                 <th class="table-secondary" data-toggle="tooltip" data-placement="bottom" title="{{$n->descripcion}}" >
                                     {{$n->nombre}} <span class="badge badge-pill badge-secondary">{{$n->porcentaje}}%</span>
                                 </th>
@@ -66,7 +66,7 @@
                         <th class="table-secondary">D</th>
                         @endforeach
                     </tr>
-               
+
                 </thead>
                 <tbody class="contenidobusqueda">
                         @foreach ($estudiantes as $e)
@@ -113,7 +113,7 @@
                                 {{$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo}}
                                 </td>
                                 @endforeach
-                                
+
                             <td data-toggle="tooltip" data-placement="bottom"  @if ($e->nota_materia >= 1 && $e->nota_materia <= 2.9)
                                 class="table-danger"  title="Nota Final Baja"
                                     @elseif($e->nota_materia >= 3 && $e->nota_materia <= 3.9)
@@ -130,6 +130,10 @@
                     @endforeach
                 </tbody>
               </table>
+              <div class="text-center" style="float:center;">
+                  <a  class=" btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important; max-width:50% !important; float:center !important;" href="/notas/materiaspc/{pk_materias_pc}/periodos/{pk_periodo}">Ver notas</a>
+            </div>
+            <br>
             </div>
           </p>
         </div>
