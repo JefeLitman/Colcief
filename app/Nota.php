@@ -39,7 +39,7 @@ class Nota extends Model
     public function cambioPorcentaje(){
       $notasE=NotaEstudiante::select('fk_nota_division')->where('fk_nota',$this->pk_nota)->get();
       foreach($notasE as $n){
-        $n->ViejaizarNota();
+        $n->actualizarNota();
       }
     }
 
