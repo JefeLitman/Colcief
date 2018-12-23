@@ -84,7 +84,7 @@ class EmpleadoController extends Controller{
         $guard = session('role');
         if($request->hasFile('foto')){
             $nombre = 'empleado'.$empleado->cedula;
-            $empleado->foto = SupraController::subirArchivo($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
+            $empleado->foto = SupraController::subirArchivo($request,$nombre,'foto'); 
         }
         $empleado->save();
         $var = Empleado::findOrFail($cedula);

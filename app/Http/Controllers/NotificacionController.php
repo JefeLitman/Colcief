@@ -11,14 +11,26 @@ class NotificacionController extends Controller {
         // $this->middleware('admin:administrador');
     }
     
-    public function index(Request $request){
+    public function __invoke(Request $request){
         if($request->ajax()){
-            $notificaciones = Notificacion::all() -> where('fk_empleado',session('user')['cedula']) -> where('estado', true);
+            $notificaciones = $this -> misNotificaciones() -> where('estado', true);
+            foreach ($notificaciones as $notificacion) {
+                $notificacion -> descripcion = substr($notificacion -> descripcion, 0, 150);
+            }
             return response()->json([
                 'data' => $notificaciones,
                 'cant' => count($notificaciones)
             ]);
         }
+    }
+
+    public function misNotificaciones(){
+        return Notificacion::all() -> where('fk_empleado',session('user')['cedula']);
+    }
+
+    public function index(){
+        $notificaciones = $this -> misNotificaciones();
+        return view("noticaciones.listaNotificacion", ['notificaciones'=>$notificaciones]);
     }
 
     public function create(){

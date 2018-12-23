@@ -63,25 +63,25 @@ var cargarNotificaciones = function(){
         url: '/notificaciones',
         data: {_token:$('#csrf_token').attr('content'), _method:'POST'},
         success: function(data) {
-            noti.html(data.cant)
-            mensaje='';
-            console.log(data.data);
-            $.each( data.data, function(key, notificar) {
-                mensaje+= '<tr class="n'+notificar.pk_notificacion+'"><td class="notifica p-0"><a class="d-block w-100 p-2" href="'+notificar.link
-                +'"><span class="text-info">'+notificar.titulo+': </span><br>'+notificar.descripcion+'</a>'
-                +'</td><td class="align-middle p-0" style="cursor:pointer"><span onclick="eliminarNotificacion(this)" id="n'+notificar.pk_notificacion+'" pk="'
-                +notificar.pk_notificacion+'" class="cerrar p-2">x</span></td><tr>';
-            });
-            document.getElementById('noo').innerHTML=mensaje;
-            // $('#notificationsBody').innerHtml = mensaje;
-            // $('#shownoti').attr("data-content",mensaje);
-            if(data.cant==0){
+            if(data.cant > 0){
+                noti.html(data.cant)
+                mensaje='';
+                console.log(data.data);
+                $.each( data.data, function(key, notificar) {
+                    mensaje+= '<tr class="n'+notificar.pk_notificacion+'"><td class="notifica p-0"><a class="d-block w-100 p-2" href="'+notificar.link
+                    +'"><span class="text-info">'+notificar.titulo+': </span><br>'+notificar.descripcion+'</a>'
+                    +'</td><td class="align-middle p-0" style="cursor:pointer"><span onclick="eliminarNotificacion(this)" id="n'+notificar.pk_notificacion+'" pk="'
+                    +notificar.pk_notificacion+'" class="cerrar p-2">x</span></td><tr>';
+                });
+                document.getElementById('noo').innerHTML=mensaje;
+                // $('#notificationsBody').innerHtml = mensaje;
+                // $('#shownoti').attr("data-content",mensaje);
+                console.log(data.cant)
+            }else if(data.cant==0){
+                noti.fadeOut();
                 document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
             }
-            console.log(data.cant)
-        },
-        error: function(){
-            // newModal('Error','La accion no pudo llevarse a cabo', true);
+            
         }
     });
 }
@@ -96,12 +96,15 @@ var eliminarNotificacion = function(e){
         url: '/notificaciones/'+id,
         data: {_token:$('#csrf_token').attr('content'), _method:'DELETE'},
         success: function(data) {
-            noti.html(noti.html()-1);
-            n[0].remove();
-            // document.getElementById('#n'+id).remove();
-        },
-        error: function(){
-            // newModal('Error','La accion no pudo llevarse a cabo', true);
+            cant = noti.html()-1;
+            if( cant > 0){
+                noti.html(cant);
+                n[0].remove();
+            }else if(cant == 0){
+                noti.fadeOut();
+                document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
+            }
+            // documentElementById('#n'+id).remove();
         }
     }); 
 }

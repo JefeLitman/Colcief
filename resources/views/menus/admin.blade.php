@@ -85,9 +85,11 @@
                                 <a href="#" id="notificationLink" class="nav-link"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary"></span></a>
                                 
                                 <div id="notificationContainer">
-                                <div id="notificationTitle">Notificaciones</div>
-                                <div id="notificationsBody" class="notifications"><table id="noo" class="table table-hover"></table></div>
-                                <div id="notificationFooter"><a href="{{ url('/notificaciones') }}">ver todas</a></div>
+                                    <div id="notificationTitle">Notificaciones</div>
+                                    <div id="notificationsBody" class="notifications">
+                                        <table id="noo" class="table table-hover"></table>
+                                    </div>
+                                    <div id="notificationFooter"><a href="{{ url('/notificaciones') }}">ver todas</a></div>
                                 </div>
                                 
                             </li>

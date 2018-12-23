@@ -8,11 +8,11 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel {
 
     protected $commands = [
-        Commands\fin_escolar::class,
+        Commands\fin_ano::class,
     ];
 
     protected function schedule(Schedule $schedule){
-        $schedule->command('escolar:fin')->everyMinute();
+        // $schedule->command('ano:fin')->everyMinute();
     }
 
     protected function commands()
