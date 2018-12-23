@@ -29,12 +29,13 @@ class NotaController extends Controller
         ['fk_periodo','=',$pk_periodo],
         ['fk_materia_pc','=',$pk_materia_pc]
       ])->get();
+      $infoAdicional = MateriaPC::find($pk_materia_pc);
       $Notas = [];
       foreach ($NotasMateriaPC as $Nota) {
         $nombreDiv = Division::find($Nota['fk_division'])['nombre'];
         $Notas = SC::array_push_wKey($nombreDiv,$Notas,$Nota);
       }
-      return view('notas.indexNota',['divisiones' => $Notas]);
+      return view('notas.indexNota',['divisiones' => $Notas, 'infoMateria' => $infoAdicional]);
     }
 
 

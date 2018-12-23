@@ -131,7 +131,7 @@
                 </tbody>
               </table>
               <div class="text-center" style="float:center;">
-                  <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/materiaspc/{pk_materias_pc}/periodos/{pk_periodo}">Ver notas</a>
+                  <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}">Ver notas</a>
             </div>
             <br>
             </div>
