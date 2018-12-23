@@ -59,7 +59,7 @@
 
                     <div class="row">
                         {{-- Nombre de la nota --}}
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group mb-2">
                                 <label for="cedula"><strong><small style="color : #616161">Nombre de la nota</small></strong></label>
                                 <div class="input-group mb-2">
@@ -75,7 +75,7 @@
                         </div>
 
                         {{-- porcentaje --}}
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group mb-2">
                                 <label for="cedula"><strong><small style="color : #616161">Porcentaje</small></strong></label>
                                 <div class="input-group mb-2">
@@ -88,6 +88,26 @@
                                     class="form-control form-control-sm"
                                     placeholder="[número entero]"
                                     name="porcentaje" value="{{old('porcentaje')}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Periodos --}}
+                        <div class="col-md-4">
+                            <div class="form-group mb-2">
+                                <label for="cedula"><strong><small style="color : #616161">Periodos</small></strong></label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <select class="custom-select custom-select-sm" name="fk_periodo" required>
+                                        <option>Seleccionar el periodo</option>
+                                        @foreach ($periodos as $periodo)
+                                            <option value="{{$periodo['pk_periodo']}}">{{$periodo['nro_periodo']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -31,8 +31,15 @@
                         <table class="table table-striped table-condensed table-sm table-hover text-center">
                             <thead>
                                 <tr>
+                                    {{-- Nombre de la nota --}}
                                     <th scope="col" style="color:#00695c" class="text-center">Nombre de la nota</th>
+                                    {{-- Porcentaje --}}
                                     <th scope="col" style="color:#00695c" class="text-center"><i class="fas fa-percentage"></i></th>
+                                    {{-- Descripción --}}
+                                    <th scope="col" style="color:#00695c" class="text-center">Descripción</th>
+                                    {{-- Salón --}}
+                                    <th scope="col" style="color:#00695c" class="text-center">Salón</th>
+                                    {{-- Acciones --}}
                                     <th scope="col" style="color:#00695c" class="text-center" colspan="3">Acciones</th>
                                 </tr>
                             </thead>
@@ -43,16 +50,28 @@
                                         <td class="text-center">{{$nota['nombre']}}</td>
                                         {{-- Porcentaje --}}
                                         <td class="text-center">{{$nota['porcentaje']}}</td>
+                                        {{-- Descripción --}}
+                                        <td class="text-center">{{$nota['descripcion']}}</td>
+                                        {{-- Salon --}}
+                                        <td class="text-center">{{$nota['salon']}}</td>
                                         {{-- Editar --}}
-                                        <td class="text-center"></td>
+                                        <td class="text-center"><a href="{{ route('notas.edit',$nota['pk_nota']) }}"><i class="fas fa-edit" style="color:#00695c"></i>
+                                        </a></td>
                                         {{-- Ver --}}
-                                        <td class="text-center">
+                                        {{-- <td class="text-center">
                                             <a href="{{ route('notas.show',$nota['pk_nota']) }}" title="Ver notas" style="color:#00695c">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                        </td>
+                                        </td> --}}
                                         {{-- Eliminar --}}
-                                        <td class="text-center"></td>
+                                        <td class="text-center">
+                                            <form action="{{route('notas.destroy',$nota['pk_nota'])}}" method = "post">
+                                                @csrf
+                                                @method("DELETE")
+                                                {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
+                                                <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -65,6 +84,10 @@
             @endforeach
             </div>
         </div>
+    </div>
+    <br>
+    <div class="text-center" style="float:center;">
+        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/crear">Crear nota</a>
     </div>
 </div>
 @endsection
