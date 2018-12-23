@@ -78,8 +78,13 @@ class NotaController extends Controller
       $materiasPC = $this->listarMateriasPC(session('user')['cedula'],$pk_materia);
       if (!empty($materiasPC)) {
         $divisiones = Division::select('pk_division','nombre')->get();
-        if ($divisiones->count()>0) {
-          return view('notas.crearNota',['divisiones' => $divisiones, 'materias' => $materiasPC]);
+        $periodos = Periodo::select('pk_periodo','nro_periodo')->get();
+        if ($divisiones->count()>0 and $periodos->count()>0) {
+          return view('notas.crearNota',[
+            'divisiones' => $divisiones,
+            'materias' => $materiasPC,
+            'periodos' => $periodos
+           ]);
         }
         return 'No hay divisiones existentes para asignar notas';
       }
