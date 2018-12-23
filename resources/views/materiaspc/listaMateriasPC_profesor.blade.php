@@ -74,7 +74,7 @@
                                                         <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar"><i class="fas fa-edit text-secondary"  title="Modificar notas"></i></a>
                                                     </td>
                                                 @endforeach
-                                                
+
                                             </tr>
                                         @endforeach
                                     </tbody>

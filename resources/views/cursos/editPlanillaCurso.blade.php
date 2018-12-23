@@ -8,7 +8,7 @@
 <div class="container" style="background:#fafafa !important;">
     {{-- Encabezado --}}
     <div class="card bg-light border-info mb-3">
-            <div class="card-header text-center"><h5>COLEGIO INTEGRADO EZEQUIEL FLORIAN<span class="table-add float-right"><a  href='{{url(str_replace('/editar', '', Request::path()))}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Ver Planilla" class="far fa-eye fa-lg"></i></a></span></h5></div>        
+            <div class="card-header text-center"><h5>COLEGIO INTEGRADO EZEQUIEL FLORIAN<span class="table-add float-right"><a  href='{{url(str_replace('/editar', '', Request::path()))}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Ver Planilla" class="far fa-eye fa-lg"></i></a></span></h5></div>
         <div class="card-body">
                 <table class="table table-borderless table-sm w-75 mx-auto">
                     <tbody>
@@ -33,7 +33,7 @@
                 </div>
                 <div id="avisoError" class="alert alert-danger" style="display:none">
                     Error: Verifique que: <br>
-                    <ul> 
+                    <ul>
                         <li>Las asistencias no pueden ser negativas. </li>
                         <li>Las notas deben ser entre 1.0 y 5.0.</li>
                         <li>Las casillas con errores tienen un borde rojo y no son guardadas en el sistema.</li>
@@ -64,10 +64,10 @@
                     </tr>
                     <tr>
                         @foreach ($divisiones as $d)
-                        
+
                             @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                                 {{-- Encabezado: Notas--}}
-                                
+
                                 <th class="table-secondary" data-toggle="tooltip" data-placement="bottom" title="{{$n->descripcion}}" >
                                     {{$n->nombre}} <span class="badge badge-pill badge-secondary">{{$n->porcentaje}}%</span>
                                 </th>
@@ -75,7 +75,7 @@
                         <th class="table-secondary">D</th>
                         @endforeach
                     </tr>
-               
+
                 </thead>
                 <tbody class="contenidobusqueda ">
                         @foreach ($estudiantes as $e)
@@ -95,8 +95,8 @@
                                             {{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}
                                         </td>
                                     @endforeach
-                                    <td p="{{$d->porcentaje}}" id="notaDiv{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" pk="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" fk="notaPer{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->fk_nota_periodo}}" 
-                                         data-toggle="tooltip" data-placement="bottom" 
+                                    <td p="{{$d->porcentaje}}" id="notaDiv{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" pk="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" fk="notaPer{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->fk_nota_periodo}}"
+                                         data-toggle="tooltip" data-placement="bottom"
                                         @if ($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 2.9)
                                             class="table-danger"  title="Nota Baja"
                                         @elseif($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division >= 3 && $notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 3.9)
@@ -124,8 +124,8 @@
                                 {{$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo}}
                                 </td>
                                 @endforeach
-                                
-                            <td id="materia{{$e->pk_materia_boletin}}" pk="{{$e->pk_materia_boletin}}" data-toggle="tooltip" data-placement="bottom"  
+
+                            <td id="materia{{$e->pk_materia_boletin}}" pk="{{$e->pk_materia_boletin}}" data-toggle="tooltip" data-placement="bottom"
                                 @if ($e->nota_materia >= 1 && $e->nota_materia <= 2.9)
                                     class="table-danger"  title="Nota Final Baja"
                                 @elseif($e->nota_materia >= 3 && $e->nota_materia <= 3.9)
@@ -146,10 +146,7 @@
           </p>
         </div>
         <div class="text-center">
-            <a href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}">
-                <button type="button" class="btn btn-primary w-30 mx-auto">
-                    <span><i></i> Personalizar notas</span> 
-                </button>
+            <a href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}" class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;">Personalizar notas
             </a>
         </div>
         </div>
@@ -176,13 +173,13 @@
                 $('.contenidobusqueda tr').filter(function () {
                     return rex.test($(this).text());
                 }).show();
-  
+
         })
-      
+
   });
     </script>
-    
-    
-    
+
+
+
 <script src="{{ asset('js/editarNotasProfesor.js') }}"></script>
 @endsection
