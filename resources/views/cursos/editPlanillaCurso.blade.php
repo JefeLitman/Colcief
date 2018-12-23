@@ -37,6 +37,7 @@
                         <li>Las asistencias no pueden ser negativas. </li>
                         <li>Las notas deben ser entre 1.0 y 5.0.</li>
                         <li>Las casillas con errores tienen un borde rojo y no son guardadas en el sistema.</li>
+                        <li>Se recomienda el uso de Chrome.</li>
                     </ul>
                 </div>
                 <div id="avisos"></div>
@@ -143,6 +144,13 @@
               </table>
             </div>
           </p>
+        </div>
+        <div class="text-center">
+            <a href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}">
+                <button type="button" class="btn btn-primary w-30 mx-auto">
+                    <span><i></i> Personalizar notas</span> 
+                </button>
+            </a>
         </div>
         </div>
       </div>

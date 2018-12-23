@@ -123,7 +123,7 @@ Route::put('/planillas/{pk_materia_pc}/periodos/{pk_periodo}','MateriaPCControll
 /* RUTAS DE NOTA */
 Route::get('/notas/crear/{materia}','NotaController@create');
 Route::get('/notas/total/{cedula_prof}/{division}/{pk_materia_pc}','NotaController@sumaPorcentajes');
-Route::get('/notas/materiaspc/{pk_materia_pc}/periodos/{pk_periodo}/','NotaController@index')->name('notas.index');
+Route::get('/notas/materiaspc/{pk_materia_pc}/periodos/{pk_periodo}','NotaController@index')->name('notas.index');
 Route::post('/notas','NotaController@store')->name('notas.store');
 Route::get('/notas','NotaController@index_global')->name('notas.indexGlobal');
 Route::get('/notas/crear','NotaController@create')->name('notas.create');
