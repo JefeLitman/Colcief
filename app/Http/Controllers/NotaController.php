@@ -23,7 +23,22 @@ class NotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($pk_materia_pc,$pk_periodo)
+    {
+      $NotasMateriaPC = Nota::where([
+        ['fk_periodo','=',$pk_periodo],
+        ['fk_materia_pc','=',$pk_materia_pc]
+      ])->get();
+      $Notas = [];
+      foreach ($NotasMateriaPC as $Nota) {
+        $nombreDiv = Division::find($Nota['fk_division'])['nombre'];
+        $Notas = SC::array_push_wKey($nombreDiv,$Notas,$Nota);
+      }
+      return view('notas.indexNota',['divisiones' => $Notas]);
+    }
+
+
+    public function index_global()
     {
         $MateriasDelProfesor = MateriaPC::where('fk_empleado','=',session('user')['cedula'])->get();
         $numeroPeriodos = Periodo::count();
@@ -60,16 +75,8 @@ class NotaController extends Controller
      */
     public function create($pk_materia=null)
     {
-      if (!empty($pk_materia)) {
-        $materiasPC = MateriaPC::select('pk_materia_pc','nombre', 'salon')->where([
-          ['pk_materia_pc','=',$pk_materia],
-          ['fk_empleado','=',session('user')['cedula']]
-          ])->get();
-      }else{
-        $materiasPC = MateriaPC::select('pk_materia_pc','nombre', 'salon')->where(
-          'fk_empleado','=',session('user')['cedula'])->get();
-      }
-      if ($materiasPC->count()>0) {
+      $materiasPC = $this->listarMateriasPC(session('user')['cedula'],$pk_materia);
+      if (!empty($materiasPC)) {
         $divisiones = Division::select('pk_division','nombre')->get();
         if ($divisiones->count()>0) {
           return view('notas.crearNota',['divisiones' => $divisiones, 'materias' => $materiasPC]);
@@ -130,8 +137,7 @@ class NotaController extends Controller
         if ($this->verificarProfesor($Nota,session('user')['cedula'])) {
           if (!empty($Nota)) {
             $divisiones = Division::select('pk_division','nombre')->get();
-            $materiasPC = MateriaPC::select('pk_materia_pc','nombre','salon')->where(
-              'fk_empleado','=',session('user')['cedula'])->get();
+            $materiasPC = $this->listarMateriasPC(session('user')['cedula']);
             return view('notas.editarNota',[
               'nota' => $Nota,
               'divisiones' => $divisiones,
@@ -157,13 +163,33 @@ class NotaController extends Controller
           if ($request['porcentaje']+$this->sumaPorcentajes($request,$request['fk_division'],
               session('user')['cedula'],$request['fk_materia_pc'])-$nota_modificada['porcentaje']<=100)
               {
-                $nota_modificada->porcentaje=$request->porcentaje;
-                $nota_modificada->fk_division=$request->fk_division;
+                $bandera = 0;
+                if (!($nota_modificada->porcentaje==$request->porcentaje)) {
+                  $nota_modificada->porcentaje=$request->porcentaje;
+                  $bandera++;
+                }
+                if (!($nota_modificada->fk_division==$request->fk_division)) {
+                  $nota_modificada->fk_division=$request->fk_division;
+                  $bandera++;
+                }
                 $nota_modificada->fk_materia_pc=$request->fk_materia_pc;
-                $nota_modificada->fk_periodo=$request->fk_periodo;
                 $nota_modificada->nombre=$request->nombre;
                 $nota_modificada->descripcion=$request->descripcion;
                 $nota_modificada->save();
+                while ($bandera!=0) {
+                  switch ($bandera) {
+                    case 2:
+                      $nota_modificada->cambioPorcentaje();
+                      break;
+                    case 1:
+                      $nota_modificada->cambioDivision();
+                      break;
+                    default:
+                      $bandera=0; //Por si algo rarísimo llegara a pasar
+                      break;
+                  }
+                  $bandera--;
+                }
                 return redirect('/notas/'.$nota_modificada['pk_nota']); //Cuando se guarda
               }
               return 'La suma de los porcentajes de las demás notas supera el 100%';
@@ -199,8 +225,9 @@ class NotaController extends Controller
      */
     public function sumaPorcentajes(Request $request, $division, $cedula_prof, $pk_materia_pc)
     {
+        $periodo = Nota::find($request->route('nota'))['fk_periodo'];
         $suma = MateriaPC::find($pk_materia_pc)->Notas()
-        ->where('fk_division','=',$division)->sum('porcentaje');
+        ->where([['fk_division','=',$division],['fk_periodo','=',$periodo]])->sum('porcentaje');
         if ($request->ajax()) {
           return json_encode(['total' => $suma]);
         }
@@ -251,5 +278,26 @@ class NotaController extends Controller
       $foraneas = $this->inspeccionarNota($Nota);
       $array = [$Nota,$foraneas['division'],$foraneas['materia']];
       return $array;
+    }
+
+    private function listarMateriasPC($cedula_prof, $pk_materia=null)
+    {
+      if (!empty($pk_materia)) {
+        $materiasProfesor = MateriaPC::select('pk_materia_pc','fk_curso','nombre', 'salon')->where([
+          ['pk_materia_pc','=',$pk_materia],
+          ['fk_empleado','=',session('user')['cedula']]
+          ])->get();
+      }else{
+        $materiasProfesor = MateriaPC::select('pk_materia_pc','fk_curso','nombre', 'salon')->where(
+          'fk_empleado','=',session('user')['cedula'])->get();
+      }
+      $MateriasCursos = [];
+      foreach ($materiasProfesor as $materia) {
+        $curso = Curso::find($materia['fk_curso']);
+        $nombreCurso = $curso['prefijo'].'-'.$curso['sufijo'];
+        array_push($MateriasCursos,[$materia,$nombreCurso]);
+      }
+      //dd($MateriasCursos);
+      return $MateriasCursos;
     }
 }

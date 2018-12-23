@@ -94,9 +94,6 @@ Route::get('empleados/eliminarEstudiantes', function () {
 Route::post('/empleados/perfil/{cedula}', 'EmpleadoController@perfil');
 Route::resource('/empleados','EmpleadoController');
 
-/* RUTAS DE ACUDIENTE */
-Route::resource('/acudientes','AcudienteController');
-
 /*RUTAS DE PERIODO*/
 Route::resource('/periodos','PeriodoController');
 
@@ -126,8 +123,14 @@ Route::put('/planillas/{pk_materia_pc}/periodos/{pk_periodo}','MateriaPCControll
 /* RUTAS DE NOTA */
 Route::get('/notas/crear/{materia}','NotaController@create');
 Route::get('/notas/total/{cedula_prof}/{division}/{pk_materia_pc}','NotaController@sumaPorcentajes');
-Route::resource('/notas','NotaController');
-
+Route::get('/notas/materiaspc/{pk_materia_pc}/periodos/{pk_periodo}/','NotaController@index')->name('notas.index');
+Route::post('/notas','NotaController@store')->name('notas.store');
+Route::get('/notas','NotaController@index_global')->name('notas.indexGlobal');
+Route::get('/notas/crear','NotaController@create')->name('notas.create');
+Route::get('/notas/{nota}','NotaController@show')->name('notas.show');
+Route::delete('/notas/{nota}','NotaController@destroy')->name('notas.destroy');
+Route::patch('/notas/{nota}','NotaController@update')->name('notas.update');
+Route::get('/notas/{nota}/editar','NotaController@edit')->name('notas.edit');
 /* RUTAS DE HORARIO */
 Route::get('/horarios/curso','HorarioController@verHorarioDirectorCurso');
 Route::get('/horarios/director','HorarioController@verHorarioDirector');

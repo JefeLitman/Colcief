@@ -49,9 +49,13 @@
                                         </span>
                                     </div>
                                     <select class="custom-select custom-select-sm" name="fk_materia_pc" required>
-                                        @foreach ($materias as $materia)
-                                            <option value="{{$materia['pk_materia_pc']}}">{{$materia['nombre'].' Salón: '.$materia['salon']}}</option>
-                                        @endforeach
+                                      @for ($i=0; $i < count($materias); $i++)
+                                        <option value="{{$materias[$i][0]['pk_materia_pc']}}"
+                                        @if ($nota['fk_materia_pc']==$materias[$i][0]['pk_materia_pc'])
+                                          selected
+                                        @endif
+                                        >{{$materias[$i][0]['nombre'].' Curso: '.$materias[$i][1]}}</option>
+                                      @endfor
                                     </select>
                                 </div>
                             </div>
