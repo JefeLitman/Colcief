@@ -211,6 +211,9 @@ a.article:hover {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
+    #notificationContainer{
+        margin-left: 0 !important;
+    }
     #sidebar {
         min-width: 80px;
         max-width: 80px;
@@ -257,14 +260,17 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+    
 }
-
-
 
 /* notificaciones */
 .notifica
 {
     font-size: 13px;
+}
+.noo{
+    position: relative;
+    z-index: 2000;
 }
 /* .notifica:hover
 {
@@ -281,13 +287,12 @@ border: 1px solid rgba(100, 100, 100, .4);
 -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
 overflow: visible;
 position: absolute;
-top: 30px;
+top: 40px;
 margin-left: -170px;
 width: 300px;
 z-index: 100;
-display: none; // Enable this after jquery implementation 
+display: none; 
 }
-// Popup Arrow
 #notificationContainer:before {
 content: '';
 display: block;
@@ -314,6 +319,8 @@ border-bottom: 1px solid #dddddd;
 #notificationsBody
 {
 padding: 33px 0px 0px 0px !important;
+z-index: 1000;
+
 /* min-height:300px; */
 }
 #notificationFooter
