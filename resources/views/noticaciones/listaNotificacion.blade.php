@@ -2,7 +2,7 @@
 @section('titulo',ucwords(session('user')['nombre']))
 @section('contenedor_profesor')
 
-<div class="container">
+<div class="container" style="background:#fafafa !important;">
     <div class="list-group list-group-flush">
         @foreach ($notificaciones as $notificacion)
             <a href="{{$notificacion->link}}" class="list-group-item list-group-item-action
