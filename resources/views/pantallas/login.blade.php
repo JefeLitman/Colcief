@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
               <label for="username" class="text-uppercase">Usuario</label>
-              <input type="text" class="form-control" placeholder="" name='username' id='username' value="{{old('username')}}">
+              <input type="number" class="form-control" placeholder="" name='username' id='username' value="{{old('username')}}">
             </div>
             <div class="form-group">
               <label for="password" class="text-uppercase" >Contraseña</label>

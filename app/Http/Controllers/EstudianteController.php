@@ -75,9 +75,14 @@ class EstudianteController extends Controller{
           $nombre = 'estudiante'.$estudiante->pk_estudiante;
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
-        $estudiante->save();
+        if($estudiante->save()){
+            $mensaje = 'El estudiante '.$estudiante->nombre.' '.$estudiante->apellido.' fue creado con exito';
+            return redirect(route('estudiantes.show', $estudiante->pk_estudiante))->with('true', $mensaje);
+        } else {
+            return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
          // se guarda el estudiante
-        return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
+        
     }
 
     public function show($pk_estudiante){
@@ -136,8 +141,13 @@ class EstudianteController extends Controller{
         }
         $estudiante->password= Hash::make('clave');
         $acudiente->save();
-        $estudiante->save();
-        return redirect(route('estudiantes.show', $estudiante->pk_estudiante));
+        
+        if ($estudiante->save()){
+            $mensaje = 'El estudiante '.$estudiante->nombre.' '.$estudiante->apellido.' fue actualizado con exito';
+            return redirect(route('estudiantes.show', $estudiante->pk_estudiante))->with('true', $mensaje);
+        } else {
+            return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
     }
 
     public function perfil(Request $request, $pk_estudiante){
@@ -164,12 +174,5 @@ class EstudianteController extends Controller{
                 'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue eliminado'
             ]);
         }
-    }
-
-    public function periodo($periodo){
-        return redirect(route('estudiantes.periodo', $periodo));
-        // return view("estudiantes.periodo",[
-        //     'periodo'=>$p
-        //  ]);
     }
 }

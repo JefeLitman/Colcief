@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller{
@@ -16,7 +17,7 @@ class LoginController extends Controller{
         return view('pantallas.login');
     }
 
-    public function authenticate(Request $request){
+    public function authenticate(LoginRequest $request){
         switch($request->role){
             case '0':
                 $guardia = 'administrador';

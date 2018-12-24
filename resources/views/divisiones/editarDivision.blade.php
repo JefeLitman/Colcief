@@ -15,6 +15,12 @@
         Editar divisiones
     </h3>
     <br>
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Información</strong> La suma total del procentaje de cada division debe ser igual a 100%.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 <form id="editar" enctype="multipart/form-data" action="/divisiones/{{date('Y')}}" method="POST">
     @csrf
     @method('PUT')

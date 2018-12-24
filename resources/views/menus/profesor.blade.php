@@ -90,21 +90,15 @@
         });
     </script>
     <script type="text/javascript" >
-        $(document).ready(function()
-        {
-        $("#notificationLink").click(function()
-        {
-        $("#notificationContainer").fadeToggle(300);
-        $("#notification_count").fadeOut("slow");
-        return false;
-        });
-        
-        //Document Click hiding the popup 
-        $(document).click(function()
-        {
-        $("#notificationContainer").hide();
-        });
-        
-        
+        $(document).ready(function(){
+            $("#notificationLink").click(function(){
+                $("#notificationContainer").fadeToggle(300);
+                $("#notification_count").fadeOut("slow");
+                return false;
+            });
+            //Document Click hiding the popup 
+            $(document).click(function(){
+                $("#notificationContainer").hide();
+            });
         });
     </script>

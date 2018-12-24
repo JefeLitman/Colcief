@@ -29,8 +29,9 @@ class NotificacionController extends Controller {
     }
 
     public function index(){
-        $notificaciones = $this -> misNotificaciones() -> get();
-        return view("noticaciones.listaNotificacion", ['notificaciones'=>$notificaciones]);
+        $activas = $this -> misNotificaciones() -> where('estado', true) -> get();
+        $inactivas = $this -> misNotificaciones() -> where('estado', false) -> get();
+        return view("noticaciones.listaNotificacion", ['activas' => $activas, 'inactivas' => $inactivas]);
     }
 
     public function create(){

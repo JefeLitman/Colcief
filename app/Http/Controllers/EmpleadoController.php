@@ -38,7 +38,8 @@ class EmpleadoController extends Controller{
         }
         $cedula = $empleado->cedula;
         if($empleado->save()){
-            return redirect(route('empleados.show', $cedula))->with('true', 'El registro fue guardado con exito');
+            $mensaje = 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' fue creado con exito';
+            return redirect(route('empleados.show', $cedula))->with('true', $mensaje);
         }else{
             return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
         }
@@ -74,8 +75,12 @@ class EmpleadoController extends Controller{
             $nombreArchivo = 'empleado'.$request->cedula;
             $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto');
         }
-        $empleado->save();
-        return redirect(route('empleados.show', $empleado->cedula));
+        if($empleado->save()){
+            $mensaje = 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' fue actualizado con exito';
+            return redirect(route('empleados.show', $empleado -> cedula))->with('true', $mensaje);
+        } else {
+            return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
+        }      
     }
 
     public function perfil(EmpleadoUpdateFoto $request,$cedula){

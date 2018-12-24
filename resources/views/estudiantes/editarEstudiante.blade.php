@@ -41,7 +41,7 @@
                                         <i class="fas fa-user-circle"></i>
                                     </span>
                                 </div>
-                                    <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{$estudiante->nombre}}" value="@eachError('nombre', $errors)@endeachError">
+                                    <input type="text" name="nombre" placeholder="Nombre" class="form-control form-control-sm" value="{{$estudiante->nombre}}" value="@eachError('nombre', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                     </div>
-                                    <input type="text" name="apellido" placeholder="Apellidos" class="form-control" value="{{$estudiante->apellido}}" value="@eachError('apellido', $errors)@endeachError">
+                                    <input type="text" name="apellido" placeholder="Apellidos" class="form-control form-control-sm" value="{{$estudiante->apellido}}" value="@eachError('apellido', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                             <i class="far fa-calendar-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control" value="{{$estudiante->fecha_nacimiento}}" value="@eachError('fecha_nacimiento', $errors)@endeachError">
+                                    <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="{{$estudiante->fecha_nacimiento}}" value="@eachError('fecha_nacimiento', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                             <i class="fas fa-user-cog"></i>
                                         </span>
                                     </div>
-                                    <select class="custom-select" name="grado" id="grado">
+                                    <select class="custom-select custom-select-sm" name="grado" id="grado">
                                         <option selected>Seleccionar el grado</option>
                                         @php $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
                                         @endphp
@@ -153,7 +153,7 @@
                                             <i class="fas fa-user-circle"></i>
                                         </span>
                                     </div>
-                                    <input type="text"  name="nombre_acu_1" placeholder="Nombres" class="form-control" value="{{$acudiente->nombre_acu_1}}" value="@eachError('nombre_acu_1', $errors)@endeachError">
+                                    <input type="text"  name="nombre_acu_1" placeholder="Nombres" class="form-control form-control-sm" value="{{$acudiente->nombre_acu_1}}" value="@eachError('nombre_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                                             <i class="fas fa-mobile-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_1}}" value="@eachError('telefono_acu_1', $errors)@endeachError">
+                                    <input type="number" name="telefono_acu_1" placeholder="Celular" class="form-control form-control-sm" value="{{$acudiente->telefono_acu_1}}" value="@eachError('telefono_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                                             <i class="fas fa-map-marked-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_1}}" value="@eachError('direccion_acu_1', $errors)@endeachError">
+                                    <input type="text" name="direccion_acu_1" placeholder="Dirección" class="form-control form-control-sm" value="{{$acudiente->direccion_acu_1}}" value="@eachError('direccion_acu_1', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                                             <i class="fas fa-user-circle"></i>
                                         </span>
                                     </div>
-                                    <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control" value="{{$acudiente->nombre_acu_2}}" value="@eachError('nombre_acu_2', $errors)@endeachError">
+                                    <input type="text"  name="nombre_acu_2" placeholder="Nombres" class="form-control form-control-sm" value="{{$acudiente->nombre_acu_2}}" value="@eachError('nombre_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                                             <i class="fas fa-mobile-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control" value="{{$acudiente->telefono_acu_2}}" value="@eachError('telefono_acu_2', $errors)@endeachError">
+                                    <input type="number" name="telefono_acu_2" placeholder="Celular" class="form-control form-control-sm" value="{{$acudiente->telefono_acu_2}}" value="@eachError('telefono_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                                             <i class="fas fa-map-marked-alt"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control" value="{{$acudiente->direccion_acu_2}}" value="@eachError('direccion_acu_2', $errors)@endeachError">
+                                    <input type="text" name="direccion_acu_2" placeholder="Dirección" class="form-control form-control-sm" value="{{$acudiente->direccion_acu_2}}" value="@eachError('direccion_acu_2', $errors)@endeachError">
                                 </div>
                             </div>
                         </div>

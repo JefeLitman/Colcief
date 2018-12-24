@@ -39,8 +39,6 @@ Route::get('/terminal/seed', 'Terminal@seed');
 Route::get('/terminal/main', 'Terminal@migrateResetSeeder');
 Route::get('/terminal/autoload', 'Terminal@autoload');
 
-Route::post('/autocompletar/{text}', 'AjaxController')->name('autocompletar');
-
 /* RUTAS DEL LOGIN*/
 Route::get('/login', 'Login\LoginController')->name('login');
 Route::post('/login', 'Login\LoginController@authenticate')->name('authenticate');

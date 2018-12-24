@@ -92,6 +92,8 @@ class DivisionController extends Controller {
                     $division[$i] -> delete();
                 }
             }
+        }else{
+            return back() -> with('false', 'Recuerde que la suma de los porcentajes debe ser 100%. Intente nuevamente');
         }
         return redirect('/divisiones');
     }

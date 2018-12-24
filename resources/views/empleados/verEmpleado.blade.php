@@ -6,26 +6,6 @@
 	{{-- Variables enviadas desde Local>App>Http>Controllers>EmpleadoController.php  funcion show()
 		 @Autor Paola C. --}}
     {{-- URL: localhost:8000\empleados\{pk_empleado} --}}
-    @if(session()->has('false'))
-        <div class="alert alert-danger danger-dismissible fade show hidden" role="alert">
-        {{session('false')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true" style="color:#812c3b">&times;</span>
-            </button>
-        </div>
-        <script>
-            $(document).ready(function(){
-                $("div").fadeIn();
-            });
-        </script>
-    @elseif(session()->has('true'))
-        <div class="alert alert-success success-dismissible fade show hidden" role="alert">
-            {{session('true')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true" style="color:blue">&times;</span>
-            </button>
-        </div>
-    @endif
 <br>
 <div class="container" style="background:#fafafa !important;">
     <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
