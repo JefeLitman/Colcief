@@ -98,9 +98,10 @@ class DivisionController extends Controller {
                     $division[$i] -> delete();
                 }
             }
+            $mensaje = 'Los componentes fueros actualizados con exito, recuerde que esta modificación afectara todas las notas existentes ingresadas en el año actual';
+            return redirect(route('divisiones.index'))->with('true', $mensaje);
         }else{
             return back() -> with('false', 'Recuerde que la suma de los porcentajes debe ser 100%. Intente nuevamente');
         }
-        return redirect('/divisiones');
     }
 }

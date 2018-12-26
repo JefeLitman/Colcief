@@ -1,5 +1,5 @@
 @extends('contenedores.admin')
-@section('titulo','Ediar División')
+@section('titulo','Editar División')
 @section('contenedor_admin')
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -12,16 +12,16 @@
 @endif
 <div class="container">
     <h3 class="card-title text-center">
-        Editar divisiones
+        Editar componentes
     </h3>
     <br>
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <strong>Información</strong> La suma total del procentaje de cada division debe ser igual a 100%.
+        <strong>Información</strong> La suma total del procentaje de cada componente debe ser igual a 100%.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-<form id="editar" enctype="multipart/form-data" action="/divisiones/{{date('Y')}}" method="POST">
+<form id="editar" enctype="multipart/form-data" action="{{route('divisiones.update')}}" method="POST">
     @csrf
     @method('PUT')
     <div class="table-responsive">

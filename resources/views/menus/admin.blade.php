@@ -39,8 +39,19 @@
 						</li>
 					</ul>
 				</li>
-				<li @if (Request::path()=="divisiones") class="active" @endif >
-					<a class="nav-link " href="{{ url('divisiones') }}"> <i class="fas fa-th-list"></i> Componentes</a>
+                <li @if (Request::path()=="divisiones") class="active" @endif >
+                    <a href="#divisionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-th-list"></i> Componentes
+                    </a>
+                    <ul class="collapse list-unstyled" id="divisionSubmenu">
+                        <li>
+                            <a href="{{ url('/divisiones') }}"><i class="fas fa-eye"></i> Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/divisiones/editar') }}"><i class="fas fa-pen-square"></i> Editar</a>
+                        </li>
+                    </ul>
+					{{-- <a class="nav-link " href="{{ url('divisiones') }}"> <i class="fas fa-th-list"></i> </a> --}}
 				</li>
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file"></i> Plantillas*</a>

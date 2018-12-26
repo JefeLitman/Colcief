@@ -1,19 +1,23 @@
 @if(session()->has('false'))
-    <div id="info" class="alert alert-danger danger-dismissible fade show hidden" role="alert">
-        {{session('false')}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true" style="color:#812c3b">&times;</span>
-        </button>
+    <div class="container">
+        <div id="info" class="alert alert-danger danger-dismissible fade show hidden" role="alert">
+            {{session('false')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" style="color:#812c3b">&times;</span>
+            </button>
+        </div>
     </div>
     @php
         session() -> forget('false')
     @endphp
 @elseif(session()->has('true'))
-    <div id="info" class="alert alert-success success-dismissible fade show hidden" role="alert">
-        {{session('true')}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="container">
+        <div id="info" class="alert alert-success success-dismissible fade show hidden" role="alert">
+            {{session('true')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
     @php
         session() -> forget('true')
@@ -24,6 +28,6 @@
         $("#info").fadeIn();
         setTimeout (function(){
             $("#info").fadeOut('slow');
-        }, 3000);
+        }, 5000);
     });
 </script>

@@ -99,7 +99,11 @@ Route::resource('/periodos','PeriodoController');
 Route::resource('/materias','MateriaController');
 
 /* RUTAS DE DIVISIÓN */
-Route::resource('/divisiones','DivisionController');
+Route::get('/divisiones','DivisionController@index')->name('divisiones.index');
+Route::get('/divisiones/editar','DivisionController@edit')->name('divisiones.edit');
+Route::put('/divisiones','DivisionController@update')->name('divisiones.update');
+Route::get('/divisiones/crear','DivisionController@create')->name('divisiones.create');
+Route::post('/divisiones','DivisionController@store')->name('divisiones.store');
 
 /* RUTAS DE CURSO */
 Route::get('/cursos/estudiantes/{prefijo}/{sufijo}','CursoController@conteoEstudiantes');
