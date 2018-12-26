@@ -1,7 +1,6 @@
 @extends('contenedores.profesor')
 @section('titulo',ucwords(session('user')['nombre']))
 @section('contenedor_profesor')
-<br>
 <div class="card mx-auto border-dark bg-light" style="width: 20rem;"><br>
     <img class="mx-auto w-75"  src="{{session('user')['foto']}}" alt="Foto empleado"><br>
     <button type="button" class="btn btn-primary w-50 mx-auto" data-toggle="modal" data-target="#empleadoModal">

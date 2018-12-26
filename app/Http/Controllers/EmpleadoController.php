@@ -91,11 +91,15 @@ class EmpleadoController extends Controller{
             $nombre = 'empleado'.$empleado->cedula;
             $empleado->foto = SupraController::subirArchivo($request,$nombre,'foto'); 
         }
-        $empleado->save();
-        $var = Empleado::findOrFail($cedula);
-        session(['user'=> $var->session(),'role' => $guard]);
-        // dd(Auth::guard($guard)->user()->session());
-        return redirect(url('/empleados/principal'));
+        if($empleado->save()){
+            $var = Empleado::findOrFail($cedula);
+            session(['user'=> $var->session(),'role' => $guard]);
+            $mensaje = 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' Actualizo su foto con exito';
+            return redirect(url('/empleados/principal'))->with('true', $mensaje);
+        } else {
+            return back()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
+        
     }
 
 

@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Division;
 use App\Materia;
-use App\Perido;
+use App\Periodo;
 use App\Fecha;
 use Illuminate\Console\Command;
 

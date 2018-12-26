@@ -1,8 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Crear Horario')
 @section('contenedor_admin')
-<br id = "br">
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">

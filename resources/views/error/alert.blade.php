@@ -24,6 +24,6 @@
         $("#info").fadeIn();
         setTimeout (function(){
             $("#info").fadeOut('slow');
-        }, 4000);
+        }, 3000);
     });
 </script>

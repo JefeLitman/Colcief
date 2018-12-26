@@ -66,7 +66,6 @@ var cargarNotificaciones = function(){
             if(data.cant > 0){
                 noti.html(data.cant)
                 mensaje='';
-                console.log(data.data);
                 $.each( data.data, function(key, notificar) {
                     mensaje+= '<tr class="n'+notificar.pk_notificacion+'"><td class="notifica p-0"><a class="d-block w-100 p-2" href="'+notificar.link
                     +'"><span class="text-info">'+notificar.titulo+': </span><br>'+notificar.descripcion+'</a>'
@@ -74,9 +73,6 @@ var cargarNotificaciones = function(){
                     +notificar.pk_notificacion+'" class="cerrar p-2">x</span></td><tr>';
                 });
                 document.getElementById('noo').innerHTML=mensaje;
-                // $('#notificationsBody').innerHtml = mensaje;
-                // $('#shownoti').attr("data-content",mensaje);
-                console.log(data.cant)
             }else if(data.cant==0){
                 noti.fadeOut();
                 document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
@@ -104,7 +100,6 @@ var eliminarNotificacion = function(e){
                 noti.fadeOut();
                 document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
             }
-            // documentElementById('#n'+id).remove();
         }
     }); 
 }
@@ -127,25 +122,3 @@ $(document).ready(function(){
     });    
     
 });
-
-// function myFunction(){
-//     var input, filter, table, tr, td, i;
-//     input = document.getElementById("myInput");
-//     filter = input.value.toUpperCase();
-//     table = document.getElementById("myTable");
-//     tr = table.getElementsByTagName("tr");
-//     for (i = 0; i < tr.length; i++){
-//         for (j = 0; j < 4; j++){
-//             td = tr[i].getElementsByTagName("td")[j];
-//             if(td){
-//                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//                     tr[i].style.display = "";
-//                 } else {
-//                     tr[i].style.display = "none";
-//                 }
-//             }
-//         }       
-//     }
-// }
-
-

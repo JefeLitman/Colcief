@@ -13,62 +13,29 @@ class FechaController extends Controller {
     }
 
     public function index(){
-        $fecha = Fecha::all()->where('ano', $this->ano);
+        $fecha = Fecha::where('ano', $this->ano)->get()[0];
         return response()->json([
             'fecha' => $fecha
         ]);
     }
 
-    public function create(){
+    public function show(Fecha $fecha){
         
     }
 
-    public function store(Request $request){
-        //
+    public function edit(){
+        return view('fechas.editarFecha', ['fecha' => Fecha::where('ano', $this->ano) -> get()[0]]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Fecha  $fecha
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Fecha $fecha)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Fecha  $fecha
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Fecha $fecha)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Fecha  $fecha
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Fecha $fecha)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Fecha  $fecha
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Fecha $fecha)
-    {
-        //
+    public function update(FechaStoreController $request){
+        $fecha = Fecha::where('ano', $this->ano)->get()[0];
+        $fecha -> inicio_escolar = $request -> inicio_escolar;
+        $fecha -> fin_escolar = $request -> fin_escolar;
+        if ($fecha -> save()) {
+            $mensaje = 'Las fechas escolares fueron actualizadas con exito, recuerde que la fecha de inicio escolar actual es '.$fecha -> fin_escolar;
+            return redirect(route('fechas.index'))->with('true', $mensaje);
+        } else {
+            return back()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Division;
+use App\Fecha;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DivisionStoreController;
@@ -46,12 +47,17 @@ class DivisionController extends Controller {
     }
 
     public function edit(){
+        $fecha = Fecha::where('ano', $this->ano)->get()[0];
         $division = Division::all()->where('ano', $this->ano);
-        // if($this->date <= $division[0]->limite){
-        return view('divisiones.editarDivision', ['division' => $division]);
-        // } else {
-        //     return 'EL año escolar ya inicio';
-        // }
+        if(explode('-', $this->date)[1] <= explode('-', $fecha -> inicio_escolar)[1]){
+            if(explode('-', $this->date)[2] <= explode('-', $fecha -> inicio_escolar)[2]){
+                return view('divisiones.editarDivision', ['division' => $division]);
+            } else {
+                return 'EL año escolar ya inicio';
+            }
+        } else {
+            return 'EL año escolar ya inicio';
+        }
     }
 
     public function update(Request $request){

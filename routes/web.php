@@ -145,7 +145,9 @@ Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@sh
 Route::post('/notificaciones','NotificacionController');
 Route::delete('/notificaciones/{pk_notificacion}','NotificacionController@destroy');
 Route::get('/notificaciones', 'NotificacionController@index');
-Route::resource('/fechas', 'FechaController');
+Route::get('/fechas/editar', 'FechaController@edit')->name('fechas.edit');
+Route::put('/fechas', 'FechaController@update')->name('fechas.update');
+Route::get('/fechas', 'FechaController@index')->name('fechas.index');
 
 /* RUTAS DE NOTAS PERIODO */
 Route::resource('/notasperiodo','NotaPeriodoController')->middleware('admin:profesor');
