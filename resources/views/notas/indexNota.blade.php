@@ -37,8 +37,6 @@
                                     <th scope="col" style="color:#00695c" class="text-center"><i class="fas fa-percentage"></i></th>
                                     {{-- Descripción --}}
                                     <th scope="col" style="color:#00695c" class="text-center">Descripción</th>
-                                    {{-- Salón --}}
-                                    <th scope="col" style="color:#00695c" class="text-center">Salón</th>
                                     {{-- Acciones --}}
                                     <th scope="col" style="color:#00695c" class="text-center" colspan="3">Acciones</th>
                                 </tr>
@@ -52,8 +50,6 @@
                                         <td class="text-center">{{$nota['porcentaje']}}</td>
                                         {{-- Descripción --}}
                                         <td class="text-center">{{$nota['descripcion']}}</td>
-                                        {{-- Salon --}}
-                                        <td class="text-center">{{$nota['salon']}}</td>
                                         {{-- Editar --}}
                                         <td class="text-center"><a href="{{ route('notas.edit',$nota['pk_nota']) }}"><i class="fas fa-edit" style="color:#00695c"></i>
                                         </a></td>
