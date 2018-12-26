@@ -100,8 +100,7 @@ class NotaController extends Controller
      */
     public function store(NotaStoreController $request)
     {
-        if ($request['porcentaje']+$this->sumaPorcentajes($request,$request['fk_division'],
-            session('user')['cedula'],$request['fk_materia_pc'])<=100) {
+        if ($request['porcentaje']+$this->sumaPorcentajes($request)<=100) {
           $Nota = new Nota();
           $Nota->porcentaje=$request->porcentaje;
           $Nota->fk_division=$request->fk_division;
@@ -166,8 +165,19 @@ class NotaController extends Controller
     {
         $nota_modificada = Nota::find($pk_nota);
         if (!empty($nota_modificada)) {
-          if ($request['porcentaje']+$this->sumaPorcentajes($request,$request['fk_division'],
-              session('user')['cedula'],$request['fk_materia_pc'])-$nota_modificada['porcentaje']<=100)
+          $total = $this->sumaPorcentajes($request);
+          $posible = 0;
+          if ($nota_modificada['fk_division']==$request['fk_division']) {
+            if ($request['porcentaje']+$total-$nota_modificada['porcentaje']<=100) {
+              $posible = 1;
+            }
+          }else {
+            $PorcentajeDisponible = 100-$total;
+            if ($request['porcentaje']<=$PorcentajeDisponible) {
+              $posible = 1;
+            }
+          }
+          if ($posible)
               {
                 $bandera = 0;
                 if (!($nota_modificada->porcentaje==$request->porcentaje)) {
@@ -225,15 +235,15 @@ class NotaController extends Controller
 
     /**
      * Este método devuelve la suma de los porcentajes de las notas correspondietes
-     * a una materia y división.
+     * a una materia, división y periodo.
      * Funciona tanto con Ajax como con una petición normal a la ruta.
      * @return $suma
      */
-    public function sumaPorcentajes(Request $request, $division, $cedula_prof, $pk_materia_pc)
+    public function sumaPorcentajes(Request $request)
     {
         $periodo = Nota::find($request->route('nota'))['fk_periodo'];
-        $suma = MateriaPC::find($pk_materia_pc)->Notas()
-        ->where([['fk_division','=',$division],['fk_periodo','=',$periodo]])->sum('porcentaje');
+        $suma = MateriaPC::find($request['fk_materia_pc'])->Notas()
+        ->where([['fk_division','=',$request['fk_division']],['fk_periodo','=',$periodo]])->sum('porcentaje');
         if ($request->ajax()) {
           return json_encode(['total' => $suma]);
         }
