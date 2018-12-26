@@ -130,12 +130,14 @@
                     @endforeach
                 </tbody>
               </table>
-              <div class="text-center" style="float:center;">
-                  <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}">Ver notas</a>
-            </div>
-            <br>
+              
             </div>
           </p>
+          <div class="text-center">
+            <a href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}" class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;">
+                Ver notas
+            </a>
+        </div>
         </div>
       </div>
       <table class="table table-borderless table-sm text-center">

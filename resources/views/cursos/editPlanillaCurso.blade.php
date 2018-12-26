@@ -146,7 +146,8 @@
           </p>
         </div>
         <div class="text-center">
-            <a href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}" class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;">Personalizar notas
+            <a href="/notas/materiaspc/{{$materiapc->pk_materia_pc}}/periodos/{{$p->pk_periodo}}" class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;">
+                Ver notas
             </a>
         </div>
         </div>
