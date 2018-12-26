@@ -39,8 +39,8 @@
                     @foreach ($curso as $c)
                         <tr id="estudiantes{{$c->pk_estudiante}}">
                             <td class="text-center">{{$c->pk_estudiante}}</td>
-                            <td class="text-center">{{$c->nombre}}</td>
-                            <td class="text-center">{{$c->apellido}}</td>
+                            <td class="text-center">{{ucwords($c->nombre)}}</td>
+                            <td class="text-center">{{ucwords($c->apellido)}}</td>
                             <td class="text-center">{{$c->grado}}</td>
                             <td class="text-center">
                                 <a href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
