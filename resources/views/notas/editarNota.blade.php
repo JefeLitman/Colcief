@@ -64,7 +64,7 @@
 
                     <div class="row">
                         {{-- Nombre de la nota --}}
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="from-group mb-2">
                                 <label for="cedula"><strong><small style="color : #616161">Nombre de la nota</small></strong></label>
                                 <div class="input-group mb-2">
@@ -80,7 +80,7 @@
                         </div>
 
                         {{-- porcentaje --}}
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="from-group mb-2">
                                 <label for="cedula"><strong><small style="color : #616161">Porcentaje</small></strong></label>
                                 <div class="input-group mb-2">
