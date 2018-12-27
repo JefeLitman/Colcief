@@ -289,7 +289,11 @@ class MateriaPCController extends Controller
                     $materiapc=$materiapc[0];
                     if( $request->salon != "" and $request->fk_curso!="" and $request->fk_empleado!="" and $request->fk_materia!="" ){
                         $materiapc->salon=$request->salon;
-                        $materiapc->fk_curso=$request->fk_curso;
+                        $bandera=false;
+                        if($materiapc->fk_curso!=$request->fk_curso){
+                            $materiapc->fk_curso=$request->fk_curso;
+                            $bandera=true;
+                        }
                         $materiapc->fk_empleado=$request->fk_empleado;
                         if($materiapc->fk_materia != $request->fk_materia){
                             $materiapc->fk_materia=$request->fk_materia;
@@ -297,6 +301,9 @@ class MateriaPCController extends Controller
                             $materiapc->nombre=$m->nombre;
                         }
                         $materiapc->save();
+                        if ($bandera) {
+                            $materiapc->modificarCurso();
+                        }
                         return redirect("/materiaspc/$id");
                     }else{
                         //Alguno de los valores se envia como nulo.
