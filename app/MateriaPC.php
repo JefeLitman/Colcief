@@ -58,7 +58,7 @@ class MateriaPC extends Model
             ]);
           foreach ($divisiones as $d) {
             NotaDivision::create([
-              'fk_nota_periodo'=>$perActual,
+              'fk_nota_periodo'=>$perActual->pk_nota_periodo,
               'fk_division'=>$d->pk_division
               ]);
           }
@@ -82,7 +82,7 @@ class MateriaPC extends Model
         foreach ($periodos as $p) {
           $perActual=NotaPeriodo::create(['fk_materia_boletin'=>$materiaBoletin->pk_materia_boletin,'fk_periodo'=>$p->pk_periodo]);
           foreach ($divisiones as $d) {
-            $notaDivision=NotaDivision::create(['fk_nota_periodo'=>$perActual,'fk_division'=>$d->pk_division]);
+            $notaDivision=NotaDivision::create(['fk_nota_periodo'=>$perActual->pk_nota_periodo,'fk_division'=>$d->pk_division]);
             $notas=Nota::where([['fk_materia_pc',$this->pk_materia_pc],['fk_periodo',$p->pk_periodo],['fk_division',$d->pk_division]])->get();
             foreach ($notas as $n) {
               NotaEstudiante::create(['fk_nota'=>$n->pk_nota,'fk_nota_division'=>$notaDivision->pk_nota_division]);
