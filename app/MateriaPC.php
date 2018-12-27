@@ -33,4 +33,9 @@ class MateriaPC extends Model
     public function Horarios(){
       return $this->hasMany('App\Horario', 'fk_materia_pc', 'pk_materia_pc');
     }
+
+    public function crearEstructuraNotas(){
+
+    }
+
 }

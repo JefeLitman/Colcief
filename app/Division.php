@@ -24,8 +24,8 @@ class Division extends Model{
       }
     }
 
-    public function cambioPorcentaje(){
-      //Se actualizan todos los periodos
+    public function actualizarNotasPeriodo(){
+      //Se actualizan todas las tuplas de el actual año en la tabla nota periodo
       $periodos=NotaPeriodo::select('nota_periodo.*')->join('periodo','nota_periodo.fk_periodo','=','periodo.pk_periodo')->where('periodo.ano',date('Y'))->get();
       foreach ($periodos as  $p) {
         $p->actualizarNota();
