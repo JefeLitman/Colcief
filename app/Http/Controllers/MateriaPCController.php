@@ -166,6 +166,7 @@ class MateriaPCController extends Controller
         $materiapc->logros_custom = $materia[0]['logros_custom'];
         try{
             $materiapc->save();
+            $materiapc->crearEstructuraNotas();
             return "Ha sido guardado con exito";
         }catch(Exception $e){
             return "Ha ocurido un error con el servidor, vuelva a intentarlo.";
