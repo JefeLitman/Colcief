@@ -44,8 +44,8 @@ class MateriaPC extends Model
 
     public function crearEstructuraNotas(){
       $boletines=Curso::join('boletin','boletin.fk_curso','=','curso.pk_curso')->where('curso.pk_curso',$this->fk_curso)->get();
-      $periodos=Periodo::where('ano',date('Y'));
-      $divisiones=Division::where('ano',date('Y'));
+      $periodos=Periodo::where('ano',date('Y'))->get();
+      $divisiones=Division::where('ano',date('Y'))->get();
       foreach ($boletines as $b) {
         $materiaBoletin=MateriaBoletin::create(['fk_materia_pc'=>$this->pk_materia_pc,'fk_boletin'=>$b->pk_boletin]);
         foreach ($periodos as $p) {
@@ -66,8 +66,8 @@ class MateriaPC extends Model
 
       // Crear estructura
       $boletines=Curso::join('boletin','boletin.fk_curso','=','curso.pk_curso')->where('curso.pk_curso',$this->fk_curso)->get();
-      $periodos=Periodo::where('ano',date('Y'));
-      $divisiones=Division::where('ano',date('Y'));
+      $periodos=Periodo::where('ano',date('Y'))->get();
+      $divisiones=Division::where('ano',date('Y'))->get();
       foreach ($boletines as $b) {
         $materiaBoletin=MateriaBoletin::create(['fk_materia_pc'=>$this->pk_materia_pc,'fk_boletin'=>$b->pk_boletin]);
         foreach ($periodos as $p) {

@@ -66,7 +66,7 @@ class Todo extends Migration {
             $table->unsignedInteger('fk_periodo');
             $table->unsignedInteger('fk_materia_boletin');
             $table->float('nota_periodo')->default(0);
-            $table->string('habilidad');
+            $table->string('habilidad')->nullable();
             $table->integer('inasistencias')->default(0);
             $table->timestamps();
         });
