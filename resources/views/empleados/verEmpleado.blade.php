@@ -8,35 +8,39 @@
     {{-- URL: localhost:8000\empleados\{pk_empleado} --}}
 <br>
 <div class="container" style="background:#fafafa !important;">
-    <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
-        <div class="card-header" style="background-color:#66ba6a7d !important;">
-            <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color: #17a2b8 !important;">
+                <div class="card-header" style="background-color:rgba(0,0,0,.03) !important;">
+                    <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="border-top-color:  #17a2b8 !important; border-bottom-color:  #17a2b8 !important;">
+                        <h5 class="card-title text-center">
+                            <i class="fas fa-user-tie"></i>
+                            <br>
+                            {{$empleado->nombre}}
+                            <br>
+                            {{$empleado->apellido}}
+                        </h5>
+                    </li>
+                    <li class="list-group-item" style="border-top-color:  #17a2b8 !important; border-bottom-color:  #17a2b8 !important;">
+                        <h5 class="card-title text-center">
+                            <i class="fas fa-id-card"></i>
+                            <br>
+                            {{$empleado->cedula}}
+                        </h5>
+                    </li>
+                    <li class="list-group-item" style="border-top-color:  #17a2b8 !important; border-bottom-color:  #17a2b8 !important;">
+                        <h5 class="card-title text-center">
+                            <i class="fas fa-graduation-cap"></i>
+                            <br>
+                            {{$empleado->titulo}}
+                        </h5>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                <h5 class="card-title text-center">
-                    <i class="fas fa-user-tie"></i>
-                    <br>
-                    {{$empleado->nombre}}
-                    <br>
-                    {{$empleado->apellido}}
-                </h5>
-            </li>
-            <li class="list-group-item" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                <h5 class="card-title text-center">
-                    <i class="fas fa-id-card"></i>
-                    <br>
-                    {{$empleado->cedula}}
-                </h5>
-            </li>
-            <li class="list-group-item" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                <h5 class="card-title text-center">
-                    <i class="fas fa-graduation-cap"></i>
-                    <br>
-                    {{$empleado->titulo}}
-                </h5>
-            </li>
-        </ul>
     </div>
     {{-- <div class="row">
         <div class="col s1"></div>

@@ -10,72 +10,75 @@
 	<h3>Contenido estudiante:</h3> {{$estudiante}} <br>
 	<h3>Contenido acudiente:</h3> {{$acudiente}} <br>
     <h1>Ejemplos</h1> --}}
-
 <br>
 <div class="container" style="background:#fafafa !important;">
-    <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
-        <div class="card-header" style="background-color:#66ba6a7d !important;">
-            <img class="card-img-top" src="{{$estudiante->foto}}">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#17a2b8 !important;">
+                <div class="card-header" style="background-color: rgba(0,0,0,.03) !important;">
+                    <img class="card-img-top" src="{{$estudiante->foto}}">
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-center" style="border-top-color: #17a2b8 !important; border-bottom-color: #17a2b8 !important;">
+                        <h5 class="card-title text-center">
+                            <i class="fas fa-id-card-alt"></i>
+                            <br> {{$estudiante->nombre}}<br>{{$estudiante->apellido}}
+                        </h5>
+                    </li>
+                    <li class="list-group-item text-center" style="border-top-color: #17a2b8 !important; border-bottom-color: #17a2b8 !important;">
+                        <h5 class="card-title text-center">
+                            <i class="fas fa-star"></i>
+                            <br>
+                                @switch($estudiante->grado)
+                                @case(0)
+                                    Preescolar
+                                    @break
+                                @case(1)
+                                    Primero
+                                    @break
+                                @case(2)
+                                    Segundo
+                                    @break
+                                @case(3)
+                                    Tercero
+                                    @break
+                                @case(4)
+                                    Cuarto
+                                    @break
+                                @case(5)
+                                    Quinto
+                                    @break
+                                @case(6)
+                                    Sexto
+                                    @break
+                                @case(7)
+                                    Septimo
+                                    @break
+                                @case(8)
+                                    Octavo
+                                    @break
+                                @case(9)
+                                    Noveno
+                                    @break
+                                @case(10)
+                                    Decimo
+                                    @break
+                                @case(11)
+                                    Once
+                                    @break
+                            @endswitch
+                        </h5>
+                    </li>
+                    <li class="list-group-item " style="border-top-color: #17a2b8 !important; border-bottom-color: #17a2b8 !important;">
+                        <h5 class="card-title text-center">
+                            <i class="fas fa-user-tie"></i>
+                            <br>
+                            {{$acudiente->nombre_acu_1}}
+                        </h5>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                <h5 class="card-title text-center">
-                    <i class="fas fa-id-card-alt"></i>
-                    <br> {{$estudiante->nombre}}<br>{{$estudiante->apellido}}
-                </h5>
-            </li>
-            <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                <h5 class="card-title text-center">
-                    <i class="fas fa-star"></i>
-                    <br>
-                        @switch($estudiante->grado)
-                        @case(0)
-                            Preescolar
-                            @break
-                        @case(1)
-                            Primero
-                            @break
-                        @case(2)
-                            Segundo
-                            @break
-                        @case(3)
-                            Tercero
-                            @break
-                        @case(4)
-                            Cuarto
-                            @break
-                        @case(5)
-                            Quinto
-                            @break
-                        @case(6)
-                            Sexto
-                            @break
-                        @case(7)
-                            Septimo
-                            @break
-                        @case(8)
-                            Octavo
-                            @break
-                        @case(9)
-                            Noveno
-                            @break
-                        @case(10)
-                            Decimo
-                            @break
-                        @case(11)
-                            Once
-                            @break
-                    @endswitch
-                </h5>
-            </li>
-            <li class="list-group-item " style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
-                <h5 class="card-title text-center">
-                    <i class="fas fa-user-tie"></i>
-                    <br>
-                    {{$acudiente->nombre_acu_1}}
-                </h5>
-            </li>
-        </ul>
     </div>
 </div>
 <br>
