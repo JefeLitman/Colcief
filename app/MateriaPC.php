@@ -50,17 +50,17 @@ class MateriaPC extends Model
         $materiaBoletin=MateriaBoletin::create([
           'fk_materia_pc'=>$this->pk_materia_pc,
           'fk_boletin'=>$b->pk_boletin
-          ]);
+        ]);
         foreach ($periodos as $p) {
           $perActual=NotaPeriodo::create([
             'fk_materia_boletin'=>$materiaBoletin->pk_materia_boletin,
             'fk_periodo'=>$p->pk_periodo
-            ]);
+          ]);
           foreach ($divisiones as $d) {
             NotaDivision::create([
               'fk_nota_periodo'=>$perActual->pk_nota_periodo,
               'fk_division'=>$d->pk_division
-              ]);
+            ]);
           }
         }
       }
@@ -78,7 +78,8 @@ class MateriaPC extends Model
       $periodos=Periodo::where('ano',date('Y'))->get();
       $divisiones=Division::where('ano',date('Y'))->get();
       foreach ($boletines as $b) {
-        $materiaBoletin=MateriaBoletin::create(['fk_materia_pc'=>$this->pk_materia_pc,'fk_boletin'=>$b->pk_boletin]);
+        $materiaBoletin=MateriaBoletin::create([
+          'fk_materia_pc'=>$this->pk_materia_pc,'fk_boletin'=>$b->pk_boletin]);
         foreach ($periodos as $p) {
           $perActual=NotaPeriodo::create(['fk_materia_boletin'=>$materiaBoletin->pk_materia_boletin,'fk_periodo'=>$p->pk_periodo]);
           foreach ($divisiones as $d) {
