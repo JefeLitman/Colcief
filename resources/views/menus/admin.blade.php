@@ -22,10 +22,12 @@
                 {{--  CURSOS  --}}
 				<li @if (Request::path()=="estudiantes") class="active" @endif >
 					<a class="nav-link " href="{{ url('estudiantes') }}"> <i class="fas fa-chalkboard-teacher"></i> Cursos</a>
-				</li>
+                </li>
+                {{--  ESTUDIANTES  --}}
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-user-graduate"></i> Estudiantes*</a>
-				</li>
+                </li>
+                {{--  EMPLEADOS  --}}
 				<li @if (Request::path()=="empleados") class="active" @endif >
 					<a href="#empleadoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 						<i class="fas fa-users"></i> Empleados
@@ -38,7 +40,8 @@
 							<a href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
 						</li>
 					</ul>
-				</li>
+                </li>
+                {{--  COMPONENTES  --}}
                 <li @if (Request::path()=="divisiones") class="active" @endif >
                     <a href="#divisionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-th-list"></i> Componentes
@@ -52,12 +55,14 @@
                         </li>
                     </ul>
 					{{-- <a class="nav-link " href="{{ url('divisiones') }}"> <i class="fas fa-th-list"></i> </a> --}}
-				</li>
+                </li>
+                {{--  PLANILLAS  --}}
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file"></i> Plantillas*</a>
-				</li>
+                </li>
+                {{--  MATERIAS  --}}
 				<li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-book"></i> Materias*</a>
+					<a class="nav-link " href="{{ url('materiaspc') }}"> <i class="fas fa-book"></i> Materias</a>
 				</li>
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="far fa-calendar-alt"></i> Fechas*</a>
@@ -94,7 +99,7 @@
                             </li>
                             <li id="notification_li">
                                 <a href="#" id="notificationLink" class="nav-link"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary"></span></a>
-                                
+
                                 <div id="notificationContainer">
                                     <div id="notificationTitle">Notificaciones</div>
                                     <div id="notificationsBody" class="notifications">
@@ -102,10 +107,10 @@
                                     </div>
                                     <div id="notificationFooter"><a href="{{ url('/notificaciones') }}">ver todas</a></div>
                                 </div>
-                                
+
                             </li>
 							<li class="nav-item active">
-								<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>								
+								<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 							</li>
                         </ul>
                     </div>
@@ -136,7 +141,7 @@
                 $("#notification_count").fadeOut("slow");
                 return false;
             });
-            //Document Click hiding the popup 
+            //Document Click hiding the popup
             $(document).click(function(){
                 $("#notificationContainer").hide();
             });
