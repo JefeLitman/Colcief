@@ -11,6 +11,10 @@
 	{{-- URL: localhost:8000\materiaspc  -> Logeado en un usuario de tipo administrador--}}
 <br id="br">
 <div class="container" style="background:#fafafa !important;">
+    <h1 class="text-center">
+        Materias
+    </h1>
+    <br>
         <div class="accordion" id="accordionExample">
         @csrf
         @php
@@ -83,6 +87,20 @@
             </div>
             {{--  @endfor  --}}
         @endforeach
+    </div>
+    <div class="row text-center">
+        <div class="col-md-6">
+            <div class="text-center" style="float:center;">
+                <br>
+                <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/materias/crear">Crear una materia</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-center" style="float:center;">
+                <br>
+                <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/materiaspc/crear">Asignar docente</a>
+            </div>
+        </div>
     </div>
 </div>
 {{-- Fue añadida en los cabeceros asi que ya no es necesario añadirla manualmente --}}
