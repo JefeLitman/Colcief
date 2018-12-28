@@ -43,8 +43,8 @@ class Nota extends Model
       }
     }
 
-    public function eliminacionNota(){
-      $notasD=NotaDivision::select("nota_division.*")->join('nota_periodo','nota_periodo.pk_nota_periodo','=','nota_division.fk_nota_periodo')->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')->where([['materia_boletin.fk_materia_pc',$this->fk_materia_pc],['nota_periodo.fk_periodo',$this->fk_periodo],['nota_division.fk_division',$this->fk_division]])->get();
+    public static function eliminacionNota($fk_materia_pc,$fk_periodo,$fk_division){
+      $notasD=NotaDivision::select("nota_division.*")->join('nota_periodo','nota_periodo.pk_nota_periodo','=','nota_division.fk_nota_periodo')->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')->where([['materia_boletin.fk_materia_pc',$fk_materia_pc],['nota_periodo.fk_periodo',$fk_periodo],['nota_division.fk_division',$fk_division]])->get();
       foreach ($notasD as $n) {
         $n->actualizarNota();
       }
@@ -65,7 +65,7 @@ class Nota extends Model
             $notaDivNueva->actualizarNota();
           }
         }
-        
+
       }
     }
 }
