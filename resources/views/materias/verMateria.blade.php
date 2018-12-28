@@ -12,24 +12,24 @@
     <h3>Contenido materia:</h3> {{$materia}} <br> --}}
     <br>
     <div class="container" style="background:#fafafa !important;">
-        <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#66bb6a !important;">
-            <div class="card-header" style="background-color:#66ba6a7d !important;">
+        <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#17a2b8 !important;">
+            <div class="card-header" style="background-color: #rgba(0,0,0,.03) !important;">
                 <h2 class="text-center">{{$materia->nombre}}</h2>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
+                <li class="list-group-item text-center" style="border-top-color: #17a2b8 !important; border-bottom-color: #17a2b8 !important;">
                     <h5 class="card-title text-center">
                         <i class="fas fa-star"></i><br>
                         {{$materia->pk_materia}}
                     </h5>
                 </li>
-                <li class="list-group-item" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
+                <li class="list-group-item" style="border-top-color: #17a2b8 !important; border-bottom-color: #17a2b8 !important;">
                     <h5 class="card-title text-center">
                         <i class="fas fa-book-open"></i><br>
                         {{$materia->contenido}}
                     </h5>
                 </li>
-                <li class="list-group-item text-center" style="     border-top-color: #66bb6a !important;">
+                <li class="list-group-item text-center" style="     border-top-color: #17a2b8 !important;">
                     <h5 class="card-title text-center">
                         <i class="fas fa-trophy "></i><br>{{ $materia->logros_custom }}
                     </h5>
