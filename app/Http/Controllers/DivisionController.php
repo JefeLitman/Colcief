@@ -42,6 +42,7 @@ class DivisionController extends Controller {
                 $division -> porcentaje = $request->porcentaje[$i];
                 $division -> ano = $this->ano;
                 $division->save();
+                $division->crearNotasDivision();
             }
         }
     }
@@ -74,8 +75,15 @@ class DivisionController extends Controller {
                 for($i=0;$i<$consulta;$i++){
                     $division[$i] -> nombre = $request->nombre[$i];
                     $division[$i] -> descripcion = $request->descripcion[$i];
-                    $division[$i] -> porcentaje = $request->porcentaje[$i];
+                    $bandera=false;
+                    if ($division[$i] -> porcentaje != $request->porcentaje[$i]) {
+                        $division[$i] -> porcentaje = $request->porcentaje[$i];
+                        $bandera=true;
+                    }
                     $division[$i] -> save();
+                    if ($bandera) {
+                        $division[$i]->actualizarNotasPeriodo();
+                    }
                 }
                 for($i=$consulta;$i<$form;$i++){
                     $newDivision = new Division();
@@ -84,18 +92,27 @@ class DivisionController extends Controller {
                     $newDivision -> porcentaje = $request->porcentaje[$i];
                     $newDivision -> ano = $this->ano;
                     $newDivision -> save();
+                    $newDivision -> crearNotasDivision();
                 }
             }else{
                 for($i=0;$i<$form;$i++){
                     $division[$i] -> nombre = $request->nombre[$i];
                     $division[$i] -> descripcion = $request->descripcion[$i];
-                    $division[$i] -> porcentaje = $request->porcentaje[$i];
+                    $bandera=false;
+                    if ($division[$i] -> porcentaje != $request->porcentaje[$i]) {
+                        $division[$i] -> porcentaje = $request->porcentaje[$i];
+                        $bandera=true;
+                    }
                     $division[$i] -> save();
+                    if ($bandera) {
+                        $division[$i]->actualizarNotasPeriodo();
+                    }
                 }
                 for($i=$form;$i<$consulta;$i++){
                     // $division[$i] -> porcentaje = 0;
                     // $division[$i] -> save();
                     $division[$i] -> delete();
+                    $division[$i]->actualizarNotasPeriodo();
                 }
             }
             $mensaje = 'Los componentes fueros actualizados con exito, recuerde que esta modificación afectara todas las notas existentes ingresadas en el año actual';
