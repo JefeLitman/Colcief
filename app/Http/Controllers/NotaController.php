@@ -224,9 +224,8 @@ class NotaController extends Controller
       $unidad = Nota::find($pk_nota);
       if ($this->verificarProfesor($unidad,session('user')['cedula'])) {
         if (!empty($unidad)) {
-          $params = [$unidad->fk_materia_pc,$unidad->fk_periodo,$unidad->fk_division];
           $unidad->delete();
-          Nota::eliminacionNota($params[0],$params[1],$params[2]);
+          $unidad->eliminacionNota();
           return 'Nota eliminada';
         }
         return 'Nota no encontrada';
