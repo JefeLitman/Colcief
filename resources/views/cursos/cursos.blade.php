@@ -230,6 +230,10 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="text-center" style="float:center;">
+        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/estudiantes/crear">Crear estudiantes</a>
+    </div>
 </div>
 <br>
 @endsection

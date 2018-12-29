@@ -51,16 +51,16 @@
                 @case(11)
                     Once
                     @break
-                    
+
             @endswitch </h5>
         </li>
-        
+
     </ul>
-    
+
 </div>
 <!-- Button trigger modal -->
 
-  
+
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

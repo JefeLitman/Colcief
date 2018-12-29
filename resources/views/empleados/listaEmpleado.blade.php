@@ -2,7 +2,7 @@
 @section('contenedor_admin')
 @section('titulo','Lista Empleados')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
             <form action="" id="autocompletar">
                 <div class="input-group mb-3">
