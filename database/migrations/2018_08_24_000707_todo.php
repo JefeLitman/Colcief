@@ -39,7 +39,7 @@ class Todo extends Migration {
         Schema::create('periodo', function (Blueprint $table) {
             $table->increments('pk_periodo');
             $table->date('fecha_inicio');
-            $table->dateTime('fecha_limite');
+            $table->date('fecha_limite');
             $table->year('ano');
             $table->integer('nro_periodo');
             $table->timestamps();

@@ -1,23 +1,45 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Ver Periodo</title>
-  </head>
-  <body>
-    <!-- Esta vista muestra todos los datos de un objeto
-    periodo, si se accede al index devolverá todos los periodos
-    si se accede al endpoint con un id, ej: /periodo/{id} devolverá
-    solo los datos del periodo {id}
-    By: Douglas -->
-    @if (isset($mensaje))
-    <p>{{$mensaje}}</p>
-    @endif
-    @foreach ($periodo->all() as $p)
-    <p>Periodo #: {{$p->nro_periodo}}</p>
-    <p>Comprende entre: {{$p->fecha_inicio}} y {{$p->fecha_limite}} </p>
-    <p>Año vigente: {{$p->ano}}</p>
-    <hr>
-    @endforeach
-  </body>
-</html>
+@extends('contenedores.admin')
+@section('contenedor_admin')
+@section('titulo','Lista Periodos')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <form action="" id="autocompletar">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
+                    </div>
+                    <input type="text" class="form-control"  id="autocomplete-input" class="autocomplete" placeholder="Nombre" aria-label="lead" aria-describedby="basic-addon1">
+                </div>
+            </form>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th class="center" scope="col" style="color:#00695c">#</th>
+                            <th class="center" scope="col" style="color:#00695c">Fecha de inicio</th>
+                            <th class="center" scope="col" style="color:#00695c" title="Tenga en cuenta que la fecha limite es el ultimo dia en el que el docente puede modifcar notas del periodo">Fecha Limite</th>
+                            <th class="center" scope="col" style="color:#00695c">Acciones</th>
+                            {{-- <th>Editar</th>
+                            <th>Eliminar</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($periodos as $i)
+                            <tr id="empleados{{$i->pk_periodo}}">
+                                <td class="center" >{{$i->nro_periodo}}</td>
+                                <td class="center">{{$i->fecha_inicio}}</td>
+                                <td title="Tenga en cuenta que la fecha limite es el ultimo dia en el que el docente puede modifcar notas del periodo" class="center">{{$i->fecha_limite}}</td>
+                                <td class="center">
+                                    <a href="{{ route('periodos.edit', $i->pk_periodo) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
