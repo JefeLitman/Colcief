@@ -13,6 +13,21 @@
                 </div>
             </form>
             <br>
+            <table class="table table-borderless table-sm text-center">
+                <thead>
+                    <th colspan="4">
+                        Tiempo extra [dias]
+                    </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fas fa-square text-dark"></i> 0 </td>
+                        <td><i class="fas fa-square text-primary"></i> 1 </td>
+                        <td><i class="fas fa-square text-warning"></i> 3 </td>
+                        <td><i class="fas fa-square text-danger"></i> 7 </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="table-responsive">
                 <table class="table table-striped table-condensed table-hover text-center">
                     <thead>
@@ -39,7 +54,29 @@
                                 <td class="center">{{ucwords($i->correo)}}</td>
                                 <td class="center">{{ucwords($cargo[$i->role])}}</td>
                                 <td class="center">
-                                    <a title="Agregar tiempo extra" class="time" identificador="{{$i->cedula}}"><i class="fas fa-stopwatch"></i><span id="{{$i->cedula}}t" class="badge badge-pill badge-secondary">5</span></a>
+                                    <a title="Agregar tiempo extra" class="
+                                    @if($i->role != 0)
+                                        time
+                                    @endif
+                                    " identificador="{{$i->cedula}}"><i 
+                                    @switch($i->tiempo_extra)
+                                        @case(1)
+                                            style="color:#007bff"
+                                            @break
+                                        @case(3)
+                                            style="color:#ffc107"
+                                            @break
+                                        @case(7)
+                                            style="color:#dc3545"
+                                            @break
+                                        @default
+                                            style="color:#343a40"
+                                    @endswitch
+                                    id="{{$i->cedula}}t" class="fas fa-stopwatch
+                                    @if($i->role == 0)
+                                        text-secondary
+                                    @endif
+                                    "></i></a>
                                 </td>
                                 <td class="center">
                                     <a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>
@@ -59,7 +96,7 @@
     $(document).ready(function(){
         $('.time').click(function(){
             var id = $(this).attr('identificador');
-            var pill = $('#'+id+'t');
+            var icon = $('#'+id+'t');
             var entrada = ''+
             '<div class="form-group mb-2">'+
                 '<label for="cedula"><strong><small style="color : #616161">Tiempo extra</small></strong></label>'+
@@ -69,17 +106,41 @@
                             '<i class="fas fa-stopwatch"></i>'+
                         '</span>'+
                     '</div>'+
-                    '<select class="custom-select custom-select-sm" name="role" id="role">'+
-                        '<option value="0">Un dia</option>'+
-                        '<option value="1">Tres dias</option>'+
-                        '<option value="2" selected>Una semana</option>'+
+                    '<select class="custom-select custom-select-sm" name="time" id="time">'+
+                        '<option value="0">Seleccionar</option>'+
+                        '<option value="1">Un dia</option>'+
+                        '<option value="3">Tres dias</option>'+
+                        '<option value="7">Una semana</option>'+
                     '</select>'+
                 '</div>'+
             '</div>'
             modalConfirm(function(confirm){
                 $("#exampleModalCenter").modal('hide');
                 if(confirm){
-                    // deleteRegistro(ruta, id, padre)
+                    var time = $('#time').val();
+                    var color = '';
+                    switch (time) {
+                        case '1':
+                            color = '#007bff';
+                            break;
+                        case '3':
+                            color = '#ffc107';
+                            break;
+                        case '7':
+                            color = '#dc3545';
+                            break;
+                        default:
+                            color = '#343a40';
+                            break;
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: '/empleados/'+id+'/time/'+time,
+                        data: {_token:$('#csrf_token').attr('content'), _method:'PUT'},
+                        success: function(data) {
+                            icon.css({'color':color});
+                        }
+                    });
                 }
             },'¿Desea agregar tiempo extra?', entrada, true);
         });

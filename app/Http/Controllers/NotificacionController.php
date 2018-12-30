@@ -25,7 +25,7 @@ class NotificacionController extends Controller {
     }
 
     public function misNotificaciones(){
-        return Notificacion::where('fk_empleado',session('user')['cedula']);
+        return Notificacion::where('fk_empleado',session('user')['cedula']) -> orderBy('pk_notificacion', 'desc');
     }
 
     public function index(){

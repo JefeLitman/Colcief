@@ -69,6 +69,8 @@ Route::get('empleados/principal/2', function () {
     return view('empleados.profesorPrincipal');
 })->middleware('admin:profesor');
 
+Route::put('/empleados/{id}/time/{time}', 'EmpleadoController@tiempoExtra');
+
 // Route::get('empleados/principal/{rol}', function ($rol) {
 //     switch($rol){
 //         case '0':
