@@ -21,7 +21,7 @@ class PeriodoController extends Controller {
     }
 
     public function index(){
-      $periodos = Periodo::where('ano', date('Y')) -> get();
+      $periodos = Periodo::where('ano', date('Y')) -> orderBy('nro_periodo') -> get();
       return view('periodos.verPeriodo',['periodos' => $periodos]);
     }
 
@@ -65,7 +65,7 @@ class PeriodoController extends Controller {
             $notificacion = new Notificacion;
             $notificacion -> fk_empleado = $empleado -> cedula;
             $notificacion -> titulo = "¡La fecha limite fue modificada!";
-            $notificacion -> descripcion = "Tienes mas tiempo para subir las notas faltantes, la nueva fecha limite es el ".explode('-', $periodo -> fecha_limite)[2].' de '.strftime('%B', strtotime(explode('-', $periodo -> fecha_limite)[1]));
+            $notificacion -> descripcion = "Tienes mas tiempo para subir las notas faltantes, la nueva fecha limite es el ".explode('-', $periodo -> fecha_limite)[2].' de '.ucwords(strftime('%B', strtotime(fecha_limite)));
             $notificacion -> link = "/materiaspc";
             $notificacion -> save();
           }

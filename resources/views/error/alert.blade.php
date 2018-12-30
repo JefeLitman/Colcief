@@ -1,10 +1,14 @@
 @if(session()->has('false'))
     <div class="container">
-        <div id="info" class="alert alert-danger danger-dismissible fade show hidden" role="alert">
-            {{session('false')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true" style="color:#812c3b">&times;</span>
-            </button>
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div id="info" class="alert alert-danger danger-dismissible fade show hidden" role="alert">
+                    {{session('false')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" style="color:#812c3b">&times;</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     @php
@@ -12,11 +16,15 @@
     @endphp
 @elseif(session()->has('true'))
     <div class="container">
-        <div id="info" class="alert alert-success success-dismissible fade show hidden" role="alert">
-            {{session('true')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div id="info" class="alert alert-success success-dismissible fade show hidden" role="alert">
+                    {{session('true')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     @php

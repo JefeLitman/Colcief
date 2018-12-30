@@ -22,7 +22,7 @@
                             <th class="center" scope="col" style="color:#00695c">Apellido</th>
                             <th class="center" scope="col" style="color:#00695c">Correo</th>
                             <th class="center" scope="col" style="color:#00695c">Cargo</th>
-                            <th class="center" scope="col" style="color:#00695c" colspan="2">Acciones</th>
+                            <th class="center" scope="col" style="color:#00695c" colspan="3">Acciones</th>
                             {{-- <th>Editar</th>
                             <th>Eliminar</th> --}}
                         </tr>
@@ -38,6 +38,9 @@
                                 <td class="center">{{ucwords($i->apellido)}}</td>
                                 <td class="center">{{ucwords($i->correo)}}</td>
                                 <td class="center">{{ucwords($cargo[$i->role])}}</td>
+                                <td class="center">
+                                    <a href=""><i title="Agregar tiempo extra" class="fas fa-stopwatch"></i></a>
+                                </td>
                                 <td class="center">
                                     <a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>
                                 </td>
