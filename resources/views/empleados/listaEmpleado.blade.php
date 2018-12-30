@@ -39,7 +39,7 @@
                                 <td class="center">{{ucwords($i->correo)}}</td>
                                 <td class="center">{{ucwords($cargo[$i->role])}}</td>
                                 <td class="center">
-                                    <a href=""><i title="Agregar tiempo extra" class="fas fa-stopwatch"></i></a>
+                                    <a title="Agregar tiempo extra" class="time" identificador="{{$i->cedula}}"><i class="fas fa-stopwatch"></i><span id="{{$i->cedula}}t" class="badge badge-pill badge-secondary">5</span></a>
                                 </td>
                                 <td class="center">
                                     <a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>
@@ -55,4 +55,34 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.time').click(function(){
+            var id = $(this).attr('identificador');
+            var pill = $('#'+id+'t');
+            var entrada = ''+
+            '<div class="form-group mb-2">'+
+                '<label for="cedula"><strong><small style="color : #616161">Tiempo extra</small></strong></label>'+
+                '<div class="input-group mb-2">'+
+                    '<div class="input-group-prepend">'+
+                        '<span class= "input-group-text">'+
+                            '<i class="fas fa-stopwatch"></i>'+
+                        '</span>'+
+                    '</div>'+
+                    '<select class="custom-select custom-select-sm" name="role" id="role">'+
+                        '<option value="0">Un dia</option>'+
+                        '<option value="1">Tres dias</option>'+
+                        '<option value="2" selected>Una semana</option>'+
+                    '</select>'+
+                '</div>'+
+            '</div>'
+            modalConfirm(function(confirm){
+                $("#exampleModalCenter").modal('hide');
+                if(confirm){
+                    // deleteRegistro(ruta, id, padre)
+                }
+            },'¿Desea agregar tiempo extra?', entrada, true);
+        });
+    });    
+</script>
 @endsection

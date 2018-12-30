@@ -48,7 +48,7 @@ function deleteRegistro(ruta, id, padre){
         data: {_token:$('#csrf_token').attr('content'), _method:'DELETE'},
         success: function(data) {
             padre.fadeOut();
-            newModal('Acción satisfactoria',data.mensaje, false);
+            newModal('Acción satisfactoria', data.mensaje, false);
         },
         error: function(){
             newModal('Error','La accion no pudo llevarse a cabo', false);
