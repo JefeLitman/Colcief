@@ -23,7 +23,7 @@ jQuery(document).ready(function($){
 		this.modal = this.element.find('.eventp-modal');
 		this.modalHeader = this.modal.find('.headerp');
 		this.modalHeaderBg = this.modal.find('.headerp-bg');
-		this.modalBody = this.modal.find('.body');
+		this.modalBody = this.modal.find('.body-pepe');
 		this.modalBodyBg = this.modal.find('.body-pepe-bg');
 		this.modalMaxWidth = 800;
 		this.modalMaxHeight = 480;
@@ -77,7 +77,7 @@ jQuery(document).ready(function($){
 		});
 
 		//close modal window
-		this.modal.on('click', '.close', function(event){
+		this.modal.on('click', '.closep', function(event){
 			event.preventDefault();
 			if( !self.animating ) self.closeModal(self.eventsGroup.find('.selected-eventp'));
 		});

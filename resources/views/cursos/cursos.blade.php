@@ -230,9 +230,19 @@
             </div>
         </div>
     </div>
-    <br>
-    <div class="text-center" style="float:center;">
-        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/estudiantes/crear">Crear estudiantes</a>
+    <div class="row text-center">
+        <div class="col-md-6">
+            <div class="text-center" style="float:center;">
+                <br>
+                <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/cursos/crear">Crear curso</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-center" style="float:center;">
+                <br>
+                <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/estudiantes/crear">Agregar un nuevo estudiante</a>
+            </div>
+        </div>
     </div>
 </div>
 <br>
