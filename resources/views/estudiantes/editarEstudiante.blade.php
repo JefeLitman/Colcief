@@ -78,7 +78,7 @@
                             {{-- grado --}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="cedula"><strong><small style="color : #616161">Grado</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Curso</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class= "input-group-text">
@@ -86,15 +86,14 @@
                                             </span>
                                         </div>
                                         <select class="custom-select custom-select-sm" name="grado" id="grado">
-                                            <option selected>Seleccionar el grado</option>
+                                            <option selected>Seleccionar el curso</option>
                                             @php $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
                                             @endphp
-                                            @foreach ($grado as $i=>$value)
-                                                @if (intval($estudiante->grado)==$i)
-                                                    <option value="{{$i}}" selected>{{$value}}</option>
-                                                @else
-                                                    <option value="{{$i}}">{{$value}}</option>
-                                                @endif
+                                            <option value="">Ninguna</option>
+                                            @foreach ($cursos as $c)
+                                                    <option value="{{$c->pk_curso}}" {{($estudiante->fk_curso==$c->pk_curso)?"Selected":""}}>
+                                                        {{($c->prefijo!=0)?$c->prefijo:"Preescolar"}}-{{$c->sufijo}}
+                                                    </option>    
                                             @endforeach
                                         </select>
                                     </div>

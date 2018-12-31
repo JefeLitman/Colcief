@@ -108,9 +108,13 @@ class EstudianteController extends Controller{
     public function edit($pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante);
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
+        $cursos=Curso::where('ano',date('Y'))->get();
+        $cursoActual=Curso::where('pk_curso',$estudiante->fk_curso)->get();
         return view('estudiantes.editarEstudiante', [
             'estudiante' => $estudiante,
-            'acudiente'=> $acudiente
+            'acudiente'=> $acudiente,
+            'cursos'=>$cursos,
+            'cursoActual'=>$cursoActual
         ]);
     }
 
@@ -143,6 +147,7 @@ class EstudianteController extends Controller{
         $acudiente->save();
         
         if ($estudiante->save()){
+            $estudiante->cambioCurso();
             $mensaje = 'El estudiante '.$estudiante->nombre.' '.$estudiante->apellido.' fue actualizado con exito';
             return redirect(route('estudiantes.show', $estudiante->pk_estudiante))->with('true', $mensaje);
         } else {
