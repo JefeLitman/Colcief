@@ -39,14 +39,23 @@
                         {{-- materia y salon --}}
                         <div class="col-md-6">
                             <div class="form-group mb-2">
-                                <label for="cedula"><strong><small style="color : #616161">Materia y Salón</small></strong></label>
+                                <label for="cedula"><strong><small style="color : #616161">Materia - Curso</small></strong></label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="fas fa-chalkboard-teacher"  ></i>
                                         </span>
                                     </div>
-                                    <select class="custom-select custom-select-sm" name="fk_materia_pc" required>
+                                    {{--  Se utilizo el disabled y el hidden porque si se colocaba solo el disabled no llegaba la información a la base de datos... y al colocar hidden oculta select que se encarga de enviar la información db --}}
+                                    {{--  DISABLED  --}}
+                                    <select class="custom-select custom-select-sm" name="fk_materia_pc" required disabled>
+                                        {{--  <option>Seleccionar materia - salón </option>  --}}
+                                        @for ($i=0; $i < count($materias); $i++)
+                                            <option value="{{$materias[$i][0]['pk_materia_pc']}}">{{$materias[$i][0]['nombre'].' Curso: '.$materias[$i][1]}}</option>
+                                        @endfor
+                                    </select>
+                                    {{--  HIDDEN  --}}
+                                    <select class="custom-select custom-select-sm" name="fk_materia_pc" required hidden>
                                         {{--  <option>Seleccionar materia - salón </option>  --}}
                                         @for ($i=0; $i < count($materias); $i++)
                                           <option value="{{$materias[$i][0]['pk_materia_pc']}}">{{$materias[$i][0]['nombre'].' Curso: '.$materias[$i][1]}}</option>
