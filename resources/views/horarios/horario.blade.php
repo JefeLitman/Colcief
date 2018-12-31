@@ -25,6 +25,7 @@
 
 	<div class="eventpsp">
 		<ul>
+			{{-- {{dd($horarios)}} --}}
 			@foreach ($horarios as $key => $item)
 				<li class="eventpsp-group">
 					<div class="top-infop"><span>{{ucwords($key)}}</span></div>
