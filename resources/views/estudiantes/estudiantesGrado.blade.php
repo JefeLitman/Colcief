@@ -59,6 +59,5 @@
         </table>
     </div>
 </div>
-dsfdsfdsfsdfds
 {{-- <script src="{{ asset('js/ajax.js') }}"></script> --}}
 @endsection
