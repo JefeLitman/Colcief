@@ -49,7 +49,7 @@
                             {{-- fecha --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Fecha</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Fecha de nacimiento</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -60,30 +60,21 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- grado --}}
+                            {{-- curso --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Grado</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Curso</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class= "input-group-text">
                                                 <i class="fas fa-user-cog"></i>
                                             </span>
                                         </div>
-                                        <select class="custom-select custom-select-sm" name="grado" id="grado">
-                                            <option if>Seleccionar el grado</option>
-                                            <option @select('grado', '0') @endselect value="0">Preescolar</option>
-                                            <option @select('grado', '1') @endselect value="1">Primero</option>
-                                            <option @select('grado', '2') @endselect value="2">Segundo</option>
-                                            <option @select('grado', '3') @endselect value="3">Tercero</option>
-                                            <option @select('grado', '4') @endselect value="4">Cuarto</option>
-                                            <option @select('grado', '5') @endselect value="5">Quinto</option>
-                                            <option @select('grado', '6') @endselect value="6">Sexto</option>
-                                            <option @select('grado', '7') @endselect value="7">Septimo</option>
-                                            <option @select('grado', '8') @endselect value="8">Octavo</option>
-                                            <option @select('grado', '9') @endselect value="9">Noveno</option>
-                                            <option @select('grado', '10') @endselect value="10">Decimo</option>
-                                            <option @select('grado', '11') @endselect value="11">Once</option>
+                                        <select class="custom-select custom-select-sm" name="fk_curso" id="fk_curso">
+                                            <option value='' if>Seleccionar el grado</option>
+                                            @foreach ($cursos as $c)
+                                                <option value="{{$c->pk_curso}}">{{($c->prefijo==0)?"Preescolar":$c->prefijo}}-{{$c->sufijo}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

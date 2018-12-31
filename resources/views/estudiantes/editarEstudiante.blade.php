@@ -75,21 +75,29 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- grado --}}
+                            {{-- curso --}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="cedula"><strong><small style="color : #616161">Curso</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Curso: (Ultimo aprovado 
+                                        @if ($estudiante->grado!=null)
+                                            @php
+                                                $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
+                                            @endphp
+                                            {{$g[$estudiante->grado]}}
+                                        @else
+                                            Ninguno
+                                        @endif
+                                        )</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class= "input-group-text">
                                                 <i class="fas fa-user-cog"></i>
                                             </span>
                                         </div>
-                                        <select class="custom-select custom-select-sm" name="grado" id="grado">
-                                            <option selected>Seleccionar el curso</option>
+                                        <select class="custom-select custom-select-sm" name="fk_curso" id="fk_curso">
+                                            <option value="" selected>Seleccionar el curso</option>
                                             @php $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
                                             @endphp
-                                            <option value="">Ninguna</option>
                                             @foreach ($cursos as $c)
                                                     <option value="{{$c->pk_curso}}" {{($estudiante->fk_curso==$c->pk_curso)?"Selected":""}}>
                                                         {{($c->prefijo!=0)?$c->prefijo:"Preescolar"}}-{{$c->sufijo}}

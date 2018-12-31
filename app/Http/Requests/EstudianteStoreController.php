@@ -15,7 +15,6 @@ class EstudianteStoreController extends FormRequest{
             'nombre' => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
             'fecha_nacimiento' => 'required|date',
-            'grado' => 'required|numeric|digits_between:0,11',
             'discapacidad' => 'boolean',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg',
             'nombre_acu_1' => 'required|string|max:50',

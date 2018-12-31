@@ -42,7 +42,8 @@ class EstudianteController extends Controller{
     }
 
     public function create(){
-        return view('estudiantes.crearEstudiante');
+        $cursos=Curso::where('ano',date('Y'))->get();
+        return view('estudiantes.crearEstudiante',['cursos'=>$cursos]);
     }
 
     public function store(EstudianteStoreController $request){
@@ -54,7 +55,8 @@ class EstudianteController extends Controller{
                 "grado",
                 "fecha_nacimiento",
                 "discapacidad",
-                "foto" //datos q no quiere guardar
+                "foto",
+                "fk_curso" //datos q no quiere guardar
             )
         );
         $acudiente->save(); // se guarda el acudiente
@@ -65,9 +67,14 @@ class EstudianteController extends Controller{
                 "telefono_acu_1",
                 "nombre_acu_2",
                 "direccion_acu_2",
-                "telefono_acu_2" //datos q no quiere guardar
+                "telefono_acu_2",
+                "fk_curso" //datos q no quiere guardar
             )
         );
+        $estudiante->fk_curso=$request->fk_curso;
+        if ($request->fk_curso=='') {
+            $estudiante->fk_curso=null;
+        }
         $estudiante->fk_acudiente = $acudiente->pk_acudiente;
         $estudiante->password = Hash::make('clave');
 
@@ -76,6 +83,7 @@ class EstudianteController extends Controller{
           $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
         }
         if($estudiante->save()){
+            $estudiante->cambioCurso();
             $mensaje = 'El estudiante '.$estudiante->nombre.' '.$estudiante->apellido.' fue creado con exito';
             return redirect(route('estudiantes.show', $estudiante->pk_estudiante))->with('true', $mensaje);
         } else {
@@ -108,13 +116,17 @@ class EstudianteController extends Controller{
     public function edit($pk_estudiante){
         $estudiante = Estudiante::findOrFail($pk_estudiante);
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
-        $cursos=Curso::where('ano',date('Y'))->get();
-        $cursoActual=Curso::where('pk_curso',$estudiante->fk_curso)->get();
+        $cursos=[];
+        if($estudiante->grado!=null and $estudiante->grado!="11"){
+            $cursos=Curso::where([['ano',date('Y')],['prefijo',$estudiante->grado+1]])->get();
+        }
+        if($estudiante->grado==null){
+            $cursos=Curso::where('ano',date('Y'))->get();
+        }
         return view('estudiantes.editarEstudiante', [
             'estudiante' => $estudiante,
             'acudiente'=> $acudiente,
-            'cursos'=>$cursos,
-            'cursoActual'=>$cursoActual
+            'cursos'=>$cursos
         ]);
     }
 
@@ -126,14 +138,20 @@ class EstudianteController extends Controller{
                 "telefono_acu_1",
                 "nombre_acu_2",
                 "direccion_acu_2",
-                "telefono_acu_2" //datos q no quiere guardar
+                "telefono_acu_2",
+                "fk_curso" //datos q no quiere guardar
             )
         );
+        $estudiante->fk_curso=$request->fk_curso;
+        if ($request->fk_curso=='') {
+            $estudiante->fk_curso=null;
+            // dd("hello");
+        }
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
             SupraController::minuscula($request->all(),
                 "nombre",
                 "apellido",
-                "grado",
+                "fk_curso",
                 "fecha_nacimiento",
                 "discapacidad",
                 "foto" //datos q no quiere guardar
@@ -144,6 +162,7 @@ class EstudianteController extends Controller{
             $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
         }
         $estudiante->password= Hash::make('clave');
+        
         $acudiente->save();
         
         if ($estudiante->save()){

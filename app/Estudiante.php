@@ -41,21 +41,14 @@ class Estudiante extends Authenticatable {
 
     public function cambioCurso(){
         $boletin=Boletin::where([["ano",date('Y')],["fk_estudiante",$this->pk_estudiante]])->get();
-        if (!empty($boletin[0])) {
-            //No hay Boletin para el año actual
-            //Procedemos a crear la respectiva estructura de notas
-            $this->crearEstructuraDatos();
-        } else {
-            //Si hay boletin para el año actual
-            //Verificamos si el curso cambia o no
-            $boletin=$boletin[0];
-            if ($boletin->fk_curso!=$this->fk_curso) {
-                //Si cambia se debe eliminar todas las MateriasBoletin y volver a crear en efecto lo mjr es borrar el mismo boletin y crear uno nuevo
-                $boletin->delete();
-                $this->crearEstructuraDatos();
+        if ($this->fk_curso!=null) {
+            foreach ($boletin as $b) {
+                if ($b->fk_curso!=$this->fk_curso) {
+                    $b->delete();
+                }
             }
+            $this->crearEstructuraDatos();
         }
-        
     }
 
     private function crearEstructuraDatos(){

@@ -35,7 +35,6 @@ class EstudianteSeeder extends Seeder
             'apellido' => $faker->lastName,
             'password' => Hash::make('clave'),
             'fecha_nacimiento' => $faker->date,
-            'grado' => $grado,
             'discapacidad' => 0,
             'estado' => 1
           ]);

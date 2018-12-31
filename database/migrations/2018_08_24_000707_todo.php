@@ -28,7 +28,7 @@ class Todo extends Migration {
             $table->string('apellido', 50);
             $table->string('password', 80);
             $table->date('fecha_nacimiento');
-            $table->integer('grado');
+            $table->integer('grado')->nullable();
             $table->boolean('discapacidad')->nullable()->default(false);
             $table->boolean('estado')->nullable()->default(true);
             $table->string('foto')->default('/storage/default.png');
