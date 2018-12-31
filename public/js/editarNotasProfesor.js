@@ -62,45 +62,59 @@ function updateInasistencias(e) {
             $('#avisos').text('Nota guardada con exito.');   
         }
         console.log("Inasistencia guardada con exito.");
+        console.log(('Array errores:'+errores));
     },function() {
         if (!errores.includes($(e).attr('id'))) {
             errores.push($(e).attr('id'));
             $(e).attr('class','border border-danger');
         }
         console.log("Error de guardado, inasistencia.");
+        console.log(('Array errores:'+errores));
     });
     
 
 }
 
 function updateNotasE(e) {
-    bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":$(e).html()});
-    bandera.then(function() {
-        $(e).attr('notaAceptada',$(e).html());
-        fk=$(e).attr('fk');
-        total=0; 
-        $( "[fk="+fk+"]").each(function(){
-            if (!isNaN(parseFloat($(this).attr('notaAceptada')))){
-                total += (parseFloat($(this).attr('notaAceptada'))*(parseFloat($(this).attr('p'))/100));    
+    var nota = $(e).html();
+    var notaAceptada =$(e).attr('notaAceptada');
+    if (nota != notaAceptada) {
+        bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":nota});
+        bandera.then(function() {
+            if (nota>=1 && nota<=5) {
+                $(e).attr('notaAceptada',nota);  
+                fk=$(e).attr('fk');
+                total=0; 
+                $( "[fk="+fk+"]").each(function(){
+                    if (!isNaN(parseFloat($(this).attr('notaAceptada')))){
+                        total += (parseFloat($(this).attr('notaAceptada'))*(parseFloat($(this).attr('p'))/100));    
+                    }
+                });
+                total=total.toFixed(1);
+                div=$("#"+fk);
+                div.text(total);
+                [clase,titulo]=desempeno(total);
+                div.attr({'class':clase,'data-original-title':titulo});
+                updateNotasDiv($("#"+fk));
+                $(e).attr('class','');
+                if (errores.includes($(e).attr('id'))) {
+                    errores.splice(errores.indexOf($(e).attr('id')),1);
+                }
+                console.log("NotaE guardad con exito."); 
+            }else{console.log("Cambio abrupto de la nota.")}
+            console.log(('Array errores:'+errores));
+        },function() {
+            if (!errores.includes($(e).attr('id'))) {
+                errores.push($(e).attr('id'));
+                $(e).attr('class','border border-danger');
             }
+            console.log("Error de guardado, nota estudiante.");
+            console.log(('Array errores:'+errores));
         });
-        total=total.toFixed(1);
-        div=$("#"+fk);
-        div.text(total);
-        [clase,titulo]=desempeno(total);
-        div.attr({'class':clase,'data-original-title':titulo});
-        updateNotasDiv($("#"+fk));
-        $(e).attr('class','');
-        if (errores.includes($(e).attr('id'))) {
-            errores.splice(errores.indexOf($(e).attr('id')),1);
-        }
-    },function() {
-        if (!errores.includes($(e).attr('id'))) {
-            errores.push($(e).attr('id'));
-            $(e).attr('class','border border-danger');
-        }
-        console.log("Error de guardado, nota estudiante.");
-    });
+    }else{
+        console.log("El valor de la nota no ha cambiado.");
+    }
+    
 }
 function updateNotasDiv(e) {
     // console.log("Hola"+);
@@ -119,8 +133,11 @@ function updateNotasDiv(e) {
         [clase,titulo]=desempeno(total);
         per.attr({'class':clase,'data-original-title':titulo});
         updateNotasPer($("#"+fk));
+        console.log("NotaDiv guardada con exito.");
+        console.log(('Array errores:'+errores));
     },function() {
         console.log("Error de guardado, division.");
+        console.log(('Array errores:'+errores));
     });
 }
 
@@ -142,8 +159,11 @@ function updateNotasPer(e) {
         [clase,titulo]=desempeno(total);
         def.attr({'class':clase,'data-original-title':titulo});
         updateNotasDef($("#"+fk));
+        console.log("NotaPer guardada con exito");
+        console.log(('Array errores:'+errores));
     },function() {
         console.log("Error de guardado, periodo.");
+        console.log(('Array errores:'+errores));
     });
     
 } 
@@ -158,8 +178,11 @@ function updateNotasDef(e) {
         } else {
             $('#avisos').text('Nota guardada con exito.');   
         }
+        console.log("NotaDef guardad con exito.");
+        console.log(('Array errores:'+errores));
     },function () {
         console.log("Error de guardado, definitiva.");
+        console.log(('Array errores:'+errores));
     });
 
 }
