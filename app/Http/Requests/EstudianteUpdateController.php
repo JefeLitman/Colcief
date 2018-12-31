@@ -20,10 +20,10 @@ class EstudianteUpdateController extends FormRequest{
             'estado' => 'boolean',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg',
             'nombre_acu_1' => 'required|string|max:50',
-            'direccion_acu_1' => 'required|string|max:30',
+            'direccion_acu_1' => 'required|string|max:255',
             'telefono_acu_1' => 'required|numeric|digits_between:7,10',
             'nombre_acu_2' => 'string|max:20',
-            'direccion_acu_2' => 'string|max:30',
+            'direccion_acu_2' => 'string|max:255',
             'telefono_acu_2' => 'numeric|digits_between:7,10'
         ];
     }
