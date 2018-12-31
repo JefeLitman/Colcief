@@ -20,22 +20,13 @@ class fin_ano extends Command {
     }
 
     public function handle(){
-        $divisiones = Division::all()->where('ano', $this->pasado);
-        foreach($divisiones as $division){
-            $d = new Division();
-            $d -> nombre = $division -> nombre;
-            $d -> descripcion = $division -> descripcion;
-            $d -> porcentaje = $division -> porcentaje;
-            $d -> ano = $division -> $this->pasado + 1;
-            $d -> save();
-        }
-        $materias = Materia::where('created_at','like','%'.$this->pasado.'%')->get();
-        foreach($materias as $materia){
-            $m = new Materia();
-            $m -> nombre = $materia -> nombre;
-            $m -> contenido = $materia -> contenido;
-            $m -> logros_custom = $materia -> logros_custom;
-            $m -> save();
+        $fechas = Fecha::all()->where('ano', $this->pasado);
+        foreach($fechas as $fecha){
+            $f = new Materia();
+            $f -> inicio_escolar = $fecha -> inicio_escolar;
+            $f -> fin_escolar = $fecha -> fin_escolar;
+            $f -> ano = $this->pasado + 1;
+            $f -> save();
         }
         $periodos = Periodo::all()->where('ano', $this->pasado);
         foreach($periodos as $periodo){
@@ -46,13 +37,23 @@ class fin_ano extends Command {
             $p -> periodo = $periodo -> periodo;
             $p -> save();
         }
-        $fechas = Fecha::all()->where('ano', $this->pasado);
-        foreach($fechas as $fecha){
-            $f = new Materia();
-            $f -> inicio_escolar = $fecha -> inicio_escolar;
-            $f -> fin_escolar = $fecha -> fin_escolar;
-            $f -> ano = $this->pasado + 1;
-            $f -> save();
+        $divisiones = Division::all()->where('ano', $this->pasado);
+        foreach($divisiones as $division){
+            $d = new Division();
+            $d -> nombre = $division -> nombre;
+            $d -> descripcion = $division -> descripcion;
+            $d -> porcentaje = $division -> porcentaje;
+            $d -> ano = $division -> $this->pasado + 1;
+            $d -> save();
+            $d -> crearNotasDivision();
+        }
+        $materias = Materia::where('created_at','like','%'.$this->pasado.'%')->get();
+        foreach($materias as $materia){
+            $m = new Materia();
+            $m -> nombre = $materia -> nombre;
+            $m -> contenido = $materia -> contenido;
+            $m -> logros_custom = $materia -> logros_custom;
+            $m -> save();
         }
     }
 }

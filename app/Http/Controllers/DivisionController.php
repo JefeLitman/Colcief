@@ -54,10 +54,10 @@ class DivisionController extends Controller {
             if(explode('-', $this->date)[2] <= explode('-', $fecha -> inicio_escolar)[2]){
                 return view('divisiones.editarDivision', ['division' => $division]);
             } else {
-                return 'EL año escolar ya inicio';
+                return back() -> with('false', 'No es posible modificar los componentes, el año escolar ya inicio');
             }
         } else {
-            return 'EL año escolar ya inicio';
+            return back() -> with('false', 'No es posible modificar los componentes, el año escolar ya inicio');
         }
     }
 

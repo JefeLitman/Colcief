@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(BoletinSeeder::class);
         $this->call(MateriaBoletinSeeder::class);
         $this->call(NotificacionSeeder::class);
+        $this->call(FechaSeeder::class);
     }
 }

@@ -65,7 +65,7 @@ class Nota extends Model
             $notaDivNueva->actualizarNota();
           }
         }
-        
+
       }
     }
 }

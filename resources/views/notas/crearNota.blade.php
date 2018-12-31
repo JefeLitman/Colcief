@@ -9,18 +9,18 @@
         <div class="col-10">
             <form class="" action="/notas" method="post">
             @csrf
-            <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
+            <div class="card border-primary rounded-0" style="border-color:#17a2b8 !important; border-radius:0.25rem !important;">
                 <div class="card-header p-0">
-                    <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
-                        <h4><i class="fas fa-book-open"></i> Crear nota</h4>
+                    <div class="bg-info text-white text-center py-2" style="background-color:rgba(0,0,0,.03) !important;">
+                        <h4 style="color:#212529 !important;"><i class="fas fa-book-open"></i> Crear nota</h4>
                     </div>
                 </div>
                 <div class="card-body p-3">
                     <div class="row">
-                        {{-- Division --}}
+                        {{-- Componente --}}
                         <div class="col-md-6">
                             <div class="form-group mb-2">
-                                <label for="cedula"><strong><small style="color : #616161">División</small></strong></label>
+                                <label for="cedula"><strong><small style="color : #616161">Componente</small></strong></label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class= "input-group-text">
@@ -28,7 +28,7 @@
                                         </span>
                                     </div>
                                     <select class="custom-select custom-select-sm" name="fk_division" required>
-                                        <option>Seleccionar división</option>
+                                        <option>Seleccionar componente</option>
                                         @foreach ($divisiones as $division)
                                             <option value="{{$division['pk_division']}}">{{$division['nombre']}}</option>
                                         @endforeach
@@ -43,11 +43,11 @@
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-chalkboard-teacher"></i>
+                                            <i class="fas fa-chalkboard-teacher"  ></i>
                                         </span>
                                     </div>
                                     <select class="custom-select custom-select-sm" name="fk_materia_pc" required>
-                                        <option>Seleccionar materia - salón </option>
+                                        {{--  <option>Seleccionar materia - salón </option>  --}}
                                         @for ($i=0; $i < count($materias); $i++)
                                           <option value="{{$materias[$i][0]['pk_materia_pc']}}">{{$materias[$i][0]['nombre'].' Curso: '.$materias[$i][1]}}</option>
                                         @endfor
@@ -65,7 +65,7 @@
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-book"></i>
+                                            <i class="fas fa-book"  ></i>
                                         </span>
                                     </div>
                                     <input class="form-control form-control-sm" type="text" placeholder="[máx 20 caracteres]"
@@ -81,7 +81,7 @@
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-percentage"></i>
+                                            <i class="fas fa-percentage"  ></i>
                                         </span>
                                     </div>
                                     <input type="number"
@@ -99,7 +99,7 @@
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-calendar-alt"></i>
+                                            <i class="fas fa-calendar-alt"  ></i>
                                         </span>
                                     </div>
                                     <select class="custom-select custom-select-sm" name="fk_periodo" required>
@@ -120,7 +120,7 @@
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-marker"></i>
+                                            <i class="fas fa-marker"  ></i>
                                         </span>
                                     </div>
                                     <textarea class="form-control form-control-sm" placeholder="[máx 255 caracteres]" name="descripcion" ></textarea>
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <input type="submit" name="action" value="Enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
+                        <input type="submit" name="action" value="Enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;">
                     </div>
                 </div>
             </div>

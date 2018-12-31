@@ -54,7 +54,7 @@
                                 <a class="nav-link" href="{{ url('empleados/principal/1') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
                     
                             </li>
-                            <<li id="notification_li">
+                            <li id="notification_li">
                                 <a href="#" id="notificationLink" class="nav-link"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary"></span></a>
                                 
                                 <div id="notificationContainer">
@@ -88,5 +88,18 @@
             setTimeout(function () {
                 $('.noti').popover('hide');
             }, 5000);
+        });
+    </script>
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            $("#notificationLink").click(function(){
+                $("#notificationContainer").fadeToggle(300);
+                $("#notification_count").fadeOut("slow");
+                return false;
+            });
+            //Document Click hiding the popup
+            $(document).click(function(){
+                $("#notificationContainer").hide();
+            });
         });
     </script>

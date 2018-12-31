@@ -279,18 +279,18 @@ Main Components
 }
 
 .cd-schedule .eventp-name {
-  font-size: 2.4rem;
+  font-size: 1 rem;
 }
 
 @media only screen and (min-width: 800px) {
   .cd-schedule .eventp-name {
-    font-size: 2rem;
+    font-size: 1 rem;
   }
 }
 
 .cd-schedule .eventp-date {
   /* they are not included in the the HTML but added using JavScript */
-  font-size: 1.4rem;
+  font-size: 0.8rem;
   opacity: .7;
   line-height: 1.2;
   margin-bottom: .2em;

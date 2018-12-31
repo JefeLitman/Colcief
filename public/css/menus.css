@@ -40,7 +40,11 @@ body {
 }
 /* este hover es para listamateriaspc de la carpeta horarios */
 .cambiob:hover{
-    color:white !important;
+    color:#117282 !important;
+}
+
+.cambiobe:hover{
+    color:#800404 !important;
 }
 
 /* lista de cursos arreglando el boton eliminar */

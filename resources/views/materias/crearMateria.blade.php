@@ -12,9 +12,9 @@
         <div class="col-10">
             <form method="post" action="/materias" >
             @csrf
-            <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
+            <div class="card border-primary rounded-0" style="border-color:#17a2b8 !important; border-radius:0.25rem !important;">
                 <div class="card-header p-0">
-                    <div class="bg-info text-white text-center py-2" style="background-color:#66bb6a !important;">
+                    <div class="bg-info text-center py-2" style="background-color:rgba(0,0,0,.03) !important;">
                         <h4><i class="fas fa-pencil-ruler"></i> Nueva materia</h4>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <input type="submit" name="action" value="Enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #66bb6a !important; border-color: #66bb6a !important;">
+                        <input type="submit" name="action" value="Enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;">
                     </div>
                 </div>
             </div>

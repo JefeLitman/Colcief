@@ -1,22 +1,13 @@
 @extends('contenedores.admin')
 @section('titulo','Editar División')
 @section('contenedor_admin')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 <div class="container">
     <h3 class="card-title text-center">
         Editar componentes
     </h3>
     <br>
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <strong>Información</strong> 
+        <strong>Información</strong><br>
         La suma total del procentaje de cada componente debe ser igual a 100%.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -26,12 +17,12 @@
         @csrf
         @method('PUT')
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped table-condensed table-hover text-center">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">Nombre</th>
-                        <th scope="col" class="text-center">Descripción</th>
-                        <th scope="col" class="text-center"><i class="fas fa-percentage"></i></th>
+                        <th scope="col" class="text-center" style="color:#00695c">Nombre</th>
+                        <th scope="col" class="text-center" style="color:#00695c">Descripción</th>
+                        <th scope="col" class="text-center" style="color:#00695c"><i class="fas fa-percentage"></i></th>
                     </tr>
                 </thead>
                 <tbody id="div">
@@ -55,17 +46,17 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-4 mb-2 mx-auto">
-                <a class=" btn btn-info btn-block rounded-0 py-2" style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>
+                <a class=" btn btn-info btn-block rounded-0 py-2" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important; width: 40%;" id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-4 mb-2 mx-auto">
-                <a class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
+                <a class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #17a2b8 !important; border-color: #17a2b8 !important; width: 40%;" id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
             </div>
         </div>
         <div class="row justify-content-center" style="background-color: #fafafa !important;">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button id="enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #0277bd !important; border-color: #0277bd !important; width: 40%;" type="submit" name="action">
+                <button id="enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #17a2b8 !important; border-color: #17a2b8 !important; width: 40%;" type="submit" name="action">
                     Crear
                 </button>
                 <div class="col-md-4"></div>

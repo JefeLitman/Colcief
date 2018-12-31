@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Fecha;
+use App\Periodo;
 use Illuminate\Http\Request;
 
 class FechaController extends Controller {
@@ -10,13 +11,37 @@ class FechaController extends Controller {
     public function __construct(){
         $this->middleware('admin:administrador');
         $this->ano = date('Y');
+        $this->date = date('Y-m-d');
+        setlocale(LC_ALL, 'es_CO.UTF-8');
     }
 
     public function index(){
-        $fecha = Fecha::where('ano', $this->ano)->get()[0];
-        return response()->json([
-            'fecha' => $fecha
-        ]);
+        $fecha = Fecha::where('ano', $this -> ano) -> get()[0];
+        $periodos = Periodo::where('ano', $this -> ano) -> orderBy('nro_periodo') -> get();
+        $orden = [];
+        $orden['Inicio del año escolar'] = $fecha -> inicio_escolar;
+        $orden['Finalización del año escolar'] = $fecha -> fin_escolar;
+        $orden['Hoy'] = $this -> date;
+        $cont = 3;
+        foreach ($periodos as $key => $periodo) {
+            $orden['Inicio del periodo #'.$periodo -> nro_periodo] = $periodo -> fecha_inicio;
+            $cont++;
+            $orden['Finalización del periodo #'.$periodo -> nro_periodo] = $periodo -> fecha_limite;
+            $cont++;
+        }
+        asort($orden);
+        // dd($orden);
+        /* $fechas = [];
+        foreach ($periodos as $periodo) { 
+            $fechas[$periodo -> fecha_inicio] = ['titulo' => 'Inicio del periodo '.$periodo -> nro_periodo];
+            $fechas[$periodo -> fecha_limite] = ['titulo' => 'Finalización del periodo '.$periodo -> nro_periodo];
+        }
+        $fechas[$fecha -> inicio_escolar] = ['titulo' => 'Inicio del año escolar'];
+        $fechas[$fecha -> fin_escolar] = ['titulo' => 'Finalización del año escolar'];
+        $fechas[$this -> date] = ['titulo' => 'Dia actual'];
+        ksort($fechas); */
+        // dd($fechas);
+        return view('fechas.verFecha', ['fechas' => $orden]);
     }
 
     public function show(Fecha $fecha){
@@ -24,7 +49,16 @@ class FechaController extends Controller {
     }
 
     public function edit(){
-        return view('fechas.editarFecha', ['fecha' => Fecha::where('ano', $this->ano) -> get()[0]]);
+        $fecha = Fecha::where('ano', $this->ano)->get()[0];
+        if(explode('-', $this->date)[1] <= explode('-', $fecha -> inicio_escolar)[1]){
+            if(explode('-', $this->date)[2] <= explode('-', $fecha -> inicio_escolar)[2]){
+                return view('fechas.editarFecha', ['fecha' => $fecha]);
+            } else {
+                return back() -> with('false', 'No es posible modificar estas fechas, el año escolar ya inicio');
+            }
+        } else {
+            return back() -> with('false', 'No es posible modificar estas fechas, el año escolar ya inicio');
+        }
     }
 
     public function update(FechaStoreController $request){

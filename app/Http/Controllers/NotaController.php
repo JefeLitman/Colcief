@@ -109,7 +109,8 @@ class NotaController extends Controller
           $Nota->nombre=$request->nombre;
           $Nota->descripcion=$request->descripcion;
           $Nota->save();
-          return redirect('/notas');
+          $Nota->crearNotasEstudiante();
+          return redirect('/notas/materiaspc/'.$Nota->fk_materia_pc.'/periodos/'.$Nota->fk_periodo);
         }
         return 'La suma de los porcentajes de las demás notas supera el 100%';
     }
@@ -206,7 +207,7 @@ class NotaController extends Controller
                   }
                   $bandera--;
                 }
-                return redirect('/notas/'.$nota_modificada['pk_nota']); //Cuando se guarda
+                return redirect('/notas/materiaspc/'.$nota_modificada->fk_materia_pc.'/periodos/'.$nota_modificada->fk_periodo); //Cuando se guarda
               }
               return 'La suma de los porcentajes de las demás notas supera el 100%';
         }
@@ -220,17 +221,16 @@ class NotaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $pk_nota){
-      if($request->ajax()){
-        $unidad = Nota::find($pk_nota);
-        if ($this->verificarProfesor($unidad,session('user')['cedula'])) {
-          if (!empty($unidad)) {
-            $unidad->delete();
-            return 'Nota eliminada';
-          }
-          return 'Nota no encontrada';
+      $unidad = Nota::find($pk_nota);
+      if ($this->verificarProfesor($unidad,session('user')['cedula'])) {
+        if (!empty($unidad)) {
+          $unidad->delete();
+          $unidad->eliminacionNota();
+          return 'Nota eliminada';
         }
-        return 'No tiene permisos para hacer esta acción';
+        return 'Nota no encontrada';
       }
+      return 'No tiene permisos para hacer esta acción';
     }
 
     /**

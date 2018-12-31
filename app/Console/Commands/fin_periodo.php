@@ -24,8 +24,8 @@ class fin_periodo extends Command {
         $periodos = Periodo::all() -> where('ano', date('Y')); //obtengo los periodos vigentes
         foreach($periodos as $periodo){
             if(explode('-', $periodo -> fecha_limite)[1] == date('m')){ //verifico que se el mes correspondiente
-                if((explode(' ',explode('-', $periodos[0] -> fecha_limite)[2])[0]- date('d')) == 7){ //verifico que falten 7 dias para la expiracion del periodo
-                    $empleados = Empleado::select('empleado.cedula', 'nota.pk_nota') -> join('materia_pc', 'empleado.cedula', 'materia_pc.fk_empleado') -> join('nota', 'materia_pc.pk_materia_pc', 'nota.fk_materia_pc') -> join('nota_estudiante', 'nota.pk_nota', 'nota_estudiante.fk_nota') -> where('empleado.role','!=','0') -> where('empleado.tiempo_extra','0') -> where('nota_estudiante.nota','0') -> groupBy('empleado.cedula') -> groupBy('materia_pc.pk_materia_pc') -> get();
+                if((explode('-', $periodo -> fecha_limite)[2]- date('d')) == 7){ //verifico que falten 7 dias para la expiracion del periodo
+                    $empleados = Empleado::select('empleado.cedula', 'nota.pk_nota') -> join('materia_pc', 'empleado.cedula', 'materia_pc.fk_empleado') -> join('nota', 'materia_pc.pk_materia_pc', 'nota.fk_materia_pc') -> join('nota_estudiante', 'nota.pk_nota', 'nota_estudiante.fk_nota') -> where('empleado.role','<>','0') -> where('empleado.tiempo_extra','0') -> where('nota_estudiante.nota','0') -> groupBy('empleado.cedula') -> groupBy('materia_pc.pk_materia_pc') -> get();
                     //obtengo los empleados que tienen notas en el valor de 0
                     error_log($empleados);
 
@@ -33,11 +33,11 @@ class fin_periodo extends Command {
                         $notificacion = new Notificacion; // creo notificaciones para el empleado, se le avisa que falta una semana, se le redirecciona a "Mis materias"
                         $notificacion -> fk_empleado = $empleado -> cedula;
                         $notificacion -> titulo = "El periodo esta por finalizar";
-                        $notificacion -> descripcion = "El periodo finaliza en una semana, ingrese las notas faltantes, la fecha limite es el ".strftime('%A', strtotime($periodo -> fecha_limite -> day)).' '.$periodo -> fecha_limite -> day;
+                        $notificacion -> descripcion = "El periodo finaliza en una semana, ingrese las notas faltantes, la fecha limite es el ".ucwords(strftime('%A', strtotime($periodo -> fecha_limite))).' '.explode('-', $periodo -> fecha_limite)[2];
                         $notificacion -> link = "/materiaspc";
                         $notificacion -> save();
                     }
-                } elseif ((explode(' ',explode('-', $periodos[0] -> fecha_limite)[2])[0] - date('d')) == 1){ //Verifico que falte 1 dia para la expiracion del periodo
+                } elseif ((explode('-', $periodo -> fecha_limite)[2] - date('d')) == 1){ //Verifico que falte 1 dia para la expiracion del periodo
                     $empleados = Empleado::select('empleado.cedula', 'nota.fk_periodo', 'materia_pc.pk_materia_pc') -> join('materia_pc', 'empleado.cedula', 'materia_pc.fk_empleado') -> join('nota', 'materia_pc.pk_materia_pc', 'nota.fk_materia_pc') -> join('nota_estudiante', 'nota.pk_nota', 'nota_estudiante.fk_nota') -> where('empleado.role','!=','0') -> where('empleado.tiempo_extra','0') -> where('nota_estudiante.nota','0') -> groupBy('empleado.cedula') -> groupBy('materia_pc.pk_materia_pc') -> get();
                     //obtengo los empleados que tienen notas en el valor de 0 y las agrupo por materias_pc
                     error_log($empleados);

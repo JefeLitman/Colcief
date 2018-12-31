@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Empleado;
-use App\Curso;
-
+//requeridos
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+// modelos
+use App\Empleado;
+use App\Curso;
+use App\Notificacion;
+
+// requests
 use App\Http\Requests\EmpleadoStoreController;
 use App\Http\Requests\EmpleadoUpdateController;
 use App\Http\Requests\EmpleadoUpdateFoto;
+
+// herramientas
 use App\Http\Controllers\SupraController;
 use Illuminate\Support\Facades\Hash;
 
@@ -98,6 +105,23 @@ class EmpleadoController extends Controller{
             return redirect(url('/empleados/principal'))->with('true', $mensaje);
         } else {
             return back()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
+        
+    }
+
+    public function tiempoExtra(Request $request, $id, $tiempo){
+        if($request -> ajax()){
+            $empleado = Empleado::findOrFail($id);
+            $empleado -> update(['tiempo_extra' => $tiempo]);
+            Notificacion::create([
+                'fk_empleado' => $id,
+                'titulo' => '¡Se le ha dado un tiempo extra!',
+                'descripcion' => 'El administrador le asignó '.$tiempo.' dias de plazo para subir las notas faltantes.',
+                'url' => '/materiaspc'
+            ]);
+            return response()->json([
+                'mensaje' => 'exito'
+            ]);
         }
         
     }

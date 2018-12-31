@@ -32,9 +32,9 @@
 					<ul>
 						@foreach ($item as $horario)
 							<li class="single-eventp" data-start="{{explode(':', $horario->hora_inicio)[0]}}:{{explode(':', $horario->hora_inicio)[1]}}" data-end="{{explode(':', $horario->hora_fin)[0]}}:{{explode(':', $horario->hora_fin)[1]}}" data-content="eventp-abs-circuit" data-eventp="eventp-1">
-								<a href="#0">
-									<em class="eventp-name" style="font-size:1.5rem !important; text-align:center !important;">{{$horario->nombre}}</em>
-								</a>
+								<a-pepe href="#0">
+									<em class="eventp-name" style="font-size:1 rem !important; text-align:center !important;">{{$horario->nombre}}</em>
+								</a-pepe>
 							</li>
 						@endforeach
 					</ul>
@@ -47,7 +47,7 @@
 		<header class="headerp">
 			<div class="content">
 				<span class="eventp-date"></span>
-				<h3 class="eventp-name"></h3>
+				<h5 class="eventp-name"></h5>
 			</div>
 
 			<div class="headerp-bg"></div>
@@ -58,7 +58,7 @@
 			<div class="body-pepe-bg"></div>
 		</div>
 
-		<a href="#0" class="closep">close</a>
+		<a-pepe href="#0" class="closep">close</a-pepe>
 	</div>
 
 	<div class="cover-layer"></div>
