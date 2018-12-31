@@ -240,7 +240,7 @@
         <div class="col-md-6">
             <div class="text-center" style="float:center;">
                 <br>
-                <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/estudiantes/crear">Agregar un nuevo estudiante</a>
+                <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/estudiantes/crear">Crear estudiante</a>
             </div>
         </div>
     </div>
