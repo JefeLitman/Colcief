@@ -76,8 +76,8 @@ function updateInasistencias(e) {
 }
 
 function updateNotasE(e) {
-    var nota = $(e).html();
-    var notaAceptada =$(e).attr('notaAceptada');
+    var nota = parseFloat($(e).html());
+    var notaAceptada =parseFloat($(e).attr('notaAceptada'));
     if (nota != notaAceptada) {
         bandera=updateAjax($(e).attr('pk'),"notasestudiante",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota":nota});
         bandera.then(function() {
