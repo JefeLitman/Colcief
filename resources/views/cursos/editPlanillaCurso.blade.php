@@ -111,8 +111,9 @@
                                     </td>
                                 @endforeach
                                 @foreach ($periodos as $z)
-                                <td  id="notaPer{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}" fk="materia{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->fk_materia_boletin}}" data-toggle="tooltip" data-placement="bottom" @if ($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo >= 1 && $notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo<= 2.9)
-                                    class="table-danger"  title="Nota Periodo Baja"
+                                <td  id="notaPer{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->pk_nota_periodo}}" fk="materia{{$notaPer[$e->pk_estudiante][$z->pk_periodo]->fk_materia_boletin}}" data-toggle="tooltip" data-placement="bottom" 
+                                    @if ($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo<= 2.9)
+                                        class="table-danger"  title="Nota Periodo Baja"
                                     @elseif($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo >= 3 && $notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo <= 3.9)
                                         class="table-warning"  title="Nota Periodo Basica"
                                     @elseif($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo >= 4 && $notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo <= 4.5 )
@@ -126,7 +127,7 @@
                                 @endforeach
 
                             <td id="materia{{$e->pk_materia_boletin}}" pk="{{$e->pk_materia_boletin}}" data-toggle="tooltip" data-placement="bottom"
-                                @if ($e->nota_materia >= 1 && $e->nota_materia <= 2.9)
+                                @if ($e->nota_materia <= 2.9)
                                     class="table-danger"  title="Nota Final Baja"
                                 @elseif($e->nota_materia >= 3 && $e->nota_materia <= 3.9)
                                     class="table-warning"  title="Nota Final Basica"

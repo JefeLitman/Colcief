@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Boletin;
 
 class Estudiante extends Authenticatable {
 
@@ -28,5 +29,9 @@ class Estudiante extends Authenticatable {
     public function notasEstudiante()
     {
       return $this->hasMany('App\NotaEstudiante','fk_estudiante','pk_estudiante');
+    }
+
+    public function cambioCurso(){
+        $boletin=Boletin::where([["ano",date('Y')],["fk_estudiante",$this->pk_estudiante]]);
     }
 }
