@@ -5,10 +5,12 @@
 <div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordionExample">
         <div class="card">
-            <div class="card-header" id="headingOne">
-                <button class="btn btn-link flex-grow-1" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                No leidas
-                    <span id="nota" class="badge badge-pill badge-info">{{count($activas)}}</span>
+            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                No leidas 
+                </button>
+                <button class="btn btn-link collapsed float-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span id="nota" class="badge badge-pill badge-info ">{{count($activas)}}</span> 
                 </button>
             </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -31,10 +33,12 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-header" id="headingTwo">
+            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 Leidas
-                    <span id="noti" class="badge badge-pill badge-info">{{count($inactivas)}}</span>
+                </button>
+                <button class="btn btn-link collapsed float-right" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <span id="nota" class="badge badge-pill badge-info ">{{count($inactivas)}}</span> 
                 </button>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">

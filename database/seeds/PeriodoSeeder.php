@@ -3,21 +3,16 @@
 use Illuminate\Database\Seeder;
 use App\Periodo;
 
-class PeriodoSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        for ($i=1; $i < 5; $i++) { 
+class PeriodoSeeder extends Seeder {
+    public function run(){
+        $j=0;
+        for ($i=1; $i < 12; $i=$i+3) {
+            $j++;
             Periodo::create([
-                "fecha_inicio"=>date("Y-m-d"),
-                "fecha_limite"=>date("Y-m-d"),
-                "ano"=>date("Y"),
-                "nro_periodo"=>$i
+                "fecha_inicio"=>date('Y').'-'.$i.'-03',
+                "fecha_limite"=>date('Y').'-'.$i.'-28',
+                "ano"=>date('Y'),
+                "nro_periodo"=>$j
             ]);
         }
     }

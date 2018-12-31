@@ -29,8 +29,8 @@
                         @foreach ($periodos as $i)
                             <tr id="empleados{{$i->pk_periodo}}">
                                 <td class="center" >{{$i->nro_periodo}}</td>
-                                <td class="center">{{explode('-', $i->fecha_inicio)[2].' de '.ucwords(strftime('%B', strtotime(explode('-', $i->fecha_inicio)[1]))).', '.explode('-', $i->fecha_inicio)[0]}}</td>
-                                <td title="Tenga en cuenta que la fecha limite es el ultimo dia en el que el docente puede modifcar notas del periodo" class="center">{{explode('-', $i->fecha_limite)[2].' de '.ucwords(strftime('%B', strtotime(explode('-', $i->fecha_limite)[1]))).', '.explode('-', $i->fecha_limite)[0]}}</td>
+                                <td class="center">{{explode('-', $i->fecha_inicio)[2].' de '.ucwords(strftime('%B', strtotime($i->fecha_inicio))).', '.explode('-', $i->fecha_inicio)[0]}}</td>
+                                <td title="Tenga en cuenta que la fecha limite es el ultimo dia en el que el docente puede modifcar notas del periodo" class="center">{{explode('-', $i->fecha_limite)[2].' de '.ucwords(strftime('%B', strtotime($i->fecha_limite))).', '.explode('-', $i->fecha_limite)[0]}}</td>
                                 <td class="center">
                                     <a href="{{ route('periodos.edit', $i->pk_periodo) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>
                                 </td>

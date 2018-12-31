@@ -22,7 +22,7 @@
 		position: absolute;
 		left: 29px;
 		width: 2px;
-		height: 100%;
+		height: 99%;
 		z-index: 400;
 	}
 	ul.timeline > li {
@@ -41,27 +41,49 @@
 		height: 20px;
 		z-index: 400;
 	}
+	@media (max-width: 576px) {
+		.g {
+			display: none !important;
+		}
+	}
 </style>
 
 <div class="container">
 	<div class="row justify-content-center" style="background-color: #fafafa !important;">
-		<div class="col-lg-10 col-md-12">
+		<div class="col-10">
 			<h4>Linea Temporal</h4>
 			<ul class="timeline">
 				@php
-					$bandera = true;
+					$bandera = true; 
+					// true : la fecha comparada es mayor a la fecha de hoy (NO ha transcurrido el evento)
+					// false : la fecha comparada es menor a la fecha de hoy (ya transcurrido el evento)
 				@endphp
-				@foreach ($fechas as $key => $fecha)
+				@foreach ($orden as $key => $o)
 					<li 
 					@if ($key == 'Hoy') 
 						class = "hoy" 
 						@php $bandera = false @endphp
 					@endif 
 					@if ($bandera) 
-						class = "pasado" 
-					@endif>
-						<a target="_blank" href="">{{$key}}</a>
-						<a id="{{explode('-', $fecha)[1]}}" href="#" class="float-right hidden-md-down">{{explode('-', $fecha)[2].' de '.ucwords(strftime('%B', strtotime($fecha))).', '.explode('-', $fecha)[0]}}</a>
+						class = "pasado"
+					@endif >
+						<div>
+							@if ($fecha['Hoy'] != $o && !$bandera)
+								<a title="Editar" href="
+									@if (isset($fecha[$key]['id'])) 
+										{{route($fecha[$key]['tipo'], $fecha[$key]['id'])}}
+									@else
+										{{route($fecha[$key]['tipo'])}}
+									@endif
+								"><i class="fas fa-edit" style="color:#00838f;margin-right:6px"></i></a>
+							@else
+								<a title="No se puede editar"><i class="fas fa-edit" style="color:#6c757d;margin-right:6px"></i></a>
+							@endif
+							
+							{{$key}}
+							<div class="float-right g">{{explode('-', $o)[2].' de '.ucwords(strftime('%B', strtotime($o))).', '.explode('-', $o)[0]}}</div>
+						</div>
+						
 					</li>
 				@endforeach
 			</ul>

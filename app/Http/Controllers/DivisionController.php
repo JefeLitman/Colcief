@@ -49,7 +49,7 @@ class DivisionController extends Controller {
 
     public function edit(){
         $fecha = Fecha::where('ano', $this->ano)->get()[0];
-        $division = Division::all()->where('ano', $this->ano);
+        $division = Division::where('ano', $this->ano) -> get();
         if(explode('-', $this->date)[1] <= explode('-', $fecha -> inicio_escolar)[1]){
             if(explode('-', $this->date)[2] <= explode('-', $fecha -> inicio_escolar)[2]){
                 return view('divisiones.editarDivision', ['division' => $division]);

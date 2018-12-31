@@ -6,6 +6,7 @@ use App\Division;
 use App\Materia;
 use App\Periodo;
 use App\Fecha;
+use App\Estudiante;
 use Illuminate\Console\Command;
 
 class fin_ano extends Command {
@@ -20,6 +21,8 @@ class fin_ano extends Command {
     }
 
     public function handle(){
+
+        // se asigna las mismas fechas que el año pasado
         $fechas = Fecha::all()->where('ano', $this->pasado);
         foreach($fechas as $fecha){
             $f = new Materia();
@@ -28,6 +31,8 @@ class fin_ano extends Command {
             $f -> ano = $this->pasado + 1;
             $f -> save();
         }
+
+        // se crean los mismos periodos que el año pasado
         $periodos = Periodo::all()->where('ano', $this->pasado);
         foreach($periodos as $periodo){
             $p = new Materia();
@@ -37,6 +42,8 @@ class fin_ano extends Command {
             $p -> periodo = $periodo -> periodo;
             $p -> save();
         }
+
+        // se crean las mismas divisiones que el año pasado
         $divisiones = Division::all()->where('ano', $this->pasado);
         foreach($divisiones as $division){
             $d = new Division();
@@ -47,6 +54,8 @@ class fin_ano extends Command {
             $d -> save();
             $d -> crearNotasDivision();
         }
+
+        // se crean las mismas materias que el año pasado
         $materias = Materia::where('created_at','like','%'.$this->pasado.'%')->get();
         foreach($materias as $materia){
             $m = new Materia();
@@ -54,6 +63,12 @@ class fin_ano extends Command {
             $m -> contenido = $materia -> contenido;
             $m -> logros_custom = $materia -> logros_custom;
             $m -> save();
+        }
+
+        //se le asigna a todos los estudiantes el curso en null
+        $estudiantes = Estudiante::all();
+        foreach($estudiantes as $estudiante){
+            $estudiante -> update(['fk_curso', null]);
         }
     }
 }

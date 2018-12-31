@@ -95,7 +95,9 @@ Route::post('/empleados/perfil/{cedula}', 'EmpleadoController@perfil');
 Route::resource('/empleados','EmpleadoController');
 
 /*RUTAS DE PERIODO*/
-Route::resource('/periodos','PeriodoController');
+Route::get('/periodos','PeriodoController@index')->name('periodos.index');
+Route::get('/periodos/{pk_periodo}/editar','PeriodoController@edit')->name('periodos.edit');
+Route::put('/periodos/{pk_periodo}','PeriodoController@update')->name('periodos.update');
 
 /*RUTAS DE MATERIA*/
 Route::resource('/materias','MateriaController');
@@ -152,6 +154,8 @@ Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@sh
 Route::post('/notificaciones','NotificacionController');
 Route::delete('/notificaciones/{pk_notificacion}','NotificacionController@destroy');
 Route::get('/notificaciones', 'NotificacionController@index');
+
+/* RUTAS DE FECHA */
 Route::get('/fechas/editar', 'FechaController@edit')->name('fechas.edit');
 Route::put('/fechas', 'FechaController@update')->name('fechas.update');
 Route::get('/fechas', 'FechaController@index')->name('fechas.index');
