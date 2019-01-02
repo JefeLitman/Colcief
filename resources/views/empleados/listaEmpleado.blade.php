@@ -13,21 +13,29 @@
                 </div>
             </form>
             <br>
-            <table class="table table-borderless table-sm text-center">
-                <thead>
-                    <th colspan="4">
-                        Tiempo extra [dias]
-                    </th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><i class="fas fa-square text-dark"></i> 0 </td>
-                        <td><i class="fas fa-square text-primary"></i> 1 </td>
-                        <td><i class="fas fa-square text-warning"></i> 3 </td>
-                        <td><i class="fas fa-square text-danger"></i> 7 </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="alert alert-light alert-dismissible fade show" style="border-color: #818182" role="alert">
+                <div class="row">
+                    <div class="col">
+                        <strong>Tiempo extra</strong>
+                    </div>
+                    <div class="col">
+                        <i class="fas fa-square text-dark"></i> 0 dias
+                    </div>
+                    <div class="col">
+                        <i class="fas fa-square text-primary"></i> 1 dia
+                    </div>
+                    <div class="col">
+                        <i class="fas fa-square text-warning"></i> 3 dias
+                    </div>
+                    <div class="col">
+                        <i class="fas fa-square text-danger"></i> 7 dias
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
             <div class="table-responsive">
                 <table class="table table-striped table-condensed table-hover text-center">
                     <thead>

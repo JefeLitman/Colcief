@@ -69,7 +69,7 @@ class PeriodoController extends Controller {
     }
 
     public function update(PeriodoUpdateController $request, $pk_periodo){
-      $periodo = Periodo::findOrFail($pk_periodo)->fill($request->except(['action']));
+      $periodo = Periodo::findOrFail($pk_periodo)->fill($request->all());
       if($periodo->save()){
           $empleados = Empleado::where('empleado.role','<>','0') -> get();
           foreach($empleados as $empleado){

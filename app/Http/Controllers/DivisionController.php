@@ -37,8 +37,8 @@ class DivisionController extends Controller {
         if($total == 100){
             for($i=0;$i<count($request->nombre);$i++){
                 $division = new Division();
-                $division -> nombre = $request->nombre[$i];
-                $division -> descripcion = $request->descripcion[$i];
+                $division -> nombre = mb_strtolower($request->nombre[$i]);
+                $division -> descripcion = mb_strtolower($request->descripcion[$i]);
                 $division -> porcentaje = $request->porcentaje[$i];
                 $division -> ano = $this->ano;
                 $division->save();
@@ -73,9 +73,9 @@ class DivisionController extends Controller {
         if($total == 100){
             if($consulta <= $form){
                 for($i=0;$i<$consulta;$i++){
-                    $division[$i] -> nombre = $request->nombre[$i];
-                    $division[$i] -> descripcion = $request->descripcion[$i];
-                    $bandera=false;
+                    $division[$i] -> nombre = mb_strtolower($request->nombre[$i]);
+                    $division[$i] -> descripcion = mb_strtolower($request->descripcion[$i]);
+                    $bandera = false;
                     if ($division[$i] -> porcentaje != $request->porcentaje[$i]) {
                         $division[$i] -> porcentaje = $request->porcentaje[$i];
                         $bandera=true;
@@ -87,8 +87,8 @@ class DivisionController extends Controller {
                 }
                 for($i=$consulta;$i<$form;$i++){
                     $newDivision = new Division();
-                    $newDivision -> nombre = $request->nombre[$i];
-                    $newDivision -> descripcion = $request->descripcion[$i];
+                    $newDivision -> nombre = mb_strtolower($request->nombre[$i]);
+                    $newDivision -> descripcion = mb_strtolower($request->descripcion[$i]);
                     $newDivision -> porcentaje = $request->porcentaje[$i];
                     $newDivision -> ano = $this->ano;
                     $newDivision -> save();
@@ -96,8 +96,8 @@ class DivisionController extends Controller {
                 }
             }else{
                 for($i=0;$i<$form;$i++){
-                    $division[$i] -> nombre = $request->nombre[$i];
-                    $division[$i] -> descripcion = $request->descripcion[$i];
+                    $division[$i] -> nombre = mb_strtolower($request->nombre[$i]);
+                    $division[$i] -> descripcion = mb_strtolower($request->descripcion[$i]);
                     $bandera=false;
                     if ($division[$i] -> porcentaje != $request->porcentaje[$i]) {
                         $division[$i] -> porcentaje = $request->porcentaje[$i];
@@ -112,7 +112,7 @@ class DivisionController extends Controller {
                     // $division[$i] -> porcentaje = 0;
                     // $division[$i] -> save();
                     $division[$i] -> delete();
-                    $division[$i]->actualizarNotasPeriodo();
+                    $division[$i] -> actualizarNotasPeriodo();
                 }
             }
             $mensaje = 'Los componentes fueros actualizados con exito, recuerde que esta modificación afectara todas las notas existentes ingresadas en el año actual';

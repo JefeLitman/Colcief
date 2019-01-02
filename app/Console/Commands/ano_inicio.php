@@ -9,9 +9,9 @@ use App\Fecha;
 use App\Estudiante;
 use Illuminate\Console\Command;
 
-class fin_ano extends Command {
+class ano_inicio extends Command {
 
-    protected $signature = 'ano:fin';
+    protected $signature = 'ano:inicio';
 
     protected $description = 'Este servicio realiza todas las acciones necesarias para la finalizacion del año escolar';
 
@@ -23,40 +23,40 @@ class fin_ano extends Command {
     public function handle(){
 
         // se asigna las mismas fechas que el año pasado
-        $fechas = Fecha::all()->where('ano', $this->pasado);
+        $fechas = Fecha::where('ano', $this->pasado) -> get();
         foreach($fechas as $fecha){
-            $f = new Materia();
-            $f -> inicio_escolar = $fecha -> inicio_escolar;
-            $f -> fin_escolar = $fecha -> fin_escolar;
+            $f = new Fecha();
+            $f -> inicio_escolar = ($this->pasado + 1).substr($fecha -> inicio_escolar, -6);
+            $f -> fin_escolar = ($this->pasado + 1).substr($fecha -> fin_escolar, -6);
             $f -> ano = $this->pasado + 1;
             $f -> save();
         }
 
         // se crean los mismos periodos que el año pasado
-        $periodos = Periodo::all()->where('ano', $this->pasado);
+        $periodos = Periodo::where('ano', $this->pasado) -> get();
         foreach($periodos as $periodo){
-            $p = new Materia();
-            $p -> fecha_inicio = $periodo -> fecha_inicio;
-            $p -> fecha_limite = $periodo -> fecha_limite;
+            $p = new Periodo();
+            $p -> fecha_inicio = ($this->pasado + 1).substr($periodo -> fecha_inicio, -6);
+            $p -> fecha_limite = ($this->pasado + 1).substr($periodo -> fecha_limite, -6);
             $p -> ano = $this->pasado + 1;
-            $p -> periodo = $periodo -> periodo;
+            $p -> nro_periodo = $periodo -> nro_periodo;
             $p -> save();
         }
 
         // se crean las mismas divisiones que el año pasado
-        $divisiones = Division::all()->where('ano', $this->pasado);
+        $divisiones = Division::where('ano', $this->pasado) -> get();
         foreach($divisiones as $division){
             $d = new Division();
             $d -> nombre = $division -> nombre;
             $d -> descripcion = $division -> descripcion;
             $d -> porcentaje = $division -> porcentaje;
-            $d -> ano = $division -> $this->pasado + 1;
+            $d -> ano = $this->pasado + 1;
             $d -> save();
             $d -> crearNotasDivision();
         }
 
         // se crean las mismas materias que el año pasado
-        $materias = Materia::where('created_at','like','%'.$this->pasado.'%')->get();
+        $materias = Materia::where('created_at','like','%'.$this->pasado.'%') -> get();
         foreach($materias as $materia){
             $m = new Materia();
             $m -> nombre = $materia -> nombre;
@@ -68,7 +68,8 @@ class fin_ano extends Command {
         //se le asigna a todos los estudiantes el curso en null
         $estudiantes = Estudiante::all();
         foreach($estudiantes as $estudiante){
-            $estudiante -> update(['fk_curso', null]);
+            $estudiante -> fk_curso = NULL;
+            $estudiante -> save();
         }
     }
 }

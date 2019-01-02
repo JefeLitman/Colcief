@@ -37,8 +37,7 @@ class EmpleadoController extends Controller{
 
     public function store(EmpleadoStoreController $request){
         $empleado = (new Empleado)->fill(SupraController::minuscula($request->all()));
-        $empleado->password = Hash::make('clave');
-        $empleado->role = $request->input('role');
+        $empleado -> password = Hash::make('clave');
         if($request->hasFile('foto')){
           $nombreArchivo = 'empleado'.$request->cedula;
           $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo,'foto');
@@ -71,13 +70,12 @@ class EmpleadoController extends Controller{
 
     public function edit($cedula){
         $empleado = Empleado::findOrFail($cedula);
-        $cursos=Curso::where("ano",date('Y'))->get();//agregado by Paola
-        return view("empleados.editarEmpleado", ['empleado'=>$empleado,"cursos"=>$cursos]);//Modificado by Paola
+        $cursos = Curso::where("ano",date('Y')) -> get();//agregado by Paola
+        return view("empleados.editarEmpleado", ['empleado' => $empleado,"cursos" => $cursos]);//Modificado by Paola
     }
 
     public function update(EmpleadoUpdateController $request, $cedula){
         $empleado = Empleado::findOrFail($cedula)->fill(SupraController::minuscula($request->all()));
-        $empleado->role = $request->input('role');
         if($request->hasFile('foto')){
             $nombreArchivo = 'empleado'.$request->cedula;
             $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto');
@@ -91,7 +89,6 @@ class EmpleadoController extends Controller{
     }
 
     public function perfil(EmpleadoUpdateFoto $request,$cedula){
-        // dd('hola');
         $empleado = Empleado::findOrFail($cedula);
         $guard = session('role');
         if($request->hasFile('foto')){
@@ -126,15 +123,21 @@ class EmpleadoController extends Controller{
         
     }
 
-
     public function destroy(Request $request, $cedula){
         if($request->ajax()){
             $empleado = Empleado::findOrFail($cedula);
-            $empleado->delete();
+            if($empleado->delete()){
+                return response()->json([
+                    'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' Fue eliminado'
+                ]);
+            } else {
+                return response()->json([
+                    'mensaje' => 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' no pudo ser eliminado, intente nuevamente'
+                ]);
+            }
+            
 
-            return response()->json([
-                'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' Fue eliminado'
-            ]);
+            
         }
     }
 }

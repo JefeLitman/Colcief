@@ -36,9 +36,8 @@ class EstudianteController extends Controller{
 
     public function estudianteGrado($pk_curso){
         $curso = json_decode((new CursoController)->conteoEstudiantes($pk_curso));
-        $c=Curso::findOrFail($pk_curso);
-        // $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
-        return view('estudiantes.estudiantesGrado',['curso'=>$curso,'grado'=>$c]);
+        $c = Curso::findOrFail($pk_curso);
+        return view('estudiantes.estudiantesGrado',['curso' => $curso,'grado' => $c]);
     }
 
     public function create(){

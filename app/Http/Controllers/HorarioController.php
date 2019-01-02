@@ -248,7 +248,7 @@ class HorarioController extends Controller {
             for ($i=0;$i<count($request->dia);$i++) { 
                 $horario = new Horario();
                 $horario -> fk_materia_pc = $request->fk_materia_pc[$i];
-                $horario -> dia = $request->dia[$i];
+                $horario -> dia = mb_strtolower($request->dia[$i]);
                 $horario -> hora_inicio = $request->hora_inicio[$i];
                 $horario -> hora_fin = $request->hora_fin[$i];
                 $horario->save();
@@ -354,7 +354,7 @@ class HorarioController extends Controller {
         // creamos todos los requests, de lo contrario no creamos ninguno
         if ($crear) {
             $horario = Horario::findOrFail($request->pk_horario);
-            $horario->dia = $request->dia;
+            $horario->dia = mb_strtolower($request->dia);
             $horario->hora_inicio = $request->hora_inicio;
             $horario->hora_fin = $request->hora_fin;
             $horario->save();
@@ -369,10 +369,16 @@ class HorarioController extends Controller {
     public function destroy(Request $request, $pk_horario) {
         if($request->ajax()){
             $horario = Horario::findOrFail($pk_horario);
-            $horario -> delete();
-            return response()->json([
-                'mensaje' => 'El registro fue eliminado con exito'
-            ]);
+            if($horario -> delete()){
+                return response()->json([
+                    'mensaje' => 'El registro fue eliminado con exito'
+                ]);
+            } else {
+                return response()->json([
+                    'mensaje' => 'Algo no salio bien, intente nuevamente'
+                ]);
+            }
+            
         }
     }
 }
