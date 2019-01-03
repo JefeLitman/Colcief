@@ -8,7 +8,9 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel {
 
     protected $commands = [
-        Commands\fin_ano::class,
+        Commands\ano_inicio::class,
+        Commands\escolar_inicio::class,
+        Commands\periodo_fin::class,
     ];
 
     protected function schedule(Schedule $schedule){

@@ -13,7 +13,7 @@ class FechaStoreController extends FormRequest {
     public function rules(){
         return [
             'inicio_escolar' => 'required|date',
-            'fin_escolar' => 'required|date',
+            'fin_escolar' => 'required|date|after:inicio_escolar',
         ];
     }
 }

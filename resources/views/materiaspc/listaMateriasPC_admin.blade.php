@@ -9,15 +9,14 @@
 		 @Autor Paola C. --}}
 	{{-- Estado: Aparentemente finalizado (Sujeto a cambios) --}}
 	{{-- URL: localhost:8000\materiaspc  -> Logeado en un usuario de tipo administrador--}}
-<br id="br">
 <div class="container" style="background:#fafafa !important;">
     <div class="row justify-content-center">
-        <div class="col-11">
-            <h1 class="text-center">
+        <div class="col-10">
+            <h3 class="text-center">
                 Materias
-            </h1>
+            </h3>
             <br>
-                <div class="accordion" id="accordionExample">
+            <div class="accordion" id="accordionExample">
                 @csrf
                 @php
                     $i=0;
@@ -29,7 +28,7 @@
                             <div class="card-header" style="background-color: rgba(0,0,0,.03)  !important; cursor: pointer;" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" >
                             <div class="row">
                                 <div class="col-md-10">
-                                    <h5 class="text-center mb-0">
+                                    <h5 class="mb-0">
                                         {{ $m->nombre }}
                                     </h5>
                                 </div>

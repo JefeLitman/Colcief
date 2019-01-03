@@ -9,7 +9,7 @@ use App\Fecha;
 
 use Illuminate\Console\Command;
 
-class fin_periodo extends Command {
+class periodo_fin extends Command {
 
     protected $signature = 'periodo:fin';
     protected $description = 'Command description';

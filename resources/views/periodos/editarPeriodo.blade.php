@@ -12,7 +12,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="" action="{{route('periodos.update', $periodo->pk_periodo)}}" method="post">
+            <form action="{{route('periodos.update', $periodo -> pk_periodo)}}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="card border-primary rounded-0" style="border-color:#17a2b8 !important; border-radius:0.25rem !important;">

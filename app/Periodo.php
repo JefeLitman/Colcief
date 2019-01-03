@@ -8,10 +8,10 @@ class Periodo extends Model
 {
     protected $table = 'periodo';
     protected $primaryKey = 'pk_periodo';
+    protected $fillable = ['pk_periodo','nro_periodo','fecha_inicio','fecha_limite', 'ano'];
     protected $guarded = [];
 
-    public function notasPeriodo()
-    {
+    public function notasPeriodo(){
       return $this->hasMany('App\NotaPeriodo','fk_periodo','pk_periodo');
     }
 }

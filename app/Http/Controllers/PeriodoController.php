@@ -52,20 +52,31 @@ class PeriodoController extends Controller {
     // }
 
     public function edit($nro_periodo){
-      $unidad = Periodo::findOrFail($nro_periodo);
-      return view('periodos.editarPeriodo',['periodo' => $unidad]);
+      $periodo = Periodo::where('ano', date('Y')) -> where('pk_periodo', $nro_periodo) -> get();
+      if(!empty($periodo[0])){
+        if(explode('-', $periodo[0] -> fecha_limite)[1] >= date('m')){
+          if(explode('-', $periodo[0] -> fecha_limite)[2] >= date('d')){
+            return view('periodos.editarPeriodo',['periodo' => $periodo[0]]);
+          } else {
+            return back()->with('false', 'No es posible modificar un periodo ya finalizado');
+          }
+        } else {
+          return back()->with('false', 'No es posible modificar un periodo ya finalizado');
+        }
+      } else {
+        return back()->with('false', 'No es posible modificar periodos de años ya transcurridos');
+      }
     }
 
     public function update(PeriodoUpdateController $request, $pk_periodo){
-      $periodo = Periodo::findOrFail($pk_periodo)->fill($request->except(['action']));
-      $periodo->pk_periodo = $request->input('nro_periodo');
+      $periodo = Periodo::findOrFail($pk_periodo)->fill($request->all());
       if($periodo->save()){
           $empleados = Empleado::where('empleado.role','<>','0') -> get();
           foreach($empleados as $empleado){
             $notificacion = new Notificacion;
             $notificacion -> fk_empleado = $empleado -> cedula;
             $notificacion -> titulo = "¡La fecha limite fue modificada!";
-            $notificacion -> descripcion = "Tienes mas tiempo para subir las notas faltantes, la nueva fecha limite es el ".explode('-', $periodo -> fecha_limite)[2].' de '.ucwords(strftime('%B', strtotime(fecha_limite)));
+            $notificacion -> descripcion = "Tienes mas tiempo para subir las notas faltantes, la nueva fecha limite es el ".explode('-', $periodo -> fecha_limite)[2].' de '.ucwords(strftime('%B', strtotime($periodo -> fecha_limite)));
             $notificacion -> link = "/materiaspc";
             $notificacion -> save();
           }

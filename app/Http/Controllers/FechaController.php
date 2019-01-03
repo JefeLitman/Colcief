@@ -18,30 +18,25 @@ class FechaController extends Controller {
     public function index(){
         $fecha = Fecha::where('ano', $this -> ano) -> get()[0];
         $periodos = Periodo::where('ano', $this -> ano) -> orderBy('nro_periodo') -> get();
-        $orden = [];
-        $orden['Inicio del año escolar'] = $fecha -> inicio_escolar;
+        $orden = []; // array con las fechas y los mensajes a mostrar ordenadas
+        $fechas = []; // arrar con el mismo index correspondiente a la fecha con otros datos necesario en la vista
+        $orden['Inicio del año escolar'] = $fecha -> inicio_escolar; 
+        $fechas['Inicio del año escolar'] = ['tipo' => 'fechas.edit'];
         $orden['Finalización del año escolar'] = $fecha -> fin_escolar;
+        $fechas['Finalización del año escolar'] = ['tipo' => 'fechas.edit'];
         $orden['Hoy'] = $this -> date;
+        $fechas['Hoy'] = $this -> date;
         $cont = 3;
         foreach ($periodos as $key => $periodo) {
             $orden['Inicio del periodo #'.$periodo -> nro_periodo] = $periodo -> fecha_inicio;
+            $fechas['Inicio del periodo #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
             $cont++;
             $orden['Finalización del periodo #'.$periodo -> nro_periodo] = $periodo -> fecha_limite;
+            $fechas['Finalización del periodo #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
             $cont++;
         }
-        asort($orden);
-        // dd($orden);
-        /* $fechas = [];
-        foreach ($periodos as $periodo) { 
-            $fechas[$periodo -> fecha_inicio] = ['titulo' => 'Inicio del periodo '.$periodo -> nro_periodo];
-            $fechas[$periodo -> fecha_limite] = ['titulo' => 'Finalización del periodo '.$periodo -> nro_periodo];
-        }
-        $fechas[$fecha -> inicio_escolar] = ['titulo' => 'Inicio del año escolar'];
-        $fechas[$fecha -> fin_escolar] = ['titulo' => 'Finalización del año escolar'];
-        $fechas[$this -> date] = ['titulo' => 'Dia actual'];
-        ksort($fechas); */
-        // dd($fechas);
-        return view('fechas.verFecha', ['fechas' => $orden]);
+        asort($orden); // ordenamos el array $orden por su contenido, de esta manera organizamos cronologicamente
+        return view('fechas.verFecha', ['orden' => $orden, 'fecha' => $fechas]);
     }
 
     public function show(Fecha $fecha){

@@ -14,7 +14,7 @@ class NotificacionSeeder extends Seeder {
             $notificacion = new Notificacion; // creo notificaciones para el empleado, se le avisa que falta una semana, se le redirecciona a "Mis materias"
             $notificacion -> fk_empleado = $empleado -> cedula;
             $notificacion -> titulo = "El periodo esta por finalizar";
-            $notificacion -> descripcion = "El periodo finaliza en una semana, ingrese las notas faltantes, la fecha limite es el ".$empleado -> fecha_limite;
+            $notificacion -> descripcion = "El periodo finaliza en una semana, ingrese las notas faltantes, la fecha limite es el ";
             $notificacion -> link = "/materiaspc";
             $notificacion -> save();
         }

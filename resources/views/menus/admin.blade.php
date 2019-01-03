@@ -16,7 +16,7 @@
 					<a class="nav-link " href="{{ url('empleados/principal/0') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 {{--  HORARIOS  --}}
-				<li @if (Request::path()=="") class="active" @endif >
+				<li @if (Request::path()=="horarios") class="active" @endif >
 					<a class="nav-link " href="{{ url('/horarios') }}"> <i class="far fa-calendar-alt"></i> Horarios</a>
                 </li>
                 {{--  CURSOS  --}}
@@ -61,11 +61,11 @@
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file"></i> Plantillas*</a>
                 </li>
                 {{--  MATERIAS  --}}
-				<li @if (Request::path()=="") class="active" @endif >
+				<li @if (Request::path()=="materiaspc") class="active" @endif >
 					<a class="nav-link " href="{{ url('materiaspc') }}"> <i class="fas fa-book"></i> Materias</a>
 				</li>
-				<li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="far fa-calendar-alt"></i> Fechas*</a>
+				<li @if (Request::path()=="fechas") class="active" @endif >
+					<a class="nav-link " href="{{ url('fechas') }}"> <i class="far fa-calendar-alt"></i> Fechas</a>
 				</li>
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file-contract"></i> Boletines*</a>

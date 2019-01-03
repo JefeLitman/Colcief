@@ -16,7 +16,7 @@ class CursoSeeder extends Seeder
           Curso::create([
             'prefijo' => $i,
             'sufijo' => '01',
-            'ano' => '2018'
+            'ano' => date('Y')
           ]);
         }
     }

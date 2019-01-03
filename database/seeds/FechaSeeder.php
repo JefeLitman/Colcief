@@ -6,9 +6,9 @@ use App\Fecha;
 class FechaSeeder extends Seeder{
     public function run(){
         $fecha = new Fecha;
-        $fecha -> inicio_escolar = date('Y-m-d');
-        $fecha -> fin_escolar = '2019-11-30';
-        $fecha -> ano = '2018';
+        $fecha -> inicio_escolar = date('Y').'-01-27';
+        $fecha -> fin_escolar = date('Y').'-11-15';
+        $fecha -> ano = date('Y');
         $fecha -> save();
     }
 }
