@@ -6,7 +6,7 @@ use App\Periodo;
 class PeriodoSeeder extends Seeder {
     public function run(){
         $j=0;
-        for ($i=1; $i < 12; $i=$i+3) {
+        for ($i=2; $i < 13; $i=$i+3) {
             $j++;
             Periodo::create([
                 "fecha_inicio"=>date('Y').'-'.$i.'-03',

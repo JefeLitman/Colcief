@@ -17,7 +17,7 @@ class DivisionSeeder extends Seeder
           'nombre' => 'Div_'.$i,
           'descripcion' => 'Corte'.$i,
           'porcentaje' => 25,
-          'ano' => '2018',
+          'ano' => date('Y'),
           'created_at' => date('Y-m-d H:m:s'),
           'updated_at' => date('Y-m-d H:m:s')
         ]);
