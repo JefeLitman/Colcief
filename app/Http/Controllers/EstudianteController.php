@@ -79,7 +79,7 @@ class EstudianteController extends Controller{
 
         if($request->hasFile('foto')){ // se guarda la imagen
           $nombre = 'estudiante'.$estudiante->pk_estudiante;
-          $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
+          $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto','perfil');
         }
         if($estudiante->save()){
             $estudiante->cambioCurso();
@@ -158,7 +158,7 @@ class EstudianteController extends Controller{
         );
         if($request->hasFile('foto')){
             $nombre = 'estudiante'.$estudiante->pk_estudiante;
-            $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto'); //cambie el metodo mientras pienso como solucionarlo xD, este metodo llama al metodo de subir archivo, lo unico es retorna la direccion completa, esto para poder mostrar las imagenes en el servidor (Solucion Temporal)
+            $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto','perfil');
         }
         $estudiante->password= Hash::make('clave');
         
@@ -179,7 +179,7 @@ class EstudianteController extends Controller{
         $guard=session('role');
         if($request->hasFile('foto')){
             $nombre = 'estudiante'.$estudiante->pk_estudiante;
-            $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto');
+            $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto','perfil');
         }
         $estudiante->save();
         $var = Estudiante::findOrFail($pk_estudiante);
@@ -191,11 +191,15 @@ class EstudianteController extends Controller{
     public function destroy(Request $request, $pk_estudiante){
         if($request->ajax()){
             $estudiante = Estudiante::findOrFail($pk_estudiante);
-            $estudiante->delete();
-
-            return response()->json([
-                'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue eliminado'
-            ]);
+            if($estudiante->delete()){
+                return response()->json([
+                    'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue eliminado'
+                ]);
+            } else {
+                return response()->json([
+                    'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' no pudo ser eliminado, intente nuevamente'
+                ]);
+            }
         }
     }
 }

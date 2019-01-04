@@ -25,10 +25,10 @@
       del input del formulario (ej: foto, pdf, ...)
       Autor: Douglas y Pepe
     */
-    public static function subirArchivo(Request $request,String $nombre,String $input){
+    public static function subirArchivo(Request $request, String $nombre, String $input, String $directorio){
       $nombre .= '.'.$request->file($input)->clientExtension();
-      $file = $request->file($input)->storeAs('public', $nombre);
-      return "/storage/".$nombre;
+      $file = $request->file($input)->storeAs('public/'.$directorio, $nombre);
+      return "/storage/".$directorio."/".$nombre;
     }
     /*
       COMPROBAR REPETICION:

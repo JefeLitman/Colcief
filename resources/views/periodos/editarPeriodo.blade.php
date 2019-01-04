@@ -7,7 +7,7 @@
         <div class="col-10">
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>Información</strong><br>
-                Tenga en cuenta que la fecha limite es el ultimo dia en el que el docente puede modifcar notas del periodo
+                Tenga en cuenta que la finalización del periodo es el ultimo dia en el que el docente puede modificar notas del periodo
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,10 +23,10 @@
                     </div>
                     <div class="card-body p-3">
                         <div class="row">
-                            {{--  fecha de inicio  --}}
+                            {{--  fecha de inicio periodo --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Fecha de inicio</small></strong></label> <div class="input-group mb-2">
+                                    <label for="cedula"><strong><small style="color : #616161">Inicio de periodo</small></strong></label> <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <i class="fas fa-calendar-alt"></i>
@@ -36,10 +36,10 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--  fecha límite  --}}
+                            {{--  fecha límite periodo --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small title="Tenga en cuenta que la fecha limite es el ultimo dia en el que el docente puede modifcar notas del periodo" style="color : #616161">Fecha límite</small></strong></label>
+                                    <label for="cedula"><strong><small title="Tenga en cuenta que la finalización del periodo es el ultimo dia en el que el docente puede modificar notas del periodo" style="color : #616161">Finalización del periodo</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -47,6 +47,35 @@
                                             </span>
                                         </div>
                                         <input class="form-control form-control-sm" type="date" name="fecha_limite" value="{{$periodo->fecha_limite}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {{--  fecha de inicio recuperacion  --}}
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label for="cedula"><strong><small style="color : #616161">Inicio de recuperación</small></strong></label> <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="date" class="form-control form-control-sm"  name="recuperacion_inicio" value="{{$periodo->recuperacion_inicio}}">
+                                    </div>
+                                </div>
+                            </div>
+                            {{--  fecha límite recuperacion --}}
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label for="cedula"><strong><small title="Tenga en cuenta que la fecha limite es el ultimo dia en el que el docente puede modifcar notas del periodo" style="color : #616161">Finalización del periodo</small></strong></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input class="form-control form-control-sm" type="date" name="recuperacion_limite" value="{{$periodo->recuperacion_limite}}">
                                     </div>
                                 </div>
                             </div>

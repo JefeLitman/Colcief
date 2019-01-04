@@ -19,16 +19,16 @@
                         <strong>Tiempo extra</strong>
                     </div>
                     <div class="col">
-                        <i class="fas fa-square text-dark"></i> 0 dias
+                        <i class="fas fa-stopwatch text-dark"></i> 0 dias
                     </div>
                     <div class="col">
-                        <i class="fas fa-square text-primary"></i> 1 dia
+                        <i class="fas fa-stopwatch text-primary"></i> 1 dia
                     </div>
                     <div class="col">
-                        <i class="fas fa-square text-warning"></i> 3 dias
+                        <i class="fas fa-stopwatch text-warning"></i> 3 dias
                     </div>
                     <div class="col">
-                        <i class="fas fa-square text-danger"></i> 7 dias
+                        <i class="fas fa-stopwatch text-danger"></i> 7 dias
                     </div>
                 </div>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

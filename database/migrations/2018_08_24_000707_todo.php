@@ -40,6 +40,8 @@ class Todo extends Migration {
             $table->increments('pk_periodo');
             $table->date('fecha_inicio');
             $table->date('fecha_limite');
+            $table->date('recuperacion_inicio');
+            $table->date('recuperacion_limite');
             $table->year('ano');
             $table->integer('nro_periodo');
             $table->timestamps();
@@ -189,6 +191,16 @@ class Todo extends Migration {
             $table->text('descripcion');
             $table->text('link');
             $table->boolean('estado')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('archivo', function(Blueprint $table){
+            $table->increments('pk_archivo');
+            $table->unsignedInteger('fk_empleado');
+            $table->string('titulo', 50);
+            $table->text('descripcion');
+            $table->text('tipo');
+            $table->text('link');
             $table->timestamps();
         });
     }

@@ -160,6 +160,10 @@ Route::get('/fechas/editar', 'FechaController@edit')->name('fechas.edit');
 Route::put('/fechas', 'FechaController@update')->name('fechas.update');
 Route::get('/fechas', 'FechaController@index')->name('fechas.index');
 
+/* RUTAS ARCHIVO */
+Route::resource('/archivos', 'ArchivoController');
+
+
 /* RUTAS DE NOTAS PERIODO */
 Route::resource('/notasperiodo','NotaPeriodoController')->middleware('admin:profesor');
 
@@ -174,3 +178,4 @@ Route::resource('/materiasboletin','MateriaBoletinController')->middleware('admi
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
+

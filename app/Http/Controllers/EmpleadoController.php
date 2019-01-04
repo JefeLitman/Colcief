@@ -25,6 +25,7 @@ class EmpleadoController extends Controller{
     public function __construct (){
         $this->middleware('admin:administrador');
     }
+    
     public function index(){
         $empleado = Empleado::all();
         return view('empleados.listaEmpleado', ['empleado' => $empleado]);
@@ -40,7 +41,7 @@ class EmpleadoController extends Controller{
         $empleado -> password = Hash::make('clave');
         if($request->hasFile('foto')){
           $nombreArchivo = 'empleado'.$request->cedula;
-          $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo,'foto');
+          $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo,'foto', 'perfil');
         }
         $cedula = $empleado->cedula;
         if($empleado->save()){
@@ -78,7 +79,7 @@ class EmpleadoController extends Controller{
         $empleado = Empleado::findOrFail($cedula)->fill(SupraController::minuscula($request->all()));
         if($request->hasFile('foto')){
             $nombreArchivo = 'empleado'.$request->cedula;
-            $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto');
+            $empleado->foto = SupraController::subirArchivo($request, $nombreArchivo, 'foto', 'perfil');
         }
         if($empleado->save()){
             $mensaje = 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' fue actualizado con exito';
@@ -93,7 +94,7 @@ class EmpleadoController extends Controller{
         $guard = session('role');
         if($request->hasFile('foto')){
             $nombre = 'empleado'.$empleado->cedula;
-            $empleado->foto = SupraController::subirArchivo($request,$nombre,'foto'); 
+            $empleado->foto = SupraController::subirArchivo($request, $nombre, 'foto', 'perfil'); 
         }
         if($empleado->save()){
             $var = Empleado::findOrFail($cedula);
@@ -135,9 +136,6 @@ class EmpleadoController extends Controller{
                     'mensaje' => 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' no pudo ser eliminado, intente nuevamente'
                 ]);
             }
-            
-
-            
         }
     }
 }

@@ -22,6 +22,8 @@ class PeriodoUpdateController extends FormRequest{
     return [
       'fecha_inicio' => 'required|date',
       'fecha_limite' => 'required|date|after:fecha_inicio',
+      'recuperacion_inicio' => 'required|date|after:fecha_limite',
+      'recuperacion_limite' => 'required|date|after:recuperacion_inicio',
     ];
   }
   //  public function messages(){
