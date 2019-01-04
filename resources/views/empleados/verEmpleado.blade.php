@@ -8,80 +8,52 @@
     {{-- URL: localhost:8000\empleados\{pk_empleado} --}}
 <br>
 <div class="container" style="background:#fafafa !important;">
+    <h4 class="text-center">
+        Datos de {{$empleado->nombre}} {{$empleado->apellido}}
+    </h4>
+    <br>
     <div class="row justify-content-center">
-        <div class="col-10">
-            <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color: #17a2b8 !important;">
-                <div class="card-header" style="background-color:rgba(0,0,0,.03) !important;">
-                    <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
+        <div class="col-md-4">
+            <div class="card text-center" style="background-color: rgba(0,0,0,.03) !important; float:center !important; border-color: #17a2b8 !important; border-radius:0.25rem !important;">
+                <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap" style="padding: 5px 5px 5px 5px;">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body" style="border-color:#66bb6a !important;">
+                <div class="table-responsive">
+                    <table class="table table-hover mr-auto">
+                        <thead style="background-color: rgba(0,0,0,.03) !important;">
+                            <tr>
+                                <th scope="col" style="color:#0a7788" class="text-center">Cedula</th>
+                                <th scope="col" style="color:#0a7788" class="text-center">Correo</th>
+                                <th scope="col" style="color:#0a7788" class="text-center">Dirección</th>
+                                <th scope="col" style="color:#0a7788" class="text-center">Profesión</th>
+                                <th scope="col" style="color:#0a7788" class="text-center">Rol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">{{$empleado->cedula}}</td>
+                                <td class="text-center">{{$empleado->correo}}</td>
+                                <td class="text-center">{{$empleado->direccion}}</td>
+                                <td class="text-center">{{$empleado->titulo}}</td>
+                                <td class="text-center">
+                                    @php
+                                        $role=["Administrador","Director","Profesor"]
+                                    @endphp
+                                    @foreach ($role as $i=>$value)
+                                        @if (intval($empleado->role)==$i)
+                                            {{$value}}
+                                        @endif
+                                    @endforeach
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="border-top-color:  #17a2b8 !important; border-bottom-color:  #17a2b8 !important;">
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-user-tie"></i>
-                            <br>
-                            {{$empleado->nombre}}
-                            <br>
-                            {{$empleado->apellido}}
-                        </h5>
-                    </li>
-                    <li class="list-group-item" style="border-top-color:  #17a2b8 !important; border-bottom-color:  #17a2b8 !important;">
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-id-card"></i>
-                            <br>
-                            {{$empleado->cedula}}
-                        </h5>
-                    </li>
-                    <li class="list-group-item" style="border-top-color:  #17a2b8 !important; border-bottom-color:  #17a2b8 !important;">
-                        <h5 class="card-title text-center">
-                            <i class="fas fa-graduation-cap"></i>
-                            <br>
-                            {{$empleado->titulo}}
-                        </h5>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
-    {{-- <div class="row">
-        <div class="col s1"></div>
-        <div class="col s2"></div>
-        <div class="col s5 centar"><br>
-            <div class="card green lighten-5">
-                <div class="card-content">
-                    <div class="row center">
-                        <div class="col s12">
-                            <img class="responsive-img" style="max-width:400px;" src="{{$empleado->foto}}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1"></div>
-                        <div class="col s3 center">
-                            <i class="blue-grey-text small material-icons">face</i>
-                            <p class="blue-grey-text">Empleado</p>
-                        </div>
-                        <div class="col s7">
-                            <h5 class="blue-grey-text center">
-                                {{$empleado->nombre}}<br>
-                                {{$empleado->apellido}}
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1"></div>
-                        <div class="col s3 center">
-                            <i class="blue-grey-text small material-icons">school</i>
-                            <p class="blue-grey-text">Título</p>
-                        </div>
-                        <div class="col s7">
-                            <h5 class="blue-grey-text center">
-                                {{$empleado->titulo}}
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </div>
 <br>
 @endsection
