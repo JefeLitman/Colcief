@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="card-body" style="border-color:#66bb6a !important;">
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover mr-auto">
                         <thead style="background-color: rgba(0,0,0,.03) !important;">

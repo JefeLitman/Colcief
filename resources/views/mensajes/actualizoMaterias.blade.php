@@ -3,14 +3,14 @@
 @section('contenedor_admin')
 <br>
 <div class="container" style="background:#fafafa !important;">
-    <div class="card mx-auto border-dark bg-light" style="width: 40rem; border-color:#66bb6a !important;">
-        <div class="card-header" style="background-color:#66ba6a7d !important;">
+    <div class="card mx-auto border-dark bg-light" style="width: 40rem; border-color:#17a2b8 !important;">
+        <div class="card-header" style="background-color: rgba(0,0,0,.03) !important;">
             <h1 class="text-center">
-                <i class="fas fa-check" style="color:white;"></i>
+                <i class="fas fa-check"></i>
             </h1>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item text-center" style="border-top-color: #66bb6a !important; border-bottom-color: #66bb6a !important;">
+            <li class="list-group-item text-center" style="border-top-color: #17a2b8 !important; border-bottom-color: #17a2b8 !important;">
                 <h5 class="card-title text-center">
                     Se actualizó correctamente
                 </h5>

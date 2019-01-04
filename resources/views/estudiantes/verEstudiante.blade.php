@@ -12,6 +12,69 @@
     <h1>Ejemplos</h1> --}}
 <br>
 <div class="container" style="background:#fafafa !important;">
+    <h4 class="text-center">
+        Datos de {{$estudiante->nombre}} {{$estudiante->apellido}}
+    </h4>
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card text-center" style="background-color: rgba(0,0,0,.03) !important; float:center !important; border-color: #17a2b8 !important; border-radius:0.25rem !important;">
+                <img class="card-img-top" src="{{$estudiante->foto}}" alt="Card image cap" style="padding: 5px 5px 5px 5px;">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body" style="border-color:#66bb6a !important;">
+                <div class="table-responsive">
+                    <table class="table table-hover mr-auto">
+                        <thead style="background-color: rgba(0,0,0,.03) !important;">
+                            <tr>
+                                <th scope="col" style="color:#0a7788" class="text-center">Acudiente</th>
+                                <th scope="col" style="color:#0a7788" class="text-center">Fecha de nacimiento</th>
+                                <th scope="col" style="color:#0a7788" class="text-center">Discapacida</th>
+                                <th scope="col" style="color:#0a7788" class="text-center">Grado</th>
+                                {{-- <th scope="col" style="color:#0a7788" class="text-center">Curso</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {{-- Acudiente --}}
+                                <td class="text-center">{{$acudiente->nombre_acu_1}}</td>
+                                {{-- fecha de nacimiento --}}
+                                <td class="text-center">{{$estudiante->fecha_nacimiento}}</td>
+                                {{-- discapacidad --}}
+                                <td class="text-center">
+                                    @php
+                                        $discapacidad=["No","Si"]
+                                    @endphp
+                                    @foreach ($discapacidad as $i=>$value)
+                                        @if (intval($estudiante->discapacidad)==$i)
+                                            {{$value}}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                {{-- grado --}}
+                                <td class="text-center">
+                                    @php
+                                        $grado=["Preescolar","Primero","Segundo","Tercero","Cuarto","Quinto","Sexto","Septimo","Octavo","Noveno","Decimo","Once"]
+                                    @endphp
+                                    @foreach ($grado as $j=>$value)
+                                        @if (intval($estudiante->grado)==$j)
+                                            {{$value}}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                {{-- <td class="text-center">
+                                    {{$cursos->prefijo}}
+                                </td> --}}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- <div class="container" style="background:#fafafa !important;">
     <div class="row justify-content-center">
         <div class="col-10">
             <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#17a2b8 !important;">
@@ -80,6 +143,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <br>
 @endsection

@@ -24,7 +24,7 @@
                     <th class="text-center" scope="col" style="color:#00695c">Nombre</th>
                     <th class="text-center" scope="col" style="color:#00695c">Apellido</th>
                     <th class="text-center" scope="col" style="color:#00695c">Grado</th>
-                    <th class="text-center" scope="col" style="color:#00695c" colspan="3">Acciones</th>
+                    <th class="text-center" scope="col" style="color:#00695c" colspan="4">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,13 +42,21 @@
                             <td class="text-center">{{ucwords($c->nombre)}}</td>
                             <td class="text-center">{{ucwords($c->apellido)}}</td>
                             <td class="text-center">{{$c->grado}}</td>
+                            {{-- ver notas --}}
                             <td class="text-center">
                                 <a href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
                             </td>
+                            {{-- Ver estudiantes --}}
+                            <td class="text-center">
+                                <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>
+                                </a>
+                            </td>
+                            {{-- Editar estudiantes --}}
                             <td class="text-center">
                                 <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
                                 </a>
                             </td>
+                            {{-- Eliminar estudiantes --}}
                             <td class="text-center">
                                 <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
                             </td>
