@@ -4,19 +4,17 @@
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-10">
-            <form action="" id="autocompletar">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
-                    </div>
-                    <input type="text" class="form-control"  id="autocomplete-input" class="autocomplete" placeholder="Nombre" aria-label="lead" aria-describedby="basic-addon1">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
                 </div>
-            </form>
+                <input type="text" class="form-control"  id="entradafilter" placeholder="Buscar" aria-label="lead" aria-describedby="basic-addon1">
+            </div>
             <br>
             @if (empty($archivos[0]))
                 <div class="text-center">No hay archivos</div>
             @else
-                <div class="card-columns">
+                <div class="card-columns contenidobusqueda">
                     @foreach ($archivos as $archivo)
                         <div id="archivo{{$archivo -> pk_archivo}}" class="card" href="{{route('archivos.show', $archivo -> pk_archivo)}}" target="_blank">
                             {{-- <img class="card-img-top" src="{{'/img/'.$archivo -> tipo.'.png'}}".png" alt="Card image cap"> --}}
@@ -31,8 +29,8 @@
                                 <p class="card-text">{{ucfirst($archivo -> descripcion)}}.</p>
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted ">
-                                    {{ucwords($archivo -> nombre.' '.$archivo -> apellido)}}
+                                <small class="text-muted" style="font-size:60%">
+                                    {{ucwords($archivo -> apellido)}}
                                 </small>
                                 @if (session('role') == "administrador")
                                     <div style="float: right">
@@ -52,4 +50,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('#entradafilter').keyup(function () {
+            var rex = new RegExp($(this).val(), 'i');
+            $('.contenidobusqueda .card').hide();
+            $('.contenidobusqueda .card').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+        });
+    });
+</script>
 @endsection
