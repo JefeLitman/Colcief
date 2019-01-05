@@ -168,9 +168,19 @@ class Todo extends Migration {
         Schema::create('recuperacion', function (Blueprint $table) {
             $table->unsignedInteger('pk_recuperacion')->primary();
             $table->float('nota')->nullable();
-            $table->string('acta', 80);
+            $table->string('observaciones', 255);
             $table->date('fecha_presentacion');
             $table->unsignedInteger('fk_nota_periodo');
+            $table->timestamps();
+
+        });
+
+        Schema::create('nivelacion', function (Blueprint $table) {
+            $table->unsignedInteger('pk_nivelacion')->primary();
+            $table->float('nota')->nullable();
+            $table->string('observaciones', 255);
+            $table->date('fecha_presentacion');
+            $table->unsignedInteger('fk_materia_boletin');
             $table->unsignedInteger('fk_empleado')->nullable();
             $table->timestamps();
 
@@ -228,6 +238,7 @@ class Todo extends Migration {
         Schema::dropIfExists('horario');
         Schema::dropIfExists('materia');
         Schema::dropIfExists('recuperacion');
+        Schema::dropIfExists('nivelacion');
         Schema::dropIfExists('fecha');
         Schema::dropIfExists('notificacion');
     }

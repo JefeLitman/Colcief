@@ -80,6 +80,11 @@ class Fks extends Migration {
         Schema::table('recuperacion', function (Blueprint $table) {
             $table->foreign('fk_nota_periodo')->references('pk_nota_periodo')->on('nota_periodo')
                 ->onUpdate('cascade')->onDelete('cascade');
+        });
+
+        Schema::table('nivelacion', function (Blueprint $table) {
+            $table->foreign('fk_materia_boletin')->references('pk_materia_boletin')->on('materia_boletin')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fk_empleado')->references('cedula')->on('empleado')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
@@ -138,7 +143,11 @@ class Fks extends Migration {
 
         Schema::table('recuperacion', function (Blueprint $table) { //Agregado By: Paola
             $table->dropForeign('recuperacion_fk_nota_periodo_foreign');
-            $table->dropForeign('recuperacion_fk_empleado_foreign');
+        });
+
+        Schema::table('nivelacion', function (Blueprint $table) { //Agregado By: Paola
+            $table->dropForeign('nivelacion_fk_materia_boletin_foreign');
+            $table->dropForeign('nivelacion_fk_empleado_foreign');
         });
     }
 }
