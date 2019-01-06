@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
+
 use App\Boletin;
 use App\MateriaBoletin;
 use App\Periodo;
@@ -25,6 +27,12 @@ class Estudiante extends Authenticatable {
     protected $dates = ['deleted_at'];
     protected $casts = ['discapacidad' => 'boolean', 'estado' => 'boolean'];
     protected $hidden = ['password'];
+
+    public function resetPassword(){
+        $this -> password = Hash::make($this -> pk_estudiante.'.'.$this->apellido.'.'.$this->nombre);
+        $this -> save();
+        return '{su codigo estudiantil}.{su apellido}.{su nombre} Ejemplo: 2143.rodriguez.marina';
+    }
 
     public function session(){
         return $this->attributes;

@@ -11,8 +11,9 @@ class LoginController extends Controller{
 
     public function __construct(){
         $this->middleware('guest')->except('logout');
+        $this->middleware('admin')->only('logout') ;
     }
-
+    
     public function __invoke(){
         return view('pantallas.login');
     }

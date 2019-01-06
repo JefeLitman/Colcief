@@ -11,7 +11,7 @@ use App\Http\Controllers\SupraController;
 class ArchivoController extends Controller{
 
     public function __construct (){
-        $this->middleware('admin:administrador,director,profesor,estudiante') -> only(['index', 'show']);
+        $this->middleware('admin') -> only(['index', 'show']);
         $this->middleware('admin:administrador') -> except(['index', 'show']);
     }
 

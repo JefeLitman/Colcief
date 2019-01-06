@@ -41,6 +41,7 @@ class ano_inicio extends Command {
             $p -> ano = $this->pasado + 1;
             $p -> nro_periodo = $periodo -> nro_periodo;
             $p -> save();
+            $p -> crearEstructuraDatos();
         }
 
         // se crean las mismas divisiones que el año pasado

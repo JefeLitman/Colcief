@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 class RoleMiddleware{
 
     public function handle($request, Closure $next, ...$guards){
+
+        if (empty($guards)) {
+            $guards = ['administrador', 'director', 'profesor', 'estudiante'];
+        }
         foreach ($guards as $guard) {
             $auth = Auth::guard($guard);
             if ($auth->check()) {
