@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Recuperacion;
 
-class RecuperacionController extends Controller
+class NivelacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +14,20 @@ class RecuperacionController extends Controller
      */
     public function index()
     {
+        $role=session('role');
+        switch($role){
+            case "administrador":
+                
+                break;
+            case "director":
+            case "profesor":
+                
+                break;
+            default:
+                //Aqui entras los estudiantes y los que no han logeado.
+                // Rol no valido.
+                return view('materiaspc.alertas.rolnovalido');
+        }
     }
 
     /**

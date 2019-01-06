@@ -176,6 +176,11 @@ Route::resource('/notasdivision','NotaDivisionController')->middleware('admin:pr
 /* RUTAS DE MATERIA BOLETIN */
 Route::resource('/materiasboletin','MateriaBoletinController')->middleware('admin:profesor');
 
+/* RUTAS DE NIVELACIONES */
+Route::resource('/nivelaciones','NivelacionController');
+Route::resource('/recuperaciones','RecuperacionController');
+
+
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
 

@@ -117,7 +117,8 @@ class MateriaPCController extends Controller
                 break;
             default:
                 // Cuando no encaja en ningun role
-                return "Su role no es valido";
+                // return "Su role no es valido";
+                return redirect("/login");
         }
         if(count($result)==0){
             return "Este usuario no tiene Materias_PC a su cargo o no hay instancias en Materia_PC";
@@ -143,9 +144,8 @@ class MateriaPCController extends Controller
             }
             $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->get();
             return view("materiaspc.crearMateriaPC",["materias"=>$materias,"cursos"=>$cursos,"profesores"=>$profesores]);
-        }else{
-            return "Solo los administradores pueden crear este tipo de instancias.";
         }
+        return redirect("/materiaspc");
     }
 
     /**
@@ -156,21 +156,26 @@ class MateriaPCController extends Controller
      */
     public function store(MateriaPCStoreController $request)
     {
-        $materiapc = (new MateriaPC)->fill($request->all());
+        if(session('role')=="administrador"){
+            $materiapc = (new MateriaPC)->fill($request->all());
 
-        // Buscando la respectiva materia
-        $materia = Materia::select("nombre","logros_custom")->where("pk_materia","=",$materiapc->fk_materia)->get();
+            // Buscando la respectiva materia
+            $materia = Materia::select("nombre","logros_custom")->where("pk_materia","=",$materiapc->fk_materia)->get();
 
-        // Asignando los valores que por defecto deben ser iguales que en la tabla materia.
-        $materiapc->nombre = $materia[0]['nombre'];
-        $materiapc->logros_custom = $materia[0]['logros_custom'];
-        try{
-            $materiapc->save();
-            $materiapc->crearEstructuraNotas();
-            return "Ha sido guardado con exito";
-        }catch(Exception $e){
-            return "Ha ocurido un error con el servidor, vuelva a intentarlo.";
+            // Asignando los valores que por defecto deben ser iguales que en la tabla materia.
+            $materiapc->nombre = $materia[0]['nombre'];
+            $materiapc->logros_custom = $materia[0]['logros_custom'];
+            try{
+                $materiapc->save();
+                $materiapc->crearEstructuraNotas();
+                // return "Ha sido guardado con exito";
+                return redirect("/materiaspc/".$materia->pk_materia_pc);
+            }catch(Exception $e){
+                return "Ha ocurido un error con el servidor, vuelva a intentarlo.";
+            }
         }
+        return redirect("/materiaspc");
+
     }
 
     /**
@@ -180,16 +185,19 @@ class MateriaPCController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.prefijo","curso.sufijo","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
+    {   
+        if (!empty($role)) {
+            $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.prefijo","curso.sufijo","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
 
-        if(empty($materiapc[0])){
-            return "No se ha encontrado la materia.";
-        }else{
-            $prefijo=($materiapc[0]->prefijo==0)?"Prescolar":$materiapc[0]->prefijo;
-            $materiapc[0]->curso=$prefijo."-".$materiapc[0]->sufijo;
-            return view("materiaspc.verMateriaPC",["materiapc"=>$materiapc[0]]);
+            if(empty($materiapc[0])){
+                return "No se ha encontrado la materia.";
+            }else{
+                $prefijo=($materiapc[0]->prefijo==0)?"Prescolar":$materiapc[0]->prefijo;
+                $materiapc[0]->curso=$prefijo."-".$materiapc[0]->sufijo;
+                return view("materiaspc.verMateriaPC",["materiapc"=>$materiapc[0]]);
+            }
         }
+        return redirect("/login");
     }
 
     /**
@@ -252,13 +260,8 @@ class MateriaPCController extends Controller
                     return view('materiaspc.editarMateriaPC_profesor',['materiapc'=>$materiapc[0]]);
                 }
                 break;
-
-            default:
-                //Aqui entras los estudiantes y los que no han logeado.
-                // Rol no valido.
-                return view('materiaspc.alertas.rolnovalido');
         }
-
+        return redirect('/login');
     }
 
     /**
@@ -378,7 +381,7 @@ class MateriaPCController extends Controller
         }
     }
 
-    public function planillas($pk_materia_pc,$pk_periodo){
+    private function planillas($pk_materia_pc,$pk_periodo){
         $materia_pc=MateriaPC::select('materia_pc.*','materia_pc.nombre as materia','curso.*','empleado.*')->where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->get()[0];
         $p=Periodo::where([['ano',date('Y')],['pk_periodo',$pk_periodo]])->get();
         $periodos=Periodo::where('ano',date('Y'))->get();
@@ -434,16 +437,32 @@ class MateriaPCController extends Controller
     }
 
     public function showPlanillas($pk_materia_pc,$pk_periodo){
-        return view('cursos.showPlanillaCurso',$this->planillas($pk_materia_pc,$pk_periodo));
+        $role=session('role');
+        switch ($role) {
+            case "administrador":
+                return view('cursos.showPlanillaCurso',$this->planillas($pk_materia_pc,$pk_periodo));
+                break;
+            case "director":
+            case "profesor":
+                $result=$this->planillas($pk_materia_pc,$pk_periodo);
+                if (session('user')->cedula==$result['materiapc']->fk_empleado) {
+                    return view('cursos.showPlanillaCurso',$result);
+                }
+                break;
+        }
+        return redirect("/materiaspc");
     }
 
     public function editarPlanillas($pk_materia_pc,$pk_periodo){
-        return view('cursos.editPlanillaCurso',$this->planillas($pk_materia_pc,$pk_periodo));
+        $role=session('role');
+        if ($role=="profesor") {
+            $result=$this->planillas($pk_materia_pc,$pk_periodo);
+            if (session('user')->cedula==$result['materiapc']->fk_empleado) {
+                return view('cursos.editPlanillaCurso',$result);
+            } 
+        }
+        return redirect("/planillas/$pk_materia_pc/periodos/$pk_periodo");
+        
     }
-
-    public function updatePlanillas($request){
-
-    }
-
 
 }
