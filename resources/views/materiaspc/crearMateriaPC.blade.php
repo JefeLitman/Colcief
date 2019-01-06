@@ -105,7 +105,9 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                <br>
                 {{-- Boton de enviar --}}
                 <div class="text-center">
                     <input type="submit" name="action" value="Enviar" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;">

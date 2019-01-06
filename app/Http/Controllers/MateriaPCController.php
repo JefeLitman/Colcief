@@ -36,19 +36,25 @@ class MateriaPCController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct(){
+        // $this->middleware('auth');
+     }
+
     public function index()
     {
         $user=session('user');
         $role=session('role');
         $url="";
 
+        // Contenedor del resultado
+        $result=[];
+
         #dd($user);
         switch($role){
             case "administrador":
                 // Cuando es admin
 
-                // Contenedor del resultado
-                $result=[];
 
                 // Busco las tuplas de materia_pc creadas el actual año
                 $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.fk_materia','materia_pc.nombre','curso.prefijo','curso.sufijo')->where('materia_pc.created_at','like','%'.date('Y').'%');
@@ -56,8 +62,8 @@ class MateriaPCController extends Controller
                 // Con esos valores realizo un join con empleado y curso
                 $materiaspc=$materiaspc->join('empleado', 'materia_pc.fk_empleado','=','empleado.cedula')->join('curso', 'materia_pc.fk_curso','=','curso.pk_curso')->get();
 
-                // Aqui extraigo las materias que tienen alguna tupla en materia_pc creadas en el actual año, y para que no se repita la materias las agrupo.
-                $materias=MateriaPC::select('fk_materia as pk_materia','nombre')->where('created_at','like','%'.date('Y').'%')->groupBy(['fk_materia','nombre'])->get();
+                // Aqui extraigo las materias creadas en el actual año.
+                $materias=Materia::where('created_at','like','%'.date('Y').'%')->get();
                 // El array asosiativo $result, se declara y se  declaran sus item como un array para poder
                 // ingresarles array's posteriormente. Es decir cada item del array asosiativo $result contendrá matrices.
                 // Ejemplo de lo que sería $result={"fk_materia":[[1,"edward","caballero","8-2"],[2,"edward","caballero","8-2"]],"fk_materia":[[3,"paola","caicedo","8-2"]]}
@@ -77,7 +83,6 @@ class MateriaPCController extends Controller
                 // Cuando es director...  que pase a profesor(Por eso omito el break).
             case "profesor":
                 // cuando es profesor
-                $result=[];
                 $periodos=Periodo::where('ano',date('Y'))->get();
                 $materiaspc = null;
                 // Busco las tuplas de materia_pc creadas el actual año, y ademas solo las que pertenescan al profesor logeado
@@ -119,13 +124,9 @@ class MateriaPCController extends Controller
                 // Cuando no encaja en ningun role
                 // return "Su role no es valido";
                 return redirect("/login");
+                
         }
-        if(count($result)==0){
-            return "Este usuario no tiene Materias_PC a su cargo o no hay instancias en Materia_PC";
-            //Sujeto a cambios.
-        }else{
-            return view($url,["result"=>$result]);
-        }
+        return view($url,["result"=>$result]);
     }
 
     /**
@@ -186,11 +187,13 @@ class MateriaPCController extends Controller
      */
     public function show($id)
     {   
+        $user=session('user');
+        $role=session('role');
         if (!empty($role)) {
             $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.prefijo","curso.sufijo","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
 
             if(empty($materiapc[0])){
-                return "No se ha encontrado la materia.";
+                return redirect("/materiaspc");
             }else{
                 $prefijo=($materiapc[0]->prefijo==0)?"Prescolar":$materiapc[0]->prefijo;
                 $materiapc[0]->curso=$prefijo."-".$materiapc[0]->sufijo;
