@@ -16,7 +16,8 @@ class NotaController extends Controller
 
     public function __construct()
     {
-       $this->middleware('admin:director,profesor,administrador');
+      $this->middleware('admin:director,profesor,administrador,estudiante')->only('index');
+      $this->middleware('admin:director,profesor,administrador')->except('index');
     }
     /**
      * Display a listing of the resource.
@@ -25,11 +26,23 @@ class NotaController extends Controller
      */
     public function index($pk_materia_pc,$pk_periodo)
     {
+      $infoAdicional = MateriaPC::find($pk_materia_pc);
+      switch (session('role')) {
+        case 'estudiante':
+          if (!(session('user')['fk_curso']==$infoAdicional['fk_curso'])) {
+            return '¿Qué estás intentando?';
+          }
+          break;
+        default:
+          if (!$this->verificarProfesor($pk_materia_pc,session('user')['cedula'])) {
+            return 'Este curso no le pertenece.';
+          }
+          break;
+      }
       $NotasMateriaPC = Nota::where([
         ['fk_periodo','=',$pk_periodo],
         ['fk_materia_pc','=',$pk_materia_pc]
       ])->get();
-      $infoAdicional = MateriaPC::find($pk_materia_pc);
       $Notas = [];
       foreach ($NotasMateriaPC as $Nota) {
         $nombreDiv = Division::find($Nota['fk_division'])['nombre'];
@@ -124,7 +137,7 @@ class NotaController extends Controller
     public function show($pk_nota)
     {
         $unidad = Nota::find($pk_nota);
-        if (!empty($unidad) and $this->verificarProfesor($unidad,session('user')['cedula'])) {
+        if (!empty($unidad) and $this->verificarProfesor($unidad['fk_materia_pc'],session('user')['cedula'])) {
           $datos = [$this->arrayzar($unidad)];
           return view('notas.verNota',['datos' => $datos]);
         }
@@ -140,7 +153,7 @@ class NotaController extends Controller
     public function edit($pk_nota)
     {
         $Nota = Nota::find($pk_nota);
-        if ($this->verificarProfesor($Nota,session('user')['cedula'])) {
+        if ($this->verificarProfesor($Nota['fk_materia_pc'],session('user')['cedula'])) {
           if (!empty($Nota)) {
             $divisiones = Division::select('pk_division','nombre')->get();
             $materiasPC = $this->listarMateriasPC(session('user')['cedula']);
@@ -222,7 +235,7 @@ class NotaController extends Controller
      */
     public function destroy(Request $request, $pk_nota){
       $unidad = Nota::find($pk_nota);
-      if ($this->verificarProfesor($unidad,session('user')['cedula'])) {
+      if ($this->verificarProfesor($unidad['fk_materia_pc'],session('user')['cedula'])) {
         if (!empty($unidad)) {
           $unidad->delete();
           $unidad->eliminacionNota();
@@ -257,10 +270,10 @@ class NotaController extends Controller
     * @param string $cedula_prof Es la cédula del usuario
     * @return boolean
     */
-    private function verificarProfesor($nota,$cedula_prof)
+    private function verificarProfesor($pk_materia_pc,$cedula_prof)
     {
       if (!($cedula_prof===null)) {
-        $materiaPC = MateriaPC::find($nota['fk_materia_pc']);
+        $materiaPC = MateriaPC::find($pk_materia_pc);
         if ($materiaPC['fk_empleado']==$cedula_prof or session('user')['role']==='0') {
           return true;
         }
