@@ -376,7 +376,7 @@ class MateriaPCController extends Controller
         }
     }
 
-    private function planillas($pk_materia_pc,$pk_periodo){
+    private function planillas($pk_materia_pc, $pk_periodo){
         $materia_pc=MateriaPC::select('materia_pc.*','materia_pc.nombre as materia','curso.*','empleado.*')->where('pk_materia_pc',$pk_materia_pc)->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->get()[0];
         $p=Periodo::where([['ano',date('Y')],['pk_periodo',$pk_periodo]])->get();
         $periodos=Periodo::where('ano',date('Y'))->get();
@@ -393,7 +393,11 @@ class MateriaPCController extends Controller
             foreach ($ns as $n) {
                 array_push($notas[$n->fk_periodo][$n->fk_division],$n);
             }
-            $estudiantes=MateriaBoletin::where('materia_boletin.fk_materia_pc',$pk_materia_pc)->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->get();
+            if (session('role')=='estudiante') {
+                $estudiantes=MateriaBoletin::where([['materia_boletin.fk_materia_pc',$pk_materia_pc],['estudiante.pk_estudiante',session('user')['pk_estudiante']]])->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->get();
+            } else {
+                $estudiantes=MateriaBoletin::where('materia_boletin.fk_materia_pc',$pk_materia_pc)->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->get();
+            }
             $notaE=[];
             $notaDiv=[];
             $notaPer=[];
@@ -433,16 +437,21 @@ class MateriaPCController extends Controller
 
     public function showPlanillas($pk_materia_pc,$pk_periodo){
         $role=session('role');
-        switch ($role) {
+        switch ($role) { 
             case "administrador":
                 return view('cursos.showPlanillaCurso',$this->planillas($pk_materia_pc,$pk_periodo));
                 break;
             case "director":
             case "profesor":
                 $result=$this->planillas($pk_materia_pc,$pk_periodo);
-                if (session('user')->cedula==$result['materiapc']->fk_empleado) {
+                if (session('user')['cedula']==$result['materiapc']->fk_empleado) {
                     return view('cursos.showPlanillaCurso',$result);
                 }
+                break;
+            case "estudiante":
+                $result=$this->planillas($pk_materia_pc,$pk_periodo);
+                
+                return view('cursos.showPlanillaCurso',$result);
                 break;
         }
         return redirect("/materiaspc");
@@ -452,7 +461,7 @@ class MateriaPCController extends Controller
         $role=session('role');
         if ($role=="profesor") {
             $result=$this->planillas($pk_materia_pc,$pk_periodo);
-            if (session('user')->cedula==$result['materiapc']->fk_empleado) {
+            if (session('user')['cedula']==$result['materiapc']->fk_empleado) {
                 return view('cursos.editPlanillaCurso',$result);
             } 
         }

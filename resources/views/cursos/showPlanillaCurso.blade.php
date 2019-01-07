@@ -1,5 +1,6 @@
-@extends('contenedores.'.((session('role')=='administrador')?'admin':'profesor'))
-@section('contenedor_'.((session('role')=='administrador')?'admin':'profesor'))
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
+{{-- Esta vista es para todos los roles por este motivo el banner se adapta y algunos botones no aparecen segun sea el role --}}
 @section('titulo','Planilla '.$materiapc->materia)
 <br id="br">
 @php
@@ -21,7 +22,7 @@
                         </tr>
                         <tr>
                         <td><b>Docente: </b> {{ucwords($materiapc->nombre)}} {{ucwords($materiapc->apellido)}}</td>
-                        <td><b>Periodo: </b> {{ucwords($g[$p->nro_periodo])}}</td>
+                        <td><b>Periodo: </b> {{$g[$p->nro_periodo]}}</td>
                         <td><b>Año: </b> {{$materiapc->created_at->year}}</td>
                         </tr>
                     </tbody>
@@ -58,7 +59,6 @@
 
                             @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
                                 {{-- Encabezado: Notas--}}
-
                                 <th class="table-secondary" data-toggle="tooltip" data-placement="bottom" title="{{$n->descripcion}}" >
                                     {{$n->nombre}} <span class="badge badge-pill badge-secondary">{{$n->porcentaje}}%</span>
                                 </th>
@@ -73,7 +73,7 @@
                         <tr>
                             <td>
                                 {{-- Nombre del estudiante --}}
-                                {{$e->nombre}} {{$e->apellido}}
+                                {{ucwords($e->nombre)}} {{ucwords($e->apellido)}}
                             </td>
                             <td>
                                 {{-- Numero de inasistencias por el periodo seleccionado del estudiante --}}
