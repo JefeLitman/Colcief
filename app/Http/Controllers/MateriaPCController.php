@@ -38,7 +38,7 @@ class MateriaPCController extends Controller
      */
 
      public function __construct(){
-        // $this->middleware('auth');
+        $this->middleware('admin');
      }
 
     public function index()
@@ -120,11 +120,6 @@ class MateriaPCController extends Controller
                 //Y puede ser vista desde los estudiantes, a traves de materia_boletin.
                 return "Los estudiantes no tienen acceso a esta sección (MateriaPCController@Index).";
                 break;
-            default:
-                // Cuando no encaja en ningun role
-                // return "Su role no es valido";
-                return redirect("/login");
-                
         }
         return view($url,["result"=>$result]);
     }
@@ -338,18 +333,15 @@ class MateriaPCController extends Controller
                     if($materiapc->logros_custom != $request->logros_custom){
                         $materiapc->logros_custom=$request->logros_custom;
                         $materiapc->save();
-                        return redirect("/materiaspc/$id");
-                    }else{
-                        // No hay ningun cambio para guardar.
-                        return view('materiaspc.alertas.nohaycambio');
                     }
+                    return redirect("/materiaspc/$id");
                 }
                 break;
 
             default:
                 //Aqui entran los estudiantes y los que no han logeado.
                 // Rol no valido
-                return view('materiaspc.alertas.novalidopro');
+                return redirect('/materiaspc');
         }
     }
 
