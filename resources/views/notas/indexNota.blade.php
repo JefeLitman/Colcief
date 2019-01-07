@@ -38,8 +38,13 @@
                                       <th scope="col" style="color:#00695c" class="text-center"><i class="fas fa-percentage"></i></th>
                                       {{-- Descripción --}}
                                       <th scope="col" style="color:#00695c" class="text-center">Descripción</th>
-                                      {{-- Acciones --}}
-                                      <th scope="col" style="color:#00695c" class="text-center" colspan="3">Acciones</th>
+                                      {{--  Acciones  --}}
+                                      @if ((session('role')=='administrador') || (session('role')=='profesor'))
+                                        <th scope="col" style="color:#00695c" class="text-center" colspan="3">Acciones
+                                        </th>
+                                      @else
+                                        <th></th>
+                                      @endif
                                   </tr>
                               </thead>
                               <tbody>
@@ -51,24 +56,30 @@
                                           <td class="text-center">{{$nota['porcentaje']}}</td>
                                           {{-- Descripción --}}
                                           <td class="text-center">{{$nota['descripcion']}}</td>
-                                          {{-- Editar --}}
-                                          <td class="text-center"><a href="{{ route('notas.edit',$nota['pk_nota']) }}"><i class="fas fa-edit" style="color:#00695c"></i>
-                                          </a></td>
-                                          {{-- Ver --}}
-                                          {{-- <td class="text-center">
-                                              <a href="{{ route('notas.show',$nota['pk_nota']) }}" title="Ver notas" style="color:#00695c">
-                                                  <i class="fas fa-eye"></i>
-                                              </a>
-                                          </td> --}}
-                                          {{-- Eliminar --}}
-                                          <td class="text-center">
-                                              <form action="{{route('notas.destroy',$nota['pk_nota'])}}" method = "post">
-                                                  @csrf
-                                                  @method("DELETE")
-                                                  {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
-                                                  <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
-                                              </form>
-                                          </td>
+
+                                          {{--  Acciones para admin y profesor  --}}
+                                          @if ((session('role')=='administrador') || (session('role')=='profesor'))
+                                            {{-- Editar --}}
+                                            <td class="text-center"><a href="{{ route('notas.edit',$nota['pk_nota']) }}"><i class="fas fa-edit" style="color:#00695c"></i>
+                                            </a></td>
+                                            {{-- Ver --}}
+                                            {{-- <td class="text-center">
+                                                <a href="{{ route('notas.show',$nota['pk_nota']) }}" title="Ver notas" style="color:#00695c">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td> --}}
+                                            {{-- Eliminar --}}
+                                            <td class="text-center">
+                                                <form action="{{route('notas.destroy',$nota['pk_nota'])}}" method = "post">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    {{-- <i class="fas fa-trash-alt" style="color:#c62828" type="submit"></i> --}}
+                                                    <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
+                                                </form>
+                                            </td>
+                                        @else
+                                        <th></th>
+                                        @endif
                                       </tr>
                                   @endforeach
                               </tbody>
@@ -90,8 +101,13 @@
         @endif
     </div>
     <br>
+    {{--  Boton crear  --}}
+    @if ((session('role')=='administrador') || (session('role')=='profesor'))
     <div class="text-center" style="float:center;">
         <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/crear/{{$infoMateria->pk_materia_pc}}">Crear nota</a>
     </div>
+  @else
+    <div></div>
+  @endif
 </div>
 @endsection

@@ -1,16 +1,16 @@
-@extends('contenedores.profesor')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo',ucwords(session('user')['nombre']))
-@section('contenedor_profesor')
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 
 <div class="container" style="background:#fafafa !important;">
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                No leidas 
+                No leidas
                 </button>
                 <button class="btn btn-link collapsed float-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <span id="nota" class="badge badge-pill badge-info ">{{count($activas)}}</span> 
+                    <span id="nota" class="badge badge-pill badge-info ">{{count($activas)}}</span>
                 </button>
             </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -38,7 +38,7 @@
                 Leidas
                 </button>
                 <button class="btn btn-link collapsed float-right" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <span id="nota" class="badge badge-pill badge-info ">{{count($inactivas)}}</span> 
+                    <span id="nota" class="badge badge-pill badge-info ">{{count($inactivas)}}</span>
                 </button>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">

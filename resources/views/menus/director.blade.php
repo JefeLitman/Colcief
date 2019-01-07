@@ -1,6 +1,6 @@
 <!-- Menu principal para el estudiante -->
 <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
-   
+
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar" class="active">
@@ -34,10 +34,10 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>
-                
+
             </ul>
         </nav>
-	
+
         <!-- Page Content  -->
         <div id="content">
 
@@ -55,32 +55,32 @@
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{ url('empleados/principal/1') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
-                    
+
                             </li>
                             <li id="notification_li">
                                 <a href="#" id="notificationLink" class="nav-link"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary"></span></a>
-                                
+
                                 <div id="notificationContainer">
                                 <div id="notificationTitle">Notificaciones</div>
                                 <div id="notificationsBody" class="notifications"><table id="noo" class="table table-hover"></table></div>
                                 <div id="notificationFooter"><a href="{{ url('/notificaciones') }}">ver todas</a></div>
                                 </div>
-                                
+
                             </li>
                             <li class="nav-item active">
-                                    <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>								
+                                    <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
                                 </li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-    
 
-    
+
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
- 
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
