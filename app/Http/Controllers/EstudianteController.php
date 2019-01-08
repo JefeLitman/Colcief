@@ -100,33 +100,46 @@ class EstudianteController extends Controller{
         }
         $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get();
         if (!empty($estudiante[0])) {
-          $acudiente= Acudiente::where('pk_acudiente', $estudiante[0]->fk_acudiente)->get();
-          if(!empty($acudiente[0])){
-            return view("estudiantes.verEstudiante",[
-                       'estudiante'=>$estudiante[0],
-                       'acudiente' =>$acudiente[0]
-            ]);
-          }
-          return 'Error en el estudiante: No tiene acudientes';
+            $acudiente= Acudiente::where('pk_acudiente', $estudiante[0]->fk_acudiente)->get();
+            $curso = Curso::find($estudiante[0]->fk_curso);
+            if(!empty($acudiente[0])){
+                return view("estudiantes.verEstudiante",[
+                    'estudiante' => $estudiante[0],
+                    'acudiente' => $acudiente[0],
+                    'curso' => $curso
+                ]);
+            }
+            $mensaje = 'El estudiante '.$estudiante[0]->nombre.' '.$estudiante[0]->apellido.' tiene datos corruptos, recargue e intente nuevamente';
+            return back() -> with('false', $mensaje);
         }
-        return 'Estudiante no encontrado';
+        $mensaje = 'No se encuentra registros de este estudiante';
+        return back() -> with('false', $mensaje);
     }
 
     public function edit($pk_estudiante){
-        $estudiante = Estudiante::findOrFail($pk_estudiante);
-        $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente);
-        $cursos=[];
-        if($estudiante->grado!=null and $estudiante->grado!="11"){
-            $cursos=Curso::where([['ano',date('Y')],['prefijo',$estudiante->grado+1]])->get();
+        $estudiante = Estudiante::find($pk_estudiante);
+        if(!empty($estudiante)){
+            $acudiente = Acudiente::find($estudiante->fk_acudiente);
+            if(!empty($acudiente)){
+                $cursos=[];
+                if($estudiante->grado!=null and $estudiante->grado!="11"){
+                    $cursos=Curso::where([['ano',date('Y')],['prefijo',$estudiante->grado+1]])->get();
+                }
+                if($estudiante->grado==null){
+                    $cursos=Curso::where('ano',date('Y'))->get();
+                }
+                return view('estudiantes.editarEstudiante', [
+                    'estudiante' => $estudiante,
+                    'acudiente'=> $acudiente,
+                    'cursos'=>$cursos
+                ]);
+            }
+            $mensaje = 'El estudiante '.$estudiante[0]->nombre.' '.$estudiante[0]->apellido.' tiene datos corruptos, recargue e intente nuevamente';
+            return back() -> with('false', $mensaje);
         }
-        if($estudiante->grado==null){
-            $cursos=Curso::where('ano',date('Y'))->get();
-        }
-        return view('estudiantes.editarEstudiante', [
-            'estudiante' => $estudiante,
-            'acudiente'=> $acudiente,
-            'cursos'=>$cursos
-        ]);
+        $mensaje = 'No se encuentra registros de este estudiante';
+        return back() -> with('false', $mensaje);
+        
     }
 
     public function update(EstudianteUpdateController $request, $pk_estudiante){
@@ -175,14 +188,14 @@ class EstudianteController extends Controller{
 
     public function perfil(Request $request, $pk_estudiante){
         // dd('hola');
-        $estudiante = Estudiante::findOrFail($pk_estudiante);
+        $estudiante = Estudiante::find(session('user')['pk_estudiante']);
         $guard=session('role');
         if($request->hasFile('foto')){
             $nombre = 'estudiante'.$estudiante->pk_estudiante;
             $estudiante->foto = SupraController::subirArchivo($request,$nombre,'foto','perfil');
         }
         $estudiante->save();
-        $var = Estudiante::findOrFail($pk_estudiante);
+        $var = Estudiante::findOrFail(session('user')['pk_estudiante']);
         session(['user'=> $var->session(),'role' => $guard]);
         // dd(Auth::guard($guard)->user()->session());
         return redirect(url('/estudiantes/principal'));

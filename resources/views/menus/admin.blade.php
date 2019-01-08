@@ -72,7 +72,20 @@
 				</li>
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-user-check"></i> Nivelaciones*</a>
-				</li>
+                </li>
+                <li @if (Request::path()=="/archivos") class="active" @endif >
+                    <a href="#archivoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="far fa-folder-open"></i> Documentos
+                    </a>
+                    <ul class="collapse list-unstyled" id="archivoSubmenu">
+                        <li>
+                            <a href="{{ url('/archivos/crear') }}"><i class="fas fa-cloud-upload-alt"></i>Subir</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/archivos') }}"><i class="fas fa-eye"></i>Ver</a>
+                        </li>
+                    </ul>
+                </li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>

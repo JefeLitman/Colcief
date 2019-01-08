@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Hash;
 class EmpleadoController extends Controller{
 
     public function __construct (){
-        $this->middleware('admin:administrador');
+        $this->middleware('admin:administrador') -> except(['perfil']);
+        $this->middleware('admin:administrador,director,profesor') -> only(['perfil']);
     }
     
     public function index(){
@@ -62,11 +63,12 @@ class EmpleadoController extends Controller{
           $cedula = ''.session('user')['cedula'];
         }
         $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso')->get();
-        $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') -> groupBy('curso.pk_curso') ->toSql();
-        dd($cursos);
+        $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') -> groupBy('curso.pk_curso') -> get();
+        $cargo = ['Administrador', 'Director', 'Profesor'];
+
         if(!empty($empleado[0])){
             // dd($empleado);
-            return view("empleados.verEmpleado",['empleado'=> $empleado[0], 'cursos' => $cursos]);
+            return view("empleados.verEmpleado",['empleado'=> $empleado[0], 'cursos' => $cursos, 'cargo' => $cargo]);
         }
         /*@Autor Karen*/
         //Colocandole estilo al mensaje("Empleado no encontrado").

@@ -1,9 +1,9 @@
-@extends('contenedores.admin')
-@section('contenedor_admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin': session('role')))
+@section('contenedor_'.((session('role')=='administrador')?'admin': session('role')))
 @section('titulo','Archivos')
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
-        <div class="col-10">
+        <div class="col-md-10">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
@@ -32,16 +32,16 @@
                                 <small class="text-muted" style="font-size:60%">
                                     {{ucwords($archivo -> apellido)}}
                                 </small>
-                                @if (session('role') == "administrador")
-                                    <div style="float: right">
-                                        <a href="{{route('archivos.show', $archivo -> pk_archivo)}}" title="Descargar">
-                                            <i class="fas fa-cloud-download-alt"></i>
-                                        </a>
+                                <div style="float: right">
+                                    <a href="{{route('archivos.show', $archivo -> pk_archivo)}}" title="Descargar">
+                                        <i class="fas fa-cloud-download-alt"></i>
+                                    </a>
+                                    @if (session('role') == "administrador")
                                         <span padre="archivo{{$archivo -> pk_archivo}}" class="delete" ruta="archivos" identificador="{{$archivo -> pk_archivo}}" title="Eliminar" >
                                             <i class="fas fa-trash-alt" style="color:#c62828"></i>
                                         </span>
-                                    </div>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     @endforeach

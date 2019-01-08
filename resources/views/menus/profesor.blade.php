@@ -28,6 +28,11 @@
                 <li @if (Request::path()=="") class="active" @endif >
                     <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file"></i> Plantillas*</a>
                 </li>
+                <li @if (Request::path()=="/archivos") class="active" @endif >
+                    <a href="{{ url('/archivos') }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="far fa-folder-open"></i> Documentos
+                    </a>
+                </li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>

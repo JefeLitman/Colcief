@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class NotificacionController extends Controller {
 
     public function __construct(){
-        // $this->middleware('admin:administrador');
+        $this->middleware('admin:administrador,director,profesor');
     }
     
     public function __invoke(Request $request){
