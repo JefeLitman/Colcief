@@ -1,6 +1,6 @@
-@extends('contenedores.'.((session('role')=='administrador')?'admin':'profesor'))
-@section('contenedor_'.((session('role')=='administrador')?'admin':'profesor'))
+@extends('contenedores.'.((session('role')=='administrador')?'admin':session('role')))
 @section('titulo','Notas')
+@section('contenedor_'.((session('role')=='administrador')?'admin':session('role')))
 <br id="br">
 <div class="container" style="background:#fafafa !important;">
     <div class="card bg-light border-info">

@@ -115,10 +115,10 @@ class MateriaPCController extends Controller
                 break;
             case "estudiante":
                 // Cuando es estudiantes
-                //Para los estudiantes esta la llamada materia_boletin.
-                //La tabla solo puede ser modificada por los empleados.
-                //Y puede ser vista desde los estudiantes, a traves de materia_boletin.
-                return "Los estudiantes no tienen acceso a esta sección (MateriaPCController@Index).";
+                $materias=MateriaPC::join('materia_boletin','materia_boletin.fk_materia_pc','=','materia_pc.pk_materia_pc')->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin');
+                $materias=$materias->where('boletin.fk_estudiante',$user['pk_estudiante'])->get();
+                $periodos=Periodo::where('ano',date('Y'))->get();
+                return view('materiaspc.listaMateriasPC_estudiante',["materias"=>$materias,'periodos'=>$periodos]);
                 break;
         }
         return view($url,["result"=>$result]);
@@ -394,8 +394,10 @@ class MateriaPCController extends Controller
                 array_push($notas[$n->fk_periodo][$n->fk_division],$n);
             }
             if (session('role')=='estudiante') {
+                //Si es un estudiante que solo muestre a el mismo 
                 $estudiantes=MateriaBoletin::where([['materia_boletin.fk_materia_pc',$pk_materia_pc],['estudiante.pk_estudiante',session('user')['pk_estudiante']]])->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->get();
             } else {
+                //Muestra a todos los estudiantes
                 $estudiantes=MateriaBoletin::where('materia_boletin.fk_materia_pc',$pk_materia_pc)->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->get();
             }
             $notaE=[];
@@ -449,9 +451,10 @@ class MateriaPCController extends Controller
                 }
                 break;
             case "estudiante":
-                $result=$this->planillas($pk_materia_pc,$pk_periodo);
-                
-                return view('cursos.showPlanillaCurso',$result);
+                $result=$this->planillas($pk_materia_pc,$pk_periodo);    
+                if (count($result['estudiantes'])!=0) {
+                    return view('cursos.showPlanillaCurso',$result);
+                }
                 break;
         }
         return redirect("/materiaspc");
@@ -459,7 +462,7 @@ class MateriaPCController extends Controller
 
     public function editarPlanillas($pk_materia_pc,$pk_periodo){
         $role=session('role');
-        if ($role=="profesor") {
+        if ($role=="profesor" or $role=="director") {
             $result=$this->planillas($pk_materia_pc,$pk_periodo);
             if (session('user')['cedula']==$result['materiapc']->fk_empleado) {
                 return view('cursos.editPlanillaCurso',$result);
