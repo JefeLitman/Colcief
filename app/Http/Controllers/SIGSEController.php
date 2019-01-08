@@ -60,11 +60,11 @@ class SIGSEController extends Controller
     {
       function categorizar($categorias,$genero,$categoria)
       {
-        if ($genero=='M') {
+        if ($genero=='m') {
           $categorias[$categoria][0]++;
-        }else{
+        }elseif ($genero=='f') {
           $categorias[$categoria][1]++;
-        }
+        } //No hace nada si el género es indeterminado
         return $categorias;
       }
       $NotasFinalesDeEstudiantes = MateriaBoletin::select('pk_materia_boletin','nota_materia','genero')->
