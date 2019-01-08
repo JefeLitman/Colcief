@@ -3,7 +3,7 @@
 @section('titulo','Lista Empleados')
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
-        <div class="col-11">
+        <div class="col-md-10">
             <form action="" id="autocompletar">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
