@@ -21,12 +21,7 @@
 				</li>
                 <li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion*</a>
-                </li>
-                <li @if (Request::path()=="/archivos") class="active" @endif >
-                    <a href="{{ url('/archivos') }}">
-                        <i class="far fa-folder-open"></i> Documentos
-                    </a>
-                </li>
+                </li>                
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>
