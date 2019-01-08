@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Nivelacion;
+use App\Recuperacion;
 
 class NivelacionController extends Controller
 {
@@ -23,8 +25,12 @@ class NivelacionController extends Controller
             case "profesor":
                 
                 break;
+            case "estudiante":
+                
+                return view('nivelaciones.listaNivelaciones_estudiante');
+                break;
             default:
-                //Aqui entras los estudiantes y los que no han logeado.
+                //Aqui entras los que no han logeado.
                 // Rol no valido.
                 return view('materiaspc.alertas.rolnovalido');
         }
