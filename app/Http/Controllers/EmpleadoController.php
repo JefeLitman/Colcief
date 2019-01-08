@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Empleado;
 use App\Curso;
 use App\Notificacion;
+use App\MateriaPC;
 
 // requests
 use App\Http\Requests\EmpleadoStoreController;
@@ -61,8 +62,11 @@ class EmpleadoController extends Controller{
           $cedula = ''.session('user')['cedula'];
         }
         $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso')->get();
+        $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') -> groupBy('curso.pk_curso') ->toSql();
+        dd($cursos);
         if(!empty($empleado[0])){
-            return view("empleados.verEmpleado",['empleado'=>$empleado[0]]);
+            // dd($empleado);
+            return view("empleados.verEmpleado",['empleado'=> $empleado[0], 'cursos' => $cursos]);
         }
         /*@Autor Karen*/
         //Colocandole estilo al mensaje("Empleado no encontrado").

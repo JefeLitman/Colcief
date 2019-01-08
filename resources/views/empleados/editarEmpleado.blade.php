@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            {{-- correo --}}
+                            {{-- email --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Correo</small></strong></label>
@@ -91,7 +91,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-at"></i></span>
                                         </div>
-                                        <input type="email" id="correo" name="correo"  value="{{$empleado->correo}}" class="form-control form-control-sm" value="@eachError('correo', $errors)@endeachError">
+                                        <input type="email" id="email" name="email"  value="{{$empleado->email}}" class="form-control form-control-sm" value="@eachError('email', $errors)@endeachError">
                                     </div>
                                 </div>
                             </div>

@@ -186,3 +186,11 @@ Route::get('/SIGSE/{pk_materia_pc}','SIGSEController@getNotaMateriaEstudiantes')
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
+
+Route::get('/password', 'ResetPassword@form') -> name('password.dates');
+Route::post('/password', 'ResetPassword@recuperacion') -> name('password.authentication');
+
+Route::post('/password/email', 'ResetPassword@SendResetLinkEmail') -> name('password.email');
+Route::get('/password/reset', 'ResetPassword@showLinkRequestForm') -> name('password.request');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm') -> name('password.reset');

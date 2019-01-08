@@ -161,7 +161,8 @@ class Todo extends Migration {
             //$table->string('director', 50)->nullable(); //Borrado By: Paola
             $table->unsignedInteger('fk_curso')->nullable(); //Foranea, curso del cual el empleado es director //Agregado By:Paola
             $table->boolean('estado')->nullable()->default(true);
-            $table->string('foto')->default('/storage/default.png');
+            $table->string('foto')->default('/storage/perfil/default.png');
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -243,5 +244,6 @@ class Todo extends Migration {
         Schema::dropIfExists('nivelacion');
         Schema::dropIfExists('fecha');
         Schema::dropIfExists('notificacion');
+        Schema::dropIfExists('archivo');
     }
 }

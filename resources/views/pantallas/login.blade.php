@@ -30,6 +30,7 @@
             </div>
 
             <div class="form-check">
+              <a href="/password" class="float-left"><small>¿Olvidate tu contraseña?</small></a>
               <button type="submit" class="btn btn-login float-right">Iniciar Sesión</button>
             </div>
 

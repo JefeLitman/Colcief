@@ -12,8 +12,7 @@ trait SendsPasswordResetEmails
      *
      * @return \Illuminate\Http\Response
      */
-    public function showLinkRequestForm()
-    {
+    public function showLinkRequestForm(){
         return view('auth.passwords.email');
     }
 
@@ -31,7 +30,7 @@ trait SendsPasswordResetEmails
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
         $response = $this->broker()->sendResetLink(
-            $request->only('email')
+            $request->except('_token')
         );
 
         return $response == Password::RESET_LINK_SENT

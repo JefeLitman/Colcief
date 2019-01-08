@@ -1,59 +1,74 @@
 @extends('contenedores.admin')
 @section('titulo',' Ver empleado')
 @section('contenedor_admin')
+
+<style>
+    @media (max-width: 576px) {
+		.g {
+			display: none !important;
+		}
+	}
+</style>
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $empleado --}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>EmpleadoController.php  funcion show()
 		 @Autor Paola C. --}}
     {{-- URL: localhost:8000\empleados\{pk_empleado} --}}
-<br>
-<div class="container" style="background:#fafafa !important;">
-    <h4 class="text-center">
-        Datos de {{$empleado->nombre}} {{$empleado->apellido}}
-    </h4>
-    <br>
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card text-center" style="background-color: rgba(0,0,0,.03) !important; float:center !important; border-color: #17a2b8 !important; border-radius:0.25rem !important;">
-                <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap" style="padding: 5px 5px 5px 5px;">
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover mr-auto">
-                        <thead style="background-color: rgba(0,0,0,.03) !important;">
-                            <tr>
-                                <th scope="col" style="color:#0a7788" class="text-center">Cedula</th>
-                                <th scope="col" style="color:#0a7788" class="text-center">Correo</th>
-                                <th scope="col" style="color:#0a7788" class="text-center">Dirección</th>
-                                <th scope="col" style="color:#0a7788" class="text-center">Profesión</th>
-                                <th scope="col" style="color:#0a7788" class="text-center">Rol</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center">{{$empleado->cedula}}</td>
-                                <td class="text-center">{{$empleado->correo}}</td>
-                                <td class="text-center">{{$empleado->direccion}}</td>
-                                <td class="text-center">{{$empleado->titulo}}</td>
-                                <td class="text-center">
-                                    @php
-                                        $role=["Administrador","Director","Profesor"]
-                                    @endphp
-                                    @foreach ($role as $i=>$value)
-                                        @if (intval($empleado->role)==$i)
-                                            {{$value}}
-                                        @endif
+    <div class="container">
+            <div class="row justify-content-center" style="background-color: #fafafa !important;">
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card">
+                                <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
+                                <div class="card-footer" title="Cédula">
+                                    <div class="float-left g">Cédula</div>
+                                    <div class="text-muted" style="text-align: right;">{{$empleado->cedula}}</div>
+                                </div>
+                                <div class="card-footer" title="Correo Electronico" >
+                                    <div class="float-left g">Email</div>
+                                    <div class="text-muted" style="text-align: right;">{{$empleado->email}}</div>
+                                </div>
+                                <div class="card-footer" title="Dirección">
+                                    <div class="float-left g">Dirección</div>
+                                    <div class="text-muted" style="text-align: right;">{{ucwords($empleado->direccion)}}</div>
+                                </div>
+                                <div class="card-footer" title="Titulo">
+                                    <div class="float-left g">Titulo</div>
+                                    <div class="text-muted" style="text-align: right;">{{ucwords($empleado->titulo)}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            @if (!empty($empleado->prefijo))
+                                <div class="card">
+                                    <div class="card-header">
+                                        Director del curso {{$empleado->prefijo.'-'.$empleado->sufijo}}
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="card">
+                                <div class="card-header">
+                                    Cursos Asignados
+                                </div>
+                                @if (!empty($cursos[0]))
+                                    @foreach ($cursos as $curso)
+                                        <div class="card-footer">
+                                            <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">{{$curso -> prefijo.'-'.$curso -> sufijo}}</a>
+                                        </div>
                                     @endforeach
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                @else
+                                    <div class="card-footer">No tiene cursos asignados</div>
+                                @endif 
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<br>
+    
+
 @endsection

@@ -1,9 +1,7 @@
 @extends('contenedores.admin')
 @section('contenedor_admin')
 @section('titulo','Estudiantes/Grado')
-<div id="br"></div>
-@csrf
-<div class="container" style="background:#fafafa !important;">
+ <div class="container" style="background:#fafafa !important;">
     @php
        $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
     @endphp

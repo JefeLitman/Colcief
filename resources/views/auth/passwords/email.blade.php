@@ -1,7 +1,48 @@
-@extends('pantallas.app')
-
+@extends('contenedores.sesion')
+@section('titulo','Inicio de Sesion')
 @section('content')
-<div class="container">
+<br>
+<div class="container" style="background:#fff !important;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="margin-top:40px">
+                <div class="card-header">{{ __('Recuperar Contraseña') }}</div>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
+                        @csrf
+                        <input type="hidden" value="{{$role}}" name="role">
+                        <input type="hidden" value="{{$cedula}}" name="cedula">
+
+                        <div class="form-group">
+                            <label for="email">{{ __('Correo Electronico') }}</label>
+                            <input id="email" type="email" class="form-control form-control-sm{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class=" btn btn-success btn-block" style="background-color:  #17a2b8 !important; border-color:  #17a2b8 !important;">
+                                {{ __('Enviar') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -43,5 +84,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
