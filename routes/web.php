@@ -180,7 +180,9 @@ Route::resource('/materiasboletin','MateriaBoletinController')->middleware('admi
 Route::resource('/nivelaciones','NivelacionController');
 Route::resource('/recuperaciones','RecuperacionController');
 
+/* RUTAS SIGSE */
+Route::get('/SIGSE','SIGSEController@getMateriasPC');
+Route::get('/SIGSE/{pk_materia_pc}','SIGSEController@getNotaMateriaEstudiantes');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
-

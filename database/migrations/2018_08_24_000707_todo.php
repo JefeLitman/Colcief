@@ -28,6 +28,7 @@ class Todo extends Migration {
             $table->string('apellido', 50);
             $table->string('password', 80);
             $table->date('fecha_nacimiento');
+            $table->char('genero',1);
             $table->integer('grado')->nullable();
             $table->boolean('discapacidad')->nullable()->default(false);
             $table->boolean('estado')->nullable()->default(true);
@@ -223,6 +224,7 @@ class Todo extends Migration {
     public function down()
     {
         Schema::dropIfExists('acudiente');
+        Schema::dropIfExists('archivo');
         Schema::dropIfExists('estudiante');
         Schema::dropIfExists('curso');
         Schema::dropIfExists('periodo');

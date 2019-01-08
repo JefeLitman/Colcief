@@ -64,7 +64,11 @@
     public static function array_push_wKey($llave,$array,$contenido)
     {
       if (!array_key_exists($llave,$array)) {
-        $array[$llave] = array($contenido);
+        if (is_array($contenido)) {
+          $array[$llave] = $contenido;
+        }else{
+          $array[$llave] = array($contenido);
+        }
       }else{
         array_push($array[$llave],$contenido);
       }

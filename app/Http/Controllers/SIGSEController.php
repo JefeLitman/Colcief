@@ -38,34 +38,67 @@ class SIGSEController extends Controller
     }
 
     /**
-     * Este método obtiene todos los estudiantes pertenecientes al curso de una materia
+     *
      */
-    private function getEstudiantesMateriaPC($pk_materia_pc)
+    public function getMateriasPC()
     {
-
+      $MateriasPC = MateriaPC::select('pk_materia_pc','nombre','fk_curso','fk_empleado')->
+      where('fk_empleado','=',session('user')['cedula'])->get();
+      $resultado = [];
+      foreach ($MateriasPC as $MateriaPC) {
+        $resultado = SC::array_push_wKey($MateriaPC->pk_materia_pc,$resultado,[$MateriaPC->nombre,$MateriaPC->getCursoCompleto()]);
+      }
+      //Resultado es una matriz Nx2 donde N_i es el pk_materia_pc, la primera columna es el nombre
+      //de la materia y la segunda columna el curso al que pertenece.
+      dd($resultado);
     }
 
     /**
-     * Esto debe de obtener el boletin más reciente de los estudiantes, para poder
-     * filtrar las materias_boletin que tienen la nota final.
-     * Como parámetro recibo el estudiante
+     *
      */
-    private function getNotaPeriodoEstudiante(Estudiante $estudiante)
+    public function getNotaMateriaEstudiantes($pk_materia_pc)
     {
-      /**
-       * Verifica si el estudiante hizo una recuperación de la materia durante el periodo
-       */
-      function checkRecuperacion()
+      function categorizar($categorias,$genero,$categoria)
       {
-
+        if ($genero=='M') {
+          $categorias[$categoria][0]++;
+        }else{
+          $categorias[$categoria][1]++;
+        }
+        return $categorias;
       }
-      /**
-       * Este método se ejecuta solo si el estudiante presentó una recuperación
-       */
-      function getNotaRecuperacion()
-      {
+      $NotasFinalesDeEstudiantes = MateriaBoletin::select('pk_materia_boletin','nota_materia','genero')->
+      where('materia_boletin.fk_materia_pc',$pk_materia_pc)->
+      join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->
+      join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->
+      get()->toArray();
+      dd($NotasFinalesDeEstudiantes);
+      $categorias = [
+        'bajo' => [0,0],
+        'basico' => [0,0],
+        'alto' => [0,0],
+        'superior' => [0,0]
+      ];
+      foreach ($NotasFinalesDeEstudiantes as $tupla) {
+        switch (true) {
+          case $tupla['nota_materia']<=2.9:
+            $categorias = categorizar($categorias,$tupla['genero'],'bajo');
+            break;
 
+          case $tupla['nota_materia']<=3.9:
+            $categorias = categorizar($categorias,$tupla['genero'],'basico');
+            break;
+
+          case $tupla['nota_materia']<=4.5:
+            $categorias = categorizar($categorias,$tupla['genero'],'alto');
+            break;
+
+          default:
+            $categorias = categorizar($categorias,$tupla['genero'],'superior');
+            break;
+        }
       }
+      dd($categorias);
     }
 
 }

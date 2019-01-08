@@ -42,6 +42,12 @@ class MateriaPC extends Model
       return $this->hasMany('App\Horario', 'fk_materia_pc', 'pk_materia_pc');
     }
 
+    public function getCursoCompleto()
+    {
+      $curso = Curso::find($this->fk_curso);
+      return $curso->prefijo.'-'.$curso->sufijo;
+    }
+
     public function crearEstructuraNotas(){
       $boletines=Curso::join('boletin','boletin.fk_curso','=','curso.pk_curso')->where('curso.pk_curso',$this->fk_curso)->get();
       $periodos=Periodo::where('ano',date('Y'))->get();

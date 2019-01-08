@@ -33,6 +33,7 @@ class EstudianteSeeder extends Seeder
             'fk_curso' => $curso->pk_curso,
             'nombre' => $faker->firstName,
             'apellido' => $faker->lastName,
+            'genero' => $faker->randomElement(['M','F']),
             'password' => Hash::make('clave'),
             'fecha_nacimiento' => $faker->date,
             'discapacidad' => 0,
