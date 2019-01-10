@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Nivelacion;
 use App\Recuperacion;
-
+use App\Boletin;
 class NivelacionController extends Controller
 {
     /**
@@ -26,7 +26,10 @@ class NivelacionController extends Controller
                 
                 break;
             case "estudiante":
-                
+                $periodos=Periodo::where('ano',date('Y'))->get();
+                foreach ($periodos as $p) {
+                    $recuperacion=Recuperacion::join('nota_periodo','nota_periodo.pk_nota_periodo','=','recuperacion.fk_nota_periodo')->join('materia_boletin.');
+                }
                 return view('nivelaciones.listaNivelaciones_estudiante');
                 break;
             default:
