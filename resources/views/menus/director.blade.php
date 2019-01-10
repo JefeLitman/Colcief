@@ -28,9 +28,6 @@
                 <li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion*</a>
                 </li>
-                <li @if (Request::path()=="") class="active" @endif >
-                    <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file"></i> Plantillas*</a>
-                </li>
                 <li @if (Request::path()=="/archivos") class="active" @endif >
                     <a href="{{ url('/archivos') }}">
                         <i class="far fa-folder-open"></i> Documentos

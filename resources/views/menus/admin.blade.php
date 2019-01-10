@@ -56,10 +56,6 @@
                     </ul>
 					{{-- <a class="nav-link " href="{{ url('divisiones') }}"> <i class="fas fa-th-list"></i> </a> --}}
                 </li>
-                {{--  PLANILLAS  --}}
-				<li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file"></i> Plantillas*</a>
-                </li>
                 {{--  MATERIAS  --}}
 				<li @if (Request::path()=="materiaspc") class="active" @endif >
 					<a class="nav-link " href="{{ url('materiaspc') }}"> <i class="fas fa-book"></i> Materias</a>
