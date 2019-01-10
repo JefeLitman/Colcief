@@ -15,32 +15,34 @@ use App\Recuperacion;
 
 class SIGSEController extends Controller
 {
+    /**
+     * @author Douglas R.
+     * Simplemente envía al index del SIGSE la información necesaria para que
+     * el profesor pueda generar un informe.
+     */
     public function index()
     {
-      //Aquí debería ir la presentación de SIGSE
-      //Debería pedir los filtros
-      //Posiblemente un select que contenga la lista de cursos y otro con los generos
-    }
-
-    public function show($datos_onchange)
-    {
-      /**
-       * Acá se organizan los datos filtrados y se envía una estructura de datos a una vista
-       */
+      return view('SIGSE.indexSIGSE',['MateriasPC' => $this->getMateriasPC()]);
     }
 
     /**
-     * Esto actúa como middleware antes de mostrar mediante el método show
+     * @author Douglas R.
+     * Recibe a través de POST el PK de alguna de las materiasPC del profesor
+     * que inició sesión.
      */
-    private function filtros(Request $request)
+    public function show(Request $request)
     {
-      $consultaBase = MateriaBoletin::all();
+      $informe = $this->getNotaMateriaEstudiantes($request->MateriasPC);
+      $infoMateria = MateriaPC::find($request->MateriasPC);
+      return view('SIGSE.informeSIGSE',['informe' => $informe, 'infoMateria' => $infoMateria]);
     }
 
     /**
-     *
+     * @author Douglas R.
+     * Este método envía todas las materiasPC que le correspondan al profesor
+     * que inició sesión.
      */
-    public function getMateriasPC()
+    private function getMateriasPC()
     {
       $MateriasPC = MateriaPC::select('pk_materia_pc','nombre','fk_curso','fk_empleado')->
       where('fk_empleado','=',session('user')['cedula'])->get();
@@ -50,21 +52,25 @@ class SIGSEController extends Controller
       }
       //Resultado es una matriz Nx2 donde N_i es el pk_materia_pc, la primera columna es el nombre
       //de la materia y la segunda columna el curso al que pertenece.
-      dd($resultado);
+      return $resultado;
     }
 
     /**
-     *
+    * @author Douglas R.
+     * Este método obtiene todas las notas de los estudiantes de una materia concreta,
+     * los categoriza y envía el informe junto con el total.
+     * @param $pk_materia_pc
+     * @return [informe, total de estudiantes]
      */
-    public function getNotaMateriaEstudiantes($pk_materia_pc)
+    private function getNotaMateriaEstudiantes($pk_materia_pc)
     {
       function categorizar($categorias,$genero,$categoria)
       {
-        if ($genero=='M') {
+        if ($genero=='m') {
           $categorias[$categoria][0]++;
-        }else{
+        }elseif ($genero=='f') {
           $categorias[$categoria][1]++;
-        }
+        } //No hace nada si el género es indeterminado
         return $categorias;
       }
       $NotasFinalesDeEstudiantes = MateriaBoletin::select('pk_materia_boletin','nota_materia','genero')->
@@ -72,7 +78,6 @@ class SIGSEController extends Controller
       join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->
       join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->
       get()->toArray();
-      dd($NotasFinalesDeEstudiantes);
       $categorias = [
         'bajo' => [0,0],
         'basico' => [0,0],
@@ -98,7 +103,7 @@ class SIGSEController extends Controller
             break;
         }
       }
-      dd($categorias);
+      return [$categorias,count($NotasFinalesDeEstudiantes)];
     }
 
 }

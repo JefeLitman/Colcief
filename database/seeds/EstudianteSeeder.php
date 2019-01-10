@@ -20,6 +20,7 @@ class EstudianteSeeder extends Seeder
         $acudientes = Acudiente::all()->pluck('pk_acudiente')->toArray();
         $cursos = Curso::get();
         $usado = [];
+        Estudiante::unguard();
         for ($i=0; $i < 5; $i++) {
           $acudiente = $faker->randomElement($acudientes);
           while (in_array($acudiente,$usado)) {
@@ -28,12 +29,13 @@ class EstudianteSeeder extends Seeder
           }
           $curso = $faker->randomElement($cursos);
           $grado = Curso::select('prefijo')->where('pk_curso','=',$curso->pk_curso)->get()->pluck('prefijo')->toArray()[0];
+          $genero = $faker->randomElement(['m','f']);
           Estudiante::create([
             'fk_acudiente' => $acudiente,
             'fk_curso' => $curso->pk_curso,
             'nombre' => $faker->firstName,
             'apellido' => $faker->lastName,
-            'genero' => $faker->randomElement(['M','F']),
+            'genero' => $genero,
             'password' => Hash::make('clave'),
             'fecha_nacimiento' => $faker->date,
             'discapacidad' => 0,
@@ -41,5 +43,6 @@ class EstudianteSeeder extends Seeder
           ]);
           array_push($usado,$acudiente);
         }
+        Estudiante::reguard();
     }
 }
