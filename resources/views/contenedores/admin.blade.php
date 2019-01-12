@@ -23,21 +23,19 @@
         <meta id="csrf_token" name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
-
         <!-- precarga  de la pagina -->
         @include('precarga.precarga')
+        <div id="ver">
+            <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
+            @include('menus.admin')
 
-        <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
-        @include('menus.admin')
-
-        {{-- Mensajes de error --}}
-        <div id="br"></div>
-        @include('error.error')
-        @include('error.alert')
-        {{-- contenido de la pagina --}}
-        @section('contenedor_admin')
-        @show
-    
-
+            {{-- Mensajes de error --}}
+            <div id="br"></div>
+            @include('error.error')
+            @include('error.alert')
+            {{-- contenido de la pagina --}}
+            @section('contenedor_admin')
+            @show
+        </div>
     </body>
 </html>

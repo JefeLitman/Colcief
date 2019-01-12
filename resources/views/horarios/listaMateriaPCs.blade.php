@@ -5,7 +5,7 @@
 <br id="br">
 <div class="container" style="background:#fafafa !important;">
     <div class="row justify-content-center">
-        <div class="col-11">
+        <div class="col-md-11">
             <div class="accordion" id="accordionExample">
                 @csrf
                 @php

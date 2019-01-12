@@ -10,20 +10,27 @@
             justify-content: center;
     min-height: 100vh;
     background-color:white;
+   /* position: relative; */
 
   }
+
+#carga{
+    /* position:absolute; */
+    text-align: center;
+    right: 40%;
+}
 
   #contenedor_carga{
       text-align: center;
       display: block;
       justify-content: center;
       float: center;
+      /* overflow: hidden; */
   }
 
   .loader {
-    max-width: 15rem;
+    max-width: 12rem;
     width: 100%;
-    float: center;
     height: auto;
     stroke-linecap: round;
     float:center !important;

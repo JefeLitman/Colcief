@@ -15,7 +15,7 @@
 <br>
 <div class="container" style="background:#fafafa !important;">
     <div class="row justify-content">
-        <div class="col-10">
+        <div class="col-md-10">
             <div class="card mx-auto border-dark bg-light" style="width: 20rem; border-color:#17a2b8 !important;">
                     <div class="card-header" style="background-color:rgba(0,0,0,.03) !important;">
                         <h2 class="text-center">{{$materiapc->materia}}</h2>

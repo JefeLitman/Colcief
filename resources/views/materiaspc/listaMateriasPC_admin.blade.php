@@ -11,7 +11,7 @@
 	{{-- URL: localhost:8000\materiaspc  -> Logeado en un usuario de tipo administrador--}}
 <div class="container" style="background:#fafafa !important;">
     <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-md-10">
             <h3 class="text-center">
                 Materias
             </h3>

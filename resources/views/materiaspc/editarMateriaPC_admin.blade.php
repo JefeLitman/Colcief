@@ -13,7 +13,7 @@
 <br>
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
-        <div class="col-10">
+        <div class="col-md-10">
             <form method="post" action="{{route('materiaspc.update', $materiapc->pk_materia_pc)}}" >
                 {{ method_field('PATCH') }}
                 @csrf

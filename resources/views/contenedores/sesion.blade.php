@@ -21,21 +21,20 @@
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     </head>
     <body>
-
         <!-- precarga  de la pagina -->
         @include('precarga.precarga')
+        <div id="ver">
+            {{-- mensajes de error en el request --}}
+            @include('error.error')
 
-        {{-- mensajes de error en el request --}}
-        @include('error.error')
+            <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
+            @include('menus.principal')
 
-        <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
-        @include('menus.principal')
+            <!-- Aqui en esta seccion va estar el contenido de la pagina -->
+            @yield('content')
 
-        <!-- Aqui en esta seccion va estar el contenido de la pagina -->
-        @yield('content')
-
-        <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
-        @include('footers.principal')
-
+            <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
+            @include('footers.principal')
+        </div>
     </body>
 </html>

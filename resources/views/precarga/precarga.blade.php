@@ -8,8 +8,13 @@
 </div>
 
 <script>
-    window.onload = function()
+    window.onload = function verPag(){
+        document.getElementById('contenedor_carga').style.display = 'none';
+        document.getElementById('ver').style.display = 'block';
+        //document.getElementById('ver').style.owerflow = 'scroll'
+    }
+    {{-- window.onload = function()
     {
         document.getElementById('contenedor_carga').style.display = 'none';
-    }
+    } --}}
 </script>

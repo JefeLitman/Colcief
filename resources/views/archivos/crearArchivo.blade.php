@@ -3,7 +3,7 @@
 @section('titulo','Archivos')
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
-        <div class="col-10">
+        <div class="col-md-10">
             <form action="{{route('archivos.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card border-primary rounded-0" style="border-color:#17a2b8 !important; border-radius:0.25rem !important;">

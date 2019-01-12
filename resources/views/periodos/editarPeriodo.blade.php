@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
-        <div class="col-10">
+        <div class="col-md-10">
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>Información</strong><br>
                 Tenga en cuenta que la finalización del periodo es el ultimo dia en el que el docente puede modificar notas del periodo

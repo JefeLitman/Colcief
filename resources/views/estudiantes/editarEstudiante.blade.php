@@ -4,7 +4,7 @@
 <br>
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
-        <div class="col-10">
+        <div class="col-md-10">
             <form enctype="multipart/form-data" action="{{route('estudiantes.update', $estudiante->pk_estudiante)}}" method="POST">
                 @csrf
                 @method("PUT")
@@ -78,7 +78,7 @@
                             {{-- curso --}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="cedula"><strong><small style="color : #616161">Curso: (Ultimo aprovado 
+                                    <label for="cedula"><strong><small style="color : #616161">Curso: (Ultimo aprovado
                                         @if ($estudiante->grado!=null)
                                             @php
                                                 $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
@@ -101,7 +101,7 @@
                                             @foreach ($cursos as $c)
                                                     <option value="{{$c->pk_curso}}" {{($estudiante->fk_curso==$c->pk_curso)?"Selected":""}}>
                                                         {{($c->prefijo!=0)?$c->prefijo:"Preescolar"}}-{{$c->sufijo}}
-                                                    </option>    
+                                                    </option>
                                             @endforeach
                                         </select>
                                     </div>

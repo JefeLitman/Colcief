@@ -66,3 +66,9 @@ body {
     color: #00695c !important;
     text-decoration: none !important;
 }
+
+/*para todos los containers*/
+#ver{
+    display: none;
+    /* overflow: hidden; */
+}

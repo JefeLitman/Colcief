@@ -18,7 +18,7 @@
 <br>
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
-        <div class="col-10">
+        <div class="col-md-10">
             <form method="post" action="/materiaspc" onload="logros(document.getElementById('fk_materia').value)">
                 @csrf
                 <div class="card border-primary rounded-0" style="border-color:#17a2b8 !important; border-radius:0.25rem !important;">
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <br>
                 {{-- Boton de enviar --}}

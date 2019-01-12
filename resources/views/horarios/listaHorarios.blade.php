@@ -4,7 +4,7 @@
 <br>
 <div class="container" style="background:#fafafa !important;">
     <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-md-10">
             {{-- Lista de horarios de las materias --}}
             <div class="card mx-auto border-dark bg-light" style="max-width: 20rem; border-color:#17a2b8!important;">
                 <div class="card-header" style="background-color:rgba(0,0,0,.03) !important;">

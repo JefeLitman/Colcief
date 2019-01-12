@@ -19,17 +19,17 @@
         </li>
         <li class="nav-item @if (Request::path()=="login") active @endif ">
           <a class="nav-link" href="
-          
+
           @if(!empty(session('role')))
             @switch(session('role'))
                 @case('estudiante')
                     {{ url('/estudiantes/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
-            
+
                 @case('administrador')
                     {{ url('/empleados/principal/0') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
-                
+
                 @case('director')
                     {{ url('/empleados/principal/1') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
                     @break
