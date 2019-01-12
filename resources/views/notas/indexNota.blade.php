@@ -5,7 +5,7 @@
 <div class="container" style="background:#fafafa !important;">
     <div class="card bg-light border-info">
         <h4 class="card-header text-center">
-            <i class="fas fa-book"></i> Notas
+            <i class="fas fa-book"></i> Notas de {{$infoMateria->nombre}}
         </h4>
         @if (!empty($divisiones))
           <div class="card-body">
