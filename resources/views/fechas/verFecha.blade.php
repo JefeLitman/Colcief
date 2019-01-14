@@ -41,11 +41,6 @@
 		height: 20px;
 		z-index: 400;
 	}
-	@media (max-width: 576px) {
-		.g {
-			display: none !important;
-		}
-	}
 </style>
 
 <div class="container">
@@ -81,7 +76,7 @@
 							@endif
 							
 							{{$key}}
-							<div class="float-right g">{{explode('-', $o)[2].' de '.ucwords(strftime('%B', strtotime($o))).', '.explode('-', $o)[0]}}</div>
+							<div class="float-right d-none d-sm-block">{{explode('-', $o)[2].' de '.ucwords(strftime('%B', strtotime($o))).', '.explode('-', $o)[0]}}</div>
 						</div>
 						
 					</li>

@@ -63,7 +63,7 @@ class EmpleadoController extends Controller{
           $cedula = ''.session('user')['cedula'];
         }
         $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso')->get();
-        $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') -> groupBy('curso.pk_curso') -> get();
+        $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') ->get();
         $cargo = ['Administrador', 'Director', 'Profesor'];
 
         if(!empty($empleado[0])){

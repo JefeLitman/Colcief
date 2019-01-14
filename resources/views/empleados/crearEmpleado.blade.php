@@ -32,7 +32,7 @@
                             {{-- Rol --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Seleciconar rol</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Selecionar rol</small></strong></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class= "input-group-text">

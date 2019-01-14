@@ -34,6 +34,13 @@ class FechaController extends Controller {
             $orden['Finalización del periodo #'.$periodo -> nro_periodo] = $periodo -> fecha_limite;
             $fechas['Finalización del periodo #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
             $cont++;
+
+            $orden['Inicio recuperación #'.$periodo -> nro_periodo] = $periodo -> fecha_limite;
+            $fechas['Inicio recuperación #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
+            $cont++;
+            $orden['Finalización recuperación #'.$periodo -> nro_periodo] = $periodo -> fecha_limite;
+            $fechas['Finalización recuperación #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
+            $cont++;
         }
         asort($orden); // ordenamos el array $orden por su contenido, de esta manera organizamos cronologicamente
         return view('fechas.verFecha', ['orden' => $orden, 'fecha' => $fechas]);
