@@ -21,16 +21,16 @@ class ResetPassword extends Controller {
 
     public function recuperacion(Request $request){
         switch($request->role){
-            case '3':
+            case '4':
                 $auth = Estudiante::find($request->email);
                 if (!empty($auth)) {
-                    return redirect(route('login')) -> with('true', 'Su nueva contraseña es '.$auth -> resetPassword()); 
+                    return redirect('/') -> with('true', 'Su nueva contraseña es '.$auth -> resetPassword()); 
                 } else {
-                    return redirect() -> route('password.dates') -> with('warning', 'No existe un estudiantes con este codigo, intente nuevamente.');
+                    return redirect('/') -> with('warning', 'No existe un estudiantes con este codigo, intente nuevamente.');
                 }
                 break;
             default:
-                return redirect() -> route('password.dates') -> with('false', 'El tipo de usuario selecionado no existe, intente nuevamente.');
+                return redirect('/') -> with('false', 'El tipo de usuario selecionado no existe, intente nuevamente.');
         }
     }
 }

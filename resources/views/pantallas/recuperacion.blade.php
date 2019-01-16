@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label id="label_email" for="email">Correo Electronico</label>
-                            <input type="email" name="email" id="email" class="form-control form-control-sm" disabled required>
+                            <input type="email" name="email" id="email" class="form-control form-control-sm" required>
                         </div>
                         <br>
                         <div class="text-center">

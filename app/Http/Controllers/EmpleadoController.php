@@ -25,7 +25,7 @@ class EmpleadoController extends Controller{
 
     public function __construct (){
         $this->middleware('admin:administrador') -> except(['perfil']);
-        $this->middleware('admin:administrador,director,profesor') -> only(['perfil']);
+        $this->middleware('admin:administrador,coordinador,director,profesor') -> only(['perfil']);
     }
     
     public function index(){
@@ -64,7 +64,7 @@ class EmpleadoController extends Controller{
         }
         $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso')->get();
         $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') ->get();
-        $cargo = ['Administrador', 'Director', 'Profesor'];
+        $cargo = ['Administrador', 'Coordinador', 'Director', 'Profesor'];
 
         if(!empty($empleado[0])){
             // dd($empleado);

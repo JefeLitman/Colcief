@@ -24,12 +24,15 @@ class LoginController extends Controller{
                 $guardia = 'administrador';
                 break;
             case '1':
-                $guardia = 'director';
+                $guardia = 'coordinador';
                 break;
             case '2':
-                $guardia = 'profesor';
+                $guardia = 'director';
                 break;
             case '3':
+                $guardia = 'profesor';
+                break;
+            case '4':
                 return $this->auth('estudiante', ['pk_estudiante' => $request->username, 'password' => $request->password], '/estudiantes/principal');
                 break;
             default:

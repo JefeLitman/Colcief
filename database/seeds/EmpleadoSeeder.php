@@ -6,19 +6,24 @@ use App\Curso;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Hash;
 
-class EmpleadoSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+class EmpleadoSeeder extends Seeder {
+
     public function run()
     {
       $faker = Faker::create();
       $cursos = Curso::all()->pluck('pk_curso')->toArray();
       $curso = $faker->randomElement($cursos);
       Empleado::unguard();
+      Empleado::create([
+        'cedula' => 3,
+        'nombre' => 'Juan Sebastian',
+        'apellido' => 'Marcon Caballero',
+        'email' => 'juanmarcon13@gmail.com',
+        'password' => Hash::make('clave'),
+        'direccion' => 'Calle falsa #2',
+        'titulo' => 'Ingeniero de alimentos',
+        'role' => '1'
+      ]);
       Empleado::create([
         'cedula' => 1,
         'nombre' => 'Douglas Sebastian',
@@ -28,7 +33,7 @@ class EmpleadoSeeder extends Seeder
         'direccion' => 'Calle falsa #2',
         'titulo' => 'Ingeniero de alimentos',
         'fk_curso' => $curso,
-        'role' => '1'
+        'role' => '2'
       ]); //El administrador base
       Empleado::create([
         'cedula' => 0,

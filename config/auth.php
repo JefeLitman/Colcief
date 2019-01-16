@@ -41,6 +41,11 @@ return [
             'provider' => 'empleado',
         ],
 
+        'coordinador' => [
+            'driver' => 'session',
+            'provider' => 'empleado',
+        ],
+
         'director' => [
             'driver' => 'session',
             'provider' => 'empleado',
