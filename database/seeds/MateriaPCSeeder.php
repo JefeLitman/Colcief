@@ -20,7 +20,7 @@ class MateriaPCSeeder extends Seeder
         // $cursos = Curso::all()->pluck('pk_curso')->toArray();
         $cursos = Curso::all();
         $materias = Materia::all();// @Modificacion Paola C.
-        $empleados = Empleado::all()->pluck('cedula')->toArray();
+        $empleados = Empleado::where('role','<>','0')->get();
 
         
         #error_log(); //Muestra en consola cuando se ejecuta el "php artisan db:seed" // @Modificacion Paola C. 
@@ -31,7 +31,7 @@ class MateriaPCSeeder extends Seeder
                 $empleado = $faker->randomElement($empleados);
                 MateriaPC::create([
                     'fk_materia' => $materia->pk_materia,// @Modificacion Paola C.
-                    'fk_empleado' => $empleado,
+                    'fk_empleado' => $empleado->cedula,
                     'fk_curso' => $curso->pk_curso,
                     'nombre' => $materia->nombre,// @Modificacion Paola C.
                     'salon' => '101',
