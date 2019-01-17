@@ -57,10 +57,12 @@ class ResetPassword extends Notification
         }
 
         return (new MailMessage)
-            ->subject(Lang::getFromJson('Reset Password Notification'))
-            ->line(Lang::getFromJson('You are receiving this email because we received a password reset request for your account.'))
-            ->action(Lang::getFromJson('Reset Password'), url(config('app.url').route('password.reset', $this->token, false)))
-            ->line(Lang::getFromJson('If you did not request a password reset, no further action is required.'));
+            ->greeting(Lang::getFromJson('Hola '.$notifiable->nombre.' '.$notifiable->apellido))
+            ->subject(Lang::getFromJson('Restablecimiento de contraseña - ColCIEF'))
+            ->line(Lang::getFromJson('Está recibiendo este correo electrónico porque recibimos una solicitud de restablecimiento de contraseña para su cuenta.'))
+            ->action(Lang::getFromJson('Restablecer contraseña'), url(config('app.url').route('password.reset', $this->token, false)))
+            ->line(Lang::getFromJson('Si no solicitó un restablecimiento de contraseña, no es necesario realizar ninguna otra acción.'))
+            ->salutation(Lang::getFromJson('¡Feliz dia!'));
     }
 
     /**

@@ -16,7 +16,7 @@
         <div class="col-lg-6 col-md-5 col-sm-12 mt-auto mb-auto mr-3">
             <h2 class="welcome-heading text-white">¿Quienes somos?</h2>
             <p class="text-muted">El colegio fue creado en 1970 por el secretario de Educación del departamento bajo la denominación de colegio “Eduardo Camacho Gamba”, en honor al ilustre político. Inicio sus laborares con un total de 31 estudiantes matriculados en el curso de bachillerato y fue nombrado como rector el docente Baltasar Santoyo Alza...</p>
-            <a href="#" class="btn btn-success btn-pill align-self-center">Ver mas ...</a>
+            <a href="#" class="btn btn-success btn-pill align-self-center">Leer mas ...</a>
         </div>
 
         <div class="col-lg-4 col-md-5 col-sm-12 ml-auto">
