@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Shards - Agency Landing Page built with Shards - A Modern UI Toolkit</title>
+    <title>ColCIEF - @yield('titulo')</title>
     <meta name="description" content="A demo landing page for agencies or product oriented businesses built using Shards, a free, modern and lightweight UI toolkit based on Bootstrap 4.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,39 +23,11 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
   </head>
   <body class="shards-app-promo-page--1">
-    @include('pantallas.login')
-    
-    <!-- Welcome Section -->
-    <div class="welcome d-flex justify-content-center flex-column">
-      <div class="container">
-        <!-- Navigation -->
-        @include('menus.principal')
-        <!-- / Navigation -->
-      </div> <!-- .container -->
+    @if (Request::path()=="/")
+      @include('pantallas.login')
+    @endif
 
-      <!-- Inner Wrapper -->
-      <div class="inner-wrapper mt-auto mb-auto container">
-
-        <div class="row">
-          <div class="col-lg-6 col-md-5 col-sm-12 mt-auto mb-auto mr-3">
-              <h2 class="welcome-heading text-white">Quienes somos?</h2>
-              <p class="text-muted">Keep your files in sync using the most secure and advanced solution to date.</p>
-              <a href="https://designrevision.com/download/shards" class="btn btn-lg btn-success btn-pill align-self-center"><i class="fa fa-download mr-2"></i>Download</a>
-
-              <div class="d-block mt-4">
-                <a href="https://designrevision.com/download/shards"><img class="w-25 mt-2 mr-3" src="img/app-promo/badge-apple-store.png" alt="Get it on Apple Store"></a>
-                <a href="https://designrevision.com/download/shards"><img class="w-25 mt-2" src="img/app-promo/badge-google-play-store.png" alt="Get it on Google Play Store"></a>
-              </div>
-          </div>
-
-          <div class="col-lg-4 col-md-5 col-sm-12 ml-auto">
-            <img class="iphone-mockup ml-auto" src="img/app-promo/iphone-app-mockup.png" alt="iPhone App Mockup - Shards App Promo Demo">
-          </div>
-        </div>
-      </div>
-      <!-- / Inner Wrapper -->
-    </div>
-    <!-- / Welcome Section -->
+    @yield('contenedor_login')
 
     <!-- Features Section -->
     <div id="app-features" class="app-features section">
@@ -240,59 +212,7 @@
     </div>
     <!-- / Contact Section -->
 
-    <!-- Footer Section -->
-    <footer>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="#">Shards Agency</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Our Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Testimonials</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </footer>
-    <!-- / Footer Section -->
-
-    <!-- JavaScript Dependencies -->
-    <script>
-      $(document).ready(function(){
-        $('.value').click(function(){
-          var role = $(this).val()
-          if(role == '4'){
-            $('#label').html('Código')
-            $('#username').attr('placeholder','Ingrese su código')
-          } else if(role == '3' || role == '2' || role == '1' || role == '0'){
-            $('#label').html('Cédula')
-            $('#username').attr('placeholder','Ingrese su cédula')
-          }
-          $('#hidden').val(role);
-        });
-        $('#back').click(function(){
-          $('#exampleModal').modal('hide')
-          $('#userModal').modal('show')
-        })
-      })
-    </script>
-    
+    @include('pantallas.footer')
   </body>
 </html>
 

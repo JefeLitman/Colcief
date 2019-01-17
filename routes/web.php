@@ -22,7 +22,7 @@ solapamiento.
   Aquí van todas las rutas que no estén ligadas exáctamente a una tabla o query
 */
 Route::get('/', function () {
-    return view('pantallas.inicio');
+    return view('pantallas.welcome');
 })->name('home');
 Route::get('/contacto', function () {
     return view('pantallas.contacto');

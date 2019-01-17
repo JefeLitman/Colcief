@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark pt-4 px-0">
     <a class="navbar-brand mr-5" href="#">
-      <img src="img/app-promo/shards-logo-green.svg" class="mr-2" alt="Shards - Agency Landing Page">
-      Colcief
+      <img src="{{asset('img/app-promo/shards-logo-green.svg')}}" class="mr-2" alt="Shards - Agency Landing Page">
+      ColCIEF
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,7 +20,8 @@
       </ul>
 
       <!-- Login -->
-      <ul class="navbar-nav ml-auto">
+      @if (Request::path()=="/")
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             @if (empty(session('role')))
               <a class="nav-link" data-toggle="modal" data-target="#userModal">
@@ -32,7 +33,8 @@
               </a>
             @endif
           </li>
-      </ul>
+        </ul>
+      @endif
     </div>
   </nav>
 
