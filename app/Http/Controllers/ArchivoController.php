@@ -27,11 +27,11 @@ class ArchivoController extends Controller{
 
     public function store(ArchivoStoreController $request){
         $archivo = (new Archivo)->fill(SupraController::minuscula($request->all()));
-        $archivo -> save();
         if($request->hasFile('archivo')){
-            $nombre = mb_strtolower($archivo -> pk_archivo.'#'.$request -> titulo);
+            $archivo -> save();
+            $nombre = mb_strtolower($archivo -> pk_archivo.'#'.str_replace(' ', '-', $request -> titulo));
             $archivo -> link = SupraController::subirArchivo($request, $nombre, 'archivo', 'archivos'); 
-            $archivo -> tipo = $request-> archivo ->clientExtension();
+            $archivo -> tipo = $request -> archivo -> clientExtension();
         }
         if($archivo -> save()){
             $mensaje = 'El archivo '.mb_strtolower($archivo -> titulo).' fue guardado con exito';
@@ -43,7 +43,7 @@ class ArchivoController extends Controller{
 
     public function show($pk_archivo){
         $archivo = Archivo::findOrFail($pk_archivo);
-        return response() -> download(public_path().$archivo -> link, explode('#', $archivo -> link)[1]);
+        return response() -> download(public_path().$archivo -> link, ucwords(explode('#', str_replace('-', ' ', $archivo -> link))[1]));
     }
 
     public function destroy(Request $request, $pk_archivo){

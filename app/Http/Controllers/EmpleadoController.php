@@ -69,14 +69,14 @@ class EmpleadoController extends Controller{
         if(!empty($empleado[0])){
             // dd($empleado);
             return view("empleados.verEmpleado",['empleado'=> $empleado[0], 'cursos' => $cursos, 'cargo' => $cargo]);
+        } else {
+            $mensaje = 'No se encuentra registros de este empleado';
+        return back() -> with('false', $mensaje);
         }
-        /*@Autor Karen*/
-        //Colocandole estilo al mensaje("Empleado no encontrado").
-        return view('mensajes/Noempleado');
     }
 
     public function edit($cedula){
-        $empleado = Empleado::findOrFail($cedula);
+        $empleado = Empleado::find($cedula);
         $cursos = Curso::where("ano",date('Y')) -> get();//agregado by Paola
         return view("empleados.editarEmpleado", ['empleado' => $empleado,"cursos" => $cursos]);//Modificado by Paola
     }
@@ -95,15 +95,15 @@ class EmpleadoController extends Controller{
         }      
     }
 
-    public function perfil(EmpleadoUpdateFoto $request,$cedula){
-        $empleado = Empleado::findOrFail($cedula);
+    public function perfil(EmpleadoUpdateFoto $request){
+        $empleado = Empleado::findOrFail(session('user')['cedula']);
         $guard = session('role');
         if($request->hasFile('foto')){
             $nombre = 'empleado'.$empleado->cedula;
             $empleado->foto = SupraController::subirArchivo($request, $nombre, 'foto', 'perfil'); 
         }
         if($empleado->save()){
-            $var = Empleado::findOrFail($cedula);
+            $var = Empleado::findOrFail(session('user')['cedula']);
             session(['user'=> $var->session(),'role' => $guard]);
             $mensaje = 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' Actualizo su foto con exito';
             return redirect(url('/empleados/principal'))->with('true', $mensaje);
@@ -134,9 +134,16 @@ class EmpleadoController extends Controller{
         if($request->ajax()){
             $empleado = Empleado::findOrFail($cedula);
             if($empleado->delete()){
-                return response()->json([
-                    'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' Fue eliminado'
-                ]);
+                if($request->direccion == null){
+                    return response()->json([
+                        'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' Fue eliminado',
+                    ]);
+                } else {
+                    return response()->json([
+                        'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' Fue eliminado',
+                        'url' => config('app.url').$request->direccion
+                    ]);
+                }
             } else {
                 return response()->json([
                     'mensaje' => 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' no pudo ser eliminado, intente nuevamente'

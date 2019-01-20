@@ -31,7 +31,7 @@
             @php
                 $estudiante=session('user');
             @endphp
-            <form  id="formulario" enctype="multipart/form-data" action="{{url('/empleados/perfil/'.session('user')['cedula'])}}" method="POST">
+            <form  id="formulario" enctype="multipart/form-data" action="{{url('/empleados/perfil')}}" method="POST">
                 @csrf
                 @method("POST")
                 <img class="rounded mx-auto d-block w-75" src="{{session('user')['foto']}}" alt="Card image cap"><br>

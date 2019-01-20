@@ -32,7 +32,7 @@ class Todo extends Migration {
             $table->integer('grado')->nullable();
             $table->boolean('discapacidad')->nullable()->default(false);
             $table->boolean('estado')->nullable()->default(true);
-            $table->string('foto')->default('/storage/default.png');
+            $table->string('foto')->default('/storage/perfil/default.png');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -19,10 +19,9 @@
                         <div id="archivo{{$archivo -> pk_archivo}}" class="card" href="{{route('archivos.show', $archivo -> pk_archivo)}}" target="_blank">
                             {{-- <img class="card-img-top" src="{{'/img/'.$archivo -> tipo.'.png'}}".png" alt="Card image cap"> --}}
                             <div class="card-header">
-                                <div class="card-title">{{ucwords($archivo -> titulo)}}</div>
-                                <div class="float-right">
-                                    <img style ="max-width:40px" src="{{'/img/'.$tipos[$archivo -> tipo].'.png'}}" class="m-x-auto img-fluid img-circle" >
-                                    {{-- <a href="{{route('archivos.show', $archivo -> pk_archivo)}}"></a> --}}
+                                <div class="card-title">
+                                    {{ucwords($archivo -> titulo)}}
+                                    <img style ="max-width:40px;float:right" src="{{'/img/'.$tipos[$archivo -> tipo].'.png'}}" class="m-x-auto img-fluid img-circle" >
                                 </div>
                             </div>
                             <div class="card-body">

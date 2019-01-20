@@ -85,13 +85,7 @@ Route::put('/empleados/{id}/time/{time}', 'EmpleadoController@tiempoExtra');
 //     }
 // })->middleware('admin:profesor,director,administrador');
 
-Route::get('empleados/editarEstudiantes', function () {
-    return view('cursos.editarEstudiante');
-});
-Route::get('empleados/eliminarEstudiantes', function () {
-    return view('cursos.eliminarEstudiante',['pas'=>'1']);
-});
-Route::post('/empleados/perfil/{cedula}', 'EmpleadoController@perfil');
+Route::post('/empleados/perfil', 'EmpleadoController@perfil');
 Route::resource('/empleados','EmpleadoController');
 
 /*RUTAS DE PERIODO*/

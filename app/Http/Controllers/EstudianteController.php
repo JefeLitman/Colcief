@@ -36,7 +36,7 @@ class EstudianteController extends Controller{
 
     public function estudianteGrado($pk_curso){
         $curso = json_decode((new CursoController)->conteoEstudiantes($pk_curso));
-        $c = Curso::findOrFail($pk_curso);
+        $c = Curso::find($pk_curso);
         return view('estudiantes.estudiantesGrado',['curso' => $curso,'grado' => $c]);
     }
 
@@ -205,9 +205,16 @@ class EstudianteController extends Controller{
         if($request->ajax()){
             $estudiante = Estudiante::findOrFail($pk_estudiante);
             if($estudiante->delete()){
-                return response()->json([
-                    'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue eliminado'
-                ]);
+                if($request->direccion == null){
+                    return response()->json([
+                        'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue eliminado'
+                    ]);
+                } else {
+                    return response()->json([
+                        'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue eliminado',
+                        'url' => config('app.url').$request->direccion
+                    ]);
+                }
             } else {
                 return response()->json([
                     'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' no pudo ser eliminado, intente nuevamente'

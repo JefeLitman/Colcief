@@ -23,6 +23,9 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
   </head>
   <body class="shards-app-promo-page--1">
+    <div class="loader">
+      <div class="page-loader"></div>
+    </div>
     @if (Request::path()=="/")
       @include('pantallas.login')
     @endif
