@@ -21,6 +21,22 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    {{-- <script>
+      $(document).ready(function(){
+        $('a[href*=#]').click(function() {
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+              && location.hostname == this.hostname){
+            var $target = $(this.hash);
+            $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+            if ($target.length) {
+              var targetOffset = $target.offset().top;
+              $('html,body').animate({scrollTop: targetOffset}, 1000);
+              return false;
+            }
+          }
+        });
+      });
+    </script> --}}
   </head>
   <body class="shards-app-promo-page--1">
     <div class="loader">
@@ -120,47 +136,59 @@
     <!-- / Testimonials Section -->
 
     <!-- Our Blog Section -->
-    <div class="blog section section-invert py-4">
-      <h3 class="section-title text-center m-5">Latest Posts</h3>
-      <div class="container">
-        <div class="py-4">
-          <div class="row">
-            <div class="card-deck">
-              <div class="col-md-12 col-lg-4">
+    <div class="blog section section-invert py-4" id="service-page">
+      <h3 class="section-title text-center m-3">Nuestro Colegio</h3>
+      <div class="m-3 py-5">
+        {{-- <div class="py-4">
+          <div class="row"> --}}
+            <div class="card-columns" style="font-size: 0.8rem;">
+              {{-- <div class="col-md-6 col-lg-4 col-12"> --}}
                 <div class="card mb-4">
-                  <img class="card-img-top" src="img/common/card-1.jpg" alt="Card image cap">
+                  <img class="card-img-top" src="{{asset('img/familia1.jpg')}}" alt="Dia de la familia">
                   <div class="card-body">
-                    <h4 class="card-title">Find Great Places to Work While Travelling</h4>
-                    <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                    <a class="btn btn-outline-success btn-pill" href="#">Read More &rarr;</a>
+                    <h5 class="card-title">Día de la Familia CIEF</h5>
+                    <p class="card-text">El pasado viernes 24 de Abril se celebró el dia de la familia CIEF. Una jornada llena de expresiones culturales, agradecimiento al Dios de los cielos, integración y diversión familiar. Estos son algunos de esos momentos especiales.</p>
                   </div>
                 </div>
-              </div>
+              {{-- </div> --}}
 
-              <div class="col-md-12 col-lg-4">
-                <div class="card mb-4">
-                  <img class="card-img-top" src="img/common/card-3.jpg" alt="Card image cap">
+              {{-- <div class="col-md-6 col-lg-4 col-12"> --}}
+                <div class="card mb-3">
+                  <img class="card-img-top" src="{{asset('img/digital.jpg')}}" alt="Vive">
                   <div class="card-body">
-                    <h4 class="card-title">Quick Tips for Improving Your Website's Design</h4>
-                    <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                    <a class="btn btn-outline-success btn-pill" href="#">Read More &rarr;</a>
+                    <h5 class="card-title">Forian ya vive digital?</h5>
+                    <p class="card-text">Hace un par de dias colocaron esta pancarta, informando a la comunidad que nuestro municipio que ya cuenta con Internet de fibra óptica, la cuál es para la alcaldía e instituciones educativas según dijo el señor Gobernador en el pasado consejo comunal, pero hasta ahora nuestros estudiantes no pueden disfrutar de este beneficio, ya que al dia de hoy llevamos cerca de un año sin esta conexión.</p>
                   </div>
                 </div>
-              </div>
+              {{-- </div> --}}
 
-              <div class="col-md-12 col-lg-4">
+              {{-- <div class="col-md-6 col-lg-4 col-12"> --}}
                 <div class="card mb-4">
-                  <img class="card-img-top" src="img/common/card-2.jpg" alt="Card image cap">
+                  <img class="card-img-top" src="{{asset('img/biblioteca.jpg')}}" alt="biblioteca">
                   <div class="card-body">
-                    <h4 class="card-title">A Designer's Tips While Travelling and Working</h4>
-                    <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                    <a class="btn btn-outline-success btn-pill" href="#">Read More &rarr;</a>
+                    <h5 class="card-title">Biblioteca del CIEF ahora con lo último</h5>
+                    <p class="card-text">El Ministerio de Educación donó al la institución 235 libros y la Secretaria de Educación donó entre material didáctico y libros un aproximado de 200 ejemplares, la mayoría con temas para básica primaria para que de esta forma incentivemos la lectura en nuestros educandos. Estos libros permanecerán en la biblioteca del colegio para que los docentes soliciten el préstamo para trabajar con sus alumnos.</p>
                   </div>
                 </div>
-              </div>
+
+                <div class="card mb-4">
+                  <img class="card-img-top" src="{{asset('img/educacion.jpg')}}" alt="Educación sexual">
+                  <div class="card-body">
+                    <h5 class="card-title">Educación Sexual</h5>
+                    <p class="card-text">La Ese san José de Florian y la Policía local realizaron el pasado miércoles una charla informativa sobre educación sexual a los grados noveno, décimo y undécimo.</p>
+                  </div>
+                </div>
+                <div class="card mb-4">
+                  <img class="card-img-top" src="{{asset('img/gobernacion.jpg')}}" alt="Gobernación">
+                  <div class="card-body">
+                    <h5 class="card-title">El CIEF cada vez mejor</h5>
+                    <p class="card-text">El pasado sábado  11 de Mayo en las horas de la tarde Florián tuvo el honor de recibir la visita del señor gobernador del departamento Richard Aguilar, acompañado de su equipo de secretarios y algunos funcionarios,  además de la alcaldesa del municipio de la Belleza Azucena Rojas y como anfitrión quien administra los intereses de nuestro municipio, el señor  Nestor Vladimir Forero que quien junto con la comunidad florianence realizaron un Consejo Comunal en donde se expuso las necesidades de nuestro municipio y también se recibieron gratas sorpresas no solo para el municipio sino también para nuestra institución educativa que contará a partir de ahora con un laboratorio de física y química además de 7 tableros inteligentes que se encuentran ubicados en los grados novenos, décimos, undécimos y en el aula de informática.  Para la primaria una piscina de pelotas.</p>
+                  </div>
+                </div>
+              {{-- </div> --}}
             </div>
-          </div>
-        </div>
+          {{-- </div>
+        </div> --}}
       </div>
     </div>
     <!-- / Our Blog Section -->

@@ -12,7 +12,7 @@
           <a class="nav-link" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Nuestro Colegio</a>
+          <a class="nav-link" href="#service-page">Nuestro Colegio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contactenos</a>
