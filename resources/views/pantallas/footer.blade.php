@@ -19,17 +19,23 @@
             </ul>
             @if (Request::path()=="/")
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        @if (empty(session('role')))
-                        <a class="nav-link" data-toggle="modal" data-target="#userModal">
-                            Login
+                <li class="nav-item">
+                    @if (empty(session('role')))
+                    <a class="nav-link" data-toggle="modal" data-target="#userModal">
+                        Login
+                    </a>
+                    @else
+                    @if (session('role') == 'estudiante')
+                        <a class="nav-link" href="estudiantes/principal">
+                        {{ session('user')['nombre'] }}
                         </a>
-                        @else
+                    @else
                         <a class="nav-link" href="empleados/principal/{{ session('user')['role'] }}">
-                            {{ session('user')['nombre'] }}
+                        {{ session('user')['nombre'] }}
                         </a>
-                        @endif
-                    </li>
+                    @endif
+                    @endif
+                </li>
                 </ul>
             @endif
         </div>
