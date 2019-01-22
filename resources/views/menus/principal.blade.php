@@ -28,9 +28,15 @@
                 Login
               </a>
             @else
-              <a class="nav-link" href="empleados/principal/{{ session('user')['role'] }}">
-                {{ session('user')['nombre'] }}
-              </a>
+              @if (session('role') = 'estudiante')
+                <a class="nav-link" href="estudiantes/principal">
+                  {{ session('user')['nombre'] }}
+                </a>
+              @else
+                <a class="nav-link" href="empleados/principal/{{ session('user')['role'] }}">
+                  {{ session('user')['nombre'] }}
+                </a>
+              @endif
             @endif
           </li>
         </ul>
