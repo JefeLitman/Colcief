@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class Terminal extends Controller{
+
+    public function cache(){
+        $salida = shell_exec('cd ColCief && php artisan cache:clear');
+        return "<pre>".$salida."</pre>";
+    }
+
     public function link(){
         $salida = shell_exec('cd ColCief && php artisan storage:link');
         return "<pre>".$salida."</pre>";
