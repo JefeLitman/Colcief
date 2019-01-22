@@ -1,4 +1,4 @@
-@extends('contenedores.Estudiante')
+@extends('contenedores.sstudiante')
 @section('titulo','Materias')
 @section('contenedor_estudiante')
 {{-- mensajes de error --}}

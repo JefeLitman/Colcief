@@ -40,13 +40,6 @@ class LoginController extends Controller{
         }
         return $this->auth($guardia, ['cedula' => $request->username, 'password' => $request->password, 'role' => $request->role], '/empleados/principal/'.$request->role);
     }
-
-    public function logout(){
-        session()->flush();
-        Auth::logout();
-        return redirect(url("/"));
-    }
-
     /* Este metodo verifica el login, ademas de esto, crea una variable de session con los datos
        del usuario autenticado */
     private function auth($guard, $credenciales, $ruta){
@@ -57,5 +50,11 @@ class LoginController extends Controller{
         }else{
             return redirect('/')->withInput()->with('false', 'Las credenciales no son correctas');
         }
+    }
+
+    public function logout(){
+        session()->flush();
+        Auth::logout();
+        return redirect(url("/"));
     }
 }
