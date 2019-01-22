@@ -62,6 +62,7 @@ class LoginController extends Controller{
     }
 
     public function contacto(){
-        return Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail());
+        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail());
+        return Mail::failures();
     }
 }
