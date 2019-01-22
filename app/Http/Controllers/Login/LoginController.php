@@ -61,8 +61,8 @@ class LoginController extends Controller{
         return redirect(url("/"));
     }
 
-    public function contacto(){
-        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail());
-        return Mail::failures();
+    public function contacto($request){
+        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail($request));
+        return back()->with('true', 'Su mensajes fue enviado, nos pondremos en contacto');
     }
 }

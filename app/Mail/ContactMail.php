@@ -13,13 +13,11 @@ class ContactMail extends Mailable {
 
     public $from;
 
-    public function __construct(){
-        // $this->from = $form;
+    public function __construct($request){
+        $this->request = $request;
     }
 
     public function build(){
-        return $this 
-            -> view('vendor.contact')
-            ;
+        return $this -> view('vendor.contact', ['dates' => $this->request->all()]);
         }
     }
