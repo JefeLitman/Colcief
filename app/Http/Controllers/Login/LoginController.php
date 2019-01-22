@@ -62,11 +62,6 @@ class LoginController extends Controller{
     }
 
     public function contacto(){
-        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail())
-            /*->greeting(Lang::getFromJson('Hola '))
-            ->subject(Lang::getFromJson('Restablecimiento de contraseña - ColCIEF'))
-            ->line(Lang::getFromJson('Está recibiendo este correo electrónico porque recibimos una solicitud de restablecimiento de contraseña para su cuenta.'))
-            ->line(Lang::getFromJson('Si no solicitó un restablecimiento de contraseña, no es necesario realizar ninguna otra acción.'))
-            ->salutation(Lang::getFromJson('¡Feliz dia!'))*/;
+        return Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail());
     }
 }
