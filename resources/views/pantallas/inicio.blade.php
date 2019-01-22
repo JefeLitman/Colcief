@@ -235,7 +235,8 @@
       <div class="container py-4">
         <div class="row justify-content-md-center px-4">
           <div class="contact-form col-sm-12 col-md-10 col-lg-7 p-4 mb-4 card">
-            <form>
+            <form action="{{url('contacto')}}" method="POST">
+              @csrf
               <div class="row">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">

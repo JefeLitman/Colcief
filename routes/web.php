@@ -189,4 +189,4 @@ Route::post('/password/email', 'ResetPassword@SendResetLinkEmail') -> name('pass
 Route::get('/password/reset', 'ResetPassword@showLinkRequestForm') -> name('password.request');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm') -> name('password.reset');
-Route::get('/contacto', 'Login\LoginController@contacto');
+Route::post('/contacto', 'Login\LoginController@contacto');
