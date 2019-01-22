@@ -21,22 +21,13 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    {{-- <script>
-      $(document).ready(function(){
-        $('a[href*=#]').click(function() {
-          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-              && location.hostname == this.hostname){
-            var $target = $(this.hash);
-            $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
-            if ($target.length) {
-              var targetOffset = $target.offset().top;
-              $('html,body').animate({scrollTop: targetOffset}, 1000);
-              return false;
-            }
-          }
-        });
+    <script type="text/javascript" src="{{ asset('js/smooth-scroll.min.js') }}"></script>
+    <script>
+      var scroll = new SmoothScroll('a[href*="#"]', {
+        speed: 2500,
+        speedAsDuration: true
       });
-    </script> --}}
+    </script>
   </head>
   <body class="shards-app-promo-page--1">
     <div class="loader">
@@ -136,7 +127,7 @@
     <!-- / Testimonials Section -->
 
     <!-- Our Blog Section -->
-    <div class="blog section section-invert py-4" id="service-page">
+    <div class="blog section section-invert py-4" id="nuestro-colegio">
       <h3 class="section-title text-center m-3">Nuestro Colegio</h3>
       <div class="m-3 py-5">
         {{-- <div class="py-4">
@@ -207,7 +198,7 @@
     <!-- / Subscribe Section -->
 
     <!-- Contact Section -->
-    <div class="contact section-invert py-4">
+    <div class="contact section-invert py-4" id="contacto">
       <h3 class="section-title text-center m-5">Contact Us</h3>
       <div class="container py-4">
         <div class="row justify-content-md-center px-4">

@@ -19,9 +19,9 @@
             <a href="#" class="btn btn-success btn-pill align-self-center">Leer mas ...</a>
         </div>
 
-        <div class="col-lg-4 col-md-5 col-sm-12 ml-auto">
+        {{-- <div class="col-lg-4 col-md-5 col-sm-12 ml-auto">
             <img class="iphone-mockup ml-auto" src="img/app-promo/iphone-app-mockup.png" alt="iPhone App Mockup - Shards App Promo Demo">
-        </div>
+        </div> --}}
         </div>
     </div>
     <!-- / Inner Wrapper -->

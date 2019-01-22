@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark pt-4 px-0">
+<nav class="navbar navbar-expand-lg navbar-dark pt-4 px-0" id="inicio">
     <a class="navbar-brand mr-5" href="#">
       <img src="{{asset('img/app-promo/shards-logo-green.svg')}}" class="mr-2" alt="Shards - Agency Landing Page">
       ColCIEF
@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio</a>
+          <a data-scroll class="nav-link" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#service-page">Nuestro Colegio</a>
+          <a data-scroll class="nav-link" href="#nuestro-colegio">Nuestro Colegio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contactenos</a>
+          <a data-scroll class="nav-link" href="#contacto">Contactenos</a>
         </li>
       </ul>
 
