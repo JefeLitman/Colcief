@@ -9,7 +9,7 @@
 
     <!-- CSS Dependencies -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     {{-- CSSs --}}
     <link rel="stylesheet" href="{{ asset('css/shards.min.css') }}">
@@ -28,10 +28,18 @@
         speedAsDuration: true
       });
     </script>
+    <style>
+      .corner-wrapper {
+        overflow: hidden;
+        border-top-left-radius: .625rem;
+        border-top-right-radius: .625rem;
+        transform: translateZ(0px);
+      }
+    </style>
   </head>
   <body class="shards-app-promo-page--1">
-    <div class="loader">
-      <div class="page-loader"></div>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
     @if (Request::path()=="/")
       @include('pantallas.login')
@@ -52,7 +60,7 @@
             <div class="container">
               <h3 class="section-title underline--left my-5">Features</h3>
               <div class="feature py-4 d-flex">
-                <div class="icon text-white bg-success mr-5"><i class="fa fa-refresh"></i></div>
+                <div class="icon text-white bg-success mr-5"><i class="fas fa-refresh"></i></div>
                 <div>
                     <h5>Everything Synced</h5>
                     <p>Quisque mollis mi ac aliquet accumsan. Sed sed dapibus libero. Nullam luctus purus duis sensibus signiferumque.</p>
@@ -60,7 +68,7 @@
               </div>
 
               <div class="feature py-4 d-flex">
-                <div class="icon text-white bg-success mr-5"><i class="fa fa-shield"></i></div>
+                <div class="icon text-white bg-success mr-5"><i class="fas fa-shield"></i></div>
                 <div>
                     <h5>Security</h5>
                     <p>Quisque mollis mi ac aliquet accumsan. Sed sed dapibus libero. Nullam luctus purus duis sensibus signiferumque.</p>
@@ -68,7 +76,7 @@
               </div>
 
               <div class="feature py-4 d-flex">
-                <div class="icon text-white bg-success mr-5"><i class="fa fa-share"></i></div>
+                <div class="icon text-white bg-success mr-5"><i class="fas fa-share"></i></div>
                 <div>
                     <h5>Sharing</h5>
                     <p>Quisque mollis mi ac aliquet accumsan. Sed sed dapibus libero. Nullam luctus purus duis sensibus signiferumque.</p>
@@ -76,7 +84,7 @@
               </div>
 
               <div class="feature py-4 d-flex">
-                <div class="icon text-white bg-success mr-5"><i class="fa fa-globe"></i></div>
+                <div class="icon text-white bg-success mr-5"><i class="fas fa-globe"></i></div>
                 <div>
                     <h5>Access Anywhere</h5>
                     <p>Quisque mollis mi ac aliquet accumsan. Sed sed dapibus libero. Nullam luctus purus duis sensibus signiferumque.</p>
@@ -135,6 +143,30 @@
             <div class="card-columns" style="font-size: 0.8rem;">
               {{-- <div class="col-md-6 col-lg-4 col-12"> --}}
                 <div class="card mb-4">
+                  <div class="corner-wrapper">
+                    <iframe class="card-img-top" id="videoSalida" src="https://www.youtube.com/embed/t-YusdBEheI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">40 años ColCIEF</h5>
+                    <p class="card-text">
+                      FLORIAN SANTANDER COLOMBIA CUMPLEAÑOS DEL MUNICIPIO Y COLEGIO EZEQUIEL FLORIAN 2010, CRISTIAN NEIRA, AVVIO TELEVISIÓN.
+                      MARCANDO PASOS CANAL TRO Y RCI.
+                    </p>
+                  </div>
+                </div>
+                <div class="card mb-4">
+                  <div class="corner-wrapper">
+                    <iframe class="card-img-top" id="videoSalida" src="https://www.youtube.com/embed/ZxAmzM1UBQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">CIEF en el foro educativo</h5>
+                    <p class="card-text">
+                      El Colegio Integrado Ezequiel Florián y el programa radial Colegio en Sintonia 88.8 fm se hace presente a la invitación realizada por el Ministerio de Educación y Microsoft.
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="card mb-4">
                   <img class="card-img-top" src="{{asset('img/familia1.jpg')}}" alt="Dia de la familia">
                   <div class="card-body">
                     <h5 class="card-title">Día de la Familia CIEF</h5>
@@ -185,7 +217,7 @@
     <!-- / Our Blog Section -->
 
     <!-- Subscribe Section -->
-    <div class="subscribe section bg-dark py-4">
+    {{-- <div class="subscribe section bg-dark py-4">
       <h3 class="section-title text-center text-white m-5">Newsletter</h3>
       <p class="text-muted col-md-6 text-center mx-auto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At voluptatum libero ipsum eius rem, facere deserunt repudiandae autem sapiente dolores.</p>
       <form class="form-inline d-table mb-5 mx-auto" action="/">
@@ -194,12 +226,12 @@
           <button class="btn btn-success mb-2" type="submit">Subscribe</button>
         </div>
       </form>
-    </div>
+    </div> --}}
     <!-- / Subscribe Section -->
 
     <!-- Contact Section -->
     <div class="contact section-invert py-4" id="contacto">
-      <h3 class="section-title text-center m-5">Contact Us</h3>
+      <h3 class="section-title text-center m-5">Contactenos</h3>
       <div class="container py-4">
         <div class="row justify-content-md-center px-4">
           <div class="contact-form col-sm-12 col-md-10 col-lg-7 p-4 mb-4 card">

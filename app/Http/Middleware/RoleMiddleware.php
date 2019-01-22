@@ -11,7 +11,7 @@ class RoleMiddleware{
     public function handle($request, Closure $next, ...$guards){
 
         if (empty($guards)) {
-            $guards = ['administrador', 'coordinadro', 'director', 'profesor', 'estudiante'];
+            $guards = ['administrador', 'coordinador', 'director', 'profesor', 'estudiante'];
         }
         foreach ($guards as $guard) {
             $auth = Auth::guard($guard);
@@ -22,13 +22,18 @@ class RoleMiddleware{
                             return $next($request);
                         }
                         break;
-                    case 'director':
+                    case 'coordinador':
                         if($auth->user()->role == '1'){
                             return $next($request);
                         }
                         break;
-                    case 'profesor':
+                    case 'director':
                         if($auth->user()->role == '2'){
+                            return $next($request);
+                        }
+                        break;
+                    case 'profesor':
+                        if($auth->user()->role == '3'){
                             return $next($request);
                         }
                         break;

@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
+use Mail;
+use App\Mail\ContactMail;
+
 class LoginController extends Controller{
 
     public function __construct(){
         $this->middleware('guest')->except('logout');
-        $this->middleware('admin')->only('logout') ;
+        // $this->middleware('admin')->only(['logout', 'contacto']);
     }
     
     public function __invoke(){
@@ -56,5 +59,14 @@ class LoginController extends Controller{
         session()->flush();
         Auth::logout();
         return redirect(url("/"));
+    }
+
+    public function contacto(){
+        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail())
+            /*->greeting(Lang::getFromJson('Hola '))
+            ->subject(Lang::getFromJson('Restablecimiento de contraseña - ColCIEF'))
+            ->line(Lang::getFromJson('Está recibiendo este correo electrónico porque recibimos una solicitud de restablecimiento de contraseña para su cuenta.'))
+            ->line(Lang::getFromJson('Si no solicitó un restablecimiento de contraseña, no es necesario realizar ninguna otra acción.'))
+            ->salutation(Lang::getFromJson('¡Feliz dia!'))*/;
     }
 }
