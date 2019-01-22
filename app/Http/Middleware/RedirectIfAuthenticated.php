@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class RedirectIfAuthenticated
 {
     public function handle($request, Closure $next){
-        $guards = ['estudiante', 'administrador', 'director', 'profesor'];
+        $guards = ['estudiante', 'administrador', 'coordinador', 'director', 'profesor'];
         foreach($guards as $guard){
             if (Auth::guard($guard)->check()) {
                 return back();

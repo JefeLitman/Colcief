@@ -170,4 +170,13 @@
       $('#n').html(nombre[role]);
   }
 </script>
-
+@if(session()->has('true'))
+  @php
+    session() -> forget('true')    
+  @endphp
+@endif
+@if(session()->has('false'))
+  @php
+    session() -> forget('false')    
+  @endphp
+@endif
