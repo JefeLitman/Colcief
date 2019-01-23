@@ -168,17 +168,17 @@ class Todo extends Migration {
         });
 
         Schema::create('recuperacion', function (Blueprint $table) {
-            $table->unsignedInteger('pk_recuperacion')->primary();
+            $table->increments('pk_recuperacion');
             $table->float('nota')->nullable();
-            $table->string('observaciones', 255);
-            $table->date('fecha_presentacion');
+            $table->string('observaciones', 255)->nullable();;
+            $table->date('fecha_presentacion')->nullable();;
             $table->unsignedInteger('fk_nota_periodo');
             $table->timestamps();
 
         });
 
         Schema::create('nivelacion', function (Blueprint $table) {
-            $table->unsignedInteger('pk_nivelacion')->primary();
+            $table->increments('pk_nivelacion');
             $table->float('nota')->nullable();
             $table->string('observaciones', 255);
             $table->date('fecha_presentacion');

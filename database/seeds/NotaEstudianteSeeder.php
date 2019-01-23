@@ -24,7 +24,8 @@ class NotaEstudianteSeeder extends Seeder
             $notaE=NotaEstudiante::create([
                 "fk_nota"=>$n->pk_nota,
                 "fk_nota_division"=>$fk_nota_division,
-                "nota"=>mt_rand(mt_rand(1,50),50)/10 //Lo hago asi para que la mayoria pase el año 
+                // "nota"=>mt_rand(mt_rand(1,50),50)/10 //Lo hago asi para que la mayoria pase el año 
+                "nota"=>mt_rand(1,50)/10 //Lo hago asi para que la mayoria pierda el año 
             ]);
         }
         NotaDivision::where("pk_nota_division",$fk_nota_division)->get()[0]->actualizarNota();        
