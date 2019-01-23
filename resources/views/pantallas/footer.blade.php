@@ -51,7 +51,7 @@
 </footer> --}}
 <!-- / Footer Section -->
 <!-- Footer -->
-<footer class="page-footer font-small stylish-color-dark pt-4 bg-dark">
+<footer class="page-footer font-small stylish-color-dark pt-4 bg-dark" id="footer">
 
     <!-- Footer Links -->
     <div class="container text-center text-md-left">
@@ -60,11 +60,11 @@
         <div class="row">
 
             <!-- Grid column -->
-            <div class="col-md-4 mx-auto">
+            <div class="col-md-8 mx-auto">
 
                 <!-- Content -->
                 <h5 class="font-weight-bold mt-3 mb-4 text-white">ColCIEF</h5>
-                <p>Somos una institución educativa ubicada en el casco urbano del municipio de Florián Santander que cuenta con 3 sedes que van desde el grado kinder hasta undécimo grado en amplias y acogedoras instalaciones con mas de 40 años formando líderes a la sociedad.</p>
+                <p>Somos una institución educativa ubicada en el casco urbano del municipio de Florián Santander que cuenta con 3 sedes que van desde el grado kinder hasta undécimo grado en amplias y acogedoras instalaciones con mas de 40 años formando líderes a la sociedad. En la actualidad sus bachilleres reciben el título de Técnicos en Liderazgo Socioambiental y gracias a la vinculación del SENA también reciben el título de Técnicos en Producción de Café Orgánico. De este modo nuestros egresados son mas competitivos tanto en el mundo laboral como en la educación superior.</p>
 
             </div>
             <!-- Grid column -->
