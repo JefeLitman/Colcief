@@ -234,6 +234,21 @@
       <h3 class="section-title text-center m-5">Contactenos</h3>
       <div class="container py-4">
         <div class="row justify-content-md-center px-4">
+          @if(session()->has('exito'))
+            <div class="col-sm-12 col-md-10 col-lg-7">
+              <div class="row">
+                <div id="info" class="alert alert-success success-dismissible fade show hidden" role="alert" style="width:100%;border-radius: .625rem;">
+                    {{session('exito')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="text-white" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+              </div>
+            </div>
+            @php
+                session() -> forget('exito')
+            @endphp
+          @endif
           <div class="contact-form col-sm-12 col-md-10 col-lg-7 p-4 mb-4 card">
             <form action="{{url('contacto')}}" method="POST">
               @csrf
@@ -246,8 +261,8 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="contactFormEmail">Correo Electronico</label>
-                    <input type="email" class="form-control" id="contactFormEmail" placeholder="Ingrese su correo electronico" name="correo">
+                    <label for="contactFormEmail">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="contactFormEmail" placeholder="Ingrese su correo electrónico" name="correo">
                   </div>
                 </div>
               </div>

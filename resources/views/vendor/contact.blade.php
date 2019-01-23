@@ -153,18 +153,14 @@
     <!-- pre-header end -->
     <!-- header -->
     <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
-
         <tr>
             <td align="center">
                 <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
                     <tr>
                         <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
                     </tr>
-
                     <tr>
                         <td align="center">
-
                             <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
                                 <tr>
                                     <td align="center">
@@ -176,11 +172,9 @@
                             </table>
                         </td>
                     </tr>
-
                     <tr>
                         <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
                     </tr>
-
                 </table>
             </td>
         </tr>
@@ -205,7 +199,6 @@
                     <tr>
                         <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
                     </tr>
-
                     <tr>
                         <td align="center">
                             <table border="0" width="40" align="center" cellpadding="0" cellspacing="0" bgcolor="eeeeee">
@@ -215,25 +208,20 @@
                             </table>
                         </td>
                     </tr>
-
                     <tr>
                         <td height="20" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
                     </tr>
-
                     <tr>
                         <td align="left">
                             <table border="0" width="590" align="center" cellpadding="0" cellspacing="0" class="container590">
                                 <tr>
                                     <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                         <!-- section text ======-->
-
                                         <p style="line-height: 24px; margin-bottom:15px;">
-
                                             Buen Dia.
-
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            Mi nombre es {{$data['nombre']}}, mi correo Electrónico es <a href="mailto:{{$data['correo']}}?Subject='Respuesta solicitud de contacto'">{{$data['correo']}}</a> espero se ponga en contacto conmigo lo mas pronto posible.
+                                            Mi nombre es {{$data['nombre']}}, mi correo Electrónico es <a href="mailto:{{$data['correo']}}?Subject=Respuesta solicitud de contacto">{{$data['correo']}}</a> espero se ponga en contacto conmigo lo mas pronto posible.
                                         </p>
                                         <p style="line-height: 24px; margin-bottom:20px;">
                                             <pre  style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">{{$data['mensaje']}}</pre>
@@ -279,7 +267,7 @@
                                                     class="text_color">
                                                     <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600; mso-line-height-rule: exactly; line-height: 23px;">
 
-                                                        Correo Electrónico: <br/> <a href="mailto:c.jdwep@colcief.com" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">c.jdwep@colcief.com</a>
+                                                        Correo Electrónico: <br/> <a href="mailto:c.jdwep@colcief.com?Subject=" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">c.jdwep@colcief.com</a>
 
                                                     </div>
                                                 </td>
