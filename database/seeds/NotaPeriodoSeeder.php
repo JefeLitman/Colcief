@@ -21,12 +21,12 @@ class NotaPeriodoSeeder extends Seeder
     public static function create($fk_materia_pc,$fk_materia_boletin){
         $periodos = Periodo::where('ano',date('Y'))->get();
         foreach ($periodos as $p) {
-                $n=NotaPeriodo::create([
-                    'fk_periodo'=>$p->pk_periodo,
-                    'fk_materia_boletin'=> $fk_materia_boletin,
-                    'habilidad'=>"ninguna"
-                ]);
-                NotaDivisionSeeder::create($fk_materia_pc,$p->pk_periodo,$n->pk_nota_periodo);
+            $n=NotaPeriodo::create([
+                'fk_periodo'=>$p->pk_periodo,
+                'fk_materia_boletin'=> $fk_materia_boletin,
+                'habilidad'=>"ninguna"
+            ]);
+            NotaDivisionSeeder::create($fk_materia_pc,$p->pk_periodo,$n->pk_nota_periodo);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\MateriaBoletin;
 use App\NotaPeriodo;
+use App\Recuperacion;
 
 class Periodo extends Model
 {
@@ -23,6 +24,15 @@ class Periodo extends Model
         NotaPeriodo::create([
           'fk_materia_boletin'=>$m->pk_materia_boletin,
           'fk_periodo'=>$this->pk_periodo
+        ]);
+      }
+    }
+
+    public function crearRecuperaciones(){
+      $notasPeriodo=NotaPeriodo::where('fk_periodo',$this->pk_periodo);
+      foreach ($notasPerdiodo as $n) {
+        Recuperacion::create([
+          "fk_nota_periodo"=>$n->pk_nota_periodo
         ]);
       }
     }
