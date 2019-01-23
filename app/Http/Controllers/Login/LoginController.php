@@ -62,7 +62,7 @@ class LoginController extends Controller{
     }
 
     public function contacto(Request $request){
-        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail($request));
-        return back()->with('true', 'Su mensajes fue enviado, nos pondremos en contacto');
+        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail($request->all()));
+        return view('vendor.contact', ['data' => $request->all()]);
     }
 }

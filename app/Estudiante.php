@@ -31,7 +31,7 @@ class Estudiante extends Authenticatable {
     public function resetPassword(){
         $this -> password = Hash::make($this -> pk_estudiante.'.'.$this->apellido.'.'.$this->nombre);
         $this -> save();
-        return 'código.apellido.nombre. Ejemplo: 2143.rodriguez.marina';
+        return 'Su contraseña nueva es "código.apellido.nombre" Ejemplo: 2143.rodriguez.marina';
     }
 
     public function session(){

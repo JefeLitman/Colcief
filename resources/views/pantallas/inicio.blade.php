@@ -240,26 +240,26 @@
               <div class="row">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="contactFormFullName">Full Name</label>
-                    <input type="email" class="form-control" id="contactFormFullName" placeholder="Enter your full name">
+                    <label for="contactFormFullName">Nombre</label>
+                    <input type="text" class="form-control" id="contactFormFullName" placeholder="Ingrese su nombre completo" name="nombre">
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="contactFormEmail">Email address</label>
-                    <input type="email" class="form-control" id="contactFormEmail" placeholder="Enter your email address">
+                    <label for="contactFormEmail">Correo Electronico</label>
+                    <input type="email" class="form-control" id="contactFormEmail" placeholder="Ingrese su correo electronico" name="correo">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                      <label for="exampleInputEmail1">Message</label>
-                      <textarea id="exampleInputEmail1" class="form-control mb-4" rows="10" placeholder="Enter your message..." name="message"></textarea>
+                      <label for="exampleInputEmail1">Mensaje</label>
+                      <textarea id="exampleInputEmail1" class="form-control mb-4" rows="10" placeholder="Ingrese su mensaje" name="mensaje"></textarea>
                   </div>
                 </div>
               </div>
-              <input class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit" value="Send Your Message">
+              <input class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit" value="Enviar Mensaje">
             </form>
           </div>
         </div>

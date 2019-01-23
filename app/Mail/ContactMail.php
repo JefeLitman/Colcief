@@ -18,6 +18,6 @@ class ContactMail extends Mailable {
     }
 
     public function build(){
-        return $this -> view('vendor.contact', ['dates' => $this->request->all()]);
-        }
+        return $this -> view('vendor.contact', ['data' => $this->request]);
     }
+}

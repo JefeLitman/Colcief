@@ -114,7 +114,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="section-title text-center" style="margin-bottom: 2rem!important;">Contraseña</h3>
+        <h3 class="section-title text-center" style="margin-bottom: 2rem!important;">Acción realizada </h3>
         <div class="justify-content-center">
           <div class="row mt-5">
             {{session('true')}}

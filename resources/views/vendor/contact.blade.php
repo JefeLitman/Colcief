@@ -1,206 +1,382 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0072)http://tutsplus.github.io/a-simple-responsive-html-email/HTML/index.html -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <title>A Simple Responsive HTML Email</title>
-  <style type="text/css">
-  body {margin: 0; padding: 0; min-width: 100%!important;}
-  img {height: auto;}
-  .content {width: 100%; max-width: 600px;}
-  .header {padding: 40px 30px 20px 30px;}
-  .innerpadding {padding: 30px 30px 30px 30px;}
-  .borderbottom {border-bottom: 1px solid #f2eeed;}
-  .subhead {font-size: 15px; color: #ffffff; font-family: sans-serif; letter-spacing: 10px;}
-  .h1, .h2, .bodycopy {color: #153643; font-family: sans-serif;}
-  .h1 {font-size: 33px; line-height: 38px; font-weight: bold;}
-  .h2 {padding: 0 0 15px 0; font-size: 24px; line-height: 28px; font-weight: bold;}
-  .bodycopy {font-size: 16px; line-height: 22px;}
-  .button {text-align: center; font-size: 18px; font-family: sans-serif; font-weight: bold; padding: 0 30px 0 30px;}
-  .button a {color: #ffffff; text-decoration: none;}
-  .footer {padding: 20px 30px 15px 30px;}
-  .footercopy {font-family: sans-serif; font-size: 14px; color: #ffffff;}
-  .footercopy a {color: #ffffff; text-decoration: underline;}
+<html xmlns:v="urn:schemas-microsoft-com:vml">
 
-  @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
-  body[yahoo] .hide {display: none!important;}
-  body[yahoo] .buttonwrapper {background-color: transparent!important;}
-  body[yahoo] .button {padding: 0px!important;}
-  body[yahoo] .button a {background-color: #e05443; padding: 15px 15px 13px!important;}
-  body[yahoo] .unsubscribe {display: block; margin-top: 20px; padding: 10px 50px; background: #2f3942; border-radius: 5px; text-decoration: none!important; font-weight: bold;}
-  }
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <meta name="viewport" content="width=600,initial-scale = 2.3,user-scalable=no">
+    <!--[if !mso]><!-- -->
+    <link href='https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700' rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!--<![endif]-->
 
-  /*@media only screen and (min-device-width: 601px) {
-    .content {width: 600px !important;}
-    .col425 {width: 425px!important;}
-    .col380 {width: 380px!important;}
-    }*/
+    <title>Contanto ColCIEF</title>
 
-  </style>
+    <style type="text/css">
+        body {
+            width: 100%;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            mso-margin-top-alt: 0px;
+            mso-margin-bottom-alt: 0px;
+            mso-padding-alt: 0px 0px 0px 0px;
+        }
+
+        p,
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        span.preheader {
+            display: none;
+            font-size: 1px;
+        }
+
+        html {
+            width: 100%;
+        }
+
+        table {
+            font-size: 14px;
+            border: 0;
+        }
+        /* ----------- responsivity ----------- */
+
+        @media only screen and (max-width: 640px) {
+            /*------ top header ------ */
+            .main-header {
+                font-size: 20px !important;
+            }
+            .main-section-header {
+                font-size: 28px !important;
+            }
+            .show {
+                display: block !important;
+            }
+            .hide {
+                display: none !important;
+            }
+            .align-center {
+                text-align: center !important;
+            }
+            .no-bg {
+                background: none !important;
+            }
+            /*----- main image -------*/
+            .main-image img {
+                width: 440px !important;
+                height: auto !important;
+            }
+            /* ====== divider ====== */
+            .divider img {
+                width: 440px !important;
+            }
+            /*-------- container --------*/
+            .container590 {
+                width: 440px !important;
+            }
+            .container580 {
+                width: 400px !important;
+            }
+            .main-button {
+                width: 220px !important;
+            }
+            /*-------- secions ----------*/
+            .section-img img {
+                width: 320px !important;
+                height: auto !important;
+            }
+            .team-img img {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        @media only screen and (max-width: 479px) {
+            /*------ top header ------ */
+            .main-header {
+                font-size: 18px !important;
+            }
+            .main-section-header {
+                font-size: 26px !important;
+            }
+            /* ====== divider ====== */
+            .divider img {
+                width: 280px !important;
+            }
+            /*-------- container --------*/
+            .container590 {
+                width: 280px !important;
+            }
+            .container590 {
+                width: 280px !important;
+            }
+            .container580 {
+                width: 260px !important;
+            }
+            /*-------- secions ----------*/
+            .section-img img {
+                width: 280px !important;
+                height: auto !important;
+            }
+        }
+    </style>
+    <!--[if gte mso 9]><style type=”text/css”>
+        body {
+        font-family: arial, sans-serif!important;
+        }
+        </style>
+    <![endif]-->
 </head>
 
-<body yahoo="" bgcolor="#f6f8f1" style="">
-<table width="100%" bgcolor="#f6f8f1" border="0" cellpadding="0" cellspacing="0">
-<tbody><tr>
-  <td>
-    <!--[if (gte mso 9)|(IE)]>
-      <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+
+<body class="respond" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    <!-- pre-header -->
+    <table style="display:none!important;">
         <tr>
-          <td>
-    <![endif]-->     
-    <table bgcolor="#ffffff" class="content" align="center" cellpadding="0" cellspacing="0" border="0">
-      <tbody><tr>
-        <td bgcolor="#c7d8a7" class="header">
-          <table width="70" align="left" border="0" cellpadding="0" cellspacing="0">  
-            <tbody><tr>
-              <td height="70" style="padding: 0 20px 20px 0;">
-                <img class="fix" src="./A Simple Responsive HTML Email_files/icon.gif" width="70" height="70" border="0" alt="">
-              </td>
-            </tr>
-          </tbody></table>
-          <!--[if (gte mso 9)|(IE)]>
-            <table width="425" align="left" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td>
-          <![endif]-->
-          <table class="col425" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 425px;">  
-            <tbody><tr>
-              <td height="70">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tbody><tr>
-                    <td class="subhead" style="padding: 0 0 0 3px;">
-                      CREATING
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="h1" style="padding: 5px 0 0 0;">
-                      Responsive Email Magic
-                    </td>
-                  </tr>
-                </tbody></table>
-              </td>
-            </tr>
-          </tbody></table>
-          <!--[if (gte mso 9)|(IE)]>
-                </td>
-              </tr>
-          </table>
-          <![endif]-->
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding borderbottom">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tbody><tr>
-              <td class="h2">
-                Welcome to our responsive email!
-              </td>
-            </tr>
-            <tr>
-              <td class="bodycopy">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
-              </td>
-            </tr>
-          </tbody></table>
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding borderbottom">
-          <table width="115" align="left" border="0" cellpadding="0" cellspacing="0">  
-            <tbody><tr>
-              <td height="115" style="padding: 0 20px 20px 0;">
-                <img class="fix" src="./A Simple Responsive HTML Email_files/article1.png" width="115" height="115" border="0" alt="">
-              </td>
-            </tr>
-          </tbody></table>
-          <!--[if (gte mso 9)|(IE)]>
-            <table width="380" align="left" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td>
-          <![endif]-->
-          <table class="col380" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 380px;">  
-            <tbody><tr>
-              <td>
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tbody><tr>
-                    <td class="bodycopy">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 20px 0 0 0;">
-                      <table class="buttonwrapper" bgcolor="#e05443" border="0" cellspacing="0" cellpadding="0">
-                        <tbody><tr>
-                          <td class="button" height="45">
-                            <a href="http://tutsplus.github.io/a-simple-responsive-html-email/HTML/index.html#">Claim yours!</a>
-                          </td>
-                        </tr>
-                      </tbody></table>
-                    </td>
-                  </tr>
-                </tbody></table>
-              </td>
-            </tr>
-          </tbody></table>
-          <!--[if (gte mso 9)|(IE)]>
-                </td>
-              </tr>
-          </table>
-          <![endif]-->
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding borderbottom">
-          <img class="fix" src="./A Simple Responsive HTML Email_files/wide.png" width="100%" border="0" alt="">
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding bodycopy">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
-        </td>
-      </tr>
-      <tr>
-        <td class="footer" bgcolor="#44525f">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tbody><tr>
-              <td align="center" class="footercopy">
-                ® Someone, somewhere 2013<br>
-                <a href="http://tutsplus.github.io/a-simple-responsive-html-email/HTML/index.html#" class="unsubscribe"><font color="#ffffff">Unsubscribe</font></a> 
-                <span class="hide">from this newsletter instantly</span>
-              </td>
-            </tr>
-            <tr>
-              <td align="center" style="padding: 20px 0 0 0;">
-                <table border="0" cellspacing="0" cellpadding="0">
-                  <tbody><tr>
-                    <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
-                      <a href="http://www.facebook.com/">
-                        <img src="./A Simple Responsive HTML Email_files/facebook.png" width="37" height="37" alt="Facebook" border="0">
-                      </a>
-                    </td>
-                    <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
-                      <a href="http://www.twitter.com/">
-                        <img src="./A Simple Responsive HTML Email_files/twitter.png" width="37" height="37" alt="Twitter" border="0">
-                      </a>
-                    </td>
-                  </tr>
-                </tbody></table>
-              </td>
-            </tr>
-          </tbody></table>
-        </td>
-      </tr>
-    </tbody></table>
-    <!--[if (gte mso 9)|(IE)]>
-          </td>
+            <td>
+                <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;">
+                    Welcome!
+                </div>
+            </td>
         </tr>
     </table>
-    <![endif]-->
-    </td>
-  </tr>
-</tbody></table>
+    <!-- pre-header end -->
+    <!-- header -->
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
 
-<!--analytics-->
-<script type="text/javascript" async="" src="./A Simple Responsive HTML Email_files/ga.js"></script><script src="./A Simple Responsive HTML Email_files/jquery-1.10.1.min.js"></script>
-<script src="./A Simple Responsive HTML Email_files/ga-tracking.min.js"></script>
+        <tr>
+            <td align="center">
+                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
 
-</body></html>
+                    <tr>
+                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td align="center">
+
+                            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+                                <tr>
+                                    <td align="center">
+                                        <table width="360 " border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                            class="container590 hide">
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- end header -->
+
+    <!-- big image section -->
+
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" class="bg_color">
+        <tr>
+            <td align="center">
+                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+                    <tr>
+                        <td align="center" style="color: #343434; font-size: 24px; font-family: Quicksand, Calibri, sans-serif; font-weight:700;letter-spacing: 3px; line-height: 35px;"
+                            class="main-header">
+                            <!-- section text ======-->
+                            <div style="line-height: 35px">
+                                <h2>Formato de contacto <span style="color: #5caad2;">ColCIEF</span></h2>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td align="center">
+                            <table border="0" width="40" align="center" cellpadding="0" cellspacing="0" bgcolor="eeeeee">
+                                <tr>
+                                    <td height="2" style="font-size: 2px; line-height: 2px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td height="20" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td align="left">
+                            <table border="0" width="590" align="center" cellpadding="0" cellspacing="0" class="container590">
+                                <tr>
+                                    <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
+                                        <!-- section text ======-->
+
+                                        <p style="line-height: 24px; margin-bottom:15px;">
+
+                                            Buen Dia.
+
+                                        </p>
+                                        <p style="line-height: 24px;margin-bottom:15px;">
+                                            Mi nombre es {{$data['nombre']}}, mi correo Electrónico es <a href="mailto:{{$data['correo']}}?Subject='Respuesta solicitud de contacto'">{{$data['correo']}}</a> espero se ponga en contacto conmigo lo mas pronto posible.
+                                        </p>
+                                        <p style="line-height: 24px; margin-bottom:20px;">
+                                            <pre  style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">{{$data['mensaje']}}</pre>
+                                        </p>
+                                        <p style="line-height: 24px">
+                                            Feliz Dia!
+                                        </p>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td height="40" style="font-size: 40px; line-height: 40px;">&nbsp;</td>
+        </tr>
+
+    </table>
+
+    <!-- end section -->
+
+    <!-- contact section -->
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" class="bg_color">
+        <tr>
+            <td align="center">
+                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590 bg_color">
+                    <tr>
+                        <td align="center">
+                            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590 bg_color">
+                                <tr>
+                                    <td>
+                                        <table border="0" width="300" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                            class="container590">
+                                            <tr>
+                                                <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" style="color: #888888; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 23px;"
+                                                    class="text_color">
+                                                    <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600; mso-line-height-rule: exactly; line-height: 23px;">
+
+                                                        Correo Electrónico: <br/> <a href="mailto:c.jdwep@colcief.com" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">c.jdwep@colcief.com</a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" width="2" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                            class="container590">
+                                            <tr>
+                                                <td width="2" height="10" style="font-size: 10px; line-height: 10px;"></td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" width="200" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                            class="container590">
+                                            <tr>
+                                                <td class="hide" height="45" style="font-size: 45px; line-height: 45px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="0" align="right" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td>
+                                                                <a class="link" target ="blank" href="https://www.facebook.com/COLEGIO-INTEGRADO-EZEQUIEL-FLORIAN-130222610330580/" class="btn-floating btn-fb mx-1">
+                                                                    <i class="fab fa-facebook-f" style="color:#5caad2"> </i>
+                                                                </a>
+                                                            </td>
+                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                            <td>
+                                                                <a class="link" target ="blank" href="https://sites.google.com/site/colcief/" class="btn-floating btn-gplus mx-1">
+                                                                    <i class="fas fa-blog" style="color:#5caad2"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="60" style="font-size: 60px; line-height: 60px;">&nbsp;</td>
+        </tr>
+    </table>
+    <!-- end section -->
+
+    <!-- footer ====== -->
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="f4f4f4">
+        <tr>
+            <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center">
+                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+                    <tr>
+                        <td>
+                            <table border="0" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                class="container590">
+                                <tr>
+                                    <td align="left" style="color: #aaaaaa; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
+                                        <div style="line-height: 24px;">
+
+                                            <span style="color: #333333;">
+                                                <i class="fas fa-copyright"></i> 2019 Copyright: JDWEP
+                                            </span>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table border="0" align="left" width="5" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                class="container590">
+                                <tr>
+                                    <td height="20" width="5" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                            <table border="0" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                class="container590">
+                                <tr>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
+        </tr>
+    </table>
+    <!-- end footer ====== -->
+</body>
+</html>
