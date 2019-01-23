@@ -9,6 +9,7 @@ class RecuperacionSeeder extends Seeder
     {   
         $periodos = Periodo::where('ano',date('Y'))->get();
         foreach ($periodos as $p) {
+            error_log("Creacion notas recuperacion Periodo: ".$p->nro_periodo);
             $p->crearRecuperaciones();
         }
     }
