@@ -23,17 +23,17 @@ class RoleMiddleware{
                         }
                         break;
                     case 'coordinador':
-                        if($auth->user()->role == '1'){
+                        if($auth->user()->role == '3'){
                             return $next($request);
                         }
                         break;
                     case 'director':
-                        if($auth->user()->role == '2'){
+                        if($auth->user()->role == '1'){
                             return $next($request);
                         }
                         break;
                     case 'profesor':
-                        if($auth->user()->role == '3'){
+                        if($auth->user()->role == '4'){
                             return $next($request);
                         }
                         break;

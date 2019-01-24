@@ -147,27 +147,27 @@
     @endif
   })
   function user(role){
-    nombre = ['Administrador', 'Coordinador', 'Director', 'Profesor', 'Estudiante']
+    nombre = ['Administrador', 'Director', 'Profesor', 'Coordinador', 'Estudiante']
     var email = $('#email')
     var icon = $('#icons')
     if(role == '4'){
-        $('#label').html('Código')
-        $('#username').attr('placeholder','Ingrese su código')
-        $('#label_email').html('Codigo Estudiantil');
-        email.attr('type', 'number');
-        $('#form').attr('action', "{{ route('password.authentication') }}");
-        icon.removeClass('fa fa-at').addClass('fa fa-user')
-      } else if(role == '3' || role == '2' || role == '1' || role == '0'){
-        $('#label').html('Cédula')
-        $('#username').attr('placeholder','Ingrese su cédula')
-        $('#label_email').html('Correo Electronico');
-        email.attr('type', 'email');
-        $('#form').attr('action', "{{ route('password.email') }}");
-        icon.removeClass('fa fa-user').addClass('fa fa-at')
-      }
-      $('#hidden').val(role);
-      $('#hidden-role').val(role);
-      $('#n').html(nombre[role]);
+      $('#label').html('Código')
+      $('#username').attr('placeholder','Ingrese su código')
+      $('#label_email').html('Codigo Estudiantil');
+      email.attr('type', 'number');
+      $('#form').attr('action', "{{ route('password.authentication') }}");
+      icon.removeClass('fa fa-at').addClass('fa fa-user')
+    } else if(role == '3' || role == '2' || role == '1' || role == '0'){
+      $('#label').html('Cédula')
+      $('#username').attr('placeholder','Ingrese su cédula')
+      $('#label_email').html('Correo Electronico');
+      email.attr('type', 'email');
+      $('#form').attr('action', "{{ route('password.email') }}");
+      icon.removeClass('fa fa-user').addClass('fa fa-at')
+    }
+    $('#hidden').val(role);
+    $('#hidden-role').val(role);
+    $('#n').html(nombre[role]);
   }
 </script>
 @if(session()->has('true'))
