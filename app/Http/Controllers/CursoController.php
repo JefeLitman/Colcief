@@ -44,7 +44,7 @@ class CursoController extends Controller
     }
 
     public function show($pk_curso) {
-        $curso = Curso::findOrFail($pk_curso);
+        $curso = Curso::find($pk_curso);
         return view("cursos.verCurso", compact('curso'));
     }
 

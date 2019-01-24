@@ -22,11 +22,11 @@ class EstudianteController extends Controller{
 
     //Funciones publicas de primeros y al final las privadas
 
-    public function __construct (){
-        $this->middleware('admin:estudiante')->only('perfil');
-        $this->middleware('admin:director,profesor,administrador')->only(['index', 'show']);
-        $this->middleware('admin:administrador')->except(['perfil', 'index', 'show']);
-    }
+    // public function __construct (){
+    //     $this->middleware('admin:estudiante')->only('perfil');
+    //     $this->middleware('admin:director,profesor,administrador')->only(['index', 'show']);
+    //     $this->middleware('admin:administrador')->except(['perfil', 'index', 'show']);
+    // }
 
     public function index(){
         $curso = Curso::all()->groupBy('prefijo');
@@ -220,6 +220,19 @@ class EstudianteController extends Controller{
                     'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' no pudo ser eliminado, intente nuevamente'
                 ]);
             }
+        }
+    }
+
+    public function estudiantes(){
+        return view ('estudiantes.listaEstudiante', ['estudiante' => Estudiante::all()]);
+    }
+
+    private function filtro(Request $request){
+        if($request->ajax()){
+            return response()->json([
+                'data' => Estudiante::where('grado', $request -> grado) -> get(),
+            ]);
+            
         }
     }
 }
