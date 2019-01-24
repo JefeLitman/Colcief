@@ -49,7 +49,7 @@
                         </tr>
                     </thead>
                     @php
-                        $cargo = ['Administrador', 'Coordinador', 'Director', 'Profesor']
+                        $cargo = ['Administrador', 'Director', 'Profesor', 'Coordinador']
                     @endphp
                     <tbody>
                         @foreach ($empleado as $i)

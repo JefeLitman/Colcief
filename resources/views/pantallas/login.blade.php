@@ -53,19 +53,19 @@
         <h3 class="section-title text-center" style="margin-bottom: 2rem!important;">Usuario</h3>
         <div class="justify-content-center">
           <div class="row">
-            <div class="col-sm-4 col-sm-4 col-md-6 col-xs-4">
+            <div class="col-12 col-sm-6">
               <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="0"><i class="fas fa-user-cog float-left"></i> Administrador</button>
             </div>
-            <div class="col-sm-4 col-sm-4 col-md-6 col-xs-4">
-              <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="1"><i class="fas fa-user-tie float-left"></i> Coordinador</button>
+            <div class="col-12 col-sm-6">
+              <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="3"><i class="fas fa-user-tie float-left"></i> Coordinador</button>
             </div>
-            <div class="col-sm-4 col-sm-4 col-md-6 col-xs-4">
-              <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="2"><i class="fas fa-chalkboard-teacher float-left"></i> Director</button>
+            <div class="col-12 col-sm-6">
+              <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="1"><i class="fas fa-chalkboard-teacher float-left"></i> Director</button>
             </div>
-            <div class="col-sm-4 col-sm-4 col-md-6 col-xs-4">
-              <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="3"><i class="fas fa-user float-left"></i> Profesor</button>
+            <div class="col-12 col-sm-6">
+              <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="2"><i class="fas fa-user float-left"></i> Profesor</button>
             </div>
-            <div class="col-sm-4 col-sm-4 col-md-6 col-xs-4">
+            <div class="col-12 col-sm-6">
               <button class="value btn btn-success mt-3 text-center ml-auto mr-auto form-control btn-pill" data-target="#exampleModal" data-toggle="modal" data-dismiss="modal" value="4"><i class="fas fa-graduation-cap float-left"></i> Estudiante</button>
             </div>
           </div>

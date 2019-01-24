@@ -40,7 +40,7 @@
                         </div>
                         <div class="card-footer" title="Discapacidad">
                             <div class="float-left d-none d-sm-block">Discapacidad</div>
-                            <div class="text-muted" style="text-align: right;">{{ucwords($estudiante->Discapacidad == 0 ? 'no' : 'si' )}}</div>
+                            <div class="text-muted" style="text-align: right;">{{ucwords($estudiante->discapacidad == 0 ? 'no' : 'si' )}}</div>
                         </div>
                         <div class="card-footer" title="Curso">
                             <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">

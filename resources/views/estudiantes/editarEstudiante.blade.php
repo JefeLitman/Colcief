@@ -122,10 +122,7 @@
                                         </div>
                                         <input type="text" class="form-control form-control-sm" aria-label="Text input with radio button" placeholder="Discapacidad" disabled >
                                         <div class="input-group-append">
-                                            <span class="input-group-text"><input type="checkbox"
-                                                @if($estudiante->discapacidad == "1") {{-- verifico si el estudiante tiene discapacidad, en caso q si, imprimo checked para checkar el checkbox --}}
-                                                    checked value="1"
-                                                @endif
+                                            <span class="input-group-text"><input type="checkbox" value="1" name="discapacidad" {{$estudiante->discapacidad == "1" ? 'checked' : ''}}
                                             ></span>
                                         </div>
                                     </div>
