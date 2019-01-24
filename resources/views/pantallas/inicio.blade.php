@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ColCIEF - @yield('titulo')</title>
+  <title>ColCIEF - @yield('titulo') {{session('role')}}</title>
     <meta name="description" content="A demo landing page for agencies or product oriented businesses built using Shards, a free, modern and lightweight UI toolkit based on Bootstrap 4.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
