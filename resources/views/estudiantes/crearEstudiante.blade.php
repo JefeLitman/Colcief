@@ -94,7 +94,7 @@
                                         </div>
                                         <input type="text" class="form-control form-control-sm" aria-label="Text input with radio button" placeholder="Discapacidad" disabled>
                                         <div class="input-group-append">
-                                            <span class="input-group-text"><input type="checkbox"></span>
+                                            <span class="input-group-text"><input type="checkbox" name="discapacidad" value="1"></span>
                                         </div>
                                     </div>
                                 </div>

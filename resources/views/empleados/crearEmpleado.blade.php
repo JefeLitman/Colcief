@@ -41,9 +41,9 @@
                                         </div>
                                         <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'fk_curso')">
                                             <option @select('role', '0') @endselect value="0">Administrador</option>
-                                            <option @select('role', '1') @endselect value="1">Coordinador</option>
-                                            <option @select('role', '2') @endselect value="2">Director</option>
-                                            <option @select('role', '3') @endselect value="3" selected>Profesor</option>
+                                            <option @select('role', '3') @endselect value="1">Coordinador</option>
+                                            <option @select('role', '1') @endselect value="2">Director</option>
+                                            <option @select('role', '2') @endselect value="3" selected>Profesor</option>
                                             {{-- <option value="3">Three</option> --}}
                                         </select>
                                     </div>
@@ -166,7 +166,7 @@
     function desactivar(p1,p2){
         var s1 = document.getElementById(p1);
         var s2 = document.getElementById(p2);
-        if(s1.value=='0' || s1.value=='1' || s1.value=='3'){
+        if(s1.value=='0' || s1.value=='2' || s1.value=='3'){
             s2.value="";
             s2.disabled = true;
         }else{

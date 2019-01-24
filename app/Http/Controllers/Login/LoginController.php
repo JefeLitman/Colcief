@@ -26,13 +26,13 @@ class LoginController extends Controller{
             case '0':
                 $guardia = 'administrador';
                 break;
-            case '1':
+            case '3':
                 $guardia = 'coordinador';
                 break;
-            case '2':
+            case '1':
                 $guardia = 'director';
                 break;
-            case '3':
+            case '2':
                 $guardia = 'profesor';
                 break;
             case '4':

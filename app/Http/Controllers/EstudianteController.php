@@ -95,8 +95,8 @@ class EstudianteController extends Controller{
     public function show($pk_estudiante){
         /*@Autor Douglas R.*/
         //Código optimizado y mejorado para tapar un hueco de seguridad
-        if (!(session('role')=='administrador')) {
-          $pk_estudiante=''.session('user')['pk_estudiante'];
+        if (session('role') == 'estudiante' and $pk_estudiante != session('user')['pk_estudiante']) {
+          return redirect('/estudiantes/'.session('user')['pk_estudiante']);
         }
         $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get();
         if (!empty($estudiante[0])) {
@@ -224,15 +224,33 @@ class EstudianteController extends Controller{
     }
 
     public function estudiantes(){
-        return view ('estudiantes.listaEstudiante', ['estudiante' => Estudiante::all()]);
+        return view ('estudiantes.listaEstudiante', ['estudiante' => Estudiante::withTrashed() -> orderBy('apellido') -> get(), 'cursos' => Curso::where('ano', date('Y')) -> get()]);
     }
 
-    private function filtro(Request $request){
+    public function filtro(Request $request){
         if($request->ajax()){
+            $estudiante = Estudiante::where('estado','1');
+            // return response()->json([
+            //     'data' =>  $estudiantes,
+            // ]);
+            foreach ($request->except('_token') as $key => $value) {
+                if($value != 'null'){
+                    if($key != 'deleted_at'){
+                        $estudiante -> where($key, $value);
+                    } else {
+                        if($value == '0'){
+                            $estudiante -> onlyTrashed();
+                        }
+                    }
+                } else {
+                    if($key == 'deleted_at'){
+                        $estudiante -> withTrashed();
+                    }
+                }
+            }
             return response()->json([
-                'data' => Estudiante::where('grado', $request -> grado) -> get(),
+                'data' =>  $estudiante -> orderBy('apellido') -> get(),
             ]);
-            
         }
     }
 }

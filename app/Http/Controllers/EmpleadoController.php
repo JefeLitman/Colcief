@@ -64,7 +64,7 @@ class EmpleadoController extends Controller{
         }
         $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso')->get();
         $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') ->get();
-        $cargo = ['Administrador', 'Coordinador', 'Director', 'Profesor'];
+        $cargo = ['Administrador', 'Director', 'Profesor', 'Coordinador'];
 
         if(!empty($empleado[0])){
             // dd($empleado);
