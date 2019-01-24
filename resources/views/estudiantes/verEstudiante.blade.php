@@ -1,6 +1,6 @@
-@extends('contenedores.admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Ver estudiante')
-@section('contenedor_admin')
 	{{-- d-none d-sm-blockuia Front --}}
 	{{-- Se envía el objeto $estudiante y el objeto $acudiente --}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>EstudianteController.php  funcion show()
