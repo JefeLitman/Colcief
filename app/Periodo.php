@@ -29,14 +29,11 @@ class Periodo extends Model
     }
 
     public function crearRecuperaciones(){
-      $notasPeriodo=NotaPeriodo::where('fk_periodo',$this->pk_periodo)->get();
+      $notasPeriodo=NotaPeriodo::where([['fk_periodo',$this->pk_periodo],['nota_periodo','<',3.0]])->get();
       foreach ($notasPeriodo as $n) {
-        if ($n->nota<3.0) {
-          error_log("Esta creando");
-          Recuperacion::create([
-            "fk_nota_periodo"=>$n->pk_nota_periodo
-          ]);
-        }
+        Recuperacion::create([
+          "fk_nota_periodo"=>$n->pk_nota_periodo
+        ]);
       }
     }
 }

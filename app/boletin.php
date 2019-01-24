@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\MateriaBoletin;
 use App\Nivelacion;
+use App\Estudiante;
+use App\Curso;
 
 class Boletin extends Model
 {
@@ -40,13 +42,25 @@ class Boletin extends Model
      *    p: Perdió 
      *  } 
      * )
+     * Esta funcion se debe llamar una sola vez al año al finalizar el año escolar
      */
     public function verificar(){
       $materiasBoletin=MateriaBoletin::select('materia_boletin.pk_materia_boletin','materia_pc.fk_empleado')
       ->where([['materia_boletin.fk_boletin',$this->pk_boletin],['materia_boletin.nota_materia','<',3]])
-      ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')->get();
+      ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+      ->get();
+      
       if(count($materiasBoletin)<3){
         $this->estado='a';//Aprovó
+        
+        //Actualizand ultimo grado aprobado
+        $curso=Curso::select('prefijo')->where('pk_curso',$this->fk_curso)->get();
+        $estudiante=Estudiante::where('pk_estudiante',$this->fk_estudiante)->get();
+        if (!empty($estudiante[0]) and !empty($curso[0])) {
+          $estudiante[0]->grado=$curso[0]->prefijo;
+          $estudiante[0]->save();
+        }
+        
         //Creando nivelaciones
         foreach ($materiasBoletin as $m) {
           Nivelacion::create([

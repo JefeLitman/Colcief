@@ -10,5 +10,6 @@ class FechaSeeder extends Seeder{
         $fecha -> fin_escolar = date('Y').'-10-25';
         $fecha -> ano = date('Y');
         $fecha -> save();
+        Fecha::verificarBoletines();
     }
 }
