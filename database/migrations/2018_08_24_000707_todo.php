@@ -180,10 +180,10 @@ class Todo extends Migration {
         Schema::create('nivelacion', function (Blueprint $table) {
             $table->increments('pk_nivelacion');
             $table->float('nota')->nullable();
-            $table->string('observaciones', 255);
-            $table->date('fecha_presentacion');
+            $table->string('observaciones', 255)->nullable();
+            $table->date('fecha_presentacion')->nullable();
             $table->unsignedInteger('fk_materia_boletin');
-            $table->unsignedInteger('fk_empleado')->nullable();
+            $table->unsignedInteger('fk_empleado');
             $table->timestamps();
 
         });
