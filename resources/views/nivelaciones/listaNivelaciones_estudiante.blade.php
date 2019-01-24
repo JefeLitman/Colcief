@@ -15,7 +15,8 @@
 			&nbsp &nbsp &nbsp No hay periodos perdidos
 		@else
 			@foreach ($recuperacion[$p->pk_periodo] as $r)
-				&nbsp &nbsp &nbsp	<b>Pk: </b> {{$r->pk_recuperacion}} <b>Materia:</b> {{$r->materia}} <b>Profesor:</b> {{ucwords($r->nombre)}} {{ucwords($r->apellido)}} <b>Nota:</b> {{$r->nota}}
+				&nbsp &nbsp &nbsp	<b>Pk: </b> {{$r->pk_recuperacion}} <b>Materia:</b> {{$r->materia}} <b>Profesor:</b> {{ucwords($r->nombre)}} {{ucwords($r->apellido)}} <b>Nota:</b> {{$r->nota or "-"}}
+				<br>
 			@endforeach
 		@endif
 		
@@ -25,7 +26,8 @@
 		&nbsp &nbsp &nbsp No hay materias perdidas
 	@else
 		@foreach ($nivelacion as $n)
-		&nbsp &nbsp &nbsp	<b>Pk: </b> {{$n->pk_nivelacion}} <b>Curso:</b> {{($n->prefijo==0)?"Preescolar":$n->prefijo}}-{{$n->sufijo}}   <b>Materia:</b> {{$n->materia}} <b>Profesor:</b> {{ucwords($n->nombre)}} {{ucwords($n->apellido)}} <b>Nota:</b> {{$n->nota}}
+		&nbsp &nbsp &nbsp	<b>Pk: </b> {{$n->pk_nivelacion}} <b>Curso:</b> {{($n->prefijo==0)?"Preescolar":$n->prefijo}}-{{$n->sufijo}}   <b>Materia:</b> {{$n->materia}} <b>Profesor:</b> {{ucwords($n->nombre)}} {{ucwords($n->apellido)}} <b>Nota:</b> {{$n->nota or "-"}}
+		<br>
 		@endforeach
 	@endif
 	
