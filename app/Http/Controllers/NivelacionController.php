@@ -59,7 +59,9 @@ class NivelacionController extends Controller
                 ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
                 ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
                 ->join('curso','curso.pk_curso','=','boletin.fk_curso')
-                ->join('empleado','empleado.cedula','=','nivelacion.fk_empleado')->get();
+                ->join('empleado','empleado.cedula','=','nivelacion.fk_empleado')
+                ->where('boletin.fk_estudiante',$user['pk_estudiante'])
+                ->get();
                 // dd($nivelacion);
                 // dd($recuperacion);
                 return view('nivelaciones.listaNivelaciones_estudiante',["periodos"=>$periodos,"recuperacion"=>$recuperacion,"nivelacion"=>$nivelacion]);

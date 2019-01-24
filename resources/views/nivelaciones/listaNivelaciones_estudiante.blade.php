@@ -88,7 +88,7 @@
 												</tr>
 											</thead>
 											<tbody>	
-												@if (count($recuperacion[$p->pk_periodo])==0)
+												@if (count($nivelacion)==0)
 													<tr>
 														<td colspan="5" class="text-center"> No hay periodos perdidos </td>
 													</tr>
