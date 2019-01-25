@@ -39,7 +39,7 @@
                                       {{-- Descripción --}}
                                       <th scope="col" style="color:#00695c" class="text-center">Descripción</th>
                                       {{--  Acciones  --}}
-                                      @if ((session('role')=='administrador') || (session('role')=='profesor'))
+                                      @if (session('role')=='profesor')
                                         <th scope="col" style="color:#00695c" class="text-center" colspan="3">Acciones
                                         </th>
                                       @else
@@ -58,7 +58,7 @@
                                           <td class="text-center">{{$nota['descripcion']}}</td>
 
                                           {{--  Acciones para admin y profesor  --}}
-                                          @if ((session('role')=='administrador') || (session('role')=='profesor'))
+                                          @if (session('role')=='profesor')
                                             {{-- Editar --}}
                                             <td class="text-center"><a href="{{ route('notas.edit',$nota['pk_nota']) }}"><i class="fas fa-edit" style="color:#00695c"></i>
                                             </a></td>
@@ -102,7 +102,7 @@
     </div>
     <br>
     {{--  Boton crear  --}}
-    @if ((session('role')=='administrador') || (session('role')=='profesor'))
+    @if (session('role')=='profesor')
     <div class="text-center" style="float:center;">
         <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/crear/{{$infoMateria->pk_materia_pc}}">Crear nota</a>
     </div>

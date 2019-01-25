@@ -33,6 +33,8 @@ class NotaController extends Controller
             return '¿Qué estás intentando?';
           }
           break;
+        case 'administrador':
+          break;
         default:
           if (!$this->verificarProfesor($pk_materia_pc,session('user')['cedula'])) {
             return 'Este curso no le pertenece.';
