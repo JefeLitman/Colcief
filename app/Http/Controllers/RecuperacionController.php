@@ -99,8 +99,39 @@ class RecuperacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        if (session('role')=="profesor" or session('role')=="director") {
+            $user=session('user');
+            $recuperacion=Recuperacion::select(
+                'recuperacion.*',
+                'periodo.nro_periodo',
+                'periodo.recuperacion_inicio',
+                'periodo.recuperacion_limite',
+                'materia_pc.nombre as materia',
+                'empleado.cedula as pk_empleado',
+                'empleado.nombre',
+                'empleado.apellido',
+                'estudiante.pk_estudiante',
+                'estudiante.nombre as nombreE',
+                'estudiante.apellido as apellidoE',
+                'curso.prefijo',
+                'curso.sufijo',
+                'curso.ano'
+            )
+            ->join('nota_periodo','nota_periodo.pk_nota_periodo','=','recuperacion.fk_nota_periodo')
+            ->join('periodo','periodo.pk_periodo','=','nota_periodo.fk_periodo')
+            ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')
+            ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+            ->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')
+            ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
+            ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
+            ->join('curso','curso.pk_curso','=','boletin.fk_curso')
+            ->where([['recuperacion.pk_recuperacion',$id],['empleado.cedula',$user['cedula']]])->get();
+            if (!empty($recuperacion[0])) {
+                return view("recuperaciones.editarRecuperacion",['recuperacion'=>$recuperacion[0]]);
+            }
+        }
+        return redirect("/nivelaciones");
     }
 
     /**

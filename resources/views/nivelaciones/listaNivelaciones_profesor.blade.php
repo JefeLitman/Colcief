@@ -68,7 +68,11 @@
 															{{-- Accion --}}
 															<td class="text-center">
 																<a href="/recuperaciones/{{$r->pk_recuperacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a>
-																<a href="/recuperaciones/{{$r->pk_recuperacion}}/editar"><i class="fas fa-edit text-info"></i></a>
+																@if (strtotime(date('d-m-Y'))>strtotime($p->recuperacion_inicio) and strtotime(date('d-m-Y'))<strtotime($p->recuperacion_limite))
+																	<a href="/recuperaciones/{{$r->pk_recuperacion}}/editar"><i class="fas fa-edit text-info"></i></a>
+																@else
+																	<a href="" title="Solo puede ser editado desde el {{$p->recuperacion_inicio}} hasta las 23:59 del {{$p->recuperacion_limite}}."><i class="fas fa-edit  text-secondary"></i></a>
+																@endif
 															</td>
 														</tr>
 													@endforeach
@@ -112,7 +116,7 @@
 															{{-- Acciones --}}
 															<td class="text-center">
 																<a href="/nivelaciones/{{$n->pk_nivelacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a>
-																<a href="/nivelaciones/{{$n->pk_nivelacion}}/editar"><i class="fas fa-edit text-info"></i></a>
+																<a href="/nivelaciones/{{$n->pk_nivelacion}}/editar" ><i class="fas fa-edit text-info" title="Editar"></i></a>
 															</td>
 														</tr>
 													@endforeach

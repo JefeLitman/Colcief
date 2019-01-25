@@ -1,10 +1,13 @@
 @extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
-@section('titulo','Nivelacion '.$nivelacion->materia)
+@section('titulo','Recuperacio-Periodo '.$recuperacion->nro_periodo)
 
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-md-10">
+            <form  action="{{route('recuperaciones.update', $recuperacion->pk_recuperacion)}}" method="POST">
+                @csrf
+                @method("PUT")
                 <div class="card border-primary rounded-0" style="border-color:#17a2b8 !important; border-radius:0.25rem !important;">
                     <div class="card-header p-0">
                         <div class="bg-info text-center py-2" style="background-color:rgba(0,0,0,.03) !important;">
@@ -21,7 +24,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-list-ul"></i></span>
                                     </div>
-                                        <input type="text"  class="form-control form-control-sm" value="Definitiva anual" disabled>
+                                        <input type="text" class="form-control form-control-sm" value="Periodo Nro {{$recuperacion->nro_periodo}}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -33,7 +36,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-book"></i></span>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($nivelacion->materia)}}" disabled>
+                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($recuperacion->materia)}}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +53,7 @@
                                                 <i class="fas fa-user-circle"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($nivelacion->nombre)}} {{ucwords($nivelacion->apellido)}}" disabled>
+                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($recuperacion->nombre)}} {{ucwords($recuperacion->apellido)}}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +67,7 @@
                                                 <i class="fas fa-chalkboard-teacher"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{($nivelacion->prefijo==0)?'Preescolar':$nivelacion->prefijo}}-{{$nivelacion->sufijo}} / {{$nivelacion->ano}}" disabled>
+                                        <input type="text" class="form-control form-control-sm" value="{{($recuperacion->prefijo==0)?'Preescolar':$recuperacion->prefijo}}-{{$recuperacion->sufijo}} / {{$recuperacion->ano}}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -81,21 +84,21 @@
                                                 <i class="fas fa-user-graduate"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($nivelacion->nombreE)}} {{ucwords($nivelacion->apellidoE)}}" disabled>
+                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($recuperacion->nombreE)}} {{ucwords($recuperacion->apellidoE)}}" disabled>
                                     </div>
                                 </div>
                             </div>
                             {{-- Nota --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Nota</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Nota (La maxima nota es 3.0)</small></strong></label>
                                     <div class="input-group mb-2 disabled">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-sticky-note"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{$nivelacion->nota or '-'}} " disabled>
+                                        <input type="number" max="3" class="form-control form-control-sm" value="{{$recuperacion->nota}} " value="@eachError('nota', $errors)@endeachError">
                                     </div>
                                 </div>
                             </div>
@@ -105,14 +108,14 @@
                             <div class="col-lg-12 col-md-12">
                                 {{-- Fecha de presentacion --}}
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Fecha de presentacion</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Fecha de presentacion (Debe ser una fecha entre {{$recuperacion->recuperacion_inicio}} y {{$recuperacion->recuperacion_limite}})</small></strong></label>
                                     <div class="input-group mb-2 disabled">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <input type="date" class="form-control form-control-sm" value="{{$nivelacion->fecha_presentacion}}" disabled>
+                                        <input type="date" min="{{$recuperacion->recuperacion_inicio}}" max="{{$recuperacion->recuperacion_limite}}" class="form-control form-control-sm" value="{{$recuperacion->fecha_presentacion}}" value="@eachError('fecha_presentacion', $errors)@endeachError">
                                     </div>
                                 </div>                                    
                             </div>
@@ -120,22 +123,21 @@
 
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                {{-- Observaciones --}}
+                                {{-- Observaciones--}}
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Observaviones</small></strong></label>
-                                    <textarea class="form-control" rows="3"  disabled>{{$nivelacion->observaciones or "No hay observaciones aún."}}</textarea>
+                                    <label for="cedula"><strong><small style="color : #616161">Observaciones (No puede superar los 255 caracteres)</small></strong></label>
+                                    <textarea class="form-control" rows="3" maxlength="255" value="@eachError('observaciones', $errors)@endeachError">{{$recuperacion->observaciones}}</textarea>
                                 </div>                                    
                             </div>
                         </div>
-                        @if (session('role')=='profesor' or session('role')=='director' or session('role')=='administrador')
-                            {{-- editar --}}
-                            <br>
-                            <div class="text-center">
-                                <a href="/nivelaciones/{{$nivelacion->pk_nivelacion}}/editar"><input type="buttom" name="action" value="Editar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;"></a>
-                            </div>
-                        @endif
+                        <br>
+                        <div class="text-center">
+                            {{-- Enviar --}}
+                            <input type="submit" name="action" value="Actualizar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;"></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

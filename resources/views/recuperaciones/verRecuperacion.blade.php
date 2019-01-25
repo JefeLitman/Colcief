@@ -122,7 +122,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Observaviones</small></strong></label>
-                                    <textarea class="form-control" rows="2"  disabled>{{$recuperacion->observaciones or "No hay observaciones aún."}}</textarea>
+                                    <textarea class="form-control" rows="3"  disabled>{{$recuperacion->observaciones or "No hay observaciones aún."}}</textarea>
                                 </div>                                    
                             </div>
                         </div>
