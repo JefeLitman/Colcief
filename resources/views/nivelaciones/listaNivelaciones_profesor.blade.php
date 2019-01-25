@@ -1,13 +1,13 @@
-@extends('contenedores.estudiante')
+@extends('contenedores.profesor')
 @section('titulo','Nivelaciones')
-@section('contenedor_estudiante')
+@section('contenedor_profesor')
 
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $periodos,$recuperacion,$nivelacion--}}
 	{{-- Variables enviadas desde Local>App>Http>Controllers>NivelacionController.php  funcion index()
 		 @Autor Paola C. --}}
 	{{-- Estado: Aparentemente finalizado (Sujeto a cambios) --}}
-    {{-- URL: localhost:8000\nivelaciones  -> Logeado en un usuario de tipo estudiante--}}
+    {{-- URL: localhost:8000\nivelaciones  -> Logeado en un usuario de tipo profesor--}}
 
 	<br id="br">
 	<div class="container" style="background:#fafafa !important;">
@@ -43,7 +43,8 @@
 											<thead>
 												<tr>
 													<th scope="col" style="color:#00695c" class="text-center"> Materia </th>
-													<th scope="col" style="color:#00695c" class="text-center"> Profesor </th>
+													<th scope="col" style="color:#00695c" class="text-center"> Estudiante </th>
+													<th scope="col" style="color:#00695c" class="text-center"> Curso/Año </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Nota </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Acciones </th>
 												</tr>
@@ -51,19 +52,24 @@
 											<tbody>	
 												@if (count($recuperacion[$p->pk_periodo])==0)
 													<tr>
-														<td colspan="4" class="text-center"> No hay periodos perdidos </td>
+														<td colspan="5" class="text-center"> No hay periodos perdidos </td>
 													</tr>
 												@else
 													@foreach ($recuperacion[$p->pk_periodo] as $r)
 														<tr>	
 															{{-- Materia --}}
 															<td class="text-center"> {{$r->materia}} </td>
-															{{-- Profesor --}}
+															{{-- Estudiante --}}
 															<td class="text-center"> {{ucwords($r->nombre)}} {{ucwords($r->apellido)}}</td>
+															{{-- Curso --}}
+															<td class="text-center"> {{($r->prefijo==0)?"Preescolar":$r->prefijo}}-{{$r->sufijo}} / {{$r->ano}}</td>
 															{{-- Nota --}}
 															<td class="text-center"> {{$r->nota or "-"}} </td>
 															{{-- Accion --}}
-															<td class="text-center"><a href="/recuperaciones/{{$r->pk_recuperacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a></td>
+															<td class="text-center">
+																<a href="/recuperaciones/{{$r->pk_recuperacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a>
+																<a href="/recuperaciones/{{$r->pk_recuperacion}}/editar"><i class="fas fa-edit text-info"></i></a>
+															</td>
 														</tr>
 													@endforeach
 												@endif
@@ -81,7 +87,7 @@
 											<thead>
 												<tr>
 													<th scope="col" style="color:#00695c" class="text-center"> Materia </th>
-													<th scope="col" style="color:#00695c" class="text-center"> Profesor </th>
+													<th scope="col" style="color:#00695c" class="text-center"> Estudiante </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Curso/Año </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Nota </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Acciones </th>
@@ -104,7 +110,10 @@
 															{{-- Nota --}}
 															<td class="text-center"> {{$n->nota or "-"}}</td>
 															{{-- Acciones --}}
-															<td class="text-center"><a href="/nivelaciones/{{$n->pk_nivelacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a></td>
+															<td class="text-center">
+																<a href="/nivelaciones/{{$n->pk_nivelacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a>
+																<a href="/nivelaciones/{{$n->pk_nivelacion}}/editar"><i class="fas fa-edit text-info"></i></a>
+															</td>
 														</tr>
 													@endforeach
 												@endif

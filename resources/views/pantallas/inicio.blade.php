@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>ColCIEF - @yield('titulo') {{session('role')}}</title>
-    <meta name="description" content="A demo landing page for agencies or product oriented businesses built using Shards, a free, modern and lightweight UI toolkit based on Bootstrap 4.">
+    <meta name="description" content="Somos una institución educativa ubicada en el casco urbano del municipio de Florián Santander que cuenta con 3 sedes que van desde el grado transición hasta undécimo grado en amplias y acogedoras instalaciones con mas de 40 años formando líderes...">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS Dependencies -->

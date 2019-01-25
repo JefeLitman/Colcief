@@ -23,7 +23,7 @@
                     <a class="nav-link " href="{{ url('fechas') }}"> <i class="far fa-calendar-alt"></i> Fechas</a>
                 </li>
                 <li @if (Request::path()=="") class="active" @endif >
-                    <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-user-check"></i> Nivelacion*</a>
+                    <a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelacion</a>
                 </li>
                 <li @if (Request::path()=="/archivos") class="active" @endif >
                     <a href="{{ url('/archivos') }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
