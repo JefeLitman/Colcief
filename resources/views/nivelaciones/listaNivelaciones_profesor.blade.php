@@ -67,7 +67,7 @@
 															{{-- Materia --}}
 															<td class="text-center"> {{$r->materia}} </td>
 															{{-- Estudiante --}}
-															<td class="text-center"> {{ucwords($r->nombre)}} {{ucwords($r->apellido)}}</td>
+															<td class="text-center"> {{ucwords($r->apellido)}} {{ucwords($r->nombre)}}</td>
 															{{-- Curso --}}
 															<td class="text-center"> {{($r->prefijo==0)?"Preescolar":$r->prefijo}}-{{$r->sufijo}} / {{$r->ano}}</td>
 															{{-- Nota --}}
@@ -114,8 +114,8 @@
 														<tr>	
 															{{-- Materia --}}
 															<td class="text-center"> {{$n->materia}} </td>
-															{{-- Profesor --}}
-															<td class="text-center"> {{ucwords($n->nombre)}} {{ucwords($n->apellido)}}</td>
+															{{-- Estudiante --}}
+															<td class="text-center"> {{ucwords($n->apellido)}} {{ucwords($n->nombre)}}</td>
 															{{-- Curso --}}
 															<td class="text-center"> {{($n->prefijo==0)?"Preescolar":$n->prefijo}}-{{$n->sufijo}} / {{$n->ano}}</td>
 															{{-- Nota --}}
