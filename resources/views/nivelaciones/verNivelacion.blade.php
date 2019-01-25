@@ -127,6 +127,13 @@
                                 </div>                                    
                             </div>
                         </div>
+                        @if (session('role')=='profesor' or session('role')=='director' or session('role')=='administrador')
+                            {{-- editar --}}
+                            <br>
+                            <div class="text-center">
+                                <a href="/nivelaciones/{{$nivelacion->pk_nivelacion}}/editar"><input type="buttom" name="action" value="Editar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;"></a>
+                            </div>
+                        @endif
                 </div>
             </div>
         </div>
