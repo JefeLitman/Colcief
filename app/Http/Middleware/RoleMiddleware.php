@@ -33,7 +33,7 @@ class RoleMiddleware{
                         }
                         break;
                     case 'profesor':
-                        if($auth->user()->role == '4'){
+                        if($auth->user()->role == '2'){
                             return $next($request);
                         }
                         break;
