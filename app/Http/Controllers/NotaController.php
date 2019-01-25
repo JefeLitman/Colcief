@@ -178,6 +178,9 @@ class NotaController extends Controller
     public function update(NotaStoreController $request, $pk_nota)
     {
         $nota_modificada = Nota::find($pk_nota);
+        if (!$this->verificarProfesor($nota_modificada['fk_materia_pc'],session('user')['cedula'])) {
+          return 'No tiene derecho de modificar notas este profesor.';
+        }
         if (!empty($nota_modificada)) {
           $total = $this->sumaPorcentajes($request);
           $posible = 0;
@@ -239,7 +242,7 @@ class NotaController extends Controller
         if (!empty($unidad)) {
           $unidad->delete();
           $unidad->eliminacionNota();
-          return 'Nota eliminada';
+          return back();
         }
         return 'Nota no encontrada';
       }
@@ -274,7 +277,7 @@ class NotaController extends Controller
     {
       if (!($cedula_prof===null)) {
         $materiaPC = MateriaPC::find($pk_materia_pc);
-        if ($materiaPC['fk_empleado']==$cedula_prof or session('user')['role']==='0') {
+        if ($materiaPC['fk_empleado']==$cedula_prof) {
           return true;
         }
       }
