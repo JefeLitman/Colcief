@@ -33,7 +33,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-book"></i></span>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{$recuperacion->materia}}" disabled>
+                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($recuperacion->materia)}}" disabled>
                                     </div>
                                 </div>
                             </div>
