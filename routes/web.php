@@ -53,9 +53,9 @@ Route::get('estudiantes/principal', function () {
 Route::get('estudiantes/periodo/{p}', function ($p) {
     return view('estudiantes.periodo',['periodo' => $p]);
 })->middleware('admin:estudiante');
-Route::resource('/estudiantes', 'EstudianteController');
 Route::get('estudiantes/cursos/{pk_curso}', 'EstudianteController@estudianteGrado' )->middleware('admin:administrador');
-
+Route::post('estudiantes/restaurar/{pk_estudiante}', 'EstudianteController@restaurar');
+Route::resource('/estudiantes', 'EstudianteController');
 
 /* RUTAS EMPLEADO */
 Route::get('empleados/principal/0', function () {
@@ -87,7 +87,9 @@ Route::put('/empleados/{id}/time/{time}', 'EmpleadoController@tiempoExtra');
 // })->middleware('admin:profesor,director,administrador');
 
 Route::post('/empleados/perfil', 'EmpleadoController@perfil');
+Route::post('empleados/restaurar/{cedula}', 'EmpleadoController@restaurar');
 Route::resource('/empleados','EmpleadoController');
+
 
 /*RUTAS DE PERIODO*/
 Route::get('/periodos','PeriodoController@index')->name('periodos.index');

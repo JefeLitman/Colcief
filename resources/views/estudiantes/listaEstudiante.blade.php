@@ -3,7 +3,6 @@
 @section('titulo','Lista Estudiante')
     @php
         $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
-        dd($cursos);
     @endphp
     <div class="container" style="background:#fafafa !important;">
         <div class="row justify-content-center">
@@ -73,17 +72,13 @@
                     <div class="row">
                         <div class="col-md-3 col-6">
                             <div class="form-group mb-2">
-                                <label for="prefijo"><strong><small style="color : #616161">Curso:</small></strong></label>
+                                <label for="fk_curso"><strong><small style="color : #616161">Curso:</small></strong></label>
                                 <div class="input-group mb-2">
-                                    <select name="prefijo" id="prefijo" class="custom-select filter custom-select-sm">
+                                    <select name="fk_curso" id="fk_curso" class="custom-select filter custom-select-sm">
                                         <option selected value="null">Todos</option>
-                                        <option value="1">No</option>
-                                        <option value="0">Si</option>
-                                    </select>
-                                    <select name="sufijo" id="sufijo" class="custom-select filter custom-select-sm">
-                                        <option selected value="null">Todos</option>
-                                        <option value="1">No</option>
-                                        <option value="0">Si</option>
+                                        @foreach ($cursos as $curso)
+                                            <option value="{{$curso -> pk_curso}}">{{$curso -> prefijo}} - {{$curso -> sufijo}} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -108,6 +103,7 @@
                             <tr>
                                 <th class="text-center" scope="col" style="color:#00695c">Código</th>
                                 <th class="text-center" scope="col" style="color:#00695c">Nombre</th>
+                                <th class="text-center" scope="col" style="color:#00695c">Curso</th>
                                 <th class="text-center" scope="col" style="color:#00695c" colspan="4">Acciones</th>
                             </tr>
                         </thead>
@@ -123,9 +119,7 @@
                                     <tr id="estudiantes{{$c->pk_estudiante}}">
                                         <td class="text-center">{{$c->pk_estudiante}}</td>
                                         <td class="text-center">{{ucwords($c->nombre)}} {{ucwords($c->apellido)}}</td>
-                                        <td class="text-center">
-                                            <a href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
-                                        </td> 
+                                        <td class="text-center">{{ucwords($c->prefijo)}}-{{ucwords($c->sufijo)}}</td>
                                         {{-- Ver estudiantes --}}
                                         <td class="text-center">
                                             <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>
@@ -133,9 +127,19 @@
                                         </td>
                                         {{-- Editar estudiantes --}}
                                         <td class="text-center">
-                                            <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
+                                            @if (is_null($c->deleted_at))
+                                                <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
                                             </a>
+                                            @else
+                                                <a title="Deshabilitado"><i  class="fas fa-edit" style="color:#6c757d"></i></a>
+                                            @endif
+                                            
                                         </td>
+                                        {{-- restaurar estudiante
+                                        <td class="text-center">
+                                            <a ruta="estudiantes" class="{{is_null($c->deleted_at) ? '' : 'restore'}}" identificador="{{$c->pk_estudiante}}" ><i class="fas fa-recycle {{is_null($c->deleted_at) ? 'text-secondary' : 'text-success'}}" title="Restaurar"></i>
+                                            </a>
+                                        </td> --}}
                                         {{-- Eliminar estudiantes --}}
                                         <td class="text-center">
                                             @if (is_null($c->deleted_at))
@@ -176,6 +180,7 @@
             var genero = $('#genero').val();
             var discapacidad = $('#discapacidad').val();
             var delete_at = $('#delete_at').val();
+            var fk_curso = $('#fk_curso').val();
             $.ajax({
                 type: 'POST',
                 url: '/filtro',
@@ -185,60 +190,57 @@
                     genero:genero,
                     discapacidad:discapacidad,
                     deleted_at:delete_at,
+                    fk_curso:fk_curso,
                 },
                 success: function(data) {
                     console.log(data)
                     mensaje=''
-                    $.each( data.data, function(key, value) {
-                        if(count(data.data) <= 0){
+                    if(data.data.length == 0){
+                        mensaje+= ''+
+                        '<tbody>'+
+                            '<tr>'+
+                                '<td colspan="7">'+
+                                    '<div class="text-center">No hay estudiantes con el filtro aplicado</div>'+
+                                '</td>'+
+                            '</tr>'+
+                        '<tbody>';
+                    } else {
+                        $.each( data.data, function(key, value) {
                             if(value.deleted_at == null){
-                                del = '<a class="delete" onclick="filter($(this))" padre="estudiantes'+value.pk_estudiante+'" ruta="estudiantes" identificador="'+value.pk_estudiante+'"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>';
+                                del = ''+
+                                    '<td class="text-center">'+
+                                        '<a href="/estudiantes/'+value.pk_estudiante+'/editar" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>'+
+                                        '</a>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<a class="delete" onclick="filter($(this))" padre="estudiantes'+value.pk_estudiante+'" ruta="estudiantes" identificador="'+value.pk_estudiante+'"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>'+
+                                    '</td>';
                             } else {
-                                del ='<a><i title="Desabilitado" class="fas fa-trash-alt" style="color:#6c757d"></i></a>';
+                                del = ''+
+                                    '<td class="text-center">'+
+                                        '<a title="Desabilitado"><i  class="fas fa-edit" style="color:#6c757d"></i>'+
+                                        '</a>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<a><i title="Desabilitado" class="fas fa-trash-alt" style="color:#6c757d"></i></a>'+
+                                    '</td>';
                             }
                             mensaje+= ''+
                             '<tbody>'+
                                 '<tr id="estudiantes'+value.pk_estudiante+'">'+
                                     '<td class="text-center">'+value.pk_estudiante+'</td>'+
-                                    '<td class="text-center">'+value.nombre+' '+value.apellido+'</td>'+
-                                    '<td class="text-center">'+value.grado+'</td>'+
+                                    '<td class="text-center">'+$.ucfirst(value.nombre+' '+value.apellido)+'</td>'+
+                                    '<td class="text-center">'+value.prefijo+'-'+value.sufijo+'</td>'+
                                     '<td class="text-center">'+
-                                        '<a href="http://localhost:8000/estudiantes/'+value.pk_estudiante+'" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>'+
+                                        '<a href="/estudiantes/'+value.pk_estudiante+'" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>'+
                                         '</a>'+
                                     '</td>'+
-                                    '<td class="text-center">'+
-                                        '<a href="http://localhost:8000/estudiantes/'+value.pk_estudiante+'/editar" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>'+
-                                        '</a>'+
-                                    '</td>'+
-                                    '<td class="text-center">'+
-                                        del+
-                                    '</td>'+
+                                    del+
                                 '</tr>'+
                             '<tbody>';
-                        } else {
-                            mensaje+= ''+
-                            '<tbody>'+
-                                '<tr id="estudiantes'+value.pk_estudiante+'">'+
-                                    '<td class="text-center">'+value.pk_estudiante+'</td>'+
-                                    '<td class="text-center">'+value.nombre+' '+value.apellido+'</td>'+
-                                    '<td class="text-center">'+value.grado+'</td>'+
-                                    '<td class="text-center">'+
-                                        '<a href="http://localhost:8000/estudiantes/'+value.pk_estudiante+'" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>'+
-                                        '</a>'+
-                                    '</td>'+
-                                    '<td class="text-center">'+
-                                        '<a href="http://localhost:8000/estudiantes/'+value.pk_estudiante+'/editar" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>'+
-                                        '</a>'+
-                                    '</td>'+
-                                    '<td class="text-center">'+
-                                        del+
-                                    '</td>'+
-                                '</tr>'+
-                            '<tbody>';
-                        }
-                        
-                    });
-                    $('tbody').fadeOut();
+                        });
+                    }
+                    $('tbody').fadeOut('fast');
                     $('thead').after(mensaje);
                 }
             }); 

@@ -48,13 +48,21 @@
                                 <div class="text-muted" style="text-align: right;"><span class="badge badge-pill badge-info">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div>
                             </a>
                         </div>
+                        @unless (is_null($estudiante -> deleted_at))
+                            <div class="card-footer" title="Discapacidad">
+                                <div class="float-left d-none d-sm-block">Estado</div>
+                                <div class="text-muted" style="text-align: right;">Eliminado</div>
+                            </div>
+                        @endunless
                         @if (session('role') == 'administrador')
                             <div class="card-footer" title="Acciones">
                                 <div class="float-left d-none d-sm-block">Acciones</div>
                                 <div class="" style="text-align: right;">
-                                    <a href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
-                                    <a href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i></a>
-                                    <a class="delete" direccion="/estudiantes/cursos/{{$estudiante->fk_curso}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                                    <a href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" title="Ver notas" class="{{is_null($estudiante -> deleted_at) ? 'text-info' : 'text-secondary'}}"><i class="fas fa-clipboard-list"></i></a>
+                                    <a href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" title="Editar" class="{{is_null($estudiante -> deleted_at) ? 'text-primary' : 'text-secondary'}}"><i  class="fas fa-edit"></i></a>
+                                    <a ruta="estudiantes" class="{{is_null($estudiante->deleted_at) ? '' : 'restore'}}" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" identificador="{{$estudiante->pk_estudiante}}" ><i class="fas fa-recycle {{is_null($estudiante->deleted_at) ? 'text-secondary' : 'text-success'}}" title="Restaurar"></i>
+                                    </a>
+                                    <a class="delete {{is_null($estudiante -> deleted_at) ? 'text-danger' : 'text-secondary'}}" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt"></i></a>
                                 </div>
                             </div>
                         @endif

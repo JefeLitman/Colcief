@@ -98,7 +98,7 @@ class EstudianteController extends Controller{
         if (session('role') == 'estudiante' and $pk_estudiante != session('user')['pk_estudiante']) {
           return redirect('/estudiantes/'.session('user')['pk_estudiante']);
         }
-        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante)->get();
+        $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante) -> withTrashed() -> get();
         if (!empty($estudiante[0])) {
             $acudiente= Acudiente::where('pk_acudiente', $estudiante[0]->fk_acudiente)->get();
             $curso = Curso::find($estudiante[0]->fk_curso);
@@ -224,15 +224,16 @@ class EstudianteController extends Controller{
     }
 
     public function estudiantes(){
-        return view ('estudiantes.listaEstudiante', ['estudiante' => Estudiante::withTrashed() -> orderBy('apellido') -> get(), 'cursos' => Curso::where('ano', date('Y')) -> get()]);
+        $cursos = Curso::where('ano', date('Y')) -> get();
+        return view ('estudiantes.listaEstudiante', ['estudiante' => Estudiante::withTrashed() -> leftjoin('curso', 'fk_curso', 'pk_curso')-> orderBy('apellido') -> get(), 'cursos' => $cursos]);
     }
 
     public function filtro(Request $request){
+        // return response()->json([
+        //     'data' =>  $request->all(),
+        // ]);
         if($request->ajax()){
             $estudiante = Estudiante::where('estado','1');
-            // return response()->json([
-            //     'data' =>  $estudiantes,
-            // ]);
             foreach ($request->except('_token') as $key => $value) {
                 if($value != 'null'){
                     if($key != 'deleted_at'){
@@ -249,8 +250,26 @@ class EstudianteController extends Controller{
                 }
             }
             return response()->json([
-                'data' =>  $estudiante -> orderBy('apellido') -> get(),
+                'data' =>  $estudiante -> leftjoin('curso', 'fk_curso', 'pk_curso') -> orderBy('apellido') -> get(),
             ]);
+        }
+    }
+
+    public function restaurar(Request $request, $pk_estudiante){
+        if($request->ajax()){
+            $estudiante = Estudiante::where('pk_estudiante', $pk_estudiante) -> onlyTrashed() -> get();
+            $estudiante = $estudiante[0];
+            if($estudiante -> restore()){
+                return response()->json([
+                    'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' Fue restaurado con exito',
+                    'url' => config('app.url').$request->direccion
+                ]);
+                
+            } else {
+                return response()->json([
+                    'mensaje' => $estudiante->nombre.' '.$estudiante->apellido. ' no pudo ser restaurado, intente nuevamente'
+                ]);
+            }
         }
     }
 }

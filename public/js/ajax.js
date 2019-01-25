@@ -60,6 +60,20 @@ function deleteRegistro(ruta, id, padre, direccion=null){
     });
 }
 
+function restaurar(ruta, id, direccion){
+    $.ajax({
+        type: 'POST',
+        url: '/'+ruta+'/restaurar/'+id,
+        data: {_token:$('#csrf_token').attr('content'), direccion:direccion},
+        success: function(data) {
+            location.href=data.url
+        },
+        error: function(){
+            newModal('Error','La accion no pudo llevarse a cabo', false);
+        }
+    });
+}
+
 var cargarNotificaciones = function(){
     var noti = $('#notificaciones');
     $.ajax({
@@ -125,5 +139,15 @@ $(document).ready(function(){
             }
         },'Confirmar','¿Desea Eliminar el registro?',true);
     });    
-    
+    $('.restore').click(function(){
+        var ruta = $(this).attr('ruta');
+        var id = $(this).attr('identificador');
+        var direccion = $(this).attr('direccion');
+        modalConfirm(function(confirm){
+            $("#exampleModalCenter").modal('hide');
+            if(confirm){
+                restaurar(ruta, id, direccion)
+            }
+        },'Confirmar','¿Desea restaurar el registro?',true);
+    });
 });
