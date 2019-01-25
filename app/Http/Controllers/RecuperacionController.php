@@ -78,7 +78,7 @@ class RecuperacionController extends Controller
                 ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
                 ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
                 ->join('curso','curso.pk_curso','=','boletin.fk_curso')
-                ->where('estudiante.pk_estudiante',$user['pk_estudiante'])
+                ->where([['estudiante.pk_estudiante',$user['pk_estudiante']],['recuperacion.pk_recuperacion',$id]])
                 ->get();
                 if (!empty($recuperacion[0])) {
                     return view("recuperaciones.verRecuperacion",['recuperacion'=>$recuperacion[0]]);
