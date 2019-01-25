@@ -35,10 +35,10 @@ class FechaController extends Controller {
             $fechas['Finalización del periodo #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
             $cont++;
 
-            $orden['Inicio recuperación #'.$periodo -> nro_periodo] = $periodo -> fecha_limite;
+            $orden['Inicio recuperación #'.$periodo -> nro_periodo] = $periodo -> recuperacion_inicio;
             $fechas['Inicio recuperación #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
             $cont++;
-            $orden['Finalización recuperación #'.$periodo -> nro_periodo] = $periodo -> fecha_limite;
+            $orden['Finalización recuperación #'.$periodo -> nro_periodo] = $periodo -> recuperacion_limite;
             $fechas['Finalización recuperación #'.$periodo -> nro_periodo] = ['tipo' => 'periodos.edit', 'id' => $periodo -> pk_periodo];
             $cont++;
         }
