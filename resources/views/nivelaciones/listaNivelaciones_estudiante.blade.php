@@ -104,7 +104,7 @@
 															{{-- Nota --}}
 															<td class="text-center"> {{$n->nota or "-"}}</td>
 															{{-- Acciones --}}
-															<td class="text-center"><a href="/recuperaciones/{{$n->pk_nivelacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a></td>
+															<td class="text-center"><a href="/nivelaciones/{{$n->pk_nivelacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a></td>
 														</tr>
 													@endforeach
 												@endif
