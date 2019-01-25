@@ -82,14 +82,12 @@ class RecuperacionController extends Controller
                 ->get();
                 if (!empty($recuperacion[0])) {
                     return view("recuperaciones.verRecuperacion",['recuperacion'=>$recuperacion[0]]);
-                } else {
-                    return redirect("/nivelaciones");
                 }
                 break;
             default:
-
         }
-    }
+        return redirect("/nivelaciones");
+    }   
 
     /**
      * Show the form for editing the specified resource.

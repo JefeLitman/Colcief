@@ -62,8 +62,6 @@ class NivelacionController extends Controller
                 ->join('empleado','empleado.cedula','=','nivelacion.fk_empleado')
                 ->where('boletin.fk_estudiante',$user['pk_estudiante'])
                 ->get();
-                // dd($nivelacion);
-                // dd($recuperacion);
                 return view('nivelaciones.listaNivelaciones_estudiante',["periodos"=>$periodos,"recuperacion"=>$recuperacion,"nivelacion"=>$nivelacion]);
                 break;
             default:
@@ -102,7 +100,43 @@ class NivelacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $role=session('role');
+        $user=session('user');
+        switch ($role) {
+            case "administrador":
+                break;
+            case "director":
+            case "profesor":
+                break;
+            case "estudiante":
+                $nivelacion=Nivelacion::select(
+                    'nivelacion.*',
+                    'materia_pc.nombre as materia',
+                    'empleado.cedula as pk_empleado',
+                    'empleado.nombre',
+                    'empleado.apellido',
+                    'estudiante.pk_estudiante',
+                    'estudiante.nombre as nombreE',
+                    'estudiante.apellido as apellidoE',
+                    'curso.prefijo',
+                    'curso.sufijo',
+                    'curso.ano'
+                )
+                ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nivelacion.fk_materia_boletin')
+                ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+                ->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')
+                ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
+                ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
+                ->join('curso','curso.pk_curso','=','boletin.fk_curso')
+                ->where([['estudiante.pk_estudiante',$user['pk_estudiante']],['nivelacion.pk_nivelacion',$id]])
+                ->get();
+                if (!empty($nivelacion[0])) {
+                    return view("nivelaciones.verNivelacion",['nivelacion'=>$nivelacion[0]]);
+                }
+                break;
+            default:
+        }
+        return redirect("/nivelaciones");
     }
 
     /**
