@@ -50,6 +50,8 @@ class RecuperacionController extends Controller
         $recuperacion=Recuperacion::select(
             'recuperacion.*',
             'periodo.nro_periodo',
+            'periodo.recuperacion_inicio',
+            'periodo.recuperacion_limite',
             'materia_pc.nombre as materia',
             'empleado.cedula as pk_empleado',
             'empleado.nombre',
@@ -128,7 +130,10 @@ class RecuperacionController extends Controller
             ->join('curso','curso.pk_curso','=','boletin.fk_curso')
             ->where([['recuperacion.pk_recuperacion',$id],['empleado.cedula',$user['cedula']]])->get();
             if (!empty($recuperacion[0])) {
-                return view("recuperaciones.editarRecuperacion",['recuperacion'=>$recuperacion[0]]);
+                if (strtotime(date('d-m-Y'))>=strtotime($recuperacion[0]->recuperacion_inicio) and strtotime(date('d-m-Y'))<=strtotime($recuperacion[0]->recuperacion_limite)) {
+                    return view("recuperaciones.editarRecuperacion",['recuperacion'=>$recuperacion[0]]);
+                }
+                return redirect("/recuperaciones/$id");
             }
         }
         return redirect("/nivelaciones");

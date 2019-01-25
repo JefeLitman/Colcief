@@ -133,7 +133,7 @@
                         <br>
                         <div class="text-center">
                             {{-- Enviar --}}
-                            <input type="submit" name="action" value="Actualizar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;"></a>
+                            <input type="submit" name="action" value="Actualizar" class="btn btn-info btn-block rounded-0 py-2"></a>
                         </div>
                     </div>
                 </div>
