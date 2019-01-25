@@ -129,6 +129,9 @@ Route::get('/notas/crear/{pk_materia_pc}','NotaController@create');
 Route::get('/notas/materiaspc/{pk_materia_pc}/periodos/{pk_periodo}','NotaController@index')->name('notas.index');
 Route::post('/notas','NotaController@store')->name('notas.store');
 //Route::get('/notas','NotaController@index_global')->name('notas.indexGlobal');
+Route::get('/notas',function (){
+  return redirect('/materiaspc');
+});
 Route::get('/notas/crear','NotaController@create')->name('notas.create');
 Route::get('/notas/{nota}','NotaController@show')->name('notas.show');
 Route::delete('/notas/{nota}','NotaController@destroy')->name('notas.destroy');
