@@ -22,7 +22,7 @@ class EmpleadoSeeder extends Seeder {
         'password' => Hash::make('clave'),
         'direccion' => 'Calle falsa #2',
         'titulo' => 'Ingeniero de alimentos',
-        'role' => '1'
+        'role' => '3'
       ]);
       Empleado::create([
         'cedula' => 1,
@@ -33,7 +33,7 @@ class EmpleadoSeeder extends Seeder {
         'direccion' => 'Calle falsa #2',
         'titulo' => 'Ingeniero de alimentos',
         'fk_curso' => $curso,
-        'role' => '2'
+        'role' => '1'
       ]); //El administrador base
       Empleado::create([
         'cedula' => 0,

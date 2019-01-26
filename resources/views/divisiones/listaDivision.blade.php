@@ -4,15 +4,7 @@
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-md-10">
-            <form action="" id="autocompletar">
-                    @csrf
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
-                        </div>
-                        <input type="text" class="form-control"  id="autocomplete-input" class="autocomplete" placeholder="Nombre" aria-label="lead" aria-describedby="basic-addon1">
-                    </div>
-                </form>
+                <h4 class="text-center"> <i class="fas fa-th-list"></i> Componentes</h4>
                 <br>
                 <div class="table-responsive">
                     <table class="table table-striped table-condensed table-hover text-center">

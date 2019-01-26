@@ -26,7 +26,7 @@
                     <a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelacion</a>
                 </li>
                 <li @if (Request::path()=="/archivos") class="active" @endif >
-                    <a href="{{ url('/archivos') }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="{{ url('/archivos') }}">
                         <i class="far fa-folder-open"></i> Documentos
                     </a>
                 </li>

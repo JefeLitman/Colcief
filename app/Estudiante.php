@@ -42,8 +42,7 @@ class Estudiante extends Authenticatable {
         return $this->belongsTo('App\Curso','fk_curso', 'pk_curso');
     }
 
-    public function notasEstudiante()
-    {
+    public function notasEstudiante(){
       return $this->hasMany('App\NotaEstudiante','fk_estudiante','pk_estudiante');
     }
 

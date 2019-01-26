@@ -15,8 +15,8 @@ use App\Notificacion;
 class PeriodoController extends Controller {
 
     public function __construct(){
-      $this->middleware('admin:administrador,director,profesor')->only(['index','show']);
-      $this->middleware('admin:administrador')->except(['index','show']);
+      $this->middleware('admin:administrador,coordinador,director,profesor')->only(['index']);
+      $this->middleware('admin:administrador')->except(['index']);
       setlocale(LC_ALL, 'es_CO.UTF-8');
     }
 
@@ -52,19 +52,11 @@ class PeriodoController extends Controller {
     // }
 
     public function edit($nro_periodo){
-      $periodo = Periodo::where('ano', date('Y')) -> where('pk_periodo', $nro_periodo) -> get();
+      $periodo = Periodo::where('ano', date('Y')) -> where('pk_periodo', $nro_periodo) -> where('fecha_limite', '>=', date('Y-m-d')) -> get();
       if(!empty($periodo[0])){
-        if(explode('-', $periodo[0] -> fecha_limite)[1] >= date('m')){
-          if(explode('-', $periodo[0] -> fecha_limite)[2] >= date('d')){
-            return view('periodos.editarPeriodo',['periodo' => $periodo[0]]);
-          } else {
-            return back()->with('false', 'No es posible modificar un periodo ya finalizado');
-          }
-        } else {
-          return back()->with('false', 'No es posible modificar un periodo ya finalizado');
-        }
+        return view('periodos.editarPeriodo',['periodo' => $periodo[0]]);
       } else {
-        return back()->with('false', 'No es posible modificar periodos de años ya transcurridos');
+        return back()->with('false', 'No es posible modificar periodos ya finalizados');
       }
     }
 

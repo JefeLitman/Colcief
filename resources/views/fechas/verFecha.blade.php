@@ -3,7 +3,20 @@
 @section('contenedor_admin')
 
 <style>
+	.success:before{
+		background: #28a745!important;
+	}
+	.secondary:before{
+		background: #17a2b8!important;
+	}
+	.right {
+		margin-left: 55%;
+	}
+	.left {
+		margin-right: 55%;
+	}
 	ul.timeline {
+		padding-left:0px !important;
 		list-style-type: none;
 		position: relative;
 	}
@@ -20,65 +33,101 @@
 		background: #d4d9df;
 		display: inline-block;
 		position: absolute;
-		left: 29px;
+		left: 50%;
 		width: 2px;
 		height: 99%;
 		z-index: 400;
 	}
 	ul.timeline > li {
 		margin: 20px 0;
-		padding-left: 20px;
+		/* padding-left: 20px; */
 	}
 	ul.timeline > li:before {
 		content: ' ';
-		background: white;
+		background: #6c757d;
 		display: inline-block;
 		position: absolute;
 		border-radius: 50%;
-		border: 1px solid #22c0e8;
-		left: 20px;
+		left: calc(50% - 9px);
 		width: 20px;
 		height: 20px;
 		z-index: 400;
+	}
+	@media (max-width: 568px){
+		ul.timeline > li:before {
+			display:none !important;
+		}
+
+		ul.timeline:before {
+			display:none !important;
+		}
+
+		ul.timeline {
+			padding-left:0px !important;
+		}
+		.right {
+			margin-left: 0px;
+		}
+		.left {
+			margin-right: 0px;
+		}
 	}
 </style>
 
 <div class="container">
 	<div class="row justify-content-center" style="background-color: #fafafa !important;">
-		<div class="col-10">
+		<div class="col-md-10">
 			<h4>Linea Temporal</h4>
 			<ul class="timeline">
 				@php
-					$bandera = true; 
-					// true : la fecha comparada es mayor a la fecha de hoy (NO ha transcurrido el evento)
-					// false : la fecha comparada es menor a la fecha de hoy (ya transcurrido el evento)
+					$cont = 0;
+					if(strtotime($orden['Hoy']) > strtotime($orden['Inicio del año escolar'])){
+						$bandera = true;	
+					} else {
+						$bandera = false;
+					}
 				@endphp
-				@foreach ($orden as $key => $o)
-					<li 
-					@if ($key == 'Hoy') 
-						class = "hoy" 
-						@php $bandera = false @endphp
-					@endif 
-					@if ($bandera) 
-						class = "pasado"
-					@endif >
-						<div>
-							@if ($fecha['Hoy'] != $o && !$bandera)
-								<a title="Editar" href="
-									@if (isset($fecha[$key]['id'])) 
-										{{route($fecha[$key]['tipo'], $fecha[$key]['id'])}}
+				@foreach ($orden as $key => $card)
+					@php
+						$cont++;
+					@endphp
+					<li class="{{strtotime($orden['Hoy']) <= strtotime($card) ? '' : 'success'}} {{$key == 'Hoy' ? 'secondary' : ''}}">
+						<div class="card mb-3 {{$cont%2 == 0 ? 'left' : 'right'}}">
+							<div class="card-header">
+								{{$key}}
+								@if ((strtotime($orden['Hoy']) <= strtotime($card) && $key != 'Hoy'))
+									@if ($bandera == true)
+										@if ($key != 'Finalización del año escolar')
+											<div class="float-right">
+												@if (isset($fechas[$key]['fechas.edit']))
+													<a href="{{route('fechas.edit')}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+												@elseif (isset($fechas[$key]['pk_periodo']))
+													<a href="{{route('periodos.edit', $fechas[$key]['pk_periodo'])}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+												@endif
+											</div>
+										@endif
 									@else
-										{{route($fecha[$key]['tipo'])}}
+										<div class="float-right">
+											@if (isset($fechas[$key]['fechas.edit']))
+												<a href="{{route('fechas.edit')}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+											@elseif (isset($fechas[$key]['pk_periodo']))
+												<a href="{{route('periodos.edit', $fechas[$key]['pk_periodo'])}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+											@endif
+										</div>
 									@endif
-								"><i class="fas fa-edit" style="color:#00838f;margin-right:6px"></i></a>
-							@else
-								<a title="No se puede editar"><i class="fas fa-edit" style="color:#6c757d;margin-right:6px"></i></a>
-							@endif
-							
-							{{$key}}
-							<div class="float-right d-none d-sm-block">{{explode('-', $o)[2].' de '.ucwords(strftime('%B', strtotime($o))).', '.explode('-', $o)[0]}}</div>
+								@endif
+							</div>
+							<ul class="list-group list-group-flush">
+								@foreach ($fechas[$key] as $l => $item)
+									@unless ($l == 'pk_periodo' || $l == 'fechas.edit')
+										<li class="list-group-item" style="padding: .3rem 1rem;">
+											<small class="text-muted">{{$label[$l]}}</small>
+											<div>{{explode('-', $item)[2].' de '.ucwords(strftime('%B', strtotime($item)))}}</div>
+										</li>
+									@endunless
+								@endforeach
+							</ul>
 						</div>
-						
 					</li>
 				@endforeach
 			</ul>
