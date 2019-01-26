@@ -122,16 +122,22 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Observaviones</small></strong></label>
-                                    <textarea class="form-control" rows="2"  disabled>{{$recuperacion->observaciones or "No hay observaciones aún."}}</textarea>
+                                    <textarea class="form-control" rows="3"  disabled>{{$recuperacion->observaciones or "No hay observaciones aún."}}</textarea>
                                 </div>                                    
                             </div>
                         </div>
                         @if (session('role')=='profesor' or session('role')=='director')
                             {{-- editar --}}
                             <br>
-                            <div class="text-center">
-                                <a href="/recuperaciones/{{$recuperacion->pk_recuperacion}}/editar"><input type="buttom" name="action" value="Editar" class="btn btn-info btn-block rounded-0 py-2" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;"></a>
-                            </div>
+                            @if (strtotime(date('d-m-Y'))>=strtotime($recuperacion->recuperacion_inicio) and strtotime(date('d-m-Y'))<strtotime($recuperacion->recuperacion_limite))
+                                <div class="text-center">
+                                    <a href="/recuperaciones/{{$recuperacion->pk_recuperacion}}/editar"><input type="buttom" name="action" value="Editar" class="btn btn-info btn-block rounded-0 py-2"></a>
+                                </div>
+                            @else
+                                <div class="text-center">
+                                        <a href="" title="Solo puede ser editado desde el {{$recuperacion->recuperacion_inicio}} hasta las 23:59 del {{$recuperacion->recuperacion_limite}}."><input type="buttom" name="action" value="Editar" class="btn btn-secondary btn-block rounded-0 py-2" ></a>
+                                </div>
+                            @endif
                         @endif
                 </div>
             </div>

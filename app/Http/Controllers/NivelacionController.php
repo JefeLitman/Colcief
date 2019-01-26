@@ -43,7 +43,9 @@ class NivelacionController extends Controller
                 ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
                 ->join('curso','curso.pk_curso','=','boletin.fk_curso')
                 ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
-                ->where('nivelacion.fk_empleado',$user['cedula'])->get();
+                ->where('nivelacion.fk_empleado',$user['cedula'])
+                ->orderBy('estudiante.apellido')
+                ->get();
 
                 foreach ($periodos as $p) {
                     $recuperacion[$p->pk_periodo]=Recuperacion::select(
@@ -63,7 +65,9 @@ class NivelacionController extends Controller
                     ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
                     ->join('curso','curso.pk_curso','=','boletin.fk_curso')
                     ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
-                    ->where([['materia_pc.fk_empleado',$user['cedula']],['periodo.pk_periodo',$p->pk_periodo]])->get();
+                    ->where([['materia_pc.fk_empleado',$user['cedula']],['periodo.pk_periodo',$p->pk_periodo]])
+                    ->orderBy('estudiante.apellido')
+                    ->get();
                 }
                 return view('nivelaciones.listaNivelaciones_profesor',["periodos"=>$periodos,"recuperacion"=>$recuperacion,"nivelacion"=>$nivelacion]);
                 break;
