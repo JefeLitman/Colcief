@@ -168,6 +168,7 @@ class RecuperacionController extends Controller
                     $recuperacion[0]->nota=$request->nota;
                     $recuperacion[0]->observaciones=$request->observaciones;
                     $recuperacion[0]->save();
+                    $recuperacion[0]->actualizarNotaMateria();
                     return redirect("/recuperaciones");
                 }
                 return redirect("/recuperaciones/$id");

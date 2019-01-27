@@ -17,7 +17,7 @@ class Periodo extends Model {
     return $this->hasMany('App\NotaPeriodo','fk_periodo','pk_periodo');
   }
 
-  public function crearEstructuraDatos(){
+  public function crearEstructuraDatos(){ //By Paola
     $materiasB=MateriaBoletin::where('materia_pc.created_at','like','%'.date('Y').'%')->get();
     foreach ($materiasB as $m) {
       NotaPeriodo::create([
@@ -27,7 +27,7 @@ class Periodo extends Model {
     }
   }
 
-  public function crearRecuperaciones(){
+  public function crearRecuperaciones(){ //By Paola
     $notasPeriodo=NotaPeriodo::where([['fk_periodo',$this->pk_periodo],['nota_periodo','<',3.0]])->get();
     foreach ($notasPeriodo as $n) {
       Recuperacion::create([
@@ -35,6 +35,7 @@ class Periodo extends Model {
       ]);
     }
   }
+
   public function toArrayOnly(...$attrs){
     $at = [];
     foreach ($attrs as $value) {
