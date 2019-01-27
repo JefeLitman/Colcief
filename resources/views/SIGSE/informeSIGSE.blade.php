@@ -1,26 +1,41 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Informe SIGSE de {{$infoMateria->getCursoCompleto()}}</title>
-  </head>
-  <body>
-    <h2>Informe SIGSE {{$infoMateria->nombre.' de '.$infoMateria->getCursoCompleto()}}</h2>
-    <hr>
-    <table>
-      <tr>
-        <th>Criterio</th>
-        <th>Masculino</th>
-        <th>Femenino</th>
-      </tr>
-      @foreach ($informe[0] as $criterio => $generos)
-        <tr>
-          <td>{{$criterio}}</td>
-          <td>{{$generos[0]}}</td>
-          <td>{{$generos[1]}}</td>
-        </tr>
-      @endforeach
-    </table>
-    <h3>Total de estudiantes: {{$informe[1]}}</h3>
-  </body>
-</html>
+@extends('contenedores.profesor')
+@section('titulo','Informe SIGSE de {{$infoMateria->getCursoCompleto()}}')
+@section('contenedor_profesor')
+<div class="container" style="background-color: #fafafa !important;">
+    <div class="row justify-content-center">
+        <div class="col-md-10 text-center">
+            <h4>
+                Informe SIGSE {{$infoMateria->nombre.' de '.$infoMateria->getCursoCompleto()}}
+            </h4>
+            <br>
+            <div class="table-responsive">
+                <table class="table  table-striped table-condensed table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th  class="center" scope="col" style="color:#00695c">Criterio</th>
+                            <th  class="center" scope="col" style="color:#00695c">Masculino</th>
+                            <th  class="center" scope="col" style="color:#00695c">Femenino</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($informe[0] as $criterio => $generos)
+                        <tr>
+                            <td class="center">{{$criterio}}</td>
+                            <td class="center">{{$generos[0]}}</td>
+                            <td class="center">{{$generos[1]}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <table class="table  table-striped table-condensed table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>Total de estudiantes: {{$informe[1]}}</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

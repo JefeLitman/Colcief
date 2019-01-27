@@ -11,7 +11,7 @@
                 <div class="card border-primary rounded-0" style="border-color:#17a2b8 !important; border-radius:0.25rem !important;">
                     <div class="card-header p-0">
                         <div class="bg-info text-center py-2" style="background-color:rgba(0,0,0,.03) !important;">
-                            <h4><i class="fas fa-address-card"></i> Nivelacion </h4>
+                            <h4><i class="fas fa-address-card"></i> Nivelación - Editar</h4>
                         </div>
                     </div>
                     <div class="card-body p-3">
@@ -98,7 +98,7 @@
                                                 <i class="fas fa-sticky-note"></i>
                                             </div>
                                         </div>
-                                        <input type="number" max="3" class="form-control form-control-sm" value="{{$recuperacion->nota}} " value="@eachError('nota', $errors)@endeachError">
+                                        <input type="number" name="nota" id="nota" min="1" max="3" class="form-control form-control-sm" value="{{$recuperacion->nota}}" value="@eachError('nota', $errors)@endeachError">
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <input type="date" min="{{$recuperacion->recuperacion_inicio}}" max="{{$recuperacion->recuperacion_limite}}" class="form-control form-control-sm" value="{{$recuperacion->fecha_presentacion}}" value="@eachError('fecha_presentacion', $errors)@endeachError">
+                                        <input type="date" name="fecha_presentacion" id="fecha_presentacion" min="{{$recuperacion->recuperacion_inicio}}" max="{{$recuperacion->recuperacion_limite}}" class="form-control form-control-sm" value="{{$recuperacion->fecha_presentacion}}" value="@eachError('fecha_presentacion', $errors)@endeachError">
                                     </div>
                                 </div>                                    
                             </div>
@@ -126,7 +126,7 @@
                                 {{-- Observaciones--}}
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Observaciones (No puede superar los 255 caracteres)</small></strong></label>
-                                    <textarea class="form-control" rows="3" maxlength="255" value="@eachError('observaciones', $errors)@endeachError">{{$recuperacion->observaciones}}</textarea>
+                                    <textarea class="form-control" name="observaciones" id="observaciones" rows="3" maxlength="255" value="@eachError('observaciones', $errors)@endeachError">{{$recuperacion->observaciones}}</textarea>
                                 </div>                                    
                             </div>
                         </div>

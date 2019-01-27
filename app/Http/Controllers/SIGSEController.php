@@ -15,6 +15,10 @@ use App\Recuperacion;
 
 class SIGSEController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin:director,profesor,administrador');
+    }
     /**
      * @author Douglas R.
      * Simplemente envía al index del SIGSE la información necesaria para que
@@ -44,15 +48,24 @@ class SIGSEController extends Controller
      */
     private function getMateriasPC()
     {
-      $MateriasPC = MateriaPC::select('pk_materia_pc','nombre','fk_curso','fk_empleado')->
-      where('fk_empleado','=',session('user')['cedula'])->get();
-      $resultado = [];
-      foreach ($MateriasPC as $MateriaPC) {
-        $resultado = SC::array_push_wKey($MateriaPC->pk_materia_pc,$resultado,[$MateriaPC->nombre,$MateriaPC->getCursoCompleto()]);
-      }
-      //Resultado es una matriz Nx2 donde N_i es el pk_materia_pc, la primera columna es el nombre
-      //de la materia y la segunda columna el curso al que pertenece.
-      return $resultado;
+        switch (session('role')) {
+          case 'director':
+          case 'profesor':
+            $MateriasPC = MateriaPC::select('pk_materia_pc','nombre','fk_curso','fk_empleado')->
+            where('fk_empleado','=',session('user')['cedula'])->get();
+            break;
+          case 'administrador':
+            $MateriasPC = MateriaPC::all();
+            break;
+        }
+
+        $resultado = [];
+        foreach ($MateriasPC as $MateriaPC) {
+          $resultado = SC::array_push_wKey($MateriaPC->pk_materia_pc,$resultado,[$MateriaPC->nombre,$MateriaPC->getCursoCompleto()]);
+        }
+        //Resultado es una matriz Nx2 donde N_i es el pk_materia_pc, la primera columna es el nombre
+        //de la materia y la segunda columna el curso al que pertenece.
+        return $resultado;
     }
 
     /**
