@@ -8,6 +8,8 @@ use App\Nivelacion;
 use App\Recuperacion;
 use App\Boletin;
 use App\Periodo;
+use App\Http\Requests\NivelacionUpdateController;
+
 class NivelacionController extends Controller
 {
     /**
@@ -192,7 +194,41 @@ class NivelacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role=session('role');
+        $user=session('user');
+        switch($role){
+            case "administrador":
+                break;
+            case "director":
+            case "profesor":
+                $nivelacion=Nivelacion::select(
+                    'nivelacion.*',
+                    'materia_pc.nombre as materia',
+                    'empleado.cedula as pk_empleado',
+                    'empleado.nombre',
+                    'empleado.apellido',
+                    'estudiante.pk_estudiante',
+                    'estudiante.nombre as nombreE',
+                    'estudiante.apellido as apellidoE',
+                    'curso.prefijo',
+                    'curso.sufijo',
+                    'curso.ano'
+                )
+                ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nivelacion.fk_materia_boletin')
+                ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+                ->join('empleado','empleado.cedula','=','nivelacion.fk_empleado')
+                ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
+                ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
+                ->join('curso','curso.pk_curso','=','boletin.fk_curso')
+                ->where([['nivelacion.pk_nivelacion',$id],['empleado.cedula',$user['cedula']]])->get();
+                if (!empty($nivelacion[0])) {
+                    return view("nivelaciones.editarNivelacion_profesor",['nivelacion'=>$nivelacion[0]]);
+                }
+                break;
+            default:
+                return redirect("/nivelaciones");
+        }
+        return redirect("/nivelaciones/$id");
     }
 
     /**
@@ -202,9 +238,31 @@ class NivelacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NivelacionUpdateController $request, $id)
     {
-        //
+        $role=session('role');
+        $user=session('user');
+        switch($role){
+            case "administrador":
+                break;
+            case "director":
+            case "profesor":
+                $nivelacion=Nivelacion::select(
+                    'nivelacion.*'
+                )
+                ->where([['nivelacion.pk_nivelacion',$id],['nivelacion.fk_empleado',$user['cedula']]])->get();
+                if (!empty($nivelacion[0])) {
+                    $nivelacion[0]->fecha_presentacion=$request->fecha_presentacion;
+                    $nivelacion[0]->nota=$request->nota;
+                    $nivelacion[0]->observaciones=$request->observaciones;
+                    $nivelacion[0]->save();
+                    return redirect("/nivelaciones");
+                }
+                break;
+            default:
+                return redirect("/nivelaciones");
+        }
+        return redirect("/nivelaciones/$id");
     }
 
     /**
