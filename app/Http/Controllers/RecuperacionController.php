@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Recuperacion;
 
+use App\Http\Requests\RecuperacionUpdateController;
+
 class RecuperacionController extends Controller
 {
     /**
@@ -146,9 +148,32 @@ class RecuperacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RecuperacionUpdateController $request, $id)
     {
-        //
+        if (session('role')=="profesor" or session('role')=="director") {
+            $user=session('user');
+            $recuperacion=Recuperacion::select(
+                'recuperacion.*',
+                'periodo.recuperacion_inicio',
+                'periodo.recuperacion_limite'
+            )
+            ->join('nota_periodo','nota_periodo.pk_nota_periodo','=','recuperacion.fk_nota_periodo')
+            ->join('periodo','periodo.pk_periodo','=','nota_periodo.fk_periodo')
+            ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')
+            ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+            ->where([['recuperacion.pk_recuperacion',$id],['materia_pc.fk_empleado',$user['cedula']]])->get();
+            if (!empty($recuperacion[0])) {
+                if (strtotime(date('d-m-Y'))>=strtotime($recuperacion[0]->recuperacion_inicio) and strtotime(date('d-m-Y'))<=strtotime($recuperacion[0]->recuperacion_limite)) {
+                    $recuperacion[0]->fecha_presentacion=$request->fecha_presentacion;
+                    $recuperacion[0]->nota=$request->nota;
+                    $recuperacion[0]->observaciones=$request->observaciones;
+                    $recuperacion[0]->save();
+                    return redirect("/recuperaciones");
+                }
+                return redirect("/recuperaciones/$id");
+            }
+        }
+        return redirect("/nivelaciones");
     }
 
     /**
