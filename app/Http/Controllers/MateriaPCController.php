@@ -398,7 +398,7 @@ class MateriaPCController extends Controller
                 $estudiantes=MateriaBoletin::where([['materia_boletin.fk_materia_pc',$pk_materia_pc],['estudiante.pk_estudiante',session('user')['pk_estudiante']]])->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->get();
             } else {
                 //Muestra a todos los estudiantes
-                $estudiantes=MateriaBoletin::where('materia_boletin.fk_materia_pc',$pk_materia_pc)->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->get();
+                $estudiantes=MateriaBoletin::where('materia_boletin.fk_materia_pc',$pk_materia_pc)->join('boletin','boletin.pk_boletin','materia_boletin.fk_boletin')->join('estudiante','estudiante.pk_estudiante','boletin.fk_estudiante')->groupBy('estudiante.apellido')->get();
             }
             $notaE=[];
             $notaDiv=[];
@@ -411,7 +411,8 @@ class MateriaPCController extends Controller
                 $notaDiv[$e->pk_estudiante][$p->pk_periodo]=[];
                 $notaPer[$e->pk_estudiante][$p->pk_periodo]=null;
                 foreach ($periodos as $z) {
-                    $notap=NotaPeriodo::where([['fk_materia_boletin',$e->pk_materia_boletin],['fk_periodo',$z->pk_periodo]])->get();
+                    $notap=NotaPeriodo::leftjoin('recuperacion','recuperacion.fk_nota_periodo','=','nota_periodo.pk_nota_periodo')
+                    ->where([['fk_materia_boletin',$e->pk_materia_boletin],['fk_periodo',$z->pk_periodo]])->get();
                     if(!empty($notap[0])){
                         $notaPer[$e->pk_estudiante][$z->pk_periodo]=$notap[0];
                     }

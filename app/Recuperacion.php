@@ -20,7 +20,17 @@ class Recuperacion extends Model
             if(!empty($materia[0])){
                 $materia=$materia[0];
                 if( $notaPeriodo->nota_periodo < $this->nota  and  $this->nota <= 3 ){
-                    $materia->nota_materia=$materia->nota_materia-($notaPeriodo->nota_periodo/4)+($this->nota/4);
+                    $notas=NotaPeriodo::where('fk_materia_boletin',$materia->pk_materia_boletin)->get();
+                    $materia->nota_materia=0;
+                    foreach ($notas as $n) {
+                        if ($n->pk_nota_periodo == $this->fk_nota_periodo) {
+                            $materia->nota_materia=$materia->nota_materia+$this->nota;
+                        }else{
+                            $materia->nota_materia=$materia->nota_materia+$n->nota_periodo;
+                        }
+                    }
+                    $materia->nota_materia=$materia->nota_materia/4;
+                    $materia->nota_materia=round($materia->nota_materia, 1, PHP_ROUND_HALF_UP);
                     $materia->save();
                 }
             }

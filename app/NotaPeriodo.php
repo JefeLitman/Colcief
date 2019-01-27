@@ -28,7 +28,7 @@ class NotaPeriodo extends Model
       foreach ($divs as $d) {
         $this->nota_periodo+=(($d->nota_division*$d->porcentaje)/100);
       }
-      $this->nota_periodo=round($this->nota_periodo, 1);  //Redondeo
+      $this->nota_periodo=round($this->nota_periodo, 1,PHP_ROUND_HALF_UP);  //Redondeo
       $this->save();
       MateriaBoletin::where("pk_materia_boletin",$this->fk_materia_boletin)->get()[0]->actualizarNota();
     }

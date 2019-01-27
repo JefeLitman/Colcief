@@ -91,14 +91,14 @@
                             {{-- Nota --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
-                                    <label for="cedula"><strong><small style="color : #616161">Nota (La maxima nota es 3.0)</small></strong></label>
+                                    <label for="cedula"><strong><small style="color : #616161">Nota (La maxima nota es 3,0)</small></strong></label>
                                     <div class="input-group mb-2 disabled">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-sticky-note"></i>
                                             </div>
                                         </div>
-                                        <input required type="number" name="nota" id="nota" min="1" max="3" class="form-control form-control-sm" value="{{$nivelacion->nota}}" value="@eachError('nota', $errors)@endeachError">
+                                        <input required type="number" step=".1" name="nota" id="nota" min="1" max="3" class="form-control form-control-sm" value="{{$nivelacion->nota}}" value="@eachError('nota', $errors)@endeachError">
                                     </div>
                                 </div>
                             </div>

@@ -18,7 +18,7 @@ class NotaDivision extends Model
         foreach ($notas as $n) {
             $this->nota_division+=(($n->nota*$n->porcentaje)/100);
         }
-        $this->nota_division=round($this->nota_division, 1);  //Redondeo
+        $this->nota_division=round($this->nota_division, 1,PHP_ROUND_HALF_UP);  //Redondeo
         $this->save();
         NotaPeriodo::where("pk_nota_periodo",$this->fk_nota_periodo)->get()[0]->actualizarNota();
     }

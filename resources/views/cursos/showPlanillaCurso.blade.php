@@ -75,7 +75,7 @@
                                 <tr>
                                     <td>
                                         {{-- Nombre del estudiante --}}
-                                        {{ucwords($e->nombre)}} {{ucwords($e->apellido)}}
+                                        {{ucwords($e->apellido)}} {{ucwords($e->nombre)}} 
                                     </td>
                                     <td>
                                         {{-- Numero de inasistencias por el periodo seleccionado del estudiante --}}
@@ -102,14 +102,23 @@
                                     </td>
                                         @endforeach
                                     @foreach ($periodos as $z)
-                                    <td data-toggle="tooltip" data-placement="bottom" @if ($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo >= 1 && $notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo<= 2.9)
-                                        class="table-danger"  title="Nota Periodo Baja"
+                                        <td data-toggle="tooltip" data-placement="bottom" 
+                                        @php
+                                            $notaRecuperacion="" ;
+                                        @endphp
+                                        @if (!empty($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota))
+                                            @php
+                                                $notaRecuperacion=" Recuperada en: ".$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota;
+                                            @endphp
+                                        @endif
+                                        @if ($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo<= 2.9)
+                                            class="table-danger"  title="Nota Baja{{$notaRecuperacion}}"
                                         @elseif($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo >= 3 && $notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo <= 3.9)
-                                            class="table-warning"  title="Nota Periodo Basica"
+                                            class="table-warning"  title="Nota Basica{{$notaRecuperacion}}"
                                         @elseif($notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo >= 4 && $notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo <= 4.5 )
-                                            class="table-primary"  title="Nota Periodo Alta"
+                                            class="table-primary"  title="Nota Alta{{$notaRecuperacion}}"
                                         @else
-                                            class="table-success" title="Nota Periodo Superior"
+                                            class="table-success" title="Nota Superior{{$notaRecuperacion}}"
                                         @endif >
                                         {{-- Notas por periodo del estudiante --}}
                                         {{$notaPer[$e->pk_estudiante][$z->pk_periodo]->nota_periodo}}

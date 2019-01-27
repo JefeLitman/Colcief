@@ -3,6 +3,8 @@ $('#myModal').modal('hide')
 
 var errores=[];
 
+// onkeyup="updateNotasE(this);"
+
 function updateAjax(pk,link,parametro){
     // Aqui dibujariamos el preload
     $('#avisos').attr('class','alert alert-primary');
@@ -29,20 +31,24 @@ function updateAjax(pk,link,parametro){
     });
 }
 
-function desempeno(nota) {
+function desempeno(nota,recuperacion=null) {
     //Favor no cambiar el 0 By:Paola 
+    r="";
+    if (recuperacion != null) {
+        r=" Recuperada en: "+recuperacion;
+    }
     if (nota >= 0 && nota <= 2.9){
         clase="table-danger";
-        titulo="Nota Baja";
+        titulo="Nota Baja"+r;
     }else if(nota >= 3 && nota <= 3.9){
         clase="table-warning";  
-        titulo="Nota Basica";
+        titulo="Nota Basica"+r;
     }else if(nota >= 4 && nota <= 4.5){
         clase="table-primary";  
-        titulo="Nota Alta";
+        titulo="Nota Alta"+r;
     }else if(nota >= 4.6 && nota <= 5.0){
         clase="table-success"; 
-        titulo="Nota Superior";
+        titulo="Nota Superior"+r;
     }
     return [clase,titulo];
 }
@@ -121,16 +127,16 @@ function updateNotasDiv(e) {
     bandera=updateAjax($(e).attr('pk'),"notasdivision",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_division":parseFloat(e.html())});	
     bandera.then(function() {
         fk=$(e).attr('fk');
-        total=0;
+        total=0.0;
         $( "[fk="+fk+"]").each(function(){
             if (!isNaN(parseFloat($(this).html()))){
                 total += (parseFloat($(this).html())*(parseFloat($(this).attr('p'))/100));    
             }
         });
-        total=total.toFixed(1);
+        total=Math.round(total*10)/10;
         per=$("#"+fk);
         per.text(total);
-        [clase,titulo]=desempeno(total);
+        [clase,titulo]=desempeno(total,per.attr('recuperacion'));
         per.attr({'class':clase,'data-original-title':titulo});
         updateNotasPer($("#"+fk));
         console.log("NotaDiv guardada con exito.");
@@ -144,16 +150,22 @@ function updateNotasDiv(e) {
 function updateNotasPer(e) {
     bandera=updateAjax($(e).attr('pk'),"notasperiodo",{_token:$('#csrf_token').attr('content'), _method:'PUT',"nota_periodo":e.html()});
     bandera.then(function() {
+        total=0.0;
         fk=$(e).attr('fk');
-        total=0;
         periodos=$( "[fk="+fk+"]");
         periodos.each(function(){
-            if (!isNaN(parseFloat($(this).html()))){
-                total += parseFloat($(this).html());    
+            if( parseFloat($(this).attr('recuperacion'))<=3.0 &&  parseFloat($(this).attr('recuperacion'))>parseFloat($(this).html())){
+                total += parseFloat($(this).attr('recuperacion'));
+                console.log("Recuperacion");
+            }else{
+                if (!isNaN(parseFloat($(this).html()))){
+                    total += parseFloat($(this).html());    
+                }
             }
+            
         });
         total=total/parseFloat(periodos.toArray().length);
-        total=total.toFixed(1);
+        total=Math.round(total*10)/10;
         def=$("#"+fk);
         def.text(total);
         [clase,titulo]=desempeno(total);
