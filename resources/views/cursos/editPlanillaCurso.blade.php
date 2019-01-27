@@ -141,13 +141,13 @@
                                         @endforeach
                                         <td id="materia{{$e->pk_materia_boletin}}" pk="{{$e->pk_materia_boletin}}" data-toggle="tooltip" data-placement="bottom"
                                             @if ($e->nota_materia <= 2.9)
-                                                class="table-danger"  title="Nota Final Baja"
+                                                class="table-danger"  title="Nota Baja"
                                             @elseif($e->nota_materia >= 3 && $e->nota_materia <= 3.9)
-                                                class="table-warning"  title="Nota Final Basica"
+                                                class="table-warning"  title="Nota Basica"
                                             @elseif($e->nota_materia >= 4 && $e->nota_materia <= 4.5)
-                                                class="table-primary"  title="Nota Final Alta"
+                                                class="table-primary"  title="Nota Alta"
                                             @else
-                                                class="table-success" title="Nota Final Superior"
+                                                class="table-success" title="Nota Superior"
                                             @endif >
                                             {{-- Nota final del estudiante --}}
                                             {{$e->nota_materia}}
