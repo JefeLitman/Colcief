@@ -64,7 +64,7 @@
 
                 <!-- Content -->
                 <h5 class="font-weight-bold mt-3 mb-4 text-white">ColCIEF</h5>
-                <p>Somos una institución educativa ubicada en el casco urbano del municipio de Florián Santander que cuenta con 3 sedes que van desde el grado kinder hasta undécimo grado en amplias y acogedoras instalaciones con mas de 40 años formando líderes a la sociedad. En la actualidad sus bachilleres reciben el título de Técnicos en Liderazgo Socioambiental y gracias a la vinculación del SENA también reciben el título de Técnicos en Producción de Café Orgánico. De este modo nuestros egresados son mas competitivos tanto en el mundo laboral como en la educación superior.</p>
+                <p>Somos una institución educativa ubicada en el casco urbano del municipio de Florián Santander que cuenta con 3 sedes que van desde el grado preescolar hasta undécimo grado en amplias y acogedoras instalaciones con mas de 40 años formando líderes a la sociedad. En la actualidad sus bachilleres reciben el título de Técnicos en Liderazgo Socioambiental y gracias a la vinculación del SENA también reciben el título de Técnicos en Producción de Café Orgánico. De este modo nuestros egresados son mas competitivos tanto en el mundo laboral como en la educación superior.</p>
 
             </div>
             <!-- Grid column -->

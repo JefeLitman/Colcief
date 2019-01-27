@@ -77,11 +77,12 @@
 <div class="container">
 	<div class="row justify-content-center" style="background-color: #fafafa !important;">
 		<div class="col-md-10">
-			<h4>Linea Temporal</h4>
+			<h4 class="text-center">Linea Temporal</h4>
+			<br>
 			<ul class="timeline">
 				@php
 					$cont = 0;
-					if(strtotime($orden['Hoy']) > strtotime($orden['Inicio del año escolar'])){
+					if(strtotime($orden['Hoy']) >= strtotime($orden['Inicio del año escolar'])){
 						$bandera = true;	
 					} else {
 						$bandera = false;
@@ -91,11 +92,11 @@
 					@php
 						$cont++;
 					@endphp
-					<li class="{{strtotime($orden['Hoy']) <= strtotime($card) ? '' : 'success'}} {{$key == 'Hoy' ? 'secondary' : ''}}">
-						<div class="card mb-3 {{$cont%2 == 0 ? 'left' : 'right'}}">
+					<li class="{{strtotime($orden['Hoy']) < strtotime($card) ? '' : 'success'}} {{$key == 'Hoy' ? 'secondary' : ''}}">
+						<div class="card mb-3 {{$cont%2 == 0 ? 'right' : 'left'}}">
 							<div class="card-header">
 								{{$key}}
-								@if ((strtotime($orden['Hoy']) <= strtotime($card) && $key != 'Hoy'))
+								@if ((strtotime($orden['Hoy']) < strtotime($card) && $key != 'Hoy'))
 									@if ($bandera == true)
 										@if ($key != 'Finalización del año escolar')
 											<div class="float-right">

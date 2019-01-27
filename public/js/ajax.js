@@ -82,6 +82,7 @@ var cargarNotificaciones = function(){
         data: {_token:$('#csrf_token').attr('content'), _method:'POST'},
         success: function(data) {
             if(data.cant > 0){
+                noti.css('display', 'inline-block');
                 noti.html(data.cant)
                 mensaje='';
                 $.each( data.data, function(key, notificar) {
@@ -92,7 +93,7 @@ var cargarNotificaciones = function(){
                 });
                 document.getElementById('noo').innerHTML=mensaje;
             }else if(data.cant==0){
-                noti.fadeOut();
+                noti.fadeOut()
                 document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
             }
             

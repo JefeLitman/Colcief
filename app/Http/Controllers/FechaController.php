@@ -13,13 +13,12 @@ class FechaController extends Controller {
     public function __construct(){
         $this->middleware('admin:administrador')->except(['index']);
         $this->middleware('admin:administrador,coordinador,director,profesor')->only(['index']);
-        $this->ano = date('Y');
-        $this->date = date('Y-m-d');
+        $this -> ano = date('Y');
+        $this -> date = date('Y-m-d');
         setlocale(LC_ALL, 'es_CO.UTF-8');
     }
 
     public function index(){
-        
         $fecha = Fecha::where('ano', $this -> ano) -> get()[0];
         $periodos = Periodo::where('ano', $this -> ano) -> orderBy('nro_periodo') -> get();
         $orden = []; // array con las fechas y los mensajes a mostrar ordenadas
@@ -48,24 +47,28 @@ class FechaController extends Controller {
     }
 
     public function edit(){
-        $fecha = Fecha::where('ano', $this->ano) -> where('inicio_escolar', '>', date('Y-m-d')) -> get();
-        // dd($fecha);
+        $fecha = Fecha::where('ano', $this->ano) -> where('inicio_escolar', '>', $this -> date) -> get();
         if(!empty($fecha[0])){
             return view('fechas.editarFecha', ['fecha' => $fecha[0]]);
         } else {
-            return back() -> with('false', 'No es posible modificar estas fechas, el año escolar ya inicio');
+            return back() -> with('false', 'No es posible modificar, el año escolar ya inicio');
         }
     }
 
     public function update(FechaStoreController $request){
-        $fecha = Fecha::where('ano', $this->ano)->get()[0];
-        $fecha -> inicio_escolar = $request -> inicio_escolar;
-        $fecha -> fin_escolar = $request -> fin_escolar;
-        if ($fecha -> save()) {
-            $mensaje = 'Las fechas escolares fueron actualizadas con exito, recuerde que la fecha de inicio escolar actual es '.$fecha -> fin_escolar;
-            return redirect(route('fechas.index'))->with('true', $mensaje);
+        $fecha = Fecha::where('ano', $this->ano) -> where('inicio_escolar', '>', $this -> date) -> get();
+        if(!empty($fecha[0])){
+            $fecha -> inicio_escolar = $request -> inicio_escolar;
+            $fecha -> fin_escolar = $request -> fin_escolar;
+            if ($fecha -> save()) {
+                $mensaje = 'Las fechas escolares fueron actualizadas con exito, recuerde que la fecha de inicio escolar actual es '.$fecha -> fin_escolar;
+                return redirect(route('fechas.index'))->with('true', $mensaje);
+            } else {
+                return back()->with('false', 'Algo no salio bien, intente nuevamente');
+            }
         } else {
-            return back()->with('false', 'Algo no salio bien, intente nuevamente');
+            return back() -> with('false', 'No es posible modificar, el año escolar ya inicio');
         }
+        
     }
 }

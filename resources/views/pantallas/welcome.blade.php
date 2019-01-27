@@ -16,7 +16,7 @@
         <div class="col-lg-6 col-md-5 col-sm-12 mt-auto mb-auto mr-3">
             <h2 class="welcome-heading text-white">¿Quienes somos?</h2>
             <br>
-            <p class="text-muted">Somos una institución educativa ubicada en el casco urbano del municipio de Florián Santander que cuenta con 3 sedes que van desde el grado kinder hasta undécimo grado en amplias y acogedoras instalaciones con mas de 40 años formando líderes ...</p>
+            <p class="text-muted">Somos una institución educativa ubicada en el casco urbano del municipio de Florián Santander que cuenta con 3 sedes que van desde el grado preescolar hasta undécimo grado en amplias y acogedoras instalaciones con mas de 40 años formando líderes ...</p>
             <a href="#footer" class="btn btn-success btn-pill align-self-center">Leer mas ...</a>
         </div>
 

@@ -39,7 +39,7 @@
               </div>
               <div class="invalid-feedback text-center" style="{{ (session()->has('false')) ? 'display: block' : 'display: none' }}">{{session('false')}}</div>
             </div>
-            <button style="margin-top: 1.5rem!important;" class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit">Iniciar sessión</button>
+            <button style="margin-top: 1.5rem!important;" class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit">Iniciar sesión</button>
           </form>
         </div>
       </div>

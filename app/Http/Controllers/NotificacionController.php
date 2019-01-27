@@ -34,26 +34,6 @@ class NotificacionController extends Controller {
         return view("noticaciones.listaNotificacion", ['activas' => $activas, 'inactivas' => $inactivas]);
     }
 
-    public function create(){
-        //
-    }
-
-    public function store(Request $request){
-        //
-    }
-
-    public function show(Notificacion $notificacion){
-        //
-    }
-
-    public function edit(Notificacion $notificacion){
-        //
-    }
-
-    public function update(Request $request, Notificacion $notificacion){
-        //
-    }
-
     public function destroy(Request $request, $pk_notificacion){
         if($request->ajax()){
             $notificacion = Notificacion::where('fk_empleado',session('user')['cedula']) -> where('estado', true) -> where('pk_notificacion', $pk_notificacion) -> get()[0];

@@ -88,6 +88,16 @@ class Fks extends Migration {
             $table->foreign('fk_empleado')->references('cedula')->on('empleado')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
+
+        Schema::table('notificacion', function (Blueprint $table) {
+            $table->foreign('fk_empleado')->references('cedula')->on('empleado')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
+
+        Schema::table('archivo', function (Blueprint $table) {
+            $table->foreign('fk_empleado')->references('cedula')->on('empleado')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
