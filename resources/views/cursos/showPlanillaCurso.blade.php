@@ -13,7 +13,22 @@
             <div class="card bg-light border-info mb-3">
                  <div class="card-header text-center">
                      <h5>
-                         COLEGIO INTEGRADO EZEQUIEL FLORIAN @if(session('role')=='profesor')<span class="table-add float-right"><a  href='{{url(Request::path().'/editar')}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Editar Planilla" class="far fa-edit fa-lg"></i></a></span>@endif
+                         COLEGIO INTEGRADO EZEQUIEL FLORIAN 
+                         @if(session('role')=='profesor')
+                            @if (strtotime(date('d-m-Y'))>=strtotime($p->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($p->fecha_limite))
+                                <span class="table-add float-right">
+                                    <a  href='{{url(Request::path().'/editar')}}' class="text-info">
+                                        <i  data-toggle="tooltip" data-placement="bottom" title="Editar Planilla" class="far fa-edit fa-lg"></i>
+                                    </a>
+                                </span>
+                            @else
+                                <span class="table-add float-right">
+                                    <a   class="text-secondary">
+                                        <i  data-toggle="tooltip" data-placement="bottom" title="Solo puede ser editado desde el {{$p->fecha_inicio}} hasta las 23:59 del {{$p->fecha_limite}}." class="far fa-edit fa-lg"></i>
+                                    </a>
+                                </span>
+                            @endif
+                        @endif
                     </h5>
                  </div>
                 <div class="card-body">

@@ -64,16 +64,20 @@
                                                     {{-- editar materia --}}
                                                     <td class="text-center">
                                                         {{-- Ver logros de una materia --}}
-                                                        <a href="/materiaspc/{{$j[0]}}"><i class="fas fa-eye text-info" ></i></a>
+                                                        <a href="/materiaspc/{{$j[0]}}" data-toggle="tooltip" data-placement="right"  title="Ver más"><i class="fas fa-eye text-info" ></i></a>
                                                         {{-- Editar logros de una materia --}}
-                                                        <a href="{{ route('materiaspc.edit',$j[0]) }}"><i class="fas fa-edit text-secondary"  title="Modificar logros"></i></a>
+                                                        <a href="{{ route('materiaspc.edit',$j[0]) }}" data-toggle="tooltip" data-placement="right"  title="Modificar logros"><i class="fas fa-edit text-info" ></i></a>
                                                     </td>
                                                     @foreach ($periodos as $p)
                                                         <td class="text-center">
                                                             {{-- Ver planillas/Notas --}}
-                                                            <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}"><i class="fas fa-eye text-info"  title="Ver notas"></i></a>
+                                                            <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}" data-toggle="tooltip" data-placement="right"  title="Ver notas" ><i class="fas fa-eye text-info"  title="Ver notas"></i></a>
                                                             {{-- Editar planillas/Notas  --}}
-                                                            <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar"><i class="fas fa-edit text-secondary"  title="Modificar notas"></i></a>
+                                                            @if (strtotime(date('d-m-Y'))>=strtotime($p->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($p->fecha_limite))
+                                                                <a data-toggle="tooltip" data-placement="right" title="Modificar notas" href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar" ><i class="fas fa-edit text-info" ></i></a>
+                                                            @else
+                                                                <a data-toggle="tooltip" data-placement="right" title="Solo puede ser editado desde el {{$p->fecha_inicio}} hasta las 23:59 del {{$p->fecha_limite}}."><i class="fas fa-edit text-secondary"  ></i></a>
+                                                            @endif
                                                         </td>
                                                     @endforeach
 
@@ -93,5 +97,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+</script>
 <script src="{{ asset('js/ajax.js') }}"></script>
 @endsection

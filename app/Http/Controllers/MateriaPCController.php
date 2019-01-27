@@ -465,9 +465,11 @@ class MateriaPCController extends Controller
         $role=session('role');
         if ($role=="profesor" or $role=="director") {
             $result=$this->planillas($pk_materia_pc,$pk_periodo);
-            if (session('user')['cedula']==$result['materiapc']->fk_empleado) {
-                return view('cursos.editPlanillaCurso',$result);
-            } 
+            if(strtotime(date('d-m-Y'))>=strtotime($result['p']->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($result['p']->fecha_limite)){
+                if (session('user')['cedula']==$result['materiapc']->fk_empleado) {
+                    return view('cursos.editPlanillaCurso',$result);
+                } 
+            }
         }
         return redirect("/planillas/$pk_materia_pc/periodos/$pk_periodo");
         
