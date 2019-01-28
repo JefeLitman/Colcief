@@ -1,6 +1,6 @@
-@extends('contenedores.profesor')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Nivelaciones')
-@section('contenedor_profesor')
 
 	{{-- Guia Front --}}
 	{{-- Se envía el objeto $periodos,$recuperacion,$nivelacion--}}
