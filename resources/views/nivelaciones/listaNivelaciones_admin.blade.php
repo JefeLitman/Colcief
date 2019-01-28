@@ -45,7 +45,15 @@
 							show active 
 							@endif" 
 							id="id{{$k}}" role="tabpanel" aria-labelledby="tab{{$k}}">
-								<div class="table-responsive">
+							<br>
+							<div class="row">
+								<div class="col-lg-3 col-lg-offset-3 center"></div>
+								<div class="col-lg-6 col-lg-offset-6 center">
+									<input type="text" id="search{{$k}}" value="" class="form-control" placeholder="Buscador">
+								</div>
+							</div>
+							<br>
+							<div class="table-responsive">
 										<table class="table table-striped table-condensed table-sm  table-hover text-center">
 											<thead>
 												<tr>
@@ -56,7 +64,7 @@
 													<th scope="col" style="color:#00695c" class="text-center"> Acciones </th>
 												</tr>
 											</thead>
-											<tbody>	
+											<tbody id="search{{$k}}">	
 												@if (count($recuperacion[$p->pk_periodo])==0)
 													<tr>
 														<td colspan="5" class="text-center"> No hay periodos perdidos </td>
@@ -74,12 +82,7 @@
 															<td class="text-center"> {{$r->nota or "-"}} </td>
 															{{-- Accion --}}
 															<td class="text-center">
-																<a href="/recuperaciones/{{$r->pk_recuperacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a>
-																@if (strtotime(date('d-m-Y'))>=strtotime($p->recuperacion_inicio) and strtotime(date('d-m-Y'))<=strtotime($p->recuperacion_limite))
-																	<a href="/recuperaciones/{{$r->pk_recuperacion}}/editar"><i class="fas fa-edit text-info"></i></a>
-																@else
-																	<a href="" title="Solo puede ser editado desde el {{$p->recuperacion_inicio}} hasta las 23:59 del {{$p->recuperacion_limite}}."><i class="fas fa-edit  text-secondary"></i></a>
-																@endif
+																<a href="/recuperaciones/{{$r->pk_recuperacion}}" data-toggle="tooltip" data-placement="right" title="Ver más"><i class="fas fa-eye text-info"  ></i></a>
 															</td>
 														</tr>
 													@endforeach
@@ -93,6 +96,14 @@
 							@endphp		
 							@endforeach
 							<div class="tab-pane fade @if($bandera) show active @endif" id="id{{$k}}" role="tabpanel" aria-labelledby="tab{{$k}}">
+								<br>
+								<div class="row">
+									<div class="col-lg-3 col-lg-offset-3 center"></div>
+									<div class="col-lg-6 col-lg-offset-6 center">
+										<input type="text" id="search{{$k}}" value="" class="form-control" placeholder="Buscador">
+									</div>
+								</div>
+								<br>
 								<div class="table-responsive">
 										<table class="table table-striped table-condensed table-sm  table-hover text-center">
 											<thead>
@@ -104,7 +115,7 @@
 													<th scope="col" style="color:#00695c" class="text-center"> Acciones </th>
 												</tr>
 											</thead>
-											<tbody>	
+											<tbody id="search{{$k}}">	
 												@if (count($nivelacion)==0)
 													<tr>
 														<td colspan="5" class="text-center"> No hay periodos perdidos </td>
@@ -122,8 +133,8 @@
 															<td class="text-center"> {{$n->nota or "-"}}</td>
 															{{-- Acciones --}}
 															<td class="text-center">
-																<a href="/nivelaciones/{{$n->pk_nivelacion}}"><i class="fas fa-eye text-info"  title="Ver más"></i></a>
-																<a href="/nivelaciones/{{$n->pk_nivelacion}}/editar" ><i class="fas fa-edit text-info" title="Editar"></i></a>
+																<a href="/nivelaciones/{{$n->pk_nivelacion}}" data-toggle="tooltip" data-placement="right" title="Ver más"><i class="fas fa-eye text-info"  ></i></a>
+																<a href="/nivelaciones/{{$n->pk_nivelacion}}/editar" data-toggle="tooltip" data-placement="right" title="Editar"><i class="fas fa-edit text-info" ></i></a>
 															</td>
 														</tr>
 													@endforeach
@@ -137,4 +148,17 @@
 			</div>
 		</div>
 	</div>
+<script>
+	$( 'input[id^=search]' ).each(function(){
+		$(this).on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			// alert(value);
+			$("tbody[id="+$(this).attr("id")+"] tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+	});
+	
+	$('[data-toggle="tooltip"]').tooltip(); 
+</script>
 @endsection

@@ -26,7 +26,47 @@ class NivelacionController extends Controller
         $user=session('user');
         switch($role){
             case "administrador":
-                
+            $nivelacion=Nivelacion::select(
+                'nivelacion.pk_nivelacion',
+                'nivelacion.nota',
+                'materia_pc.nombre as materia',
+                'estudiante.nombre',
+                'estudiante.apellido',
+                'curso.prefijo',
+                'curso.sufijo',
+                'curso.ano'
+            )
+            ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nivelacion.fk_materia_boletin')
+            ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+            ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
+            ->join('curso','curso.pk_curso','=','boletin.fk_curso')
+            ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
+            ->orderBy('estudiante.apellido')
+            ->get();
+
+            foreach ($periodos as $p) {
+                $recuperacion[$p->pk_periodo]=Recuperacion::select(
+                    'recuperacion.pk_recuperacion',
+                    'materia_pc.nombre as materia',
+                    'recuperacion.nota',
+                    'estudiante.nombre',
+                    'estudiante.apellido',
+                    'curso.prefijo',
+                    'curso.sufijo',
+                    'curso.ano'
+                )
+                ->join('nota_periodo','nota_periodo.pk_nota_periodo','=','recuperacion.fk_nota_periodo')
+                ->join('periodo','periodo.pk_periodo','=','nota_periodo.fk_periodo')
+                ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')
+                ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+                ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
+                ->join('curso','curso.pk_curso','=','boletin.fk_curso')
+                ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
+                ->where('periodo.pk_periodo',$p->pk_periodo)
+                ->orderBy('estudiante.apellido')
+                ->get();
+            }
+            return view('nivelaciones.listaNivelaciones_admin',["periodos"=>$periodos,"recuperacion"=>$recuperacion,"nivelacion"=>$nivelacion]);
                 break;
             case "director":
             case "profesor":
