@@ -16,20 +16,20 @@ use App\MateriaBoletin;
 class BoletinController extends Controller {
 
     public function index(){
-        //
+        $role=session('role');
+        $user=session('user');
+        switch($role){
+            case "administrador":
+
+                break;
+            default:
+                return redirect('/');
+        }
     }
 
-    public function create(){
-        //
-    }
-
-    public function store(Request $request){
-        //
-    }
-
-    public function show($id){ //El id es el id del estudiante
+    public function showBoletines($id){ //El id es el id del estudiante, Muestra todos los boletines de ese estudiante
         $msj='';
-        $divisiones=Division::select('pk_division','nombre','porcentaje')->where('ano',date('Y'));
+        $divisiones=Division::select('pk_division','nombre','porcentaje')->where('ano',date('Y'))->get();
         if(empty($divisiones[0])){
             $msj='No hayn divisiones creadas.';
         }else{
@@ -42,22 +42,14 @@ class BoletinController extends Controller {
         dd($notas_boletin);
     }
 
-    public function edit($id){
-        //
+    public function showEstudiante($fk_estudiante){ //Muestra el boletin del año actual
+        return $this->showAnoEstudiante(date('Y'),$fk_estudiante);
     }
 
-    public function update(Request $request, $id){
-        //
-    }
-
-    public function destroy($id){
-        //
-    }
-
-    public function showEstudiante($fk_estudiante){
-        $B=Boletin::where([["boletin.fk_estudiante",$fk_estudiante],["boletin.ano",date('Y')]])->join("estudiante","estudiante.pk_estudiante","=","boletin.fk_estudiante")->join('curso','boletin.fk_curso','=','curso.pk_curso')->get();
-        $infoDivs=Division::select('pk_division','nombre','porcentaje')->where('ano',date('Y'))->orderBy('pk_division','asc')->get();
-        $infoPeriodos=Periodo::where("ano",date('Y'))->orderBy('periodo.nro_periodo','asc')->get();
+    public function showAnoEstudiante($ano,$fk_estudiante){
+        $B=Boletin::where([["boletin.fk_estudiante",$fk_estudiante],["boletin.ano",$ano]])->join("estudiante","estudiante.pk_estudiante","=","boletin.fk_estudiante")->join('curso','boletin.fk_curso','=','curso.pk_curso')->get();
+        $infoDivs=Division::select('pk_division','nombre','porcentaje')->where('ano',$ano)->orderBy('pk_division','asc')->get();
+        $infoPeriodos=Periodo::where("ano",$ano)->orderBy('periodo.nro_periodo','asc')->get();
         $notaDivs=[];
         $msj="";    
         if(empty($B[0])){

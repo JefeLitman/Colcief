@@ -147,8 +147,9 @@ Route::get('/horarios/{pk_materiaPC}/crear','HorarioController@create')->name('c
 Route::get('/horarios/{pk_materiaPC}/editar','HorarioController@edit');
 
 /* RUTAS DE BOLETIN */
-Route::resource('/boletines','BoletinController');
-Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@showEstudiante');
+Route::resource('/boletines','BoletinController')->middleware('admin:administrador');
+Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@showEstudiante')->middleware('admin:administrador');
+Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}','BoletinController@showAnoEstudiante')->middleware('admin:administrador');
 
 /* RUTAS DE NOTIFICACION */
 Route::post('/notificaciones','NotificacionController');
