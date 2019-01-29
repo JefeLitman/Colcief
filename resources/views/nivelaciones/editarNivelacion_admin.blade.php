@@ -53,7 +53,12 @@
                                                 <i class="fas fa-user-circle"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{ucwords($nivelacion->nombre)}} {{ucwords($nivelacion->apellido)}}" disabled>
+                                        {{-- <input type="text" class="form-control form-control-sm" value="{{ucwords($nivelacion->nombre)}} {{ucwords($nivelacion->apellido)}}" disabled> --}}
+                                        <select class="custom-select custom-select-sm" name="fk_empleado" id="fk_empleado" value="@eachError('fk_empleado', $errors)@endeachError">
+                                            @foreach ($profesores as $p)
+                                                <option value="{{$p->cedula}}" {{($p->cedula==$nivelacion->pk_empleado)?"selected":""}}>{{ucwords($p->apellido)}} {{ucwords($p->nombre)}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +103,7 @@
                                                 <i class="fas fa-sticky-note"></i>
                                             </div>
                                         </div>
-                                        <input required type="number" step=".1" name="nota" id="nota" min="1" max="3" class="form-control form-control-sm" value="{{$nivelacion->nota}}" value="@eachError('nota', $errors)@endeachError">
+                                        <input required type="number" step=".1" name="nota" id="nota" min="1" max="3" class="form-control form-control-sm" value="{{$nivelacion->nota or '-'}}" placeholder="-" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +120,7 @@
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <input required type="date" name="fecha_presentacion" id="fecha_presentacion" min="{{$nivelacion->nivelacion_inicio}}" max="{{$nivelacion->nivelacion_limite}}" class="form-control form-control-sm" value="{{$nivelacion->fecha_presentacion}}" value="@eachError('fecha_presentacion', $errors)@endeachError">
+                                        <input required type="date" name="fecha_presentacion" id="fecha_presentacion" min="{{$nivelacion->nivelacion_inicio}}" max="{{$nivelacion->nivelacion_limite}}" class="form-control form-control-sm" value="{{$nivelacion->fecha_presentacion}}" disabled>
                                     </div>
                                 </div>                                    
                             </div>
@@ -126,7 +131,7 @@
                                 {{-- Observaciones--}}
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Observaciones (No puede superar los 255 caracteres)</small></strong></label>
-                                    <textarea required class="form-control" name="observaciones" id="observaciones" rows="3" maxlength="255" value="@eachError('observaciones', $errors)@endeachError">{{$nivelacion->observaciones}}</textarea>
+                                    <textarea required class="form-control" name="observaciones" id="observaciones" rows="3" maxlength="255" disabled>{{$nivelacion->observaciones or "No hay observaciones aún."}}</textarea>
                                 </div>                                    
                             </div>
                         </div>

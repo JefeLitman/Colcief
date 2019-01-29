@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Empleado;
 use App\Nivelacion;
 use App\Recuperacion;
 use App\Boletin;
@@ -244,6 +245,30 @@ class NivelacionController extends Controller
         $user=session('user');
         switch($role){
             case "administrador":
+                $profesores=Empleado::select("cedula","nombre","apellido")->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->groupBy('apellido')->get();
+                $nivelacion=Nivelacion::select(
+                    'nivelacion.*',
+                    'materia_pc.nombre as materia',
+                    'empleado.cedula as pk_empleado',
+                    'empleado.nombre',
+                    'empleado.apellido',
+                    'estudiante.pk_estudiante',
+                    'estudiante.nombre as nombreE',
+                    'estudiante.apellido as apellidoE',
+                    'curso.prefijo',
+                    'curso.sufijo',
+                    'curso.ano'
+                )
+                ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nivelacion.fk_materia_boletin')
+                ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+                ->join('empleado','empleado.cedula','=','nivelacion.fk_empleado')
+                ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
+                ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')
+                ->join('curso','curso.pk_curso','=','boletin.fk_curso')
+                ->where('nivelacion.pk_nivelacion',$id)->get();
+                if (!empty($nivelacion[0])) {
+                    return view("nivelaciones.editarNivelacion_admin",['nivelacion'=>$nivelacion[0],'profesores'=>$profesores]);
+                }
                 break;
             case "director":
             case "profesor":
@@ -290,6 +315,15 @@ class NivelacionController extends Controller
         $user=session('user');
         switch($role){
             case "administrador":
+                $nivelacion=Nivelacion::select(
+                    'nivelacion.*'
+                )
+                ->where('nivelacion.pk_nivelacion',$id)->get();
+                if (!empty($nivelacion[0])) {
+                    $nivelacion[0]->fk_empleado=$request->fk_empleado;
+                    $nivelacion[0]->save();
+                    return redirect("/nivelaciones");
+                }
                 break;
             case "director":
             case "profesor":
