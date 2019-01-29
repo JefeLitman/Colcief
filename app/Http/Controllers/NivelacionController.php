@@ -32,10 +32,13 @@ class NivelacionController extends Controller
                 'materia_pc.nombre as materia',
                 'estudiante.nombre',
                 'estudiante.apellido',
+                'empleado.nombre as nombreP',
+                'empleado.apellido as apellidoP',
                 'curso.prefijo',
                 'curso.sufijo',
                 'curso.ano'
             )
+            ->leftjoin('empleado','empleado.cedula','=','nivelacion.fk_empleado')
             ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nivelacion.fk_materia_boletin')
             ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
             ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
@@ -51,6 +54,8 @@ class NivelacionController extends Controller
                     'recuperacion.nota',
                     'estudiante.nombre',
                     'estudiante.apellido',
+                    'empleado.nombre as nombreP',
+                    'empleado.apellido as apellidoP',
                     'curso.prefijo',
                     'curso.sufijo',
                     'curso.ano'
@@ -59,6 +64,7 @@ class NivelacionController extends Controller
                 ->join('periodo','periodo.pk_periodo','=','nota_periodo.fk_periodo')
                 ->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')
                 ->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')
+                ->leftjoin('empleado','empleado.cedula','=','materia_pc.fk_empleado')
                 ->join('boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')
                 ->join('curso','curso.pk_curso','=','boletin.fk_curso')
                 ->join('estudiante','estudiante.pk_estudiante','=','boletin.fk_estudiante')

@@ -58,6 +58,7 @@
 											<thead>
 												<tr>
 													<th scope="col" style="color:#00695c" class="text-center"> Materia </th>
+													<th scope="col" style="color:#00695c" class="text-center"> Profesor </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Estudiante </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Curso/Año </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Nota </th>
@@ -74,6 +75,8 @@
 														<tr>	
 															{{-- Materia --}}
 															<td class="text-center"> {{$r->materia}} </td>
+															{{-- Profesor --}}
+															<td class="text-center"> {{ucwords($r->apellidoP)}} {{ucwords($r->nombreP)}}</td>
 															{{-- Estudiante --}}
 															<td class="text-center"> {{ucwords($r->apellido)}} {{ucwords($r->nombre)}}</td>
 															{{-- Curso --}}
@@ -109,6 +112,7 @@
 											<thead>
 												<tr>
 													<th scope="col" style="color:#00695c" class="text-center"> Materia </th>
+													<th scope="col" style="color:#00695c" class="text-center"> Profesor </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Estudiante </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Curso/Año </th>
 													<th scope="col" style="color:#00695c" class="text-center"> Nota </th>
@@ -125,6 +129,8 @@
 														<tr>	
 															{{-- Materia --}}
 															<td class="text-center"> {{$n->materia}} </td>
+															{{-- Profesor --}}
+															<td class="text-center"> {{ucwords($n->apellidoP)}} {{ucwords($n->nombreP)}}</td>
 															{{-- Estudiante --}}
 															<td class="text-center"> {{ucwords($n->apellido)}} {{ucwords($n->nombre)}}</td>
 															{{-- Curso --}}
