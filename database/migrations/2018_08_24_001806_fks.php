@@ -89,6 +89,14 @@ class Fks extends Migration {
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
+        Schema::table('puesto', function (Blueprint $table) {
+            $table->foreign('fk_boletin')->references('pk_boletin')->on('boletin')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fk_periodo')->references('pk_periodo')->on('periodo')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
+
+
         Schema::table('notificacion', function (Blueprint $table) {
             $table->foreign('fk_empleado')->references('cedula')->on('empleado')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -158,6 +166,11 @@ class Fks extends Migration {
         Schema::table('nivelacion', function (Blueprint $table) { //Agregado By: Paola
             $table->dropForeign('nivelacion_fk_materia_boletin_foreign');
             $table->dropForeign('nivelacion_fk_empleado_foreign');
+        });
+
+        Schema::table('puesto', function (Blueprint $table) { //Agregado By: Paola
+            $table->dropForeign('recuperacion_fk_boletin_foreign');
+            $table->dropForeign('recuperacion_fk_periodo_foreign');
         });
     }
 }

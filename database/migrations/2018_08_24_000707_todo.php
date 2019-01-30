@@ -188,6 +188,15 @@ class Todo extends Migration {
 
         });
 
+        Schema::create('puesto', function (Blueprint $table) {
+            $table->increments('pk_puesto');
+            $table->integer('puesto')->nullable();
+            $table->unsignedInteger('fk_periodo');
+            $table->unsignedInteger('fk_boletin');
+            $table->timestamps();
+
+        });
+
         Schema::create('fecha', function(Blueprint $table){
             $table->increments('pk_fecha');
             $table->date('inicio_escolar');
@@ -242,6 +251,7 @@ class Todo extends Migration {
         Schema::dropIfExists('materia');
         Schema::dropIfExists('recuperacion');
         Schema::dropIfExists('nivelacion');
+        Schema::dropIfExists('puesto');
         Schema::dropIfExists('fecha');
         Schema::dropIfExists('notificacion');
         Schema::dropIfExists('archivo');

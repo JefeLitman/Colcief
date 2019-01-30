@@ -64,9 +64,6 @@
 					<a class="nav-link " href="/fechas"> <i class="far fa-calendar-alt"></i> Fechas</a>
 				</li>
 				<li @if (Request::path()=="") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-file-contract"></i> Boletines*</a>
-				</li>
-				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelaciones</a>
                 </li>
                 <li @if (Request::path()=="/archivos") class="active" @endif >
