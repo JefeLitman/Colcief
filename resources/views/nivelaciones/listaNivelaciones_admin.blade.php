@@ -122,7 +122,7 @@
 											<tbody id="search{{$k}}">	
 												@if (count($nivelacion)==0)
 													<tr>
-														<td colspan="5" class="text-center"> No hay periodos perdidos </td>
+														<td colspan="6" class="text-center"> No hay periodos perdidos </td>
 													</tr>
 												@else
 													@foreach ($nivelacion as $n)

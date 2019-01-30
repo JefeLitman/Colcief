@@ -29,12 +29,13 @@ class BoletinController extends Controller {
     }
 
     public function showBoletines($id){ //El id es el id del estudiante, Muestra todos los boletines de ese estudiante
-        $estudiante=Estudiante::where('pk_estudiante',$id)->get();
+       $boletines=[] ;
+        $estudiante=Estudiante::where('pk_estudiante',$id)->leftjoin('curso','curso.pk_curso','=','estudiante.fk_curso')->get();
         if (!empty($estudiante[0])) {
-            # code...
+            $boletines=Boletin::select('boletin.*','curso.prefijo','curso.sufijo')->where('boletin.fk_estudiante',$id)->join('curso','curso.pk_curso','=','boletin.fk_curso')->get();
         }
-        $notas_boletin=Boletin::select('boletin.*','curso.prefijo','curso.sufijo')->where('boletin.fk_estudiante',$id)->join('curso','curso.pk_curso','=','boletin.fk_curso')->get();
-        return view('boletines.showBoletines',['estudiante'=>])
+        
+        return view('boletines.showBoletines',['estudiante'=>$estudiante,'boletin'=>$boletines]);
     }
 
     public function showEstudiante($fk_estudiante){ //Muestra el boletin del año actual
