@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\NotaPeriodoController;
+use App\Estudiante;
 use App\Curso;
 use App\Periodo;
 use App\Boletin;
@@ -28,18 +29,12 @@ class BoletinController extends Controller {
     }
 
     public function showBoletines($id){ //El id es el id del estudiante, Muestra todos los boletines de ese estudiante
-        $msj='';
-        $divisiones=Division::select('pk_division','nombre','porcentaje')->where('ano',date('Y'))->get();
-        if(empty($divisiones[0])){
-            $msj='No hayn divisiones creadas.';
-        }else{
-            $infoDivs=[];
-            foreach ($divisiones as $d) {
-                $infoDivs[$d->pk_division]=[$d->nombre,$d->porcentaje];
-            }
+        $estudiante=Estudiante::where('pk_estudiante',$id)->get();
+        if (!empty($estudiante[0])) {
+            # code...
         }
-        $notas_boletin=Boletin::select()->where([['fk_estudiante',$id],['ano',date('Y')]])->leftjoin('materia_boletin','boletin.pk_boletin','=','materia_boletin.fk_boletin')->get();
-        dd($notas_boletin);
+        $notas_boletin=Boletin::select('boletin.*','curso.prefijo','curso.sufijo')->where('boletin.fk_estudiante',$id)->join('curso','curso.pk_curso','=','boletin.fk_curso')->get();
+        return view('boletines.showBoletines',['estudiante'=>])
     }
 
     public function showEstudiante($fk_estudiante){ //Muestra el boletin del año actual

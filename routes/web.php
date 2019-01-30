@@ -150,6 +150,7 @@ Route::get('/horarios/{pk_materiaPC}/editar','HorarioController@edit');
 Route::resource('/boletines','BoletinController')->middleware('admin:administrador');
 Route::get('/boletines/actual/estudiantes/{fk_estudiante}','BoletinController@showEstudiante')->middleware('admin:administrador');
 Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}','BoletinController@showAnoEstudiante')->middleware('admin:administrador');
+Route::get('/boletines/estudiantes/{fk_estudiante}','BoletinController@showBoletines')->middleware('admin:administrador');
 
 /* RUTAS DE NOTIFICACION */
 Route::post('/notificaciones','NotificacionController');
