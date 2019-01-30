@@ -191,6 +191,7 @@ class Todo extends Migration {
         Schema::create('puesto', function (Blueprint $table) {
             $table->increments('pk_puesto');
             $table->integer('puesto')->nullable();
+            $table->float('promedio_periodo')->nullable();
             $table->unsignedInteger('fk_periodo');
             $table->unsignedInteger('fk_boletin');
             $table->timestamps();

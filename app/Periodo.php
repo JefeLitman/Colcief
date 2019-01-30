@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\MateriaBoletin;
 use App\NotaPeriodo;
 use App\Recuperacion;
+use App\Boletin;
+use App\Puesto;
 
 class Periodo extends Model {
   protected $table = 'periodo';
@@ -42,5 +44,16 @@ class Periodo extends Model {
       $at[$value] = $this->$value;
     }
     return $at;
+  }
+
+  public function asignarPuestos(){
+    $puestos=[];
+    $boletines=Boletin::select('boletin.pk_boletin','nota_periodo.fk_periodo','nota_periodo.nota_periodo')
+    ->leftjoin('materia_boletin','materia_boletin.fk_boletin','=','boletin.pk_boletin')
+    ->leftjoin('nota_periodo','nota_periodo.fk_materia_boletin','=','materia_boletin.pk_materia_boletin')
+    ->where([['boletin.ano',date('Y')],['fk_periodo',$this->pk_periodo]])->get();
+    // ->groupBy('fk_periodo')
+    
+    dd($boletines);
   }
 }
