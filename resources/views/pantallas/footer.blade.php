@@ -78,13 +78,16 @@
                 <!-- Links -->
                 <ul class="list-unstyled">
                     <li>
-                        <a class="link" href="#">Inicio</a>
+                        <a data-scroll class="link" href="#">Inicio</a>
                     </li>
                     <li>
-                        <a class="link" href="#nuestro-colegio">Nuestro Colegio</a>
+                        <a data-scroll class="link" href="#nosotros">Acerca de Nosotros</a>
                     </li>
                     <li>
-                        <a class="link" href="#contacto">Contactenos</a>
+                        <a data-scroll class="link" href="#nuestro-colegio">Nuestro Colegio</a>
+                    </li>
+                    <li>
+                        <a data-scroll class="link" href="#contacto">Contactenos</a>
                     </li>
                     <li>
                         @if (Request::path()=="/")
