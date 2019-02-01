@@ -6,11 +6,7 @@
 {{-- Variables enviadas desde Local>App>Http>Controllers>EmpleadoController.php  funcion show()
         @Autor Paola C. --}}
 {{-- URL: localhost:8000\empleados\{pk_empleado} --}}
-<style>
-    .r {
-        background-color: #fff;
-    }
-</style>
+
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-md-12 col-lg-10 col-sm-12">
@@ -18,80 +14,88 @@
                 <div class="col-sm-6">
                     <div class="card mb-3">
                         <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
-                        <div class="card-footer" title="Cédula">
-                            <div class="float-left d-none d-sm-block">Cédula</div>
-                            <div class="text-muted" style="text-align: right;">{{$empleado->cedula}}</div>
-                        </div>
-                        <div class="card-footer" title="Nombre">
-                            <div class="float-left d-none d-sm-block">Nombre</div>
-                            <div class="text-muted" style="text-align: right;">{{ucwords($empleado->nombre)}}</div>
-                        </div>
-                        <div class="card-footer" title="Apellido">
-                            <div class="float-left d-none d-sm-block">Apellido</div>
-                            <div class="text-muted" style="text-align: right;">{{ucwords($empleado->apellido)}}</div>
-                        </div>
-                        <div class="card-footer" title="Correo Electronico" >
-                            <div class="float-left d-none d-sm-block">Email</div>
-                            <div class="text-muted" style="text-align: right;">{{$empleado->email}}</div>
-                        </div>
-                        <div class="card-footer" title="Dirección">
-                            <div class="float-left d-none d-sm-block">Dirección</div>
-                            <div class="text-muted" style="text-align: right;">{{ucwords($empleado->direccion)}}</div>
-                        </div>
-                        <div class="card-footer" title="Titulo">
-                            <div class="float-left d-none d-sm-block">Titulo</div>
-                            <div class="text-muted" style="text-align: right;">{{ucwords($empleado->titulo)}}</div>
-                        </div>
-                        <div class="card-footer" title="Cargo">
-                            <div class="float-left d-none d-sm-block">Cargo</div>
-                            <div class="text-muted" style="text-align: right;"><strong>{{$cargo[$empleado->role]}}</strong></div>
-                        </div>
-                        @if (session('role') == 'administrador')
-                            <div class="card-footer" title="Acciones">
-                                <div class="float-left d-none d-sm-block">Acciones</div>
-                                <div class="" style="text-align: right;">
-                                    <a title="Agregar tiempo extra" class="
-                                    @if($empleado->role != 0 || $empleado->role != 1)
-                                        time
-                                    @endif
-                                    " identificador="{{$empleado->cedula}}"><i
-                                    @switch($empleado->tiempo_extra)
-                                        @case(1)
-                                            style="color:#007bff"
-                                            @break
-                                        @case(3)
-                                            style="color:#ffc107"
-                                            @break
-                                        @case(7)
-                                            style="color:#dc3545"
-                                            @break
-                                        @default
-                                            style="color:#343a40"
-                                    @endswitch
-                                    id="{{$empleado->cedula}}t" class="fas fa-stopwatch
-                                    @if($empleado->role == 0)
-                                        text-secondary
-                                    @endif
-                                    "></i></a>
-                                    <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>
-                                    <a padre="null" class="delete" ruta="empleados" direccion="/empleados" identificador="{{$empleado->cedula}}" title="Eliminar" ><i class="fas fa-trash-alt" style="color:#c62828"></i></a>
-                                </div>
-                            </div>
-                        @endif
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" title="Cédula">
+                                <small class="text-muted">Cédula:</small>
+                                <div>{{$empleado->cedula}}</div>
+                            </li>
+                            <li class="list-group-item" title="Nombre">
+                                <small class="text-muted">Nombre:</small>
+                                <div>{{ucwords($empleado->nombre)}}</div>
+                            </li>
+                            <li class="list-group-item" title="Apellido">
+                                <small class="text-muted">Apellido:</small>
+                                <div>{{ucwords($empleado->apellido)}}</div>
+                            </li>
+                            <li class="list-group-item" title="Correo Electronico" >
+                                <small class="text-muted">Email:</small>
+                                <div>{{$empleado->email}}</div>
+                            </li>
+                            <li class="list-group-item" title="Dirección">
+                                <small class="text-muted">Dirección:</small>
+                                <div>{{ucwords($empleado->direccion)}}</div>
+                            </li>
+                            <li class="list-group-item" title="Titulo">
+                                <small class="text-muted">Titulo:</small>
+                                <div>{{ucwords($empleado->titulo)}}</div>
+                            </li>
+                            <li class="list-group-item" title="Cargo">
+                                <small class="text-muted">Cargo:</small>
+                                <div>{{$cargo[$empleado->role]}}</div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <br>
                 <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Acciones
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            @if (session('role') == 'administrador')
+                                <li class="list-group-item" title="Acciones">
+                                    <div>
+                                        @if (is_null($empleado->deleted_at))
+                                            @if ($empleado->role == '1' || $empleado->role == '2')
+                                                <a class="time" identificador="{{$empleado->cedula}}"><i
+                                                @switch($empleado->tiempo_extra)
+                                                    @case(1)
+                                                        style="color:#007bff" title="1 día extra"
+                                                        @break
+                                                    @case(3)
+                                                        style="color:#ffc107" title="3 días extra" 
+                                                        @break
+                                                    @case(7)
+                                                        style="color:#dc3545" title="1 semana extra"
+                                                        @break
+                                                    @default
+                                                        style="color:#343a40" title="0 días extra"
+                                                @endswitch
+                                                id="{{$empleado->cedula}}t" class="fas fa-stopwatch"></i></a>
+                                            @endif
+                                            <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit text-info" title="Editar"></i></a>
+                                            <a padre="null" class="delete" ruta="empleados" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" title="Eliminar" ><i class="fas fa-trash-alt text-danger"></i></a>
+                                        @else
+                                            <a ruta="empleados" class="restore text-success" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" ><i class="fas fa-recycle" title="Restaurar"></i>
+                                        </a>
+                                        @endif
+                                    </div>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
                     @if (!empty($empleado->fk_curso))
                         <div class="card mb-3">
                             <div class="card-header">
                                 Director del curso 
                             </div>
-                            <div class="card-footer r">
-                                <a href="/estudiantes/cursos/{{$empleado -> fk_curso}}">
-                                    <div style="text-align: right;">{{$empleado -> prefijo.'-'.$empleado -> sufijo}}</div>
-                                </a>
-                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a href="/estudiantes/cursos/{{$empleado -> fk_curso}}">
+                                        <div style="text-align: right;">{{$empleado -> prefijo.'-'.$empleado -> sufijo}}</div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     @endif
                     @if (!empty($cursos[0]))
@@ -100,14 +104,16 @@
                                 Cursos Asignados
                             </div>
                             @if (!empty($cursos[0]))
-                                @foreach ($cursos as $curso)
-                                    <div class="card-footer r">
-                                        <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">
-                                            <div class="float-left">{{$curso -> nombre}}</div>
-                                            <div class="text-muted" style="text-align: right;">{{$curso -> prefijo.'-'.$curso -> sufijo}}</div>
-                                        </a>
-                                    </div>
-                                @endforeach
+                                <ul class="list-group list-group-flush">
+                                    @foreach ($cursos as $curso)
+                                        <li class="list-group-item">
+                                            <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">
+                                                <div class="float-left">{{$curso -> nombre}}</div>
+                                                <div class="text-muted" style="text-align: right;">{{$curso -> prefijo.'-'.$curso -> sufijo}}</div>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             @endif 
                         </div>
                     @endif

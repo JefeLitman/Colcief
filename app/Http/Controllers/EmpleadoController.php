@@ -62,7 +62,7 @@ class EmpleadoController extends Controller{
         if (!(session('role')=='administrador')) {
           $cedula = ''.session('user')['cedula'];
         }
-        $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso')->get();
+        $empleado = Empleado::where('empleado.cedula', $cedula) -> leftjoin('curso','empleado.fk_curso', '=', 'curso.pk_curso') -> withTrashed() -> get();
         $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula) -> join('curso', 'materia_pc.fk_curso', 'curso.pk_curso') ->get();
         $cargo = ['Administrador', 'Director', 'Profesor', 'Coordinador'];
 
@@ -147,6 +147,24 @@ class EmpleadoController extends Controller{
             } else {
                 return response()->json([
                     'mensaje' => 'El empleado '.$empleado->nombre.' '.$empleado->apellido.' no pudo ser eliminado, intente nuevamente'
+                ]);
+            }
+        }
+    }
+
+    public function restaurar(Request $request, $cedula){
+        if($request->ajax()){
+            $empleado = Empleado::where('cedula', $cedula) -> onlyTrashed() -> get();
+            $empleado = $empleado[0];
+            if($empleado -> restore()){
+                return response()->json([
+                    'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' Fue restaurado con exito',
+                    'url' => config('app.url').$request->direccion
+                ]);
+                
+            } else {
+                return response()->json([
+                    'mensaje' => $empleado->nombre.' '.$empleado->apellido. ' no pudo ser restaurado, intente nuevamente'
                 ]);
             }
         }
