@@ -8,6 +8,8 @@ use App\NotaPeriodo;
 use App\Recuperacion;
 use App\Boletin;
 use App\Puesto;
+use App\Curso;
+use Illuminate\Support\Facades\DB;
 
 class Periodo extends Model {
   protected $table = 'periodo';
@@ -47,13 +49,40 @@ class Periodo extends Model {
   }
 
   public function asignarPuestos(){
-    $puestos=[];
-    $boletines=Boletin::select('boletin.pk_boletin','nota_periodo.fk_periodo','nota_periodo.nota_periodo')
-    ->leftjoin('materia_boletin','materia_boletin.fk_boletin','=','boletin.pk_boletin')
-    ->leftjoin('nota_periodo','nota_periodo.fk_materia_boletin','=','materia_boletin.pk_materia_boletin')
-    ->where([['boletin.ano',date('Y')],['fk_periodo',$this->pk_periodo]])->get();
-    // ->groupBy('fk_periodo')
     
-    dd($boletines);
+    $cursos=Curso::where('ano',date('Y'))->where('pk_curso',10)->get();
+    foreach ($cursos as $c) {
+      $puestos=[];
+      $boletines=Boletin::select(
+        DB::raw("SUM(nota_periodo.nota_periodo)/COUNT(nota_periodo) as promedio_periodo"),
+        'boletin.pk_boletin',
+        'nota_periodo.fk_periodo'
+      )
+      ->leftjoin('materia_boletin','materia_boletin.fk_boletin','=','boletin.pk_boletin')
+      ->leftjoin('nota_periodo','nota_periodo.fk_materia_boletin','=','materia_boletin.pk_materia_boletin')
+      ->where([['boletin.ano',date('Y')],['fk_periodo',$this->pk_periodo],['boletin.fk_curso',$c->pk_curso]])
+      ->groupBy('boletin.pk_boletin')
+      ->orderBy('promedio_periodo')
+      ->get();
+      $i=0;
+      $ultimo_valor=0.0;
+      foreach ($boletines as $b) {
+        if($b->promedio_periodo==$ultimo_valor){
+          if($i==0){
+            $i=1;
+          }
+        }else{
+          $i++;
+          $ultimo_valor=$b->promedio_periodo;
+        }
+        
+
+
+      }
+
+    }
+    
+    dd($cursos);
+    // dd($boletines);
   }
 }
