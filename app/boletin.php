@@ -30,6 +30,8 @@ class Boletin extends Model
       return $this->belongsTo('App\Curso','fk_curso','pk_curso');
     }
 
+    
+    //By Paola
     /**
      * Verifica si el estudiante paso el año, es decir perdio menos de 3 materias.
      * Se debe ejecutar al finalizar el año escolar. Debe ser llamado desde el modelo Fecha

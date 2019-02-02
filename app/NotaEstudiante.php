@@ -26,6 +26,13 @@ class NotaEstudiante extends Model
       return $this->belongsTo('App\NotaPeriodo','fk_nota_periodo','pk_nota_periodo');
     }
 
+    //By Paola
+    /**
+     * Actualiza la nota que se encuentra almacenada en Nota estudiante.
+     * Es es el comienzo de una actualizacion en cascada de la estructura de datos que
+     * guardan las notas en la DB. Actualizando a su paso las notas de nota_division,
+     * nota_periodo y la nota de materia_boletin.
+     */
     public function actualizarNota(){
       $d=NotaDivision::where("pk_nota_division",$this->fk_nota_division)->get();
       if (!empty($d[0])) {

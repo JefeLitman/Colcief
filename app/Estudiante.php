@@ -46,6 +46,17 @@ class Estudiante extends Authenticatable {
       return $this->hasMany('App\NotaEstudiante','fk_estudiante','pk_estudiante');
     }
 
+    //By Paola
+    /**
+     * Una vez el estudiante cambia de curso, los datos deben cambiar segun sea el caso:
+     * Caso 1: Si el estudiante es cambiado de salon y ya tenia notas en el otro salon.
+     *      Como los profesores en su mayeria no tendran la misma cantidad de notas, simplemente
+     *      las notas que lleva seran eliminadas. Y si se conservaran, las vistas que muestran planillas
+     *      sufririan errores.
+     *      Luego de ser eliminadas se crea la respectiva estructura de datos.
+     * Caso 2: Si el estudiante cambia de curso, en un año en el que no esta cursando,
+     *      se crea la respectiva estructura de datos.
+     */
     public function cambioCurso(){
         $boletin=Boletin::where([["ano",date('Y')],["fk_estudiante",$this->pk_estudiante]])->get();
         if ($this->fk_curso!=null) {
@@ -58,6 +69,16 @@ class Estudiante extends Authenticatable {
         }
     }
 
+    //By Paola
+    /**
+     * Dependiendo del curso al que pertenece el estudiante tendra instancias de materia_boletin
+     * y dependiendo de esas materias que cursa el curso tendra sus respectivas nota_estudiante
+     * Y por obligacion se deben crear las respectivas tuplas donde se almacenarán las notas por
+     * division y por periodo de cada materia. 
+     * 
+     * Esta funcion crea toda esa estructura para que las notas/planillas funcionen de forma 
+     * correcta.
+     */
     private function crearEstructuraDatos(){
         $boletinNuevo=Boletin::create([
             'ano'=>date('Y'),

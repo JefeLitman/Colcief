@@ -48,6 +48,16 @@ class MateriaPC extends Model
       return $curso->prefijo.'-'.$curso->sufijo;
     }
 
+    //By Paola
+    /**
+     * Es funcion es llamada cuando se crea una nueva materia_pc para un respectivo grupo.
+     * Lo que hace es crear la estructura necesaria para guardar los datos de las notas.
+     * Tuplas que deben estar ahi como lo son la de nota_periodo, que es una por cada periodo, 
+     * la tupla de nota_division que depende de cuantas divisiones hayan sido creadas y asi... 
+     * 
+     * Esta funcion crea esta estructura para cada uno de los estudiantes asociados segun el boletin
+     * al curso de esta materia_pc.
+     */
     public function crearEstructuraNotas(){
       $boletines=Curso::join('boletin','boletin.fk_curso','=','curso.pk_curso')->where('curso.pk_curso',$this->fk_curso)->get();
       $periodos=Periodo::where('ano',date('Y'))->get();

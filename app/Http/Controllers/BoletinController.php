@@ -26,8 +26,6 @@ class BoletinController extends Controller {
         //     default:
         //         return redirect('/');
         // }
-        $periodo=Periodo::where('pk_periodo',1)->get();
-        $periodo[0]->asignarPuestos();
     }
 
     public function showBoletines($id){ //El id es el id del estudiante, Muestra todos los boletines de ese estudiante
