@@ -97,10 +97,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();   
-    });
-</script>
 <script src="{{ asset('js/ajax.js') }}"></script>
 @endsection

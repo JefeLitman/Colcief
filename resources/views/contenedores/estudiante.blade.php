@@ -35,5 +35,8 @@
             <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
             {{-- @include('footers.principal') --}}
         </div>
+        <script>
+            $('[data-toggle="tooltip"]').tooltip();
+        </script>
     </body>
 </html>

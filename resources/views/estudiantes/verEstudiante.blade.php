@@ -56,9 +56,9 @@
                         <ul class="list-group list-group-flush">
                             @if (!empty($curso))
                                 <li class="list-group-item">
-                                    <a data-toggle="tooltip" data-placement="bottom" title="Ver curso {{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}" href="/estudiantes/cursos/{{$curso -> pk_curso}}">
+                                    <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">
                                         <small class="text-muted">Curso:</small>
-                                        <div><span class="badge badge-pill badge-info">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div>
+                                        <div><span class="badge badge-pill badge-info" data-toggle="tooltip" data-placement="top" title="Ver curso {{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div>
                                     </a>
                                 </li>
                             @endif
@@ -66,17 +66,17 @@
                                 <li class="list-group-item">
                                     <div>
                                         @if (is_null($estudiante->deleted_at))
-                                            <a data-toggle="tooltip" data-placement="bottom" title="Ver notas" href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" class="text-info">
+                                            <a data-toggle="tooltip" data-placement="top" title="Ver notas" href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" class="text-info">
                                                 <i class="fas fa-clipboard-list"></i>
                                             </a>
-                                            <a data-toggle="tooltip" data-placement="bottom" title="Editar" href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" class="text-info">
+                                            <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" class="text-info">
                                                 <i  class="fas fa-edit"></i>
                                             </a>
-                                            <a data-toggle="tooltip" data-placement="bottom" title="Eliminar" class="delete text-danger" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}">
+                                            <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="delete text-danger" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}">
                                                 <i title="Eliminar" class="fas fa-trash-alt"></i>
                                             </a>
                                         @else
-                                            <a data-toggle="tooltip" data-placement="bottom" title="Restaurar" ruta="estudiantes" class="restore text-success" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" identificador="{{$estudiante->pk_estudiante}}">
+                                            <a data-toggle="tooltip" data-placement="top" title="Restaurar" ruta="estudiantes" class="restore text-success" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" identificador="{{$estudiante->pk_estudiante}}">
                                                 <i class="fas fa-recycle"></i>
                                             </a>
                                         @endif

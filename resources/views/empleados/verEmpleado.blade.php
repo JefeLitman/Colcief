@@ -57,7 +57,7 @@
                                     <div>
                                         @if (is_null($empleado->deleted_at))
                                             @if ($empleado->role == '1' || $empleado->role == '2')
-                                                <a class="time" identificador="{{$empleado->cedula}}"><i
+                                                <a class="time" identificador="{{$empleado->cedula}}"><i data-toggle="tooltip" data-placement="top" 
                                                 @switch($empleado->tiempo_extra)
                                                     @case(1)
                                                         style="color:#007bff" title="1 día extra"
@@ -73,10 +73,10 @@
                                                 @endswitch
                                                 id="{{$empleado->cedula}}t" class="fas fa-stopwatch"></i></a>
                                             @endif
-                                            <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit text-info" title="Editar"></i></a>
-                                            <a padre="null" class="delete" ruta="empleados" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" title="Eliminar" ><i class="fas fa-trash-alt text-danger"></i></a>
+                                            <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit text-info" title="Editar" data-toggle="tooltip" data-placement="top" title="Ver notas"></i></a>
+                                            <a padre="null" data-toggle="tooltip" data-placement="top" title="Ver notas" class="delete" ruta="empleados" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" title="Eliminar" ><i class="fas fa-trash-alt text-danger"></i></a>
                                         @else
-                                            <a ruta="empleados" class="restore text-success" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" ><i class="fas fa-recycle" title="Restaurar"></i>
+                                            <a ruta="empleados" class="restore text-success" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" ><i class="fas fa-recycle" data-toggle="tooltip" data-placement="top" title="Ver notas" title="Restaurar"></i>
                                         </a>
                                         @endif
                                     </div>
