@@ -99,6 +99,7 @@ class Periodo extends Model {
       $i=0;
       $ultimo_valor=0.0;
       foreach ($boletines as $b) {
+        $b->promedio_periodo=round($b->promedio_periodo, 2, PHP_ROUND_HALF_UP);
         if($b->promedio_periodo==$ultimo_valor){
           if($i==0){
             $i=1;

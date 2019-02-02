@@ -146,9 +146,109 @@
                                             <td class="P T text-center">{{$m->nota_materia or "-"}}</td>
                                         </tr>
                                     @endforeach
+                                    <tr  style="border-top: 2px solid #dee2e6 !important;">
+                                        <th style="color:#00695c">
+                                            Promedio
+                                        </th>
+                                        @foreach ($infoPeriodos as $periodo)
+                                            @foreach ($infoDivs as $div)
+                                                <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
+                                            @endforeach
+                                            <td class="P{{$periodo->nro_periodo}} P T text-center">
+                                                {{$puesto[$periodo->pk_periodo]->promedio_periodo or "-"}}
+                                            </td>
+                                        @endforeach
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                            <th style="color:#00695c">
+                                                Puesto
+                                            </th>
+                                            @foreach ($infoPeriodos as $periodo)
+                                                @foreach ($infoDivs as $div)
+                                                    <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
+                                                @endforeach
+                                                <td class="P{{$periodo->nro_periodo}} P T text-center">
+                                                    {{$puesto[$periodo->pk_periodo]->puesto or "-"}}
+                                                </td>
+                                            @endforeach
+                                            <td></td>
+                                        </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <br>
+                        {{--  tabla   --}}
+                            <div class="table-responsive">
+                                <table class="table table-hover mr-auto">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="6" class="text-center"> 
+                                                CUADRO INFORMATIVO DE RECUPERACIONES 
+                                            </th>
+                                        </tr>
+
+                                        <tr>
+                                            <th rowspan="2" style="color:#014a41;"  class="text-center align-middle">
+                                                ÁREAS Y/O ASIGNATURAS
+                                            </th>
+                                            <th colspan="2" class="text-center" style="color:#014a41;border-left: 2px solid #dee2e6 !important;">
+                                                EVALUACIONES
+                                            </th>
+                                            <th colspan="3" class="text-center" style="color:#014a41;border-left: 2px solid #dee2e6 !important;">
+                                                RECUPERACIONES
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" style="color:#00695c;border-left: 2px solid #dee2e6 !important;" class="text-center">
+                                                Periodo
+                                            </th>
+                                            <th scope="col" style="color:#00695c" class="text-center">
+                                                Valoración
+                                            </th>
+                                            <th scope="col" style="color:#00695c;border-left: 2px solid #dee2e6 !important;" class="text-center">
+                                                Recup
+                                            </th>
+                                            <th scope="col" style="color:#00695c" class="text-center">
+                                                Acta
+                                            </th>
+                                            <th scope="col" style="color:#00695c" class="text-center">
+                                                Fecha
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($recuperaciones as $r)
+                                            <tr>
+                                                {{-- ÁREAS Y/O ASIGNATURAS --}}
+                                                <td class="text-center">
+                                                    {{ucwords($r->nombre)}}
+                                                </td>
+                                                {{-- Periodo --}}
+                                                <td class="text-center" style="border-left: 2px solid #dee2e6 !important;">
+                                                    P{{$r->nro_periodo}}
+                                                </td>
+                                                {{-- Valoración --}}
+                                                <td class="text-center">
+                                                    {{$r->nota_periodo or '-'}}
+                                                </td>
+                                                {{-- Recup --}}
+                                                <td class="text-center" style="border-left: 2px solid #dee2e6 !important;">
+                                                    {{$r->nota or "-"}}
+                                                </td>
+                                                {{-- Acta --}}
+                                                <td class="text-center">
+                                                    {{$r->observaciones or '-'}}
+                                                </td >
+                                                {{-- Fecha --}}
+                                                <td class="text-center">
+                                                    {{$r->fecha_presentacion or '-'}}
+                                                </td>
+                                            </tr> 
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         @break
                     @default
                         <h3 class=" card-title text-center">Error</h3>
