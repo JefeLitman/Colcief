@@ -161,19 +161,33 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                            <th style="color:#00695c">
-                                                Puesto
-                                            </th>
-                                            @foreach ($infoPeriodos as $periodo)
-                                                @foreach ($infoDivs as $div)
-                                                    <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
-                                                @endforeach
-                                                <td class="P{{$periodo->nro_periodo}} P T text-center">
-                                                    {{$puesto[$periodo->pk_periodo]->puesto or "-"}}
-                                                </td>
+                                        <th style="color:#00695c">
+                                            Puesto
+                                        </th>
+                                        @foreach ($infoPeriodos as $periodo)
+                                            @foreach ($infoDivs as $div)
+                                                <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
                                             @endforeach
-                                            <td></td>
-                                        </tr>
+                                            <td class="P{{$periodo->nro_periodo}} P T text-center">
+                                                {{$puesto[$periodo->pk_periodo]->puesto or "-"}}
+                                            </td>
+                                        @endforeach
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color:#00695c">
+                                            Inasistencias
+                                        </th>
+                                        @foreach ($infoPeriodos as $periodo)
+                                            @foreach ($infoDivs as $div)
+                                                <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
+                                            @endforeach
+                                            <td class="P{{$periodo->nro_periodo}} P T text-center">
+                                                {{$inasistencias[$periodo->pk_periodo] or "-"}}
+                                            </td>
+                                        @endforeach
+                                        <td></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -221,7 +235,7 @@
                                         @foreach ($recuperaciones as $r)
                                             <tr>
                                                 {{-- ÁREAS Y/O ASIGNATURAS --}}
-                                                <td class="text-center">
+                                                <td>
                                                     {{ucwords($r->nombre)}}
                                                 </td>
                                                 {{-- Periodo --}}
