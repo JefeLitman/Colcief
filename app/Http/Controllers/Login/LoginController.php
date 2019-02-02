@@ -41,7 +41,7 @@ class LoginController extends Controller{
             default:
                 return redirect(route("/"));
         }
-        return $this->auth($guardia, ['cedula' => $request->username, 'password' => $request->password, 'role' => $request->role], '/empleados/principal/'.$request->role);
+        return $this->auth($guardia, ['cedula' => $request->username, 'password' => $request->password, 'role' => $request->role], '/empleados/principal/');
     }
     /* Este metodo verifica el login, ademas de esto, crea una variable de session con los datos
        del usuario autenticado */

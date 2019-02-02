@@ -13,7 +13,7 @@ class ano_inicio extends Command
 {
 
     protected $signature = 'ano:inicio';
-    protected $description = 'Este servicio realiza todas las acciones necesarias para la finalizacion del año escolar';
+    protected $description = 'Este servicio realiza todas las acciones necesarias para finalizar el año escolar';
 
     public function __construct()
     {
