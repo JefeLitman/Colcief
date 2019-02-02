@@ -191,6 +191,24 @@
                                 </tbody>
                             </table>
                         </div>
+                        @switch($boletin->estado)
+                            @case('a')
+                                <div class="alert alert-success text-center"  role="alert">
+                                    <b>Estado: </b>Aprobado
+                                </div>
+                                @break
+                            @case('p')
+                                <div class="alert alert-danger text-center"  role="alert">
+                                    <b>Estado: </b>Reprobado
+                                </div>
+                                @break
+                            @default 
+                                <div class="alert alert-secondary text-center"  role="alert">
+                                    <b>Estado: </b>Indefinido <br>
+                                    Es posible que el estudiante aun se encuentre cursando el año.
+                                </div>
+                                
+                        @endswitch
                         <br>
                         {{--  tabla   --}}
                             <div class="table-responsive">
@@ -263,6 +281,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            
                         @break
                     @default
                         <h3 class=" card-title text-center">Error</h3>

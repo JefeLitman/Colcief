@@ -46,7 +46,7 @@ class BoletinController extends Controller {
     }
 
     public function showAnoEstudiante($ano,$fk_estudiante){
-        $B=Boletin::where([["boletin.fk_estudiante",$fk_estudiante],["boletin.ano",$ano]])->join("estudiante","estudiante.pk_estudiante","=","boletin.fk_estudiante")->join('curso','boletin.fk_curso','=','curso.pk_curso')->get();
+        $B=Boletin::select('boletin.*','curso.*','estudiante.discapacidad','estudiante.nombre','estudiante.apellido','estudiante.fecha_nacimiento')->where([["boletin.fk_estudiante",$fk_estudiante],["boletin.ano",$ano]])->join("estudiante","estudiante.pk_estudiante","=","boletin.fk_estudiante")->join('curso','boletin.fk_curso','=','curso.pk_curso')->get();
         
         $infoDivs=Division::select('pk_division','nombre','porcentaje')->where('ano',$ano)->orderBy('pk_division','asc')->get();
         $infoPeriodos=Periodo::where("ano",$ano)->orderBy('periodo.nro_periodo','asc')->get();
