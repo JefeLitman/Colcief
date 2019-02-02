@@ -28,7 +28,8 @@
         <div id="ver">
             <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
             @include('menus.estudiante')
-
+            @include('error.error')
+            @include('error.alert')
             <!-- Aqui en esta seccion va estar el contenido de la pagina -->
             @yield('contenedor_estudiante')
 

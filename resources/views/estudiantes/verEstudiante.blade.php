@@ -54,34 +54,46 @@
                             Acciones
                         </div>
                         <ul class="list-group list-group-flush">
-                            @if (!empty($curso))
-                                <li class="list-group-item">
-                                    <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">
-                                        <small class="text-muted">Curso:</small>
-                                        <div><span class="badge badge-pill badge-info" data-toggle="tooltip" data-placement="top" title="Ver curso {{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div>
-                                    </a>
-                                </li>
+                            @if (session('role') != 'estudiante')
+                                @if (!empty($curso))
+                                    <li class="list-group-item">
+                                        <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">
+                                            <small class="text-muted">Curso:</small>
+                                            <div><span class="badge badge-pill badge-info" data-toggle="tooltip" data-placement="top" title="Ver curso {{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div>
+                                        </a>
+                                    </li>
+                                @endif
                             @endif
                             @if (session('role') == 'administrador')
                                 <li class="list-group-item">
-                                    <div>
-                                        @if (is_null($estudiante->deleted_at))
-                                            <a data-toggle="tooltip" data-placement="top" title="Ver notas" href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" class="text-info">
-                                                <i class="fas fa-clipboard-list"></i>
-                                            </a>
-                                            <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" class="text-info">
-                                                <i  class="fas fa-edit"></i>
-                                            </a>
-                                            <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="delete text-danger" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}">
-                                                <i title="Eliminar" class="fas fa-trash-alt"></i>
-                                            </a>
-                                        @else
-                                            <a data-toggle="tooltip" data-placement="top" title="Restaurar" ruta="estudiantes" class="restore text-success" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" identificador="{{$estudiante->pk_estudiante}}">
-                                                <i class="fas fa-recycle"></i>
-                                            </a>
-                                        @endif
-                                    </div>
+                                    @if (is_null($estudiante->deleted_at))
+                                        <a data-toggle="tooltip" data-placement="top" title="Ver notas" href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" class="text-info">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </a>
+                                        <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" class="text-info">
+                                            <i  class="fas fa-edit"></i>
+                                        </a>
+                                        <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="delete text-danger" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}">
+                                            <i title="Eliminar" class="fas fa-trash-alt"></i>
+                                        </a>
+                                    @else
+                                        <a data-toggle="tooltip" data-placement="top" title="Restaurar" ruta="estudiantes" class="restore text-success" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" identificador="{{$estudiante->pk_estudiante}}">
+                                            <i class="fas fa-recycle"></i>
+                                        </a>
+                                    @endif
                                 </li>
+                            @endif
+                            @if (session('role') == 'estudiante')
+                                @if (session('user')['pk_estudiante'] == $estudiante->pk_estudiante)
+                                    <li class="list-group-item">
+                                        <a data-toggle="modal" data-target="#estudianteModal">
+                                            <i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i>
+                                        </a>
+                                        <a data-toggle="modal" data-target="#empleadoModal">
+                                            <i data-toggle="tooltip" data-placement="top" title="Cambiar foto" class="fas fa-user-cog text-info"></i>
+                                        </a>
+                                    </li>
+                                @endif
                             @endif
                         </ul>
                     </div>
@@ -137,6 +149,111 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="empleadoModal" tabindex="-1" role="dialog" aria-labelledby="empleadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="empleadoModalLabel">Imagen de Perfil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  id="formulario" enctype="multipart/form-data" action="{{url('/estudiantes/perfil')}}" method="POST">
+                    @csrf
+                    @method("POST")
+                    <img class="rounded mx-auto d-block w-75" src="{{session('user')['foto']}}" alt="Card image cap"><br>
+                    {{-- foto --}}
+                    <div class="col-md-12">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend" style="height: calc(1.8125rem + 2px); font-size: .875rem;">
+                                <i class="fas fa-file-image input-group-text"></i>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang"  lang="es">
+                                <label class="custom-file-label" for="customFileLang">Actualizar Foto</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" form="formulario" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="estudianteModal" tabindex="-1" role="dialog" aria-labelledby="estudianteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estudianteModalLabel">Imagen de Perfil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('estudiantes.password') }}" aria-label="{{ __('Reset Password') }}">
+                    @csrf
+                    <div class="row" style="text-align: left !important">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="actual" style="{{ ($errors->has('actual')) ? 'color: #c4183c' : '' }}">Contraseña actual</label>
+                                <div class="input-group input-group-seamless">
+                                    <span class="input-group-prepend ">
+                                        <span class="input-group-text ">
+                                            <i class="fa fa-lock" style="{{ ($errors->has('actual')) ? 'color: #c4183c' : '' }}"></i>
+                                        </span>
+                                    </span>
+                                    <input id="actual" type="password" class="form-control form-control-sm {{ $errors->has('email') ? ' is-invalid' : '' }}" name="actual" required>
+                                </div>
+                                @if ($errors->has('actual'))
+                                    <span class="invalid-feedback" style="display: block" role="alert">
+                                        <strong>{{ $errors->first('actual') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="password" style="{{ ($errors->has('password')) ? 'color: #c4183c' : '' }}">Contraseña nueva</label>
+                                <div class="input-group input-group-seamless">
+                                    <span class="input-group-prepend ">
+                                        <span class="input-group-text ">
+                                            <i class="fa fa-lock" style="{{ ($errors->has('password')) ? 'color: #c4183c' : '' }}"></i>
+                                        </span>
+                                    </span>
+                                    <input id="password" type="password" class="form-control form-control-sm {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                </div>
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert" style="display: block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="password-confirm">Confirmar contraseña</label>
+                                <div class="input-group input-group-seamless">
+                                    <span class="input-group-prepend ">
+                                        <span class="input-group-text ">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                    </span>
+                                    <input id="password-confirm" type="password" class="form-control form-control-sm" name="password_confirmation" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 @endsection
 
