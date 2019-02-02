@@ -22,6 +22,14 @@ class NotaPeriodo extends Model
       return $this->belongsTo('App\MateriaBoletin','fk_materia_boletin','pk_materia_boletin');
     }
 
+    //By Paola
+    /**
+     * Actualiza la nota que se encuentra almacenada en Nota periodo.
+     * Esta funcion es llamada de varias zonas, pero en especifico de la
+     * funcion actualizarNota() de la clase NotaDivision. Y esta a su vez es llamada de
+     * otra... todo esto en forma de cascada para que las notas guardadas en la DB sean
+     * consistentes.
+     */
     public function actualizarNota(){
       $divs=NotaDivision::select("nota_division.nota_division","division.porcentaje")->where("fk_nota_periodo",$this->pk_nota_periodo)->join("division","nota_division.fk_division","=","division.pk_division")->get();
       $this->nota_periodo=0;

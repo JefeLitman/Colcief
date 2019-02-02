@@ -68,7 +68,7 @@
 											<tbody id="search{{$k}}">	
 												@if (count($recuperacion[$p->pk_periodo])==0)
 													<tr>
-														<td colspan="5" class="text-center"> No hay periodos perdidos </td>
+														<td colspan="6" class="text-center"> No hay periodos perdidos </td>
 													</tr>
 												@else
 													@foreach ($recuperacion[$p->pk_periodo] as $r)

@@ -12,7 +12,18 @@ class Recuperacion extends Model
     protected $primaryKey = 'pk_recuperacion';
     protected $guarded = [];
     
-    public function actualizarNotaMateria(){ //By Paola
+    //By Paola
+    /**
+     * Esta funcion debe ejecutarse cuando se modifique la nota que se guarde en
+     * $this->nota.
+     * Debe actualizarse ya que la definitiva de la materia debe considerar las notas que se
+     * saquen en las recuperaciones realizadas. 
+     * Especificamente las nota de la nota de la recuperacion debe estar entre 1.0 y 3.0 
+     * ademas si la nota de la recuperacion es mayor que la nota del periodo, la nota de la 
+     * recuperacion es la que se tendra en cuenta para la definitiva de ser lo contrario la
+     * nota que se computaria sería la nota del periodo de la materia.
+     */
+    public function actualizarNotaMateria(){ 
         $notaPeriodo=NotaPeriodo::where('pk_nota_periodo',$this->fk_nota_periodo)->get();
         if(!empty($notaPeriodo[0])){
             $notaPeriodo=$notaPeriodo[0];
