@@ -37,5 +37,8 @@
             @section('contenedor_admin')
             @show
         </div>
+        <script>
+            $('[data-toggle="tooltip"]').tooltip();
+        </script>
     </body>
 </html>

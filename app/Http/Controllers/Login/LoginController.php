@@ -62,7 +62,7 @@ class LoginController extends Controller{
     }
 
     public function contacto(Request $request){
-        Mail::to('juanmarcon1080@gmail.com')->send(new ContactMail($request->all()));
+        Mail::to('colezequielflorian@hotmail.com')->send(new ContactMail($request->all()));
         return redirect('/#contacto') -> with('exito', 'Su mensaje fue enviado con exito');
     }
 }

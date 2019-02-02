@@ -97,6 +97,28 @@
     </div>
     <!-- / Features Section --> --}}
 
+    <div class="nosotros section py-4" id="nosotros">
+      <h3 class="section-title text-center m-5">Acerca de Nosotros</h3>
+
+      <div class="container py-3">
+        <div class="row">
+            <div ALIGN="justify" class="col-sm-6 border-right">
+              <h5 class="text-center">Misión</h5>
+              <p class="p-3">
+                Somos una comunidad educatica que forma integralmente a la persona para que sea lider y promotora del desarrollo sostenible de la región; creativa recursiva, libre y responsable con mentalidad empresarial, respetuosa de su entorno y con profundo sentido de pertenecia.
+              </p>
+            </div>
+            <div ALIGN="justify" class="col-sm-6 border-left">
+              <h5 class="text-center">Visión</h5>
+              <p class="p-3">
+                Aspiramos a que la institución sea un modelo educativo a nivel local, regional y nacional, que contribuya a mejorar la calidad de vida, y logre el desarrollo sostenible a través de la formación de lideres socioambientales.
+              </p>
+            </div>  
+        </div>
+      </div>
+      <div class="py-4"></div>
+    </div>
+
     <!-- Testimonials Section -->
     <div class="testimonials section py-4">
         <h3 class="section-title text-center m-5">Testimonials</h3>

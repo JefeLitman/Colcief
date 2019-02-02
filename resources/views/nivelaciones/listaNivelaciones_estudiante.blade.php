@@ -117,7 +117,4 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$('[data-toggle="tooltip"]').tooltip(); 
-	</script>
 @endsection

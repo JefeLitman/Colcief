@@ -27,8 +27,8 @@
                     <div class="col">
                         <i class="fas fa-stopwatch text-warning"></i> 3 dias
                     </div>
-                    <div class="col">
-                        <i class="fas fa-stopwatch text-danger"></i> 7 dias
+                    <div class="col">   
+                        <i class="fas fa-stopwatch text-danger"></i> 1 semana
                     </div>
                 </div>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -12,6 +12,9 @@
           <a data-scroll class="nav-link" href="#">Inicio</a>
         </li>
         <li class="nav-item">
+          <a data-scroll class="nav-link" href="#nosotros">Acerca de Nosotros</a>
+        </li>
+        <li class="nav-item">
           <a data-scroll class="nav-link" href="#nuestro-colegio">Nuestro Colegio</a>
         </li>
         <li class="nav-item">

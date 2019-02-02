@@ -48,7 +48,6 @@
                         </ul>
                     </div>
                 </div>
-                <br>
                 <div class="col-sm-6">
                     <div class="card mb-3">
                         <div class="card-header">
@@ -59,20 +58,28 @@
                                 <li class="list-group-item">
                                     <a href="/estudiantes/cursos/{{$curso -> pk_curso}}">
                                         <small class="text-muted">Curso:</small>
-                                        <div><span class="badge badge-pill badge-info">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div>
-                                        {{-- <small class="text-muted">Curso:</small>
-                                        <div"><span class="badge badge-pill badge-info">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div> --}}
+                                        <div><span class="badge badge-pill badge-info" data-toggle="tooltip" data-placement="top" title="Ver curso {{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}">{{ucwords($curso -> prefijo.'-'.$curso -> sufijo)}}</span></div>
                                     </a>
                                 </li>
                             @endif
                             @if (session('role') == 'administrador')
-                                <li class="list-group-item" title="Acciones">
+                                <li class="list-group-item">
                                     <div>
-                                        <a href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" title="Ver notas" class="{{is_null($estudiante -> deleted_at) ? 'text-info' : 'text-secondary'}}"><i class="fas fa-clipboard-list"></i></a>
-                                        <a href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" title="Editar" class="{{is_null($estudiante -> deleted_at) ? 'text-info' : 'text-secondary'}}"><i  class="fas fa-edit"></i></a>
-                                        <a ruta="estudiantes" class="{{is_null($estudiante->deleted_at) ? '' : 'restore'}}" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" identificador="{{$estudiante->pk_estudiante}}" ><i class="fas fa-recycle {{is_null($estudiante->deleted_at) ? 'text-secondary' : 'text-success'}}" title="Restaurar"></i>
-                                        </a>
-                                        <a class="delete {{is_null($estudiante -> deleted_at) ? 'text-danger' : 'text-secondary'}}" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt"></i></a>
+                                        @if (is_null($estudiante->deleted_at))
+                                            <a data-toggle="tooltip" data-placement="top" title="Ver notas" href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" class="text-info">
+                                                <i class="fas fa-clipboard-list"></i>
+                                            </a>
+                                            <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" class="text-info">
+                                                <i  class="fas fa-edit"></i>
+                                            </a>
+                                            <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="delete text-danger" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" padre="null" ruta="estudiantes" identificador="{{$estudiante->pk_estudiante}}">
+                                                <i title="Eliminar" class="fas fa-trash-alt"></i>
+                                            </a>
+                                        @else
+                                            <a data-toggle="tooltip" data-placement="top" title="Restaurar" ruta="estudiantes" class="restore text-success" direccion="/estudiantes/{{$estudiante->pk_estudiante}}" identificador="{{$estudiante->pk_estudiante}}">
+                                                <i class="fas fa-recycle"></i>
+                                            </a>
+                                        @endif
                                     </div>
                                 </li>
                             @endif
