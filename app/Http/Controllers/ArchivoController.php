@@ -11,8 +11,8 @@ use App\Http\Controllers\SupraController;
 class ArchivoController extends Controller{
 
     public function __construct (){
-        $this->middleware('admin') -> only(['index', 'show']);
-        $this->middleware('admin:administrador') -> except(['index', 'show']);
+        $this->middleware('admin:administrador,coordinador,profesor,director') -> only(['index', 'show']);
+        $this->middleware('admin:administrador,coordinador') -> except(['index', 'show']);
     }
 
     public function index(){
@@ -56,7 +56,7 @@ class ArchivoController extends Controller{
                 ]);
             } else {
                 return response()->json([
-                    'mensaje' => 'El achivo '.$archivo -> titulo.' no pudo ser eliminado, intente nuevamente'
+                    'mensaje' => 'El archivo '.$archivo -> titulo.' no pudo ser eliminado, intente nuevamente'
                 ]);
             }
         }

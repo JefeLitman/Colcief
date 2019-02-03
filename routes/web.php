@@ -57,7 +57,7 @@ Route::get('estudiantes/principal', function () {
 Route::post('/estudiantes/perfil', 'EstudianteController@perfil');
 Route::post('/estudiantes/password', 'EstudianteController@cambiarClave')->name('estudiantes.password');
 
-Route::get('estudiantes/cursos/{pk_curso}', 'EstudianteController@estudianteGrado')->middleware('admin:administrador');
+Route::get('estudiantes/cursos/{pk_curso}', 'EstudianteController@estudianteGrado');
 Route::post('estudiantes/restaurar/{pk_estudiante}', 'EstudianteController@restaurar');
 Route::resource('/estudiantes', 'EstudianteController');
 Route::post('/filtro', 'EstudianteController@filtro');
@@ -129,10 +129,10 @@ Route::get('/horarios/{pk_materiaPC}/crear', 'HorarioController@create')->name('
 Route::get('/horarios/{pk_materiaPC}/editar', 'HorarioController@edit');
 
 /* RUTAS DE BOLETIN */
-Route::resource('/boletines', 'BoletinController')->middleware('admin:administrador');
-Route::get('/boletines/actual/estudiantes/{fk_estudiante}', 'BoletinController@showEstudiante')->middleware('admin:administrador');
-Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}', 'BoletinController@showAnoEstudiante')->middleware('admin:administrador');
-Route::get('/boletines/estudiantes/{fk_estudiante}', 'BoletinController@showBoletines')->middleware('admin:administrador');
+Route::resource('/boletines', 'BoletinController')->middleware('admin:coordinador,administrador');
+Route::get('/boletines/actual/estudiantes/{fk_estudiante}', 'BoletinController@showEstudiante')->middleware('admin:coordinador,administrador');
+Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}', 'BoletinController@showAnoEstudiante')->middleware('admin:coordinador,administrador');
+Route::get('/boletines/estudiantes/{fk_estudiante}', 'BoletinController@showBoletines')->middleware('admin:coordinador,administrador');
 
 /* RUTAS DE NOTIFICACION */
 Route::post('/notificaciones', 'NotificacionController');

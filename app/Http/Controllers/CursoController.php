@@ -11,13 +11,15 @@ class CursoController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('admin:administrador,director');
+
+        $this->middleware('admin:administrador,director')->except(['conteoEstudiantes']);
+        $this->middleware('admin:coordinador,administrador')->only(['conteoEstudiantes']);
     }
 
     public function index() {
         $agruparCursos = Curso::all()->groupBy('prefijo');
         $cursos = [
-            'Prescolar' => $agruparCursos['0'],
+            'Preescolar' => $agruparCursos['0'],
             'Primero' => $agruparCursos['1'],
             'Segundo' => $agruparCursos['2'],
             'Tercero' => $agruparCursos['3'],
@@ -28,7 +30,7 @@ class CursoController extends Controller
             'Octavo' => $agruparCursos['8'],
             'Noveno' => $agruparCursos['9'],
             'Decimo' => $agruparCursos['10'],
-            'Undecimo' => $agruparCursos['11']
+            'Undécimo' => $agruparCursos['11']
         ];
         // dd($cursos);
         return view('cursos.listaCurso', compact('cursos'));

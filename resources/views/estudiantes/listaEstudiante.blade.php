@@ -126,29 +126,26 @@
                                             <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>
                                             </a>
                                         </td>
-                                        {{-- Editar estudiantes --}}
-                                        <td class="text-center">
-                                            @if (is_null($c->deleted_at))
-                                                <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
-                                            </a>
-                                            @else
-                                                <a title="Deshabilitado"><i  class="fas fa-edit" style="color:#6c757d"></i></a>
-                                            @endif
-                                            
-                                        </td>
-                                        {{-- restaurar estudiante
-                                        <td class="text-center">
-                                            <a ruta="estudiantes" class="{{is_null($c->deleted_at) ? '' : 'restore'}}" identificador="{{$c->pk_estudiante}}" ><i class="fas fa-recycle {{is_null($c->deleted_at) ? 'text-secondary' : 'text-success'}}" title="Restaurar"></i>
-                                            </a>
-                                        </td> --}}
-                                        {{-- Eliminar estudiantes --}}
-                                        <td class="text-center">
-                                            @if (is_null($c->deleted_at))
-                                                <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
-                                            @else
-                                                <a><i title="Desabilitado" class="fas fa-trash-alt" style="color:#6c757d"></i></a>
-                                            @endif
-                                        </td>
+                                        @if (session('role') == 'administrador')
+                                            {{-- Editar estudiantes --}}
+                                            <td class="text-center">
+                                                @if (is_null($c->deleted_at))
+                                                    <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
+                                                </a>
+                                                @else
+                                                    <a title="Deshabilitado"><i  class="fas fa-edit" style="color:#6c757d"></i></a>
+                                                @endif
+                                                
+                                            </td>
+                                            {{-- Eliminar estudiantes --}}
+                                            <td class="text-center">
+                                                @if (is_null($c->deleted_at))
+                                                    <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                                                @else
+                                                    <a><i title="Desabilitado" class="fas fa-trash-alt" style="color:#6c757d"></i></a>
+                                                @endif
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             @endif

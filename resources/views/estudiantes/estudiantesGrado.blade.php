@@ -1,5 +1,5 @@
-@extends('contenedores.admin')
-@section('contenedor_admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Estudiantes/Grado')
 <div class="container" style="background:#fafafa !important;">
     <div class="row justify-content-center">
@@ -8,13 +8,15 @@
                 $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
              @endphp
              <h4 class="text-center"> Curso {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4>
-             <div class="text-center">
-                 <a href="/cursos/{{$grado->pk_curso}}/planillas">
-                     <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
-                         <i class="fas fa-clipboard-list" style="color:white"></i> Ver planillas
-                     </button>
-                 </a>
-             </div>
+             @if (session('role') == 'administrador')
+                <div class="text-center">
+                    <a href="/cursos/{{$grado->pk_curso}}/planillas">
+                        <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
+                            <i class="fas fa-clipboard-list" style="color:white"></i> Ver planillas
+                        </button>
+                    </a>
+                </div>
+             @endif
              <br>
              <div class="table-responsive" >
                  <table class="table table-hover mr-auto" id="myTable">
@@ -34,7 +36,6 @@
                                      <div class="text-center">No hay estudiantes</div>
                                  </td>
                              </tr>
-
                          @else
                              @foreach ($curso as $c)
                                  <tr id="estudiantes{{$c->pk_estudiante}}">
@@ -51,15 +52,17 @@
                                          <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>
                                          </a>
                                      </td>
-                                     {{-- Editar estudiantes --}}
-                                     <td class="text-center">
-                                         <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
-                                         </a>
-                                     </td>
-                                     {{-- Eliminar estudiantes --}}
-                                     <td class="text-center">
-                                         <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
-                                     </td>
+                                     @if (session('role') == 'administrador')
+                                         {{-- Editar estudiantes --}}
+                                        <td class="text-center">
+                                            <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
+                                            </a>
+                                        </td>
+                                        {{-- Eliminar estudiantes --}}
+                                        <td class="text-center">
+                                            <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                                        </td>
+                                     @endif
                                  </tr>
                              @endforeach
                          @endif

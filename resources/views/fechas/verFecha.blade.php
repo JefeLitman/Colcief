@@ -1,6 +1,6 @@
-@extends('contenedores.admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Linea Temporal')
-@section('contenedor_admin')
 
 <style>
 	.success:before{
@@ -78,7 +78,6 @@
 	<div class="row justify-content-center" style="background-color: #fafafa !important;">
 		<div class="col-md-10">
 			<h4 class="text-center">Linea Temporal</h4>
-			<br>
 			<ul class="timeline">
 				@php
 					$cont = 0;
@@ -96,25 +95,27 @@
 						<div class="card mb-3 {{$cont%2 == 0 ? 'right' : 'left'}}">
 							<div class="card-header">
 								{{$key}}
-								@if ((strtotime($orden['Hoy']) < strtotime($card) && $key != 'Hoy'))
-									@if ($bandera == true)
-										@if ($key != 'Finalización del año escolar')
+								@if (session('role') == 'administrador')
+									@if ((strtotime($orden['Hoy']) < strtotime($fechas[$key][($key != 'Hoy' && $key != 'Inicio del año escolar' && $key !='Finalización del año escolar') ? 'fecha_limite' : 'null']) && $key != 'Hoy'))
+										@if ($bandera == true)
+											@if ($key != 'Finalización del año escolar')
+												<div class="float-right">
+													@if (isset($fechas[$key]['fechas.edit']))
+														<a data-toggle="tooltip" data-placement="top" title="Editar" href="{{route('fechas.edit')}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+													@elseif (isset($fechas[$key]['pk_periodo']))
+														<a data-toggle="tooltip" data-placement="top" title="Editar" href="{{route('periodos.edit', $fechas[$key]['pk_periodo'])}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+													@endif
+												</div>
+											@endif
+										@else
 											<div class="float-right">
 												@if (isset($fechas[$key]['fechas.edit']))
-													<a href="{{route('fechas.edit')}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+													<a data-toggle="tooltip" data-placement="top" title="Editar" href="{{route('fechas.edit')}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
 												@elseif (isset($fechas[$key]['pk_periodo']))
-													<a href="{{route('periodos.edit', $fechas[$key]['pk_periodo'])}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
+													<a data-toggle="tooltip" data-placement="top" title="Editar" href="{{route('periodos.edit', $fechas[$key]['pk_periodo'])}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
 												@endif
 											</div>
 										@endif
-									@else
-										<div class="float-right">
-											@if (isset($fechas[$key]['fechas.edit']))
-												<a href="{{route('fechas.edit')}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
-											@elseif (isset($fechas[$key]['pk_periodo']))
-												<a href="{{route('periodos.edit', $fechas[$key]['pk_periodo'])}}" title="Editar"><i class="fas fa-edit text-info"></i></a>
-											@endif
-										</div>
 									@endif
 								@endif
 							</div>

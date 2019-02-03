@@ -27,8 +27,8 @@ class EmpleadoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin:administrador')->except(['perfil', 'cambiarClave','show']);
-        $this->middleware('admin:administrador,coordinador,director,profesor')->only(['perfil', 'cambiarClave','show']);
+        $this->middleware('admin:administrador')->except(['perfil', 'cambiarClave', 'show']);
+        $this->middleware('admin:administrador,coordinador,director,profesor')->only(['perfil', 'cambiarClave', 'show']);
     }
 
     public function index()
@@ -67,7 +67,7 @@ class EmpleadoController extends Controller
         //Anteriormente Paola era la autora. Modifiqué todo el código para optimizarlo y cubrir un hueco de seguridad
         //En este momento se muestra en la view que se encuentra en Local>Resource>View>empleados>verEmpleado.blade.php y allá se reciben todos los datos del respectivo empleado en una variable tipo Object $empleado.
         if (!(session('role') == 'administrador') and $cedula != session('user')['cedula']) {
-            return redirect('/empleados/'.session('user')['cedula']);
+            return redirect('/empleados/' . session('user')['cedula']);
         }
         $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso', 'empleado.fk_curso', '=', 'curso.pk_curso')->withTrashed()->get();
         $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula)->join('curso', 'materia_pc.fk_curso', 'curso.pk_curso')->get();
@@ -85,8 +85,14 @@ class EmpleadoController extends Controller
     public function edit($cedula)
     {
         $empleado = Empleado::find($cedula);
-        $cursos = Curso::where("ano", date('Y'))->get(); //agregado by Paola
-        return view("empleados.editarEmpleado", ['empleado' => $empleado, "cursos" => $cursos]); //Modificado by Paola
+        if (!empty($empleado)) {
+            $cursos = Curso::where("ano", date('Y'))->get(); //agregado by Paola
+            return view("empleados.editarEmpleado", ['empleado' => $empleado, "cursos" => $cursos]); //Modificado by Paola
+        }else {
+            $mensaje = 'No se encuentra registros de este empleado';
+            return back()->with('false', $mensaje);
+        }
+
     }
 
     public function update(EmpleadoUpdateController $request, $cedula)
@@ -116,7 +122,7 @@ class EmpleadoController extends Controller
             $var = Empleado::find(session('user')['cedula']);
             session(['user' => $var->session(), 'role' => $guard]);
             $mensaje = $empleado->nombre . ' ' . $empleado->apellido . ' actualizaste tu foto con éxito';
-            return redirect(url('/empleados/'.session('user')['cedula']))->with('true', $mensaje);
+            return redirect(url('/empleados/' . session('user')['cedula']))->with('true', $mensaje);
         } else {
             return back()->with('false', 'Algo no salio bien, intente nuevamente');
         }
@@ -129,7 +135,7 @@ class EmpleadoController extends Controller
             $empleado->password = Hash::make($request->password);
             if ($empleado->save()) {
                 $mensaje = $empleado->nombre . ' ' . $empleado->apellido . ' actualizaste tu contraseña con éxito';
-                return redirect(url('/empleados/'.session('user')['cedula']))->with('true', $mensaje);
+                return redirect(url('/empleados/' . session('user')['cedula']))->with('true', $mensaje);
             } else {
                 return back()->with('false', 'Algo no salio bien, intente nuevamente');
             }

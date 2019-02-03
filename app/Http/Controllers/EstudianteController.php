@@ -23,8 +23,9 @@ class EstudianteController extends Controller
     //Funciones publicas de primeros y al final las privadas
 
     public function __construct (){
-        $this->middleware('admin:estudiante,director,profesor,administrador')->only(['perfil', 'show']);
-        $this->middleware('admin:administrador')->except(['perfil', 'show']);
+        $this->middleware('admin:estudiante,director,profesor,administrador,coordinador')->only(['perfil', 'show','cambiarClave']);
+        $this->middleware('admin:coordinador,administrador')->only(['index','estudianteGrado','estudiantes','filtro']);
+        $this->middleware('admin:administrador')->except(['perfil', 'show', 'index','estudianteGrado','estudiantes','filtro']);
     }
 
     public function index()

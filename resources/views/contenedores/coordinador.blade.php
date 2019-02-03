@@ -1,4 +1,4 @@
-<!-- Modelo de la pagina de sesiones -->
+<!-- Modelo de la de hogar al iniciar sesion -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,8 +12,10 @@
         <!-- Definiendo el titulo de la pagina -->
         <title>ColCIEF - @yield('titulo')</title>
         <!--Let browser know website is optimized for mobile-->
+        <!--JavaScript at end of body forr optimized loading-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--JavaScript at end of body for optimized loading-->
+        {{-- Codificación --}}
+        <meta charset="UTF-8">
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -25,18 +27,15 @@
         @include('precarga.precarga')
         <div id="ver">
             <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
-            @include('menus.profesor')
+            @include('menus.coordinador')
 
-            {{-- mensajes de error --}}
+            {{-- Mensajes de error --}}
             <div id="br"></div>
             @include('error.error')
             @include('error.alert')
-
-            <!-- Aqui en esta seccion va estar el contenido de la pagina -->
-            @yield('contenedor_profesor')
-
-            <!-- En esta parte va el pie de pagina con la directiva include para que quede en el lugar -->
-            {{-- @include('footers.principal') --}}
+            {{-- contenido de la pagina --}}
+            @section('contenedor_coordinador')
+            @show
         </div>
         <script>
             $('[data-toggle="tooltip"]').tooltip();

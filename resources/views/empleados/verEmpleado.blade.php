@@ -1,8 +1,11 @@
-@extends('contenedores.admin') 
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo',' Ver empleado') 
-@section('contenedor_admin') {{-- d-none d-sm-blockuia
-Front --}} {{-- Se envía el objeto $empleado --}} {{-- Variables enviadas desde Local>App>Http>Controllers>EmpleadoController.php
-funcion show() @Autor Paola C. --}} {{-- URL: localhost:8000\empleados\{pk_empleado} --}}
+{{-- d-none d-sm-blockuiaFront --}} 
+{{-- Se envía el objeto $empleado --}} 
+{{-- Variables enviadas desde Local>App>Http>Controllers>EmpleadoController.php
+funcion show() @Autor Paola C. --}} 
+{{-- URL: localhost:8000\empleados\{pk_empleado} --}}
 
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
@@ -11,95 +14,172 @@ funcion show() @Autor Paola C. --}} {{-- URL: localhost:8000\empleados\{pk_emple
                 <div class="col-sm-6">
                     <div class="card mb-3">
                         <img class="card-img-top" src="{{$empleado->foto}}" alt="Card image cap">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item" title="Cédula">
-                                <small class="text-muted">Cédula:</small>
-                                <div>{{$empleado->cedula}}</div>
-                            </li>
-                            <li class="list-group-item" title="Nombre">
-                                <small class="text-muted">Nombre:</small>
-                                <div>{{ucwords($empleado->nombre)}}</div>
-                            </li>
-                            <li class="list-group-item" title="Apellido">
-                                <small class="text-muted">Apellido:</small>
-                                <div>{{ucwords($empleado->apellido)}}</div>
-                            </li>
-                            <li class="list-group-item" title="Correo Electronico">
-                                <small class="text-muted">Email:</small>
-                                <div>{{$empleado->email}}</div>
-                            </li>
-                            <li class="list-group-item" title="Dirección">
-                                <small class="text-muted">Dirección:</small>
-                                <div>{{ucwords($empleado->direccion)}}</div>
-                            </li>
-                            <li class="list-group-item" title="Titulo">
-                                <small class="text-muted">Titulo:</small>
-                                <div>{{ucwords($empleado->titulo)}}</div>
-                            </li>
-                            <li class="list-group-item" title="Cargo">
-                                <small class="text-muted">Cargo:</small>
-                                <div>{{$cargo[$empleado->role]}}</div>
-                            </li>
-                        </ul>
+                        @if ($empleado->role == 0)
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" title="Acciones">
+                                    @if (session('role') == 'administrador')
+                                        @if (is_null($empleado->deleted_at)) 
+                                            @if ($empleado->role == '1' || $empleado->role == '2')
+                                                <a class="time" identificador="{{$empleado->cedula}}"><i data-toggle="tooltip" data-placement="top" 
+                                                    @switch($empleado->tiempo_extra)
+                                                        @case(1)
+                                                            style="color:#007bff" title="1 día extra"
+                                                            @break
+                                                        @case(3)
+                                                            style="color:#ffc107" title="3 días extra" 
+                                                            @break
+                                                        @case(7)
+                                                            style="color:#dc3545" title="1 semana extra"
+                                                            @break
+                                                        @default
+                                                            style="color:#343a40" title="0 días extra"
+                                                    @endswitch
+                                            id="{{$empleado->cedula}}t" class="fas fa-stopwatch"></i></a>
+                                            @endif
+                                            <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit text-info" title="Editar" data-toggle="tooltip" data-placement="top" title="Ver notas"></i></a>
+                                            @unless (session('user')['cedula'] == $empleado->cedula)
+                                                <a padre="null" title="Eliminar" data-toggle="tooltip" data-placement="top" class="delete" ruta="empleados" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" ><i class="fas fa-trash-alt text-danger"></i></a>
+                                            @endunless
+                                        @else
+                                            <a ruta="empleados" class="restore text-success" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}"><i class="fas fa-recycle" data-toggle="tooltip" data-placement="top" title="Ver notas" title="Restaurar"></i>
+                                            </a>
+                                        @endif
+                                    @endif
+                                    @if (session('user')['cedula'] == $empleado->cedula)
+                                        <a class="clave"><i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i></a>
+                                        <a data-toggle="modal" data-target="#empleadoModal">
+                                            <i data-toggle="tooltip" data-placement="top" title="Cambiar foto" class="fas fa-user-cog text-info"></i>
+                                        </a>
+                                    @endif
+                                </li>
+                            </ul>
+                        @else
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" title="Cédula">
+                                    <small class="text-muted">Cédula:</small>
+                                    <div>{{$empleado->cedula}}</div>
+                                </li>
+                                <li class="list-group-item" title="Nombre">
+                                    <small class="text-muted">Nombre:</small>
+                                    <div>{{ucwords($empleado->nombre)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Apellido">
+                                    <small class="text-muted">Apellido:</small>
+                                    <div>{{ucwords($empleado->apellido)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Correo Electronico">
+                                    <small class="text-muted">Email:</small>
+                                    <div>{{$empleado->email}}</div>
+                                </li>
+                                <li class="list-group-item" title="Dirección">
+                                    <small class="text-muted">Dirección:</small>
+                                    <div>{{ucwords($empleado->direccion)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Titulo">
+                                    <small class="text-muted">Titulo:</small>
+                                    <div>{{ucwords($empleado->titulo)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Cargo">
+                                    <small class="text-muted">Cargo:</small>
+                                    <div>{{$cargo[$empleado->role]}}</div>
+                                </li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            Acciones
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item" title="Acciones">
-                                @if (session('role') == 'administrador')
-                                    @if (is_null($empleado->deleted_at)) 
-                                        @if ($empleado->role == '1' || $empleado->role == '2')
-                                            <a class="time" identificador="{{$empleado->cedula}}"><i data-toggle="tooltip" data-placement="top" 
-                                                @switch($empleado->tiempo_extra)
-                                                    @case(1)
-                                                        style="color:#007bff" title="1 día extra"
-                                                        @break
-                                                    @case(3)
-                                                        style="color:#ffc107" title="3 días extra" 
-                                                        @break
-                                                    @case(7)
-                                                        style="color:#dc3545" title="1 semana extra"
-                                                        @break
-                                                    @default
-                                                        style="color:#343a40" title="0 días extra"
-                                                @endswitch
-                                        id="{{$empleado->cedula}}t" class="fas fa-stopwatch"></i></a>
+                    @if ($empleado->role != 0)
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                Acciones
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" title="Acciones">
+                                    @if (session('role') == 'administrador')
+                                        @if (is_null($empleado->deleted_at)) 
+                                            @if ($empleado->role == '1' || $empleado->role == '2')
+                                                <a class="time" identificador="{{$empleado->cedula}}"><i data-toggle="tooltip" data-placement="top" 
+                                                    @switch($empleado->tiempo_extra)
+                                                        @case(1)
+                                                            style="color:#007bff" title="1 día extra"
+                                                            @break
+                                                        @case(3)
+                                                            style="color:#ffc107" title="3 días extra" 
+                                                            @break
+                                                        @case(7)
+                                                            style="color:#dc3545" title="1 semana extra"
+                                                            @break
+                                                        @default
+                                                            style="color:#343a40" title="0 días extra"
+                                                    @endswitch
+                                            id="{{$empleado->cedula}}t" class="fas fa-stopwatch"></i></a>
+                                            @endif
+                                            <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit text-info" title="Editar" data-toggle="tooltip" data-placement="top" title="Ver notas"></i></a>
+                                            @unless (session('user')['cedula'] == $empleado->cedula)
+                                                <a padre="null" title="Eliminar" data-toggle="tooltip" data-placement="top" class="delete" ruta="empleados" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" ><i class="fas fa-trash-alt text-danger"></i></a>
+                                            @endunless
+                                        @else
+                                            <a ruta="empleados" class="restore text-success" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}"><i class="fas fa-recycle" data-toggle="tooltip" data-placement="top" title="Restaurar"></i>
+                                            </a>
                                         @endif
-                                        <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit text-info" title="Editar" data-toggle="tooltip" data-placement="top" title="Ver notas"></i></a>
-                                        @unless (session('user')['cedula'] == $empleado->cedula)
-                                            <a padre="null" title="Eliminar" data-toggle="tooltip" data-placement="top" class="delete" ruta="empleados" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}" ><i class="fas fa-trash-alt text-danger"></i></a>
-                                        @endunless
-                                    @else
-                                        <a ruta="empleados" class="restore text-success" direccion="/empleados/{{$empleado->cedula}}" identificador="{{$empleado->cedula}}"><i class="fas fa-recycle" data-toggle="tooltip" data-placement="top" title="Ver notas" title="Restaurar"></i>
+                                    @endif
+                                    @if (session('user')['cedula'] == $empleado->cedula)
+                                        <a class="clave"><i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i></a>
+                                        <a data-toggle="modal" data-target="#empleadoModal">
+                                            <i data-toggle="tooltip" data-placement="top" title="Cambiar foto" class="fas fa-user-cog text-info"></i>
                                         </a>
                                     @endif
-                                @endif
-                                @if (session('user')['cedula'] == $empleado->cedula)
-                                    <a class="clave"><i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i></a>
-                                    <a data-toggle="modal" data-target="#empleadoModal">
-                                        <i data-toggle="tooltip" data-placement="top" title="Cambiar foto" class="fas fa-user-cog text-info"></i>
-                                    </a>
-                                @endif
-                            </li>
-                        </ul>
-                    </div>
-                    @if (!empty($empleado->fk_curso))
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            Director del curso
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a href="/estudiantes/cursos/{{$empleado -> fk_curso}}">
-                                    <div style="text-align: right;">{{$empleado -> prefijo.'-'.$empleado -> sufijo}}</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    @endif
+                    @if ($empleado->role == 0)
+                        <div class="card mb-3">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" title="Cédula">
+                                    <small class="text-muted">Cédula:</small>
+                                    <div>{{$empleado->cedula}}</div>
+                                </li>
+                                <li class="list-group-item" title="Nombre">
+                                    <small class="text-muted">Nombre:</small>
+                                    <div>{{ucwords($empleado->nombre)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Apellido">
+                                    <small class="text-muted">Apellido:</small>
+                                    <div>{{ucwords($empleado->apellido)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Correo Electronico">
+                                    <small class="text-muted">Email:</small>
+                                    <div>{{$empleado->email}}</div>
+                                </li>
+                                <li class="list-group-item" title="Dirección">
+                                    <small class="text-muted">Dirección:</small>
+                                    <div>{{ucwords($empleado->direccion)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Titulo">
+                                    <small class="text-muted">Titulo:</small>
+                                    <div>{{ucwords($empleado->titulo)}}</div>
+                                </li>
+                                <li class="list-group-item" title="Cargo">
+                                    <small class="text-muted">Cargo:</small>
+                                    <div>{{$cargo[$empleado->role]}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif 
+                    @if (!empty($empleado->fk_curso))
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                Director del curso
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a href="/estudiantes/cursos/{{$empleado -> fk_curso}}">
+                                        <div style="text-align: right;">{{$empleado -> prefijo.'-'.$empleado -> sufijo}}</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     @endif 
                     @if (!empty($cursos[0]))
                     <div class="card mb-3">

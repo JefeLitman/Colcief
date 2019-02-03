@@ -1,8 +1,6 @@
-@extends('contenedores.admin')
-@section('contenedor_admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Cursos')
-@yield('nombre')
-{{-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> --}}
 
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
@@ -23,99 +21,135 @@
 
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 
-                        <div class="text-center">
+                        <div class="container-fluid">
                             {{-- Muestra los grados para primaria --}}
-                            <p>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#preescolar" role="button" aria-expanded="false" aria-controls="preescolar">
-                                    Preescolar
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#primero" role="button" aria-expanded="false" aria-controls="primero">
-                                    Primero
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#segundo" role="button" aria-expanded="false" aria-controls="segundo">
-                                    Segundo
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#tercero" role="button" aria-expanded="false" aria-controls="tercero">
-                                    Tercero
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#cuarto" role="button" aria-expanded="false" aria-controls="cuarto">
-                                    Cuarto
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#quinto" role="button" aria-expanded="false" aria-controls="quinto">
-                                    Quinto
-                                </a>
-                            </p>
+                            <div class="row">
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary mt-3 form-control" data-toggle="collapse" href="#preescolar" role="button" aria-expanded="false" aria-controls="preescolar">
+                                        <small>Preescolar</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary mt-3 form-control" data-toggle="collapse" href="#primero" role="button" aria-expanded="false" aria-controls="primero">
+                                        <small>Primero</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary mt-3 form-control" data-toggle="collapse" href="#segundo" role="button" aria-expanded="false" aria-controls="segundo">
+                                        <small>Segundo</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary mt-3 form-control" data-toggle="collapse" href="#tercero" role="button" aria-expanded="false" aria-controls="tercero">
+                                        <small>Tercero</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary mt-3 form-control" data-toggle="collapse" href="#cuarto" role="button" aria-expanded="false" aria-controls="cuarto">
+                                        <small>Cuarto</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary mt-3 form-control mb-3" data-toggle="collapse" href="#quinto" role="button" aria-expanded="false" aria-controls="quinto">
+                                        <small>Quinto</small>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         {{-- Contenidos para primaria --}}
                         <div class="collapse" id="preescolar">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de preescolar
                                 @if(empty($curso[0]))
-                                    <div class="text-center">No hay Cursos</div>
+                                    <div>No hay Cursos</div>
                                 @else
-                                    @foreach ($curso[0] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button" href="/estudiantes/cursos/{{$c->pk_curso}}">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach ($curso[0] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" href="/estudiantes/cursos/{{$c->pk_curso}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach 
+                                    </div>
                                 @endif
                             </div>
                         </div>
                         <div class="collapse" id="primero">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de primero
                                 @if(empty($curso[1]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[1] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit w-25" href="/estudiantes/cursos/{{$c->pk_curso}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach ($curso[1] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" href="/estudiantes/cursos/{{$c->pk_curso}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 @endisset
                             </div>
                         </div>
                         <div class="collapse" id="segundo">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de segundo
                                 @if(empty($curso[2]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[2] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach ($curso[2] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 @endisset
                             </div>
                         </div>
                         <div class="collapse" id="tercero">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de tercero
                                 @if(empty($curso[3]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[3] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach ($curso[3] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 @endisset
                             </div>
                         </div>
                         <div class="collapse" id="cuarto">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de cuarto
                                 @if(empty($curso[4]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[4] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach ($curso[4] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 @endisset
                             </div>
                         </div>
                         <div class="collapse" id="quinto">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de quinto
                                 @if(empty($curso[5]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[5] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach ($curso[5] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 @endisset
                             </div>
                         </div>
@@ -132,120 +166,157 @@
                     </h5>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-
-                        <div class="text-center">
+                        <div class="container-fluid">
                             {{-- Muestra los grados para secundaria --}}
-                            <p>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#sexto" role="button" aria-expanded="false" aria-controls="sexto">
-                                    Sexto
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#septimo" role="button" aria-expanded="false" aria-controls="septimo">
-                                    Septimo
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#octavo" role="button" aria-expanded="false" aria-controls="octavo">
-                                    Octavo
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#noveno" role="button" aria-expanded="false" aria-controls="noveno">
-                                    Noveno
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#decimo" role="button" aria-expanded="false" aria-controls="decimo">
-                                    Decimo
-                                </a>
-                                <a class="btn btn-secondary mt-3" data-toggle="collapse" href="#once" role="button" aria-expanded="false" aria-controls="once">
-                                    Once
-                                </a>
-                            </p>
+                            <div class="row">
+                                <div class="col-12 col-sm-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary form-control mt-3" data-toggle="collapse" href="#sexto" role="button" aria-expanded="false" aria-controls="sexto">
+                                        <small>Sexto</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary form-control mt-3" data-toggle="collapse" href="#septimo" role="button" aria-expanded="false" aria-controls="septimo">
+                                        <small>Septimo</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary form-control mt-3" data-toggle="collapse" href="#octavo" role="button" aria-expanded="false" aria-controls="octavo">
+                                        <small>Octavo</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary form-control mt-3" data-toggle="collapse" href="#noveno" role="button" aria-expanded="false" aria-controls="noveno">
+                                        <small>Noveno</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary form-control mt-3" data-toggle="collapse" href="#decimo" role="button" aria-expanded="false" aria-controls="decimo">
+                                        <small>Decimo</small>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-sm-4 col-lg-2">
+                                    <a class="btn btn-outline-secondary form-control mt-3 mb-3" data-toggle="collapse" href="#once" role="button" aria-expanded="false" aria-controls="once">
+                                        <small>Once</small>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         {{-- Contenidos para secundaria --}}
                         <div class="collapse" id="sexto">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de sexto
                                 @if(empty($curso[6]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[6] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25"  prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
-                                @endisset
+                                    <div class="row">
+                                        @foreach ($curso[6] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3"  prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="collapse" id="septimo">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de septimo
                                 @if(empty($curso[7]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[7] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
-                                @endisset
+                                    <div class="row">
+                                        @foreach ($curso[7] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="collapse" id="octavo">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de octavo
                                 @if(empty($curso[8]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[8] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
-                                @endisset
+                                    <div class="row">
+                                        @foreach ($curso[8] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="collapse" id="noveno">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de noveno
                                 @if(empty($curso[9]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[9] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
-                                @endisset
+                                    <div class="row">
+                                        @foreach ($curso[9] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="collapse" id="decimo">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de decimo
                                 @if(empty($curso[10]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[10] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
-                                @endisset
+                                    <div class="row">
+                                        @foreach ($curso[10] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="collapse" id="once">
-                            <div class="card card-body">
+                            <div class="card card-body text-center">
                                 Cursos de once
                                 @if(empty($curso[11]))
-                                <div class="text-center">No hay cursos</div>
+                                <div>No hay cursos</div>
                                 @else
-                                    @foreach ($curso[11] as $c)
-                                        <a class="btn btn-primary mt-3 text-light submit  w-25" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$grado[$c->prefijo]}}-{{$c->sufijo}}</a>
-                                    @endforeach
-                                @endisset
+                                    <div class="row">
+                                        @foreach ($curso[11] as $c)
+                                            <div class="col-12 col-sm-4 col-lg-2">
+                                                <a class="form-control btn btn-primary mt-3" prefijo="{{$c->prefijo}}" sufijo="{{$c->sufijo}}" href="/estudiantes/cursos/{{$c->pk_curso}}" role="button">{{$c->prefijo}}-{{$c->sufijo}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row text-center">
-                <div class="col-md-6">
-                    <div class="text-center" style="float:center;">
-                        <br>
-                        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/cursos/crear">Crear curso</a>
+            @if (session('role') == 'administrador')
+                <div class="row text-center mt-4">
+                    <div class="col-6">
+                        <a data-toggle="tooltip" data-placement="top" title="Crear curso" class="btn btn-info" href="/cursos/crear">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <small class="d-none d-sm-block">Crear curso</small>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a data-toggle="tooltip" data-placement="top" title="Crear Estudiante" class="btn btn-info" href="/estudiantes/crear">
+                            <i class="fas fa-user-plus"></i>
+                            <small class="d-none d-sm-block">Crear estudiante</small>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="text-center" style="float:center;">
-                        <br>
-                        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/estudiantes/crear">Crear estudiante</a>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
     </div>
 </div>

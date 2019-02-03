@@ -1,6 +1,6 @@
-@extends('contenedores.admin')
-@section('contenedor_admin')
-@section('titulo','Archivos')
+@extends('contenedores.'.((session('role')=='administrador')?'admin': session('role')))
+@section('contenedor_'.((session('role')=='administrador')?'admin': session('role')))
+@section('titulo','Subir Archivo')
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-md-10">
