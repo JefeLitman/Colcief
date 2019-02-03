@@ -10,14 +10,14 @@ class CreateSessionsTable extends Migration {
         Al comentar esta migracion evito que el migrate:reset la elimine  */
     public function up(){
 
-        // Schema::create('sessions', function (Blueprint $table) {
-        //     $table->string('id',180)->unique();
-        //     $table->unsignedInteger('user_id')->nullable();
-        //     $table->string('ip_address', 45)->nullable();
-        //     $table->text('user_agent')->nullable();
-        //     $table->text('payload');
-        //     $table->integer('last_activity');
-        // });
+        Schema::create('sessions', function (Blueprint $table) {
+            $table->string('id',180)->unique();
+            $table->unsignedInteger('user_id')->nullable();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->text('payload');
+            $table->integer('last_activity');
+        });
     }
 
     public function down(){
