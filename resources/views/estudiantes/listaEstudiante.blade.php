@@ -1,5 +1,5 @@
-@extends('contenedores.admin')
-@section('contenedor_admin')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
+@section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Lista Estudiante')
     @php
         $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
