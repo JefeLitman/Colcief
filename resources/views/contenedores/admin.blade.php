@@ -39,6 +39,7 @@
         </div>
         <script>
             $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover({ html : true });
         </script>
     </body>
 </html>

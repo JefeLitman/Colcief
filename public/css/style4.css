@@ -311,14 +311,13 @@ font-weight: bold;
 padding: 8px;
 font-size: 13px;
 background-color: #ffffff;
-position: fixed;
 z-index: 1000;
 width: 298px;
 border-bottom: 1px solid #dddddd;
 }
 #notificationsBody
 {
-padding: 33px 0px 0px 0px !important;
+padding: 0px 0px 0px 0px !important;
 z-index: 1000;
 
 /* min-height:300px; */

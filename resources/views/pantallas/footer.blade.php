@@ -8,48 +8,6 @@
         text-decoration: none;
     }
 </style>
-<!-- Footer Section -->
-{{--  <footer>
-    <nav class="navbar navbar-dark bg-dark" style="padding: .0rem .7rem!important;cursor:pointer" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
-        <a data-scroll class="navbar-brand float-right a-footer" href="#" style="font-size:.8rem">ColCIEF</a>
-        <a class="a-footer" target="_blank" href="https://www.facebook.com/COLEGIO-INTEGRADO-EZEQUIEL-FLORIAN-130222610330580/"><i class="fas fa-facebook" style="color:#fff"></i></a>
-        <div class="collapse navbar-collapse" id="navbarNav" style="font-size:.8rem">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a data-scroll class="nav-link a-footer" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a data-scroll class="nav-link a-footer" href="#nuestro-colegio">Nuestro Colegio</a>
-                </li>
-                <li class="nav-item">
-                    <a data-scroll class="nav-link a-footer" href="#contacto">Contactenos</a>
-                </li>
-            </ul>
-            @if (Request::path()=="/")
-                <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    @if (empty(session('role')))
-                    <a class="nav-link a-footer" data-toggle="modal" data-target="#userModal">
-                        Login
-                    </a>
-                    @else
-                    @if (session('role') == 'estudiante')
-                        <a class="nav-link a-footer" href="estudiantes/principal">
-                        {{ session('user')['nombre'] }}
-                        </a>
-                    @else
-                        <a class="nav-link a-footer" href="empleados/principal/{{ session('user')['role'] }}">
-                        {{ session('user')['nombre'] }}
-                        </a>
-                    @endif
-                    @endif
-                </li>
-                </ul>
-            @endif
-        </div>
-    </nav>
-</footer> --}}
-<!-- / Footer Section -->
 <!-- Footer -->
 <footer class="page-footer font-small stylish-color-dark pt-4 bg-dark" id="footer">
 
@@ -101,7 +59,7 @@
                                     {{ session('user')['nombre'] }}
                                 </a>
                                 @else
-                                <a class="link" href="empleados/principal/{{ session('user')['role'] }}">
+                                <a class="link" href="empleados/principal">
                                     {{ session('user')['nombre'] }}
                                 </a>
                                 @endif

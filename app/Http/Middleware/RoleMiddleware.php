@@ -10,6 +10,8 @@ class RoleMiddleware{
 
     public function handle($request, Closure $next, ...$guards){
 
+        if(session('role') == null) redirect(route('logout'));
+
         if (empty($guards)) {
             $guards = ['administrador', 'director', 'profesor', 'coordinador', 'estudiante'];
         }

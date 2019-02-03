@@ -12,8 +12,8 @@
 
             <ul class="list-unstyled components">
                 {{--  INICIO  --}}
-				<li @if (Request::path()=="empleados/principal/0") class="active" @endif >
-					<a class="nav-link " href="{{ url('empleados/principal/0') }}"> <i class="fas fa-home"></i> Inicio</a>
+				<li @if (Request::path()=="empleados/principal") class="active" @endif >
+					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 {{--  HORARIOS  --}}
 				<li @if (Request::path()=="horarios") class="active" @endif >
@@ -101,19 +101,12 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('empleados/principal/0') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
+                                <a class="nav-link" href="{{ url('empleados/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
                             </li>
                             <li id="notification_li">
-                                <a href="#" id="notificationLink" class="nav-link"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary"></span></a>
-
-                                <div id="notificationContainer">
-                                    <div id="notificationTitle">Notificaciones</div>
-                                    <div id="notificationsBody" class="notifications">
-                                        <table id="noo" class="table table-hover"></table>
-                                    </div>
-                                    <div id="notificationFooter"><a href="{{ url('/notificaciones') }}">ver todas</a></div>
-                                </div>
-
+                                <a id="noo" title="<a title='Ver todas' href='{{ url('/notificaciones') }}'>Notificaciones</a>" class="nav-link" data-container="body" data-toggle="popover" data-placement="bottom" data-content="">
+                                    <i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary"></span>
+                                </a>
                             </li>
 							<li class="nav-item active">
 								<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>

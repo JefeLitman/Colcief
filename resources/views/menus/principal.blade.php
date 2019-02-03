@@ -36,7 +36,7 @@
                   {{ session('user')['nombre'] }}
                 </a>
               @else
-                <a class="nav-link" href="empleados/principal/{{ session('user')['role'] }}">
+                <a class="nav-link" href="empleados/principal">
                   {{ session('user')['nombre'] }}
                 </a>
               @endif

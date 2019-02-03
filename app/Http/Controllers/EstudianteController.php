@@ -257,9 +257,6 @@ class EstudianteController extends Controller
 
     public function filtro(Request $request)
     {
-        // return response()->json([
-        //     'data' =>  $request->all(),
-        // ]);
         if ($request->ajax()) {
             $estudiante = Estudiante::where('estado', '1');
             foreach ($request->except('_token') as $key => $value) {

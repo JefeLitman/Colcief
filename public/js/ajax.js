@@ -84,17 +84,18 @@ var cargarNotificaciones = function(){
             if(data.cant > 0){
                 noti.css('display', 'inline-block');
                 noti.html(data.cant)
-                mensaje='';
+                mensaje='<table id="noo" class="">';
                 $.each( data.data, function(key, notificar) {
                     mensaje+= '<tr class="n'+notificar.pk_notificacion+'"><td class="notifica p-0"><a class="d-block w-100 p-2" href="'+notificar.link
                     +'"><span class="text-info">'+notificar.titulo+': </span><br>'+notificar.descripcion+'</a>'
                     +'</td><td class="align-middle p-0" style="cursor:pointer"><span onclick="eliminarNotificacion(this)" id="n'+notificar.pk_notificacion+'" pk="'
                     +notificar.pk_notificacion+'" class="cerrar p-2">x</span></td><tr>';
                 });
-                document.getElementById('noo').innerHTML=mensaje;
+                mensaje+='</table>';
+                $('#noo').attr('data-content', mensaje);
             }else if(data.cant==0){
                 noti.fadeOut()
-                document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
+                $('#noo').attr('data-content', '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>');
             }
             
         }
@@ -116,8 +117,10 @@ var eliminarNotificacion = function(e){
                 noti.html(cant);
                 n[0].remove();
             }else if(cant == 0){
-                noti.fadeOut();
-                document.getElementById('noo').innerHTML= '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>';
+                noti.fadeOut()
+                n[0].remove();
+                $('.popover').toggleClass('show');
+                $('#noo').attr('data-content', '<div class="text-center notifica mt-2"><span> No hay notificaciones </span></div>');
             }
         }
     }); 
