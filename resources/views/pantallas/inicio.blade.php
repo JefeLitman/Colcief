@@ -113,13 +113,62 @@
               <p class="p-3">
                 Aspiramos a que la institución sea un modelo educativo a nivel local, regional y nacional, que contribuya a mejorar la calidad de vida, y logre el desarrollo sostenible a través de la formación de lideres socioambientales.
               </p>
-            </div>  
+            </div>
         </div>
       </div>
       <div class="py-4"></div>
     </div>
+{{--  HISTORIA  --}}
 
-    <!-- Testimonials Section -->
+    <div class="historia section py-4" id="historia">
+        <h3 class="section-title text-center m-5">Historia del Colegio</h3>
+        <div class="container py-3">
+            <div class="row justify-content-center">
+            <div ALIGN="justify" class="col-m-1 border-left"></div>
+            <div ALIGN="justify" class="col-sm-10">
+                {{--  <h5 class="text-center">Misión</h5>  --}}
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img class="card-img-top" src="{{ asset('img/COLCIEF1.jpg') }}">
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="p-3">
+                            El colegio fue creado en <b>1.970</b> por el secretario de Educación del departamento bajo la denominación de colegio “Eduardo Camacho Gamba”, en honor al ilustre político. Inicio sus laborares con un total de 31 estudiantes matriculados en el curso de bachillerato y fue nombrado como rector el docente Baltasar Santoyo Alza y como profesor de tiempo completo el señor Eduardo Suarez (ya fallecido).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p class="p-3">
+                            En <b>1.972</b> bajo la rectoría del Pbro. José Gabino Sierra, el platel toma la actual denominación del colegio integrado Ezequiel Florián, por petición de la secretaria de educación, al presentarse dos colegios con el mismo nombre, y el nombre y en honor al distinguido colono de esta región, don Ezequiel Florián.
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <img class="card-img-top" src="{{ asset('img/COLCIEF2.jpg') }}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img class="card-img-top" src="{{ asset('img/COLCIEF3.jpg') }}">
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="p-3">
+                            El colegio funcionó inicialmente donde está ubicado hoy en día laConcentración Colombia, (actual sección primaria grados superiores) hasta Octubre de <b>1.977</b>. Cuan fue trasladado a su propia sede. <br>
+                            Solo hasta el año <b>1.976</b> completo la básica secundaria y a cumplir sus primeros veinte años <b>(1.970­­-1.990)</b> de labores, saco la primera promoción de bachilleres académicos, veintitrés (23) en total. En ese año <b>(1.990)</b>, la secretaria de educación autorizo el cambio de la modalidad: académicamente a agropecuaria,  en forma progresiva.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div ALIGN="justify" class="col-m-1 border-left"></div>
+            </div>
+        </div>
+        <div class="py-4"></div>
+    </div>
+{{-- FIN DE HISTORIA  --}}
+
+    {{--  <!-- Testimonials Section -->
     <div class="testimonials section py-4">
         <h3 class="section-title text-center m-5">Testimonials</h3>
 
@@ -154,7 +203,7 @@
           </div>
         </div>
     </div>
-    <!-- / Testimonials Section -->
+    <!-- / Testimonials Section -->  --}}
 
     <!-- Our Blog Section -->
     <div class="blog section section-invert py-4" id="nuestro-colegio">
@@ -187,7 +236,7 @@
                     </p>
                   </div>
                 </div>
-                
+
                 <div class="card mb-4">
                   <img class="card-img-top" src="{{asset('img/familia1.jpg')}}" alt="Dia de la familia">
                   <div class="card-body">

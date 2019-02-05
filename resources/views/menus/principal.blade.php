@@ -18,6 +18,9 @@
           <a data-scroll class="nav-link" href="#nuestro-colegio">Nuestro Colegio</a>
         </li>
         <li class="nav-item">
+            <a data-scroll class="nav-link" href="#historia">Historia</a>
+        </li
+        <li class="nav-item">
           <a data-scroll class="nav-link" href="#contacto">Contactenos</a>
         </li>
       </ul>
@@ -47,4 +50,3 @@
     </div>
   </nav>
 
-  

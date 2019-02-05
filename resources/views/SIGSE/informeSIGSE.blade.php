@@ -1,6 +1,8 @@
-@extends('contenedores.profesor')
+@extends('contenedores.'.((session('role')=='administrador')?'admin':session('role')))
+@section('titulo','Notas')
+@section('contenedor_'.((session('role')=='administrador')?'admin':session('role')))
 @section('titulo','Informe SIGSE de {{$infoMateria->getCursoCompleto()}}')
-@section('contenedor_profesor')
+
 <div class="container" style="background-color: #fafafa !important;">
     <div class="row justify-content-center">
         <div class="col-md-10 text-center">

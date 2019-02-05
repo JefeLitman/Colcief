@@ -1,6 +1,6 @@
 <!-- Menu principal para el estudiante -->
 <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
-   
+
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar" class="active">
@@ -10,33 +10,44 @@
             </div>
 
             <ul class="list-unstyled components">
+                {{--  INICIO  --}}
                 <li @if (Request::path()=="empleados/principal") class="active" @endif >
                     <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
+                {{--  mi horario  --}}
                 <li @if (Request::path()=="horarios") class="active" @endif >
                     <a class="nav-link " href="{{ url('horarios') }}"> <i class="far fa-calendar-alt"></i> Mi Horario</a>
                 </li>
+                {{--  MIS MATERIAS  --}}
                 <li @if (Request::path()=="materiaspc") class="active" @endif >
                     <a class="nav-link " href="{{ url('materiaspc') }}"> <i class="fas fa-book"></i> Mis Materias</a>
                 </li>
+                {{--  FECHAS  --}}
                 <li @if (Request::path()=="fechas") class="active" @endif >
                     <a class="nav-link " href="{{ url('fechas') }}"> <i class="far fa-calendar-alt"></i> Fechas</a>
                 </li>
+                {{--  NIVELACIONES  --}}
                 <li @if (Request::path()=="") class="active" @endif >
                     <a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelacion</a>
                 </li>
+                {{--  SIGSE  --}}
+                <li @if (Request::path()=="") class="active" @endif >
+                    <a class="nav-link " href="/SIGSE"> <i class="fas fa-chart-bar"></i> SIGSE</a>
+                </li>
+                {{--  DOCUMENTOS  --}}
                 <li @if (Request::path()=="/archivos") class="active" @endif >
                     <a href="{{ url('/archivos') }}">
                         <i class="far fa-folder-open"></i> Documentos
                     </a>
                 </li>
+                {{--  SALIR  --}}
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>
-                
+
             </ul>
         </nav>
-	
+
         <!-- Page Content  -->
         <div id="content">
 
@@ -54,7 +65,7 @@
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{ url('empleados/principal') }}">{{ucwords(session('user')['nombre'])}} {{ucwords(session('user')['apellido'])}} <i class="fas fa-user-circle"></i></a>
-                    
+
                             </li>
                             {{-- <li class="nav-item active">
 								<a class="nav-link active noti" style="cursor: pointer;" data-toggle="popover" data-placement="bottom" data-html="true" title="Notificaciones" id="shownoti"><i class="fas fa-bell"></i> <span id="notificaciones" class="badge badge-pill badge-secondary">0</span> </a>
@@ -65,7 +76,7 @@
                                 </a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>								
+                                <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
                             </li>
                         </ul>
                     </div>
@@ -73,10 +84,10 @@
             </nav>
 
 
-    
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
- 
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -96,7 +107,7 @@
                 $("#notification_count").fadeOut("slow");
                 return false;
             });
-            //Document Click hiding the popup 
+            //Document Click hiding the popup
             $(document).click(function(){
                 $("#notificationContainer").hide();
             });

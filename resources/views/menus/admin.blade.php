@@ -59,13 +59,20 @@
                 {{--  MATERIAS  --}}
 				<li @if (Request::path()=="materiaspc") class="active" @endif >
 					<a class="nav-link " href="/materiaspc"> <i class="fas fa-book"></i> Materias</a>
-				</li>
+                </li>
+                {{--  FECHAS  --}}
 				<li @if (Request::path()=="fechas") class="active" @endif >
 					<a class="nav-link " href="/fechas"> <i class="far fa-calendar-alt"></i> Fechas</a>
-				</li>
+                </li>
+                {{--  NIVELACIONES  --}}
 				<li @if (Request::path()=="") class="active" @endif >
 					<a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelaciones</a>
                 </li>
+                {{--  SIGSE  --}}
+                <li @if (Request::path()=="") class="active" @endif >
+					<a class="nav-link " href="/SIGSE"> <i class="fas fa-chart-bar"></i> SIGSE</a>
+                </li>
+                {{--  DOCUMENTOS  --}}
                 <li @if (Request::path()=="/archivos") class="active" @endif >
                     <a href="#archivoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="far fa-folder-open"></i> Documentos
@@ -79,6 +86,7 @@
                         </li>
                     </ul>
                 </li>
+                {{--  SALIR  --}}
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>
 				</li>
