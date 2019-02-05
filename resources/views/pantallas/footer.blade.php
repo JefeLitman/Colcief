@@ -45,6 +45,9 @@
                         <a data-scroll class="link" href="#nuestro-colegio">Nuestro Colegio</a>
                     </li>
                     <li>
+                        <a data-scroll class="link" href="#historia">Historia</a>
+                    </li>
+                    <li>
                         <a data-scroll class="link" href="#contacto">Contactenos</a>
                     </li>
                     <li>
