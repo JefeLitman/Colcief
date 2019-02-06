@@ -94,7 +94,6 @@ Route::post('/divisiones', 'DivisionController@store')->name('divisiones.store')
 Route::get('/cursos/estudiantes/{prefijo}/{sufijo}', 'CursoController@conteoEstudiantes');
 Route::get('/cursos/grados/{grado}', 'CursoController@conteoCursosPorGrado');
 Route::resource('/cursos', 'CursoController');
-Route::get('/pruebajax', 'CursoController@prueba'); //Eliminar método y ruta
 Route::post('/cursos/sigSufijo', 'CursoController@sigSufijo')->name('cursos.sigSufijo');
 Route::get('/cursos/{pk_curso}/planillas', 'CursoController@cursoPlanillas');
 

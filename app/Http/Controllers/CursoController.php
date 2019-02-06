@@ -62,9 +62,9 @@ class CursoController extends Controller
     // }
 
     public function conteoEstudiantes($pk_curso) {
-        $estudiantes = Curso::where('pk_curso','=',$pk_curso)->get();
-        if (!empty($estudiantes[0])) {
-            $estudiantes = $estudiantes[0]->estudiantes;
+        $estudiantes = Curso::where('pk_curso','=',$pk_curso)->first();
+        if (!empty($estudiantes)) {
+            $estudiantes = $estudiantes->estudiantes;
             $listado = [];
             foreach ($estudiantes as $estudiante) {
                 array_push($listado,[
@@ -111,9 +111,5 @@ class CursoController extends Controller
             return view("cursos.planillasCurso",["grado"=>$grado[0],"materias"=>$materias,"periodos"=>$periodos]);
         }
         return "Error: El curso solicitado no existe";
-    }
-
-    public function prueba() {
-      return view('cursos.prueba');
     }
 }
