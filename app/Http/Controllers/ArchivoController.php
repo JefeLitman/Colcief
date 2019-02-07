@@ -32,13 +32,16 @@ class ArchivoController extends Controller{
             $nombre = mb_strtolower($archivo -> pk_archivo.'#'.str_replace(' ', '-', $request -> titulo));
             $archivo -> link = SupraController::subirArchivo($request, $nombre, 'archivo', 'archivos'); 
             $archivo -> tipo = $request -> archivo -> clientExtension();
-        }
-        if($archivo -> save()){
-            $mensaje = 'El archivo '.mb_strtolower($archivo -> titulo).' fue guardado con exito';
-            return redirect(route('archivos.index'))->with('true', $mensaje);
+            if($archivo -> save()){
+                $mensaje = 'El archivo '.mb_strtolower($archivo -> titulo).' fue guardado con éxito';
+                return redirect(route('archivos.index'))->with('true', $mensaje);
+            } else {
+                return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
+            }
         } else {
             return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
         }
+        
     }
 
     public function show($pk_archivo){

@@ -220,7 +220,7 @@ class Todo extends Migration {
             $table->increments('pk_archivo');
             $table->unsignedInteger('fk_empleado');
             $table->string('titulo', 50);
-            $table->text('descripcion');
+            $table->text('descripcion')->nullable();
             $table->text('tipo');
             $table->text('link');
             $table->timestamps();
