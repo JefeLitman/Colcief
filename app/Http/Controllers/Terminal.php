@@ -50,4 +50,9 @@ class Terminal extends Controller{
         $salida = shell_exec('cd ColCief && composer dump-autoload');
         return "<pre>".$salida."</pre>";
     }
+
+    public function pull(){
+        $salida = shell_exec('cd /home/colcief/public_html/ColCief && /bin/git pull');
+        return "<pre>".$salida."</pre>";
+    }
 }
