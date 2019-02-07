@@ -30,10 +30,8 @@ class ArchivoController extends Controller
 
     public function store(ArchivoStoreController $request)
     {
-        dd($request->archivo);
         $archivo = (new Archivo)->fill(SupraController::minuscula($request->all()));
         if ($request->hasFile('archivo')) {
-            $archivo->save();
             $nombre = mb_strtolower($archivo->pk_archivo . '#' . str_replace(' ', '-', $request->titulo));
             $archivo->link = SupraController::subirArchivo($request, $nombre, 'archivo', 'archivos');
             $archivo->tipo = $request->archivo->clientExtension();

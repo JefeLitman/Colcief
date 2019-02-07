@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">{{ucfirst($archivo -> descripcion)}}.</p>
+                                <p class="card-text">{{is_null($archivo -> descripcion) ? 'No se ingreso una descripción.' : ucfirst($archivo -> descripcion}}.</p>
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted" style="font-size:60%">
