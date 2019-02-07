@@ -26,6 +26,7 @@ class ArchivoController extends Controller{
     }
 
     public function store(ArchivoStoreController $request){
+        dd($request->all());
         $archivo = (new Archivo)->fill(SupraController::minuscula($request->all()));
         if($request->hasFile('archivo')){
             $archivo -> save();

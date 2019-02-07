@@ -25,7 +25,7 @@ class ArchivoStoreController extends FormRequest
     {
         return [
             'titulo' => 'required|string|max:50',
-            'descripcion' => 'string',
+            'descripcion' => 'nullable|string',
             'archivo' => 'mimes:docx,odt,doc,xlsx,ptt,pttx,pdf,txt,bmp,png,jpg,jpeg'
         ];
     }
