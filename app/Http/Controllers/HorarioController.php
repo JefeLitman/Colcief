@@ -17,42 +17,77 @@ class HorarioController extends Controller
     // 3. Profesor: Podrá ver el horario constituido por todas las materiasPC que este dicta
     // 4. Director: Podrá ver el horario constituido por todas las materiasPC que este dicta y además el horario del curso
     // que esta a cargo.
+    public function __construct()
+    {
+        $this->middleware('admin')->only(['organizar', 'index']);
+        $this->middleware('admin:profesor,director,coordinador')->only(['getHorarioEmpleado']);
+        $this->middleware('admin:estudiante')->only(['getHorarioEstudiante']);
+        $this->middleware('admin:coordinador,director')->only(['verHorarioDirector', 'verHorarioCurso', 'getHorarioCurso']);
+        $this->middleware('admin:administrador')->only(['create', 'edit', 'store', 'update', 'materias', 'destroy']);
+    }
+
     public function index()
     {
         switch (session('role')) {
             case 'administrador':
-                $materias = Materia::all();
+                $materias = Materia::where('created_at', 'like', '%' . date('Y') . '%')->get();
                 return view('horarios.listaHorarios', ['materias' => $materias]);
                 break;
             case 'estudiante':
                 $pk_estudiante = session('user')['pk_estudiante'];
-                return view('horarios.horarioEstudiante', ['estudiante' => $this->getHorarioEstudiante($pk_estudiante)]);
+                return view('horarios.horario', [
+                    'horarios' => $this->getHorarioEstudiante($pk_estudiante),
+                    'titulo' => "Horario - " . session('user')["nombre"],
+                ]);
                 break;
             case 'director':
                 $fk_curso = session('user')['fk_curso'];
-                $cur = Curso::find($fk_curso);
-                $c = $cur->prefijo . '-' . $cur->sufijo;
-                return view('horarios.horarioDirector', ['c' => $c]);
+                $curso = Curso::find($fk_curso);
+                $str_curso = $curso->prefijo . '-' . $curso->sufijo;
+                return view('horarios.horarioDirector', ['c' => $str_curso]);
                 break;
             case 'profesor':
                 $cedula = session('user')['cedula'];
-                return view('horarios.horarioProfesor', ['empleado' => $this->getHorarioEmpleado($cedula)]);
+                return view('horarios.horario', [
+                    'horarios' => $this->getHorarioEmpleado($cedula),
+                    'titulo' => "Horario - " . session('user')["nombre"],
+                ]);
+                break;
+            case 'coordinador':
+                $cursos = Curso::where('ano', date('Y'))->get();
+                $empleados = Empleado::where('role', '<>', '0')->where('role', '<>', '3')->get();
+                // dd($empleados);
+                return view('horarios.horarioCoordinador', [
+                    'cursos' => $cursos,
+                    'empleados' => $empleados,
+                ]);
                 break;
         }
 
     }
     //Retorna una vista con el horario de un curso correspondiente al director
-    public function verHorarioDirectorCurso()
+    public function verHorarioDirectorCurso($pk_curso)
     {
-        $fk_curso = session('user')['fk_curso'];
-        $cur = Curso::find($fk_curso);
-        return view('horarios.horarioProfesor', ['empleado' => $this->getHorarioCurso($fk_curso), 'curso' => $cur]);
+        $fk_curso = (session('role') == 'director')
+        ? session('user')['fk_curso']
+        : $pk_curso;
+        $curso = Curso::find($fk_curso);
+        return view('horarios.horario', [
+            'horarios' => $this->getHorarioCurso($fk_curso),
+            'titulo' => "Curso " . $curso->prefijo . "-" . $curso->sufijo,
+        ]);
     }
     //Retorna una vista para el director donde tiene la opccion de ver su horario o el horario de su curso
-    public function verHorarioDirector()
+    public function verHorarioDirector($cedula)
     {
-        $cedula = session('user')['cedula'];
-        return view('horarios.horarioProfesor', ['empleado' => $this->getHorarioEmpleado($cedula)]);
+        $fk_empleado = (session('role') == 'director')
+        ? session('user')['cedula']
+        : $cedula;
+        $empleado = Empleado::find($fk_empleado);
+        return view('horarios.horario', [
+            'horarios' => $this->getHorarioEmpleado($cedula),
+            'titulo' => "Horario - " . $empleado->nombre . " " . $empleado->apellido,
+        ]);
     }
     //Realiza la consulta correspondiente a un estudiante
     private function getHorarioEstudiante($pk_estudiante)
@@ -106,7 +141,7 @@ class HorarioController extends Controller
         $materia_pc = MateriaPC::selectRaw('materia_pc.pk_materia_pc, materia_pc.nombre as materia_nombre')
             ->selectRaw('curso.prefijo, curso.sufijo, empleado.nombre, empleado.apellido')
             ->where('fk_materia', $pk_materia)->join('empleado', 'materia_pc.fk_empleado', '=', 'empleado.cedula')
-            ->join('curso', 'materia_pc.fk_curso', '=', 'curso.pk_curso')
+            ->join('curso', 'materia_pc.fk_curso', '=', 'curso.pk_curso')->where('curso.ano', date('Y'))
             ->orderByRaw('cast(curso.prefijo as unsigned) asc')->get();
         $horarios = [];
         foreach ($materia_pc as $m) {

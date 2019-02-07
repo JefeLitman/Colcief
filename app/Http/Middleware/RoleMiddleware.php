@@ -15,6 +15,7 @@ class RoleMiddleware{
         if (empty($guards)) {
             $guards = ['administrador', 'director', 'profesor', 'coordinador', 'estudiante'];
         }
+        // dd($guards);
         foreach ($guards as $guard) {
             $auth = Auth::guard($guard);
             if ($auth->check()) {

@@ -16,8 +16,8 @@
                 <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
             </li>
             {{--  HORARIOS  --}}
-            <li @if (Request::path()=="horarios") class="active" @endif  data-toggle="tooltip" data-placement="top" title="En desarrollo">
-                <a class="nav-link " href="#"> <i class="far fa-calendar-alt"></i> Horarios</a>
+            <li @if (Request::path()=="horarios") class="active" @endif>
+                <a class="nav-link " href="/horarios"> <i class="far fa-calendar-alt"></i> Horarios</a>
             </li>
             {{--  CURSOS  --}}
             <li @if (Request::path()=="estudiantes") class="active" @endif >

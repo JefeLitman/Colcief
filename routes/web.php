@@ -121,8 +121,8 @@ Route::patch('/notas/{nota}', 'NotaController@update')->name('notas.update');
 Route::get('/notas/{nota}/editar', 'NotaController@edit')->name('notas.edit');
 
 /* RUTAS DE HORARIO */
-Route::get('/horarios/curso', 'HorarioController@verHorarioDirectorCurso');
-Route::get('/horarios/director', 'HorarioController@verHorarioDirector');
+Route::get('/horarios/curso/{pk_curso}', 'HorarioController@verHorarioDirectorCurso')->name('horarios.curso');
+Route::get('/horarios/director/{cedula}', 'HorarioController@verHorarioDirector')->name('horarios.empleado');
 Route::get('/horarios/{pk_materia}', 'HorarioController@materias');
 Route::resource('/horarios', 'HorarioController');
 Route::get('/horarios/{pk_materiaPC}/crear', 'HorarioController@create')->name('crearHorario');

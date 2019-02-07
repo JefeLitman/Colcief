@@ -133,7 +133,7 @@
                     </div>
                     <div class="col-sm-8">
                         <p class="p-3">
-                            El colegio fue creado en <b>1.970</b> por el secretario de Educación del departamento bajo la denominación de colegio “Eduardo Camacho Gamba”, en honor al ilustre político. Inicio sus laborares con un total de 31 estudiantes matriculados en el curso de bachillerato y fue nombrado como rector el docente Baltasar Santoyo Alza y como profesor de tiempo completo el señor Eduardo Suarez (ya fallecido).
+                            El colegio fue creado en <b>1970</b> por el secretario de Educación del departamento bajo la denominación de colegio “Eduardo Camacho Gamba”, en honor al ilustre político. Inicio sus laborares con un total de 31 estudiantes matriculados en el curso de bachillerato y fue nombrado como rector el docente Baltasar Santoyo Alza y como profesor de tiempo completo el señor Eduardo Suarez (ya fallecido).
                         </p>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <p class="p-3">
-                            En <b>1.972</b> bajo la rectoría del Pbro. José Gabino Sierra, el platel toma la actual denominación del colegio integrado Ezequiel Florián, por petición de la secretaria de educación, al presentarse dos colegios con el mismo nombre, y el nombre y en honor al distinguido colono de esta región, don Ezequiel Florián.
+                            En <b>1972</b> bajo la rectoría del Pbro. José Gabino Sierra, el platel toma la actual denominación del colegio integrado Ezequiel Florián, por petición de la secretaria de educación, al presentarse dos colegios con el mismo nombre, y el nombre y en honor al distinguido colono de esta región, don Ezequiel Florián.
                         </p>
                     </div>
                     <div class="col-sm-4">
@@ -155,8 +155,8 @@
                     </div>
                     <div class="col-sm-8">
                         <p class="p-3">
-                            El colegio funcionó inicialmente donde está ubicado hoy en día laConcentración Colombia, (actual sección primaria grados superiores) hasta Octubre de <b>1.977</b>. Cuan fue trasladado a su propia sede. <br>
-                            Solo hasta el año <b>1.976</b> completo la básica secundaria y a cumplir sus primeros veinte años <b>(1.970­­-1.990)</b> de labores, saco la primera promoción de bachilleres académicos, veintitrés (23) en total. En ese año <b>(1.990)</b>, la secretaria de educación autorizo el cambio de la modalidad: académicamente a agropecuaria,  en forma progresiva.
+                          El colegio funcionó inicialmente donde está ubicado hoy en día laConcentración Colombia, (actual sección primaria grados superiores) hasta Octubre de <b>1977</b>. Cuan fue trasladado a su propia sede. <br>
+                          Solo hasta el año <b>1976</b> completo la básica secundaria y a cumplir sus primeros veinte años <b>(1970­­-1990)</b> de labores, saco la primera promoción de bachilleres académicos, veintitrés (23) en total. En ese año <b>(1990)</b>, la secretaria de educación autorizo el cambio de la modalidad: académicamente a agropecuaria,  en forma progresiva.
                         </p>
                     </div>
                 </div>
@@ -206,85 +206,75 @@
     <!-- / Testimonials Section -->  --}}
 
     <!-- Our Blog Section -->
-    <div class="blog section section-invert py-4" id="nuestro-colegio">
+    {{--  <div class="blog section section-invert py-4" id="nuestro-colegio">
       <h3 class="section-title text-center m-3">Nuestro Colegio</h3>
       <div class="m-3 py-5">
-        {{-- <div class="py-4">
-          <div class="row"> --}}
-            <div class="card-columns" style="font-size: 0.8rem;">
-              {{-- <div class="col-md-6 col-lg-4 col-12"> --}}
-                <div class="card mb-4">
-                  <div class="corner-wrapper">
-                    <iframe class="card-img-top" id="videoSalida" src="https://www.youtube.com/embed/t-YusdBEheI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">40 años ColCIEF</h5>
-                    <p class="card-text">
-                      FLORIAN SANTANDER COLOMBIA CUMPLEAÑOS DEL MUNICIPIO Y COLEGIO EZEQUIEL FLORIAN 2010, CRISTIAN NEIRA, AVVIO TELEVISIÓN.
-                      MARCANDO PASOS CANAL TRO Y RCI.
-                    </p>
-                  </div>
-                </div>
-                <div class="card mb-4">
-                  <div class="corner-wrapper">
-                    <iframe class="card-img-top" id="videoSalida" src="https://www.youtube.com/embed/ZxAmzM1UBQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">CIEF en el foro educativo</h5>
-                    <p class="card-text">
-                      El Colegio Integrado Ezequiel Florián y el programa radial Colegio en Sintonia 88.8 fm se hace presente a la invitación realizada por el Ministerio de Educación y Microsoft.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="card mb-4">
-                  <img class="card-img-top" src="{{asset('img/familia1.jpg')}}" alt="Dia de la familia">
-                  <div class="card-body">
-                    <h5 class="card-title">Día de la Familia CIEF</h5>
-                    <p class="card-text">El pasado viernes 24 de Abril se celebró el dia de la familia CIEF. Una jornada llena de expresiones culturales, agradecimiento al Dios de los cielos, integración y diversión familiar. Estos son algunos de esos momentos especiales.</p>
-                  </div>
-                </div>
-              {{-- </div> --}}
-
-              {{-- <div class="col-md-6 col-lg-4 col-12"> --}}
-                <div class="card mb-3">
-                  <img class="card-img-top" src="{{asset('img/digital.jpg')}}" alt="Vive">
-                  <div class="card-body">
-                    <h5 class="card-title">Forian ya vive digital?</h5>
-                    <p class="card-text">Hace un par de dias colocaron esta pancarta, informando a la comunidad que nuestro municipio que ya cuenta con Internet de fibra óptica, la cuál es para la alcaldía e instituciones educativas según dijo el señor Gobernador en el pasado consejo comunal, pero hasta ahora nuestros estudiantes no pueden disfrutar de este beneficio, ya que al dia de hoy llevamos cerca de un año sin esta conexión.</p>
-                  </div>
-                </div>
-              {{-- </div> --}}
-
-              {{-- <div class="col-md-6 col-lg-4 col-12"> --}}
-                <div class="card mb-4">
-                  <img class="card-img-top" src="{{asset('img/biblioteca.jpg')}}" alt="biblioteca">
-                  <div class="card-body">
-                    <h5 class="card-title">Biblioteca del CIEF ahora con lo último</h5>
-                    <p class="card-text">El Ministerio de Educación donó al la institución 235 libros y la Secretaria de Educación donó entre material didáctico y libros un aproximado de 200 ejemplares, la mayoría con temas para básica primaria para que de esta forma incentivemos la lectura en nuestros educandos. Estos libros permanecerán en la biblioteca del colegio para que los docentes soliciten el préstamo para trabajar con sus alumnos.</p>
-                  </div>
-                </div>
-
-                <div class="card mb-4">
-                  <img class="card-img-top" src="{{asset('img/educacion.jpg')}}" alt="Educación sexual">
-                  <div class="card-body">
-                    <h5 class="card-title">Educación Sexual</h5>
-                    <p class="card-text">La Ese san José de Florian y la Policía local realizaron el pasado miércoles una charla informativa sobre educación sexual a los grados noveno, décimo y undécimo.</p>
-                  </div>
-                </div>
-                <div class="card mb-4">
-                  <img class="card-img-top" src="{{asset('img/gobernacion.jpg')}}" alt="Gobernación">
-                  <div class="card-body">
-                    <h5 class="card-title">El CIEF cada vez mejor</h5>
-                    <p class="card-text">El pasado sábado  11 de Mayo en las horas de la tarde Florián tuvo el honor de recibir la visita del señor gobernador del departamento Richard Aguilar, acompañado de su equipo de secretarios y algunos funcionarios,  además de la alcaldesa del municipio de la Belleza Azucena Rojas y como anfitrión quien administra los intereses de nuestro municipio, el señor  Nestor Vladimir Forero que quien junto con la comunidad florianence realizaron un Consejo Comunal en donde se expuso las necesidades de nuestro municipio y también se recibieron gratas sorpresas no solo para el municipio sino también para nuestra institución educativa que contará a partir de ahora con un laboratorio de física y química además de 7 tableros inteligentes que se encuentran ubicados en los grados novenos, décimos, undécimos y en el aula de informática.  Para la primaria una piscina de pelotas.</p>
-                  </div>
-                </div>
-              {{-- </div> --}}
+        <div class="card-columns" style="font-size: 0.8rem;">
+          <div class="card mb-4">
+            <div class="corner-wrapper">
+              <iframe class="card-img-top" id="videoSalida" src="https://www.youtube.com/embed/t-YusdBEheI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-          {{-- </div>
-        </div> --}}
+            <div class="card-body">
+              <h5 class="card-title">40 años ColCIEF</h5>
+              <p class="card-text">
+                FLORIAN SANTANDER COLOMBIA CUMPLEAÑOS DEL MUNICIPIO Y COLEGIO EZEQUIEL FLORIAN 2010, CRISTIAN NEIRA, AVVIO TELEVISIÓN.
+                MARCANDO PASOS CANAL TRO Y RCI.
+              </p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="corner-wrapper">
+              <iframe class="card-img-top" id="videoSalida" src="https://www.youtube.com/embed/ZxAmzM1UBQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">CIEF en el foro educativo</h5>
+              <p class="card-text">
+                El Colegio Integrado Ezequiel Florián y el programa radial Colegio en Sintonia 88.8 fm se hace presente a la invitación realizada por el Ministerio de Educación y Microsoft.
+              </p>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{asset('img/familia1.jpg')}}" alt="Dia de la familia">
+            <div class="card-body">
+              <h5 class="card-title">Día de la Familia CIEF</h5>
+              <p class="card-text">El pasado viernes 24 de Abril se celebró el dia de la familia CIEF. Una jornada llena de expresiones culturales, agradecimiento al Dios de los cielos, integración y diversión familiar. Estos son algunos de esos momentos especiales.</p>
+            </div>
+          </div>
+        
+          <div class="card mb-3">
+            <img class="card-img-top" src="{{asset('img/digital.jpg')}}" alt="Vive">
+            <div class="card-body">
+              <h5 class="card-title">Forian ya vive digital?</h5>
+              <p class="card-text">Hace un par de dias colocaron esta pancarta, informando a la comunidad que nuestro municipio que ya cuenta con Internet de fibra óptica, la cuál es para la alcaldía e instituciones educativas según dijo el señor Gobernador en el pasado consejo comunal, pero hasta ahora nuestros estudiantes no pueden disfrutar de este beneficio, ya que al dia de hoy llevamos cerca de un año sin esta conexión.</p>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{asset('img/biblioteca.jpg')}}" alt="biblioteca">
+            <div class="card-body">
+              <h5 class="card-title">Biblioteca del CIEF ahora con lo último</h5>
+              <p class="card-text">El Ministerio de Educación donó al la institución 235 libros y la Secretaria de Educación donó entre material didáctico y libros un aproximado de 200 ejemplares, la mayoría con temas para básica primaria para que de esta forma incentivemos la lectura en nuestros educandos. Estos libros permanecerán en la biblioteca del colegio para que los docentes soliciten el préstamo para trabajar con sus alumnos.</p>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{asset('img/educacion.jpg')}}" alt="Educación sexual">
+            <div class="card-body">
+              <h5 class="card-title">Educación Sexual</h5>
+              <p class="card-text">La Ese san José de Florian y la Policía local realizaron el pasado miércoles una charla informativa sobre educación sexual a los grados noveno, décimo y undécimo.</p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{asset('img/gobernacion.jpg')}}" alt="Gobernación">
+            <div class="card-body">
+              <h5 class="card-title">El CIEF cada vez mejor</h5>
+              <p class="card-text">El pasado sábado  11 de Mayo en las horas de la tarde Florián tuvo el honor de recibir la visita del señor gobernador del departamento Richard Aguilar, acompañado de su equipo de secretarios y algunos funcionarios,  además de la alcaldesa del municipio de la Belleza Azucena Rojas y como anfitrión quien administra los intereses de nuestro municipio, el señor  Nestor Vladimir Forero que quien junto con la comunidad florianence realizaron un Consejo Comunal en donde se expuso las necesidades de nuestro municipio y también se recibieron gratas sorpresas no solo para el municipio sino también para nuestra institución educativa que contará a partir de ahora con un laboratorio de física y química además de 7 tableros inteligentes que se encuentran ubicados en los grados novenos, décimos, undécimos y en el aula de informática.  Para la primaria una piscina de pelotas.</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </div>  --}}
     <!-- / Our Blog Section -->
 
     <!-- Contact Section -->
