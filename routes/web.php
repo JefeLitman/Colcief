@@ -35,6 +35,7 @@ Route::get('/terminal/seed', 'Terminal@seed');
 Route::get('/terminal/main', 'Terminal@migrateResetSeeder');
 Route::get('/terminal/autoload', 'Terminal@autoload');
 Route::get('/terminal/cache', 'Terminal@autoload');
+Route::get('/terminal/git/pull', 'Terminal@pull');
 
 /* RUTAS DEL LOGIN*/
 Route::get('/login', 'Login\LoginController')->name('login');
