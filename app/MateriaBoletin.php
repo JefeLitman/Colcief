@@ -29,4 +29,9 @@ class MateriaBoletin extends Model
         $this->nota_materia=round($this->nota_materia, 1,PHP_ROUND_HALF_UP);  //Redondeo
         $this->save();
     }
+
+    public function notasPeriodo()
+    {
+        return $this->hasMany('App\NotaPeriodo','fk_materia_boletin','pk_materia_boletin');
+    }
 }

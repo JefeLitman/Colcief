@@ -167,5 +167,9 @@ Route::resource('/recuperaciones', 'RecuperacionController');
 Route::get('/SIGSE', 'SIGSEController@index')->name('SIGSE.index');
 Route::post('/SIGSE', 'SIGSEController@show')->name('SIGSE.show');
 
+/* RUTAS SIGCA */
+Route::get('/SIGCA','SIGCAController@index')->name('SIGCA.index');
+Route::get('/SIGCA/{pk_curso}','SIGCAController@show')->name('SIGCA.show');
+
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Curso extends Model {
-    
+
     protected $table = 'curso';
     protected $primaryKey = 'pk_curso';
     protected $fillable = ['pk_curso', 'prefijo', 'sufijo','ano'];
@@ -25,5 +25,10 @@ class Curso extends Model {
 
     public function estudiantes(){
         return $this->hasMany('App\Estudiante', 'fk_curso','pk_curso');
+    }
+
+    public function generarNombreCurso()
+    {
+        return $this->prefijo.'-'.$this->sufijo;
     }
 }

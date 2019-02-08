@@ -46,6 +46,11 @@ class Estudiante extends Authenticatable {
       return $this->hasMany('App\NotaEstudiante','fk_estudiante','pk_estudiante');
     }
 
+    public function boletines()
+    {
+        return $this->hasMany('App\Boletin','fk_estudiante','pk_estudiante');
+    }
+
     //By Paola
     /**
      * Una vez el estudiante cambia de curso, los datos deben cambiar segun sea el caso:
@@ -74,9 +79,9 @@ class Estudiante extends Authenticatable {
      * Dependiendo del curso al que pertenece el estudiante tendra instancias de materia_boletin
      * y dependiendo de esas materias que cursa el curso tendra sus respectivas nota_estudiante
      * Y por obligacion se deben crear las respectivas tuplas donde se almacenarán las notas por
-     * division y por periodo de cada materia. 
-     * 
-     * Esta funcion crea toda esa estructura para que las notas/planillas funcionen de forma 
+     * division y por periodo de cada materia.
+     *
+     * Esta funcion crea toda esa estructura para que las notas/planillas funcionen de forma
      * correcta.
      */
     private function crearEstructuraDatos(){
