@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Curso;
 use App\Empleado;
 use App\Horario;
-use App\Materia;
 use App\MateriaPC;
 use Illuminate\Http\Request;
 
@@ -30,8 +29,9 @@ class HorarioController extends Controller
     {
         switch (session('role')) {
             case 'administrador':
-                $materias = Materia::where('created_at', 'like', '%' . date('Y') . '%')->get();
-                return view('horarios.listaHorarios', ['materias' => $materias]);
+                $curso = Curso::all()->where('ano', date('Y'))->groupBy('prefijo');
+                $grado = ["0" => "Preescolar", "1" => "Primero", "2" => "Segundo", '3' => "Tercero", '4' => 'Cuarto', '5' => 'Quinto', '6' => 'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno', '10' => 'Décimo', '11' => 'Once'];
+                return view('horarios.listaHorarios', ['curso' => $curso, 'grado' => $grado]);
                 break;
             case 'estudiante':
                 $pk_estudiante = session('user')['pk_estudiante'];
@@ -92,83 +92,59 @@ class HorarioController extends Controller
     //Realiza la consulta correspondiente a un estudiante
     private function getHorarioEstudiante($pk_estudiante)
     {
-        $estudiante = Horario::select('horario.*', 'materia_pc.nombre')->where('estudiante.pk_estudiante', $pk_estudiante)->join('materia_pc', 'materia_pc.pk_materia_pc', '=', 'horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso', '=', 'curso.pk_curso')->join('estudiante', 'estudiante.fk_curso', '=', 'curso.pk_curso')->orderBy('hora_inicio')->get();
+        $estudiante = Horario::select('horario.*', 'materia_pc.*')->where('estudiante.pk_estudiante', $pk_estudiante)->join('materia_pc', 'materia_pc.pk_materia_pc', '=', 'horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso', '=', 'curso.pk_curso')->join('estudiante', 'estudiante.fk_curso', '=', 'curso.pk_curso')->orderBy('hora_inicio')->get();
         return $this->organizacion($estudiante);
     }
     //realiza la consulta de un horario correspondiente a un curso
     private function getHorarioCurso($fk_curso)
     {
-        $curso = Horario::select('horario.*', 'materia_pc.nombre')->where('empleado.fk_curso', $fk_curso)->join('materia_pc', 'materia_pc.pk_materia_pc', '=', 'horario.fk_materia_pc')->join('empleado', 'materia_pc.fk_empleado', '=', 'empleado.cedula')->orderBy('hora_inicio')->get();
+        $curso = Horario::select('horario.*', 'materia_pc.*')->where('curso.pk_curso', $fk_curso)->join('materia_pc', 'materia_pc.pk_materia_pc', '=', 'horario.fk_materia_pc')->join('curso', 'materia_pc.fk_curso', '=', 'curso.pk_curso')->orderBy('hora_inicio')->get();
         return $this->organizacion($curso);
     }
     //realiza la consulta correspondiete a un empleado
     private function getHorarioEmpleado($cedula)
     {
-        $empleado = Horario::select('horario.*', 'materia_pc.nombre')->where('materia_pc.fk_empleado', $cedula)->join('materia_pc', 'materia_pc.pk_materia_pc', '=', 'horario.fk_materia_pc')->orderBy('hora_inicio')->get();
+        $empleado = Horario::select('horario.*', 'materia_pc.*')->where('materia_pc.fk_empleado', $cedula)->join('materia_pc', 'materia_pc.pk_materia_pc', '=', 'horario.fk_materia_pc')->orderBy('hora_inicio')->get();
         return $this->organizacion($empleado);
     }
     //Organiza los horarios en un array asocitivo
     public function organizacion($horarios)
     {
         $dias = ['lunes' => [], 'martes' => [], 'miercoles' => [], 'jueves' => [], 'viernes' => []];
-        foreach ($horarios as $horario) {
-            switch ($horario->dia) {
-                case 'lunes':
-                    array_push($dias['lunes'], $horario);
-                    break;
-                case 'martes':
-                    array_push($dias['martes'], $horario);
-                    break;
-                case 'miercoles':
-                    array_push($dias['miercoles'], $horario);
-                    break;
-                case 'jueves':
-                    array_push($dias['jueves'], $horario);
-                    break;
-                case 'viernes':
-                    array_push($dias['viernes'], $horario);
-                    break;
+        foreach ($dias as $key => $dia) {
+            for ($i = 7; $i <= 14; $i++) {
+                $dias[$key][$i] = null;
             }
         }
-        return $dias;
-    }
-
-    // Devuelve una vista con las materiasPC de una materia. A la vista se le pasa una colección con los datos
-    // de la materiaPC, curso y empleado para que se puedan mostrar y además una colección de cada horario
-    // si es que existen para que estos sean listados junto con la información de la materiaPC
-    public function materias($pk_materia)
-    {
-        $materia_pc = MateriaPC::selectRaw('materia_pc.pk_materia_pc, materia_pc.nombre as materia_nombre')
-            ->selectRaw('curso.prefijo, curso.sufijo, empleado.nombre, empleado.apellido')
-            ->where('fk_materia', $pk_materia)->join('empleado', 'materia_pc.fk_empleado', '=', 'empleado.cedula')
-            ->join('curso', 'materia_pc.fk_curso', '=', 'curso.pk_curso')->where('curso.ano', date('Y'))
-            ->orderByRaw('cast(curso.prefijo as unsigned) asc')->get();
-        $horarios = [];
-        foreach ($materia_pc as $m) {
-            array_push($horarios, Horario::where('fk_materia_pc', $m->pk_materia_pc)->get());
+        foreach ($horarios as $horario) {
+            $inicio = explode(':', $horario->hora_inicio)[0];
+            $fin = explode(':', $horario->hora_fin)[0];
+            for ($i = $inicio; $i < $fin; $i++) {
+                unset($dias[$horario->dia][(int) $i]);
+            }
+            $dias[$horario->dia][(int) $inicio] = $horario->attrs();
+            ksort($dias[$horario->dia]);
         }
-        return view('horarios.listaMateriaPCs', ['materiaPCs' => $materia_pc, 'pk_materia' => $pk_materia, 'horarios' => $horarios]);
+        return $dias;
     }
 
     // URL: se le pasa la pk_materia_pc de la materiaPC de la cual se desea crear horarios
     // Retorna una vista con un formulario para crear uno o hasta tres horarios
     // para una materiaPC. A la vista se le pasa una colección
     // con datos de materiaPC, curso y empleado para que se puedan mostrar.
-    public function create($pk_materiaPC = null)
+    public function create($fk_curso)
     {
-
+        $curso = Curso::find($fk_curso);
+        $materia_pc = MateriaPC::where('fk_curso', $fk_curso)->get();
+        $horario = $this->getHorarioCurso($fk_curso);
         // Verifico que en la URL venga la $pk_materiaPC para saber a que materiaPC le creare los horarios
-        if (!empty($pk_materiaPC)) {
+        if (!empty($horario)) {
             // Envio una colección de MateriaPC con la información del profesor y curso
             // en el cual se desarrolla para imprimir en la vista
-            $materiaPC = MateriaPC::selectRaw('materia_pc.pk_materia_pc, materia_pc.fk_empleado, materia_pc.fk_curso as f_curso')
-                ->selectRaw('materia_pc.nombre as nombre_materia, curso.prefijo, curso.sufijo, empleado.nombre, empleado.apellido')
-                ->where('pk_materia_pc', $pk_materiaPC)
-                ->join('empleado', 'materia_pc.fk_empleado', '=', 'empleado.cedula')
-                ->join('curso', 'materia_pc.fk_curso', '=', 'curso.pk_curso')->get()[0];
-            return view('horarios.crearHorario', compact('materiaPC'));
+            return view('horarios.crearHorarioCurso', ['horarios' => $horario, 'curso' => $curso, 'materia_pc' => $materia_pc]);
+        } else {
+            return back()->width('false', 'Algo salio mal, intente nuevamente');
         }
-        return 'debe especificar la materia';
     }
 
     public function store(Request $request)
@@ -303,6 +279,91 @@ class HorarioController extends Controller
                 ' a las ' . $request->all()['hora_fin'][$posicion] .
                 ' debido a una interferencia horaria con otra materia'
             );
+        }
+    }
+
+    public function storhe(Request $request)
+    {
+        if ($request->ajax()) {
+            
+            $crear = true;
+            $errores = [];
+            // Obtener los horarios de todas las MateriasPC para un curso
+            $horariosCurso = MateriaPC::where('fk_curso', $request->curso)
+            ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
+
+            // Consulta de todas las materiasPC para el empleado
+            $materiasEmpleado = MateriaPC::where('fk_empleado', $request->empleado)
+            ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
+
+            // Recorrer los horarios de todas las MateriasPC para un mismo curso para mirar que sus horarios no se crucen
+            foreach ($horariosCurso as $horarioCurso) {
+
+                // Utilizar la funcion strtotime() que convierte los tiempos
+                // a una fecha UNIX (el numero de segundos desde 1970 00:00:00 UTC)
+                // para comparar luego estos valores con el fin de evitar errores en la comparación
+                $bdInicio = strtotime($horarioCurso->hora_inicio);
+                $bdFin = strtotime($horarioCurso->hora_fin);
+                $reqInicio = strtotime($request->hora_inicio);
+                $reqFin = strtotime($request->hora_fin);
+
+                // Revisar los siguientes cuatro casos en los que no debería dejarse crear un horario por interferencia:
+                // 1. Alguno de los horarios de la BD contiene la hora_inicio del request ($bdInicio < $reqInicio < bdFin)
+                // 2. Alguno de los horarios de la BD contiene la hora_fin del request ($bdInicio < $reqFin < bdFin)
+                // 3. Las horas de inicio y fin del request contienen algun horario de la BD ($reqInicio < $bdInicio < $bdFin < $reqFin)
+                // 4. La hora de inicio del request es igual a la de la BD y la hora fin del request es igual a la de la BD ($reqInicio = $bdInicio y $bdFin = $reqFin)
+                // Se podría pensar en un quinto caso que sería que los horarios de la BD contengan a los del request pero con la verificacion
+                // de cualquiera de los dos primeros casos se verificaria este quinto caso.
+                if ((($reqInicio < $bdFin) && ($reqInicio > $bdInicio)) || (($reqFin < $bdFin) && ($reqFin > $bdInicio)) || (($reqInicio < $bdInicio) && ($reqFin > $bdFin)) || (($reqInicio == $bdInicio) && ($reqFin == $bdFin))) {
+                    // Asegurarse que si algun horario interfiere con otro, sea el mismo día
+                    if ($request->dia == $horarioCurso->dia) {
+                        // Error para las interferencias por materiasPC de un mismo curso
+                        $error = "Interferencia horaria para el " . $request->dia . " en la franja de " .
+                        $request->hora_inicio . "-" . $request->hora_fin . " con la materia " .
+                        $horarioCurso->nombre . " de " . substr($horarioCurso->hora_inicio, 0, 5) .
+                        "-" . substr($horarioCurso->hora_fin, 0, 5);
+                        // Añadir el error al array de errores
+                        array_push($errores, $error);
+                        // Se encontro un error entonces cambiamos el valor de la variable crear
+                        $crear = false;
+                    }
+                }
+            }
+
+            // Recorrer todas las materiasPC de un empleado en busca de interferencias en los horarios de los profesores
+            foreach ($materiasEmpleado as $materiaEmpleado) {
+
+                // Utilizar la funcion strtotime() que convierte los tiempos
+                // a una fecha UNIX (el numero de segundos desde 1970 00:00:00 UTC)
+                // para comparar luego estos valores con el fin de evitar errores en la comparación
+                $profeInicio = strtotime($materiaEmpleado->hora_inicio);
+                $profeFin = strtotime($materiaEmpleado->hora_fin);
+                $reqInicio = strtotime($request->hora_inicio);
+                $reqFin = strtotime($request->hora_fin);
+
+                // Se repiten los casos para interferencia horaria pero esta vez teniendo en cuenta los horarios de los profesores y no del curso
+                if ((($reqInicio < $profeFin) && ($reqInicio > $profeInicio)) || (($reqFin < $profeFin) && ($reqFin > $profeInicio)) || (($reqInicio < $profeInicio) && ($reqFin > $profeFin)) || (($reqInicio == $profeInicio) && ($reqFin == $profeFin))) {
+                    // Asegurarse que si algun horario interfiere con otro, sea el mismo día
+                    if ($request->dia == $materiaEmpleado->dia) {
+                        // Error para las interferencias en las materiasPC del empleado
+                        $error = "El profesor ya tiene un horario asignado el día " .
+                        $materiaEmpleado->dia . " de " . substr($materiaEmpleado->hora_inicio, 0, 5) .
+                        "-" . substr($materiaEmpleado->hora_fin, 0, 5) . " por lo cual no es posible crear un horario de " .
+                        $request->hora_inicio . "-" . $request->hora_fin;
+                        // Añadir el error al array de errores
+                        array_push($errores, $error);
+                        // Se encontro un error entonces cambiamos el valor de la variable crear
+                        $crear = false;
+                    }
+                }
+            }
+            $horario = Horario::findOrCreate($request->pk_horario)->fill($request->except('_token'));
+            $horario->save();
+            return response()->json([
+                'curso' => $horario,
+                'nombre' => $materia_pc->nombre,
+            ]);
+            
         }
     }
 

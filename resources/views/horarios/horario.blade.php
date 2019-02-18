@@ -2,7 +2,7 @@
 @section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo',' Horario') 
 
-	<div class="container" style="background:#fafafa !important;">
+	<div class="container mb-5" style="background:#fafafa !important;">
 		<h5 class="card-title text-center">
 			{{$titulo}}
 		</h5>
@@ -33,50 +33,34 @@
 
 			<div class="eventpsp">
 				<ul>
-					{{-- {{dd($horarios)}} --}}
 					@foreach ($horarios as $key => $item)
 						<li class="eventpsp-group">
 							<div class="top-infop"><span>{{ucwords($key)}}</span></div>
-							<ul>
-								@foreach ($item as $horario)
-									<li class="single-eventp" data-start="{{explode(':', $horario->hora_inicio)[0]}}:{{explode(':', $horario->hora_inicio)[1]}}" data-end="{{explode(':', $horario->hora_fin)[0]}}:{{explode(':', $horario->hora_fin)[1]}}" data-content="eventp-abs-circuit" data-eventp="eventp-1">
-										<a-pepe href="#0">
-											<em class="eventp-name" style="font-size:1 rem !important; text-align:center !important;">{{$horario->nombre}}</em>
-										</a-pepe>
-									</li>
+							<ul id="{{$key}}">
+								@foreach ($item as $ini => $horario)
+									@if(!is_null($horario))
+										<li pk="{{$horario['pk_horario']}}" materia="{{$horario['pk_materia_pc']}}" day="{{$key}}" class="single-eventp" data-start="{{explode(':', $horario['hora_inicio'])[0]}}:{{explode(':', $horario['hora_inicio'])[1]}}" data-end="{{explode(':', $horario['hora_fin'])[0]}}:{{explode(':', $horario['hora_fin'])[1]}}" data-content="eventp-abs-circuit" data-eventp="eventp-1">
+											<a-pepe href="#0">
+												<em class="eventp-name">{{$horario['nombre']}}</em>
+											</a-pepe>
+										</li>
+									@else
+										<li day="{{$key}}" class=" mb-3 single-eventp bg-light shadow-none border" style="z-index:1000;" data-start="{{$ini<10 ? '0'.$ini : $ini}}:00" data-end="{{$ini+1<10 ? '0'.($ini+1) : $ini+1}}:00" data-content="eventp-abs-circuit" data-eventp="eventp-1">
+											<a-pepe href="#0">
+												<em class="eventp-name mt-2" style="font-size:1 rem !important; text-align:center !important;"></em>
+											</a-pepe>
+										</li>
+									@endif
 								@endforeach
 							</ul>
 						</li>
 					@endforeach
 				</ul>
 			</div>
-
-			<div class="eventp-modal">
-				<header class="headerp">
-					<div class="content">
-						<span class="eventp-date"></span>
-						<h5 class="eventp-name"></h5>
-					</div>
-
-					<div class="headerp-bg"></div>
-				</header>
-
-				<div class="body-pepe">
-					<div class="eventp-infop"></div>
-					<div class="body-pepe-bg"></div>
-				</div>
-
-				<a-pepe href="#0" class="closep">close</a-pepe>
-			</div>
-
-			<div class="cover-layer"></div>
 		</div
 		<script src="{{asset('js/modernizr.js')}}"></script>
-		{{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>  --}}
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> -->
 		<script src="{{asset('js/main.js')}}"></script> <!-- Resource jQuery -->
 	</div>
-
-
-
 
 @endsection

@@ -25,7 +25,18 @@
                 </li>
                 {{--  ESTUDIANTES  --}}
 				<li @if (Request::path()=="filtro") class="active" @endif >
-					<a class="nav-link " href="{{ url('filtro') }}"> <i class="fas fa-user-graduate"></i> Estudiantes</a>
+                    <!-- <a class="nav-link " href="{{ url('filtro') }}"> <i class="fas fa-user-graduate"></i> Estudiantes</a> -->
+                    <a href="#estudianteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-user-graduate"></i> Estudiantes
+					</a>
+					<ul class="collapse list-unstyled" id="estudianteSubmenu">
+                        <li>
+							<a href="{{ url('/filtro') }}"><i class="fas fa-eye"></i> Ver</a>
+						</li>
+						<li>
+							<a href="{{ url('/estudiantes/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+						</li>
+					</ul>
                 </li>
                 {{--  EMPLEADOS  --}}
 				<li @if (Request::path()=="empleados") class="active" @endif >
@@ -33,11 +44,11 @@
 						<i class="fas fa-users"></i> Empleados
 					</a>
 					<ul class="collapse list-unstyled" id="empleadoSubmenu">
-						<li>
-							<a href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
+                        <li>
+							<a href="{{ url('/empleados') }}"><i class="fas fa-eye"></i> Ver</a>
 						</li>
 						<li>
-							<a href="{{ url('/empleados') }}"><i class="fas fa-user-edit"></i> Editar</a>
+							<a href="{{ url('/empleados/crear') }}"><i class="fas fa-user-plus"></i> Crear</a>
 						</li>
 					</ul>
                 </li>

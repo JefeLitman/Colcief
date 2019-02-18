@@ -272,7 +272,6 @@ Main Components
 .cd-schedule .eventp-name,
 .cd-schedule .eventp-date {
   display: block;
-  color: white;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

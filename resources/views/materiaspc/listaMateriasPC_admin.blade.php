@@ -49,13 +49,13 @@
                             <div id="collapse{{$i}}" class="collapse" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-condensed table-hover text-center">
+                                        <table class="table table-bordered mb-0">
                                             <thead>
                                                 <tr>
                                                     <th scope="col" style="color:#00695c" class="text-center"> Nombre del profesor </th>
-                                                    <th scope="col" style="color:#00695c" class="text-center"> Apellido del profesor</th>
+                                                    <!-- <th scope="col" style="color:#00695c" class="text-center"> Apellido del profesor</th> -->
                                                     <th scope="col" style="color:#00695c" class="text-center"> Curso </th>
-                                                    <th scope="col" style="color:#00695c" class="text-center" colspan="2">
+                                                    <th scope="col" style="color:#00695c" colspan="2" class="text-center">
                                                         Acciones
                                                     </th>
                                                 </tr>
@@ -71,9 +71,7 @@
                                                     @foreach($result[$m->pk_materia] as $j)
                                                         <tr id="materiapc{{$k}}">
                                                             {{--  nombre del profe  --}}
-                                                            <td class="text-center"> {{$j[1]}}</td>
-                                                            {{--  apellido del profe  --}}
-                                                            <td class="text-center"> {{$j[2]}}</td>
+                                                            <td> {{$j[1]}} {{$j[2]}}</td>
                                                             {{--  curso  --}}
                                                             <td class="text-center"> {{$j[3]}}</td>
                                                             {{-- editar materiapc --}}

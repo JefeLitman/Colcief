@@ -22,15 +22,16 @@ class EstudianteController extends Controller
 
     //Funciones publicas de primeros y al final las privadas
 
-    public function __construct (){
-        $this->middleware('admin:estudiante,director,profesor,administrador,coordinador')->only(['perfil', 'show','cambiarClave']);
-        $this->middleware('admin:coordinador,administrador')->only(['index','estudianteGrado','estudiantes','filtro']);
-        $this->middleware('admin:administrador')->except(['perfil', 'show', 'index','estudianteGrado','estudiantes','filtro']);
+    public function __construct()
+    {
+        $this->middleware('admin:estudiante,director,profesor,administrador,coordinador')->only(['perfil', 'show', 'cambiarClave']);
+        $this->middleware('admin:coordinador,administrador')->only(['index', 'estudianteGrado', 'estudiantes', 'filtro']);
+        $this->middleware('admin:administrador')->except(['perfil', 'show', 'index', 'estudianteGrado', 'estudiantes', 'filtro']);
     }
 
     public function index()
     {
-        $curso = Curso::all()->groupBy('prefijo');
+        $curso = Curso::all()->where('ano', date('Y'))->groupBy('prefijo');
         $grado = ["0" => "Preescolar", "1" => "Primero", "2" => "Segundo", '3' => "Tercero", '4' => 'Cuarto', '5' => 'Quinto', '6' => 'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno', '10' => 'Décimo', '11' => 'Once'];
         return view('cursos.cursos', ['curso' => $curso, 'grado' => $grado]);
     }
@@ -205,7 +206,7 @@ class EstudianteController extends Controller
             $var = Estudiante::find(session('user')['pk_estudiante']);
             session(['user' => $var->session(), 'role' => $guard]);
             $mensaje = $estudiante->nombre . ' ' . $estudiante->apellido . ' actualizaste tu contraseña con éxito';
-            return redirect(url('/estudiantes/'.session('user')['pk_estudiante']))->with('true', $mensaje);
+            return redirect(url('/estudiantes/' . session('user')['pk_estudiante']))->with('true', $mensaje);
         } else {
             return back()->with('false', 'Algo no salio bien, intente nuevamente');
         }
@@ -218,7 +219,7 @@ class EstudianteController extends Controller
             $estudiante->password = Hash::make($request->password);
             if ($estudiante->save()) {
                 $mensaje = $estudiante->nombre . ' ' . $estudiante->apellido . ' actualizaste tu contraseña con éxito';
-                return redirect(url('/estudiantes/'.session('user')['pk_estudiante']))->with('true', $mensaje);
+                return redirect(url('/estudiantes/' . session('user')['pk_estudiante']))->with('true', $mensaje);
             } else {
                 return back()->with('false', 'Algo no salio bien, intente nuevamente');
             }

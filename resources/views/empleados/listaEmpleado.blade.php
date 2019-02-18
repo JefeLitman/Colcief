@@ -44,8 +44,6 @@
                             <th class="center" scope="col" style="color:#00695c">Nombre</th>
                             <th class="center" scope="col" style="color:#00695c">Cargo</th>
                             <th class="center" scope="col" style="color:#00695c" colspan="4">Acciones</th>
-                            {{-- <th>Editar</th>
-                            <th>Eliminar</th> --}}
                         </tr>
                     </thead>
                     @php
@@ -58,29 +56,22 @@
                                 <td class="center">{{ucwords($i->nombre)}} {{ucwords($i->apellido)}}</td>
                                 <td class="center">{{ucwords($cargo[$i->role])}}</td>
                                 <td class="center">
-                                    <a title="Agregar tiempo extra" class="
-                                    @if($i->role != 0)
-                                        time
-                                    @endif
-                                    " identificador="{{$i->cedula}}"><i
-                                    @switch($i->tiempo_extra)
-                                        @case(1)
-                                            style="color:#007bff"
-                                            @break
-                                        @case(3)
-                                            style="color:#ffc107"
-                                            @break
-                                        @case(7)
-                                            style="color:#dc3545"
-                                            @break
-                                        @default
-                                            style="color:#343a40"
-                                    @endswitch
-                                    id="{{$i->cedula}}t" class="fas fa-stopwatch
-                                    @if($i->role == 0)
-                                        text-secondary
-                                    @endif
-                                    "></i></a>
+                                    <a title="Agregar tiempo extra" class="{{($i->role == 0 || $i->role == 3 ) ? '' : 'time'}}" identificador="{{$i->cedula}}">
+                                        <i id="{{$i->cedula}}t" class="fas fa-stopwatch {{($i->role == 0 || $i->role == 3 ) ? 'text-secondary' : ''}}
+                                            @switch($i->tiempo_extra)
+                                                @case(1)
+                                                    text-primary
+                                                    @break
+                                                @case(3)
+                                                    text-warning
+                                                    @break
+                                                @case(7)
+                                                    text-danger
+                                                    @break
+                                            @endswitch
+                                            ">
+                                        </i>
+                                    </a>
                                 </td>
                                 <td class="center">
                                     <a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>

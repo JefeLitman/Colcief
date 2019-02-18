@@ -1,16 +1,6 @@
 @extends('contenedores.admin')
 @section('titulo','Crear curso')
 @section('contenedor_admin')
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-<br>
 <div class="container">
     <div class="row justify-content-center" style="background-color: #fafafa !important;">
         <div class="col-md-10">
@@ -34,7 +24,7 @@
                                             </span>
                                         </div>
                                         <select class="custom-select custom-select-sm" name="prefijo" id="prefijo" required>
-                                            <option if value="" disabled selected>Seleccionar el grado</option>
+                                            <option value="" disabled selected>Seleccionar el grado</option>
                                             <option @select('prefijo', '0') @endselect value="0">Preescolar</option>
                                             <option @select('prefijo', '1') @endselect value="1">Primero</option>
                                             <option @select('prefijo', '2') @endselect value="2">Segundo</option>
@@ -75,7 +65,7 @@
                                                 <i class="fas fa-calendar-check"></i>
                                             </span>
                                         </div>
-                                        <input type="number" min = "1990" max = "2050" step = "1" value = {{now()->year}} name="ano" id="ano" class="form-control form-control-sm">
+                                        <input type="number" min = "1990" max = "2050" step = "1" value="{{now()->year}}" name="ano" id="ano" class="form-control form-control-sm">
                                     </div>
                                 </div>
                             </div>
@@ -103,6 +93,7 @@
                     method:"POST",
                     data:{query:query, _token:_token},
                     success:function(data){
+                        console.log(data)
                         $('#sufijo').val(data);
                     }
                 });

@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Curso;
 use App\Periodo;
-
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->middleware('admin:administrador,director')->except(['conteoEstudiantes']);
         $this->middleware('admin:coordinador,administrador')->only(['conteoEstudiantes']);
     }
 
-    public function index() {
+    public function index()
+    {
         $agruparCursos = Curso::all()->groupBy('prefijo');
         $cursos = [
             'Preescolar' => $agruparCursos['0'],
@@ -30,22 +31,28 @@ class CursoController extends Controller
             'Octavo' => $agruparCursos['8'],
             'Noveno' => $agruparCursos['9'],
             'Decimo' => $agruparCursos['10'],
-            'Undécimo' => $agruparCursos['11']
+            'Undécimo' => $agruparCursos['11'],
         ];
-        // dd($cursos);
         return view('cursos.listaCurso', compact('cursos'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('cursos.crearCurso', compact('cursos'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $curso = (new Curso)->fill($request->all());
-        $curso->save();
+        if ($curso->save()) {
+            return redirect('/estudiantes')->with('true', 'El curso ' . $curso->prefijo . '-' . $curso->sufijo . ' fue creado con éxito');
+        } else {
+            return back()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
     }
 
-    public function show($pk_curso) {
+    public function show($pk_curso)
+    {
         $curso = Curso::find($pk_curso);
         return view("cursos.verCurso", compact('curso'));
     }
@@ -61,20 +68,21 @@ class CursoController extends Controller
     //     return redirect(route('cursos.show', $curso->pk_curso));
     // }
 
-    public function conteoEstudiantes($pk_curso) {
-        $estudiantes = Curso::where('pk_curso','=',$pk_curso)->first();
+    public function conteoEstudiantes($pk_curso)
+    {
+        $estudiantes = Curso::where('pk_curso', '=', $pk_curso)->first();
         if (!empty($estudiantes)) {
             $estudiantes = $estudiantes->estudiantes;
             $listado = [];
             foreach ($estudiantes as $estudiante) {
-                array_push($listado,[
+                array_push($listado, [
                     'pk_estudiante' => $estudiante->pk_estudiante,
                     'fk_acudiente' => $estudiante->fk_acudiente,
                     'fk_curso' => $estudiante->fk_curso,
                     'nombre' => $estudiante->nombre,
                     'apellido' => $estudiante->apellido,
                     'grado' => $estudiante->grado,
-                    'discapacidad' => $estudiante->discapacidad
+                    'discapacidad' => $estudiante->discapacidad,
                 ]);
             }
             return json_encode($listado);
@@ -82,34 +90,55 @@ class CursoController extends Controller
         return 0;
     }
 
-    public function destroy($pk_curso){
-        $curso = Curso::findOrFail($pk_curso);
-        $curso->delete();
-        return redirect()->back();
+    public function destroy(Request $request, $pk_curso)
+    {
+        if ($request->ajax()) {
+            $curso = Curso::findOrFail($pk_curso);
+            if ($curso->delete()) {
+                if ($request->direccion == null) {
+                    return response()->json([
+                        'mensaje' => 'El curso ' . $curso->prefijo . '-' . $curso->sufijo . ' Fue eliminado',
+                    ]);
+                } else {
+                    return response()->json([
+                        'mensaje' => 'El curso ' . $curso->prefijo . '-' . $curso->sufijo . ' Fue eliminado',
+                        'url' => config('app.url') . $request->direccion,
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'mensaje' => 'El curso ' . $curso->prefijo . '-' . $curso->sufijo . ' no pudo ser eliminado, intente nuevamente',
+                ]);
+            }
+        }
     }
 
-    public function conteoCursosPorGrado($grado) {
-        $cursos = Curso::where('prefijo','=',$grado)->get()->toArray();
+    public function conteoCursosPorGrado($grado)
+    {
+        $cursos = Curso::where('prefijo', '=', $grado)->get()->toArray();
         return json_encode($cursos);
     }
 
-    public function sigSufijo(Request $request){
-        if($request->get('query')){
+    public function sigSufijo(Request $request)
+    {
+        if ($request->get('query')) {
             $query = $request->get('query');
             $ultimoCurso = Curso::where('prefijo', $query)->orderBy('sufijo', 'desc')->first();
             $siguienteSufijo = intval($ultimoCurso->sufijo) + 1;
-            $sufijoString = '0'.strval($siguienteSufijo);
+            $sufijoString = '0' . strval($siguienteSufijo);
             echo $sufijoString;
         }
     }
 
-    public function cursoPlanillas($pk_curso){  //By Paola
-        $grado=Curso::where('pk_curso',$pk_curso)->get();
-        $periodos=Periodo::where('ano',date('Y'))->get();
+    public function cursoPlanillas($pk_curso)
+    { //By Paola
+        $grado = Curso::where('pk_curso', $pk_curso)->get();
+        $periodos = Periodo::where('ano', date('Y'))->get();
         if (!empty($grado[0])) {
-            $materias=$grado[0]->materiaspc;
-            return view("cursos.planillasCurso",["grado"=>$grado[0],"materias"=>$materias,"periodos"=>$periodos]);
+            $materias = $grado[0]->materiaspc;
+            return view("cursos.planillasCurso", ["grado" => $grado[0], "materias" => $materias, "periodos" => $periodos]);
+        } else {
+            return back()->with('false', 'El curso solicitado no fue encontrado, intente nuevamente');
         }
-        return "Error: El curso solicitado no existe";
     }
 }
