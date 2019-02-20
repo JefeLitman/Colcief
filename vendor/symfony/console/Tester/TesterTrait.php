@@ -23,7 +23,7 @@ trait TesterTrait
 {
     /** @var StreamOutput */
     private $output;
-    private $inputs = [];
+    private $inputs = array();
     private $captureStreamsIndependently = false;
 
     /**

@@ -39,8 +39,8 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
         $this->dispatcher = $dispatcher;
         $this->stopwatch = $stopwatch;
         $this->logger = $logger;
-        $this->wrappedListeners = [];
-        $this->orphanedEvents = [];
+        $this->wrappedListeners = array();
+        $this->orphanedEvents = array();
     }
 
     /**
@@ -164,10 +164,10 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
     public function getCalledListeners()
     {
         if (null === $this->callStack) {
-            return [];
+            return array();
         }
 
-        $called = [];
+        $called = array();
         foreach ($this->callStack as $listener) {
             list($eventName) = $this->callStack->getInfo();
 
@@ -186,14 +186,14 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
             $allListeners = $this->getListeners();
         } catch (\Exception $e) {
             if (null !== $this->logger) {
-                $this->logger->info('An exception was thrown while getting the uncalled listeners.', ['exception' => $e]);
+                $this->logger->info('An exception was thrown while getting the uncalled listeners.', array('exception' => $e));
             }
 
             // unable to retrieve the uncalled listeners
-            return [];
+            return array();
         }
 
-        $notCalled = [];
+        $notCalled = array();
         foreach ($allListeners as $eventName => $listeners) {
             foreach ($listeners as $listener) {
                 $called = false;
@@ -216,7 +216,7 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
             }
         }
 
-        uasort($notCalled, [$this, 'sortNotCalledListeners']);
+        uasort($notCalled, array($this, 'sortNotCalledListeners'));
 
         return $notCalled;
     }
@@ -229,7 +229,7 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
     public function reset()
     {
         $this->callStack = null;
-        $this->orphanedEvents = [];
+        $this->orphanedEvents = array();
     }
 
     /**
@@ -279,7 +279,7 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
             $this->wrappedListeners[$eventName][] = $wrappedListener;
             $this->dispatcher->removeListener($eventName, $listener);
             $this->dispatcher->addListener($eventName, $wrappedListener, $priority);
-            $this->callStack->attach($wrappedListener, [$eventName]);
+            $this->callStack->attach($wrappedListener, array($eventName));
         }
     }
 
@@ -297,7 +297,7 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
             $this->dispatcher->addListener($eventName, $listener->getWrappedListener(), $priority);
 
             if (null !== $this->logger) {
-                $context = ['event' => $eventName, 'listener' => $listener->getPretty()];
+                $context = array('event' => $eventName, 'listener' => $listener->getPretty());
             }
 
             if ($listener->wasCalled()) {

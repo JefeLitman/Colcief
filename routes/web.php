@@ -172,8 +172,11 @@ Route::get('/SIGCA/{pk_curso}','SIGCAController@show')->name('SIGCA.show');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
+<<<<<<< HEAD
 
 //Generador PDF
 Route::get('pdf', 'PdfController@invoice');
 Route::get('/terminal/pdf', 'Terminal@pdf');
 Route::get('/terminal/update', 'Terminal@update');
+=======
+>>>>>>> parent of f27063b1... Act PDF

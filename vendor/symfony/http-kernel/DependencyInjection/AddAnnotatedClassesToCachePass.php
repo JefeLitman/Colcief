@@ -59,7 +59,7 @@ class AddAnnotatedClassesToCachePass implements CompilerPassInterface
      */
     private function expandClasses(array $patterns, array $classes)
     {
-        $expanded = [];
+        $expanded = array();
 
         // Explicit classes declared in the patterns are returned directly
         foreach ($patterns as $key => $pattern) {
@@ -85,7 +85,7 @@ class AddAnnotatedClassesToCachePass implements CompilerPassInterface
 
     private function getClassesInComposerClassMaps()
     {
-        $classes = [];
+        $classes = array();
 
         foreach (spl_autoload_functions() as $function) {
             if (!\is_array($function)) {
@@ -106,14 +106,14 @@ class AddAnnotatedClassesToCachePass implements CompilerPassInterface
 
     private function patternsToRegexps($patterns)
     {
-        $regexps = [];
+        $regexps = array();
 
         foreach ($patterns as $pattern) {
             // Escape user input
             $regex = preg_quote(ltrim($pattern, '\\'));
 
             // Wildcards * and **
-            $regex = strtr($regex, ['\\*\\*' => '.*?', '\\*' => '[^\\\\]*?']);
+            $regex = strtr($regex, array('\\*\\*' => '.*?', '\\*' => '[^\\\\]*?'));
 
             // If this class does not end by a slash, anchor the end
             if ('\\' !== substr($regex, -1)) {
