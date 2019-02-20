@@ -175,3 +175,5 @@ Route::get('/SIGCA/{pk_curso}','SIGCAController@show')->name('SIGCA.show');
 
 //Generador PDF
 Route::get('pdf', 'PdfController@invoice');
+Route::get('/terminal/pdf', 'Terminal@pdf');
+Route::get('/terminal/update', 'Terminal@update');
