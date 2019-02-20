@@ -173,7 +173,7 @@ Route::get('/SIGCA/{pk_curso}','SIGCAController@show')->name('SIGCA.show');
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
 
-// Route::get('pdf', 'PdfController@invoice');
+Route::get('pdf', 'PdfController@invoice');
 Route::get('/terminal/pdf', 'Terminal@pdf');
 Route::get('/terminal/update', 'Terminal@update');
 
