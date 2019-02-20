@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class Terminal extends Controller{
 
     public function version(){
-        $salida = shell_exec('cd ColCief && composer --version');
+        $salida = shell_exec('cd ColCief && python --version');
         return "<pre>".$salida."</pre>";
     } 
 
