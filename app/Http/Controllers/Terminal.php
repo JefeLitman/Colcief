@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class Terminal extends Controller{
 
+    public function version(){
+        $salida = shell_exec('cd ColCief && composer --version');
+        return "<pre>".$salida."</pre>";
+    } 
+
     public function pdf(){
         $salida = shell_exec('cd ColCief && composer require barryvdh/laravel-dompdf');
         return "<pre>".$salida."</pre>";
