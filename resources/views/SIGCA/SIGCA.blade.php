@@ -32,16 +32,41 @@
           <th>Código</th>
           <th>Nombre</th>
           <th>Inasistencias</th>
+          <th>Estado</th>
           <th>Acciones</th>
         </tr>
-        <tr>
           @foreach ($planilla['estudiantes'] as $key => $estudiante)
+            <tr>
             <td>{{$estudiante->pk_estudiante}}</td>
             <td>{{$estudiante->apellido.' '.$estudiante->nombre}}</td>
             <td>{{$planilla['inasistencias'][$key]}}</td>
-            <td><a href="/estudiantes/{{$estudiante->pk_estudiante}}">Ver</a> <button type="button" name="button">Rajar</button></td>
+            @switch($estudiante->boletin()->estado)
+              @case('a')
+                  <td>
+                    Aprobado
+                  </td>
+                  <td>
+                    <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/p';" type="button" name="button">Reprobar</button>
+                  @break
+              @case('p')
+                  <td>
+                    Reprobado
+                  </td>
+                  <td>
+                    <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/a';" type="button" name="button">Aprobar</button>
+                  @break
+              @default
+                  <td>
+                    Por determinar
+                  </td>
+                  <td>
+                    <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/a';" type="button" name="button">Aprobar</button>
+                    <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/p';" type="button" name="button">Reprobar</button>
+              @endswitch
+              <button onclick="location.href = '/estudiantes/{{$estudiante->pk_estudiante}}';" type="button" name="button">Ver</button>
+            </td>
+          </tr>
           @endforeach
-        </tr>
       </table>
     @endif
   </body>

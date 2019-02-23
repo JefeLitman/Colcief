@@ -170,6 +170,7 @@ Route::post('/SIGSE', 'SIGSEController@show')->name('SIGSE.show');
 /* RUTAS SIGCA */
 Route::get('/SIGCA','SIGCAController@index')->name('SIGCA.index');
 Route::get('/SIGCA/{pk_curso}','SIGCAController@show')->name('SIGCA.show');
+Route::get('/SIGCA/finalizar/{fk_boletin}/{estado}','SIGCAController@finalizar')->name('SIGCA.finalizar');
 
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
@@ -177,4 +178,3 @@ Route::get('/SIGCA/{pk_curso}','SIGCAController@show')->name('SIGCA.show');
 Route::get('pdf', 'PdfController@invoice');
 Route::get('/terminal/pdf', 'Terminal@pdf');
 Route::get('/terminal/update', 'Terminal@update');
-

@@ -51,6 +51,11 @@ class Estudiante extends Authenticatable {
         return $this->hasMany('App\Boletin','fk_estudiante','pk_estudiante');
     }
 
+    public function boletin()
+    {
+        return $this->boletines()->first();
+    }
+
     //By Paola
     /**
      * Una vez el estudiante cambia de curso, los datos deben cambiar segun sea el caso:

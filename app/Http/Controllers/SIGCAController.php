@@ -39,6 +39,24 @@ class SIGCAController extends Controller
         ]);
     }
 
+    public function finalizar($fk_boletin,$estado)
+    {
+        $boletin = Boletin::find($fk_boletin);
+        if (empty($boletin)) {
+          return '¿Qué estás intentando?';
+        }
+        switch ($estado) {
+          case 'a':
+            $boletin->estado = 'a';
+            break;
+          case 'p':
+            $boletin->estado = 'p';
+            break;
+        }
+        $boletin->save();
+        return back();
+    }
+
     private function obtenerCursos()
     {
         $cursos = Curso::all();
