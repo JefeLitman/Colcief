@@ -47,6 +47,7 @@
                   </td>
                   <td>
                     <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/p';" type="button" name="button">Reprobar</button>
+                    <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/i';" type="button" name="button">Por determinar</button>
                   @break
               @case('p')
                   <td>
@@ -54,6 +55,7 @@
                   </td>
                   <td>
                     <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/a';" type="button" name="button">Aprobar</button>
+                    <button onclick="location.href = '/SIGCA/finalizar/{{$estudiante->boletin()->pk_boletin}}/i';" type="button" name="button">Por determinar</button>
                   @break
               @default
                   <td>

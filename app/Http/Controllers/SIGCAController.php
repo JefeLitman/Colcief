@@ -52,6 +52,9 @@ class SIGCAController extends Controller
           case 'p':
             $boletin->estado = 'p';
             break;
+          case 'i':
+            $boletin->estado = 'i';
+            break;
         }
         $boletin->save();
         return back();
