@@ -12,7 +12,8 @@ trait SendsPasswordResetEmails
      *
      * @return \Illuminate\Http\Response
      */
-    public function showLinkRequestForm(){
+    public function showLinkRequestForm()
+    {
         return view('auth.passwords.email');
     }
 
@@ -22,17 +23,19 @@ trait SendsPasswordResetEmails
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    public function sendResetLinkEmail(Request $request){
+    public function sendResetLinkEmail(Request $request)
+    {
         $this->validateEmail($request);
+
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
         $response = $this->broker()->sendResetLink(
-            $request->except('_token')
+            $request->only('email')
         );
 
         return $response == Password::RESET_LINK_SENT
-                    ? $this->sendResetLinkResponse($response)
+                    ? $this->sendResetLinkResponse($request, $response)
                     : $this->sendResetLinkFailedResponse($request, $response);
     }
 
@@ -44,19 +47,17 @@ trait SendsPasswordResetEmails
      */
     protected function validateEmail(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'role' => 'required|numeric'
-        ]);
+        $request->validate(['email' => 'required|email']);
     }
 
     /**
      * Get the response for a successful password reset link.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $response
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    protected function sendResetLinkResponse($response)
+    protected function sendResetLinkResponse(Request $request, $response)
     {
         return back()->with('status', trans($response));
     }
