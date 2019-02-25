@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Boletin</title>
+    <style> 
+    #header { 
+      position: fixed; 
+      /* position: absolute; */
+      left: 0px; 
+      top: 10px; 
+      right: 0px; 
+      height: 150px; 
+      }
+      body{
+        border:1px solid black ;
+        border-radius: 8px;
+        padding-top: 181px;
+      }
+      .bottom{
+        border-bottom:1px solid black ;
+      }
+      .borde {
+        border:1px black solid !important;
+        border-collapse: collapse;
+      }
 
-<head>
-
-	<title>Hi</title>
-
-</head>
-
-<body>
-
-	<h1>LaravelCollective me lo mama</h1>
-
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-</body>
-
+	</style>
+  </head>
+  <body>
+      <div id="header">
+        <img width="100%" style="text-align: center;" src="storage/header.PNG">
+        <div class="borde" style="padding-left:3px;margin-left: 5px;margin-right:5px;width:100%;">
+          Estudiante: <b> Paola</b>
+        </div>
+      </div>
+      
+    
+      <main> 
+        <div style="margin-left: 4px;margin-right:5px;width:100%;">
+        <table class="borde" width="100%"  border="2"  >
+          <tbody  >
+            <tr  >
+              <td>
+                Código: 
+              </td>
+              <td>
+                Acudiente: 
+              </td>
+            </tr>
+            <tr >
+              <td>
+                Año Escolar:
+              </td>
+              <td>
+                Periodo: 
+              </td>
+            </tr>
+            <tr >
+              <td>
+                Curso:
+              </td>
+              <td>
+                Director:
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </body>
 </html>
