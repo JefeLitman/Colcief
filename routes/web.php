@@ -178,3 +178,4 @@ Route::get('/SIGCA/finalizar/{fk_boletin}/{estado}','SIGCAController@finalizar')
 Route::get('pdf', 'PdfController@invoice');
 Route::get('/terminal/pdf', 'Terminal@pdf');
 Route::get('/terminal/update', 'Terminal@update');
+Route::get('/terminal/link', 'Terminal@link');
