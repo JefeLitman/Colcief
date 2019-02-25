@@ -30,7 +30,7 @@
   </head>
   <body>
       <div id="header">
-        <img width="100%" style="text-align: center;" src="/storage/header.PNG">
+        <img width="100%" style="text-align: center;" src="/storage/header.png">
         <div class="borde" style="padding-left:3px;margin-left: 5px;margin-right:5px;width:100%;">
           Estudiante: <b> Paola</b>
         </div>
