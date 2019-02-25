@@ -179,3 +179,6 @@ Route::get('pdf', 'PdfController@invoice');
 Route::get('/terminal/pdf', 'Terminal@pdf');
 Route::get('/terminal/update', 'Terminal@update');
 Route::get('/terminal/link', 'Terminal@link');
+Route::get('pdf', function(){
+    return view('pdf.invoce');
+});
