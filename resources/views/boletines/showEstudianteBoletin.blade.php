@@ -1,3 +1,5 @@
+
+
 @extends('contenedores.admin')
 @section('contenedor_admin')
 @section('titulo','Estudiantes/Grado')
@@ -276,7 +278,7 @@
                                                 </td>
                                                 {{-- Recup --}}
                                                 <td class="text-center" style="border-left: 2px solid #dee2e6 !important;">
-                                                    {{$r->nota or "-"}}
+                                                    {{$r->nota}}
                                                 </td>
                                                 {{-- Acta --}}
                                                 <td class="text-center">
@@ -299,5 +301,25 @@
             @endif
         </div>
     </div>
+    <div class="row text-center mt-4">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <a data-toggle="tooltip" data-placement="top" title="Crear curso" class="btn btn-info text-white" onclick="URLActual()">
+                <i class="fas fa-file-pdf"></i>
+                <small class="d-none d-sm-block">Ver PDF</small>
+            </a>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+function URLActual()
+{
+    var URLactual = window.location;
+
+    var URLPdf = URLactual + "/pdf";
+    window.location.href = URLPdf;
+
+}
+    
+</script>
 @endsection
