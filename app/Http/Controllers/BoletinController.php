@@ -60,7 +60,7 @@ class BoletinController extends Controller {
             return view('boletines.showEstudianteBoletin',["msj"=>$msj]);
         }else{
             $recuperaciones=Recuperacion::where('materia_boletin.fk_boletin',$B[0]->pk_boletin)->join('nota_periodo','nota_periodo.pk_nota_periodo','=','recuperacion.fk_nota_periodo')->join('periodo','periodo.pk_periodo','=','nota_periodo.fk_periodo')->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')->get();
-            $materias=MateriaBoletin::select('materia_pc.pk_materia_pc','materia_pc.nombre','materia_boletin.pk_materia_boletin','materia_boletin.nota_materia')->where('materia_boletin.fk_boletin',$B[0]->pk_boletin)->join('materia_pc','materia_boletin.fk_materia_pc','=','materia_pc.pk_materia_pc')->orderBy('materia_pc.nombre','asc')->get();
+            $materias=MateriaBoletin::select('materia_pc.logros_custom','materia_pc.pk_materia_pc','materia_pc.nombre','materia_boletin.pk_materia_boletin','materia_boletin.nota_materia')->where('materia_boletin.fk_boletin',$B[0]->pk_boletin)->join('materia_pc','materia_boletin.fk_materia_pc','=','materia_pc.pk_materia_pc')->orderBy('materia_pc.nombre','asc')->get();
             if(empty($materias[0])){
                 $msj=2; //No hay materias asignadas a este estudiante.
                 if($pdf){
