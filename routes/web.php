@@ -177,8 +177,8 @@ Route::get('/SIGCA/finalizar/{fk_boletin}/{estado}','SIGCAController@finalizar')
 
 /* RUTAS PDF */
 // Route::get('/pdf', 'PdfController@invoice');
-Route::get('/boletines/actual/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoiceActual')->middleware('admin:coordinador,administrador');
-Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoice')->middleware('admin:coordinador,administrador');
+Route::get('/boletines/actual/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoiceActual')->middleware('admin:administrador');
+Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoice')->middleware('admin:administrador');
 
 
 // Route::get('/terminal/pdf', 'Terminal@pdf');
