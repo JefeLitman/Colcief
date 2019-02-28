@@ -45,7 +45,7 @@ class BoletinController extends Controller {
         return $this->showAnoEstudiante(date('Y'),$fk_estudiante);
     }
 
-    public function showAnoEstudiante($ano,$fk_estudiante){
+    public function showAnoEstudiante($ano,$fk_estudiante, $pdf=false){
         $B=Boletin::select('boletin.*','curso.*','estudiante.discapacidad','estudiante.nombre','estudiante.apellido','estudiante.fecha_nacimiento')->where([["boletin.fk_estudiante",$fk_estudiante],["boletin.ano",$ano]])->join("estudiante","estudiante.pk_estudiante","=","boletin.fk_estudiante")->join('curso','boletin.fk_curso','=','curso.pk_curso')->get();
         
         $infoDivs=Division::select('pk_division','nombre','porcentaje')->where('ano',$ano)->orderBy('pk_division','asc')->get();
@@ -54,12 +54,18 @@ class BoletinController extends Controller {
         $msj="";    
         if(empty($B[0])){
             $msj=1; //No existe boletin u estudiante correspondiente.
+            if($pdf){
+                return ["msj"=>$msj];
+            }
             return view('boletines.showEstudianteBoletin',["msj"=>$msj]);
         }else{
             $recuperaciones=Recuperacion::where('materia_boletin.fk_boletin',$B[0]->pk_boletin)->join('nota_periodo','nota_periodo.pk_nota_periodo','=','recuperacion.fk_nota_periodo')->join('periodo','periodo.pk_periodo','=','nota_periodo.fk_periodo')->join('materia_boletin','materia_boletin.pk_materia_boletin','=','nota_periodo.fk_materia_boletin')->join('materia_pc','materia_pc.pk_materia_pc','=','materia_boletin.fk_materia_pc')->get();
             $materias=MateriaBoletin::select('materia_pc.pk_materia_pc','materia_pc.nombre','materia_boletin.pk_materia_boletin','materia_boletin.nota_materia')->where('materia_boletin.fk_boletin',$B[0]->pk_boletin)->join('materia_pc','materia_boletin.fk_materia_pc','=','materia_pc.pk_materia_pc')->orderBy('materia_pc.nombre','asc')->get();
             if(empty($materias[0])){
                 $msj=2; //No hay materias asignadas a este estudiante.
+                if($pdf){
+                    return ["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs];
+                }
                 return view('boletines.showEstudianteBoletin',["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs]);
             }else{
                 foreach ($infoPeriodos as $j) {
@@ -83,7 +89,10 @@ class BoletinController extends Controller {
                 }
 
                 $msj=3;//Consulta exitosa
-                // return $notaDivs;
+                if($pdf){
+                    return ['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs];
+                }
+                // dd(['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs]);
                 return view('boletines.showEstudianteBoletin',['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs]);
             }
         }

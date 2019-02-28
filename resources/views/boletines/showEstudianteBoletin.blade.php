@@ -134,16 +134,16 @@
 
                                                         @if (intval($notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo]) >= '3')
                                                             <p>
-                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo] or "-"}}
+                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo]}}
                                                             </p>
                                                         @else
                                                         <b style="color: red;">
-                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo] or "-"}}
+                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo]}}
                                                         </b>
                                                         @endif
                                                 </td>
                                             @endforeach
-                                            <td class="P T text-center">{{$m->nota_materia or "-"}}</td>
+                                            <td class="P T text-center">{{$m->nota_materia}}</td>
                                         </tr>
                                     @endforeach
                                     <tr  style="border-top: 2px solid #dee2e6 !important;">
@@ -155,7 +155,12 @@
                                                 <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
                                             @endforeach
                                             <td class="P{{$periodo->nro_periodo}} P T text-center">
-                                                {{$puesto[$periodo->pk_periodo]->promedio_periodo or "-"}}
+                                                @if ($puesto[$periodo->pk_periodo]==null)
+                                                    {{"-"}}
+                                                @else
+                                                    {{$puesto[$periodo->pk_periodo]->promedio_periodo}}
+                                                @endif
+                                                
                                             </td>
                                         @endforeach
                                         <td></td>
@@ -169,8 +174,13 @@
                                                 <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
                                             @endforeach
                                             <td class="P{{$periodo->nro_periodo}} P T text-center">
-                                                {{$puesto[$periodo->pk_periodo]->puesto or "-"}}
+                                                @if ($puesto[$periodo->pk_periodo]==null)
+                                                    {{"-"}}
+                                                @else
+                                                    {{$puesto[$periodo->pk_periodo]->puesto}}
+                                                @endif
                                             </td>
+                                            
                                         @endforeach
                                         <td></td>
                                     </tr>
@@ -183,7 +193,7 @@
                                                 <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
                                             @endforeach
                                             <td class="P{{$periodo->nro_periodo}} P T text-center">
-                                                {{$inasistencias[$periodo->pk_periodo] or "-"}}
+                                                {{$inasistencias[$periodo->pk_periodo]}}
                                             </td>
                                         @endforeach
                                         <td></td>
@@ -262,7 +272,7 @@
                                                 </td>
                                                 {{-- Valoración --}}
                                                 <td class="text-center">
-                                                    {{$r->nota_periodo or '-'}}
+                                                    {{$r->nota_periodo}}
                                                 </td>
                                                 {{-- Recup --}}
                                                 <td class="text-center" style="border-left: 2px solid #dee2e6 !important;">
@@ -270,11 +280,11 @@
                                                 </td>
                                                 {{-- Acta --}}
                                                 <td class="text-center">
-                                                    {{$r->observaciones or '-'}}
+                                                    {{$r->observaciones}}
                                                 </td >
                                                 {{-- Fecha --}}
                                                 <td class="text-center">
-                                                    {{$r->fecha_presentacion or '-'}}
+                                                    {{$r->fecha_presentacion}}
                                                 </td>
                                             </tr> 
                                         @endforeach
