@@ -119,14 +119,13 @@
                                             @foreach ($infoPeriodos as $periodo)
                                                 @foreach ($infoDivs as $div)
                                                     <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none">
-
                                                         @if (intval($notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division]) >= '3')
                                                             <p>
-                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division] or "-"}}
+                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division]}}
                                                             </p>
                                                         @else
                                                             <b style="color: red;">
-                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division] or "-"}}
+                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division]}}
                                                             </b>
                                                         @endif
                                                         {{--Info: Echoing Data If It Exists -> https://laravel.com/docs/5.1/blade --}}

@@ -30,8 +30,10 @@ class PdfController extends Controller
             $data['msj']=4;
         }
         $data['pPasado']=$pPasado;
+        $data['msj']=3; //Linea Temporal... Borrar
         $data['pPasado']=1; //Linea Temporal... Borrar
 
+        // dd($data['pPasado']);
         $pdf = PDF::loadView('pdf.invoice', $data);
         
         return $pdf->stream('invoice');

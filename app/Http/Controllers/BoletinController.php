@@ -108,7 +108,7 @@ class BoletinController extends Controller {
                 $msj=3;//Consulta exitosa
                 if($pdf){
                     // dd(['inasistenciaNotaPeriodos'=>$inasistenciaNotaPeriodos,'recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs,"acudiente"=>$acudiente ,"empleado"=>$empleado]);
-                    return ['inasistenciaNotaPeriodos'=>$inasistenciaNotaPeriodos,'recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs,"acudiente"=>$acudiente ,"empleado"=>$empleado];
+                    return ['inasistenciaNotaPeriodos'=>$inasistenciaNotaPeriodos,'recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"acudiente"=>$acudiente ,"empleado"=>$empleado];
                 }
                 // dd(['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs]);
                 return view('boletines.showEstudianteBoletin',['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs]);
