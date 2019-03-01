@@ -4,9 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Boletin</title>
-    @php
-        $infoPeriodos
-    @endphp
+
     <style> 
     #header { 
       position: fixed; 
@@ -113,39 +111,65 @@
             </tr>
           </thead>
             <tbody>
-              @foreach ($materias as $m)
-                <tr>
-                  <td class="borde-y">
-                    <br><b> {{strtoupper($m->nombre)}} </b>
-                  </td>
-                  <td class="borde-y" align="center">
-                      <br>{{-- BASICO(3.0) --}}
-                    {{-- @switch()
-                        @case(1)
-                            
-                            @break
-                        @case(2)
-                            
-                            @break
-                        @default
-                            
-                    @endswitch --}}
-                  </td>
-                  <td class="borde-y"  align="center">
-                      <br>5
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3" style="padding-left:10px;color:rgb(70,70,70);">
-                      <b> Logros evaluados </b>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3" style="padding-left:20px;" class="borde-y">
-                    {{$m->logros_custom}}
-                  </td>
-                </tr>
-              @endforeach
+              {{-- if aun no acaba el primer periodo --}}
+              {{-- @if ($msj == 4) --}}
+                  {{-- <tr>
+                    <td colspan="3" align="center" class="borde-y">
+                      <br>
+                        <b> El primer periodo aun no ha culminado </b>
+                        <br><br>
+                    </td>
+                  </tr> --}}
+              {{-- @else --}}
+                  {{-- if no hay materias asignadas --}}
+                  @if ( $msj == 2) 
+                    <tr>
+                      <td colspan="3" align="center" class="borde-y">
+                        <br>
+                          <b> No hay materias asignadas a este estudiante </b>
+                          <br><br>
+                      </td>
+                    </tr>
+                  @else
+                    @foreach ($materias as $m)
+                      <tr>
+                        <td class="borde-y">
+                          <br><b> {{strtoupper($m->nombre)}} </b>
+                        </td>
+                        <td class="borde-y" align="center">
+                          <br>{{-- BASICO(3.0) --}} 
+                          @if ($notaPeriodos[$m->pk_materia_boletin][$pPasado] <= 2.9 )
+                              BAJO({{$notaPeriodos[$m->pk_materia_boletin][$pPasado]}})
+                          @else
+                              @if ($notaPeriodos[$m->pk_materia_boletin][$pPasado] >= 3.0 && $notaPeriodos[$m->pk_materia_boletin][$pPasado] <= 3.9 )
+                                BASICO({{$notaPeriodos[$m->pk_materia_boletin][$pPasado]}})
+                              @else
+                                @if ($notaPeriodos[$m->pk_materia_boletin][$pPasado] >= 4.0 && $notaPeriodos[$m->pk_materia_boletin][$pPasado] <= 4.5 )
+                                  ALTO({{$notaPeriodos[$m->pk_materia_boletin][$pPasado]}})
+                                @else
+                                  SUPERIOR({{$notaPeriodos[$m->pk_materia_boletin][$pPasado]}})
+                                @endif
+                              @endif
+                          @endif
+                        </td>
+                        <td class="borde-y"  align="center">
+                            <br>{{$inasistenciaNotaPeriodos[$m->pk_materia_boletin][$pPasado]}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" style="padding-left:10px;color:rgb(70,70,70);">
+                            <b> Logros evaluados </b>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" style="padding-left:20px;" class="borde-y">
+                          {{$m->logros_custom}}
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif
+              {{-- @endif --}}
+              
                 
             </tbody>
           </table>

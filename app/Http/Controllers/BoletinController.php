@@ -83,6 +83,7 @@ class BoletinController extends Controller {
                     $periodos=NotaPeriodo::where('nota_periodo.fk_materia_boletin',$i->pk_materia_boletin)->join('periodo','nota_periodo.fk_periodo','=','periodo.pk_periodo')->orderBy('periodo.nro_periodo','asc')->get();
                     foreach ($periodos as $j) {
                         $inasistencias[$j->pk_periodo]=+$j->inasistencias;
+                        $inasistenciaNotaPeriodos[$i->pk_materia_boletin][$j->pk_periodo]=$j->inasistencias;
                         $notaPeriodos[$i->pk_materia_boletin][$j->pk_periodo]=$j->nota_periodo;
                         $notaDivs[$i->pk_materia_boletin][$j->pk_periodo]=NotaPeriodoController::notasDivs($j->pk_nota_periodo,$infoDivs);
                     }
@@ -90,7 +91,7 @@ class BoletinController extends Controller {
 
                 $msj=3;//Consulta exitosa
                 if($pdf){
-                    return ['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs];
+                    return ['inasistenciaNotaPeriodos'=>$inasistenciaNotaPeriodos,'recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs];
                 }
                 // dd(['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs]);
                 return view('boletines.showEstudianteBoletin',['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs]);
