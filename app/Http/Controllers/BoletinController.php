@@ -36,7 +36,7 @@ class BoletinController extends Controller {
         $boletines=[] ;
         $estudiante=Estudiante::where('pk_estudiante',$id)->leftjoin('curso','curso.pk_curso','=','estudiante.fk_curso')->get();
         if (!empty($estudiante[0])) {
-            $estudiante=$estudiante[0];
+            $estudiante;
             $boletines=Boletin::select('boletin.*','curso.prefijo','curso.sufijo')->where('boletin.fk_estudiante',$id)->join('curso','curso.pk_curso','=','boletin.fk_curso')->get();
         }
         
