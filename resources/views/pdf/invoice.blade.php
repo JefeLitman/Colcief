@@ -69,26 +69,34 @@
           <tbody  >
             <tr  >
               <td >
-                Código: 
+                Código: {{$boletin->pk_estudiante}}
               </td>
               <td>
-                Acudiente: 
+                Acudiente: {{$acudiente}}
               </td>
             </tr>
             <tr >
               <td>
-                Año Escolar:
+                Año Escolar: {{$boletin->ano}}
               </td>
               <td>
                 Periodo: 
+                @php
+                    $ps=["PRIMERO","SEGUNDO","TERCERO","CUARTO"];
+                @endphp
+                @foreach ($infoPeriodos as $p)
+                    @if ($p->pk_periodo == $pPasado)
+                        {{$ps[($p->nro_periodo-1)]}}
+                    @endif
+                @endforeach
               </td>
             </tr>
             <tr >
               <td>
-                Curso:
+                Curso: {{($boletin->prefijo==0)?"Preescolar":$boletin->prefijo}} - {{$boletin->sufijo}}
               </td>
               <td>
-                Director:
+                Director: {{$empleado}}
               </td>
             </tr>
           </tbody>
