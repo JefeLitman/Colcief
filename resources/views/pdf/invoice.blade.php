@@ -67,11 +67,18 @@
       <div id="header" >
         <img width="100%" style="text-align: center;" src="storage/header.png">
         <div class="borde" style="padding-left:3px;margin-left: 5px;margin-right:5px;width:100%;">
-          Estudiante: <b> {{$boletin->nombre}} {{$boletin->apellido}}</b>
+          Estudiante: <b>
+              @if ($msj==1)
+                        EL ESTUDIANTE NO EXISTE
+                    </b>
+                  </div>
+                </div>
+              @else
+            {{$boletin->nombre}} {{$boletin->apellido}}
+          </b>
         </div>
       </div>
       
-    
       <main>
         <div style="margin-left: 4px;margin-right:5px;width:100%;">
         <table class="borde" width="100%" border="2">
@@ -364,5 +371,6 @@
                     </tbody>
                 </table>
     </div>
+    @endif
   </body>
 </html>

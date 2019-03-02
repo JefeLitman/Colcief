@@ -18,20 +18,24 @@ class PdfController extends Controller
         // $data =["holi"=>"holi"];
         // $data = ['title' => 'Welcome to HDTuto.com'];
         // dd($data);
-        $pPasado=-1;
-        foreach($data['infoPeriodos'] as $p){
-            if(strtotime(date('Y'))>strtotime($p->recuperacion_limite)){
-                $pPasado=$p->pk_periodo;
+        if ($data['msj']!=1) {
+            # code...
+            $pPasado=-1;
+            foreach($data['infoPeriodos'] as $p){
+                if(strtotime(date('Y'))>strtotime($p->recuperacion_limite)){
+                    $pPasado=$p->pk_periodo;
+                }
             }
+            if($pPasado==-1){
+                //Para mostrar las notas se requiere que haya pasado al menos un periodo
+                //Es decir periodo uno aun no culminado
+                $data['msj']=4;
+            }
+            $data['pPasado']=$pPasado;
+            $data['msj']=3; //Linea Temporal... Borrar
+            $data['pPasado']=1; //Linea Temporal... Borrar
         }
-        if($pPasado==-1){
-            //Para mostrar las notas se requiere que haya pasado al menos un periodo
-            //Es decir periodo uno aun no culminado
-            $data['msj']=4;
-        }
-        $data['pPasado']=$pPasado;
-        $data['msj']=3; //Linea Temporal... Borrar
-        $data['pPasado']=1; //Linea Temporal... Borrar
+        
 
         // dd($data['pPasado']);
         $pdf = PDF::loadView('pdf.invoice', $data);
