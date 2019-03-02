@@ -102,7 +102,7 @@
                                                 <i class="fas fa-star"></i>
                                             </span>
                                         </div>
-                                        <textarea class="form-control form-control-sm"  name="logros_custom" id="logros_custom">{{$materiapc->logros_custom}}</textarea>
+                                        <textarea class="form-control form-control-sm" maxlength="255"  name="logros_custom" id="logros_custom">{{$materiapc->logros_custom}}</textarea>
                                     </div>
                                 </div>
                             </div>

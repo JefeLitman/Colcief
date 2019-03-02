@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html> --}}
 
 <html lang="en">
   <head>
@@ -43,6 +43,11 @@
         /* border-collapse: collapse; */
         /* border-top: 1px rgb(70,70,70) solid; */
         border-bottom: 0.5px rgb(70,70,70,0.6) solid !important;
+      }
+
+      pre{
+        width:200px;
+        overflow:auto
       }
 
       th
@@ -163,7 +168,7 @@
                     @foreach ($materias as $m)
                       <tr class="borde-y">
                         <td >
-                          <br><b> {{strtoupper($m->nombre)}} </b>
+                          <br><b> {{mb_strtoupper($m->nombre)}} </b>
                         </td>
                         <td align="center">
                           <br>
@@ -195,7 +200,9 @@
                           @if ($m->logros_custom=="")
                             {{"No hay logros"}}
                           @else
-                            {{$m->logros_custom}}  
+                            @php
+                              echo nl2br($m->logros_custom,false);
+                            @endphp
                           @endif 
                         </td>
                       </tr>
@@ -203,9 +210,7 @@
                   @endif
               @endif
             </tbody>
-          </table>
-          <br>
-          <br>
+          </table>        
           <h4 style="text-align:center;margin-bottom:5px;">CUADRO GENERAL DE EVALUACIONES E INASISTENCIA</h4>
           {{-- COPY PASTE -------------------------------------------- --}}
             <table width="100%" style="border-collapse: collapse;">
@@ -305,7 +310,6 @@
                       Es posible que el estudiante aun se encuentre cursando el año.
           @endswitch
         </div>
-        <br>
         {{--  tabla  de recuperaciones --}}
         <h4 style="text-align:center;margin-bottom:5px;">CUADRO INFORMATIVO DE RECUPERACIONES </h4>
                 <table style="border-collapse: collapse;" align="center">
