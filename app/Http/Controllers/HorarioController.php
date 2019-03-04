@@ -135,8 +135,9 @@ class HorarioController extends Controller
     public function create($fk_curso)
     {
         $curso = Curso::find($fk_curso);
-        $materia_pc = MateriaPC::where('fk_curso', $fk_curso)->get();
+        $materia_pc = MateriaPC::select('materia_pc.pk_materia_pc', 'materia_pc.nombre as materia', 'empleado.*')->where('materia_pc.fk_curso', $fk_curso)->join('empleado', 'empleado.cedula', 'materia_pc.fk_empleado')->get();
         $horario = $this->getHorarioCurso($fk_curso);
+        // dd($materia_pc);
         // Verifico que en la URL venga la $pk_materiaPC para saber a que materiaPC le creare los horarios
         if (!empty($horario)) {
             // Envio una colección de MateriaPC con la información del profesor y curso
@@ -147,7 +148,7 @@ class HorarioController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function storde(Request $request)
     {
         // Obtener los horarios de todas las MateriasPC para un curso
         $horariosCurso = MateriaPC::where('fk_curso', $request->curso)
@@ -282,7 +283,7 @@ class HorarioController extends Controller
         }
     }
 
-    public function storhe(Request $request)
+    public function store(Request $request)
     {
         if ($request->ajax()) {
             
@@ -293,7 +294,7 @@ class HorarioController extends Controller
             ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
 
             // Consulta de todas las materiasPC para el empleado
-            $materiasEmpleado = MateriaPC::where('fk_empleado', $request->empleado)
+            $materiasEmpleado = MateriaPC::where('fk_empleado', $horariosCurso[0]->fk_empleado)
             ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
 
             // Recorrer los horarios de todas las MateriasPC para un mismo curso para mirar que sus horarios no se crucen
@@ -357,13 +358,8 @@ class HorarioController extends Controller
                     }
                 }
             }
-            $horario = Horario::findOrCreate($request->pk_horario)->fill($request->except('_token'));
-            $horario->save();
-            return response()->json([
-                'curso' => $horario,
-                'nombre' => $materia_pc->nombre,
-            ]);
-            
+            $horario = Horario::findOrCreate($request->pk_horario)->fill($request->except(['_token']));
+            $horario->save();     
         }
     }
 

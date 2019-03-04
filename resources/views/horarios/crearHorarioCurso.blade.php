@@ -94,7 +94,7 @@
 												<select name="materia_pc" id="materia_pc" required class="custom-select">
 													<option value="" disabled selected>Seleccione</option>
 													@foreach($materia_pc as $m)
-														<option value="{{$m->pk_materia_pc}}">{{$m->nombre}}</option>
+														<option value="{{$m->pk_materia_pc}}">{{$m->materia}} - {{$m->nombre}} {{$m->apellido}}</option>
 													@endforeach
 												</select>
 											</div>
@@ -154,6 +154,7 @@
 							pk_horario: $('#pk').val(),
 						},
 						success: function(data) {
+							console.log(data);
 							location.reload();
 						},
 						error: function(){
