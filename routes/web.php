@@ -26,17 +26,17 @@ Route::get('/', function () {
 })->name('home');
 
 /* RUTAS TERMINAL */
-Route::get('/terminal/link', 'Terminal@link');
-Route::get('/terminal/version', 'Terminal@version');
-Route::get('/terminal/migrate/seed', 'Terminal@migrateAndSeeders');
-Route::get('/terminal/migrate', 'Terminal@migrate');
-Route::get('/terminal/migrate/reset', 'Terminal@migrateReset');
-Route::get('/terminal/migrate/refresh', 'Terminal@migrateRefresh');
-Route::get('/terminal/seed', 'Terminal@seed');
-Route::get('/terminal/main', 'Terminal@migrateResetSeeder');
-Route::get('/terminal/autoload', 'Terminal@autoload');
-Route::get('/terminal/cache', 'Terminal@autoload');
-Route::get('/terminal/git/pull', 'Terminal@pull');
+// Route::get('/terminal/link', 'Terminal@link');
+// Route::get('/terminal/version', 'Terminal@version');
+// Route::get('/terminal/migrate/seed', 'Terminal@migrateAndSeeders');
+// Route::get('/terminal/migrate', 'Terminal@migrate');
+// Route::get('/terminal/migrate/reset', 'Terminal@migrateReset');
+// Route::get('/terminal/migrate/refresh', 'Terminal@migrateRefresh');
+// Route::get('/terminal/seed', 'Terminal@seed');
+// Route::get('/terminal/main', 'Terminal@migrateResetSeeder');
+// Route::get('/terminal/autoload', 'Terminal@autoload');
+// Route::get('/terminal/cache', 'Terminal@autoload');
+// Route::get('/terminal/git/pull', 'Terminal@pull');
 
 /* RUTAS DEL LOGIN*/
 Route::get('/login', 'Login\LoginController')->name('login');
@@ -175,10 +175,13 @@ Route::get('/SIGCA/finalizar/{fk_boletin}/{estado}','SIGCAController@finalizar')
 //Route::redirect('/{texto}', '/', 301)->where('texto', '[\w\W\d\D]+'); //Ruta default cuando no se escoje ninguna
 //ruta preseleccionada by: Edgar Rangel
 
-Route::get('pdf', 'PdfController@invoice');
-Route::get('/terminal/pdf', 'Terminal@pdf');
-Route::get('/terminal/update', 'Terminal@update');
-Route::get('/terminal/link', 'Terminal@link');
-Route::get('prueba', function(){ //eliminar
-    return view('pdf.invoice');
-});
+/* RUTAS PDF */
+// Route::get('/pdf', 'PdfController@invoice');
+Route::get('/boletines/actual/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoiceActual')->middleware('admin:administrador');
+Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoice')->middleware('admin:administrador');
+
+
+// Route::get('/terminal/pdf', 'Terminal@pdf');
+// Route::get('/terminal/update', 'Terminal@update');
+// Route::get('/terminal/link', 'Terminal@link');
+

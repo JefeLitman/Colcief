@@ -23,24 +23,24 @@
                         <table class="table table-borderless table-sm w-75 mx-auto">
                             <tbody>
                                 <tr>
-                                    <td><b>Nombre: </b> {{ucwords($estudiante->nombre)}} </td>
-                                    <td><b>Apellido: </b> {{ucwords($estudiante->apellido)}}</td>
-                                    <td><b>Discapasidad: </b> {{($estudiante->Discapasidad)?"Si":"No"}}</td>
+                                    <td><b>Nombre: </b> {{ucwords($estudiante[0]->nombre)}} </td>
+                                    <td><b>Apellido: </b> {{ucwords($estudiante[0]->apellido)}}</td>
+                                    <td><b>Discapasidad: </b> {{($estudiante[0]->Discapasidad)?"Si":"No"}}</td>
                                     </tr>
                                     <tr>
-                                    <td><b>Fecha de nacimiento: </b> {{$estudiante->fecha_nacimiento}}</td>
+                                    <td><b>Fecha de nacimiento: </b> {{$estudiante[0]->fecha_nacimiento}}</td>
                                     <td><b>Ultimo curso aprobado: </b>
-                                        @if ($estudiante->grado != null)
-                                            {{($estudiante->grado==0)?"Preescolar":$estudiante->grado}} 
+                                        @if ($estudiante[0]->grado != null)
+                                            {{($estudiante[0]->grado==0)?"Preescolar":$estudiante[0]->grado}} 
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td><b>Curso actual: </b>
-                                        @if ($estudiante->prefijo==null or $estudiante->prefijo==null)
+                                        @if ($estudiante[0]->prefijo==null or $estudiante[0]->prefijo==null)
                                             -
                                         @else
-                                            {{($estudiante->prefijo==0)?"Preescolar":$estudiante->prefijo}}-{{$estudiante->sufijo}}
+                                            {{($estudiante[0]->prefijo==0)?"Preescolar":$estudiante[0]->prefijo}}-{{$estudiante[0]->sufijo}}
                                         @endif
                                         
                                     </td>
@@ -86,8 +86,8 @@
                                                 </td>
                                                 {{-- Acciones--}}
                                                 <td class="text-center">
-                                                    <a href="/boletines/{{$b->ano}}/estudiantes/{{$estudiante->pk_estudiante}}" data-toggle="tooltip" data-placement="right" title="Ver"><i class="fas fa-eye cambiob" style="color:#17a2b8"></i></a>
-                                                    <a href="" data-toggle="tooltip" data-placement="right" title="PDF"><i class="fas fa-file-pdf cambiob" style="color:#17a2b8"></i></a>
+                                                    <a href="/boletines/{{$b->ano}}/estudiantes/{{$estudiante[0]->pk_estudiante}}" data-toggle="tooltip" data-placement="right" title="Ver"><i class="fas fa-eye cambiob" style="color:#17a2b8"></i></a>
+                                                    <a href="/boletines/{{$b->ano}}/estudiantes/{{$estudiante[0]->pk_estudiante}}/pdf" data-toggle="tooltip" data-placement="right" title="PDF"><i class="fas fa-file-pdf cambiob" style="color:#17a2b8"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

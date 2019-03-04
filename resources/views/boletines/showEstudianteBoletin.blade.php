@@ -1,3 +1,5 @@
+
+
 @extends('contenedores.admin')
 @section('contenedor_admin')
 @section('titulo','Estudiantes/Grado')
@@ -117,14 +119,13 @@
                                             @foreach ($infoPeriodos as $periodo)
                                                 @foreach ($infoDivs as $div)
                                                     <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none">
-
                                                         @if (intval($notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division]) >= '3')
                                                             <p>
-                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division] or "-"}}
+                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division]}}
                                                             </p>
                                                         @else
                                                             <b style="color: red;">
-                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division] or "-"}}
+                                                                {{$notaDivs[$m->pk_materia_boletin][$periodo->pk_periodo][$div->pk_division]}}
                                                             </b>
                                                         @endif
                                                         {{--Info: Echoing Data If It Exists -> https://laravel.com/docs/5.1/blade --}}
@@ -134,16 +135,16 @@
 
                                                         @if (intval($notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo]) >= '3')
                                                             <p>
-                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo] or "-"}}
+                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo]}}
                                                             </p>
                                                         @else
                                                         <b style="color: red;">
-                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo] or "-"}}
+                                                            {{$notaPeriodos[$m->pk_materia_boletin][$periodo->pk_periodo]}}
                                                         </b>
                                                         @endif
                                                 </td>
                                             @endforeach
-                                            <td class="P T text-center">{{$m->nota_materia or "-"}}</td>
+                                            <td class="P T text-center">{{$m->nota_materia}}</td>
                                         </tr>
                                     @endforeach
                                     <tr  style="border-top: 2px solid #dee2e6 !important;">
@@ -155,7 +156,12 @@
                                                 <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
                                             @endforeach
                                             <td class="P{{$periodo->nro_periodo}} P T text-center">
-                                                {{$puesto[$periodo->pk_periodo]->promedio_periodo or "-"}}
+                                                @if ($puesto[$periodo->pk_periodo]==null)
+                                                    {{"-"}}
+                                                @else
+                                                    {{$puesto[$periodo->pk_periodo]->promedio_periodo}}
+                                                @endif
+                                                
                                             </td>
                                         @endforeach
                                         <td></td>
@@ -169,8 +175,13 @@
                                                 <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
                                             @endforeach
                                             <td class="P{{$periodo->nro_periodo}} P T text-center">
-                                                {{$puesto[$periodo->pk_periodo]->puesto or "-"}}
+                                                @if ($puesto[$periodo->pk_periodo]==null)
+                                                    {{"-"}}
+                                                @else
+                                                    {{$puesto[$periodo->pk_periodo]->puesto}}
+                                                @endif
                                             </td>
+                                            
                                         @endforeach
                                         <td></td>
                                     </tr>
@@ -183,7 +194,7 @@
                                                 <td class="P{{$periodo->nro_periodo}} T text-center" style="display:none"></td>
                                             @endforeach
                                             <td class="P{{$periodo->nro_periodo}} P T text-center">
-                                                {{$inasistencias[$periodo->pk_periodo] or "-"}}
+                                                {{$inasistencias[$periodo->pk_periodo]}}
                                             </td>
                                         @endforeach
                                         <td></td>
@@ -262,19 +273,19 @@
                                                 </td>
                                                 {{-- Valoración --}}
                                                 <td class="text-center">
-                                                    {{$r->nota_periodo or '-'}}
+                                                    {{$r->nota_periodo}}
                                                 </td>
                                                 {{-- Recup --}}
                                                 <td class="text-center" style="border-left: 2px solid #dee2e6 !important;">
-                                                    {{$r->nota or "-"}}
+                                                    {{$r->nota}}
                                                 </td>
                                                 {{-- Acta --}}
                                                 <td class="text-center">
-                                                    {{$r->observaciones or '-'}}
+                                                    {{$r->observaciones}}
                                                 </td >
                                                 {{-- Fecha --}}
                                                 <td class="text-center">
-                                                    {{$r->fecha_presentacion or '-'}}
+                                                    {{$r->fecha_presentacion}}
                                                 </td>
                                             </tr> 
                                         @endforeach
@@ -289,5 +300,25 @@
             @endif
         </div>
     </div>
+    <div class="row text-center mt-4">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <a data-toggle="tooltip" data-placement="top" title="Crear curso" class="btn btn-info text-white" onclick="URLActual()">
+                <i class="fas fa-file-pdf"></i>
+                <small class="d-none d-sm-block">Ver PDF</small>
+            </a>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+function URLActual()
+{
+    var URLactual = window.location;
+
+    var URLPdf = URLactual + "/pdf";
+    window.location.href = URLPdf;
+
+}
+    
+</script>
 @endsection
