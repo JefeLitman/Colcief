@@ -14,7 +14,7 @@
                     <h5>
                         COLEGIO INTEGRADO EZEQUIEL FLORIAN
                         @if (session('role')=='profesor' or session('role')=='director')
-                            <span class="table-add float-right"><a  href='{{url(str_replace('/editar', '', Request::path()))}}' class="text-info"><i  data-toggle="tooltip" data-placement="bottom" title="Ver Planilla" class="far fa-eye fa-lg"></i></a></span>
+                            <span class="table-add float-right"><a  href='{{url(str_replace('/editar', '', Request::path()))}}' class="text-info"><i  data-toggle="tooltip" data-placement="left" title="Ver Planilla" class="far fa-eye fa-lg"></i></a></span>
                         @endif
                     </h5>
                 </div>
