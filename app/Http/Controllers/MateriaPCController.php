@@ -55,7 +55,6 @@ class MateriaPCController extends Controller
             case "administrador":
                 // Cuando es admin
 
-
                 // Busco las tuplas de materia_pc creadas el actual año
                 $materiaspc=MateriaPC::select('materia_pc.pk_materia_pc','empleado.nombre as nombreP','empleado.apellido','materia_pc.fk_materia','materia_pc.nombre','curso.prefijo','curso.sufijo')->where('materia_pc.created_at','like','%'.date('Y').'%');
 
@@ -82,6 +81,7 @@ class MateriaPCController extends Controller
             case "director":
                 // Cuando es director...  que pase a profesor(Por eso omito el break).
             case "profesor":
+                $empleado=Empleado::select("tiempo_extra")->where("cedula",$user["cedula"])->get();
                 // cuando es profesor
                 $periodos=Periodo::where('ano',date('Y'))->get();
                 $materiaspc = null;
@@ -111,7 +111,11 @@ class MateriaPCController extends Controller
                         }
                     }
                 }
-                return view('materiaspc.listaMateriasPC_profesor',["result"=>$result,'periodos'=>$periodos]);
+                $tiempo_extra=0;
+                if(!empty($empleado[0])){
+                    $tiempo_extra=$empleado[0]->tiempo_extra;
+                }
+                return view('materiaspc.listaMateriasPC_profesor',["result"=>$result,'periodos'=>$periodos,'tiempo_extra'=>$tiempo_extra]);
                 break;
             case "estudiante":
                 // Cuando es estudiantes
@@ -464,8 +468,10 @@ class MateriaPCController extends Controller
     public function editarPlanillas($pk_materia_pc,$pk_periodo){
         $role=session('role');
         if ($role=="profesor" or $role=="director") {
+            
             $result=$this->planillas($pk_materia_pc,$pk_periodo);
-            if(strtotime(date('d-m-Y'))>=strtotime($result['p']->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($result['p']->fecha_limite)){
+            $fecha = date('Y-m-d', strtotime($result['p']->fecha_limite." + ".$result["materiapc"]->tiempo_extra." days"));
+            if(strtotime(date('d-m-Y'))>=strtotime($result['p']->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($fecha)){
                 if (session('user')['cedula']==$result['materiapc']->fk_empleado) {
                     return view('cursos.editPlanillaCurso',$result);
                 } 

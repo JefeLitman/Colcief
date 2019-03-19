@@ -73,7 +73,10 @@
                                                             {{-- Ver planillas/Notas --}}
                                                             <a href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}" data-toggle="tooltip" data-placement="right"  title="Ver notas" ><i class="fas fa-eye text-info"  title="Ver notas"></i></a>
                                                             {{-- Editar planillas/Notas  --}}
-                                                            @if (strtotime(date('d-m-Y'))>=strtotime($p->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($p->fecha_limite))
+                                                            @php
+                                                                $fecha = date('Y-m-d', strtotime($p->fecha_limite." + ".$tiempo_extra." days"));
+                                                            @endphp
+                                                            @if (strtotime(date('d-m-Y'))>=strtotime($p->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($fecha))
                                                                 <a data-toggle="tooltip" data-placement="right" title="Modificar notas" href="/planillas/{{$j[0]}}/periodos/{{$p->pk_periodo}}/editar" ><i class="fas fa-edit text-info" ></i></a>
                                                             @else
                                                                 <a data-toggle="tooltip" data-placement="right" title="Solo puede ser editado desde el {{$p->fecha_inicio}} hasta las 23:59 del {{$p->fecha_limite}}."><i class="fas fa-edit text-secondary"  ></i></a>

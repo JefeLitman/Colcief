@@ -15,10 +15,13 @@
                      <h5>
                          COLEGIO INTEGRADO EZEQUIEL FLORIAN 
                          @if(session('role')=='profesor')
-                            @if (strtotime(date('d-m-Y'))>=strtotime($p->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($p->fecha_limite))
+                            @php
+                                $fecha = date('Y-m-d', strtotime($p->fecha_limite." + ".$materiapc->tiempo_extra." days"));
+                            @endphp
+                            @if (strtotime(date('d-m-Y'))>=strtotime($p->fecha_inicio) and strtotime(date('d-m-Y'))<=strtotime($fecha))
                                 <span class="table-add float-right">
                                     <a  href='{{url(Request::path().'/editar')}}' class="text-info">
-                                        <i  data-toggle="tooltip" data-placement="bottom" title="Editar Planilla" class="far fa-edit fa-lg"></i>
+                                        <i  data-toggle="tooltip" data-placement="right" title="Editar Planilla" class="far fa-edit fa-lg"></i>
                                     </a>
                                 </span>
                             @else
