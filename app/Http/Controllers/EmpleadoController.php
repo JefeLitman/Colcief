@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 //requeridos
 use App\Curso;
 use App\Empleado;
+use App\Periodo;
+use DateTime;
 
 // modelos
 use App\Http\Controllers\Controller;
@@ -69,13 +71,18 @@ class EmpleadoController extends Controller
         if (!(session('role') == 'administrador') and $cedula != session('user')['cedula']) {
             return redirect('/empleados/' . session('user')['cedula']);
         }
-        $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso', 'empleado.fk_curso', '=', 'curso.pk_curso')->withTrashed()->get();
+        $periodo = Periodo::where('ano', date('Y'))->where('fecha_limite', '>=', date('Y-m-d'))->where('fecha_inicio', '<=', date('Y-m-d'))->first();
+        $recuperacion_inicio = new DateTime($periodo->recuperacion_inicio);
+        $fecha_limite = new DateTime($periodo->fecha_limite);
+        $diff = $recuperacion_inicio->diff($fecha_limite);
+        // dd($periodo->fecha_limite);  
+        // dd($periodo->recuperacion_inicio);
+        $empleado = Empleado::where('empleado.cedula', $cedula)->leftjoin('curso', 'empleado.fk_curso', '=', 'curso.pk_curso')->withTrashed()->first();
         $cursos = MateriaPC::where('materia_pc.fk_empleado', $cedula)->join('curso', 'materia_pc.fk_curso', 'curso.pk_curso')->get();
         $cargo = ['Administrador', 'Director', 'Profesor', 'Coordinador'];
 
-        if (!empty($empleado[0])) {
-            // dd($empleado);
-            return view("empleados.verEmpleado", ['empleado' => $empleado[0], 'cursos' => $cursos, 'cargo' => $cargo]);
+        if (!empty($empleado)) {
+            return view("empleados.verEmpleado", ['empleado' => $empleado, 'cursos' => $cursos, 'cargo' => $cargo, 'time' => $diff->days]);
         } else {
             $mensaje = 'No se encuentra registros de este empleado';
             return back()->with('false', $mensaje);
@@ -88,7 +95,7 @@ class EmpleadoController extends Controller
         if (!empty($empleado)) {
             $cursos = Curso::where("ano", date('Y'))->get(); //agregado by Paola
             return view("empleados.editarEmpleado", ['empleado' => $empleado, "cursos" => $cursos]); //Modificado by Paola
-        }else {
+        } else {
             $mensaje = 'No se encuentra registros de este empleado';
             return back()->with('false', $mensaje);
         }
@@ -156,7 +163,7 @@ class EmpleadoController extends Controller
                 'url' => '/materiaspc',
             ]);
             return response()->json([
-                'mensaje' => 'éxito',
+                'data' => $tiempo,
             ]);
         }
     }

@@ -105,7 +105,7 @@
                                 <th class="text-center" scope="col" style="color:#00695c">Código</th>
                                 <th class="text-center" scope="col" style="color:#00695c">Nombre</th>
                                 <th class="text-center" scope="col" style="color:#00695c">Curso</th>
-                                <th class="text-center" scope="col" style="color:#00695c" colspan="4">Acciones</th>
+                                <th class="text-center" scope="col" style="color:#00695c" colspan="5">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,28 +121,38 @@
                                         <td class="text-center">{{$c->pk_estudiante}}</td>
                                         <td class="text-center">{{ucwords($c->nombre)}} {{ucwords($c->apellido)}}</td>
                                         <td class="text-center">{{ucwords($c->prefijo)}}-{{ucwords($c->sufijo)}}</td>
+                                        <td class="text-center">
+                                            <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}/pdf">
+                                                <i class="far fa-file-pdf" style="color:#00838f"></i>
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a data-toggle="tooltip" data-placement="top" title="Ver notas" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" style="color:#00838f">
+                                                <i class="fas fa-clipboard-list"></i>
+                                            </a>
+                                        </td>
                                         {{-- Ver estudiantes --}}
                                         <td class="text-center">
-                                            <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>
+                                            <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="fas fa-eye" style="color:#00838f"></i>
                                             </a>
                                         </td>
                                         @if (session('role') == 'administrador')
                                             {{-- Editar estudiantes --}}
                                             <td class="text-center">
                                                 @if (is_null($c->deleted_at))
-                                                    <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
+                                                    <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar" data-toggle="tooltip" data-placement="top"><i  class="fas fa-edit" style="color:#00838f"></i>
                                                 </a>
                                                 @else
-                                                    <a title="Deshabilitado"><i  class="fas fa-edit" style="color:#6c757d"></i></a>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Deshabilitado"><i  class="fas fa-edit" style="color:#6c757d"></i></a>
                                                 @endif
                                                 
                                             </td>
                                             {{-- Eliminar estudiantes --}}
                                             <td class="text-center">
                                                 @if (is_null($c->deleted_at))
-                                                    <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                                                    <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
                                                 @else
-                                                    <a><i title="Desabilitado" class="fas fa-trash-alt" style="color:#6c757d"></i></a>
+                                                    <a><i data-toggle="tooltip" data-placement="top" title="Desabilitado" class="fas fa-trash-alt" style="color:#6c757d"></i></a>
                                                 @endif
                                             </td>
                                         @endif

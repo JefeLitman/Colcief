@@ -41,24 +41,29 @@
                                      <td class="text-center">{{ucwords($c->nombre)}}</td>
                                      <td class="text-center">{{ucwords($c->apellido)}}</td>
                                      <td class="text-center">{{$c->grado}}</td>
+                                     <td class="text-center">
+                                        <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}/pdf">
+                                            <i class="far fa-file-pdf" style="color:#00838f"></i>
+                                        </a>
+                                    </td>
                                      {{-- ver notas --}}
                                      <td class="text-center">
-                                         <a href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
+                                         <a data-toggle="tooltip" data-placement="top" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
                                      </td>
                                      {{-- Ver estudiantes --}}
                                      <td class="text-center">
-                                         <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>
+                                         <a href="{{ route('estudiantes.show', $c->pk_estudiante) }}" title="Detalles" data-toggle="tooltip" data-placement="top"><i class="fas fa-eye" style="color:#00838f"></i>
                                          </a>
                                      </td>
                                      @if (session('role') == 'administrador')
                                          {{-- Editar estudiantes --}}
                                         <td class="text-center">
-                                            <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar"><i  class="fas fa-edit" style="color:#00838f"></i>
+                                            <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar" data-toggle="tooltip" data-placement="top"><i  class="fas fa-edit" style="color:#00838f"></i>
                                             </a>
                                         </td>
                                         {{-- Eliminar estudiantes --}}
                                         <td class="text-center">
-                                            <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" class="fas fa-trash-alt" style="color:#c62828"></i></a>
+                                            <a class="delete" padre="estudiantes{{$c->pk_estudiante}}" ruta="estudiantes" identificador="{{$c->pk_estudiante}}"><i title="Eliminar" data-toggle="tooltip" data-placement="top" class="fas fa-trash-alt" style="color:#c62828"></i></a>
                                         </td>
                                      @endif
                                  </tr>

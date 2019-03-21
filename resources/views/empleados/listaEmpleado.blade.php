@@ -13,29 +13,6 @@
                 </div>
             </form>
             <br>
-            <div class="alert alert-light alert-dismissible fade show" style="border-color: #818182" role="alert">
-                <div class="row">
-                    <div class="col">
-                        <strong>Tiempo extra</strong>
-                    </div>
-                    <div class="col">
-                        <i class="fas fa-stopwatch text-dark"></i> 0 dias
-                    </div>
-                    <div class="col">
-                        <i class="fas fa-stopwatch text-primary"></i> 1 dia
-                    </div>
-                    <div class="col">
-                        <i class="fas fa-stopwatch text-warning"></i> 3 dias
-                    </div>
-                    <div class="col">   
-                        <i class="fas fa-stopwatch text-danger"></i> 1 semana
-                    </div>
-                </div>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
             <div class="table-responsive">
                 <table class="table table-striped table-condensed table-hover text-center">
                     <thead>
@@ -56,24 +33,6 @@
                                 <td class="center">{{ucwords($i->nombre)}} {{ucwords($i->apellido)}}</td>
                                 <td class="center">{{ucwords($cargo[$i->role])}}</td>
                                 <td class="center">
-                                    <a title="Agregar tiempo extra" class="{{($i->role == 0 || $i->role == 3 ) ? '' : 'time'}}" identificador="{{$i->cedula}}">
-                                        <i id="{{$i->cedula}}t" class="fas fa-stopwatch {{($i->role == 0 || $i->role == 3 ) ? 'text-secondary' : ''}}
-                                            @switch($i->tiempo_extra)
-                                                @case(1)
-                                                    text-primary
-                                                    @break
-                                                @case(3)
-                                                    text-warning
-                                                    @break
-                                                @case(7)
-                                                    text-danger
-                                                    @break
-                                            @endswitch
-                                            ">
-                                        </i>
-                                    </a>
-                                </td>
-                                <td class="center">
                                     <a href="{{ route('empleados.edit', $i->cedula) }}"><i class="fas fa-edit" style="color:#17a2b8" title="Editar"></i></a>
                                 </td>
                                 {{-- Eliminar empleado --}}
@@ -91,58 +50,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $('.time').click(function(){
-            var id = $(this).attr('identificador');
-            var icon = $('#'+id+'t');
-            var entrada = ''+
-            '<div class="form-group mb-2">'+
-                '<label for="cedula"><strong><small style="color : #616161">Tiempo extra</small></strong></label>'+
-                '<div class="input-group mb-2">'+
-                    '<div class="input-group-prepend">'+
-                        '<span class= "input-group-text">'+
-                            '<i class="fas fa-stopwatch"></i>'+
-                        '</span>'+
-                    '</div>'+
-                    '<select class="custom-select custom-select-sm" name="time" id="time">'+
-                        '<option value="0">Seleccionar</option>'+
-                        '<option value="1">Un dia</option>'+
-                        '<option value="3">Tres dias</option>'+
-                        '<option value="7">Una semana</option>'+
-                    '</select>'+
-                '</div>'+
-            '</div>'
-            modalConfirm(function(confirm){
-                $("#exampleModalCenter").modal('hide');
-                if(confirm){
-                    var time = $('#time').val();
-                    var color = '';
-                    switch (time) {
-                        case '1':
-                            color = '#007bff';
-                            break;
-                        case '3':
-                            color = '#ffc107';
-                            break;
-                        case '7':
-                            color = '#dc3545';
-                            break;
-                        default:
-                            color = '#343a40';
-                            break;
-                    }
-                    $.ajax({
-                        type: 'POST',
-                        url: '/empleados/'+id+'/time/'+time,
-                        data: {_token:$('#csrf_token').attr('content'), _method:'PUT'},
-                        success: function(data) {
-                            icon.css({'color':color});
-                        }
-                    });
-                }
-            },'¿Desea agregar tiempo extra?', entrada, true);
-        });
-    });
-</script>
 @endsection

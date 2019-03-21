@@ -20,21 +20,7 @@ funcion show() @Autor Paola C. --}}
                                     @if (session('role') == 'administrador')
                                         @if (is_null($empleado->deleted_at)) 
                                             @if ($empleado->role == '1' || $empleado->role == '2')
-                                                <a class="time" identificador="{{$empleado->cedula}}"><i data-toggle="tooltip" data-placement="top" 
-                                                    @switch($empleado->tiempo_extra)
-                                                        @case(1)
-                                                            style="color:#007bff" title="1 día extra"
-                                                            @break
-                                                        @case(3)
-                                                            style="color:#ffc107" title="3 días extra" 
-                                                            @break
-                                                        @case(7)
-                                                            style="color:#dc3545" title="1 semana extra"
-                                                            @break
-                                                        @default
-                                                            style="color:#343a40" title="0 días extra"
-                                                    @endswitch
-                                            id="{{$empleado->cedula}}t" class="fas fa-stopwatch"></i></a>
+                                                <a class="time" identificador="{{$empleado->cedula}}"><i data-toggle="tooltip" data-placement="top" id="{{$empleado->cedula}}t" class="fas fa-stopwatch"></i></a>
                                             @endif
                                             <a href="{{ route('empleados.edit', $empleado->cedula) }}"><i class="fas fa-edit text-info" title="Editar" data-toggle="tooltip" data-placement="top" title="Ver notas"></i></a>
                                             @unless (session('user')['cedula'] == $empleado->cedula)
@@ -255,10 +241,9 @@ funcion show() @Autor Paola C. --}}
                         '</span>'+
                     '</div>'+
                     '<select class="custom-select custom-select-sm" name="time" id="time">'+
-                        '<option value="0">Seleccionar</option>'+
-                        '<option value="1">Un dia</option>'+
-                        '<option value="3">Tres dias</option>'+
-                        '<option value="7">Una semana</option>'+
+                        @for($i=0;$i<$time;$i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
                     '</select>'+
                 '</div>'+
             '</div>'
@@ -266,27 +251,12 @@ funcion show() @Autor Paola C. --}}
                 $("#exampleModalCenter").modal('hide');
                 if(confirm){
                     var time = $('#time').val();
-                    var color = '';
-                    switch (time) {
-                        case '1':
-                            color = '#007bff';
-                            break;
-                        case '3':
-                            color = '#ffc107';
-                            break;
-                        case '7':
-                            color = '#dc3545';
-                            break;
-                        default:
-                            color = '#343a40';
-                            break;
-                    }
                     $.ajax({
                         type: 'POST',
                         url: '/empleados/'+id+'/time/'+time,
                         data: {_token:$('#csrf_token').attr('content'), _method:'PUT'},
                         success: function(data) {
-                            icon.css({'color':color});
+                            icon.attr({'title':data+' dias extra'});
                         }
                     });
                 }
@@ -351,32 +321,6 @@ funcion show() @Autor Paola C. --}}
                 '</form>'
             modalConfirm(function(confirm){
                 $("#exampleModalCenter").modal('hide');
-                if(confirm){
-                    var time = $('#time').val();
-                    var color = '';
-                    switch (time) {
-                        case '1':
-                            color = '#007bff';
-                            break;
-                        case '3':
-                            color = '#ffc107';
-                            break;
-                        case '7':
-                            color = '#dc3545';
-                            break;
-                        default:
-                            color = '#343a40';
-                            break;
-                    }
-                    $.ajax({
-                        type: 'POST',
-                        url: '/empleados/'+id+'/time/'+time,
-                        data: {_token:$('#csrf_token').attr('content'), _method:'PUT'},
-                        success: function(data) {
-                            icon.css({'color':color});
-                        }
-                    });
-                }
             },'Cambiar contraseña', entrada, false);
         });
     });
