@@ -25,7 +25,8 @@ class EstudianteController extends Controller
     public function __construct()
     {
         $this->middleware('admin:estudiante,director,profesor,administrador,coordinador')->only(['perfil', 'show', 'cambiarClave']);
-        $this->middleware('admin:coordinador,administrador')->only(['index', 'estudianteGrado', 'estudiantes', 'filtro']);
+        $this->middleware('admin:coordinador,administrador')->only(['index', 'estudiantes', 'filtro']);
+        $this->middleware('admin:coordinador,administrador,director')->only(['estudianteGrado']);
         $this->middleware('admin:administrador')->except(['perfil', 'show', 'index', 'estudianteGrado', 'estudiantes', 'filtro']);
     }
 
@@ -38,6 +39,11 @@ class EstudianteController extends Controller
 
     public function estudianteGrado($pk_curso)
     {
+        if(session('role')=="director" ){
+            if(session('user')['fk_curso']!=$pk_curso){
+                return redirect('/estudiantes/cursos/'.session('user')['fk_curso']);
+            }
+        }
         $curso = json_decode((new CursoController)->conteoEstudiantes($pk_curso));
         $c = Curso::find($pk_curso);
         return view('estudiantes.estudiantesGrado', ['curso' => $curso, 'grado' => $c]);
