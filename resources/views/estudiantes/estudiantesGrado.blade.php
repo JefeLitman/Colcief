@@ -48,7 +48,7 @@
                                     </td>
                                      {{-- ver notas --}}
                                      <td class="text-center">
-                                         <a data-toggle="tooltip" data-placement="top" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" title="Ver notas"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
+                                         <a data-toggle="tooltip" data-placement="top" href="/boletines/estudiantes/{{$c->pk_estudiante}}" title="Boletines"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
                                      </td>
                                      {{-- Ver estudiantes --}}
                                      <td class="text-center">

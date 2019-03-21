@@ -71,7 +71,8 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<div class="container" style="background:#fff !important;">
+							<div id="containerh" class="container" style="background:#fff !important;">
+								
 								<div class="row">
 									<div class="col-12 col-sm-6 mb-3">
 										<div class="form-group mb-2">
@@ -129,6 +130,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<script>
 			$(document).ready(function(){
 				$('.single-eventp').click(function(){
@@ -155,7 +157,16 @@
 						},
 						success: function(data) {
 							console.log(data);
-							location.reload();
+							if(data.errors){
+								mensaje = '<div id="alerth" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>¡Error!</strong><ul>';
+								$.each( data.errors, function(key, error) {
+									mensaje += '<li>'+error+'.</li>';
+								});
+								mensaje += '</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+								$('#containerh').prepend(mensaje);
+							} else {
+								location.reload();
+							}
 						},
 						error: function(){
 							$('#modal').modal('show');

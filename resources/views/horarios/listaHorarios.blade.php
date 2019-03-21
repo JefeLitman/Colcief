@@ -299,22 +299,6 @@
                     </div>
                 </div>
             </div>
-            @if (session('role') == 'administrador')
-                <div class="row text-center mt-4">
-                    <div class="col-6">
-                        <a data-toggle="tooltip" data-placement="top" title="Crear curso" class="btn btn-info" href="/cursos/crear">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <small class="d-none d-sm-block">Crear curso</small>
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a data-toggle="tooltip" data-placement="top" title="Crear Estudiante" class="btn btn-info" href="/estudiantes/crear">
-                            <i class="fas fa-user-plus"></i>
-                            <small class="d-none d-sm-block">Crear estudiante</small>
-                        </a>
-                    </div>
-                </div>
-            @endif
         </div>
     </div>
 </div>

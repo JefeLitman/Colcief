@@ -127,7 +127,7 @@
                                             </a>
                                         </td>
                                         <td class="text-center">
-                                            <a data-toggle="tooltip" data-placement="top" title="Ver notas" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}" style="color:#00838f">
+                                            <a data-toggle="tooltip" data-placement="top" title="Boletines" href="/boletines/estudiantes/{{$c->pk_estudiante}}" style="color:#00838f">
                                                 <i class="fas fa-clipboard-list"></i>
                                             </a>
                                         </td>

@@ -126,7 +126,7 @@ Route::resource('/horarios', 'HorarioController');
 Route::get('/horarios/curso/{pk_curso}', 'HorarioController@verHorarioDirectorCurso')->name('horarios.curso');
 Route::get('/horarios/director/{cedula}', 'HorarioController@verHorarioDirector')->name('horarios.empleado');
 Route::get('/horarios/{fk_curso}/crear', 'HorarioController@create')->name('crearHorario');
-Route::get('/horarios/{fk_curso}/editar', 'HorarioController@edit');
+// Route::get('/horarios/{fk_curso}/editar', 'HorarioController@edit');
 
 /* RUTAS DE BOLETIN */
 Route::resource('/boletines', 'BoletinController')->middleware('admin:coordinador,administrador');

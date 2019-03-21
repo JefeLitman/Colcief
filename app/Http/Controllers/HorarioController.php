@@ -286,80 +286,96 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            
+
             $crear = true;
             $errores = [];
             // Obtener los horarios de todas las MateriasPC para un curso
-            $horariosCurso = MateriaPC::where('fk_curso', $request->curso)
-            ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
+            $materia = MateriaPC::find($request->fk_materia_pc);
+            $empleado = $materia->fk_empleado;
+    
+            $horariosCurso = MateriaPC::where('fk_curso', $request->curso)->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
+
+            if(count($horariosCurso) > 0){
+                // Recorrer los horarios de todas las MateriasPC para un mismo curso para mirar que sus horarios no se crucen
+                foreach ($horariosCurso as $horarioCurso) {
+
+                    if($request->pk_horario != $horarioCurso->pk_horario){
+                        // Utilizar la funcion strtotime() que convierte los tiempos
+                        // a una fecha UNIX (el numero de segundos desde 1970 00:00:00 UTC)
+                        // para comparar luego estos valores con el fin de evitar errores en la comparación
+                        $bdInicio = strtotime($horarioCurso->hora_inicio);
+                        $bdFin = strtotime($horarioCurso->hora_fin);
+                        $reqInicio = strtotime($request->hora_inicio);
+                        $reqFin = strtotime($request->hora_fin);
+
+                        // Revisar los siguientes cuatro casos en los que no debería dejarse crear un horario por interferencia:
+                        // 1. Alguno de los horarios de la BD contiene la hora_inicio del request ($bdInicio < $reqInicio < bdFin)
+                        // 2. Alguno de los horarios de la BD contiene la hora_fin del request ($bdInicio < $reqFin < bdFin)
+                        // 3. Las horas de inicio y fin del request contienen algun horario de la BD ($reqInicio < $bdInicio < $bdFin < $reqFin)
+                        // 4. La hora de inicio del request es igual a la de la BD y la hora fin del request es igual a la de la BD ($reqInicio = $bdInicio y $bdFin = $reqFin)
+                        // Se podría pensar en un quinto caso que sería que los horarios de la BD contengan a los del request pero con la verificacion
+                        // de cualquiera de los dos primeros casos se verificaria este quinto caso.
+                        if ((($reqInicio < $bdFin) && ($reqInicio > $bdInicio)) || (($reqFin < $bdFin) && ($reqFin > $bdInicio)) || (($reqInicio < $bdInicio) && ($reqFin > $bdFin)) || (($reqInicio == $bdInicio) && ($reqFin == $bdFin))) {
+                            // Asegurarse que si algun horario interfiere con otro, sea el mismo día
+                            if ($request->dia == $horarioCurso->dia) {
+                                // Error para las interferencias por materiasPC de un mismo curso
+                                $error = "Interferencia horaria para el " . $request->dia . " en la franja de " .
+                                $request->hora_inicio . "-" . $request->hora_fin . " con la materia " .
+                                $horarioCurso->nombre . " de " . substr($horarioCurso->hora_inicio, 0, 5) .
+                                "-" . substr($horarioCurso->hora_fin, 0, 5);
+                                // Añadir el error al array de errores
+                                array_push($errores, $error);
+                                // Se encontro un error entonces cambiamos el valor de la variable crear
+                                $crear = false;
+                            }
+                        }
+                    }
+                }
+            }
 
             // Consulta de todas las materiasPC para el empleado
-            $materiasEmpleado = MateriaPC::where('fk_empleado', $horariosCurso[0]->fk_empleado)
-            ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
+            $materiasEmpleado = MateriaPC::where('fk_empleado', $empleado)
+                ->join('horario', 'materia_pc.pk_materia_pc', 'horario.fk_materia_pc')->get();
 
-            // Recorrer los horarios de todas las MateriasPC para un mismo curso para mirar que sus horarios no se crucen
-            foreach ($horariosCurso as $horarioCurso) {
+            if(count($materiasEmpleado) > 0){
+                foreach ($materiasEmpleado as $materiaEmpleado) {
 
-                // Utilizar la funcion strtotime() que convierte los tiempos
-                // a una fecha UNIX (el numero de segundos desde 1970 00:00:00 UTC)
-                // para comparar luego estos valores con el fin de evitar errores en la comparación
-                $bdInicio = strtotime($horarioCurso->hora_inicio);
-                $bdFin = strtotime($horarioCurso->hora_fin);
-                $reqInicio = strtotime($request->hora_inicio);
-                $reqFin = strtotime($request->hora_fin);
-
-                // Revisar los siguientes cuatro casos en los que no debería dejarse crear un horario por interferencia:
-                // 1. Alguno de los horarios de la BD contiene la hora_inicio del request ($bdInicio < $reqInicio < bdFin)
-                // 2. Alguno de los horarios de la BD contiene la hora_fin del request ($bdInicio < $reqFin < bdFin)
-                // 3. Las horas de inicio y fin del request contienen algun horario de la BD ($reqInicio < $bdInicio < $bdFin < $reqFin)
-                // 4. La hora de inicio del request es igual a la de la BD y la hora fin del request es igual a la de la BD ($reqInicio = $bdInicio y $bdFin = $reqFin)
-                // Se podría pensar en un quinto caso que sería que los horarios de la BD contengan a los del request pero con la verificacion
-                // de cualquiera de los dos primeros casos se verificaria este quinto caso.
-                if ((($reqInicio < $bdFin) && ($reqInicio > $bdInicio)) || (($reqFin < $bdFin) && ($reqFin > $bdInicio)) || (($reqInicio < $bdInicio) && ($reqFin > $bdFin)) || (($reqInicio == $bdInicio) && ($reqFin == $bdFin))) {
-                    // Asegurarse que si algun horario interfiere con otro, sea el mismo día
-                    if ($request->dia == $horarioCurso->dia) {
-                        // Error para las interferencias por materiasPC de un mismo curso
-                        $error = "Interferencia horaria para el " . $request->dia . " en la franja de " .
-                        $request->hora_inicio . "-" . $request->hora_fin . " con la materia " .
-                        $horarioCurso->nombre . " de " . substr($horarioCurso->hora_inicio, 0, 5) .
-                        "-" . substr($horarioCurso->hora_fin, 0, 5);
-                        // Añadir el error al array de errores
-                        array_push($errores, $error);
-                        // Se encontro un error entonces cambiamos el valor de la variable crear
-                        $crear = false;
+                    if($request->pk_horario !=  $materiaEmpleado->pk_horario){
+                        // Utilizar la funcion strtotime() que convierte los tiempos
+                        // a una fecha UNIX (el numero de segundos desde 1970 00:00:00 UTC)
+                        // para comparar luego estos valores con el fin de evitar errores en la comparación
+                        $profeInicio = strtotime($materiaEmpleado->hora_inicio);
+                        $profeFin = strtotime($materiaEmpleado->hora_fin);
+                        $reqInicio = strtotime($request->hora_inicio);
+                        $reqFin = strtotime($request->hora_fin);
+            
+        
+                        // Se repiten los casos para interferencia horaria pero esta vez teniendo en cuenta los horarios de los profesores y no del curso
+                        if ((($reqInicio < $profeFin) && ($reqInicio > $profeInicio)) || (($reqFin < $profeFin) && ($reqFin > $profeInicio)) || (($reqInicio < $profeInicio) && ($reqFin > $profeFin)) || (($reqInicio == $profeInicio) && ($reqFin == $profeFin))) {
+                            // Asegurarse que si algun horario interfiere con otro, sea el mismo día
+                            if ($request->dia == $materiaEmpleado->dia) {
+                                // Error para las interferencias en las materiasPC del empleado
+                                $error = "El profesor ya tiene un horario asignado el día " .
+                                $materiaEmpleado->dia . " de " . substr($materiaEmpleado->hora_inicio, 0, 5) .
+                                "-" . substr($materiaEmpleado->hora_fin, 0, 5) . " por lo cual no es posible crear un horario de " .
+                                $request->hora_inicio . "-" . $request->hora_fin;
+                                // Añadir el error al array de errores
+                                array_push($errores, $error);
+                                // Se encontro un error entonces cambiamos el valor de la variable crear
+                                $crear = false;
+                            }
+                        }
                     }
                 }
             }
-
-            // Recorrer todas las materiasPC de un empleado en busca de interferencias en los horarios de los profesores
-            foreach ($materiasEmpleado as $materiaEmpleado) {
-
-                // Utilizar la funcion strtotime() que convierte los tiempos
-                // a una fecha UNIX (el numero de segundos desde 1970 00:00:00 UTC)
-                // para comparar luego estos valores con el fin de evitar errores en la comparación
-                $profeInicio = strtotime($materiaEmpleado->hora_inicio);
-                $profeFin = strtotime($materiaEmpleado->hora_fin);
-                $reqInicio = strtotime($request->hora_inicio);
-                $reqFin = strtotime($request->hora_fin);
-
-                // Se repiten los casos para interferencia horaria pero esta vez teniendo en cuenta los horarios de los profesores y no del curso
-                if ((($reqInicio < $profeFin) && ($reqInicio > $profeInicio)) || (($reqFin < $profeFin) && ($reqFin > $profeInicio)) || (($reqInicio < $profeInicio) && ($reqFin > $profeFin)) || (($reqInicio == $profeInicio) && ($reqFin == $profeFin))) {
-                    // Asegurarse que si algun horario interfiere con otro, sea el mismo día
-                    if ($request->dia == $materiaEmpleado->dia) {
-                        // Error para las interferencias en las materiasPC del empleado
-                        $error = "El profesor ya tiene un horario asignado el día " .
-                        $materiaEmpleado->dia . " de " . substr($materiaEmpleado->hora_inicio, 0, 5) .
-                        "-" . substr($materiaEmpleado->hora_fin, 0, 5) . " por lo cual no es posible crear un horario de " .
-                        $request->hora_inicio . "-" . $request->hora_fin;
-                        // Añadir el error al array de errores
-                        array_push($errores, $error);
-                        // Se encontro un error entonces cambiamos el valor de la variable crear
-                        $crear = false;
-                    }
-                }
+            if($crear){
+                $horario = Horario::findOrCreate($request->pk_horario)->fill($request->except(['_token']));
+                $horario->save();
+            } else {
+                return response()->json([
+                    'errors' => $errores,
+                ]);
             }
-            $horario = Horario::findOrCreate($request->pk_horario)->fill($request->except(['_token']));
-            $horario->save();     
         }
     }
 

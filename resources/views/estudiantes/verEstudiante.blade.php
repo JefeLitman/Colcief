@@ -67,10 +67,7 @@
                             @if (session('role') == 'administrador')
                                 <li class="list-group-item">
                                     @if (is_null($estudiante->deleted_at))
-                                        <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}/pdf">
-                                            <i class="far fa-file-pdf" style="color:#00838f"></i>
-                                        </a>
-                                        <a data-toggle="tooltip" data-placement="top" title="Ver notas" href="/boletines/actual/estudiantes/{{$estudiante->pk_estudiante}}" class="text-info">
+                                        <a data-toggle="tooltip" data-placement="top" title="Boletines" href="/boletines/estudiantes/{{$estudiante->pk_estudiante}}" class="text-info">
                                             <i class="fas fa-clipboard-list"></i>
                                         </a>
                                         <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('estudiantes.edit', $estudiante->pk_estudiante) }}" class="text-info">
