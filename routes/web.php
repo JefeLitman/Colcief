@@ -183,5 +183,5 @@ Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}/pdf', 'PdfController@in
 
 // Route::get('/terminal/pdf', 'Terminal@pdf');
 // Route::get('/terminal/update', 'Terminal@update');
-// Route::get('/terminal/link', 'Terminal@link');
+Route::get('/terminal/link', 'Terminal@link');
 
