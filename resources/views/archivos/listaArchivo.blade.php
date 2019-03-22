@@ -11,7 +11,7 @@
                 <input type="text" class="form-control"  id="entradafilter" placeholder="Buscar" aria-label="lead" aria-describedby="basic-addon1">
             </div>
             <br>
-            @if (empty($archivos[0]))
+            @if (!count($archivos) > 0)
                 <div class="text-center">No hay archivos</div>
             @else
                 <div class="card-columns contenidobusqueda">
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">{{($archivo -> descripcion == '' || is_null($archivo -> descripcion)) ? 'No se ingreso una descripción' : ucfirst($archivo -> descripcion}}.</p>
+                                <p class="card-text">{{($archivo -> descripcion == '' || is_null($archivo -> descripcion)) ? 'No se ingreso una descripción' : ucfirst($archivo -> descripcion) }}.</p>
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted" style="font-size:60%">
