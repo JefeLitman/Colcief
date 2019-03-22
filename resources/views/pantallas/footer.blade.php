@@ -41,9 +41,9 @@
                     <li>
                         <a data-scroll class="link" href="#nosotros">Acerca de Nosotros</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a data-scroll class="link" href="#nuestro-colegio">Nuestro Colegio</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a data-scroll class="link" href="#historia">Historia</a>
                     </li>

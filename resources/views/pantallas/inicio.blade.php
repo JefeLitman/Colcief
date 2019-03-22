@@ -104,13 +104,13 @@
         <div class="row">
             <div ALIGN="justify" class="col-sm-6 border-right">
               <h5 class="text-center">Misión</h5>
-              <p class="p-3">
+              <p class="p-3 lead">
                 Somos una comunidad educatica que forma integralmente a la persona para que sea lider y promotora del desarrollo sostenible de la región; creativa recursiva, libre y responsable con mentalidad empresarial, respetuosa de su entorno y con profundo sentido de pertenecia.
               </p>
             </div>
             <div ALIGN="justify" class="col-sm-6 border-left">
               <h5 class="text-center">Visión</h5>
-              <p class="p-3">
+              <p class="p-3 lead">
                 Aspiramos a que la institución sea un modelo educativo a nivel local, regional y nacional, que contribuya a mejorar la calidad de vida, y logre el desarrollo sostenible a través de la formación de lideres socioambientales.
               </p>
             </div>
@@ -123,48 +123,44 @@
     <div class="historia section py-4" id="historia">
         <h3 class="section-title text-center m-5">Historia del Colegio</h3>
         <div class="container py-3">
-            <div class="row justify-content-center">
-            <div ALIGN="justify" class="col-m-1 border-left"></div>
-            <div ALIGN="justify" class="col-sm-10">
-                {{--  <h5 class="text-center">Misión</h5>  --}}
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img class="card-img-top" src="{{ asset('img/COLCIEF1.jpg') }}">
-                    </div>
-                    <div class="col-sm-8">
-                        <p class="p-3">
-                            El colegio fue creado en <b>1970</b> por el secretario de Educación del departamento bajo la denominación de colegio “Eduardo Camacho Gamba”, en honor al ilustre político. Inicio sus laborares con un total de 31 estudiantes matriculados en el curso de bachillerato y fue nombrado como rector el docente Baltasar Santoyo Alza y como profesor de tiempo completo el señor Eduardo Suarez (ya fallecido).
-                        </p>
-                    </div>
-                </div>
+            <div class="row">
+              <div ALIGN="justify">
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <img class="card-img-top" src="{{ asset('img/COLCIEF1.jpg') }}">
+                      </div>
+                      <div class="col-sm-9">
+                          <p class="p-3 lead">
+                              El colegio fue creado en <b>1970</b> por el secretario de Educación del departamento bajo la denominación de colegio “Eduardo Camacho Gamba”, en honor al ilustre político. Inicio sus laborares con un total de 31 estudiantes matriculados en el curso de bachillerato y fue nombrado como rector el docente Baltasar Santoyo Alza y como profesor de tiempo completo el señor Eduardo Suarez (ya fallecido).
+                          </p>
+                      </div>
+                  </div>
 
-                <div class="row">
-                    <div class="col-sm-8">
-                        <p class="p-3">
-                            En <b>1972</b> bajo la rectoría del Pbro. José Gabino Sierra, el platel toma la actual denominación del colegio integrado Ezequiel Florián, por petición de la secretaria de educación, al presentarse dos colegios con el mismo nombre, y el nombre y en honor al distinguido colono de esta región, don Ezequiel Florián.
-                        </p>
-                    </div>
-                    <div class="col-sm-4">
-                        <img class="card-img-top" src="{{ asset('img/COLCIEF2.jpg') }}">
-                    </div>
-                </div>
+                  <div class="row mt-3">
+                      <div class="col-sm-9">
+                          <p class="p-3 lead">
+                              En <b>1972</b> bajo la rectoría del Pbro. José Gabino Sierra, el platel toma la actual denominación del colegio integrado Ezequiel Florián, por petición de la secretaria de educación, al presentarse dos colegios con el mismo nombre, y el nombre y en honor al distinguido colono de esta región, don Ezequiel Florián.
+                          </p>
+                      </div>
+                      <div class="col-sm-3">
+                          <img class="card-img-top" src="{{ asset('img/COLCIEF2.jpg') }}">
+                      </div>
+                  </div>
 
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img class="card-img-top" src="{{ asset('img/COLCIEF3.jpg') }}">
-                    </div>
-                    <div class="col-sm-8">
-                        <p class="p-3">
-                          El colegio funcionó inicialmente donde está ubicado hoy en día laConcentración Colombia, (actual sección primaria grados superiores) hasta Octubre de <b>1977</b>. Cuan fue trasladado a su propia sede. <br>
-                          Solo hasta el año <b>1976</b> completo la básica secundaria y a cumplir sus primeros veinte años <b>(1970­­-1990)</b> de labores, saco la primera promoción de bachilleres académicos, veintitrés (23) en total. En ese año <b>(1990)</b>, la secretaria de educación autorizo el cambio de la modalidad: académicamente a agropecuaria,  en forma progresiva.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div ALIGN="justify" class="col-m-1 border-left"></div>
+                  <div class="row mt-3">
+                      <div class="col-sm-4">
+                          <img class="card-img-top" src="{{ asset('img/COLCIEF3.jpg') }}">
+                      </div>
+                      <div class="col-sm-8">
+                          <p class="p-3 lead">
+                            El colegio funcionó inicialmente donde está ubicado hoy en día laConcentración Colombia, (actual sección primaria grados superiores) hasta Octubre de <b>1977</b>. Cuan fue trasladado a su propia sede. <br>
+                            Solo hasta el año <b>1976</b> completo la básica secundaria y a cumplir sus primeros veinte años <b>(1970­­-1990)</b> de labores, saco la primera promoción de bachilleres académicos, veintitrés (23) en total. En ese año <b>(1990)</b>, la secretaria de educación autorizo el cambio de la modalidad: académicamente a agropecuaria,  en forma progresiva.
+                          </p>
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
-        <div class="py-4"></div>
     </div>
 {{-- FIN DE HISTORIA  --}}
 
