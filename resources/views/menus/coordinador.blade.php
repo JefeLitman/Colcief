@@ -12,7 +12,7 @@
 
         <ul class="list-unstyled components">
             {{--  INICIO  --}}
-            <li @if (Request::path()=="empleados/principal") class="active" @endif >
+            <li @if (Request::path()=="empleados/".session('user')['cedula']) class="active" @endif >
                 <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
             </li>
             {{--  HORARIOS  --}}
@@ -38,7 +38,7 @@
             {{-- <li @if (Request::path()=="") class="active" @endif >
                 <a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelaciones</a>
             </li> --}}
-            <li @if (Request::path()=="/archivos") class="active" @endif >
+            <li @if (Request::path()=="/archivos" or Request::path()=="/archivos/crear") class="active" @endif >
                 <a href="#archivoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="far fa-folder-open"></i> Documentos
                 </a>

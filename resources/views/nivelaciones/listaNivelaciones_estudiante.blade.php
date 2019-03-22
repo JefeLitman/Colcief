@@ -61,7 +61,12 @@
 															{{-- Profesor --}}
 															<td class="text-center"> {{ucwords($r->nombre)}} {{ucwords($r->apellido)}}</td>
 															{{-- Nota --}}
-															<td class="text-center"> {{$r->nota or "-"}} </td>
+															<td class="text-center">
+																@if ($r->nota==null) 
+																	-
+																@else 
+																	{{$r->nota}}
+																@endif </td>
 															{{-- Accion --}}
 															<td class="text-center"><a href="/recuperaciones/{{$r->pk_recuperacion}}" data-toggle="tooltip" data-placement="right" title="Ver más"><i class="fas fa-eye text-info"  ></i></a></td>
 														</tr>
@@ -102,7 +107,13 @@
 															{{-- Curso --}}
 															<td class="text-center"> {{($n->prefijo==0)?"Preescolar":$n->prefijo}}-{{$n->sufijo}} / {{$n->ano}}</td>
 															{{-- Nota --}}
-															<td class="text-center"> {{$n->nota or "-"}}</td>
+															<td class="text-center">
+																@if ($n->nota==null) 
+																	-
+																@else 
+																	{{$n->nota}}
+																@endif
+															</td>
 															{{-- Acciones --}}
 															<td class="text-center"><a href="/nivelaciones/{{$n->pk_nivelacion}}" data-toggle="tooltip" data-placement="right" title="Ver más" ><i class="fas fa-eye text-info"  ></i></a></td>
 														</tr>

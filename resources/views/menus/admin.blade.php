@@ -12,7 +12,7 @@
 
             <ul class="list-unstyled components">
                 {{--  INICIO  --}}
-				<li @if (Request::path()=="empleados/principal") class="active" @endif >
+				<li @if (Request::path()=="empleados/".session('user')['cedula']) class="active" @endif >
 					<a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 {{--  HORARIOS  --}}
@@ -24,7 +24,7 @@
 					<a class="nav-link " href="{{ url('estudiantes') }}"> <i class="fas fa-chalkboard-teacher"></i> Cursos</a>
                 </li>
                 {{--  ESTUDIANTES  --}}
-				<li @if (Request::path()=="filtro") class="active" @endif >
+				<li @if (Request::path()=="filtro" or Request::path()=="/estudiantes/crear") class="active" @endif >
                     <!-- <a class="nav-link " href="{{ url('filtro') }}"> <i class="fas fa-user-graduate"></i> Estudiantes</a> -->
                     <a href="#estudianteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-user-graduate"></i> Estudiantes
@@ -39,7 +39,7 @@
 					</ul>
                 </li>
                 {{--  EMPLEADOS  --}}
-				<li @if (Request::path()=="empleados") class="active" @endif >
+				<li @if (Request::path()=="empleados" or Request::path()=="empleados/crear") class="active" @endif >
 					<a href="#empleadoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 						<i class="fas fa-users"></i> Empleados
 					</a>
@@ -53,7 +53,7 @@
 					</ul>
                 </li>
                 {{--  COMPONENTES  --}}
-                <li @if (Request::path()=="divisiones") class="active" @endif >
+                <li @if (Request::path()=="divisiones" or Request::path()=="divisiones/editar") class="active" @endif >
                     <a href="#divisionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-th-list"></i> Componentes
                     </a>
@@ -76,15 +76,15 @@
 					<a class="nav-link " href="/fechas"> <i class="far fa-calendar-alt"></i> Fechas</a>
                 </li>
                 {{--  NIVELACIONES  --}}
-				<li @if (Request::path()=="") class="active" @endif >
+				<li @if (Request::path()=="nivelaciones") class="active" @endif >
 					<a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelaciones</a>
                 </li>
                 {{--  SIGSE  --}}
-                <li @if (Request::path()=="") class="active" @endif >
+                <li @if (Request::path()=="SIGSE") class="active" @endif >
 					<a class="nav-link " href="/SIGSE"> <i class="fas fa-chart-bar"></i> SIGSE</a>
                 </li>
                 {{--  DOCUMENTOS  --}}
-                <li @if (Request::path()=="/archivos") class="active" @endif >
+                <li @if (Request::path()=="/archivos" or Request::path()=="/archivos/crear") class="active" @endif >
                     <a href="#archivoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="far fa-folder-open"></i> Documentos
                     </a>

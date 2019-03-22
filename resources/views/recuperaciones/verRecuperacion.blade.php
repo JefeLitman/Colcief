@@ -95,7 +95,14 @@
                                                 <i class="fas fa-sticky-note"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{$recuperacion->nota or '-'}} " disabled>
+                                        <input type="text" class="form-control form-control-sm" 
+                                        value=" 
+                                            @if ($recuperacion->nota==null) 
+                                                -
+                                            @else 
+                                                {{$recuperacion->nota}}
+                                            @endif" 
+                                        disabled>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +129,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Observaviones</small></strong></label>
-                                    <textarea class="form-control" rows="3"  disabled>{{$recuperacion->observaciones or "No hay observaciones aún."}}</textarea>
+                                    <textarea class="form-control" rows="3"  disabled>@if ($recuperacion->observaciones==null) No hay observaciones aún. @else {{$recuperacion->observaciones}} @endif</textarea>
                                 </div>                                    
                             </div>
                         </div>

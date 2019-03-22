@@ -16,16 +16,16 @@
                 <li @if (Request::path()=="horarios") class="active" @endif >
 					<a class="nav-link " href="{{ url('horarios') }}"> <i class="far fa-calendar-alt"></i> Mi Horario</a>
                 </li>
-                <li @if (Request::path()=="horarios") class="active" @endif >
-                    <a class="nav-link " href="{{ url('horarios') }}"> <i class="fas fa-chalkboard-teacher"></i> Mi Curso*</a>
+                <li @if (Request::path()=="estudiantes/cursos/".session('user')['fk_curso']) class="active" @endif >
+                    <a class="nav-link " href="{{ 'estudiantes/cursos/'.session('user')['fk_curso'] }}"> <i class="fas fa-chalkboard-teacher"></i> Mi Curso</a>
                 </li>
-                <li @if (Request::path()=="") class="active" @endif >
+                <li @if (Request::path()=="materiaspc") class="active" @endif >
 					<a class="nav-link " href="{{ url('materiaspc') }}"> <i class="fas fa-book"></i> Mis Materias</a>
                 </li>
                 <li @if (Request::path()=="fechas") class="active" @endif >
                     <a class="nav-link " href="{{ url('fechas') }}"> <i class="far fa-calendar-alt"></i> Fechas</a>
                 </li>
-                <li @if (Request::path()=="") class="active" @endif >
+                <li @if (Request::path()=="nivelaciones") class="active" @endif >
 					<a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelacion</a>
                 </li>
                 <li @if (Request::path()=="/archivos") class="active" @endif >
