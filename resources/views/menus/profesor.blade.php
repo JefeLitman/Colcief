@@ -27,11 +27,11 @@
                     <a class="nav-link " href="{{ url('fechas') }}"> <i class="far fa-calendar-alt"></i> Fechas</a>
                 </li>
                 {{--  NIVELACIONES  --}}
-                <li @if (Request::path()=="") class="active" @endif >
+                <li @if (Request::path()=="nivelaciones") class="active" @endif >
                     <a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelacion</a>
                 </li>
                 {{--  SIGSE  --}}
-                <li @if (Request::path()=="") class="active" @endif >
+                <li @if (Request::path()=="SIGSE") class="active" @endif >
                     <a class="nav-link " href="/SIGSE"> <i class="fas fa-chart-bar"></i> SIGSE</a>
                 </li>
                 {{--  DOCUMENTOS  --}}

@@ -16,10 +16,10 @@
                 <li @if (Request::path()=="horarios") class="active" @endif >
 					<a class="nav-link " href="{{ url('horarios') }}"> <i class="far fa-calendar-alt"></i> Horario</a>
                 </li>
-                <li @if (Request::path()=="") class="active" @endif >
+                <li @if (Request::path()=="matiaspc") class="active" @endif >
 					<a class="nav-link " href="/materiaspc"> <i class="fas fa-sticky-note"></i> Notas</a>
 				</li>
-                <li @if (Request::path()=="") class="active" @endif >
+                <li @if (Request::path()=="nivelaciones") class="active" @endif >
 					<a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelacion</a>
                 </li>                 
 				<li class="nav-item">
