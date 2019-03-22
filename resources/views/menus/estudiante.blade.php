@@ -3,14 +3,14 @@
    
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" class="active">
             <div class="sidebar-header"  style="cursor: pointer;">
                 <h3 style="color: white;"><i  style="color: Dodgerblue;" class="fab fa-contao"></i>olCief</h3>
                 <strong style="color: Dodgerblue;" ><i class="fab fa-contao"></i></strong>
             </div>
 
             <ul class="list-unstyled components">
-				<li @if (Request::path()=="estudiantes/principal") class="active" @endif >
+				<li @if (Request::path()=="estudiantes/".session('user')['pk_estudiante'])) class="active" @endif >
 					<a class="nav-link " href="{{ url('estudiantes/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 <li @if (Request::path()=="horarios") class="active" @endif >

@@ -103,7 +103,13 @@
                                                 <i class="fas fa-sticky-note"></i>
                                             </div>
                                         </div>
-                                        <input required type="number" step=".1" name="nota" id="nota" min="1" max="3" class="form-control form-control-sm" value="{{$nivelacion->nota or '-'}}" placeholder="-" disabled>
+                                        <input required type="number" step=".1" name="nota" id="nota" min="1" max="3" class="form-control form-control-sm" 
+                                        value="@if ($nivelacion->nota==null) 
+                                                -
+                                            @else 
+                                                {{$nivelacion->nota}}
+                                            @endif 
+                                        " placeholder="-" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +137,7 @@
                                 {{-- Observaciones--}}
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Observaciones (No puede superar los 255 caracteres)</small></strong></label>
-                                    <textarea required class="form-control" name="observaciones" id="observaciones" rows="3" maxlength="255" disabled>{{$nivelacion->observaciones or "No hay observaciones aún."}}</textarea>
+                                    <textarea required class="form-control" name="observaciones" id="observaciones" rows="3" maxlength="255" disabled>@if ($nivelacion->observaciones==null) No hay observaciones aún. @else {{$nivelacion->observaciones}} @endif</textarea>
                                 </div>                                    
                             </div>
                         </div>

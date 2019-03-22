@@ -95,7 +95,14 @@
                                                 <i class="fas fa-sticky-note"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" value="{{$nivelacion->nota or '-'}} " disabled>
+                                        <input type="text" class="form-control form-control-sm" 
+                                        value="
+                                            @if ($nivelacion->nota==null) 
+                                                -
+                                            @else 
+                                                {{$nivelacion->nota}}
+                                            @endif"
+                                         disabled>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +130,7 @@
                                 {{-- Observaciones --}}
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Observaviones</small></strong></label>
-                                    <textarea class="form-control" rows="3"  disabled>{{$nivelacion->observaciones or "No hay observaciones aún."}}</textarea>
+                                    <textarea class="form-control" rows="3"  disabled>@if ($nivelacion->observaciones==null) No hay observaciones aún. @else {{$nivelacion->observaciones}} @endif </textarea>
                                 </div>                                    
                             </div>
                         </div>

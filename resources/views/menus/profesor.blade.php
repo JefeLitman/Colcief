@@ -11,7 +11,7 @@
 
             <ul class="list-unstyled components">
                 {{--  INICIO  --}}
-                <li @if (Request::path()=="empleados/principal") class="active" @endif >
+                <li @if (Request::path()=="empleados/".session('user')['cedula']) class="active" @endif >
                     <a class="nav-link " href="{{ url('empleados/principal') }}"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
                 {{--  mi horario  --}}
