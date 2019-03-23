@@ -137,12 +137,12 @@ class MateriaPCController extends Controller
     {
         if(session('role')=="administrador"){
             $materias=Materia::select("pk_materia","nombre","logros_custom")->get();
-            $cursos=Curso::select("pk_curso","prefijo","sufijo")->get();
+            $cursos=Curso::select("pk_curso","prefijo","sufijo")->orderByRaw('CAST(prefijo AS unsigned), CAST(sufijo AS unsigned)')->get();
             foreach ($cursos as $key=>$i) {
                 $prefijo=($i->prefijo==0)?"Prescolar":$i->prefijo;
                 $cursos[$key]->nombre=$prefijo."-".$i->sufijo;
             }
-            $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->get();
+            $profesores=Empleado::select("cedula","nombre","apellido")->where("estado","=",true)->where(function ($query) {$query->where('role', '=', '1')->orWhere('role', '=', '2');})->orderBy('apellido')->get();
             return view("materiaspc.crearMateriaPC",["materias"=>$materias,"cursos"=>$cursos,"profesores"=>$profesores]);
         }
         return redirect("/materiaspc");
@@ -157,14 +157,19 @@ class MateriaPCController extends Controller
     public function store(MateriaPCStoreController $request)
     {
         if(session('role')=="administrador"){
-            $materiapc = (new MateriaPC)->fill($request->all());
 
             // Buscando la respectiva materia
-            $materia = Materia::select("nombre","logros_custom")->where("pk_materia","=",$materiapc->fk_materia)->get();
+            $materia = Materia::select("nombre","logros_custom")->where("pk_materia","=",$request->fk_materia)->get();
+
+            $request->nombre = $materia[0]['nombre'];
+            $request->logros_custom = $materia[0]['logros_custom'];
+            
+            $materiapc = MateriaPC::create($request->all());
 
             // Asignando los valores que por defecto deben ser iguales que en la tabla materia.
-            $materiapc->nombre = $materia[0]['nombre'];
-            $materiapc->logros_custom = $materia[0]['logros_custom'];
+            // $materiapc->nombre = $materia[0]['nombre'];
+            // $materiapc->logros_custom = $materia[0]['logros_custom'];
+            
             try{
                 $materiapc->save();
                 $materiapc->crearEstructuraNotas();
