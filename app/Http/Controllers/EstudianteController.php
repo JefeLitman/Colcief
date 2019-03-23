@@ -51,7 +51,7 @@ class EstudianteController extends Controller
 
     public function create()
     {
-        $cursos = Curso::where('ano', date('Y'))->get();
+        $cursos = Curso::where('ano', date('Y'))->orderByRaw('CAST(prefijo AS unsigned), CAST(sufijo AS unsigned)')->get();
         return view('estudiantes.crearEstudiante', ['cursos' => $cursos]);
     }
 
