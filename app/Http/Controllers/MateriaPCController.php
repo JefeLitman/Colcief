@@ -159,22 +159,23 @@ class MateriaPCController extends Controller
         if(session('role')=="administrador"){
 
             // Buscando la respectiva materia
-            $materia = Materia::select("nombre","logros_custom")->where("pk_materia","=",$request->fk_materia)->get();
+            $materia = Materia::select("nombre","logros_custom")->where("pk_materia","=",$request->fk_materia)->get()->first();
 
-            $request->nombre = $materia[0]['nombre'];
-            $request->logros_custom = $materia[0]['logros_custom'];
+            // $request->nombre = $materia[0]['nombre'];
+            // $request->logros_custom = $materia[0]['logros_custom'];
             
             $materiapc = MateriaPC::create($request->all());
-
+            
             // Asignando los valores que por defecto deben ser iguales que en la tabla materia.
-            // $materiapc->nombre = $materia[0]['nombre'];
-            // $materiapc->logros_custom = $materia[0]['logros_custom'];
+            $materiapc->nombre = $materia['nombre'];
+            $materiapc->logros_custom = $materia['logros_custom'];
             
             try{
                 $materiapc->save();
                 $materiapc->crearEstructuraNotas();
+                // dd($materiapc->pk_materia_pc);
                 // return "Ha sido guardado con exito";
-                return redirect("/materiaspc/".$materia->pk_materia_pc);
+                return redirect("/materiaspc/".$materiapc->pk_materia_pc);
             }catch(Exception $e){
                 return "Ha ocurido un error con el servidor, vuelva a intentarlo.";
             }
