@@ -1,6 +1,7 @@
 @extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Lista Estudiante')
+<script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
     @php
         $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
     @endphp
@@ -90,7 +91,7 @@
                                 {{-- <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
                                 </div> --}}
-                                <input type="text" id="nombre" class="form-control form-control-sm">
+                                <input type="text" id="entradafilter" id="filtertable" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@
                                 <th class="text-center" scope="col" style="color:#00695c" colspan="5">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="contenidobusqueda" id="myTable">
                             @if (empty($estudiante))
                                 <tr>
                                     <td colspan="7">
@@ -159,6 +160,14 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="col-md-2 text-center" id="registros" style="font-size:12px">
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center" id="paginator">
+                          {{-- <div id="paginator"></div> --}}
+                          
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -252,4 +261,5 @@
             }); 
         });   
     </script>
+    
 @endsection
