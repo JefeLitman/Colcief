@@ -241,7 +241,7 @@
                                     '</td>';
                             }
                             mensaje+= ''+
-                            '<tbody>'+
+                            '<tbody class="contenidobusqueda">'+
                                 '<tr id="estudiantes'+value.pk_estudiante+'">'+
                                     '<td class="text-center">'+value.pk_estudiante+'</td>'+
                                     '<td class="text-center">'+$.ucfirst(value.nombre+' '+value.apellido)+'</td>'+
