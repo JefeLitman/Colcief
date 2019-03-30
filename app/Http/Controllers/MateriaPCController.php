@@ -196,7 +196,8 @@ class MateriaPCController extends Controller
         $role=session('role');
         if (!empty($role)) {
             $materiapc = MateriaPC::select("materia_pc.pk_materia_pc","materia_pc.nombre as materia","materia_pc.fk_curso","curso.prefijo","curso.sufijo","materia_pc.fk_materia","materia_pc.logros_custom","materia_pc.salon","materia_pc.fk_empleado","empleado.nombre","empleado.apellido")->where('materia_pc.pk_materia_pc','=',$id)->join('empleado','empleado.cedula','=','materia_pc.fk_empleado')->join('curso','curso.pk_curso','=','materia_pc.fk_curso')->get();
-
+            // $ids = explode("\n", str_replace("\r", "", $materiapc[0]->logros_custom));
+            // dd($ids);
             if(empty($materiapc[0])){
                 return redirect("/materiaspc");
             }else{
