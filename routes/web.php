@@ -28,12 +28,12 @@ Route::get('/', function () {
 /* RUTAS TERMINAL */
 // Route::get('/terminal/link', 'Terminal@link');
 // Route::get('/terminal/version', 'Terminal@version');
-Route::get('/terminal/migrate/seed', 'Terminal@migrateAndSeeders');
+// Route::get('/terminal/migrate/seed', 'Terminal@migrateAndSeeders');
 // Route::get('/terminal/migrate', 'Terminal@migrate');
 // Route::get('/terminal/migrate/reset', 'Terminal@migrateReset');
-Route::get('/terminal/migrate/refresh', 'Terminal@migrateRefresh');
+// Route::get('/terminal/migrate/refresh', 'Terminal@migrateRefresh');
 // Route::get('/terminal/seed', 'Terminal@seed');
-// Route::get('/terminal/main', 'Terminal@migrateResetSeeder');
+Route::get('/terminal/main', 'Terminal@migrateResetSeeder');
 // Route::get('/terminal/autoload', 'Terminal@autoload');
 // Route::get('/terminal/cache', 'Terminal@autoload');
 // Route::get('/terminal/git/pull', 'Terminal@pull');
