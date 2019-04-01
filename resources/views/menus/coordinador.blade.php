@@ -27,6 +27,10 @@
             <li @if (Request::path()=="filtro") class="active" @endif >
                 <a class="nav-link " href="{{ url('filtro') }}"> <i class="fas fa-user-graduate"></i> Estudiantes</a>
             </li>
+            {{--  SIGCA  --}}
+            <li @if (Request::path()=="SIGCA") class="active" @endif >
+                <a class="nav-link " href="{{ url('SIGCA') }}"> <i class="fas fa-clipboard-list"></i> SIGCA</a>
+            </li>
             
             {{--  MATERIAS  --}}
             {{-- <li @if (Request::path()=="materiaspc") class="active" @endif >

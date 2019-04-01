@@ -1,102 +1,101 @@
 @extends('contenedores.'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('contenedor_'.((session('role')=='administrador')?'admin':(session('role'))))
 @section('titulo','Lista Estudiante')
+<script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
     @php
         $g = ["0"=>"Preescolar","1" => "Primero","2" => "Segundo", '3' => "Tercero" , '4' => 'Cuarto', '5' =>  'Quinto', '6' =>  'Sexto', '7' => 'Septimo', '8' => 'Octavo', '9' => 'Noveno','10'=>'Décimo','11'=>'Once'];
     @endphp
     <div class="container" style="background:#fafafa !important;">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <form action="{{url('/filtro')}}" method="POST">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-3 col-6">
-                            <div class="form-group mb-2">
-                                <label for="fk_curso"><strong><small style="color : #616161">Curso:</small></strong></label>
-                                <div class="input-group mb-2">
-                                    <select name="fk_curso" id="fk_curso" class="custom-select filter custom-select-sm">
-                                        <option selected value="null">Todos</option>
-                                        @foreach ($cursos as $curso)
-                                            <option value="{{$curso -> pk_curso}}">{{$curso -> prefijo}} - {{$curso -> sufijo}} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6">
-                            <div class="form-group mb-2">
-                                <label for="genero"><strong><small style="color : #616161">Genero:</small></strong></label>
-                                <div class="input-group mb-2">
-                                    <select name="genero" id="genero" class="custom-select filter custom-select-sm">
-                                        <option selected value="null">Todos</option>
-                                        <option value="f">Femenino</option>
-                                        <option value="m">Masculino</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6">
-                            <div class="form-group mb-2">
-                                <label for="discapacidad"><strong><small style="color : #616161">Discapacidad:</small></strong></label>
-                                <div class="input-group mb-2">
-                                    <select name="discapacidad" id="discapacidad" class="custom-select filter custom-select-sm">
-                                        <option selected value="null">Todos</option>
-                                        <option value="0">No</option>
-                                        <option value="1">Si</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6">
-                            <div class="form-group mb-2">
-                                <label for="delete_at"><strong><small style="color : #616161">Eliminado:</small></strong></label>
-                                <div class="input-group mb-2">
-                                    <select name="delete_at" id="delete_at" class="custom-select filter custom-select-sm">
-                                        <option selected value="null">Todos</option>
-                                        <option value="1">No</option>
-                                        <option value="0">Si</option>
-                                    </select>
-                                </div>
+                @csrf
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <div class="form-group mb-2">
+                            <label for="fk_curso"><strong><small style="color : #616161">Curso:</small></strong></label>
+                            <div class="input-group mb-2">
+                                <select name="fk_curso" id="fk_curso" class="custom-select filter custom-select-sm">
+                                    <option selected value="null">Todos</option>
+                                    @foreach ($cursos as $curso)
+                                        <option value="{{$curso -> pk_curso}}">{{$curso -> prefijo}} - {{$curso -> sufijo}} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3 col-12">
-                            <div class="form-group mb-2">
-                                <label for="grado"><strong><small style="color : #616161">Ultimo grado aprobado:</small></strong></label>
-                                <div class="input-group mb-2">
-                                    <select name="grado" id="grado" class="custom-select filter custom-select-sm">
-                                        <option selected value="null">Todos</option>
-                                        <option value="0">Prescolar</option>
-                                        <option value="1">Primero</option>
-                                        <option value="2">Segundo</option>
-                                        <option value="3">Tercero</option>
-                                        <option value="4">Cuarto</option>
-                                        <option value="5">Quinto</option>
-                                        <option value="6">Sexto</option>
-                                        <option value="7">Septimo</option>
-                                        <option value="8">Octavo</option>
-                                        <option value="9">Noveno</option>
-                                        <option value="10">Decimo</option>
-                                        <option value="11">Once</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-9 col-12">
-                            <div class="form-group mb-2">
-                                <label for="nombre"><strong><small style="color : #616161">Nombre:</small></strong></label>
-                                <div class="input-group mb-3">
-                                    {{-- <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
-                                    </div> --}}
-                                    <input type="text" id="nombre" class="form-control form-control-sm">
-                                </div>
+                    <div class="col-md-3 col-6">
+                        <div class="form-group mb-2">
+                            <label for="genero"><strong><small style="color : #616161">Genero:</small></strong></label>
+                            <div class="input-group mb-2">
+                                <select name="genero" id="genero" class="custom-select filter custom-select-sm">
+                                    <option selected value="null">Todos</option>
+                                    <option value="f">Femenino</option>
+                                    <option value="m">Masculino</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                </form>
+                    <div class="col-md-3 col-6">
+                        <div class="form-group mb-2">
+                            <label for="discapacidad"><strong><small style="color : #616161">Discapacidad:</small></strong></label>
+                            <div class="input-group mb-2">
+                                <select name="discapacidad" id="discapacidad" class="custom-select filter custom-select-sm">
+                                    <option selected value="null">Todos</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="form-group mb-2">
+                            <label for="delete_at"><strong><small style="color : #616161">Eliminado:</small></strong></label>
+                            <div class="input-group mb-2">
+                                <select name="delete_at" id="delete_at" class="custom-select filter custom-select-sm">
+                                    <option selected value="null">Todos</option>
+                                    <option value="1">No</option>
+                                    <option value="0">Si</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-12">
+                        <div class="form-group mb-2">
+                            <label for="grado"><strong><small style="color : #616161">Ultimo grado aprobado:</small></strong></label>
+                            <div class="input-group mb-2">
+                                <select name="grado" id="grado" class="custom-select filter custom-select-sm">
+                                    <option selected value="null">Todos</option>
+                                    <option value="0">Prescolar</option>
+                                    <option value="1">Primero</option>
+                                    <option value="2">Segundo</option>
+                                    <option value="3">Tercero</option>
+                                    <option value="4">Cuarto</option>
+                                    <option value="5">Quinto</option>
+                                    <option value="6">Sexto</option>
+                                    <option value="7">Septimo</option>
+                                    <option value="8">Octavo</option>
+                                    <option value="9">Noveno</option>
+                                    <option value="10">Decimo</option>
+                                    <option value="11">Once</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-9 col-12">
+                        <div class="form-group mb-2">
+                            <label for="nombre"><strong><small style="color : #616161">Nombre:</small></strong></label>
+                            <div class="input-group mb-3">
+                                {{-- <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1" style="background-color:#00acc1;"><i class="fas fa-search" style="color:white;"></i></span>
+                                </div> --}}
+                                <input type="text" id="entradafilter" id="filtertable" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <br>
                 <div class="table-responsive">
                     <table class="table table-hover mr-auto">
@@ -108,7 +107,7 @@
                                 <th class="text-center" scope="col" style="color:#00695c" colspan="5">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="contenidobusqueda" id="myTable">
                             @if (empty($estudiante))
                                 <tr>
                                     <td colspan="7">
@@ -161,6 +160,14 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="col-md-2 text-center" id="registros" style="font-size:12px">
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center" id="paginator">
+                          {{-- <div id="paginator"></div> --}}
+                          
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -234,7 +241,7 @@
                                     '</td>';
                             }
                             mensaje+= ''+
-                            '<tbody>'+
+                            '<tbody class="contenidobusqueda">'+
                                 '<tr id="estudiantes'+value.pk_estudiante+'">'+
                                     '<td class="text-center">'+value.pk_estudiante+'</td>'+
                                     '<td class="text-center">'+$.ucfirst(value.nombre+' '+value.apellido)+'</td>'+
@@ -254,4 +261,5 @@
             }); 
         });   
     </script>
+    
 @endsection

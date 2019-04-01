@@ -54,7 +54,8 @@ class HorarioController extends Controller
                 ]);
                 break;
             case 'coordinador':
-                $cursos = Curso::where('ano', date('Y'))->get();
+                $cursos = Curso::where('ano', date('Y'))->get()->groupBy('prefijo');
+                // dd($cursos[0]);
                 $empleados = Empleado::where('role', '<>', '0')->where('role', '<>', '3')->get();
                 // dd($empleados);
                 return view('horarios.horarioCoordinador', [
