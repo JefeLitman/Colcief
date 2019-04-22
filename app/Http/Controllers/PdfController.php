@@ -16,7 +16,7 @@ class PdfController extends Controller
 
         $data = (new BoletinController)->showAnoEstudiante($ano,$fk_estudiante,true);
         // $data =["holi"=>"holi"];
-        // $data = ['title' => 'Welcome to HDTuto.com'];
+        // dd($data);
         // dd($data);
         if ($data['msj']!=1) {
             # code...
@@ -39,8 +39,8 @@ class PdfController extends Controller
 
         // dd($data['pPasado']);
         $pdf = PDF::loadView('pdf.invoice', $data);
-        
-        return $pdf->stream('invoice');
+        // dd($pdf);
+        return $pdf->stream("Periodo-".$data["pPasado"]."_Codigo-".$data["boletin"]->pk_estudiante."_Nombre-".$data["boletin"]->apellido.$data["boletin"]->nombre.".pdf");
 
     }
 }
