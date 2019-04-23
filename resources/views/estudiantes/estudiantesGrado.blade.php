@@ -9,11 +9,17 @@
              @endphp
              <h4 class="text-center"> Curso {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4>
             <div class="text-center">
+                <a href="/boletines/cursos/{{$grado->pk_curso}}/pdf" style="margin-bottom: 10px;display:block;">
+                    <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
+                        <i class="fas fa-file-pdf" style="color:white"></i> Boletines Curso
+                    </button>
+                </a>
                 <a href="/cursos/{{$grado->pk_curso}}/planillas">
                     <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
                         <i class="fas fa-clipboard-list" style="color:white"></i> Ver planillas
                     </button>
-                </a>
+                </a><br>
+                
             </div>
              <br>
              <div class="table-responsive" >
