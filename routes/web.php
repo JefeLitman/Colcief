@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 /* RUTAS TERMINAL */
 // Route::get('/terminal/link', 'Terminal@link');
-Route::get('/terminal/merge', 'Terminal@merge');
+// Route::get('/terminal/merge', 'Terminal@merge');
 // Route::get('/terminal/version', 'Terminal@version');
 // Route::get('/terminal/migrate/seed', 'Terminal@migrateAndSeeders');
 // Route::get('/terminal/migrate', 'Terminal@migrate');

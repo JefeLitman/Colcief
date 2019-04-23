@@ -11,7 +11,7 @@ class Terminal extends Controller{
         return "<pre>".$salida."</pre>";
     } 
 
-    public function merge(){
+    public function merge(){ //Librería para fucionar pdf's
         $salida = shell_exec('cd ColCief && composer require iio/libmergepdf:^4.0');
         return "<pre>".$salida."</pre>";
     }
