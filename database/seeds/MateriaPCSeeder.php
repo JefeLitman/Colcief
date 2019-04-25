@@ -20,8 +20,7 @@ class MateriaPCSeeder extends Seeder
         // $cursos = Curso::all()->pluck('pk_curso')->toArray();
         $cursos = Curso::all();
         $materias = Materia::all();// @Modificacion Paola C.
-        $empleados = Empleado::where([['role','1'],['role','2']])->get(); //Directores y Profesores
-
+        $empleados = Empleado::where('role','<>', '0')->where('role', '<>', '3')->get(); //Directores y Profesores
         
         #error_log(); //Muestra en consola cuando se ejecuta el "php artisan db:seed" // @Modificacion Paola C. 
 
