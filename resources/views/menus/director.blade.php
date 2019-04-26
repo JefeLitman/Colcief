@@ -13,22 +13,22 @@
 				<li @if (Request::path()=="empleados/principal") class="active" @endif >
 					<a class="nav-link " href="/empleados/principal"> <i class="fas fa-home"></i> Inicio</a>
                 </li>
-                <li @if (Request::path()=="/horarios") class="active" @endif >
+                <li @if (Request::path()=="horarios") class="active" @endif >
 					<a class="nav-link " href="/horarios"> <i class="far fa-calendar-alt"></i> Mi Horario</a>
                 </li>
-                <li @if (Request::path()=="/estudiantes/cursos/".session('user')['fk_curso']) class="active" @endif >
+                <li @if (Request::path()=="estudiantes/cursos/".session('user')['fk_curso']) class="active" @endif >
                     <a class="nav-link " href="{{ '/estudiantes/cursos/'.session('user')['fk_curso'] }}"> <i class="fas fa-chalkboard-teacher"></i> Mi Curso</a>
                 </li>
-                <li @if (Request::path()=="/materiaspc") class="active" @endif >
+                <li @if (Request::path()=="materiaspc") class="active" @endif >
 					<a class="nav-link " href="/materiaspc"> <i class="fas fa-book"></i> Mis Materias</a>
                 </li>
-                <li @if (Request::path()=="/fechas") class="active" @endif >
+                <li @if (Request::path()=="fechas") class="active" @endif >
                     <a class="nav-link " href="/fechas"> <i class="far fa-calendar-alt"></i> Fechas</a>
                 </li>
-                <li @if (Request::path()=="/nivelaciones") class="active" @endif >
+                <li @if (Request::path()=="nivelaciones") class="active" @endif >
 					<a class="nav-link " href="/nivelaciones"> <i class="fas fa-user-check"></i> Nivelacion</a>
                 </li>
-                <li @if (Request::path()=="/archivos") class="active" @endif >
+                <li @if (Request::path()=="archivos") class="active" @endif >
                     <a href="{{ url('/archivos') }}">
                         <i class="far fa-folder-open"></i> Documentos
                     </a>
