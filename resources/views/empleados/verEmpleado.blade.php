@@ -32,7 +32,9 @@ funcion show() @Autor Paola C. --}}
                                         @endif
                                     @endif
                                     @if (session('user')['cedula'] == $empleado->cedula)
-                                        <a class="clave"><i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i></a>
+                                        <a class="clave">
+                                            <i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i>
+                                        </a>
                                         <a data-toggle="modal" data-target="#empleadoModal">
                                             <i data-toggle="tooltip" data-placement="top" title="Cambiar foto" class="fas fa-user-cog text-info"></i>
                                         </a>
@@ -110,7 +112,9 @@ funcion show() @Autor Paola C. --}}
                                         @endif
                                     @endif
                                     @if (session('user')['cedula'] == $empleado->cedula)
-                                        <a class="clave"><i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i></a>
+                                        <a class="clave">
+                                            <i data-toggle="tooltip" data-placement="top" title="Cambiar contraseña" class="fas fa-unlock-alt"></i>
+                                        </a>
                                         <a data-toggle="modal" data-target="#empleadoModal">
                                             <i data-toggle="tooltip" data-placement="top" title="Cambiar foto" class="fas fa-user-cog text-info"></i>
                                         </a>

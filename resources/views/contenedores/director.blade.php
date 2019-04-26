@@ -27,6 +27,11 @@
             <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->
             @include('menus.director')
 
+            {{-- Mensajes de error --}}
+            <div id="br"></div>
+            @include('error.error')
+            @include('error.alert')
+
             <!-- Aqui en esta seccion va estar el contenido de la pagina -->
             @yield('contenedor_director')
 

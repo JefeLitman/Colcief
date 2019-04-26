@@ -33,6 +33,7 @@ class Todo extends Migration {
             $table->boolean('discapacidad')->nullable()->default(false);
             $table->boolean('estado')->nullable()->default(true);
             $table->string('foto')->default('/storage/perfil/default.png');
+            $table->boolean('switch_concentrador')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

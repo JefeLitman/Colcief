@@ -38,7 +38,7 @@ class CursoController extends Controller
 
     public function create()
     {
-        return view('cursos.crearCurso', compact('cursos'));
+        return view('cursos.crearCurso');
     }
 
     public function store(Request $request)
@@ -121,12 +121,14 @@ class CursoController extends Controller
 
     public function sigSufijo(Request $request)
     {
-        if ($request->get('query')) {
+        if ($request->get('query') || $request->get('query') == 0) {
             $query = $request->get('query');
-            $ultimoCurso = Curso::where('prefijo', $query)->orderBy('sufijo', 'desc')->first();
-            $siguienteSufijo = intval($ultimoCurso->sufijo) + 1;
+            $aux = Curso::where('prefijo', $query)->where('ano', date('Y'))->orderBy('sufijo', 'desc')->first();
+            $ultimoCurso = $aux ? $aux->sufijo : 0;
+            $siguienteSufijo = intval($ultimoCurso) + 1;
             $sufijoString = '0' . strval($siguienteSufijo);
-            echo $sufijoString;
+            error_log($sufijoString);
+            return response()->json($sufijoString);
         }
     }
 
