@@ -41,9 +41,9 @@
                                         </div>
                                         <select class="custom-select custom-select-sm" name="role" id="role" onchange="desactivar(this.id,'fk_curso')">
                                             <option @select('role', '0') @endselect value="0">Administrador</option>
-                                            <option @select('role', '3') @endselect value="1">Coordinador</option>
-                                            <option @select('role', '1') @endselect value="2">Director</option>
-                                            <option @select('role', '2') @endselect value="3" selected>Profesor</option>
+                                            <option @select('role', '3') @endselect value="3">Coordinador</option>
+                                            <option @select('role', '1') @endselect value="1">Director</option>
+                                            <option @select('role', '2') @endselect value="2" selected>Profesor</option>
                                             {{-- <option value="3">Three</option> --}}
                                         </select>
                                     </div>
