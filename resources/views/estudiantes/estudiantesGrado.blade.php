@@ -47,11 +47,15 @@
                                      <td class="text-center">{{ucwords($c->nombre)}}</td>
                                      <td class="text-center">{{ucwords($c->apellido)}}</td>
                                      <td class="text-center">{{$c->grado}}</td>
-                                     <td class="text-center">
-                                        <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}/pdf">
-                                            <i class="far fa-file-pdf" style="color:#00838f"></i>
-                                        </a>
-                                    </td>
+                                     @if (session('role')=="administrador")
+                                        {{-- Ver boletines --}}
+                                        <td class="text-center">
+                                            <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}/pdf">
+                                                <i class="far fa-file-pdf" style="color:#00838f"></i>
+                                            </a>
+                                        </td>
+                                     @endif
+                                     
                                      {{-- ver notas --}}
                                      <td class="text-center">
                                          <a data-toggle="tooltip" data-placement="top" href="/boletines/estudiantes/{{$c->pk_estudiante}}" title="Boletines"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
