@@ -300,15 +300,17 @@
             @endif
         </div>
     </div>
-    <div class="row text-center mt-4">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <a data-toggle="tooltip" data-placement="top" title="Crear curso" class="btn btn-info text-white" onclick="URLActual()">
-                <i class="fas fa-file-pdf"></i>
-                <small class="d-none d-sm-block">Ver PDF</small>
-            </a>
+    @if (session("role")=="administrador")
+        <div class="row text-center mt-4">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <a data-toggle="tooltip" data-placement="top" title="Crear curso" class="btn btn-info text-white" onclick="URLActual()">
+                    <i class="fas fa-file-pdf"></i>
+                    <small class="d-none d-sm-block">Ver PDF</small>
+                </a>
+            </div>
         </div>
-    </div>
+    @endif
 </div>
 <script type="text/javascript">
 function URLActual()
