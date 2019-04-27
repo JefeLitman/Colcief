@@ -13,6 +13,11 @@ use App\NotaPeriodo;
 
 class ConcentradorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin:director,profesor,administrador');
+    }
+
     //Muestra el listado de todos los estudiantes de un curso
     public function mostrarEstudiantes($pk_materia_pc)
     {
@@ -106,5 +111,13 @@ class ConcentradorController extends Controller
           $notaP->materiaBoletin->actualizarNota();
         }
         return redirect('/concentrador/'.$materiaPC->pk_materia_pc);
+    }
+
+    public function activarSwitch($pk_estudiante)
+    {
+        $estudiante = Est::findOrFail($pk_estudiante);
+        $estudiante->switch_concentrador = !$estudiante->switch_concentrador;
+        $estudiante->save();
+        return back();
     }
 }

@@ -83,6 +83,7 @@ class CursoController extends Controller
                     'apellido' => $estudiante->apellido,
                     'grado' => $estudiante->grado,
                     'discapacidad' => $estudiante->discapacidad,
+                    'switch_concentrador' => $estudiante->switch_concentrador,
                 ]);
             }
             return json_encode($listado);

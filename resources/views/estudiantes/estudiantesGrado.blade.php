@@ -21,7 +21,14 @@
                         <i class="fas fa-clipboard-list" style="color:white"></i> Ver planillas
                     </button>
                 </a><br>
-                
+            </div>
+            <br>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Información</strong><br>
+                Los estudiantes que aparezcan resaltados, tienen habilitado que se les cambie la nota del periodo desde el concentrador.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
              <br>
              <div class="table-responsive" >
@@ -32,7 +39,7 @@
                              <th class="text-center" scope="col" style="color:#00695c">Nombre</th>
                              <th class="text-center" scope="col" style="color:#00695c">Apellido</th>
                              <th class="text-center" scope="col" style="color:#00695c">Ultimo grado aprobado</th>
-                             <th class="text-center" scope="col" style="color:#00695c" colspan="4">Acciones</th>
+                             <th class="text-center" scope="col" style="color:#00695c" colspan="6">Acciones</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -44,7 +51,9 @@
                              </tr>
                          @else
                              @foreach ($curso as $c)
-                                 <tr id="estudiantes{{$c->pk_estudiante}}">
+                                 <tr id="estudiantes{{$c->pk_estudiante}}" @if ($c->switch_concentrador)
+                                   bgcolor="FFCF6C"
+                                 @endif>
                                      <td class="text-center">{{$c->pk_estudiante}}</td>
                                      <td class="text-center">{{ucwords($c->nombre)}}</td>
                                      <td class="text-center">{{ucwords($c->apellido)}}</td>
@@ -63,7 +72,7 @@
                                                 </a>
                                             </td>
                                         @endif
-                                     
+
                                      {{-- ver boletines --}}
                                      <td class="text-center">
                                          <a data-toggle="tooltip" data-placement="top" href="/boletines/estudiantes/{{$c->pk_estudiante}}" title="Boletines"><i class="fas fa-clipboard-list" style="color:#00838f"></i></a>
@@ -78,6 +87,10 @@
                                         <td class="text-center">
                                             <a href="{{ route('estudiantes.edit', $c->pk_estudiante) }}" title="Editar" data-toggle="tooltip" data-placement="top"><i  class="fas fa-edit" style="color:#00838f"></i>
                                             </a>
+                                        </td>
+                                        {{-- Habilitar switch_concentrador --}}
+                                        <td class="text-center">
+                                          <a href="/concentrador/switch/{{$c->pk_estudiante}}"><i title="Activar/Desactivar concentrador" data-toggle="tooltip" data-placement="top" class="far fa-check-square" style="color:#00838f"></i></a>
                                         </td>
                                         {{-- Eliminar estudiantes --}}
                                         <td class="text-center">
