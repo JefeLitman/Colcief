@@ -14,7 +14,7 @@
                  <div class="card-header text-center">
                      <h5>
                          COLEGIO INTEGRADO EZEQUIEL FLORIAN 
-                         @if(session('role')=='profesor')
+                         @if(session('role')=='profesor' or session('role')=='director')
                             @php
                                 $fecha = date('Y-m-d', strtotime($p->fecha_limite." + ".$materiapc->tiempo_extra." days"));
                             @endphp
@@ -61,6 +61,7 @@
                         <table class="table table-striped table-condensed table-sm  table-hover text-center">
                             <thead>
                                 <tr class="table-info" >
+                                    <th rowspan="2">Código</th>
                                     <th rowspan="2">Nombres</th>
                                     <th rowspan="2">IA</th>
                                     @foreach ($divisiones as $d)
@@ -98,6 +99,10 @@
                                 @foreach ($estudiantes as $e)
                                 <tr>
                                     <td>
+                                        {{-- Codigo del estudiante --}}
+                                        {{$e->pk_estudiante}}
+                                    </td>
+                                    <td style="text-align: left;">
                                         {{-- Nombre del estudiante --}}
                                         {{ucwords($e->apellido)}} {{ucwords($e->nombre)}} 
                                     </td>

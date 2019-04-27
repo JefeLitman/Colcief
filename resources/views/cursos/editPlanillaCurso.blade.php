@@ -56,6 +56,7 @@
                         <table class="table table-striped table-condensed table-sm  table-hover text-center">
                             <thead>
                                 <tr class="table-info" >
+                                    <th rowspan="2">Código</th>
                                     <th rowspan="2">Nombres</th>
                                     <th rowspan="2">IA</th>
                                     @foreach ($divisiones as $d)
@@ -92,8 +93,12 @@
                                 @foreach ($estudiantes as $e)
                                 <tr>
                                     <td>
+                                        {{-- Codigo del estudiante --}}
+                                        {{$e->pk_estudiante}}
+                                    </td>
+                                    <td style="text-align: left;">
                                         {{-- Nombre del estudiante --}}
-                                        {{$e->apellido}} {{$e->nombre}}
+                                        {{ucwords($e->apellido)}} {{ucwords($e->nombre)}}
                                     </td>
                                     <td contenteditable="true" id="inasistencias{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}" pk="{{$notaPer[$e->pk_estudiante][$p->pk_periodo]->pk_nota_periodo}}" onkeyup="updateInasistencias(this);">
                                         {{-- Numero de inasistencias por el periodo seleccionado del estudiante --}}

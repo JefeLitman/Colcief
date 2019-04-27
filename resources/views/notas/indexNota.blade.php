@@ -103,11 +103,11 @@
     <br>
     {{--  Boton crear  --}}
     @if (session('role')=='profesor' or session('role')=='director')
-    <div class="text-center" style="float:center;">
-        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/crear/{{$infoMateria->pk_materia_pc}}">Crear nota</a>
-    </div>
-  @else
-    <div></div>
-  @endif
+        <div class="text-center" style="float:center;">
+            <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/crear/{{$infoMateria->pk_materia_pc}}">Crear nota</a>
+        </div>
+    @else
+        <div></div>
+    @endif
 </div>
 @endsection
