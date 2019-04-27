@@ -9,11 +9,13 @@
              @endphp
              <h4 class="text-center"> Curso {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4>
             <div class="text-center">
-                <a href="/boletines/cursos/{{$grado->pk_curso}}/pdf" style="margin-bottom: 10px;display:block;">
-                    <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
-                        <i class="fas fa-file-pdf" style="color:white"></i> Boletines Curso
-                    </button>
-                </a>
+                @if (session('role')=="administrador")
+                    <a href="/boletines/cursos/{{$grado->pk_curso}}/pdf" style="margin-bottom: 10px;display:block;">
+                        <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
+                            <i class="fas fa-file-pdf" style="color:white"></i> Boletines Curso
+                        </button>
+                    </a>
+                @endif
                 <a href="/cursos/{{$grado->pk_curso}}/planillas">
                     <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
                         <i class="fas fa-clipboard-list" style="color:white"></i> Ver planillas
@@ -47,14 +49,12 @@
                                      <td class="text-center">{{ucwords($c->nombre)}}</td>
                                      <td class="text-center">{{ucwords($c->apellido)}}</td>
                                      <td class="text-center">{{$c->grado}}</td>
-                                     @if (session('role')=="administrador")
                                         {{-- Ver boletines --}}
                                         <td class="text-center">
                                             <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}/pdf">
                                                 <i class="far fa-file-pdf" style="color:#00838f"></i>
                                             </a>
                                         </td>
-                                     @endif
                                      
                                      {{-- ver notas --}}
                                      <td class="text-center">
