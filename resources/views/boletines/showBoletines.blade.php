@@ -87,7 +87,9 @@
                                                 {{-- Acciones--}}
                                                 <td class="text-center">
                                                     <a href="/boletines/{{$b->ano}}/estudiantes/{{$estudiante[0]->pk_estudiante}}" data-toggle="tooltip" data-placement="right" title="Ver"><i class="fas fa-eye cambiob" style="color:#17a2b8"></i></a>
-                                                    <a href="/boletines/{{$b->ano}}/estudiantes/{{$estudiante[0]->pk_estudiante}}/pdf" data-toggle="tooltip" data-placement="right" title="PDF"><i class="fas fa-file-pdf cambiob" style="color:#17a2b8"></i></a>
+                                                    @if (session('role')=="administrador") 
+                                                        <a href="/boletines/{{$b->ano}}/estudiantes/{{$estudiante[0]->pk_estudiante}}/pdf" data-toggle="tooltip" data-placement="right" title="PDF"><i class="fas fa-file-pdf cambiob" style="color:#17a2b8"></i></a> 
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

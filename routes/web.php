@@ -130,8 +130,8 @@ Route::get('/horarios/{fk_curso}/crear', 'HorarioController@create')->name('crea
 // Route::get('/horarios/{fk_curso}/editar', 'HorarioController@edit');
 
 /* RUTAS DE BOLETIN */
-Route::get('/boletines/actual/estudiantes/{fk_estudiante}', 'BoletinController@showEstudiante')->middleware('admin:coordinador,administrador');
-Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}', 'BoletinController@showAnoEstudiante')->middleware('admin:coordinador,administrador');
+Route::get('/boletines/actual/estudiantes/{fk_estudiante}', 'BoletinController@showEstudiante')->middleware('admin:coordinador,administrador,director');
+Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}', 'BoletinController@showAnoEstudiante')->middleware('admin:coordinador,administrador,director');
 Route::get('/boletines/estudiantes/{fk_estudiante}', 'BoletinController@showBoletines')->middleware('admin:coordinador,administrador,director');
 
 /* RUTAS DE NOTIFICACION */
