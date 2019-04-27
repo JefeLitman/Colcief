@@ -38,7 +38,7 @@ class Nota extends Model
      * guardara la nota de cada estudiante.
      */
     public function crearNotasEstudiante(){
-      $notasE=MateriaBoletin::select("nota_division.pk_nota_division")->join('nota_periodo','nota_periodo.fk_materia_boletin','=','materia_boletin.pk_materia_boletin')->join('nota_division'.'nota_division.fk_nota_periodo','=','nota_periodo.pk_nota_periodo')->where([['materia_boletin.fk_materia_pc',$this->fk_materia_pc],['nota_periodo.fk_periodo',$this->fk_periodo],['nota_division.fk_division',$this->fk_division]])->groupBy('pk_nota_division');
+      $notasE=MateriaBoletin::select("nota_division.pk_nota_division")->join('nota_periodo','nota_periodo.fk_materia_boletin','=','materia_boletin.pk_materia_boletin')->join('nota_division','nota_division.fk_nota_periodo','=','nota_periodo.pk_nota_periodo')->where([['materia_boletin.fk_materia_pc',$this->fk_materia_pc],['nota_periodo.fk_periodo',$this->fk_periodo],['nota_division.fk_division',$this->fk_division]])->get();
       foreach($notasE as $n){
         NotaEstudiante::create(['fk_nota_division'=>$n->pk_nota_division,'fk_nota'=>$this->pk_nota]);
       }
