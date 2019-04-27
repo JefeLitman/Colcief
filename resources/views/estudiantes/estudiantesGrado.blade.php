@@ -31,7 +31,7 @@
                              <th class="text-center" scope="col" style="color:#00695c">Código</th>
                              <th class="text-center" scope="col" style="color:#00695c">Nombre</th>
                              <th class="text-center" scope="col" style="color:#00695c">Apellido</th>
-                             <th class="text-center" scope="col" style="color:#00695c">Grado</th>
+                             <th class="text-center" scope="col" style="color:#00695c">Ultimo grado aprovado</th>
                              <th class="text-center" scope="col" style="color:#00695c" colspan="4">Acciones</th>
                          </tr>
                      </thead>
