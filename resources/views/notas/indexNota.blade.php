@@ -39,7 +39,7 @@
                                       {{-- Descripción --}}
                                       <th scope="col" style="color:#00695c" class="text-center">Descripción</th>
                                       {{--  Acciones  --}}
-                                      @if (session('role')=='profesor')
+                                      @if (session('role')=='profesor' || session('role')=='director')
                                         <th scope="col" style="color:#00695c" class="text-center" colspan="3">Acciones
                                         </th>
                                       @else
@@ -58,7 +58,7 @@
                                           <td class="text-center">{{$nota['descripcion']}}</td>
 
                                           {{--  Acciones para admin y profesor  --}}
-                                          @if (session('role')=='profesor')
+                                          @if (session('role')=='profesor' || session('role')=='director')
                                             {{-- Editar --}}
                                             <td class="text-center"><a href="{{ route('notas.edit',$nota['pk_nota']) }}"><i class="fas fa-edit" style="color:#00695c"></i>
                                             </a></td>

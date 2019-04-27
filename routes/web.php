@@ -181,6 +181,10 @@ Route::get('/boletines/cursos/{pk_curso}/pdf', 'PdfController@invoiceCurso')->mi
 Route::get('/boletines/actual/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoiceActual')->middleware('admin:administrador');
 Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoice')->middleware('admin:administrador');
 
+/* RUTAS DEL CONCENTRADOR */
+Route::get('/concentrador/{pk_materia_pc}','ConcentradorController@mostrarEstudiantes');
+Route::get('/concentrador/{materia_pc}/{pk_estudiante}','ConcentradorController@mostrarEstudiante');
+Route::post('/concentrador','ConcentradorController@editarNota');
 
 // Route::get('/terminal/pdf', 'Terminal@pdf');
 // Route::get('/terminal/update', 'Terminal@update');
