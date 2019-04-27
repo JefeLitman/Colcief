@@ -31,7 +31,13 @@
           <td>{{$estudiante->pk_estudiante}}</td>
           @foreach ($periodos as $keyp => $periodo)
             @foreach ($notas[$estudiante->pk_estudiante] as $arrayPeriodos)
-              <td>{{$arrayPeriodos[$keyp]->nota_periodo}}</td>
+              <td>
+                @if (strtotime(date('d-m-Y'))>=strtotime($periodo->recuperacion_limite))
+                  {{$arrayPeriodos[$keyp]->nota_periodo}}
+                @else
+                  NE/T
+                @endif
+            </td>
             @endforeach
           @endforeach
           <td>{{$estudiante->nota_materia}}</td>

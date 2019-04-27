@@ -21,5 +21,35 @@ class EmpleadoSeeder extends Seeder {
         'titulo' => 'Ingeniero de sistemas',
         'role' => '0'
       ]);
+      Empleado::create([
+        'cedula' => 1,
+        'nombre' => 'Director',
+        'apellido' => 'Jdwep',
+        'email' => 'Jdwep@gmail.com',
+        'password' => Hash::make('clave'),
+        'direccion' => 'Calle falsa #1',
+        'titulo' => 'Ingeniero de sistemas',
+        'role' => '1'
+      ]);
+      Empleado::create([
+        'cedula' => 2,
+        'nombre' => 'Profesor',
+        'apellido' => 'Jdwep',
+        'email' => 'Jdwep@gmail.com',
+        'password' => Hash::make('clave'),
+        'direccion' => 'Calle falsa #1',
+        'titulo' => 'Ingeniero de sistemas',
+        'role' => '2'
+      ]);
+      Empleado::create([
+        'cedula' => 3,
+        'nombre' => 'Coordinador',
+        'apellido' => 'Jdwep',
+        'email' => 'Jdwep@gmail.com',
+        'password' => Hash::make('clave'),
+        'direccion' => 'Calle falsa #1',
+        'titulo' => 'Ingeniero de sistemas',
+        'role' => '3'
+      ]);
     }
 }
