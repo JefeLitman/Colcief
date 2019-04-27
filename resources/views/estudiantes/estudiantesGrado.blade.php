@@ -48,7 +48,13 @@
                                      <td class="text-center">{{$c->pk_estudiante}}</td>
                                      <td class="text-center">{{ucwords($c->nombre)}}</td>
                                      <td class="text-center">{{ucwords($c->apellido)}}</td>
-                                     <td class="text-center">{{$c->grado}}</td>
+                                     <td class="text-center">
+                                        @if (empty($c->grado))
+                                            -
+                                        @else
+                                            {{$c->grado}}
+                                        @endif
+                                        </td>
                                         {{-- Ver boletines --}}
                                         <td class="text-center">
                                             <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}/pdf">
