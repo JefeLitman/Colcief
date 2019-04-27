@@ -73,12 +73,17 @@
                                 </tr>
                                 <tr>
                                     @foreach ($divisiones as $d)
-                                        @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
-                                            {{-- Encabezado: Notas--}}
-                                            <th class="table-secondary" data-toggle="tooltip" data-placement="bottom" title="{{$n->descripcion}}" >
-                                                {{$n->nombre}} <span class="badge badge-pill badge-secondary">{{$n->porcentaje}}%</span>
-                                            </th>
-                                        @endforeach
+                                        @if (count($notas[$p->pk_periodo][$d->pk_division]) == 0)
+                                            {{-- Cuendo no hay notas --}}
+                                            <th></th>
+                                        @else
+                                            @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
+                                                {{-- Encabezado: Notas--}}
+                                                <th class="table-secondary" data-toggle="tooltip" data-placement="bottom" title="{{$n->descripcion}}" >
+                                                    {{$n->nombre}} <span class="badge badge-pill badge-secondary">{{$n->porcentaje}}%</span>
+                                                </th>
+                                            @endforeach
+                                        @endif
                                     <th class="table-secondary">D</th>
                                     @endforeach
                                 </tr>
@@ -95,12 +100,17 @@
                                         {{$notaPer[$e->pk_estudiante][$p->pk_periodo]->inasistencias}}
                                     </td>
                                         @foreach ($divisiones as $d)
-                                            @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
-                                                <td contenteditable="true" p="{{$n->porcentaje}}" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" fk="notaDiv{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->fk_nota_division}}"  onkeyup="updateNotasE(this);" notaAceptada="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}">
-                                                    {{-- Notas del estudiante --}}
-                                                    {{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}
-                                                </td>
-                                            @endforeach
+                                            @if (count($notas[$p->pk_periodo][$d->pk_division]) == 0)
+                                                {{-- Cuendo no hay notas --}}
+                                                <td></td>
+                                            @else
+                                                @foreach ($notas[$p->pk_periodo][$d->pk_division] as $n)
+                                                    <td contenteditable="true" p="{{$n->porcentaje}}" id="nota{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" pk="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->pk_nota_estudiante}}" fk="notaDiv{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->fk_nota_division}}"  onkeyup="updateNotasE(this);" notaAceptada="{{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}">
+                                                        {{-- Notas del estudiante --}}
+                                                        {{$notaE[$e->pk_estudiante][$p->pk_periodo][$d->pk_division][$n->pk_nota]->nota}}
+                                                    </td>
+                                                @endforeach
+                                            @endif
                                             <td p="{{$d->porcentaje}}" id="notaDiv{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" pk="{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->pk_nota_division}}" fk="notaPer{{$notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->fk_nota_periodo}}"
                                                 data-toggle="tooltip" data-placement="bottom"
                                                 @if ($notaDiv[$e->pk_estudiante][$p->pk_periodo][$d->pk_division]->nota_division <= 2.9)
