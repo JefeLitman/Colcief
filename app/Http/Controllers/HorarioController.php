@@ -54,8 +54,8 @@ class HorarioController extends Controller
                 ]);
                 break;
             case 'coordinador':
-                $primaria = Curso::where('ano', date('Y'))->where('prefijo', '<', '6')->get()->groupBy('prefijo');
-                $secundaria = Curso::where('ano', date('Y'))->where('prefijo', '>=', '6')->get()->groupBy('prefijo');
+                $primaria = Curso::where('ano', date('Y'))->where('prefijo', '<', 6)->get()->groupBy('prefijo');
+                $secundaria = Curso::where('ano', date('Y'))->where('prefijo', '>=', 6)->get()->groupBy('prefijo');
                 // dd($cursos[0]);
                 $empleados = Empleado::where('role', '<>', '0')->where('role', '<>', '3')->get();
                 // dd(count($empleados));
