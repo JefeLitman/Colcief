@@ -25,7 +25,7 @@
             <br>
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>Información</strong><br>
-                Los estudiantes que aparezcan resaltados, tienen habilitado que se les cambie la nota del periodo desde el concentrador.
+                Los estudiantes que aparezcan resaltados, tienen habilitado que se les cambie la nota de periodos pasados desde el concentrador.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
