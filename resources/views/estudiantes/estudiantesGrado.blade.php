@@ -90,7 +90,7 @@
                                         </td>
                                         {{-- Habilitar switch_concentrador --}}
                                         <td class="text-center">
-                                          <a href="/concentrador/switch/{{$c->pk_estudiante}}"><i title="Activar/Desactivar concentrador" data-toggle="tooltip" data-placement="top" class="far fa-check-square" style="color:#00838f"></i></a>
+                                          <a href="/concentrador/switch/{{$c->pk_estudiante}}"><i title="On/Off concentrador" data-toggle="tooltip" data-placement="top" class="far fa-check-square" style="color:#00838f"></i></a>
                                         </td>
                                         {{-- Eliminar estudiantes --}}
                                         <td class="text-center">
