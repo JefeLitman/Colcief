@@ -102,12 +102,21 @@
     </div>
     <br>
     {{--  Boton crear  --}}
-    @if (session('role')=='profesor' or session('role')=='director')
-        <div class="text-center" style="float:center;">
-            <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/crear/{{$infoMateria->pk_materia_pc}}">Crear nota</a>
+    <div class="row">      
+        @if (session('role')=='profesor' or session('role')=='director')
+            <div class="col-md-6">
+                <div class="text-center" style="float:center;">
+                    <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/notas/crear/{{$infoMateria->pk_materia_pc}}">Crear nota</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+        @else
+            <div class="col-md-12">
+        @endif
+            <div class="text-center" style="float:center;" >
+                <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/planillas/{{$infoMateria->pk_materia_pc}}/periodos/{{$infoMateria->pk_periodo}}/editar">Volver a la planilla</a>
+            </div>
         </div>
-    @else
-        <div></div>
-    @endif
+    </div>
 </div>
 @endsection

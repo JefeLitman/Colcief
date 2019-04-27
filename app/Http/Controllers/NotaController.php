@@ -27,6 +27,7 @@ class NotaController extends Controller
     public function index($pk_materia_pc,$pk_periodo)
     {
       $infoAdicional = MateriaPC::find($pk_materia_pc);
+      $infoAdicional->pk_periodo = $pk_periodo; #By: Paola, Es para un boton que redireccione a la planilla, ty 
       switch (session('role')) {
         case 'estudiante':
           if (!(session('user')['fk_curso']==$infoAdicional['fk_curso'])) {
