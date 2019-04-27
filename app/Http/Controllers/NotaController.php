@@ -260,11 +260,15 @@ class NotaController extends Controller
     public function sumaPorcentajes(Request $request)
     {
         $periodo = Nota::find($request->route('nota'))['fk_periodo'];
+        if(empty($periodo)){
+          $periodo = $request['fk_periodo'];
+        }
         $suma = MateriaPC::find($request['fk_materia_pc'])->Notas()
         ->where([['fk_division','=',$request['fk_division']],['fk_periodo','=',$periodo]])->sum('porcentaje');
         if ($request->ajax()) {
           return json_encode(['total' => $suma]);
         }
+        //dd($suma);
         return $suma;
     }
 
