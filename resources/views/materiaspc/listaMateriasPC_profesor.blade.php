@@ -69,8 +69,8 @@
                                                         {{-- Editar logros de una materia --}}
                                                         <a href="{{ route('materiaspc.edit',$j[0]) }}" data-toggle="tooltip" data-placement="right"  title="Modificar logros"><i class="fas fa-edit text-info" ></i></a>
                                                     </td>
-                                                    <td>
-                                                      <a href="/concentrador/{{$j[0]}}" data-toggle="tooltip" data-placement="right"  title="Ver concentrador"><i class="fas fa-server text-info" ></i><i class="fas fa-server text-info" ></i><i class="fas fa-server text-info" ></i><i class="fas fa-server text-info" ></i></a>
+                                                    <td  class="text-center">
+                                                      <a href="/concentrador/{{$j[0]}}" data-toggle="tooltip" data-placement="right"  title="Ver concentrador"><i class="fas fa-clipboard-list text-info" ></i></a>
                                                     </td>
                                                     @foreach ($periodos as $p)
                                                         <td class="text-center">
