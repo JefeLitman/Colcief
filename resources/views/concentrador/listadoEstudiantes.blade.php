@@ -30,8 +30,9 @@
           @foreach ($estudiantes as $key => $estudiante)
             <tr @if ($estudiante->switch_concentrador)
               bgcolor="orange"
-              document.body.style.cursor = pointer;
+              
               onclick="window.location='/concentrador/{{$materia->pk_materia_pc}}/{{$estudiante->pk_estudiante}}';"
+              style="cursor:pointer; !important" 
               @endif>
               <td>{{$key+1}}</td>
               <td>{{$estudiante->apellido.' '.$estudiante->nombre}}</td>
