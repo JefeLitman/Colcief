@@ -12,7 +12,7 @@
       <div class="card-body">
       <br>
       <div class="table-responsive">
-        <table class="table table-striped table-condensed table-hover text-center">
+        <table class="table table-hover table table-bordered text-center">
           <thead>
           <tr>
             <th class="center" scope="col" style="color:#00695c">#</th>
@@ -29,10 +29,8 @@
           <tbody>
           @foreach ($estudiantes as $key => $estudiante)
             <tr @if ($estudiante->switch_concentrador)
-              bgcolor="orange"
-              
               onclick="window.location='/concentrador/{{$materia->pk_materia_pc}}/{{$estudiante->pk_estudiante}}';"
-              style="cursor:pointer; !important" 
+              style="cursor:pointer !important; background-color: #ffcf6c !important;" 
               @endif>
               <td>{{$key+1}}</td>
               <td>{{$estudiante->apellido.' '.$estudiante->nombre}}</td>
