@@ -18,9 +18,9 @@ class EstudianteStoreController extends FormRequest{
             'discapacidad' => 'boolean',
             'fk_curso' => 'nullable|numeric',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg',
-            'nombre_acu_1' => 'required|string|max:50',
-            'direccion_acu_1' => 'required|string|max:255',
-            'telefono_acu_1' => 'required|numeric|digits_between:7,10',
+            'nombre_acu_1' => 'nullable|string|max:50',
+            'direccion_acu_1' => 'nullable|string|max:255',
+            'telefono_acu_1' => 'nullable|numeric|digits_between:7,10',
             'nombre_acu_2' => 'nullable|string|max:50',
             'direccion_acu_2' => 'nullable|string|max:255',
             'telefono_acu_2' => 'nullable|numeric|digits_between:7,10'
