@@ -106,7 +106,7 @@
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <span class= "input-group-text">
-                                                <i class="fas fa-restroom"></i>
+                                                <i class="fas fa-user-friends"></i>
                                             </span>
                                         </div>
                                         <select class="custom-select custom-select-sm" name="genero" id="genero">
