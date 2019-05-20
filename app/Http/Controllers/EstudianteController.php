@@ -171,6 +171,7 @@ class EstudianteController extends Controller
             )
         );
         $estudiante->fk_curso = $request->fk_curso;
+        $estudiante->genero = $request->genero;
         if ($request->fk_curso == '') {
             $estudiante->fk_curso = null;
             // dd("hello");
@@ -178,6 +179,7 @@ class EstudianteController extends Controller
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
             SupraController::minuscula($request->all(),
                 "nombre",
+                "genero",
                 "apellido",
                 "fk_curso",
                 "fecha_nacimiento",
