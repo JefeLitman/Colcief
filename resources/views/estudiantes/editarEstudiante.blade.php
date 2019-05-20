@@ -111,7 +111,7 @@
 
                         <div class="row">
                             {{-- Discapacidad --}}
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group mb-2">
                                     <label for="cedula"><strong><small style="color : #616161">Discapacidad</small></strong></label>
                                     <div class="input-group mb-2 disabled">
@@ -128,6 +128,25 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- genero --}}
+                            <div class="col-md-3">
+                                <div class="form-group mb-2">
+                                    <label for="cedula"><strong><small style="color : #616161">Genero</small></strong></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class= "input-group-text">
+                                                <i class="fas fa-user-friends"></i>
+                                            </span>
+                                        </div>
+                                        <select class="custom-select custom-select-sm" name="genero" id="genero">
+                                            <option {{$estudiante->genero == "m" ? 'selected' : ''}} value="m">Masculino</option>
+                                            <option {{$estudiante->genero == "f" ? 'selected' : ''}} value="f">Femenino</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             {{-- foto --}}
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
