@@ -63,6 +63,7 @@ class EstudianteController extends Controller
                 "nombre",
                 "apellido",
                 "grado",
+                "genero",
                 "fecha_nacimiento",
                 "discapacidad",
                 "foto",
