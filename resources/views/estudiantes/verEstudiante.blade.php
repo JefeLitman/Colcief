@@ -35,6 +35,10 @@
                                 <div>{{$estudiante->fecha_nacimiento}}</div>
                             </li>
                             <li class="list-group-item">
+                                <small class="text-muted">Genero:</small>
+                                <div>{{ucwords($estudiante->genero == 'm' ? 'Masculino' : 'Femenino' )}}</div>
+                            </li>
+                            <li class="list-group-item">
                                 <small class="text-muted">Discapacidad:</small>
                                 <div>{{ucwords($estudiante->discapacidad == 0 ? 'no' : 'si' )}}</div>
                             </li>

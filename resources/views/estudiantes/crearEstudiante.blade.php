@@ -110,8 +110,8 @@
                                             </span>
                                         </div>
                                         <select class="custom-select custom-select-sm" name="genero" id="genero">
-                                            <option selected value="h">Hombre</option>
-                                            <option value="m">Mujer</option>
+                                            <option selected value="m">Masculino</option>
+                                            <option value="f">Femenino</option>
                                         </select>
                                     </div>
                                 </div>

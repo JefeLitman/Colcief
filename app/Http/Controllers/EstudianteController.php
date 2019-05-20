@@ -87,7 +87,7 @@ class EstudianteController extends Controller
             $estudiante->fk_curso = null;
         }
         $estudiante->fk_acudiente = $acudiente->pk_acudiente;
-        $estudiante->genero = 'genero';
+        $estudiante->genero = $request->genero;
         $estudiante->password = Hash::make('clave');
 
         if ($request->hasFile('foto')) { // se guarda la imagen
