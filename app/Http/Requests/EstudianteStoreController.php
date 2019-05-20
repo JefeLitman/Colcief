@@ -12,9 +12,10 @@ class EstudianteStoreController extends FormRequest{
 
     public function rules(){
         return [
-            'nombre' => 'required|string|max:20',
-            'apellido' => 'required|string|max:20',
+            'nombre' => 'required|string|max:35',
+            'apellido' => 'required|string|max:35',
             'fecha_nacimiento' => 'required|date',
+            'genero' => 'required|String|max:1',
             'discapacidad' => 'boolean',
             'fk_curso' => 'nullable|numeric',
             'foto' => 'image|mimes:jpeg,bmp,png,jpg',
