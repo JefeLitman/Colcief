@@ -45,11 +45,15 @@ class PdfController extends Controller
         return $this->invoice(date('Y'),$fk_estudiante);
     }
     public function invoice($ano,$fk_estudiante,$flag=false){
+        $path = "boletines/";
+        if(!is_dir($path)){
+            mkdir($path);
+        }
 
-        $file = "boletines/estudiante-".$fk_estudiante."_".$ano.".pdf";
+        $file = $path."estudiante-".$fk_estudiante."_".$ano.".pdf";
         if( (!file_exists( $file )) and date('Y')==$ano ){
             $data = (new BoletinController)->showAnoEstudiante($ano,$fk_estudiante,true);
-            // dd($data);
+            
             if ($data['msj']!=1) {
                 $pPasado=-1;
                 foreach($data['infoPeriodos'] as $p){
