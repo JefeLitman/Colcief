@@ -6,6 +6,7 @@ use iio\libmergepdf\Merger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Boletin;
+use App\Estudiante;
 use App\Curso;
 use PDF;
 use App\Http\Controllers\BoletinController;
@@ -51,7 +52,15 @@ class PdfController extends Controller
         }
 
         $file = $path."estudiante-".$fk_estudiante."_".$ano.".pdf";
-        if( (!file_exists( $file )) and date('Y')==$ano ){
+        $existe = file_exists( $file );
+        $actualizar = false;
+        $fecha  = "";
+
+        if($existe){
+            $fecha = date ("Y-m-d G:i:s", filemtime($file));
+        }
+        
+        if( (!$existe) or date('Y')==$ano ){
             $data = (new BoletinController)->showAnoEstudiante($ano,$fk_estudiante,true);
             
             if ($data['msj']!=1) {
@@ -60,16 +69,25 @@ class PdfController extends Controller
                     if(strtotime(date('Y'))>strtotime($p->recuperacion_limite)){
                         $pPasado=$p->pk_periodo;
                     }
+                    if(strtotime(date('Y'))<strtotime($p->recuperacion_limite) && strtotime(date('Y'))>=strtotime($p->fecha_inicio) ){
+                        $pActual=$p;
+                    }
                 }
+                // dd($pActual);
+
                 if($pPasado==-1){
                     //Para mostrar las notas se requiere que haya pasado al menos un periodo
                     //Es decir periodo uno aun no culminado
                     $data['msj']=4;
                 }
                 $data['pPasado']=$pPasado;
+                if( ( $existe and (strtotime($fecha) <= strtotime($pActual->recuperacion_limite)) ) or (!$existe) ){
+                    $pdf = PDF::loadView("pdf.invoice", $data);
+                    file_put_contents($file, $pdf->output());
+                }
+            }else{
+                die("<b>El estudiante no existe<b>");
             }
-            $pdf = PDF::loadView("pdf.invoice", $data);
-            file_put_contents($file, $pdf->output());
         }
         if($flag){
             return  $file;

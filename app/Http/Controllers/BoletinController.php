@@ -54,6 +54,10 @@ class BoletinController extends Controller {
         $infoPeriodos=Periodo::where("ano",$ano)->orderBy('periodo.nro_periodo','asc')->get();
         // dd($infoPeriodos);
         $notaDivs=[];
+        $puesto = [];
+        $inasistencias = [];
+        $notaPeriodos = [];
+
         $msj="";    
         if(empty($B[0])){
             $msj=1; //No existe boletin u estudiante correspondiente.
@@ -84,7 +88,8 @@ class BoletinController extends Controller {
                     // dd("holi");
                     return ["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs,"acudiente"=>$acudiente,"empleado"=>$empleado,"infoPeriodos"=>$infoPeriodos];
                 }
-                return view('boletines.showEstudianteBoletin',["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs]);
+                // return view('boletines.showEstudianteBoletin',["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs]);
+                return view('boletines.showEstudianteBoletin',['recuperaciones'=>$recuperaciones,'puesto'=>$puesto,"inasistencias"=>$inasistencias,"msj"=>$msj,"boletin"=>$B[0],"materias"=>$materias,"infoPeriodos"=>$infoPeriodos,"notaPeriodos"=>$notaPeriodos,"infoDivs"=>$infoDivs,"notaDivs"=>$notaDivs]);
             }else{
                 foreach ($infoPeriodos as $j) {
                     $inasistencias[$j->pk_periodo]=0;
