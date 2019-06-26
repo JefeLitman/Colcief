@@ -69,13 +69,17 @@ class Estudiante extends Authenticatable {
      */
     public function cambioCurso(){
         $boletin=Boletin::where([["ano",date('Y')],["fk_estudiante",$this->pk_estudiante]])->get();
+        $bandera = false;
         if ($this->fk_curso!=null) {
             foreach ($boletin as $b) {
                 if ($b->fk_curso!=$this->fk_curso) {
                     $b->delete();
+                    $bandera = true;
                 }
             }
-            $this->crearEstructuraDatos();
+            if($bandera){
+                $this->crearEstructuraDatos();
+            }
         }
     }
 

@@ -39,7 +39,7 @@ class BoletinController extends Controller {
             $estudiante;
             $boletines=Boletin::select('boletin.*','curso.prefijo','curso.sufijo')->where('boletin.fk_estudiante',$id)->join('curso','curso.pk_curso','=','boletin.fk_curso')->get();
         }
-        
+        // dd($boletines);
         return view('boletines.showBoletines',['estudiante'=>$estudiante,'boletines'=>$boletines]);
     }
 
