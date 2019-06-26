@@ -224,7 +224,16 @@
                         <th >Nota final</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> 
+                  @if ( $msj == 2) 
+                    <tr>
+                      <td colspan="7" align="center" class="borde-y">
+                        <br>
+                          <b> No hay materias asignadas a este estudiante </b>
+                          <br><br>
+                      </td>
+                    </tr>
+                  @else
                     {{-- Contenido Tabla --}}
                     @foreach ($materias as $m)
                         <tr class="borde-y">
@@ -295,6 +304,7 @@
                         @endforeach
                         <td></td>
                     </tr>
+                    @endif
                 </tbody>
             </table>
         <div style="background-color: rgb(190,190,190);text-align:center; ">
@@ -344,6 +354,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                      @if ( $msj == 2) 
+                        <tr>
+                          <td colspan="8" align="center" class="borde-y">
+                            <br>
+                              <b> No hay materias asignadas a este estudiante </b>
+                              <br><br>
+                          </td>
+                        </tr>
+                      @else
                         @foreach ($recuperaciones as $r)
                             <tr>
                                 {{-- ÁREAS Y/O ASIGNATURAS --}}
@@ -373,6 +392,7 @@
                             </tr> 
                         @endforeach
                     </tbody>
+                  @endif
                 </table>
     </div>
     @endif

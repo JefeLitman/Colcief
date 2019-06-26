@@ -52,6 +52,7 @@ class BoletinController extends Controller {
         
         $infoDivs=Division::select('pk_division','nombre','porcentaje')->where('ano',$ano)->orderBy('pk_division','asc')->get();
         $infoPeriodos=Periodo::where("ano",$ano)->orderBy('periodo.nro_periodo','asc')->get();
+        // dd($infoPeriodos);
         $notaDivs=[];
         $msj="";    
         if(empty($B[0])){
@@ -80,7 +81,8 @@ class BoletinController extends Controller {
             if(empty($materias[0])){
                 $msj=2; //No hay materias asignadas a este estudiante.
                 if($pdf){
-                    return ["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs,"acudiente"=>$acudiente,"empleado"=>$empleado];
+                    // dd("holi");
+                    return ["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs,"acudiente"=>$acudiente,"empleado"=>$empleado,"infoPeriodos"=>$infoPeriodos];
                 }
                 return view('boletines.showEstudianteBoletin',["msj"=>$msj,"boletin"=>$B[0],"infoDivs"=>$infoDivs]);
             }else{
