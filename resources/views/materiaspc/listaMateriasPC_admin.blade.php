@@ -102,18 +102,27 @@
                 </div>
             @endif
             <div class="row text-center">
-                <div class="col-md-6">
-                    <div class="text-center" style="float:center;">
-                        <br>
-                        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/materias/crear">Crear una materia</a>
+                @if (count($materias) > 0)
+                    <div class="col-md-6">
+                        <div class="text-center" style="float:center;">
+                            <br>
+                            <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/materias/crear">Crear una materia</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="text-center" style="float:center;">
-                        <br>
-                        <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/materiaspc/crear">Asignar docente</a>
+                    <div class="col-md-6">
+                        <div class="text-center" style="float:center;">
+                            <br>
+                            <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/materiaspc/crear">Asignar docente</a>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="col-12">
+                        <div class="text-center" style="float:center;">
+                            <br>
+                            <a  class="btn btn-success" style="background-color: #17a2b8 !important; border-color: #17a2b8 !important;" href="/materias/crear">Crear una materia</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
