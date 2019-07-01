@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <h3 id="login" class="section-title text-center" style="margin-bottom: 2rem!important;">
+        <h3 id="login" class="section-title text-center" style="cursor: pointer !important;margin-bottom: 2rem!important;">
           <span id="n">Login</span>
           <i class="fa fa-chevron-left float-left" style="font-size:25px !important" id="back"></i>
         </h3>
