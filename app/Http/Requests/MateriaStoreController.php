@@ -24,9 +24,9 @@ class MateriaStoreController extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:20',
-            'contenido' => 'required|string|max:255',
-            'logros_custom' => 'string|max:255'
+            'nombre' => 'required|string',
+            'contenido' => 'required|string',
+            'logros_custom' => 'string'
         ];
     }
 
