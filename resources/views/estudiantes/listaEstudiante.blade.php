@@ -244,7 +244,7 @@
                             '<tbody class="contenidobusqueda">'+
                                 '<tr id="estudiantes'+value.pk_estudiante+'">'+
                                     '<td class="text-center">'+value.pk_estudiante+'</td>'+
-                                    '<td class="text-center">'+$.ucfirst(value.nombre+' '+value.apellido)+'</td>'+
+                                    '<td class="text-center">'+value.nombre+' '+value.apellido+'</td>'+
                                     '<td class="text-center">'+value.prefijo+'-'+value.sufijo+'</td>'+
                                     '<td class="text-center">'+
                                         '<a href="/estudiantes/'+value.pk_estudiante+'" title="Ver información del estudiante"><i class="fas fa-eye" style="color:#00838f"></i>'+
