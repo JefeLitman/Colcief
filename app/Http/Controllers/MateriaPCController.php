@@ -70,14 +70,14 @@ class MateriaPCController extends Controller
                 foreach ($materias as $j) {
                     $result[$j->pk_materia] = [];
                 }
-                dd($materiaspc);
-                dd($materias);
-                foreach ($materiaspc as $i) {
-                    $prefijo = $i->prefijo;
-                    if ($prefijo == "0") {
-                        $prefijo = "Prescolar";
+                if (count($materias) > 0) {
+                    foreach ($materiaspc as $i) {
+                        $prefijo = $i->prefijo;
+                        if ($prefijo == "0") {
+                            $prefijo = "Prescolar";
+                        }
+                        array_push($result[$i->fk_materia], [$i->pk_materia_pc, $i->nombreP, $i->apellido, $prefijo . "-" . $i->sufijo]);
                     }
-                    array_push($result[$i->fk_materia], [$i->pk_materia_pc, $i->nombreP, $i->apellido, $prefijo . "-" . $i->sufijo]);
                 }
                 return view('materiaspc.listaMateriasPC_admin', ['result' => $result, 'materias' => $materias]);
                 break;
