@@ -29,7 +29,7 @@ class MateriaPCUpdateController extends FormRequest
             'fk_empleado' => 'numeric',
             'fk_curso' => 'numeric',
             'salon' => 'string|max:5',
-            'logros_custom' => 'string|max:255'
+            'logros_custom' => 'string'
         ];
     }
 }
