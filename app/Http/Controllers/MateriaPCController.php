@@ -71,6 +71,7 @@ class MateriaPCController extends Controller
                     $result[$j->pk_materia] = [];
                 }
                 dd($materiaspc);
+                dd($materias);
                 foreach ($materiaspc as $i) {
                     $prefijo = $i->prefijo;
                     if ($prefijo == "0") {
