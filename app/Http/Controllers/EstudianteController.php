@@ -39,9 +39,9 @@ class EstudianteController extends Controller
 
     public function estudianteGrado($pk_curso)
     {
-        if(session('role')=="director" ){
-            if(session('user')['fk_curso']!=$pk_curso){
-                return redirect('/estudiantes/cursos/'.session('user')['fk_curso']);
+        if (session('role') == "director") {
+            if (session('user')['fk_curso'] != $pk_curso) {
+                return redirect('/estudiantes/cursos/' . session('user')['fk_curso']);
             }
         }
         $curso = json_decode((new CursoController)->conteoEstudiantes($pk_curso));
@@ -72,7 +72,8 @@ class EstudianteController extends Controller
         );
         $acudiente->save(); // se guarda el acudiente
         $estudiante = (new Estudiante)->fill(
-            SupraController::minuscula($request->all(),
+            SupraController::minuscula(
+                $request->all(),
                 "nombre_acu_1",
                 "direccion_acu_1",
                 "telefono_acu_1",
@@ -89,6 +90,8 @@ class EstudianteController extends Controller
         $estudiante->fk_acudiente = $acudiente->pk_acudiente;
         $estudiante->genero = $request->genero;
         $estudiante->password = Hash::make('clave');
+        $estudiante->nombre = str_replace('  ', ' ', $request->nombre);
+        $estudiante->apellido = str_replace('  ', ' ', $request->apellido);
 
         if ($request->hasFile('foto')) { // se guarda la imagen
             $nombre = 'estudiante' . $estudiante->pk_estudiante;
@@ -154,21 +157,21 @@ class EstudianteController extends Controller
         }
         $mensaje = 'No se encuentra registros de este estudiante';
         return back()->with('false', $mensaje);
-
     }
 
     public function update(EstudianteUpdateController $request, $pk_estudiante)
     {
         $estudiante = Estudiante::findOrFail($pk_estudiante)->fill(
-            SupraController::minuscula($request->all(),
-                "nombre_acu_1",
-                "direccion_acu_1",
-                "telefono_acu_1",
-                "nombre_acu_2",
-                "direccion_acu_2",
-                "telefono_acu_2",
-                "fk_curso" //datos q no quiere guardar
-            )
+            SupraController::minuscula(
+                    $request->all(),
+                    "nombre_acu_1",
+                    "direccion_acu_1",
+                    "telefono_acu_1",
+                    "nombre_acu_2",
+                    "direccion_acu_2",
+                    "telefono_acu_2",
+                    "fk_curso" //datos q no quiere guardar
+                )
         );
         $estudiante->fk_curso = $request->fk_curso;
         $estudiante->genero = $request->genero;
@@ -177,15 +180,16 @@ class EstudianteController extends Controller
             // dd("hello");
         }
         $acudiente = Acudiente::findOrFail($estudiante->fk_acudiente)->fill(
-            SupraController::minuscula($request->all(),
-                "nombre",
-                "genero",
-                "apellido",
-                "fk_curso",
-                "fecha_nacimiento",
-                "discapacidad",
-                "foto" //datos q no quiere guardar
-            )
+            SupraController::minuscula(
+                    $request->all(),
+                    "nombre",
+                    "genero",
+                    "apellido",
+                    "fk_curso",
+                    "fecha_nacimiento",
+                    "discapacidad",
+                    "foto" //datos q no quiere guardar
+                )
         );
         if ($request->hasFile('foto')) {
             $nombre = 'estudiante' . $estudiante->pk_estudiante;
@@ -302,7 +306,6 @@ class EstudianteController extends Controller
                     'mensaje' => $estudiante->nombre . ' ' . $estudiante->apellido . ' Fue restaurado con éxito',
                     'url' => config('app.url') . $request->direccion,
                 ]);
-
             } else {
                 return response()->json([
                     'mensaje' => $estudiante->nombre . ' ' . $estudiante->apellido . ' no pudo ser restaurado, intente nuevamente',
