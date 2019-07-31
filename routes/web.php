@@ -105,7 +105,7 @@ Route::get('/cursos/{pk_curso}/planillas', 'CursoController@cursoPlanillas');
 Route::resource('/materiaspc', 'MateriaPCController');
 Route::get('/planillas/{pk_materia_pc}/periodos/{pk_periodo}', 'MateriaPCController@showPlanillas');
 Route::get('/planillas/{pk_materia_pc}/periodos/{pk_periodo}/editar', 'MateriaPCController@editarPlanillas');
-Route::put('/planillas/{pk_materia_pc}/periodos/{pk_periodo}', 'MateriaPCController@updatePlanillas')->middleware('admin:profesor');
+Route::put('/planillas/{pk_materia_pc}/periodos/{pk_periodo}', 'MateriaPCController@updatePlanillas')->middleware('admin:profesor,director');
 
 /* RUTAS DE NOTA */
 Route::get('/notas/crear/{pk_materia_pc}', 'NotaController@create');
@@ -148,16 +148,16 @@ Route::get('/fechas', 'FechaController@index')->name('fechas.index');
 Route::resource('/archivos', 'ArchivoController');
 
 /* RUTAS DE NOTAS PERIODO */
-Route::resource('/notasperiodo', 'NotaPeriodoController')->middleware('admin:profesor');
+Route::resource('/notasperiodo', 'NotaPeriodoController')->middleware('admin:profesor,director');
 
 /* RUTAS DE NOTAS ESTUDIANTE */
-Route::resource('/notasestudiante', 'NotaEstudianteController')->middleware('admin:profesor');
+Route::resource('/notasestudiante', 'NotaEstudianteController')->middleware('admin:profesor,director');
 
 /* RUTAS DE NOTAS DIVISION */
-Route::resource('/notasdivision', 'NotaDivisionController')->middleware('admin:profesor');
+Route::resource('/notasdivision', 'NotaDivisionController')->middleware('admin:profesor,director');
 
 /* RUTAS DE MATERIA BOLETIN */
-Route::resource('/materiasboletin', 'MateriaBoletinController')->middleware('admin:profesor');
+Route::resource('/materiasboletin', 'MateriaBoletinController')->middleware('admin:profesor,director');
 
 /* RUTAS DE NIVELACIONES */
 Route::resource('/nivelaciones', 'NivelacionController');
