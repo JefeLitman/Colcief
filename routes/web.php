@@ -177,9 +177,9 @@ Route::get('/SIGCA/finalizar/{fk_boletin}/{estado}','SIGCAController@finalizar')
 
 /* RUTAS PDF */
 // Route::get('/pdf', 'PdfController@invoice');
-Route::get('/boletines/cursos/{pk_curso}/pdf', 'PdfController@invoiceCurso')->middleware('admin:administrador,director');
-Route::get('/boletines/actual/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoiceActual')->middleware('admin:administrador,director');
-Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoice')->middleware('admin:administrador,director');
+Route::get('/boletines/cursos/{pk_curso}/pdf', 'PdfController@invoiceCurso')->middleware('admin:administrador,coordinador');
+Route::get('/boletines/actual/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoiceActual')->middleware('admin:administrador,coordinador');
+Route::get('/boletines/{ano}/estudiantes/{fk_estudiante}/pdf', 'PdfController@invoice')->middleware('admin:administrador,coordinador');
 
 /* RUTAS DEL CONCENTRADOR */
 Route::get('/concentrador/switch/{pk_estudiante}','ConcentradorController@activarSwitch')->middleware('admin:administrador');
