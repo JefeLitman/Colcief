@@ -300,7 +300,7 @@
             @endif
         </div>
     </div>
-    @if (session("role")=="administrador")
+    @if (session("role")=="administrador" or session("role")=="coordinador")
         <div class="row text-center mt-4">
             <div class="col-4"></div>
             <div class="col-4">
