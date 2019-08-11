@@ -79,7 +79,7 @@
                   </div>
                 </div>
               @else
-            {{$boletin->nombre}} {{$boletin->apellido}}
+            {{ucfirst($boletin->nombre)}} {{ucfirst($boletin->apellido)}}
           </b>
         </div>
       </div>
