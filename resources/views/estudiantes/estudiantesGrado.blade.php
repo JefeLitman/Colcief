@@ -9,7 +9,7 @@
              @endphp
              <h4 class="text-center"> Curso {{$g[$grado->prefijo]}} - {{$grado->sufijo}} </h4>
             <div class="text-center">
-                @if (session('role')=="administrador")
+                @if (session('role')=="administrador" or session('role')=="coordinador")
                     <a href="/boletines/cursos/{{$grado->pk_curso}}/pdf" style="margin-bottom: 10px;display:block;">
                         <button type="button" class="btn btn-primary w-30 mx-auto" data-toggle="modal" data-target="#empleadoModal">
                             <i class="fas fa-file-pdf" style="color:white"></i> Boletines Curso
@@ -65,7 +65,7 @@
                                         @endif
                                         </td>
                                         {{-- Ver boletines pdf --}}
-                                        @if (session('role')=="administrador")
+                                        @if (session('role')=="administrador" or session('role')=="coordinador")
                                             <td class="text-center">
                                                 <a data-toggle="tooltip" data-placement="top" title="Descargar Boletin" href="/boletines/actual/estudiantes/{{$c->pk_estudiante}}/pdf">
                                                     <i class="far fa-file-pdf" style="color:#00838f"></i>
