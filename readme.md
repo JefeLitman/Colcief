@@ -15,9 +15,9 @@ Las especificaciones de cada usuario en la plataforma son:
 # Links de videos y guías de usabilidad
 
   1. [Login por primera vez](https://youtu.be/_Ez5ykSp1EQ)
-  2. [Modulo estudiante](https://www.youtube.com/watch?v=wqoIL4TZq-I)
+  2. [Modulo director y profesor](https://www.youtube.com/watch?v=8RJYtG5tX8o)
   3. [Modulo administrativo](https://www.youtube.com/watch?v=7oHcKPN70EU)
   4. [Modulo coordinador](https://www.youtube.com/watch?v=UbtOO8XZ_N0)
-  5. [Modulo director y profesor](https://www.youtube.com/watch?v=8RJYtG5tX8o)
-  2. [Manual de usuario](https://drive.google.com/file/d/198xksSuELrTQdGagh3ZBEyM6LMy-etzO/view?usp=sharing)
+  5. [Modulo estudiante](https://www.youtube.com/watch?v=wqoIL4TZq-I)
+  6. [Manual de usuario](https://drive.google.com/file/d/198xksSuELrTQdGagh3ZBEyM6LMy-etzO/view?usp=sharing)
 
